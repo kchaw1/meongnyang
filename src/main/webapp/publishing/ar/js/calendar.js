@@ -1,12 +1,20 @@
+var now = new Date();
 $(function(){
-  var now = new Date();
-  
+  $('#summernote').summernote({
+    height: 350,                 // set editor height
+    minHeight: null,             // set minimum height of editor
+    maxHeight: null,             // set maximum height of editor
+    focus: true,
+    tabsize : 2,
+    placeholder : '내용을 입력하여 주세요',                  // set focus to editable area after initializing summernote
+  });
   makeCalendar(now);
 })
 
-function makeCalendar(now){
+var today = now.getFullYear()+""+(now.getMonth()+1)+""+now.getDate();
 
-  
+function makeCalendar(now){
+  //alert(today)
   var year = now.getFullYear();
   var month = now.getMonth(); // 0~11 이기 때문에 +1 해야한다.
   var date = now.getDate();
@@ -36,7 +44,7 @@ function makeCalendar(now){
   var pointdate = 0;
   var str = "<table>";
   for(let r=0; r<weekNo; r++){
-    str += "<tr class='date'>";
+    str += "<tr class='week"+(r+1)+"'>";
     for(let col=0; col<7; col++){
       pointdate = no;
       if(currentCell < firstDay || no > daysNo){
@@ -59,6 +67,8 @@ function makeCalendar(now){
   $("div.date").html(str);
   $("div.year").html(year)
   $(".months li").find("a[data-value="+month+"]").addClass("selected")
+  //alert(today.getFullYear()+""+today.getMonth()+""+today.getDate())
+  $("tr[class^='week'] td").find("a[data-val="+today+"]").parent().addClass("today")
   
   $("a[title]").click(function(){
     // alert($(this).data("value"))

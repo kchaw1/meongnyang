@@ -77,12 +77,13 @@ tr.title{
 button {
   margin : 3px;
   width: 80px;
-  height: 30px;
+  height: 40px;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px;
   color : white;
   background-color: rgb(65, 192, 142, 0.7);
   border-color : rgb(65, 192, 142, 0.7);
+  font-family: 'Jua', sans-serif;
 }
 
 button:hover {

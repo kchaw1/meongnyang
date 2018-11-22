@@ -21,6 +21,9 @@
   <link rel="stylesheet" href="calendar.css">
   <!--달력 js-->
   <script src="./js/calendar.js"></script>
+  <!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 </head>
 <body>
   <header class="dogcat">
@@ -83,8 +86,45 @@
           
         </div>
       </div>
-    </div>  
-  </div> 
+    </div> 
+    <div class="form">
+      <div id="input form-group" class="write">
+        <div class="submit">
+          <table class="submit">
+            <tr>
+              <td class="date">날짜</td>
+              <td class="input-form">
+                <input type="text" name="date" class="form-control" disabled="disabled"/>
+              </td>
+              <td>
+                <button>작성</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div> 
+        <table class="writeform">
+          <tr >
+            <th class="up" colspan="2">내 다이어리 쓰기</th>
+          </tr>
+          <tr>
+            <td class="text">제목</td>
+            <td>
+              <div class="title form-group">
+                <input type="text" name="title" class="form-control" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="textarea">
+              <textarea name="content" id="summernote" value=""></textarea>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div> 
+  </div>
+  
   <footer class="dogcat">
     <div class="footertitle">
       <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
