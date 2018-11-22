@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+    <style>
+      .table-responsive{
+        border:2px solid rgb(128, 128, 128, 0.8);
+        border-top: none;
+        border-radius: 10px;
+      }
+      
+th{
+ background-color:  rgb(128, 128, 128, 0.8) !important;
+ color: white;
+ font-family: 'Jua', sans-serif;
+ text-align: center;
+
+
+ 
+}
+td{
+  font-family: 'Jua', sans-serif;
+  text-align: center;
+  border-radius: 3px;
+
+
+
+}
+#write{
+  float: right;
+  border : #5eb69d;
+  background-color:  rgb(128, 128, 128, 0.8);
+  font-family: 'Jua', sans-serif;
+
+}
+html {
+  font-size: 21px;
+  font-family: "Open Sans";
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1 {
+  font-family: 'Jua', sans-serif;
+  font-size: 3.7em;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #222;
+  margin-bottom: 0.3em;
+  margin-top: 45px;
+}
+
+p {
+  font-weight: 200;
+  color: #525252;
+}
+
+.fl {
+  float: left;
+  margin: 20px;
+}
+
+.fr {
+  float: right;
+  margin: 20px;
+}
+
+.hero {
+  width: 42%;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%), url(http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.hero .hamb-wrap {
+  height: 30px;
+  width: 40px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  cursor: pointer;
+  z-index: 2;
+}
+.hero .hamb {
+  height: 3px;
+  width: 35px;
+  background: #fff;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 40% 40% 40% 40%;
+}
+.hero .hamb:before, .hero .hamb:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  height: 3px;
+  width: 100%;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+}
+.hero .hamb:before {
+  top: 8px;
+}
+.hero .hamb:after {
+  top: -8px;
+}
+.hero .active {
+  background: none;
+  transition: 0.2s;
+}
+.hero .active:before, .hero .active:after {
+  transition: 0.2s;
+  top: 0;
+}
+.hero .active:before {
+  transform: rotate(45deg);
+}
+.hero .active:after {
+  transform: rotate(-45deg);
+}
+.hero .logo {
+  color: white;
+  font-family: "Over the Rainbow";
+  font-size: 2.5em;
+  margin: 0 0 0 85px;
+  line-height: 2.2;
+  letter-spacing: 10px;
+
+}
+.hero nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 60px;
+  font-family: "Raleway";
+  font-size: 2em;
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+}
+.hero nav ul {
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+.hero nav li {
+  list-style-type: none;
+  margin: 25px 0;
+  position: relative;
+}
+.hero nav a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.content {
+  width: 60%;
+  min-height: 100%;
+  margin-left: 41%;
+  padding: 0em 1.5em;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .hero {
+    height: 350px;
+    width: 100%;
+    display: block;
+    position: relative;
+    padding: 1px;
+  }
+  .hero nav {
+    font-size: 1.7em;
+  }
+
+  .content {
+    padding-top: 0;
+    width: 100%;
+  }
+@media (max-width: 480px) {
+  img.fl,
+  img.fr {
+    float: none;
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+  }
+}
+}
+a{
+  color: black;
+}
+.page-item.active .page-link {
+    color: #fff;
+    background-color: rgb(31, 19, 19);
+    border-color: rgb(31, 19, 19);
+}
+.page-item.active .page-link:hover {
+  background-color: gray;
+  border-color: gray;
+
+}
+.pagination{
+  width: 100%;
+  margin-left: 29.2%; 
+}
+.pagination>li:first-child>a, .pagination>li:last-child>span {
+    border-top-left-radius: 39px;
+    border-bottom-left-radius: 39px;
+
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+    border-top-right-radius: 39px;
+    border-bottom-right-radius: 39px;
+
+}
+
+.search-container {
+  width: 180px;
+  display: block;
+  margin: 0 auto;
+}
+
+input#search-bar {
+  margin: 0 auto;
+  width: 100%;
+  height: 30px;
+  padding: 0 20px;
+  font-size: 5px;
+  border: 1px solid #D0CFCE;
+  border-radius: 5px;
+  outline: none;
+}
+input#search-bar:focus {
+  border: 1px solid gray;
+  transition: 0.35s ease;
+  color: gray;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+input#search-bar:focus:-ms-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+
+
+    </style>
+</head>
+<body>
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:200,900|Over+the+Rainbow' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        
+        <header style="nav-index: 100;">
+          <div class="hero">
+            <div class="hamb-wrap">
+              <div class="hamb"></div>
+            </div>
+            <p class="logo">강형욱</p>
+            <nav>
+              <ul>
+                <li>
+                  <a href="ABSDetail.html">경력 및 인사말</a>
+                </li>
+                <li>
+                  <a href="#">1:1 화상채팅하기</a>
+                </li>
+                <li>
+                  <a href="ABSDetailBoard.html">질문게시판</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section class="content">
+          <h1>질문 게시판</h1>
+          <hr>
+          <div class="">
+              <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
+                  전체 ${count}개
+                  </div>
+              </div>
+              <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>글쓴이</th>
+                  <th>등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>11</td>
+                    <td><a href="ABSDetailRead.html">안녕</a></td>
+                    <td>하세요</td>
+                    <td>2018-11-19</td>
+                  </tr>               
+                  <tr>
+                    <td>1111</td>
+                    <td>안녕</td>
+                    <td>하세요</td>
+                    <td>2018-11-19</td>
+                  </tr>               
+                  <tr>
+                    <td>1111</td>
+                    <td>안녕</td>
+                    <td>하세요</td>
+                    <td>2018-11-19</td>
+                  </tr>               
+                  <tr>
+                    <td>1111</td>
+                    <td>안녕</td>
+                    <td>하세요</td>
+                    <td>2018-11-19</td>
+                  </tr>               
+                </tbody>
+              </table>
+              </div><br>
+              <div class="search-container">
+                  <input type="text" id="search-bar" placeholder="제목을 입력하세요...">
+              </div>
+              <div>
+                  <ul class="pagination">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">&raquo;</a>
+                    </li>
+                  </ul>
+                </div>
+                
+              <hr>
+              <div id="wirte"> 
+                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                  <button type="button" class="btn btn-primary" id="write">글쓰기</button>
+                </div>
+            
+            </div>		
+          </section>
+        <script>
+        $('.hamb-wrap').on('click', function(){
+          $(this).parent().children('p').toggle();
+          $(this).children().toggleClass('active');
+          $('nav').fadeToggle(200);
+        
+        }) 
+        $("#write").click(function(){
+            	 location.href="ABSDetailWrite.html";
+             }) 
+       
+        </script>
+
+</body>
+</html>

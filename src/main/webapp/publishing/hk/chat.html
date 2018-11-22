@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1">
+    <link rel="stylesheet" href="/static/css/cafetalk/channel-1533720572000-61397.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+    <style>
+* {  font-family: 'Jua', sans-serif;
+ }
+ body{
+     margin: 0px
+ }
+.main {
+  min-height: 100vh;
+  height: 100%;
+  background: white;
+  overflow: scroll;
+
+}
+.people {
+  height: 100vh;
+  background: rgb(128, 128, 128, 0.5);
+  border-right: 1px solid  rgb(128, 128, 128, 0.5);
+  overflow-y: hidden;
+}
+
+.user-item p.name { 
+  margin: 0;
+  padding-left: 15px;
+  font-size: 20px;
+  color: #f1f1f1; 
+}
+.user-item p.active { 
+  margin: 0;
+  padding-left: 15px;
+  font-size: 10px;
+  color: #f1f1f1; 
+}
+.list-head {
+  padding: 20px;
+  background: gray;
+}
+.list-head p {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  color: #f1f1f1;
+}
+.list-item {
+  display: table;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border-left: 4px solid transparent;
+}
+.list-item img {
+  display: table-cell;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.list-item p {
+  display: table-cell;
+  height: 40px;
+  margin: 0;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-size: 14px;
+  color: black;
+  vertical-align: middle;
+}
+.list-item.active,
+.list-item:hover {
+  border-left: 4px solid #444;
+  background-color: rgb(128, 128, 128,0.5)
+}
+.list-item.active {
+  background: gray;
+}
+
+.chat-wrapper {
+  display: flex;
+  height: 98vh;
+  padding: 10px;
+  flex-direction: column-reverse;
+}
+.chat-content {
+  display: table-cell;
+  width: 100%;
+  margin-top: 20px;
+  vertical-align: bottom;
+}
+.chat-content p {
+  color:white;
+}
+.chat-bubble {
+  display: inline-block;
+  padding: 5px 10px;
+  background: gray;
+  border-radius: .25em;
+}
+.left {
+	position: relative;
+	background: gray;
+}
+.left:after {
+	right: 100%;
+	bottom: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-right-color: gray;
+	border-width: 5px;
+	margin-top: -5px;
+}
+.right {
+	position: relative;
+	background: rgb(128, 128, 128, 0.5);
+}
+.right:after {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-left-color: rgb(128, 128, 128, 0.5);
+	border-width: 5px;
+	margin-top: -5px;
+}
+.form-control {
+  background-color: rgb(128, 128, 128, 0.2);
+  border: none;
+}
+.chat-input {
+  float: left;
+  width: calc(100% - 60px);
+}
+.chat-img {
+  width: 30px;
+  height: 30px;
+  margin-left: 1em;
+}
+.chat-img-left {
+  width: 30px;
+  height: 30px;
+  margin-right: 1em;
+}
+.chat-info {
+  padding-top: 20px;
+  background-color: #2d2d2d;
+}
+.chat-info p {
+  color: #f1f1f7;
+}
+.chat-info-box {
+  border-top: 2px solid #3d3d3d;
+}
+.chat-info-item {
+  padding: 10px;
+  border-bottom: 2px solid #3d3d3d;
+}
+.shared-photos {
+  padding: 10px;
+}
+.shared-photos img {
+  border-radius: .25em;
+  border: 1px solid #656565;
+}
+
+    </style>
+</head>
+<body>
+      
+                    <div class="people" style="position: fixed;">
+                      
+                      </div>
+                      <div class="list-head">
+                        <p>멍하고 노냥 채팅방</p>
+                      </div>
+                      <div class="list">
+                        <div class="list-item">
+                          <p class="pull-left">서울 채팅방</p>
+                        </div>
+                        <div class="list-item">
+                          <p class="pull-left">경기도 채팅방</p>
+                        </div>
+                        <div class="list-item">
+                          <p class="pull-left">충청도 채팅방</p>
+                        </div>
+                        <div class="list-item">
+                          <p class="pull-left">경상도 채팅방</p>
+                        </div>
+                        <div class="list-item">
+                          <p class="pull-left">전라도 채팅방</p>
+                        </div>
+                        <div class="list-item">
+                          <p class="pull-left">대형견 집사분들!!!</p>
+                        </div>
+                      </div>
+                    </div>
+                 
+                 
+</body>
+</html>

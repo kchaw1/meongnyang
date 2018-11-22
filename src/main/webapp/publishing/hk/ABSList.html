@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  
+
+  <!--탑메뉴-->
+  <link rel="stylesheet" href="header/headerfooter.css">
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  <!--user 아이콘-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+
+
+
+  <style>
+    header{
+      font-family: 'Jua', sans-serif;
+
+    }
+    .btn-primary  {
+    color: #fff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    position: relative;
+    margin: 0px 0px 10px;
+}
+  .parent--el.is-selected .is-item--inner button:hover  {
+    color: #fff;
+    background-color: #1a1a1a;
+    border-color: #fff;
+    opacity: 0.5;
+  }
+
+.slide--parent {
+  max-width: 1300px;
+  
+  margin: auto;
+  overflow: hidden;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.name {
+  letter-spacing: 10px;
+  color: #343434;
+  margin: 0;
+}
+
+small {
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  display: inline-block;
+  color: #999;
+  position: relative;
+  padding-left: 3em;
+}
+small:after {
+  content: "";
+  position: absolute;
+  left: -0em;
+  top: 50%;
+  height: 4px;
+  width: 2.4em;
+  background: red;
+  transform: translateY(-50%);
+}
+
+.parent--el {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}  
+.parent--el .two--col {
+  display: flex;
+  align-items: center;
+  margin-top: 150px;
+
+}
+
+figure {
+  margin: 0;
+}
+
+.is-item {
+  width: 60%;
+}
+.is-item.has--img {
+  width: 50%;
+}
+
+.the-img {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.the-img img {
+  width: 100%;
+}
+
+.is-item--inner {
+  padding: 0em 3em;
+}
+
+.slide--parent hr {
+  margin: 0.5em 0em;
+  height: 4px;
+  background: #eee;
+  border: none;
+}
+
+.the-img {
+  overflow: hidden;
+}
+.the-img img {
+  position: relative;
+  transform: translateX(100%);
+  transition: all 600ms ease;
+  left: 30px;
+}
+
+
+.is-item--inner p {
+  transform: translateY(15px);
+  position: relative;
+  opacity: 0;
+  transition: all 400ms ease;
+}
+.is-item--inner button {
+  transform: translateY(15px);
+  position: relative;
+  opacity: 0;
+}
+
+.name {
+  overflow: hidden;
+}
+.name .nameSpan {
+  transform: translateY(100%);
+  position: relative;
+  transition: all 500ms ease;
+  display: inline-block;
+}
+
+.slide--parent hr {
+  width: 0;
+  max-width: 14em;
+  transition: all 2500ms ease;
+}
+
+small {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 100ms ease;
+}
+small:after {
+  width: 0;
+  max-width: 2.4em;
+  transition: all 1500ms ease;
+}
+
+.parent--el.is-selected .the-img {
+  overflow: hidden;
+}
+.parent--el.is-selected .the-img img {
+  position: relative;
+  transform: translateX(0%);
+  transition-delay: 500ms;
+}
+.parent--el.is-selected .is-item--inner p {
+  transform: translateY(0px);
+  transition-delay: 500ms;
+  position: relative;
+  opacity: 1;
+}
+.parent--el.is-selected .is-item--inner button {
+  transform: translateY(0px);
+  transition-delay: 400ms;
+  position: relative;
+  opacity: 1;
+}
+.parent--el.is-selected .is-item--inner p:nth-of-type(2) {
+  color: red;
+  transition-delay: 700ms;
+}
+.parent--el.is-selected .is-item--inner p:nth-of-type(3) {
+  transition-delay: 900ms;
+}
+.parent--el.is-selected h1 {
+  overflow: hidden;
+}
+.parent--el.is-selected h1 span {
+  transform: translateY(0%);
+  position: relative;
+  transition-delay: 400ms;
+  display: inline-block;
+}
+.parent--el.is-selected hr {
+  width: 100%;
+  max-width: 8em;
+  transition-delay: 500ms;
+}
+.parent--el.is-selected small {
+  transform: translateY(0px);
+  opacity: 1;
+  transition-delay: 400ms;
+}
+.parent--el.is-selected small:after {
+  width: 100%;
+  transition-delay: 600ms;
+  max-width: 2.4em;
+}
+
+  </style>
+</head>
+<body>
+  <header class="dogcat" style="z-index: 1000;">
+    <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+    <div class="animate"><img src="header/teddy_food_dribbble.gif" /></div>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="">반려인 커뮤니티</a></li>
+        <li><a href="">행동전문가와 상담</a></li>
+        <li><a href="">Locations</a></li>
+        <li class="dropdown">  
+          <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fas fa-user-circle fa-2x"></i>
+          </a>
+          <ul class="dropdown-menu pull-right" role="menu" id="drop">
+            <li><a href="#">내 정보</a></li>
+            <li><a href="#">마이펫 다이어리</a></li>
+            <li class="divider"></li>
+            <li><a href="#">로그아웃</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="clear-fix"></div>
+  </header>
+      <!--여기까지 탑메뉴-->
+    <div class="slide--parent">
+        <div class="parent--el">
+          <div class="two--col">
+            <div class="is-item has--img">
+              <figure class="the-img">
+                <img src="http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg" alt="">
+              </figure>
+            </div>
+            <div class="is-item has--content">
+              <div class="is-item--inner">
+                <h1 class="name"><span class="nameSpan">강형욱</span></h1>
+                <small>강아지 행동전문가</small>
+                <hr>
+                <button type="button" class="btn btn-primary btn-sm" onclick="doDetail()">More</button>
+                <p>무조건 칭찬만 하는 교육을 하진 않습니다.</p>
+                  <p>때로는 거절을 통해 옳고 그른 행동을 알려주어, 우리가 사는 이 복잡한 도시환경에 적응하여</p> 
+                  <p>함께 잘 살아갈 수 있게 보듬어 주는 교육을 보듬교육이라고 말합니다.</p>   
+                      <p>보듬교육은 보호자님과 반려견이 항상 행복하기를 바랍니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="parent--el">
+            <div class="two--col">
+              <div class="is-item has--img">
+                <figure class="the-img">
+                  <img src="https://scontent-atl3-1.cdninstagram.com/vp/8161dd67653f813ca1da895a36ea4bd4/5C64CB80/t51.2885-15/e35/42888152_323397778240080_4632234264009469420_n.jpg" alt="">
+                </figure>
+              </div>
+              <div class="is-item has--content">
+                <div class="is-item--inner">
+                    <h1 class="name"><span class="nameSpan">설채현</span></h1>
+                  <small>강아지 행동전문가</small>
+                  <hr>
+                  <button type="button" class="btn btn-primary btn-sm" onclick="doChatList() ">More</button>
+                  <p>국내 유일 수의사 + 반려견 행동트레이너</p>
+                  <p> 그녀의 동물병원 원장 </p>
+                  <p>  KPA PROFESSIONAL TRAINER</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="parent--el">
+              <div class="two--col">
+                <div class="is-item has--img">
+                  <figure class="the-img">
+                    <img src="http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg" alt="">
+                  </figure>
+                </div>
+                <div class="is-item has--content">
+                  <div class="is-item--inner">
+                      <h1 class="name"><span class="nameSpan">강형욱</span></h1>
+                    <small>강아지 행동전문가</small>
+                    <hr>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="doChat()">More</button>
+                    <p>무조건 칭찬만 하는 교육을 하진 않습니다.</p>
+                      <p>때로는 거절을 통해 옳고 그른 행동을 알려주어, 우리가 사는 이 복잡한 도시환경에 적응하여</p> 
+                      <p>함께 잘 살아갈 수 있게 보듬어 주는 교육을 보듬교육이라고 말합니다.</p>   
+                          <p>보듬교육은 보호자님과 반려견이 항상 행복하기를 바랍니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+      </div>
+      </div>
+<script>
+  var slideEl = $(".slide--parent");
+
+slideEl.flickity({
+	imagesLoaded: true,
+	wrapAround: true,
+	autoPlay: true,
+	pauseAutoPlayOnHover: false
+});
+
+function doDetail() {
+   window.open("ABSDetail2.html", "Detail", "width=1000, height=700,resizable=no");
+}
+function doChat() {
+   window.open("chat2.html", "chat", "width=700, height=600, scrollbars=yes");
+}
+function doChatList() {
+   window.open("chat.html", "chatList", "width=400, height=600, scrollbars=yes");
+}
+
+
+</script>
+  
+  <footer class="dogcat">
+      <div class="footertitle">
+        <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+        <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+      </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+    <style>
+      
+        
+html {
+  font-size: 21px;
+  font-family: "Open Sans";
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1 {
+ font-family: 'Jua', sans-serif;
+  font-size: 3.7em;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #222;
+  margin-bottom: 0.3em;
+  margin-top: 45px;
+  
+}
+h4,h3 {
+ font-family: 'Jua', sans-serif;
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: #222;
+  margin-top: 20px;
+  
+}
+
+p {
+  font-weight: 200;
+  color: #525252;
+  
+}
+
+
+.fl {
+  float: left;
+  margin: 20px;
+}
+
+.fr {
+  float: right;
+  margin: 20px;
+}
+
+.hero {
+  width: 42%;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%), url(http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.hero .hamb-wrap {
+  height: 30px;
+  width: 40px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  cursor: pointer;
+  z-index: 2;
+}
+.hero .hamb {
+  height: 3px;
+  width: 35px;
+  background: #fff;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 40% 40% 40% 40%;
+}
+.hero .hamb:before, .hero .hamb:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  height: 3px;
+  width: 100%;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+}
+.hero .hamb:before {
+  top: 8px;
+}
+.hero .hamb:after {
+  top: -8px;
+}
+.hero .active {
+  background: none;
+  transition: 0.2s;
+}
+.hero .active:before, .hero .active:after {
+  transition: 0.2s;
+  top: 0;
+}
+.hero .active:before {
+  transform: rotate(45deg);
+}
+.hero .active:after {
+  transform: rotate(-45deg);
+}
+.hero .logo {
+  color: white;
+  font-family: "Over the Rainbow";
+  font-size: 2.5em;
+  margin: 0 0 0 85px;
+  line-height: 2.2;
+  letter-spacing: 10px;
+
+}
+.hero nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 60px;
+  font-family: "Raleway";
+  font-size: 2em;
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+}
+.hero nav ul {
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+.hero nav li {
+  list-style-type: none;
+  margin: 25px 0;
+  position: relative;
+}
+.hero nav a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.content {
+  width: 60%;
+  min-height: 100%;
+  margin-left: 41%;
+  padding: 0em 1.5em;
+  overflow: hidden;
+  opacity: 40;
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .hero {
+    height: 350px;
+    width: 100%;
+    display: block;
+    position: relative;
+    padding: 1px;
+  }
+  .hero nav {
+    font-size: 1.7em;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  img.fl,
+  img.fr {
+    float: none;
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+  }
+}
+/*좋아요  기*/
+#like-button {
+
+    color: #888;
+    font-size: 1em;
+    font-family: 'Heebo', sans-serif;
+    background-color: transparent;
+    border: 0.1em solid;
+    border-radius: 1em;
+    padding: 0.333em 1em 0.25em;
+    line-height: 1.2em;
+    box-shadow: 0 0.25em 1em -0.25em;
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+    outline: 0;
+    margin: 0em 0;
+}
+#like-button:hover {
+  color: indianred;
+}
+#like-button:active {
+  transform: scale(0.95);
+}
+#like-button.selected {
+  color: #FFF;
+  background-color: indianred;
+  border-color: indianred;
+}
+#like-button .heart-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+}
+p{
+  font-family: 'Jua', sans-serif;
+
+}
+
+
+.DetailContainer{
+  padding: 20px; 
+
+}
+#name{
+  font-size: 40px;
+  color: rosybrown;
+}
+
+    </style>
+</head>
+<body>
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:200,900|Over+the+Rainbow' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        
+        <header style="nav-index: 100;">
+          <div class="hero">
+            <div class="hamb-wrap">
+              <div class="hamb"></div>
+            </div>
+            <p class="logo">강형욱</p>
+            <nav>
+              <ul>
+                <li>
+                  <a href="ABSDetail.html">경력 및 인사말</a>
+                </li>
+                <li>
+                  <a href="#">1:1 화상채팅하기</a>
+                </li>
+                <li>
+                  <a href="ABSDetailBoard.html">질문게시판</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section class="content">
+          <h1>경력 및 인사말</h1>
+          <h4 >
+          <button type="button" id="like-button">
+            <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
+            Like
+          </button>
+              좋아요: 
+              <span class="counter" data-count="150">0</span>
+            </h4>
+          <hr> 
+          <div class="DetailContainer">
+               <p id="name">"강형욱"</p>
+              <p>출생: 1985년 5월 27일 (33세)</p> 
+              <p>가족: 배우자 수잔 엘더, 아들 강주운</p>
+              <p>소속: 보듬컴퍼니 (대표)</p>
+              <p>무조건 칭찬만 하는 교육을 하진 않습니다.
+                때로는 거절을 통해 옳고 그른 행동을 알려주어, 우리가 사는 이 복잡한 도시환경에 적응하여
+                함께 잘 살아갈 수 있게 보듬어 주는 교육을 보듬교육이라고 말합니다.   
+                보듬교육은 보호자님과 반려견이 항상 행복하기를 바랍니다.</p>
+                
+              </div>
+          </div>
+        
+         </section>
+        <script>
+        $('.hamb-wrap').on('click', function(){
+          $(this).parent().children('p').toggle();
+          $(this).children().toggleClass('active');
+          $('nav').fadeToggle(200);
+        
+        }) 
+
+
+        /*--------좋아요--------------*/
+        document.addEventListener('DOMContentLoaded', function() {
+         var likeButton = document.getElementById('like-button');
+        likeButton.addEventListener('click', function() {
+         window.lb = likeButton;
+          likeButton.classList.toggle('selected');
+       });
+        }, false);
+
+        /*좋아요 개수*/
+        $('.counter').each(function() {
+  var $this = $(this),
+      countTo = $this.attr('data-count');
+  
+  $({ countNum: $this.text()}).animate({
+    countNum: countTo
+  },
+
+  {
+
+    duration: 8000,
+    easing:'linear',
+    step: function() {
+      $this.text(Math.floor(this.countNum));
+    },
+    complete: function() {
+      $this.text(this.countNum);
+      //alert('finished');
+    }
+
+  });   
+});
+
+        </script>
+
+</body>
+</html>

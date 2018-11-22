@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <style>
+      
+        
+html {
+  font-size: 21px;
+  font-family: "Open Sans";
+}
+
+html,
+body {
+  height: 100%;
+  
+}
+
+h1 {
+  font-family: "Raleway";
+  font-size: 3.7em;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #222;
+  margin-bottom: 0.3em;
+  margin-top: 45px;
+  
+}
+
+p {
+  font-weight: 200;
+  color: #525252;
+  
+}
+
+
+.fl {
+  float: left;
+  margin: 20px;
+}
+
+.fr {
+  float: right;
+  margin: 20px;
+}
+
+.hero {
+  width: 42%;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%), url(http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg);
+  background-size: cover;
+  background-position: center;
+  
+}
+.hero .hamb-wrap {
+  height: 30px;
+  width: 40px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  cursor: pointer;
+  z-index: 2;
+}
+.hero .hamb {
+  height: 3px;
+  width: 35px;
+  background: #fff;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 40% 40% 40% 40%;
+}
+.hero .hamb:before, .hero .hamb:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  height: 3px;
+  width: 100%;
+  transition: 0.2s;
+  border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+}
+.hero .hamb:before {
+  top: 8px;
+}
+.hero .hamb:after {
+  top: -8px;
+}
+.hero .active {
+  background: none;
+  transition: 0.2s;
+}
+.hero .active:before, .hero .active:after {
+  transition: 0.2s;
+  top: 0;
+}
+.hero .active:before {
+  transform: rotate(45deg);
+}
+.hero .active:after {
+  transform: rotate(-45deg);
+}
+.hero .logo {
+  color: white;
+  font-family: "Over the Rainbow";
+  font-size: 2.5em;
+  margin: 0 0 0 85px;
+  line-height: 2.2;
+  letter-spacing: 10px;
+
+}
+.hero nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 60px;
+  font-family: "Raleway";
+  font-size: 2em;
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+}
+.hero nav ul {
+  margin: 0 0 0 25px;
+  padding: 0;
+}
+.hero nav li {
+  list-style-type: none;
+  margin: 25px 0;
+  position: relative;
+}
+.hero nav a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.content {
+  width: 60%;
+  min-height: 100%;
+  margin-left: 40%;
+  padding: 0em 1.5em;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .hero {
+    height: 350px;
+    width: 100%;
+    display: block;
+    position: relative;
+    padding: 1px;
+  }
+  .hero nav {
+    font-size: 1.7em;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  img.fl,
+  img.fr {
+    float: none;
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+  }
+}
+/*좋아요  기*/
+#like-button {
+
+    color: #888;
+    font-size: 1em;
+    font-family: 'Heebo', sans-serif;
+    background-color: transparent;
+    border: 0.1em solid;
+    border-radius: 1em;
+    padding: 0.333em 1em 0.25em;
+    line-height: 1.2em;
+    box-shadow: 0 0.25em 1em -0.25em;
+    cursor: pointer;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+    outline: 0;
+    margin: 0em 0;
+}
+#like-button:hover {
+  color: indianred;
+}
+#like-button:active {
+  transform: scale(0.95);
+}
+#like-button.selected {
+  color: #FFF;
+  background-color: indianred;
+  border-color: indianred;
+}
+#like-button .heart-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+}
+/*메인 이미지*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+figure.snip1091.red {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  max-height: 435px;
+  width: 568px;
+  overflow: hidden;
+  text-align: center;
+  background: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+figure.snip1091.green{
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  max-height: 435px;
+  width: 568px;
+  overflow: hidden;
+  text-align: center;
+  background: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  margin-top: -4px;
+}
+figure.snip1091.navy{  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  max-height: 435px;
+  width: 568px;
+  overflow: hidden;
+  text-align: center;
+  background: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  margin-top: -4px;
+
+}
+figure.snip1091 * {
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+figure.snip1091 img {
+  opacity: 0.25;
+  max-width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+figure.snip1091 figcaption {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  right: 30px;
+  -webkit-transform: rotate(0deg) translateY(-50%) scale(1);
+  transform: rotate(0deg) translateY(-50%) scale(1);
+  -webkit-transform-origin: center 0;
+  transform-origin: center 0;
+}
+
+figure.snip1091 figcaption h2 {
+  top: 50%;
+  letter-spacing: -1px;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+figure.snip1091 figcaption h2 span {
+  font-weight: 800;
+}
+
+figure.snip1091 figcaption:before,
+figure.snip1091 figcaption:after {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  content: "";
+  display: block;
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+figure.snip1091 figcaption:before {
+  left: 0;
+  top: 0;
+}
+
+figure.snip1091 figcaption:after {
+  bottom: 0;
+  right: 0;
+}
+
+figure.snip1091.blue {
+  background: #091b27;
+}
+
+figure.snip1091.red {
+  background: #2e0e0a;
+}
+
+figure.snip1091.yellow {
+  background: #4f3204;
+}
+
+figure.snip1091.green {
+  background: #061c10;
+}
+
+figure.snip1091.navy {
+  background: #000000;
+}
+
+figure.snip1091 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+figure.snip1091:hover img,
+figure.snip1091.hover img {
+  opacity: 1;
+}
+
+figure.snip1091:hover figcaption,
+figure.snip1091.hover figcaption {
+  -webkit-transform: rotate(-45deg) translateY(-50%) scale(0.9);
+  transform: rotate(-45deg) translateY(-50%) scale(0.9);
+}
+
+figure.snip1091:hover figcaption:before,
+figure.snip1091.hover figcaption:before,
+figure.snip1091:hover figcaption:after,
+figure.snip1091.hover figcaption:after {
+  width: 200%;
+}
+
+/* Demo purposes only */
+
+
+
+
+    </style>
+</head>
+<body>
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:200,900|Over+the+Rainbow' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        
+        <header style="nav-index: 100;">
+          <div class="hero">
+            <div class="hamb-wrap">
+              <div class="hamb"></div>
+            </div>
+            <p class="logo">강형욱</p>
+            <nav>
+              <ul>
+                <li>
+                  <a href="ABSDetail.html">경력 및 인사말</a>
+                </li>
+                <li>
+                  <a href="#">1:1 화상채팅하기</a>
+                </li>
+                <li>
+                  <a href="ABSDetailBoard.html">질문게시판</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section class="content">
+          <figure class="snip1091 red" >
+            <img src="https://t1.daumcdn.net/cfile/tistory/24FB78335979C45A09" alt="sq-sample6" />
+            <figcaption>
+              <h2>경력 및 <span>인사말</span></h2>
+            </figcaption><a href="ABSDetail.html"></a>
+          </figure>
+          <figure class="snip1091 green" ><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
+            <figcaption>
+              <h2>전문가와 <span>화상채팅</span></h2>
+            </figcaption><a href="#"></a>
+          </figure>
+          <figure class="snip1091 navy"><img src="https://post-phinf.pstatic.net/MjAxNzA5MjBfNTcg/MDAxNTA1ODgzNTk1MDcz.HLD5l_7_XzGcU2Q7pwZAmAAJeIEjmhud7ZbqMOcq-Fsg.G4FlzFGc6wjF03jSb9wXnUNft913XACg_gkKahR8dgUg.JPEG/ask-questions.jpg?type=w1200" alt="sq-sample10" />
+            <figcaption>
+              <h2>질문 <span>게시판</span></h2>
+            </figcaption><a href="ABSDetailBoard.html"></a>
+          </figure>
+            </section>
+        <script>
+        $('.hamb-wrap').on('click', function(){
+          $(this).parent().children('p').toggle();
+          $(this).children().toggleClass('active');
+          $('nav').fadeToggle(200);
+        
+        }) 
+
+
+        /*--------좋아요--------------*/
+        document.addEventListener('DOMContentLoaded', function() {
+         var likeButton = document.getElementById('like-button');
+        likeButton.addEventListener('click', function() {
+         window.lb = likeButton;
+          likeButton.classList.toggle('selected');
+       });
+        }, false);
+
+        /*메인이미지*/
+        $("figure").mouseleave(
+          function() {
+            $(this).removeClass("hover");
+          }
+        );
+        </script>
+
+</body>
+</html>
