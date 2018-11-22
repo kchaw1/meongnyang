@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="detailPage.css" rel="stylesheet">
+   
+   
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<!-- 배민폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="headerfooter.css">
+
+<!-- 부트스트랩 -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<style>
+
+.comments:after { border-color: #fff; }
+.comments:before { background-color: #fff; }
+.comments .comment {
+background: #fff;
+border-radius: 10px;
+font-size: 11px;
+padding: 10px 15px;
+}
+.comments [class*="level-"] .photo:before { background-color: #fff; }
+.comments .meta { color: #ccc; }
+.comments .meta a { color: inherit; }
+.comments .meta a:hover { color: #34b5d0; }
+.comments .body { color: #888; }
+
+/**
+* Comments Thread
+*/
+.comments {
+list-style-type: none;
+padding: 5px 0 0 46px;
+position: relative;
+margin: 0 0 0 12px;
+}
+.comments:before,
+.comments .comment,
+.comments .comment:after,
+.comments .comment:before,
+.comments .photo img,
+.comments [class*="level-"] .photo:before {
+box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.comments:after,
+.comments:before {
+display: block;
+content: '';
+position: absolute;
+}
+.comments:before {
+border-radius: 0 0 5px 5px;
+height: 100%;
+width: 8px;
+left: 0;
+top: 0;
+}
+.comments:after {
+box-shadow: 0 1px 3px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.4) inset;
+border-width: 4px;
+border-style: solid;
+border-radius: 18px;
+height: 10px;
+width: 10px;
+left: -5px;
+top: -16px;
+z-index: -1;
+}
+.comments .comment {
+margin-bottom: 10px;
+position: relative;
+}
+.comments .comment:after,
+.comments .comment:before {
+border-radius: 10px;
+background-color: #fff;
+position: absolute;
+display: block;
+content: '';
+}
+.comments .comment:after {
+width: 12px;
+height: 12px;
+left: -14px;
+top: 7px;
+}
+.comments .comment:before {
+width: 5px;
+height: 5px;
+left: -22px;
+top: 16px;
+}
+.comments .photo {
+position: absolute;
+left: -60px;
+top: 2px;
+}
+.comments .photo img {
+border: 1px solid #fff;
+border-radius: 32px;
+overflow: hidden;
+}
+.comments .meta { margin-bottom: 5px; }
+.comments .meta .reply { display: none; float: right; }
+.comments .comment:hover .reply { display: block; }
+.comments [class*="level-"] .photo:before {
+display: block;
+content: '';
+position: absolute;
+margin-top: -2px;
+height: 4px;
+width: 20px;
+left: -10px;
+top: 50%;
+z-index: -1;
+}
+.comments .level-2 { margin-left: 30px; }
+.comments .level-3 { margin-left: 50px; }
+.comments .level-4 { margin-left: 70px; }
+.comments .level-5 { margin-left: 90px; }
+.comments .level-6 { margin-left: 110px; }
+.comments .level-3 .photo:before { width: 40px; left: -30px;}
+.comments .level-4 .photo:before { width: 60px; left: -50px;}
+.comments .level-5 .photo:before { width: 80px; left: -70px;}
+.comments .level-6 .photo:before { width: 100px; left: -90px;}
+    </style>
+</head>
+<body>
+        <header class="dogcat">
+                <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+                <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+                <nav>
+                  <ul class="nav navbar-nav">
+                    <li><a href="">반려인 커뮤니티</a></li>
+                    <li><a href="">행동전문가와 상담</a></li>
+                    <li><a href="">Locations</a></li>
+                    <li class="dropdown">  
+                      <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      <i class="fas fa-user-circle fa-2x"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                        <li><a href="#">내 정보</a></li>
+                        <li><a href="#">마이펫 다이어리</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">로그아웃</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <div class="clear-fix"></div>
+                
+              </header>
+
+    <div class= "contents">
+            <div class = "main-container">
+                <div class = "main-column1">
+                    <p style = "font-family: 'Jua'">여기에 제목 넣어라~</p>
+                    <div class= "justforHr1"></div>
+                    <br>
+                   <div class = "category">작성자, 작성일, 카테고리</div>
+                    <br>
+                    <div class= "writeContainer">
+                        <div class = "writeMargin">
+                          
+                        </div>
+                    </div>
+                    
+                     <!-- 댓글 -->
+                     <div class = "commentHr">
+                         <div class ="commentmargin">
+                            <div class = "coWriter">rlaqudrhks258</div>
+                            <form>
+                            <textarea class = "commentForm"></textarea>
+                        </form>
+                            <button class = "commentBtn">등록</button>
+                            <div class = "brbr"></div>
+                        </div>
+                     </div>
+
+                     <div class ="commnetsHr">Comments</div>
+                   <br>
+                   <br>
+                   
+                   <div class = "commentList">
+                        <div class ="commentWriter"></div>
+                        <ul class="comments">
+                                <li class="comment">
+                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
+                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                                  <div class="body">하하하하</div>
+                                </li>
+                                <li class="comment level-2">
+                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Photo"></a>
+                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                                  <div class="body">하하하하</div>
+                                </li>
+                                
+                                <li class="comment">
+                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
+                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                                  <div class="body">하하하하.</div>
+                                </li>
+                              </ul>
+                   </div>
+                   
+                   
+                     
+
+
+                                    
+                   
+                    
+                    
+                    
+                </div>
+                
+                
+                <br>
+                
+                <div class = "main-column2">
+                    <div class = "ruleContainer">
+                        <div class = "beforeWrite">게시판 규칙</div>
+                        <div class = "spanwrite">게시글 개당 활동점수 +1</div>
+                        <div class = "spanwrite">댓글 개당 활동점수 +1</div>
+                        <div class = "spanwrite">악의적인 댓글 지양해주세요</div>
+                        <div class = "spanwrite">상담게시판은 일정레벨이상 댓글작성 가능합니다.</div>
+                        <div class = "spanwrite">중복된 글을 지양해주세요</div>
+                        <div class = "spanwrite">양심체크 하셨나요?</div>
+                        <div class = "spanwrite spanwrite1">딱봤을때 하면 안될거같죠? 하지마세요</div>
+
+                        
+                    </div>
+                    
+                </div>
+                <div class = "main-column3">
+                    <div class = "imgsize2"></div>
+                    <div class = "goWrite">작성자세요?</div>
+                    <div class= "writeBtn">글 수정하기</div>
+                    <div class= "writeBtn">글 삭제하기</div>
+                </div>
+                
+                
+            </div>
+    </div>
+    <footer class="dogcat">
+            <div class="footertitle">
+              <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+              <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+            </div>
+          </footer>
+                
+    <footer>
+        
+            <div class="chat-launcher"></div>
+            <div class="chat-wrapper" data-headline="Chat">
+            </div>
+    </footer>
+    <script>
+       $('.dropdown-toggle').dropdown()
+
+    </script>
+</body>
+</html>

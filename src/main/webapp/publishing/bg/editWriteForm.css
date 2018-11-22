@@ -1,0 +1,332 @@
+
+body{
+    background-color:white;
+}
+
+div{
+    display: block;
+}
+.main-container{
+    min-width: 1076px;
+    width: 1076px;
+
+}
+/* 메인 컬럼 첫번쨰 */
+.main-column1{
+    margin-top: 140px;
+    margin-left: 25%;
+    height: 100%;
+    width: 60%;
+    float: left;
+    
+}
+.justforHr1{
+border: 0.5px solid rgb(226, 219, 219);
+}
+.selectBox{
+border: 1px solid rgb(226, 219, 219);
+border-radius: 10px;
+width: 40%;
+height: 40px;
+background-color: white;
+}
+.writeContainer{
+
+border: 1px solid rgb(226, 219, 219);
+border-radius: 10px;
+width:100%;
+min-height: 370px;
+background-color: white;
+}
+
+/* 메인 컬럼 두번쨰 */
+.main-column2{
+margin-top: 170px;
+margin-right: -14%;
+float: right;
+width: 300px;
+height: 300px;
+border: 1px solid rgb(226, 219, 219);
+background-color: white;
+border-radius: 10px;
+}
+.main-column3{
+margin-top: 30px;
+margin-right: -14%;
+float: right;
+width: 300px;
+height: 150px;
+border: 1px solid rgb(226, 219, 219);
+background-color: white;
+border-radius: 10px;
+}
+.writeMargin{
+margin-left: 10px;
+}
+
+.title{
+margin-top: 10px;
+width: 98.3%;
+height: 30px;
+border: 1px solid rgb(230, 219, 219); /* some kind of blue border */
+
+/* other CSS styles */
+
+/* round the corners */
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+
+}
+input::placeholder {
+color: rgb(199, 189, 189);
+font-family: 'Jua'
+}
+.textContainer{
+margin-top: 6px;
+
+
+
+}
+p{
+font-size: 36px;
+line-height: 42px;
+font-weight: 400;
+}
+/*category*/
+.form-select {
+-moz-user-select: -moz-none;
+-ms-user-select: none;
+-webkit-user-select: none;
+user-select: none;
+background: #ffffff;
+overflow: hidden;
+border: 1px solid #cbcbcb;
+border-radius: 3px;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.07);
+-moz-transition: box-shadow 0.2s;
+-o-transition: box-shadow 0.2s;
+-webkit-transition: box-shadow 0.2s;
+transition: box-shadow 0.2s;
+}
+.form-select:focus, .form-select:hover {
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.form-select:after {
+content: '▾';
+position: absolute;
+top: 0;
+right: 12px;
+z-index: 1;
+color: #bbbbbb;
+line-height: 40px;
+font-size: 14px;
+}
+.ie .form-select:after {
+display: none;
+}
+
+select {
+position: relative;
+background: transparent;
+background-image: none;
+display: block;
+width: 100%;
+outline: none;
+color: #888888;
+cursor: pointer;
+z-index: 2;
+border: none;
+padding: 10px 10px 10px 5px;
+text-overflow: '';
+text-indent: 5px;
+-moz-appearance: none;
+-webkit-appearance: none;
+}
+select[multiple=multiple] {
+height: auto;
+border: 1px solid #cbcbcb;
+border-radius: 3px;
+box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.07);
+-moz-transition: box-shadow 0.2s;
+-o-transition: box-shadow 0.2s;
+-webkit-transition: box-shadow 0.2s;
+transition: box-shadow 0.2s;
+}
+select[multiple=multiple]:hover {
+border-color: #cccccc;
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+select option[disabled] {
+color: #eeeeee;
+text-shadow: none;
+border: none;
+}
+
+select:-moz-focusring {
+color: transparent;
+text-shadow: 0 0 0 #888888;
+}
+
+select::-ms-expand {
+display: none;
+}
+
+/*==========  Generic styling  ==========*/
+.column-6 {
+
+top: 50%;
+left: 50%;
+
+width: 300px;
+}
+/*푸터부분줄꺼였던거*/
+.imgsize2{
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+width: 100%;
+height: 15px;
+background-color: #6BF3D9;
+}
+.ruleContainer{
+
+margin-top: 20px;
+margin-left: 10px;
+margin-right: 10px;
+margin-bottom: 20px;
+height: 260px;
+
+}
+.beforeWrite{
+font-size: 20px;
+text-align: center;
+font-family: Do Hyeon
+}
+.spanwrite{
+line-height: 30px;
+border-top: 1px solid rgb(221, 222, 224);
+margin-left: 10px;
+margin-right:10px;
+font-family: Do Hyeon
+}
+.spanwrite1{
+border-bottom: 1px solid rgb(221, 222, 224);
+}
+.goWrite{
+margin-top: 10px;
+font-size: 15px;
+text-align: center;
+font-family: Do Hyeon
+}
+.writeBtn{
+margin-top : 10px;
+margin-left: 49px;
+border: 1px solid black;
+width:202px;
+height: 34px;
+display: block;
+text-align: center;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 0.5px;
+line-height: 32px;
+text-transform: uppercase;
+background-color:#6BF3D9;
+color: rgb(255, 255, 255);
+fill: rgb(255, 255, 255);
+border-color: #6BF3D9;
+border-radius: 10px;
+}
+/*채팅로고*/
+.chat-launcher {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+z-index: 9999;
+background: orange;
+color: white;
+border-radius: 50%;
+cursor: pointer;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
+}
+.chat-launcher:before, .chat-launcher:after {
+font-family: FontAwesome;
+font-size: 34px;
+position: absolute;
+-webkit-transition: transform 180ms linear, opacity 130ms linear;
+transition: transform 180ms linear, opacity 130ms linear;
+}
+.chat-launcher:before {
+content: "\f086";
+
+margin: 6px 0px 0px 13px;
+opacity: 1;
+-webkit-transform: rotate(0deg) scale(1);
+transform: rotate(0deg) scale(1);
+}
+.chat-launcher:after {
+content: "\f00d";
+padding-top: 20px;
+margin: 13px 17px;
+opacity: 0;
+-webkit-transform: rotate(-30deg);
+transform: rotate(-30deg);
+}
+.chat-launcher:hover {
+background: #ffb329;
+}
+.chat-launcher.active:before {
+opacity: 0;
+-webkit-transform: rotate(70deg) scale(0);
+transform: rotate(70deg) scale(0);
+}
+.chat-launcher.active:after {
+opacity: 1;
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+
+.chat-wrapper {
+height: 430px;
+width: 385px;
+display: block;
+border-radius: 5px;
+background: #ebebeb;
+position: fixed;
+right: 20px;
+bottom: 110px;
+z-index: 999;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 22px rgba(0, 0, 0, 0.16);
+-webkit-transition: transform 400ms ease;
+transition: transform 400ms ease;
+-webkit-transform: translateY(130%);
+transform: translateY(130%);
+}
+.chat-wrapper:before {
+height: 3%;
+padding: 4%;
+font-size: 1.1em;
+line-height: 1em;
+display: block;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+background: #666;
+color: white;
+content: attr(data-headline);
+}
+.chat-wrapper iframe {
+width: 94%;
+height: 84%;
+border: 0;
+border-radius: 5px;
+padding: 3%;
+overflow: hidden;
+}
+.chat-wrapper.is-open {
+-webkit-transform: translateY(0);
+transform: translateY(0);
+}
+
+

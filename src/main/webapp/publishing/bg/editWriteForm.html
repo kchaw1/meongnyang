@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="editWriteForm.css" rel="stylesheet">
+    
+      
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<!-- 배민폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="headerfooter.css">
+
+<!-- 부트스트랩 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+        <header class="dogcat">
+                <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+                <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+                <nav>
+                  <ul class="nav navbar-nav">
+                    <li><a href="">반려인 커뮤니티</a></li>
+                    <li><a href="">행동전문가와 상담</a></li>
+                    <li><a href="">Locations</a></li>
+                    <li class="dropdown">  
+                      <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      <i class="fas fa-user-circle fa-2x"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                        <li><a href="#">내 정보</a></li>
+                        <li><a href="#">마이펫 다이어리</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">로그아웃</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <div class="clear-fix"></div>
+                
+              </header>
+
+    <div class= "contents">
+            <div class = "main-container">
+                <div class = "main-column1">
+                    <p style = "font-family: 'Jua'">글 수정</p>
+                    <div class= "justforHr1"></div>
+                    <br>
+                    <div class="column-6 form-select">
+                            <select name="" id="">
+                              <option value=""  selected="selected">자유게시판</option>
+                              <option>꿀팁</option>
+                              <option>갤러리</option>
+                              <option>상담</option>
+                              <option>QnA</option>
+                            </select>
+                          </div>
+                    <br>
+                    <div class= "writeContainer">
+                        <div class = "writeMargin">
+                            <div class= "titleContainer"><input class = "title"type= "text" placeholder="Title" style = "padding-left:10px"></div>
+                        
+                            <div class= "textContainer">
+                                    <textarea name="content" id="summernote" value=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+                <div class = "main-column2">
+                    <div class = "ruleContainer">
+                        <div class = "beforeWrite">글 수정 전!</div>
+                        <div class = "spanwrite">당신은 사람이란걸 다시 한번 생각하세요</div>
+                        <div class = "spanwrite">현실에서 다른사람에게 하듯 다시 글 써주세요</div>
+                        <div class = "spanwrite">혐오성 발언은 지양해주세요</div>
+                        <div class = "spanwrite">이상한 사진 자제해주세요</div>
+                        <div class = "spanwrite">중복된 글을 지양해주세요</div>
+                        <div class = "spanwrite">당신의 양심은 안녕하시겠죠?</div>
+                        <div class = "spanwrite spanwrite1">이정도 말했으면 알아들으셨겠죠?</div>
+
+                        
+                    </div>
+                    
+                </div>
+                <div class = "main-column3">
+                    <div class = "imgsize2"></div>
+                    <div class = "goWrite">위의 글을 읽어보셨다면</div>
+                    <div class= "writeBtn">글 수정하기</div>
+                    <div class= "writeBtn">목록가기</div>
+                </div>
+                
+            </div>
+    </div>
+    <footer class="dogcat">
+            <div class="footertitle">
+              <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+              <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+            </div>
+          </footer>
+                
+    <footer>
+            <div class="chat-launcher"></div>
+            <div class="chat-wrapper" data-headline="Chat">
+            </div>
+    </footer>
+    <script>
+            $('.dropdown-toggle').dropdown()
+    $(document).ready(function() {
+     $('#summernote').summernote({
+            width:623,
+             height: 300,                 // set editor height
+             minHeight: null,             // set minimum height of editor
+             maxHeight: null,             // set maximum height of editor
+             focus: true                  // set focus to editable area after initializing summernote
+     });
+});
+
+    </script>
+</body>
+</html>
