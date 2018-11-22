@@ -1,0 +1,155 @@
+* {
+  padding : 0px;
+  margin : 0px;
+}
+
+/*header 관련 CSS*/
+body {
+	/* max-width: 1200px;  */
+	margin: 0 auto; 
+	font-family: Montserrat, Helvetica, Arial, sans-serif;
+}
+
+h1.dogcat, 
+h3, 
+h4.dogcat {
+	color: rgb(128, 128, 128, 0.8); 
+	text-transform: uppercase; 
+}
+
+h1.dogcat {
+	font-size: 30px; 
+	text-align: left; 
+	width: auto; 
+	float: left; 
+  padding: 15px 0;
+  margin: 0;
+}
+
+h3 {
+	font-size: 18px; 
+	text-align: center; 
+	padding: 15px;
+}
+
+h4.dogcat {
+  font-size: 12px;
+  margin: 0;
+}
+
+.main-title h3 {
+	text-align: left; 
+	padding: 5px 0px; 
+	text-transform: uppercase; 
+	color:rgb(255, 194, 64); 
+}
+
+p {
+	padding: 0px 30px; 
+	line-height: 21px; 
+	font-size: 14px;
+}
+
+/*The widths are in a percentage!*/
+header.dogcat {
+	width: 100%; 
+	height: 110px; 
+	/* border-bottom: 3px solid #77a466;  */
+  margin: 0 auto;
+  background-color:white;
+  position: fixed;
+  border-bottom: 2px solid rgb(241, 201, 131);
+  z-index: 200;
+}
+
+header.dogcat span {
+  color:rgb(255, 194, 64);
+  font-weight: bold;
+}
+
+header.dogcat  nav {
+	float: right; 
+  padding: 45px 0px;
+  margin-right: 10%; 
+}
+
+header.dogcat  nav a {
+	text-decoration: none; 
+	text-transform: uppercase; 
+	font-weight: bold; 
+	font-size: 18px; 
+	padding: 0 10px; 
+  color:rgb(128, 128, 128, 0.8);
+  margin: auto;
+}
+
+header.dogcat nav a:hover {
+  background-color:rgb(242, 242, 242)
+}
+
+header.dogcat nav li.dropdown >a:focus {
+  background-color: rgb(242, 242, 242)
+}
+
+/* header.dogcat nav a {
+  margin-top: 15px;
+} */
+
+/*footer*/
+footer.dogcat  {
+	width: 100%;
+	height: 50px; 
+	border-top: 3px solid #eee; 
+	margin: 0 auto; 
+	clear: both; 
+  text-align: center;
+  background-color: #fff498;
+}
+
+footer.dogcat  span {
+	font-family: "Wisdom Script", script; 
+	text-transform: lowercase; 
+	color: rgb(243, 150, 154); 
+	font-size: 14px;
+}
+footer.dogcat  div {
+  width : 50%;
+  margin: 8px auto;
+}
+/*아란 임의로 추가*/
+div.logo {
+  margin-left: 20px;
+  margin-top : 20px; 
+  float: left;
+}
+span[class^='point'] {
+  font-size: 40px;
+}
+header.dogcat span.pointp {
+  color : rgb(243, 150, 154);
+  font-weight: bold;
+}
+.top-section {
+  width: 90%; 
+  min-height: 500px;
+  height: 1000px;
+  margin: auto; 
+  margin-bottom: 40px;
+  clear: both;
+  padding: 150px 50px 0;
+}
+
+header.dogcat nav li.nav {
+  margin: auto;
+}
+
+li.dropdown ul a:hover {
+  background-color : rgb(243, 150, 154, 0.5);
+  color : white;
+}
+.nav .open>a#user {
+  background-color:rgb(242, 242, 242)
+}
+ul#drop.dropdown-menu {
+  border : none;
+}

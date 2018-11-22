@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>calendar</title>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <!--user 아이콘-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+  <!-- 배민폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  <!--부트스트랩-->
+  <link rel="stylesheet" href="./common/bootstrap.min.css">
+  <script src="./js/common/bootstrap.js"></script>
+  <link rel="stylesheet" href="../common/headerfooter.css">
+  <link rel="stylesheet" href="calendar.css">
+  <!--달력 js-->
+  <script src="./js/calendar.js"></script>
+</head>
+<body>
+  <header class="dogcat">
+    <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+    <div class="animate"><img src="../common/teddy_food_dribbble.gif" /></div>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="">반려인 커뮤니티</a></li>
+        <li><a href="">행동전문가와 상담</a></li>
+        <li><a href="">Locations</a></li>
+        <li class="dropdown">  
+          <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fas fa-user-circle fa-2x"></i>
+          </a>
+          <ul class="dropdown-menu pull-right" role="menu" id="drop">
+            <li><a href="#">내 정보</a></li>
+            <li><a href="#">마이펫 다이어리</a></li>
+            <li class="divider"></li>
+            <li><a href="#">로그아웃</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="clear-fix"></div>
+  </header>
+  <div class="top-section">
+    <div id="calendar">
+      <div class="year"></div>
+      <div class="month">
+        <ul class="months">
+          <li><a href="#1" class="prev"> << </a></li>
+          <li><a href="#1" title="Jan" data-value="1">Jan</a></li>
+          <li><a href="#1" title="Feb" data-value="2">Feb</a></li>
+          <li><a href="#1" title="Mar" data-value="3">Mar</a></li>
+          <li><a href="#1" title="Apr" data-value="4">Apr</a></li>
+          <li><a href="#1" title="May" data-value="5">May</a></li>
+          <li><a href="#1" title="Jun" data-value="6">Jun</a></li>
+          <li><a href="#1" title="Jul" data-value="7">Jul</a></li>
+          <li><a href="#1" title="Aug" data-value="8">Aug</a></li>
+          <li><a href="#1" title="Sep" data-value="9">Sep</a></li>
+          <li><a href="#1" title="Oct" data-value="10">Oct</a></li>
+          <li><a href="#1" title="Nov" data-value="11">Nov</a></li>
+          <li><a href="#1" title="Dec" data-value="12">Dec</a></li>
+          <li><a href="#1" class="next"> >> </a></li>
+        </ul>
+      </div>
+      <div id="calendarContent">
+        <div class="yoil">
+          <ul class="yoils">
+            <li>일</li>
+            <li>월</li>
+            <li>화</li>
+            <li>수</li>
+            <li>목</li>
+            <li>금</li>
+            <li>토</li>
+          </ul>
+        </div>
+        <div class="date">
+          
+        </div>
+      </div>
+    </div>  
+  </div> 
+  <footer class="dogcat">
+    <div class="footertitle">
+      <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+      <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+    </div>
+  </footer>
+<script>
+ $('.dropdown-toggle').dropdown()
+ 
+</script>
+</body>
+</html>

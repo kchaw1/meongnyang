@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+ 
+</head>
+<style>
+  html, body {
+    padding : 0px;
+    margin : 0px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #loadingState {
+    position : absolute;
+    top : 45%;
+    left: 0px;
+    width: 100%;
+    font-size : 20px;
+    text-align: center;
+  }
+  #openCallState {
+    display: none;
+  }
+  #localVideo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 160px;
+    height: 120px;
+    background: #333333;
+  }
+  #remoteVideo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width : 1024px;
+    height: 768px;
+    background: #999999
+  }
+</style>
+<body>
+  <div id="loadingState">
+    loading...
+  </div>
+  <div id="openCallState">
+    <video id="remoteVideo"></video>
+    <video id="localVideo"></video>
+  </div>
+<script> 
+  const localVideo = document.querySelector('#localVideo');
+
+  var webrtcCapable = true;
+  var rtcPeerConnection = null;
+  var rtcSessionDescription = null;
+  var getUserMedia = null;
+  var connectStreamToSrc = null;
+  let localStream;
+  var stunServer = "stun.l.google.com:19302"
+  
+  const MediaStreamConstraints = {video : true, audio : true};
+
+  navigator.mediaDevices.getUserMedia(MediaStreamConstraints)
+  .then(connectStreamToSrc).catch(handleLocalMediaStreamError);
+//gotLocalMediaStream == connectStreamToSrc
+
+connectStreamToSrc = function(mediaStream) {
+  localStream = mediaStream;
+  localVideo.srcObject = mediaStream;
+}
+function handleLocalMediaStreamError(error) {
+  console.log('navigator.getUserMedia error :', error);
+}
+
+</script>
+</body>
+</html>

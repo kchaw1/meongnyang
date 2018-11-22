@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User</title>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/minty/bootstrap.min.css"> -->
+  <!--user 아이콘-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+  <!-- 배민폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  <!-- 편지봉투 아이콘-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="./common/bootstrap.min.css">
+  <script src="./js/common/bootstrap.js"></script>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="../common/headerfooter.css">
+<!-- 친구 추가 아이콘-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
+<!-- 트로피 아이콘-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+  <header class="dogcat">
+    <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+    <div class="animate"><img src="../common/teddy_food_dribbble.gif" /></div>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="">반려인 커뮤니티</a></li>
+        <li><a href="">행동전문가와 상담</a></li>
+        <li><a href="">Locations</a></li>
+        <li class="dropdown">  
+          <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="fas fa-user-circle fa-2x"></i>
+          </a>
+          <ul class="dropdown-menu pull-right" role="menu" id="drop">
+            <li><a href="#">내 정보</a></li>
+            <li><a href="#">마이펫 다이어리</a></li>
+            <li class="divider"></li>
+            <li><a href="#">로그아웃</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="clear-fix"></div>
+  </header>
+  <div class="top-section">
+    <div class="tab-menu">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#friend" class="tab" data-toggle="tab">친구인 회원</a></li>
+      <li role="presentation" ><a href="#search" class="tab" data-toggle="tab">회원 찾기</a></li>
+      <li role="presentation" ><a href="#blocked" class="tab" data-toggle="tab">차단된 회원</a></li>
+    </ul>
+    </div>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade" id="friend">
+        <div class="searchbox">
+          <div class="input form-group">
+            <input type="text" class="form-control" name="id" placeholder="아이디로 검색하세요"/ >
+          </div>
+          <div class="select form-group">
+            <select id="searchsel" class="form-control searchselect">
+              <option value="alphabet">알파벳순</option>
+              <option value="regdate">회원가입순</option>
+            </select> 
+          </div>
+          <div class="button form-group">
+            <button type="button" class="btn btn-success">검색</button>
+          </div>
+        </div>
+        <div class="list">
+          <div class="line1">
+            <div class="users" name="users">
+              <div class="profile">
+                <span class="online"></span>
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
+                      <i class="far fa-comments fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
+                    <i class="fas fa-address-book fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
+                    <i class="far fa-comments fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
+                    <i class="fas fa-address-book fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
+                    <i class="far fa-comments fa-2x"></i>
+                  </a>  
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
+                    <i class="fas fa-address-book fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
+                    <i class="far fa-comments fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
+                    <i class="fas fa-address-book fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line2">
+
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="search">
+        <div class="searchbox">
+          <div class="input form-group">
+            <input type="text" class="form-control" name="id" placeholder="아이디로 검색하세요"/ >
+          </div>
+          <div class="select form-group">
+            <select id="searchsel" class="form-control searchselect">
+              <option value="alphabet">알파벳순</option>
+              <option value="regdate">회원가입순</option>
+            </select> 
+          </div>
+          <div class="button form-group">
+            <button type="button" class="btn btn-success">검색</button>
+          </div>
+        </div>
+        <div class="list">
+          <div class="line1">
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line2">
+
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="blocked">
+        <div class="searchbox">
+          <div class="input form-group">
+            <input type="text" class="form-control" name="id" placeholder="아이디로 검색하세요"/ >
+          </div>
+          <div class="select form-group">
+            <select id="searchsel" class="form-control searchselect">
+              <option value="alphabet">알파벳순</option>
+              <option value="regdate">회원가입순</option>
+            </select> 
+          </div>
+          <div class="button form-group">
+            <button type="button" class="btn btn-success">검색</button>
+          </div>
+        </div>
+        <div class="list">
+          <div class="line1">
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock-open fa-2x" id="hidden"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock-open fa-2x" id="hidden"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock-open fa-2x" id="hidden"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="users" name="users">
+              <div class="profile">
+                <div class="image">
+                  <i class="fas fa-user-circle fa-7x"></i>
+                </div>
+                <div class="text">
+                  <span class="id">${user.id}</span>
+                </div>
+              </div>
+              <div class="info">
+                <div class="grade">
+                  <i class="fas fa-trophy fa-2x"></i>
+                  뉴비
+                </div>
+                <div class="icons">
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock fa-2x"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
+                    <i class="fas fa-lock-open fa-2x" id="hidden"></i>
+                  </a>
+                  <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                    <i class="far fa-envelope fa-2x" ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line2">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="dogcat">
+    <div class="footertitle">
+      <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+      <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+    </div>
+  </footer>
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    
+      $("a.tab").click(function(){
+        var id = $(this).attr("href").substring(1)
+        // alert(id)
+        $("div#"+id).siblings().css("display", "none")
+        $("div#"+id).css("display", "block")
+      })
+      
+      $("i.fa-lock").mouseenter(function(){
+        $(this).attr("id", "hidden")
+        $("i.fa-lock-open").attr("id", "show");
+      })
+      
+      $("i.fa-lock-open").mouseleave(function(){
+        $("i.fa-lock-open").attr("id", "hidden")
+        $("i.fa-lock").removeAttr("id");
+      })
+      
+    })
+  </script>
+</body>
+</html>
