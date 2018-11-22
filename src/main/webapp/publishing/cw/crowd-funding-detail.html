@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../headfoot/headerfooter.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="flipTimer.css">
+
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link rel="stylesheet" href="default.css" />
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="jquery.flipTimer.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="headerfooter.css" />
+<link rel="stylesheet" href="crowd-funding-detail.css" />
+  <script src="headerfooter.js"></script>
+
+</head>
+
+<body>
+  <div id="header">
+    <header class="dogcat">
+      <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+      <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+      <nav>
+        <ul class="nav navbar-nav">
+          <li><a href="">반려인 커뮤니티</a></li>
+          <li><a href="">행동전문가와 상담</a></li>
+          <li><a href="">Locations</a></li>
+          <li class="dropdown">  
+            <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fas fa-user-circle fa-2x"></i>
+            </a>
+            <ul class="dropdown-menu pull-right" role="menu" id="drop">
+              <li><a href="#">내 정보</a></li>
+              <li><a href="#">마이펫 다이어리</a></li>
+              <li class="divider"></li>
+              <li><a href="#">로그아웃</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="clear-fix"></div>
+    </header>
+  </div>
+  <!-- <div class="background"></div> -->
+  
+  <div id="container">
+    <div class="panel">
+      <!-- 좌측 메뉴 -->
+      <div class="aside">
+          <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+        <br>
+        <div class="log-out">LOG OUT</div>
+        <div class="seperator"></div>
+        <div class="list">
+            <div id="board" class="item">게시판</div>
+            <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
+            <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
+            <div id="management" class="item">관리</div>
+            <div class="mgm-hidden abs-member"><a href="mgm-ABS.html">행동전문가</a></div>
+            <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
+            <div id="statistics" class="item"><a href="statistics.html"style="color:black;">통계</a></div>
+        </div>
+
+      </div>
+      <!-- /좌측 메뉴 -->
+
+      <!-- 우측 콘텐츠 영역-->
+      <div class="view">
+        <div class="sub-title">Board > Crowd-Funding</div>
+        <div class="main-title">크라우드 펀딩</div>
+        <div class="seperator"></div>
+
+        <div id="cf-title" style="margin-bottom:30px;"><h1>유기견을 도와주세요</h1></div>
+        <div id="cf-img" style="margin-left:150px;"><img style="border-radius: 10%;" src="https://post-phinf.pstatic.net/MjAxODA0MDZfMTQ2/MDAxNTIyOTk4NTg1MTcw.be9envcyUIG9A_tlPBP3BCD8NKgvyOYmrd1a6vJE5lgg.20QE8NCM5pFGJrJcAFj4HK0d62vsjNueeNXwibUUcTIg.JPEG/11.jpg?type=w1200" /></div>
+        <div id="content-area1"">
+              <div id="content1">
+              <span><h2>현재: <span id="now-money">300000원</span></h2></span>
+              <span id="goal-span">(목표: <span id="goal-money">10000000</span>원)</span>
+              <button id="heart-btn" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"><span id="like-count">456</span></span>
+              </button>
+              </div>
+              <div class="progress">
+                  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                      50%
+                    </div>
+              </div>
+              <div id="remain-days">
+                <h2>남은일수:</h2>
+                <h2><span class="remain-days">30일</span></h2>
+              </div>
+              <div id="end-day">
+                <h2>마감 날짜:</h2>
+                <h2><span class="end-day">2018-11-20</span></h2>
+              </div>
+              <div id="donate-area">
+              <input id="input-money" type="text" placeholder="기부 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
+              <button type="button" class="btn btn-default btn-default">기부하기</button>
+              </div>
+            </div>
+            <div class="clear-fix"></div>
+            <hr>
+            <div id="content-area2">
+              멍이와 냥이를 도와주세요<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+              어쩌구 저쩌구<br>
+            </div>
+            <div id="button-area">
+                <button type="button" class="btn btn-default btn-default" onclick="window.location='crowd-funding-mod.html'">수정</button>
+                <button type="button" class="btn btn-default btn-default">삭제</button>
+            </div>
+            <div class="panel-footer">댓글 목록</div>
+            <div class="panel-body">
+              <div id="cmt_container">
+                  <ul id="cmt_list">
+                    <!-- 댓글 들어가는부분 -->
+                  </ul> 
+              </div>
+              
+              <form id="commentForm">
+              <div id="cmt_writeform">
+                <input type="hidden" name="gbNo" value="${gbb.gbNo}" />
+                  <div id="cmt_writer">${user.id}</div>
+                  <input type="hidden" name="gbcWriter" value="${user.id}" />
+                  <div id="cmt_textarea"><textarea id="gbcTxtarea" name="gbcContent"></textarea></div>
+                  <div id="cmt_regbtn"><button id="cmtRegBtn" type="button" class="btn btn-success">등록</button></div>
+              </div>
+              </form>
+          </div>
+       </div>
+      </div>
+      <!-- /우측 콘텐츠 영역-->
+    </div>
+    <div class="clear-fix"></div>
+   
+  </div>
+  </div>
+  <div id="footer">
+      <footer class="dogcat">
+          <div class="footertitle">
+            <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+            <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+          </div>
+        </footer>
+  </div>
+  <script>
+    // 헤더푸터
+      // $("#header").load("./header.html"); 
+      // $("#footer").load("./footer.html");
+
+    $(document).ready(function() {
+      $("#board").addClass("selected");
+      $(".board-hidden").toggle();
+      $(".crowd-fund").css("font-weight", "bold");
+    })
+
+    //좌측 메뉴 스크립트
+    $("#board").click(function () {
+      $(".board-hidden").slideToggle(500);
+    })
+
+    $("#management").hover(function () {
+      $(this).addClass("selected");
+    })
+
+    $("#management").click(function () {
+      $(".mgm-hidden").slideToggle(500);
+    })
+
+    $("#statistics").hover(function () {
+      $(this).addClass("selected");
+    })
+
+    $(".item").mouseleave(function () {
+      $(this).removeClass("selected");
+    })
+
+    // 좋아요 표시 
+    $("#heart-btn").click(function() {
+      var count = parseInt($(this).children().children().text());
+      // console.log($(this).children().attr("class")=="glyphicon glyphicon-heart-empty");
+      if($(this).children().attr("class")=="glyphicon glyphicon-heart-empty") {
+        $("span.glyphicon").removeClass();
+        $(this).children().addClass("glyphicon glyphicon-heart");
+        ++count
+        $(this).children().children().text(count)
+      } else {
+        $("span.glyphicon").removeClass();
+        $(this).children().addClass("glyphicon glyphicon-heart-empty");
+        --count
+        $(this).children().children().text(count)
+      }
+    });
+    
+
+  </script>
+
+<script>
+  //탭
+    $( function() {
+      var tabs = $( ".tabs" ).tabs();
+      tabs.find( ".ui-tabs-nav" ).sortable({
+        axis: "x",
+        stop: function() {
+          tabs.tabs( "refresh" );
+        }
+      });
+    } );
+    </script>
+  
+  <script>
+    // 금액 쉼표
+    function inputNumberFormat(obj) { 
+      obj.value = comma(uncomma(obj.value)); 
+    } 
+
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
+
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
+  </script>
+
+
+</body>
+
+</html>

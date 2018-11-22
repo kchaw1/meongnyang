@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../headfoot/headerfooter.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../headfoot/headerfooter.css" />
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="headerfooter.js"></script>
+
+  <link rel="stylesheet" href="default.css" />
+  <link rel="stylesheet" href="headerfooter.css" />
+  <link rel="stylesheet" href="mgm-ABS.css" />
+</head>
+
+<body>
+  <!-- <div class="background"></div> -->
+  <div id="header">
+      <header class="dogcat">
+          <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+          <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+          <nav>
+            <ul class="nav navbar-nav">
+              <li><a href="">반려인 커뮤니티</a></li>
+              <li><a href="">행동전문가와 상담</a></li>
+              <li><a href="">Locations</a></li>
+              <li class="dropdown">  
+                <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fas fa-user-circle fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                  <li><a href="#">내 정보</a></li>
+                  <li><a href="#">마이펫 다이어리</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">로그아웃</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div class="clear-fix"></div>
+        </header>      
+  </div>
+
+  <div id="container">
+    <div class="panel">
+      <!-- 좌측 메뉴 -->
+      <div class="aside">
+        <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+        <br>
+        <div class="log-out">LOG OUT</div>
+        <div class="seperator"></div>
+        <div class="list">
+          <div id="board" class="item">게시판</div>
+          <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
+          <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
+          <div id="management" class="item">관리</div>
+          <div class="mgm-hidden abs-member"><a href="mgm-ABS.html">행동전문가</a></div>
+          <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
+          <div id="statistics" class="item"><a href="statistics.html" style="color:black;">통계</a></div>
+        </div>
+
+      </div>
+      <!-- /좌측 메뉴 -->
+
+      <!-- 우측 콘텐츠 영역-->
+      <div class="view">
+        <div class="sub-title">Management > ABS</div>
+        <div class="main-title">행동전문가</div>
+        <div class="seperator"></div>
+        <div class="tabs">
+          <ul>
+            <li><a href="#tabs-1">행동전문가</a></li>
+            <li><a href="#tabs-4">승인대기중</a></li>
+          </ul>
+          <div id="tabs-1">
+            <h2>목록</h2>
+            <div id="search-area">
+                <form action="" method="POST" id="searchForm" class="navbar-form navbar" role="search">
+                <div id="search">
+                  <div class="form-group">
+                     <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" id="searchBtn" class="btn btn-default">검색</button>
+                </div>
+              </form>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="header-area">
+              <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort"></i></a></div>
+              <div class="name-area">이름 <a href="#"><i class="fas fa-sort"></i></a></div>
+              <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort"></i></a></div>
+              <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort"></i></a></div>
+              <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort"></i></a></div>
+              <div class="point-area">포인트 <a href="#"><i class="fas fa-sort"></i></a></div>
+            </div>
+            <div class="clear-fix"><hr></div>
+            <div class="clear-fix">
+              <div class="content-area">
+                <div class="no-area">1</div>
+                <div class="name-area">김세영</div>
+                <div class="sign-area">2018-11-20</div>
+                <div class="recent-area">2018-11-20 06:30</div>
+                <div class="active-area">258</div>
+                <div class="point-area">1000</div>
+
+                <button class="btn btn-default btn-sm" onclick="window.location='mgm-abs-detail.html'">상세</button>
+                <button class="btn btn-default btn-sm">탈퇴</button>
+              </div>
+            </div>
+          </div>
+          <div id="tabs-4">
+            <div>
+              <h2>승인대기중</h2>
+              <div id="search-area">
+                  <form action="" method="POST" id="searchForm" class="navbar-form navbar" role="search">
+                  <div id="search">
+                    <div class="form-group">
+                       <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" id="searchBtn" class="btn btn-default">검색</button>
+                  </div>
+                </form>
+              </div>
+              <div class="clear-fix"></div>
+              <div class="header-area">
+                  <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="name-area">이름 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="point-area">포인트 <a href="#"><i class="fas fa-sort"></i></a></div>
+                  <div class="clear-fix"><hr></div>
+                  <div class="clear-fix">
+                    <div class="no-area">1</div>
+                    <div class="name-area">김세영</div>
+                    <div class="sign-area">2018-11-20</div>
+                    <div class="recent-area">2018-11-20 06:30</div>
+                    <div class="active-area">258</div>
+                    <div class="point-area">1000</div>
+
+                    <button class="btn btn-default btn-sm" onclick="window.location='mgm-abs-detail.html'">상세</button>
+                    <button class="btn btn-default btn-sm">탈퇴</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- /우측 콘텐츠 영역-->
+        </div>
+        <div class="clear-fix"></div>
+
+      </div>
+    </div>
+    <div id="footer">
+      <footer class="dogcat">
+          <div class="footertitle">
+            <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+            <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+          </div>
+      </footer>
+    </div>
+    <script>
+      // 헤더푸터
+      // $("#header").load("../headfoot/header.html"); 
+      // $("#footer").load("../headfoot/footer.html");
+
+      $(document).ready(function () {
+        $("#management").addClass("selected");
+        $(".mgm-hidden").toggle();
+        $(".abs-member").css("font-weight", "bold");
+      })
+
+      //좌측 메뉴 스크립트
+
+
+      $("#board").click(function () {
+        $(".board-hidden").slideToggle(500);
+      })
+
+      $("#management").hover(function () {
+        $(this).addClass("selected");
+      })
+
+      $("#management").click(function () {
+        $(".mgm-hidden").slideToggle(500);
+      })
+
+      $("#statistics").hover(function () {
+        $(this).addClass("selected");
+      })
+
+      $(".item").mouseleave(function () {
+        $(this).removeClass("selected");
+      })
+    </script>
+
+    <script>
+      //탭
+      $(function () {
+        var tabs = $(".tabs").tabs();
+        tabs.find(".ui-tabs-nav").sortable({
+          axis: "x",
+          stop: function () {
+            tabs.tabs("refresh");
+          }
+        });
+      });
+    </script>
+</body>
+
+</html>

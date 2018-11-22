@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../headfoot/headerfooter.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../headfoot/headerfooter.css" />
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <link rel="stylesheet" href="default.css" />
+  <link rel="stylesheet" href="headerfooter.css" />
+  <script src="headerfooter.js"></script>
+
+  <style>
+    /* to-do list */
+    .list-input {
+      background: transparent;
+      width:80%;
+      border: none;
+      border-bottom: 1px solid #e53935;
+      font-size: 24px;
+      height: 50px;
+      padding-bottom: 15px;
+    }
+    .list-input:focus {
+      outline: 0;
+    }
+
+    .list-input {
+      font-size: 32px;
+    }
+
+.input-buttons {
+  width:20%;
+  float: right;
+  height: 50px;
+  
+  padding: 0;
+}
+.input-buttons i {
+  padding: 0 12px;
+  color: #e53935; 
+  float: right;
+}
+
+  .input-buttons .fa-trash:hover {
+    color: #ff5252;
+  }
+  .input-buttons .fa-plus:hover {
+    color: #ff5252;
+  }
+
+.list-error {
+  color: #ff5252;
+  display: none;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+.list-error .fa-times {
+  color: #e53935;
+  padding: 5px 15px;
+  float: right;
+}
+.list-error .fa-times:hover {
+  color: #fafafa;
+}
+.list-error p {
+  margin: 20px 0;
+}
+
+  .list-error p {
+    font-size: 20px;
+  }
+
+
+.todo-list {
+  padding: 0;
+  margin: 20px 0 50px;
+}
+.todo-list .todo {
+  background: #eceff1;
+  border-bottom: 1px solid #455a64;
+  color: #455a64;
+  font-size: 20px;
+  list-style: none;
+  padding: 20px 130px 20px 15px;
+  position: relative;
+  white-space: normal;
+}
+
+.list-span {
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
+.list-span a {
+  color: #455a64;
+}
+.list-span i {
+  padding: 10px 15px;
+}
+.list-span .fa-check {
+  border-right: 1px solid #455a64;
+}
+.list-span .fa-check:hover {
+  color: #69f0ae;
+}
+.list-span .fa-trash-o:hover {
+  color: #ff5252;
+}
+
+.complete {
+  color: #90a4ae;
+  text-decoration: line-through;
+}
+.complete .check {
+  color: #69f0ae;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- <div class="background"></div> -->
+  <div id="header">
+      <header class="dogcat">
+          <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+          <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+          <nav>
+            <ul class="nav navbar-nav">
+              <li><a href="">반려인 커뮤니티</a></li>
+              <li><a href="">행동전문가와 상담</a></li>
+              <li><a href="">Locations</a></li>
+              <li class="dropdown">  
+                <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fas fa-user-circle fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                  <li><a href="#">내 정보</a></li>
+                  <li><a href="#">마이펫 다이어리</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">로그아웃</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div class="clear-fix"></div>
+          <hr>
+        </header>
+  </div>
+
+  <div id="container">
+    <div class="panel">
+      <!-- 좌측 메뉴 -->
+      <div class="aside">
+        <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+        <br>
+        <div class="log-out">LOG OUT</div>
+        <div class="seperator"></div>
+        <div class="list">
+            <div id="board" class="item">게시판</div>
+            <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
+            <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
+            <div id="management" class="item">관리</div>
+            <div class="mgm-hidden abs-member"><a href="mgm-ABS.html">행동전문가</a></div>
+            <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
+            <div id="statistics" class="item"><a href="statistics.html"style="color:black;">통계</a></div>
+        </div>
+
+      </div>
+      <!-- /좌측 메뉴 -->
+
+      <!-- 우측 콘텐츠 영역-->
+      <div class="view">
+        <div class="sub-title">Board > Youtube</div>
+        <div class="main-title">유튜브</div>
+        <div class="seperator"></div>
+
+        <!-- 리스트 -->
+        <div class="list-container">
+          <div class="list-row">
+            <input class="list-input" type="text" placeholder="추가할 검색어를 입력하세요">
+            <div class="input-buttons">
+              <a href="#" class="clear-text"><i class="fa fa-trash fa-2x"></i></a>
+              <a href="#" class="add-todo"><i class="fa fa-plus fa-2x"></i></a>
+            </div> <!-- div.input-buttons-->
+          </div> <!-- div.row -->
+          <div class="list-row">
+            <div class="list-error">
+              <a href="#"><i class="fa fa-times"></i></a>
+              <p>검색어를 입력해주세요</p>
+            </div> <!-- div.error -->
+            <!-- Start to-do list -->
+            <ul class="todo-list">
+            </ul>
+          </div> <!-- div.row -->
+        </div> <!-- div#container -->
+        <!-- /리스트 -->
+
+        <div id="youtube-area" style="margin-top:10px; height:1000px; width:100%;">
+        
+        </div>
+
+      </div>
+      <!-- /우측 콘텐츠 영역 view-->
+    </div>
+    <!-- /pannel-->
+    <div class="clear-fix"></div>
+  </div>
+  <!-- /pannel-->
+  <div id="footer">   
+      <footer class="dogcat">
+          <div class="footertitle">
+            <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+            <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+          </div>
+        </footer>
+  </div>
+  <script>
+    // 헤더푸터
+    // $("#header").load("../headfoot/header.html"); 
+    // $("#footer").load("../headfoot/footer.html");
+
+    $(document).ready(function () {
+      $("#board").addClass("selected");
+      $(".board-hidden").toggle();
+      $(".youtube").css("font-weight", "bold");
+    })
+
+    //좌측 메뉴 스크립트
+
+
+    $("#board").click(function () {
+      $(".board-hidden").slideToggle(500);
+    })
+
+    $("#management").hover(function () {
+      $(this).addClass("selected");
+    })
+
+    $("#management").click(function () {
+      $(".mgm-hidden").slideToggle(500);
+    })
+
+    $("#statistics").hover(function () {
+      $(this).addClass("selected");
+    })
+
+    $(".item").mouseleave(function () {
+      $(this).removeClass("selected");
+    })
+  </script>
+
+  <script>
+    //탭
+    $(function () {
+      var tabs = $(".tabs").tabs();
+      tabs.find(".ui-tabs-nav").sortable({
+        axis: "x",
+        stop: function () {
+          tabs.tabs("refresh");
+        }
+      });
+    });
+  </script>
+
+  <script>
+    //==================== todo list =========================
+    $(function () {
+
+      // Input gains focus on document ready
+      //$('input').focus();
+      var finder = 1;
+      var html = "";
+      // Define function to add tasks to list
+      function addTodo() {
+        if ($('.list-input').val().trim() == "") {
+          // Show error message
+          $('.list-error').fadeIn(200);
+        } else {
+          // Hide error message
+          $('.list-error').hide();
+
+          // Get input value
+          var $todo = $('.list-input').val();
+
+          // Create new list item
+          if($(".todo").text().includes($todo)) {
+            alert("이미 등록된 검색어입니다.");
+            $('.list-input').val("");
+            return; 
+          } 
+
+          var $newListItem = $('<li class="todo">' + $todo + '<span class="list-span">' +
+            '<a href="#" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
+            `<input type="hidden" value= ${finder} />` +
+            '</span>' + '</li>');
+
+          // Add list item to end of list
+          var $addListItem = $('ul').append($newListItem);
+
+          // Hide list item before fading it into view
+          $newListItem.hide().fadeIn(500);
+
+          // Refocus input box for next task
+          $('.list-input').val("").focus();
+
+
+          if($("#youtube-area").text().includes($todo)) return;
+
+          html = `<div class="content-area${finder}" style="border-bottom:1px solid black; margin-bottom: 50px;">`
+                + "<div class='content-title'><h1>" + $todo + "</h1></div>" 
+                + "<div style='display:inline-block; width:30%; height:300px; padding:10px; margin:10px; box-sizing: border-box; border:1px solid olive;'>"
+                + "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/DxLdVVW2sAY' frameborder='0' allowfullscreen=''>"
+                + "</div>"
+                + "<div style='display:inline-block; width:30%; height:300px; padding:10px; margin:10px; box-sizing: border-box; border:1px solid olive;'>"
+                + "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/C37PzRRGaoU' frameborder='0' allowfullscreen=''>"
+                + "</div>"
+                + "<div style='display:inline-block; width:30%; height:300px; padding:10px; margin:10px; box-sizing: border-box; border:1px solid olive;'>"
+                + "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/Yw8ngLJ96Cc' frameborder='0' allowfullscreen=''>"
+                + "</div>"
+                + "</div>"
+          
+          $("#youtube-area").append(html);
+          
+            ++finder;
+
+            console.log($todo);
+        }
+      };
+
+      // Clear error message when 'x' icon is clicked
+      $('i.fa-times').on('click', function () {
+        $('.list-error').hide();
+      });
+
+      // Call addTodo function on click
+      $('.add-todo').on('click', addTodo);
+
+
+      // Call addTodo function when enter key is pressed
+      $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+          addTodo();
+        }
+      });
+
+
+      // Clear typed text and refocus input box
+      $('.clear-text').on('click', function (e) {
+        e.preventDefault();
+        $('.list-input').val("").focus();
+      });
+
+
+      // Mark list item complete
+      $(document).on('click', '.check', function (e) {
+        e.preventDefault();
+        $(this).closest('li').toggleClass('complete');
+      });
+
+
+      // Fade list item and delete from DOM
+      $(document).on('click', '.delete-todo', function (e) {
+        e.preventDefault();
+        $(this).closest('li').fadeOut(500, function () {
+          $(this).remove();
+        });
+
+        $('.content-area' + $(this).siblings('input').val()).remove();
+      });
+
+    });
+
+    
+  </script>
+
+ 
+</body>
+
+</html>
