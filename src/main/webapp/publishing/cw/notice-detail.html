@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../headfoot/headerfooter.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="headerfooter.js"></script>
+  
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="headerfooter.css" />
+    <link rel="stylesheet" href="notice-detail.css" />
+
+</head>
+<body>
+        <div id="header">
+                <header class="dogcat">
+                    <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+                    <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+                    <nav>
+                      <ul class="nav navbar-nav">
+                        <li><a href="">반려인 커뮤니티</a></li>
+                        <li><a href="">행동전문가와 상담</a></li>
+                        <li><a href="">Locations</a></li>
+                        <li class="dropdown">  
+                          <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          <i class="fas fa-user-circle fa-2x"></i>
+                          </a>
+                          <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                            <li><a href="#">내 정보</a></li>
+                            <li><a href="#">마이펫 다이어리</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">로그아웃</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                    <div class="clear-fix"></div>
+                  </header>
+            </div>  
+
+            <div id="notice-area">
+                 <div class="top-section">
+                     <div class="main-title">
+                         <h1>공지사항</h1>
+                     </div>
+                </div>
+                  
+                  <div class="bottom-section">
+                      <div class="section-one">
+                          <div class="panel panel-default" style="text-align: left;">
+                              <div class="panel-heading">
+                                <h3 class="panel-title" style="text-align: left; font-weight: bold;">${gbb.gbTitle}</h3>
+                                <div id="writer" style="display: inline-block;"><h3 class="panel-title">${gbb.writer} &nbsp&nbsp&nbsp<span id="reg_time"><fmt:formatDate value="${gbb.gbRegDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span></h3></div>
+                                <div id="detail_info" style="float: right;">
+                                      <span id="view_cnt">조회수 ${gbb.gbViewCnt}</span> |
+                                      <span id="cmt_count">댓글수 </span>
+                                </div>
+                              </div>
+                              <div class="panel-body">
+          <!--                             <img src="https://steptohealth.co.kr/wp-content/uploads/2017/09/consumir-tomate-500x332.jpeg" /> -->
+                                      ${gbb.gbContent}
+          <%--                             <div style="font-weight: bold;">공구종료날짜: ${gbb.gbEndDay} ${gbb.gbEndTime}</div> --%>
+                                      <div class="flipTimer" style="text-align: center;">
+                                          <div class="days"></div>
+                                          <div class="hours"></div>
+                                          <div class="minutes"></div>
+                                          <div class="seconds"></div>
+                                       </div>
+                              </div>
+                             
+                          </div> 
+                                <div id="button-area">
+                                  <div id="listbtn">
+                                        <button type="button" id="listButton" class="btn btn-default">목록</button>
+                                  </div>        
+                                  <div id="writebtn">
+                                      <button type="button" id="updateBtn" data-writer="${gbb.writer}" class="btn btn-default">수정</button>
+                                      &nbsp;
+                                      <button type="button" id="deleteBtn" data-writer="${gbb.writer}" class="btn btn-default">삭제</button>
+                                  </div>
+                                </div>
+                      </div>
+                    </div>
+                  
+                      <div id="footer">
+                            <footer class="dogcat" style="bottom:0px; position: absolute;">
+                                <div class="footertitle">
+                                  <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+                                  <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+                                </div>
+                              </footer>
+                    </div>
+</body>
+</html>

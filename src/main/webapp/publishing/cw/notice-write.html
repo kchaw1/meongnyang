@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../headfoot/headerfooter.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="headerfooter.js"></script>
+  
+    <link rel="stylesheet" href="default.css" />
+    <link rel="stylesheet" href="headerfooter.css" />
+    <link rel="stylesheet" href="notice-write.css" />
+
+    <!-- summer note -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+</head>
+<body>
+        <div id="header">
+                <header class="dogcat">
+                    <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+                    <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+                    <nav>
+                      <ul class="nav navbar-nav">
+                        <li><a href="">반려인 커뮤니티</a></li>
+                        <li><a href="">행동전문가와 상담</a></li>
+                        <li><a href="">Locations</a></li>
+                        <li class="dropdown">  
+                          <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          <i class="fas fa-user-circle fa-2x"></i>
+                          </a>
+                          <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                            <li><a href="#">내 정보</a></li>
+                            <li><a href="#">마이펫 다이어리</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">로그아웃</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                    <div class="clear-fix"></div>
+                  </header>
+            </div>  
+
+
+        <div class="top-section">
+            <div class="main-title">
+                <h1>공지사항</h1>
+            </div>
+        </div>
+           
+            </div>
+            <form action="gb_write.cf" method="POST">
+            <div class="bottom-section">
+                <div class="section-two">
+                        <div class="panel panel-default">
+                                <div class="panel-heading">
+                                        <div id="title"><input type="text" class="form-control" name="gbTitle" placeholder="제목을 입력하세요" style="margin-bottom: 10px;"> </div>  <!-- 작성자파라미터 -->
+                                        <div id="writer">${user.id}</div>
+                                        <input type="hidden" name="writer" value="${user.id}" />
+                                </div>
+                                <div class="panel-body">
+                                        <div id="smnt-area"><textarea name="gbContent" id="summernote"></textarea> </div> <!-- 작성자파라미터 -->
+                                        <input id="imageBoard" name="url" type="hidden"/>
+                                </div>
+                              </div>
+                      
+                    <div id="writebtn">
+                            <button type="submit" id="writeButton" class="btn btn-default">글 작성</button>
+                            &nbsp;&nbsp;
+                            <button type="button" id="cancelBtn" class="btn btn-default">취소</button>
+                    </div>
+                    <br>
+                    <br>
+                </div> 
+            </div>
+            </form>
+
+            <div id="footer">
+                    <footer class="dogcat" style="bottom:0px; position: absolute;">
+                        <div class="footertitle">
+                          <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+                          <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+                        </div>
+                      </footer>
+            </div>
+
+
+            <script>
+                    $(document).ready(function () {
+                        $('#summernote').summernote({
+                            height: 330,                 // set editor height
+                            placeholder: "내용을 입력해주세요",
+                            focus: true,                  // set focus to editable area after initializing summernote
+                            callbacks: {
+                                onImageUpload: function(files, editor, welEditable) {
+                                  for (var i = files.length - 1; i >= 0; i--) {
+                                    sendFile(files[i], this);
+                                  }
+                                }
+                              } // callbacks
+                        });
+                    });
+                    
+                    function sendFile(file, ele) {
+                        var form_data = new FormData();
+                        console.log("form_data", form_data)
+                        form_data.append('file', file);
+                        $.ajax({
+                            data : form_data, 
+                            type : "POST",
+                            url : "<c:url value='/groupbuy/uploadfile.cf'/>",
+                            cache : false,
+                            contentType : false,
+                            enctype : "multipart/form_data",
+                            processData : false,
+                            success : function(gbFile) {
+                                console.log(gbFile.url);
+                                $(ele).summernote("editor.insertImage", gbFile.url);
+                            }
+                        })//ajax
+                    }
+                    
+                    $("#writeButton").click(function() {
+                        if($("input[name='gbTitle']").val()=="") {
+                            alert("제목을 입력해주세요")
+                            return false;
+                        }
+                        if($("#summernote").val()=="") {
+                            alert("내용을 입력해주세요")
+                            return false;
+                        }
+                    })
+                </script>
+        
+</body>
+</html>
