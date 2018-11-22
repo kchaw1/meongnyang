@@ -8,6 +8,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1">
     <link rel="stylesheet" href="/static/css/cafetalk/channel-1533720572000-61397.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 
     <style>
 * {  font-family: 'Jua', sans-serif;
@@ -24,7 +28,7 @@
 }
 .people {
   height: 100vh;
-  background: rgb(128, 128, 128, 0.5);
+  background:  rgb(255, 194, 64) !important;
   border-right: 1px solid  rgb(128, 128, 128, 0.5);
   overflow-y: hidden;
 }
@@ -43,13 +47,13 @@
 }
 .list-head {
   padding: 20px;
-  background: gray;
+  background:  white !important;;
 }
 .list-head p {
   margin: 0;
   text-align: center;
-  font-size: 16px;
-  color: #f1f1f1;
+  font-size: 30px;
+  color:rgb(255, 194, 64);
 }
 .list-item {
   display: table;
@@ -57,6 +61,8 @@
   height: 50px;
   padding: 10px;
   border-left: 4px solid transparent;
+  
+  
 }
 .list-item img {
   display: table-cell;
@@ -67,117 +73,52 @@
 .list-item p {
   display: table-cell;
   height: 40px;
-  margin: 0;
-  padding-left: 15px;
+  padding-left: 20px;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 20px;
   color: black;
   vertical-align: middle;
+
 }
 .list-item.active,
 .list-item:hover {
-  border-left: 4px solid #444;
-  background-color: rgb(128, 128, 128,0.5)
+  border-left: 4px solid rgb(255, 194, 64) !important;;
+  background-color:  rgb(255, 194, 64,0.5) !important;
 }
 .list-item.active {
-  background: gray;
+  background:  rgb(255, 194, 64) !important;;
 }
-
-.chat-wrapper {
-  display: flex;
-  height: 98vh;
-  padding: 10px;
-  flex-direction: column-reverse;
-}
-.chat-content {
-  display: table-cell;
-  width: 100%;
-  margin-top: 20px;
-  vertical-align: bottom;
-}
-.chat-content p {
-  color:white;
-}
-.chat-bubble {
-  display: inline-block;
-  padding: 5px 10px;
-  background: gray;
-  border-radius: .25em;
-}
-.left {
-	position: relative;
-	background: gray;
-}
-.left:after {
-	right: 100%;
-	bottom: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-right-color: gray;
-	border-width: 5px;
-	margin-top: -5px;
-}
-.right {
-	position: relative;
-	background: rgb(128, 128, 128, 0.5);
-}
-.right:after {
-	left: 100%;
-	top: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-left-color: rgb(128, 128, 128, 0.5);
-	border-width: 5px;
-	margin-top: -5px;
-}
-.form-control {
-  background-color: rgb(128, 128, 128, 0.2);
-  border: none;
-}
-.chat-input {
+.animate {
   float: left;
-  width: calc(100% - 60px);
-}
-.chat-img {
-  width: 30px;
-  height: 30px;
-  margin-left: 1em;
-}
-.chat-img-left {
-  width: 30px;
-  height: 30px;
-  margin-right: 1em;
-}
-.chat-info {
-  padding-top: 20px;
-  background-color: #2d2d2d;
-}
-.chat-info p {
-  color: #f1f1f7;
-}
-.chat-info-box {
-  border-top: 2px solid #3d3d3d;
-}
-.chat-info-item {
-  padding: 10px;
-  border-bottom: 2px solid #3d3d3d;
-}
-.shared-photos {
-  padding: 10px;
-}
-.shared-photos img {
-  border-radius: .25em;
-  border: 1px solid #656565;
 }
 
+.animate > img {
+  width:50px;
+  height:50px;
+  margin: -5px;
+  margin-right: 20px;
+}
+
+#plus{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-top: -12px;
+}
+.list-item img{
+    width: 20px;
+    height: 30px;
+    float: right;
+    margin-top: 8px;
+}
+.list-item #exit{
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    float: left;
+    margin: -8px;
+
+}
     </style>
 </head>
 <body>
@@ -186,30 +127,75 @@
                       
                       </div>
                       <div class="list-head">
-                        <p>멍하고 노냥 채팅방</p>
-                      </div>
+                            <div class="animate"><img src="header/teddy_food_dribbble.gif" /></div>
+                        <p>멍하고 노냥 채팅방
+                        <a  data-toggle="modal" href="#myModal"><img id="plus" src="header/noun_Plus_1853024.png"></a>
+                        </p>
+                        </div>
                       <div class="list">
                         <div class="list-item">
-                          <p class="pull-left">서울 채팅방</p>
+                            <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
+                          <p class="pull-left" >서울 채팅방 </p>
+                              <a href="#" onclick="doChat()"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                         <div class="list-item">
-                          <p class="pull-left">경기도 채팅방</p>
+                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
+                          <p class="pull-left">경기도 채팅방 </p>
+                        <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                         <div class="list-item">
+                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
                           <p class="pull-left">충청도 채팅방</p>
+                        <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                         <div class="list-item">
-                          <p class="pull-left">경상도 채팅방</p>
+                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
+                            <p class="pull-left" onclick="doChatExit()">경상도 채팅방</p>
+                                <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                         <div class="list-item">
+                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
                           <p class="pull-left">전라도 채팅방</p>
+                              <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                         <div class="list-item">
+                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
                           <p class="pull-left">대형견 집사분들!!!</p>
+                              <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
+
                       </div>
                     </div>
                  
-                 
+
+                  <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h4 class="modal-title">방 추가</h4>
+            </div>
+            <div class="modal-body">
+                방제목을 입력하세요: <input type="text" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">저장</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+        <script>
+        function doChat() {
+             window.open("chat2.html", "chat", "width=700, height=600, scrollbars=yes");
+        }
+        function doChatExit() {
+                alert("채팅방을 삭제하시겠습니까??");
+        }
+        </script>
 </body>
 </html>

@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     
    <style>
+       body{
+           overflow: hidden;
+       }
  * {  font-family: 'Jua', sans-serif;
  }
 .no-pad { padding: 0; }
@@ -20,67 +23,69 @@
   min-height: 100vh;
   height: 100%;
   background: white;
-  overflow: scroll;
-
+  
 }
 .people {
-  height: 100vh;
-  background: rgb(128, 128, 128, 0.5);
-  border-right: 1px solid  rgb(128, 128, 128, 0.5);
-  overflow-y: hidden;
+    height: 100vh;
+    background: rgb(255, 194, 64,0.8) !important;;;
+    text-shadow: 3px 3px 10px gray;
+    font-weight: lighter;
+    border-right: 1px solid   rgb(255, 194, 64) !important;
+    overflow-y: hidden;
 }
 .user {
-  display: table;
-  width: 100%;
-  height: 100px;
+    display: table;
+    width: 100%;
+    height: 100px;
 }
 .user-item {
-  display: table-cell;
-  height: inherit;
-  padding-left: 15px;
-  padding-right: 15px;
-  vertical-align: middle;
+    display: table-cell;
+    height: inherit;
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
 }
 .user-item img { border-radius: 50%; }
 .user-item p.name { 
-  margin: 0;
-  padding-left: 15px;
-  font-size: 20px;
-  color: #f1f1f1; 
+    margin: 0;
+    padding-left: 15px;
+    font-size: 20px;
+    color: #f1f1f1; 
 }
 .user-item p.active { 
-  margin: 0;
-  padding-left: 15px;
-  font-size: 10px;
-  color: #f1f1f1; 
+    margin: 0;
+    padding-left: 15px;
+    font-size: 10px;
+    color: #f1f1f1; 
 }
 .list-head {
-  padding: 5px;
-  background: gray;
+    padding: 5px;
+    background:  rgb(255, 194, 64) !important;;
 }
 .list-head p {
-  margin: 0;
-  text-align: center;
-  font-size: 16px;
-  color: #f1f1f1;
+    margin: 0;
+    text-align: center;
+    font-size: 16px;
+    color: #f1f1f1;
 }
 .list-item {
-  display: table;
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  border-left: 4px solid transparent;
+    display: table;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border-left: 4px solid transparent;
+    overflow: scroll;
 }
 .list-item img {
-  display: table-cell;
-  height: 40px;
-  border-radius: 50%;
-  vertical-align: middle;
+    display: table-cell;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
 }
 .list-item p {
-  display: table-cell;
-  height: 40px;
-  margin: 0;
+    display: table-cell;
+    height: 40px;
+    margin: 0;
   padding-left: 15px;
   padding-top: 10px;
   font-size: 14px;
@@ -89,7 +94,8 @@
 }
 .list-item.active,
 .list-item:hover {
-  border-left: 4px solid #444;
+  border-left: 4px solid rgb(255, 189, 64) !important;
+  background-color: wheat;
 }
 .list-item.active {
   background: gray;
@@ -113,12 +119,12 @@
 .chat-bubble {
   display: inline-block;
   padding: 5px 10px;
-  background: gray;
+  background:  rgb(243, 150, 154) !important;;
   border-radius: .25em;
 }
 .left {
 	position: relative;
-	background: gray;
+	background:  rgb(255, 194, 64) !important;;
 }
 .left:after {
 	right: 100%;
@@ -129,7 +135,7 @@
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-right-color: gray;
+	border-right-color:  rgb(255, 194, 64) !important;;
 	border-width: 5px;
 	margin-top: -5px;
 }
