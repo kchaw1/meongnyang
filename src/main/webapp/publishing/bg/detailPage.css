@@ -14,7 +14,7 @@ div{
 /* 메인 컬럼 첫번쨰 */
 .main-column1{
     margin-top: 140px;
-    margin-left: 25%;
+    margin-left: 23.5%;
     height: 100%;
     width: 60%;
     float: left;
@@ -42,7 +42,7 @@ background-color: white;
 /* 메인 컬럼 두번쨰 */
 .main-column2{
 margin-top: 170px;
-margin-right: -14%;
+margin-right: -17%;
 float: right;
 width: 300px;
 height: 300px;
@@ -52,7 +52,7 @@ border-radius: 10px;
 }
 .main-column3{
 margin-top: 30px;
-margin-right: -14%;
+margin-right: -17%;
 float: right;
 width: 300px;
 height: 150px;

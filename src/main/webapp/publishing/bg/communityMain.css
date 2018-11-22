@@ -13,7 +13,7 @@ div{
 }
 .main-column1{
     margin-top: 140px;
-    margin-left: 26%;
+    margin-left: 24%;
     height: 100%;
     width: 60%;
     float: left;
@@ -197,7 +197,7 @@ height: 40px;
 }
 .main-column2{
     
-margin-right: -15%;
+margin-right: -18%;
 margin-top: 160px;
 float: right;
 width: 310px;
@@ -244,7 +244,7 @@ border-radius: 10px;
 
 margin-top: 20px;
 float: left;
-width: 320px;
+width: 310px;
 height: 40px;
 border: 1px solid rgb(226, 219, 219);
 background-color: white;
