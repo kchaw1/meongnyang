@@ -1,0 +1,58 @@
+a:link { color: red; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Jua', sans-serif;
+}
+
+.title {
+    margin: 0px 0px 0px 40px;
+}
+
+.menu {
+    position: relative;
+    font-size: 20px;
+    float: right;
+}
+
+#tabs {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.activity {
+    text-align: center;
+}
+
+#myAty {
+    font-size: 50px;
+}
+
+#serchType {
+    width: 80px;
+    height: 28px;
+    font-family: 'Jua', sans-serif;
+}
+
+#keyword {
+    width: 150px;
+    height: 28px;
+    font-family: 'Jua', sans-serif;
+}
+
+#search {
+    position: relative;
+}
+
+#searchBtn {
+    width: 45px;
+    height: 30px;
+    font-family: 'Jua', sans-serif;
+}
+
+#allact {
+    margin-top: 120px;
+}

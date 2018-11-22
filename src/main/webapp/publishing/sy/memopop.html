@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link rel="stylesheet" href="./memopop.css">
+</head>
+<body>
+    <div class="contents">
+    <div class="memopop">
+        <span>받는사람 : </span> <input type="text" name="name" id="name"/>
+    </div>
+    <hr>
+    <div class="content">
+        <textarea placeholder="내용을 입력하세요." rows="15" cols="80" value=""></textarea>
+    </div>
+    <div class="check">
+        <input id="check" type="checkbox" name="check" value="1" /><span id="check1">보낸 쪽지함에 저장<span id="check2">(보낸쪽지함에 
+                저장하면수신 확인이 가능합니다.)
+        </span></span>
+    </div>
+    <div class="memoBtn">
+        <button type="button" id="sendBtn" name="sendBtn">보내기</button>
+        <input type="button" value="취소" id="cancel" name="cancel" onclick="javascript:self.close();">
+    </div>
+</div>
+</body>
+</html>

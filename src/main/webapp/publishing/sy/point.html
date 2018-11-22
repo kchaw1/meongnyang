@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./point.css">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <script src="./point.js"></script>
+    <!--------------------------------- 아래부터 tab -------------->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!----------------------------------아래부터 부트스트랩---------------------------------->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="headerfooter.css"> 
+</head>
+
+<body>
+    <header class="dogcat">
+        <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+        <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+        <nav>
+            <ul class="nav navbar-nav">
+                <li><a href="">반려인 커뮤니티</a></li>
+                <li><a href="">행동전문가와 상담</a></li>
+                <li><a href="">Locations</a></li>
+                <li class="dropdown">
+                    <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                        <li><a href="#">내 정보</a></li>
+                        <li><a href="#">마이펫 다이어리</a></li>
+                        <li><a href="#">쪽지함</a></li>
+                        <li><a href="#">내 등급</a></li>
+                        <li><a href="#">내 활동</a></li>
+                        <li><a href="#">쪽지함</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="clear-fix"></div>
+    </header>
+    <div class="clear-fix"></div>
+    <br>
+    <div id="allP">
+    <div class="point">
+        <span id="p-writer">내 포인트</span> <span id="p-writer2">현재 보유포인트는 <input type="text" id="myPoint" name="myPoint" />입니다.</span>
+    </div>
+    <hr id="hr1">
+    <div class="Notice">
+        <p id="Notice"> - 활동점수 개념<br>
+            <br>
+            게시글 작성시 활동점수 +5<br>
+            댓글 작성시 활동점수 +3<br>
+            로그인시 활동점수 +1<br>
+            <br>
+            - 포인트<br>
+            이 주의 게시판별 추천게시글 1위부터 3위까지 포인트 지급<br>
+            1위 -> 5000포인트 지급<br>
+            2위 -> 3000포인트 지급<br>
+            3위 -> 1000포인트 지급</p>
+    </div>
+    <br>
+    <div id="tabs">
+        <ul style="background:none;">
+            <li><a href="#tabs-1">획득 포인트</a></li>
+            <li><a href="#tabs-2">사용 포인트</a></li>
+        </ul>
+        <div id="tabs-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><input id="checkall" type="checkbox" name="checkall" value="1" /></th>
+                        <th>번호</th>
+                        <th>금액</th>
+                        <th>내역</th>
+                        <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td>1</td>
+                        <td>+1000</td>
+                        <td>환영합니다.</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td>2</td>
+                        <td>+5000</td>
+                        <td>게시글 1위</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td>3</td>
+                        <td>+1000</td>
+                        <td>게시글 3위</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td>4</td>
+                        <td>+1000</td>
+                        <td>게시글 3위</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td>5</td>
+                        <td>+1000</td>
+                        <td>게시글 3위</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="deleteBtn">
+                <button type="button" id="delBtn">내역 삭제</button>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><input id="checkall2" type="checkbox" name="checkall2" value="1" /></th>
+                        <th>번호</th>
+                        <th>금액</th>
+                        <th>내역</th>
+                        <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td>1</td>
+                        <td>-1000</td>
+                        <td>상담료</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td>2</td>
+                        <td>-1000</td>
+                        <td>상담료</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td>3</td>
+                        <td>-1000</td>
+                        <td>상담료</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td>4</td>
+                        <td>-1000</td>
+                        <td>상담료</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                    <tr>
+                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td>5</td>
+                        <td>-1000</td>
+                        <td>상담료</td>
+                        <td>2018.11.21</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="deleteBtn">
+                <button type="button" id="delBtn">내역 삭제</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <footer class="dogcat">
+            <div class="footertitle">
+              <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+              <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+            </div>
+          </footer>
+</body>
+
+</html>

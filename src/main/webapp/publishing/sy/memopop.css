@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Jua', sans-serif;
+}
+
+#check1 {
+    font-size: 13px;
+}
+
+#check2 {
+    font-size: 11px;
+    color: gray;
+}
+
+.memoBtn {
+    margin: 10px 0 0 180px;
+}
+
+#sendBtn, #cancel {
+    width: 100px;
+    height: 30px;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./mygrade.css">
+    <link rel="stylesheet" href="headerfooter.css"> 
+</head>
+<body>
+        <header class="dogcat">
+            <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+            <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+            <nav>
+                <ul class="nav navbar-nav">
+                    <li><a href="">반려인 커뮤니티</a></li>
+                    <li><a href="">행동전문가와 상담</a></li>
+                    <li><a href="">Locations</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                            <li><a href="#">내 정보</a></li>
+                            <li><a href="#">마이펫 다이어리</a></li>
+                            <li><a href="#">쪽지함</a></li>
+                            <li><a href="#">내 등급</a></li>
+                            <li><a href="#">내 활동</a></li>
+                            <li><a href="#">쪽지함</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">로그아웃</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="clear-fix"></div>
+        </header>
+        <div class="clear-fix"></div>
+    <br>
+    <div id="allgrade">
+    <div class="grade">
+        <span id="mygrade">내 등급</span>
+    </div>
+    <hr>
+    <div id="t-grd">
+    <div class="grd">
+        <p id="g-writer">내 등급</p>
+        <input type="text" id="mygrd" name="mygrd" value=""/>
+    </div>
+    <hr style="width: 0px; height: 150px; float: left; margin: 0 0 0 15px;">
+        <div class="wrap-custom-file">
+            <input type="file" name="image1" id="image1" accept=".gif, .jpg, .png" />
+            <label  for="image1">
+                <span>Select Image One</span>
+                <i class="fa fa-plus-circle"></i>
+            </label>
+        </div>
+        <div class="rpoint">
+            <p id="p-writer">현재 포인트 점수</p>
+            <input type="text" id="point" name="point" value=""/> <span id="s-writer">점</span>
+        </div>
+        <!-- <hr style="position: relative; top:150px;"> -->
+    </div>
+    <div style="clear: both;"></div>
+    <hr>
+    <div class="w-grd">
+        <p id="memgrd">회원등급은 로그인 시와 마이페이지 접속시 갱신됩니다.</p>
+    </div>
+    <div class="image">
+    <div class="new">
+        <img src="./image/뉴비.jpg" />
+        <div style="text-align: center;">
+            1 ~ 199
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/루키.png" />
+        <div style="text-align: center;">
+                200 ~ 299
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/멤버.jpg" />
+        <div style="text-align: center;">
+                300 ~ 399
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/bronze_i.png" />
+        <div style="text-align: center;">
+                400 ~ 499
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/silver_i.png" />
+        <div style="text-align: center;">
+                500 ~ 699
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/gold_i.png" />
+        <div style="text-align: center;">
+                700 ~ 999
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/platinum_i.png" />
+        <div style="text-align: center;">
+                1000 ~ 1499
+        </div>
+    </div>
+    <div class="new">
+        <img src="./image/diamond_i.png" />
+        <div style="text-align: center;">
+                1500 ~ 
+        </div>
+    </div>
+</div>
+</div>
+<footer class="dogcat">
+        <div class="footertitle">
+          <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+          <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+        </div>
+      </footer>
+    
+
+    <script src="./mygrade.js"></script>
+</body>
+</html>
