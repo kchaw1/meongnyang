@@ -6,11 +6,15 @@ a:hover { color: blue; text-decoration: underline;}
 table, tr, th, td {
     border: 1px solid black;
     margin: auto;
-    width: 1000px;
+    /* width: 1000px; */
     height: 50px;
     text-align: center;
     font-size: 20px;
     border-collapse: collapse;
+}
+
+table {
+    width: 100%
 }
 
 .title {
@@ -31,6 +35,7 @@ table, tr, th, td {
 .MyPoint {
     float: left;
     margin: 0 25px;
+    font-size: 30px;
 }
 
 .movePoint {
@@ -146,19 +151,20 @@ table, tr, th, td {
   #mpoint {
       width: 180px;
       height: 60px;
-      font-size: 50px;
+      font-size: 40px;
   }
 
   #move {
       width: 110px;
       height: 60px;
-      font-size: 50px;
+      font-size: 40px;
+      float: left;
   }
 
   #mygrade {
       width: 200px;
       height: 60px;
-      font-size: 50px;
+      font-size: 30px;
   }
 
 #myall {
@@ -180,4 +186,50 @@ table, tr, th, td {
 
 .Allmenu {
     margin-bottom: 20px;
+}
+
+#grdname, #username, #point, 
+#lvpoint, #sptext, #sptext2 {
+    float: left;
+    font-size: 25px;
+}
+
+#ptext {
+    font-size: 25px;
+}
+
+#update {
+    float: left;
+    font-size: 20px;
+}
+
+#repoint {
+    float: left;
+}
+
+#btn1 {
+    width: 60px;
+    height: 20px;
+    font-size: 15px;
+}
+
+#actPoint {
+    font-size: 30px;
+}
+
+#movepp {
+    float: left;
+    font-size: 40px;
+}
+
+img {
+    width: 140px;
+    height: 90px;
+    padding-bottom: 10px;
+}
+
+#btn2 {
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="abs.css">
+    <script src="abs.js"></script>
+</head>
+
+<body>
+    <div id="tabs">
+        <ul style="border: 1px solid #dddddd; background:none;">
+            <li><a href="#tabs-1">행동전문가 회원가입</a></li>
+            <li><a href="#tabs-2">경력 및 기타 사항</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="abs_signup">
+                <h1>행동전문가 회원가입</h1>
+                <hr>
+                <div id="pro">
+                    <div id="poto">
+                        <span>프로필 사진</span><br>
+                        <input id="file" type="file" accept=".gif, .jpg, .png" />
+                        <div class="img_wrap">
+                            <label for="image1">
+                                <img id="img" />
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <span>이름 : </span><input type="text" name="username" placeholder="이름" />
+                    <hr>
+                    <span>아이디 : </span><input type="text" name="id" placeholder="아이디를 입력하세요.">
+                    <hr>
+                    <span>비밀번호 : </span><input type="password" name="password" placeholder="비밀번호" />
+                    <hr>
+                    <span>비밀번호 확인 : </span><input type="password" name="password2" placeholder="비밀번호 확인" />
+                    <hr>
+                    <span>E-mail : </span><input type="text" id="email" name="email" placeholder="E-mail" />
+                    <span class="input-group-btn">
+                        <button id="sendMail" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>
+                    </span>
+                    <hr>
+                    <span>인사말 : </span><textarea rows="8" cols="80" placeholder="인사말을 적어주세요." value=""></textarea>
+                    <hr>
+                    <!-- <span id="car">경력 :</span> <input type="date" name="career1" id="career1" /> 
+            <span id="car2">~ </span><input type="date" name="career2" id="career2" /><hr>-->
+                    <div style="clear: both;"></div>
+                    <span id="animal">담당 반려동물 : <select id="catdog">
+                            <option value="0">선택</option>
+                            <option value="1">개</option>
+                            <option value="2">고양이</option>
+                            <option value="3">ALL</option>
+                        </select></span>
+                </div>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <span id="car">경력 :</span> <input type="date" name="career1" id="career1" />
+            <span id="car2">~ </span><input type="date" name="career2" id="career2" />
+            <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
+            <hr>
+            <span>상세경력 : </span><textarea rows="8" cols="80" placeholder="업무내용을 적어주세요." value=""></textarea>
+            <hr>
+            <div class="file_input">
+                <label>
+                    자격증 첨부 :
+                    <input type="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+                </label>
+                <input type="text" readonly="readonly" title="File Route" id="file_route">
+            </div>
+        </div>
+    </div>
+    <div id="absign">
+        <button type="submit" id="sup">가입하기</button>
+        <button type="submit" id="cancel">취소</button>
+    </div>
+</body>
+
+</html>

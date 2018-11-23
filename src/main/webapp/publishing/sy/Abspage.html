@@ -23,7 +23,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="headerfooter.css">
-    <link rel="stylesheet" href="Mypage.1.css">
+    <link rel="stylesheet" href="Abspage.css">
 </head>
 
 <body>
@@ -71,30 +71,28 @@
                 </div>
             </div>
             <div class="member">
-                <!-- <input type="text" name="level" id="level" /> <input type="text" name="name" id="name" />님 회원정보<br> -->
-                <div id="grdname">다이아&nbsp;</div><div id="username">김병관</div> <span id="ptext">님의 회원정보입니다.</span><br>
-                <!-- <input type="text" name="grade" id="grade"> 레벨점수 : <div id="point"> - </div>입니다. -->
+                <input type="text" name="level" id="level" /> <input type="text" name="name" id="name" />님 회원정보<br>
+                <input type="text" name="grade" id="grade"> 레벨점수 : <input type="text" name="point" id="point" />입니다.
                 <hr style="width: 350px; margin-left: 0px;">
-                <span id="sptext">다음 레벨까지&nbsp;</span> <div id="lvpoint">0</div> <span id="sptext2">점 남았습니다.</span>
+                <span>다음 레벨까지 <input type="text" name="levelP" id="levelP" /> 점 남았습니다.</span>
                 <br>
-                <br>
-                <a href="#" id="update">회원정보 변경</a>
+                <a href="#">회원정보 변경</a>
             </div>
-            <hr style="width: 1px; height: 200px; float: left; background: black">
+            <hr style="width: 0px; height: 200px; float: left;">
             <div class="MyPoint">
                 <a href="#"><p id="mypoint">내 포인트</p></a>
-                <div id="repoint">999,999&nbsp;</div> <span>포인트</span><br>
+                <input type="text" name="MyPoint" id="mpoint" /> <span>포인트</span><br>
                 <button type="button" id="btn1">충전하기</button>
             </div>
-            <hr style="width: 1px; height: 200px; float: left; background: black">
+            <hr style="width: 0px; height: 200px; float: left;">
             <div class="movePoint">
-                <p id="actPoint">활동점수</p>
-                <div id="move">7500&nbsp;</div><span id="movepp">점</span>
+                <p>활동점수</p>
+                <input type="text" name="move" id="move" /> <span>점</span>
             </div>
-            <hr style="width: 1px; height: 200px; float: left; background: black">
+            <hr style="width: 0px; height: 200px; float: left;">
             <div class="grade">
-                <p id="mygrade">내 등급</p>
-                <img src="diamond_i.png"/><br>
+                <p>내 등급</p>
+                <input type="text" name="mygrade" id="mygrade" /><br>
                 <button type="button" id="btn2">등급 정보확인하기</button>
             </div>
         </div>
@@ -132,7 +130,7 @@
             <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
         </div>
     </footer>
-    <script src="./Mypage.1.js"></script>
+    <script src="abspage.js"></script>
     <script>
         $('.dropdown-toggle').dropdown()
     </script>

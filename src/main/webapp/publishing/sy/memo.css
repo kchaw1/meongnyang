@@ -19,8 +19,9 @@ a:hover { color: blue; text-decoration: underline;}
 
 #tabs {
     width: 80%;
-    margin: auto;
-    
+    margin: auto;   
+    padding: 15px;
+
 }
 
 .deleteBtn {
@@ -51,11 +52,20 @@ a:hover { color: blue; text-decoration: underline;}
 
 #delBtn {
     font-family: 'Jua', sans-serif;
+    width: 50px;
 }
 
 #memowriter {
     margin: 15px 0 0 152px;
     margin-bottom: 20px;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(65, 192, 142, 0.7);
+    border-color: rgb(65, 192, 142, 0.7);
+    font-family: 'Jua', sans-serif;
 }
 
 .Tmemo {
@@ -64,4 +74,16 @@ a:hover { color: blue; text-decoration: underline;}
 
 #submemo {
     font-size: 50px;
+}
+
+#searchBtn, #delBtn {
+    margin: 3px;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(65, 192, 142, 0.7);
+    border-color: rgb(65, 192, 142, 0.7);
+    font-family: 'Jua', sans-serif;
 }
