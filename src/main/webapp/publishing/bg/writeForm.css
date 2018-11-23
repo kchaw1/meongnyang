@@ -12,7 +12,7 @@ div{
 }
 /* 메인 컬럼 첫번쨰 */
 .main-column1{
-    margin-top: 140px;
+    margin-top: 170px;
     margin-left: 28%;
     height: 100%;
     width: 60%;
@@ -40,8 +40,8 @@ background-color: white;
 
 /* 메인 컬럼 두번쨰 */
 .main-column2{
-margin-top: 170px;
-margin-right: -17%;
+
+margin-top: 120px;
 float: right;
 width: 300px;
 height: 300px;
@@ -50,8 +50,8 @@ background-color: white;
 border-radius: 10px;
 }
 .main-column3{
-margin-top: 30px;
-margin-right: -17%;
+margin-top: 20px;
+
 float: right;
 width: 300px;
 height: 170px;

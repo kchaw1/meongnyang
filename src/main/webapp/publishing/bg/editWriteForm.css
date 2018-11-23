@@ -41,9 +41,11 @@ background-color: white;
 
 /* 메인 컬럼 두번쨰 */
 .main-column2{
-margin-top: 170px;
-margin-right: -17%;
-float: right;
+margin-top: 120px;
+ margin-left: 20px;
+
+
+float: left;
 width: 300px;
 height: 300px;
 border: 1px solid rgb(226, 219, 219);
@@ -51,14 +53,13 @@ background-color: white;
 border-radius: 10px;
 }
 .main-column3{
-margin-top: 30px;
-margin-right: -17%;
-float: right;
-width: 300px;
-height: 150px;
-border: 1px solid rgb(226, 219, 219);
-background-color: white;
-border-radius: 10px;
+    margin-top: 20px;
+    float: right;
+    width: 300px;
+    height: 170px;
+    border: 1px solid rgb(226, 219, 219);
+    background-color: white;
+    border-radius: 10px;
 }
 .writeMargin{
 margin-left: 10px;
@@ -213,30 +214,30 @@ font-family: Do Hyeon
 border-bottom: 1px solid rgb(221, 222, 224);
 }
 .goWrite{
-margin-top: 10px;
-font-size: 15px;
-text-align: center;
-font-family: Do Hyeon
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: center;
+    font-family: Do Hyeon
 }
 .writeBtn{
-margin-top : 10px;
-margin-left: 49px;
-border: 1px solid black;
-width:202px;
-height: 34px;
-display: block;
-text-align: center;
-font-size: 14px;
-font-weight: 700;
-letter-spacing: 0.5px;
-line-height: 32px;
-text-transform: uppercase;
-background-color: rgb(65, 192, 142, 0.7);
-color: rgb(255, 255, 255);
-fill: rgb(255, 255, 255);
-border-color: #6BF3D9;
-border-radius: 10px;
-}
+    margin-top : 0px;
+    margin-left: 49px;
+    border: 1px solid black;
+    width:202px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 32px;
+    text-transform: uppercase;
+    background-color: rgb(65, 192, 142, 0.7);
+    color: rgb(255, 255, 255);
+    fill: rgb(255, 255, 255);
+    border-color: #6BF3D9;
+    border-radius: 10px;
+    }
 /*채팅로고*/
 .chat-launcher {
 position: fixed;
