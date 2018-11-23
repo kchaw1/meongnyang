@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cityfarmer.repository.mapper.DiaryMapper">
+	<resultMap id="diaryMap" type="DiaryBoard">
+		<result column="dr_no" property="drNo" />
+		<result column="dr_title" property="drTitle" />
+		<result column="writer" property="writer" />
+		<result column="dr_content" property="drContent" />
+		<result column="dr_reg_date" property="drRegDate" />	
+	</resultMap>
+	
+	<resultMap id="commentMap" type="DiaryComment" >
+		<result column="dr_no" property="drNo" />
+		<result column="drc_no" property="drcNo" />
+		<result column="drc_writer" property="drcWriter" />
+		<result column="drc_content" property="drcContent" />
+		<result column="drc_reg_date" property="drcRegdate" />		
+	</resultMap>
+	
+	<resultMap id="memberMap" type="Member">
+		<result column="member_no" property="memberNo" />
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="pass" property="pass" />
+		<result column="file_path" property="filePath" />
+		<result column="file_name" property="fileName" />
+	</resultMap>
+	
+	<resultMap id="fileMap" type="DiaryFile" >
+		<result column="drf_no" property="drfNo"/>
+		<result column="dr_no" property="drNo"/>
+		<result column="drf_ori_name" property="drfOriName"/>
+		<result column="drf_sys_name" property="drfSysName"/>
+		<result column="drf_path" property="drfPath"/>
+		<result column="drf_size" property="drfSize"/>
+	</resultMap>
+	
+	<!-- 전체 목록 가져오기 -->
+	<select id="selectDiaryBoard" parameterType="Page" resultMap="diaryMap">
+		select *
+		from (select rownum rnum, a.*
+			from (	select *
+						from cf_diary
+				 	 order by dr_no desc) a
+			where rownum &lt;= #{end})				 	 
+		where rnum &gt;= #{begin}
+	</select>
+	
+	<select id="searchDiaryBoard" parameterType="DiaryBoard" resultMap="diaryMap">
+		select *
+		from (select rownum rnum, a.*
+				from (select * 
+						from cf_diary
+						<where>
+							<if test="searchType == 1">
+								and dr_title like '%'||#{keyword}||'%'
+							</if>
+							<if test="searchType == 2">
+								and dr_content like '%'||#{keyword}||'%'
+							</if>
+							<if test="searchType == 3">
+								and dr_title like '%'||#{keyword}||'%'
+								 or dr_content like '%'||#{keyword}||'%'
+							</if>
+						</where>
+						order by dr_no desc) a
+					where rownum &lt;= #{end})
+				where rnum &gt;= #{begin}
+		</select>
+		
+		<select id="searchDiaryCount" parameterType="DiaryBoard" resultType="int">
+			select count(*)
+			 from cf_diary
+			 <where>
+			 	<if test="searchType == 1">
+			 		dr_title like '%'||#{keyword}||'%'
+			 	</if>
+			 	<if test="searchType == 2">
+			 		and dr_content like '%'||#{keyword}||'%'
+			 	</if>
+			 	<if test="searchType == 3">
+			 		and dr_title like '%'||#{keyword}||'%'
+			 		 or dr_content like '%'||#{keyword}||'%'
+			 	</if>
+			 </where>
+		</select>
+	
+	<!-- 전체 게시물의 수(조건에 맞는) -->
+	<select id="selectDiaryBoardCount" resultType="int">
+		select count(*)
+		from cf_diary
+	</select>
+	
+	<insert id="insertDiaryFile" parameterType="DiaryFile">
+		<selectKey keyProperty="drNo" resultType="int" order="BEFORE">
+			select cf_s_diary_no.currval from dual
+		</selectKey>
+		insert into cf_dr_file(drf_no, dr_no, drf_ori_name, drf_sys_name, drf_path, drf_size)
+		values(cf_s_drf_no.nextval, #{drNo}, #{drfOriName}, #{drfSysName}, #{drfPath}, #{drfSize})
+	</insert>
+	
+	<update id="updateDiaryFile" parameterType="DiaryFile">
+		update cf_dr_file
+			set drf_ori_name = #{drfOriName},
+				drf_sys_name = #{drfSysName},
+				drf_path = #{drfPath},
+				drf_size = #{drfSize}
+			where drf_no = #{drfNo}
+	</update>
+	
+	<select id="selectDiaryFileByNo" parameterType="int" resultMap="fileMap">
+		select *
+		from cf_dr_file
+		where dr_no = #{drNo}
+	</select>
+	
+	<!-- 게시물 등록하기 : insertBoard -->
+	<insert id="insertDiaryBoard" parameterType="DiaryBoard">
+		<!-- <selectKey keyProperty="drNo" resultType="int" order="BEFORE">
+			select cf_s_diary_no.nextval.nextval from dual
+		</selectKey> -->
+		insert into cf_diary(
+			dr_no, writer, dr_title, dr_content
+		) values (
+			cf_s_diary_no.nextval, #{writer}, #{drTitle}, #{drContent}
+		)
+	</insert> 
+	
+     <select id="selectDiaryBoardByNo" parameterType="int" resultMap="diaryMap">
+    	select *
+    	  from cf_diary
+    	 where dr_no = #{drNo} 
+    </select>	
+    	
+    <update id="updateDiaryBoard" parameterType="DiaryBoard">
+    	update cf_diary
+    	   set dr_title = #{drTitle},
+    	   	   dr_content = #{drContent} 	   	   
+    	 where dr_no = #{drNo}
+    </update>
+    	   
+    <delete id="deleteDiaryBoard" parameterType="int">
+    	delete 
+    	  from cf_diary
+    	 where dr_no = #{drNo}
+    </delete>
+    
+    <insert id="drcInsertComment" parameterType="DiaryComment">
+    	<!-- <selectKey keyProperty="drcNo" resultType="int" order="BEFORE">
+			select cf_s_drc_no.nextval.nextval from dual
+		</selectKey> --> 
+    	insert into cf_dr_comment(drc_no, dr_no, drc_writer, drc_content) values
+    	(cf_s_drc_no.nextval, #{drNo}, #{drcWriter}, #{drcContent})
+    </insert>
+    
+
+    <select id="drcSelectComment" parameterType="int" resultMap="commentMap">
+    	select * 
+    	from cf_dr_comment
+    	where dr_no = #{drNo}
+    	order by dr_no desc  
+    </select>   
+    
+   
+    
+    <select id="selectDiaryCommentCount" resultType="int">
+    	select count(*)
+    	from cf_dr_comment
+    	where dr_no = #{drNo}
+    </select>  
+      
+    <update id="updateDiaryComment" parameterType="DiaryComment">
+    	update cf_dr_comment
+    	set drc_content = #{drcContent},
+    		drc_reg_date = sysdate
+    	where drc_no = #{drcNo}
+    </update>
+  
+    <delete id="deleteDiaryComment" parameterType="int">
+    	delete 
+    	from cf_dr_comment
+    	where drc_no = #{drcNo}
+    </delete> 
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>cityFarmer</display-name>
+  <display-name>nmcat</display-name>
   
   <!-- Root Context 개념 사용 : 공통으로 쓰는 xml을 묶어놓는다.-->
   	<context-param><!-- listener가 사용하는 param -->
@@ -37,7 +37,12 @@
 			<!--이 xml이 구동될때 설정파일들 같이 구동할 수 있도록 링크 걸어놓음..
 				Dispatcher가 링크에 있는 정보들을 로딩하면서 spring-mvc.xml 파일을 읽음..-->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:config/spring/servlet-context.xml</param-value>
+			<param-value>
+				classpath:config/spring/spring-*.xml
+				<!-- classpath:config/spring/servlet-context.xml -->
+				<!-- classpath:config/spring/repository-context.xml
+				classpath:config/spring/servlet-context.xml -->
+			</param-value>
 		</init-param>
 		
 		<load-on-startup>1</load-on-startup>
@@ -46,7 +51,7 @@
 
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>*.cf</url-pattern>
+		<url-pattern>*.mn</url-pattern>
 	</servlet-mapping>
 	
 	
