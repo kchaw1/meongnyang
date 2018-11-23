@@ -8,6 +8,7 @@ $(function(){
     tabsize : 2,
     placeholder : '내용을 입력하여 주세요',                  // set focus to editable area after initializing summernote
   });
+  $("input[name='date']").val(now.getFullYear()+"."+(now.getMonth()+1)+"."+now.getDate())
   makeCalendar(now);
 })
 
@@ -55,7 +56,8 @@ function makeCalendar(now){
           pointdate = "0"+no;
         }
         str+= "<td>";
-        str+= "<a href='#1' data-val="+yearMonth+""+pointdate+">" + no +"</a></td>";
+        str+= "<a href='#1' data-val='"+yearMonth+""+pointdate+"' data-toggle='modal'";
+        str+= "data-target='#diary'>" + no +"</a></td>";
         str+= "</a></td>";
         no ++;
       }
@@ -85,7 +87,8 @@ function makeCalendar(now){
     $(".months li").find("a[data-value="+month+"]").removeClass("selected")
     now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate())
     nextCalendar(now)
-  })
+  });
+  $("a.")
 }
 
 function prevCalendar(now){

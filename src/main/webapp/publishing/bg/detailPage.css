@@ -6,6 +6,26 @@ body{
 div{
     display: block;
 }
+div.body1 {
+    width: 100%;
+    padding : 20px;
+    min-height: 600px;
+    
+}
+div.body2 {
+    width : 85%;
+    min-height: 600px;
+    margin: auto
+}
+div.right {
+    float: right;
+    /* width : 30%; */
+    /* margin-right: 100px;  */
+}
+div.left {
+    float: left;
+    width : 60%;
+}
 .main-container{
     min-width: 1076px;
     width: 1076px;

@@ -119,7 +119,7 @@ table.submit td button {
   font-family: 'Jua', sans-serif;
 }
 table.submit td.date {
-  width : 10%;
+  width : 20%;
 }
 tr[class^='week'] td{
   width: auto;
@@ -157,6 +157,8 @@ tr[class^='week'] td.today {
 tr[class^='week'] td.today a{
   color : rgb(128, 128, 128, 0.7)
 }
+
+
 table.writeform, table.writeform tr,
 table.writeform td {
   /* border: 1px solid gray; */
@@ -187,3 +189,134 @@ div.form-group input:focus, div.form-group select:focus{
   border: 3px solid rgb(122, 194, 173, 0.3);
   box-shadow : none;
 }
+
+/* 모달 css */
+div.modal-dialog {
+  width : 70%;
+  height: 90%;
+  border-radius: 20px;
+}
+div.modal-content {
+  position: relative;
+  overflow: hidden;
+  height: 103%;
+  background-image : url("./img/diary2.png");
+  background-size: 140% auto; 
+  background-repeat: no-repeat; 
+  background-position: bottom;
+  /* transform: rotate(-10deg) */
+}
+ /*
+div.modal-contet:before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top : -50%;
+  left: -50%;
+   0 0 no-repeat;
+  background-size: 100% auto; 
+  background-repeat: no-repeat; */
+  /* background-position: bottom; 
+  z-index: 10;
+
+} */
+/* div.modal-content::before {
+  position: absolute;
+  width: 70%;
+  height: 90%;
+  z-index: 1;
+} */
+.modal {
+  text-align: center;
+}
+.modal .modal-center {
+ margin: 20px auto;
+}
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle
+}
+.modal-header {
+  height: 50px;
+  padding: 10px;
+}
+h3.header {
+  margin: 0 30px;
+  color: rgb(29, 67, 99)
+}
+div.diaryList {
+  width : 60%;
+  height: 690px;
+  /* border: 1px solid gray; */
+  margin: 10px auto 0;
+  overflow: scroll;
+  padding : 10px;
+  /* transform: skew(0deg, 10deg); */
+}
+.close {
+  float: left;
+}
+div.diary {
+  clear: both;
+  margin : 10px 10px;
+  width : 90%;
+}
+div.dr-title {
+  padding-bottom : 5px;
+  border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
+  width: 80%;
+}
+span.label {
+  margin: 10px;
+  /* display: inline-block; */
+  border-radius: 5px; 
+  font-size : 11px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+span.title {
+  color : rgb(94, 94, 94);
+  font-size : 24px;
+}
+span.date {
+  color : rgb(94, 94, 94, 0.5);
+  font-size : 15px;
+}
+span.label-share {
+  background-color: rgb(65, 192, 142);
+}
+span.label-friend {
+  background-color: rgb(255, 194, 64);
+}
+span.label-noshare {
+  background-color: rgb(247, 117, 78);
+}
+div.dr-content {
+  padding : 15px 20px 0px;
+}
+div.buttons {
+  height: 40px;
+  border-bottom :1px solid  rgb(128, 128, 128, 0.3)
+}
+div.button-box {
+  float: right;
+}
+button[class^='dr-']{
+  width : 40px;
+  height: 25px;
+  border-radius: 5px;
+  color : gray;
+  border-color: gray;
+  margin-right : 10px;
+  background-color: transparent;
+}
+button[class^='dr-']:hover {
+  color : black;
+}
+/* button.dr-delete {
+  background-color : rgb(213, 145, 106);
+}
+button.dr-update {
+  background-color : rgb(120, 190, 151);
+} */
