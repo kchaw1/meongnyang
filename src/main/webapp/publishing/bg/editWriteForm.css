@@ -41,11 +41,6 @@ background-color: white;
 
 /* 메인 컬럼 두번쨰 */
 .main-column2{
-margin-top: 120px;
- margin-left: 20px;
-
-
-float: left;
 width: 300px;
 height: 300px;
 border: 1px solid rgb(226, 219, 219);
@@ -54,7 +49,6 @@ border-radius: 10px;
 }
 .main-column3{
     margin-top: 20px;
-    float: right;
     width: 300px;
     height: 170px;
     border: 1px solid rgb(226, 219, 219);
