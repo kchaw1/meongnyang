@@ -201,9 +201,9 @@ div.modal-content {
   overflow: hidden;
   height: 103%;
   background-image : url("./img/diary2.png");
-  background-size: 140% auto; 
+  background-size: 1350px auto; 
   background-repeat: no-repeat; 
-  background-position: bottom;
+  background-position: -100px;
   /* transform: rotate(-10deg) */
 }
  /*
@@ -247,8 +247,8 @@ h3.header {
   color: rgb(29, 67, 99)
 }
 div.diaryList {
-  width : 60%;
-  height: 690px;
+  width : 540px;
+  height: 750px;
   /* border: 1px solid gray; */
   margin: 10px auto 0;
   overflow: scroll;
@@ -297,10 +297,11 @@ div.dr-content {
 }
 div.buttons {
   height: 40px;
-  border-bottom :1px solid  rgb(128, 128, 128, 0.3)
+  /* border-bottom :1px solid  rgb(128, 128, 128, 0.3) */
 }
 div.button-box {
   float: right;
+  margin-right: 10px 
 }
 button[class^='dr-']{
   width : 40px;
