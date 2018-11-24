@@ -140,13 +140,6 @@
 		    <version>2.5.0</version>
 		</dependency>
 		
-		<!-- 오라클 접속하기 위해서 필요한 것 -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0</version>
-		</dependency>
-		
 		<!-- 스프링이 db를 쓸 수 있게 하는 라이브러리.. -->
 	 	<dependency>
 		    <groupId>org.springframework</groupId>
@@ -174,7 +167,7 @@
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.13</version>
+		    <version>5.1.47</version>
 		</dependency>
 				
 	</dependencies>

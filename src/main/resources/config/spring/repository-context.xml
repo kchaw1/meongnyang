@@ -24,10 +24,10 @@
       		commons dbcp 라이브러리 -> db 연결정보 적용-->
       <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
       		destroy-method="close"
-      		p:driverClassName="${jdbc.oracle.driver}"
-		    p:url="${jdbc.oracle.url}"
-		    p:username="${jdbc.oracle.username}"
-		    p:password="${jdbc.oracle.password}"
+      		p:driverClassName="${jdbc.mysql.driver}"
+		    p:url="${jdbc.mysql.url}"
+		    p:username="${jdbc.mysql.username}"
+		    p:password="${jdbc.mysql.password}"
       />		
       
       <!-- 스프링이 위의 설정파일을 가져다 쓸 수 있게 
@@ -40,7 +40,7 @@
       			value 안에 들어간 패키지 명 아래에 있는 클래스를 alias를 해준다.-->
       	<property name="typeAliasesPackage" value="com.nmcat.repository.domain"/>
       	<!-- mapper xml에 등록하는 것도 location 설정하면 저절로 인식됨 -->
-      	<property name="mapperLocations" value="classpath:config/sqlmap/*.xml"/>
+      	<!-- <property name="mapperLocations" value="classpath:config/sqlmap/*.xml"/> -->
       	
       </bean>
       
