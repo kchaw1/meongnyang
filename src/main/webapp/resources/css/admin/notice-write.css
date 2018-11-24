@@ -1,0 +1,102 @@
+button.note-btn{
+    font-family: 'Jua', sans-serif;
+    color : black;
+    background-color: #ffffff;
+    border-color : #ffffff;
+  }
+  
+  button.note-btn:hover {
+    background-color: #ffffff;
+    border-color : #ffffff;
+  }
+  button.note-btn:focus {
+    background-color: #ffffff;
+    border-color : #ffffff;
+  }
+  button.note-btn:active {
+    background-color: #ffffff;
+    border-color : #ffffff;
+  }
+
+form {
+    margin-top: 100px;
+}
+
+.top-section, 
+.bottom-section {
+    width: 80%; 
+    margin: 0 auto; 
+    clear: both;
+}
+
+.main-image {
+    margin-top: 110px;
+    width: 100%; 
+    height: auto; 
+    float: left;
+}
+
+.main-image img {
+    width: 100%; 
+    border-bottom: 3px solid #77a466;
+    border-top: 3px solid #77a466;
+}
+
+.main-title {
+    width: 100%; 
+    height: auto; 
+    float: left;
+}
+
+.main-title p {
+    padding: 0px; 
+    line-height: 25px; 
+    font-size: 16px;
+}
+
+.section-one {
+    width: 100%; 
+    height: auto; 
+    float: left; 
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.section-one, 
+.section-two {
+    border-right: 1px solid #eee;
+}
+
+.section-one h4 {
+    padding: 10px 0px;
+}
+
+.section-two h4, 
+.section-three h4 {
+    padding: 10px 30px;
+}
+
+.menu {
+    list-style: none; 
+    padding: 0px;
+}
+
+.menu li {
+    padding: 10px 0; 
+    color:#77a466;
+}
+
+.reviews {
+    color: #333; 
+    line-height: 21px; 
+    font-size: 16px;
+}
+
+.address {
+    font-size: 16px; 
+    line-height: 24px;
+}
+
+#writebtn {
+    float: right;
+}

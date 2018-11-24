@@ -1,0 +1,18 @@
+#info-area, #attach-area { float:left; width:33%; border-bottom:1px solid rgb(170,170,170); padding: 30px; height:300px; }
+#info-area table { text-align: left; font-size:20px; }
+#info-area td { padding: 5px; }
+#img-area { float:left; width:33%; padding: 30px; height:300px; }
+#img-area img { width:100%; height: 100%; }
+#attach-area table { text-align: left; font-size:20px; }
+#attach-area td { padding: 5px; }
+#career-area { float:left; width:48%; padding: 30px; margin-bottom:20px;height:300px; text-align: center; }
+#career-area div { font-size: 20px; }
+#vertical-sep { float:left; width:1px; background:rgb(170,170,170); margin-bottom:20px; height:300px; }
+#introduce-area { float:left; width:48%; padding: 30px; margin-bottom:20px; height:300px; text-align: center; }
+#introduce-area div { font-size: 20px; }
+#button-area { text-align: right; clear: both; }
+#posts-area div { font-size: 20px; }
+#posts-header div, .posts-content div, #comment-header div, .comment-content div { display:inline-block; text-align: center; }
+#comment-area div { font-size: 20px; }
+.no-area { width: 20%; }
+.title-area { width: 70%; }

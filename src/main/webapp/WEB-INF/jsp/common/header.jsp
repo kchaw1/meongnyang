@@ -24,5 +24,4 @@
       </ul>
     </nav>
     <div class="clear-fix"></div>
-    <hr>
   </header>

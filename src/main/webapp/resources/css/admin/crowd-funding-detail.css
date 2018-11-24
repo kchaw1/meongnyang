@@ -1,0 +1,90 @@
+#cf-img { float: left;width: 30%; height: 400px; margin-left:100px;}
+img { width:100%; height:100%; }
+#content-area1 { float:left; width:50%; margin-left: 100px; }
+#content1 { height:84px; }
+#content1 > span > h2 { display: inline-block }
+#goal-span { color: gray; }
+#heart-btn { margin-left: 20px; }
+.progress { width:60%; }
+.progress-bar { width:60%; }
+#remain-days { width:100%; height:84px; }
+#remain-days > h2 { display: inline-block; }
+span.remain-days { color: red; }
+#end-day { width:100%; height:84px; }
+#end-day > h2 { display: inline-block; }
+#donate-area { width:100%; height:84px; }
+input#input-money { width: 60%; }
+#content-area2 { clear: both; font-size: 25px; padding:30px; }
+#button-area { text-align: right; margin-bottom:20px; padding:20px; }
+#heart-btn #like-count { font-family: 'Jua', sans-serif; }
+#content-wrapper { margin-top: 30px;}
+#detail-container {
+    margin-top:130px;
+  }
+
+  #content-container {
+    margin: 0 auto;
+    width: 80%;
+  }
+
+/* 코멘트 */
+ul {
+    list-style: none;
+}
+
+.cmt_nickbox {
+    clear: both;
+    float: left; 
+    width:15%; 
+    margin-bottom: 20px;
+}
+
+.cmt_txtbox {
+    float: left; 
+    width: 60%; 
+    margin-bottom: 20px;
+}
+.cmt_updateForm{
+    float: left; 
+    width: 60%; 
+    margin-bottom: 20px;
+}
+
+.cmt_reg {
+    float: left; 
+    width: 15%; 
+    margin-bottom: 20px;
+}
+
+
+.cmt_btns {
+    float: left; 
+    width: 10%; 
+    margin-bottom: 20px;
+}
+
+/* .cmt_btns > img:hover { */
+/* 	cursor: pointer; */
+/* } */
+
+#cmt_writer {
+	clear: both;
+    float: left; width:15%; padding: 40px;
+}
+
+#gbcTxtarea {
+    float: left; width:75%; height: 100px; resize:none;
+}
+
+#cmt_regbtn {
+    float: left; width: 10%; padding: 30px;
+}
+
+#timeLimit {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#detail_info {
+    float:right;
+}
