@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="editWriteForm.css" rel="stylesheet">    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 
-    
-      
+ <link rel="stylesheet" href="<c:url value="/resources/css/community/writeForm.css"/>">
+   
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,10 +32,11 @@
 
 <!-- 부트스트랩 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
-
 </head>
+
 <style>
+
+
 .body{
 height: 100%;
 margin-top: 70px;
@@ -176,7 +177,7 @@ z-index: -1;
 
 </style>
 <body>
-        <header class="dogcat">
+ <header class="dogcat">
                 <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
                 <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
                 <nav>
@@ -203,54 +204,53 @@ z-index: -1;
     <div class = "body">
         <div class = "body2">
             <div class = "left">
-                    <p style = "font-family: 'Jua'">글 수정</p>
-                    <div class= "justforHr1"></div>
-                    <br>
-                    <div class="column-6 form-select">
-                            <select name="" id="">
-                              <option value=""  selected="selected">자유게시판</option>
-                              <option>꿀팁</option>
-                              <option>갤러리</option>
-                              <option>상담</option>
-                              <option>QnA</option>
-                            </select>
-                          </div>
-                    <br>
-                    <div class= "writeContainer">
-                        <div class = "writeMargin">
-                            <div class= "titleContainer"><input class = "title"type= "text" placeholder="Title" style = "padding-left:10px"></div>
-                        
-                            <div class= "textContainer">
-                                    <textarea name="content" id="summernote" value=""></textarea>
-                            </div>
+                <p style = "font-family: 'Jua'">글 쓰기</p>
+                <div class= "justforHr1"></div>
+                <br>
+                <div class="column-6 form-select">
+                        <select name="" id="">
+                          <option value=""  selected="selected">자유게시판</option>
+                          <option>꿀팁</option>
+                          <option>갤러리</option>
+                          <option>상담</option>
+                          <option>QnA</option>
+                        </select>
+                      </div>
+                <br>
+                <div class= "writeContainer">
+                    <div class = "writeMargin">
+                        <div class= "titleContainer"><input class = "title"type= "text" placeholder="Title" style = "padding-left:10px"></div>
+                    
+                        <div class= "textContainer">
+                                <textarea name="content" id="summernote" value=""></textarea>
                         </div>
                     </div>
-
+                </div>
             </div>
             <div class = "right">
-                    <div class = "main-column2">
-                            <div class = "ruleContainer">
-                                <div class = "beforeWrite">글 수정 전!</div>
-                                <div class = "spanwrite">당신은 사람이란걸 다시 한번 생각하세요</div>
-                                <div class = "spanwrite">현실에서 다른사람에게 하듯 다시 글 써주세요</div>
-                                <div class = "spanwrite">혐오성 발언은 지양해주세요</div>
-                                <div class = "spanwrite">이상한 사진 자제해주세요</div>
-                                <div class = "spanwrite">중복된 글을 지양해주세요</div>
-                                <div class = "spanwrite">당신의 양심은 안녕하시겠죠?</div>
-                                <div class = "spanwrite spanwrite1">이정도 말했으면 알아들으셨겠죠?</div>
-        
-                                
-                            </div>
-                            
-                        </div>
-                        <div class = "main-column3">
-                            <div class = "imgsize2"></div>
-                            <div class = "goWrite">위의 글을 읽어보셨다면</div>
-                            <button class= "writeBtn">글 수정하기</button>
-                            <div class = "goWrite">맘이 변하셨다구요?</div>
-                            <button class= "writeBtn">목록으로</button>
-                        </div>
 
+                <div class = "main-column2">
+                    <div class = "ruleContainer">
+                        <div class = "beforeWrite">글쓰기 전!</div>
+                        <div class = "spanwrite">당신은 사람이란걸 생각하세요</div>
+                        <div class = "spanwrite">현실에서 다른사람에게 하듯 글 써주세요</div>
+                        <div class = "spanwrite">혐오성 발언은 지양해주세요</div>
+                        <div class = "spanwrite">이상한 사진 자제해주세요</div>
+                        <div class = "spanwrite">중복된 글을 지양해주세요</div>
+                        <div class = "spanwrite">당신의 양심은 안녕하십니까?</div>
+                        <div class = "spanwrite spanwrite1">이정도 말했으면 알아들으십시오</div>
+
+                        
+                    </div>
+                    
+                </div>
+                <div class = "main-column3">
+                    <div class = "imgsize2"></div>
+                    <div class = "goWrite">위의 글을 읽어보셨다면</div>
+                    <button class= "writeBtn">글 작성하기</button>
+                    <div class = "goWrite">맘이 변하셨다구요?</div>
+                    <button class= "writeBtn">목록으로</button>
+                </div>
             </div>
         </div>
     </div>
@@ -267,17 +267,15 @@ z-index: -1;
             </div>
     </footer>
     <script>
-            $('.dropdown-toggle').dropdown()
-    $(document).ready(function() {
-     $('#summernote').summernote({
-            width:735,
-             height: 300,                 // set editor height
-             minHeight: null,             // set minimum height of editor
-             maxHeight: null,             // set maximum height of editor
-             focus: true                  // set focus to editable area after initializing summernote
-     });
-});
-
+        $(document).ready(function() {
+         $('#summernote').summernote({
+                width:735,
+                 height: 300,                 // set editor height
+                 minHeight: null,             // set minimum height of editor
+                 maxHeight: null,             // set maximum height of editor
+                 focus: true                  // set focus to editable area after initializing summernote
+         });
+    });
     </script>
     
 </body>

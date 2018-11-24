@@ -1,0 +1,255 @@
+body{
+    background-color:white;
+    font-size: 16px;
+        line-height: 1.625em;
+        font-weight: 300;
+        
+        -webkit-font-smoothing: antialiased;
+        word-break: keep-all;
+    
+    }
+    tr{
+        display: table-row;
+        vertical-align:inherit;
+        border-color: inherit;
+    }
+    div{
+        display: block;
+    }
+    .main-visual-container{
+        min-height: 50px;
+        min-width: 1076px;
+        width:100%;
+        height:100%;
+        background-color: white;
+    }
+    .main-container{
+        min-width: 1076px;
+        width: 1076px;
+        margin: 0 auto;
+        font-family: 'Noto Sans KR', sans-serif;
+    
+    }
+     .main-column{
+        float: left;
+        width:320px;
+        margin-right:58px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    .main-items{
+        margin-top: 80px;
+    }
+    .main-items2{
+        margin-top:40px;
+        
+        
+    }
+    .main-column3{
+        float: left;
+        width:320px;
+        margin-right: 0;
+    
+    }
+    .main-items h2{
+        /*여기수정*/
+        /* padding-top: 22px; */
+        margin-bottom: 16px;
+        font-family: 'Jua', sans-serif;
+        font-size: 36px;
+        line-height: 42px;
+        font-weight: 400;
+    }
+    .fontp{
+        font-size: 16px;
+        line-height: 1.625em;
+        font-weight: 300;
+        font-family: "Noto Sans KR", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        word-break: keep-all;
+        color: gray;
+    }
+    .caption{
+        font-weight: bold;
+        text-align: left;
+        line-height: 1em;
+        width: 100px;
+        display: table-caption;
+    }
+    .caption2{
+        font-weight: bold;
+        text-align: left;
+        line-height: 1em;
+        margin-bottom: -15px;
+        width: 100px;
+        display: table-caption;
+    }
+    tbody{
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+    .main-items table{
+        margin-bottom: 20px;
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        border: 0;
+        border-top: 1px solid #111111;
+        border-bottom: 1px solid #111111;
+        text-align: left;
+        border-spacing: 2px;
+    }
+    .main-items table th{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 80px;
+        padding-right: 10px;
+        position: relative;
+        border-bottom: 1px solid #d7d8da;
+        font-weight: 500;
+        border: 0;
+        height: 36px;
+        font-size: 15.6px;
+        text-align: left;
+        
+    }
+    p{
+        line-height: 29%;
+      
+    }
+    .btn{
+        margin-top: 40px;
+        display: inline-block;
+        min-width: 150px;
+        padding: 14px 20px;
+        font-size: 14px;
+        line-height: 1em;
+        color: #ffffff;
+        text-decoration: none;
+        background: #f2809f;
+        font-weight: bold;
+        text-align: center;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .fordiary{
+       
+        width: 320px;
+        height:200px;
+    }
+    .formargin{
+        margin-top: 50px;
+    }
+    hr{
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    /*채팅 로고!*/
+    
+    
+    .chat-launcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      z-index: 9999;
+      background: orange;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
+    }
+    .chat-launcher:before, .chat-launcher:after {
+      font-family: FontAwesome;
+      font-size: 34px;
+      position: absolute;
+      -webkit-transition: transform 180ms linear, opacity 130ms linear;
+      transition: transform 180ms linear, opacity 130ms linear;
+    }
+    .chat-launcher:before {
+        content: "\f086";
+
+        margin: 6px 0px 0px 13px;
+        opacity: 1;
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+    }
+    .chat-launcher:after {
+      content: "\f00d";
+      margin: 13px 17px;
+      opacity: 0;
+      -webkit-transform: rotate(-30deg);
+      transform: rotate(-30deg);
+    }
+    .chat-launcher:hover {
+      background: #ffb329;
+    }
+    .chat-launcher.active:before {
+      opacity: 0;
+      -webkit-transform: rotate(70deg) scale(0);
+      transform: rotate(70deg) scale(0);
+    }
+    .chat-launcher.active:after {
+      opacity: 1;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    
+    .chat-wrapper {
+      height: 430px;
+      width: 385px;
+      display: block;
+      border-radius: 5px;
+      background: #ebebeb;
+      position: fixed;
+      right: 20px;
+      bottom: 110px;
+      z-index: 999;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 22px rgba(0, 0, 0, 0.16);
+      -webkit-transition: transform 400ms ease;
+      transition: transform 400ms ease;
+      -webkit-transform: translateY(130%);
+      transform: translateY(130%);
+    }
+    .chat-wrapper:before {
+      height: 3%;
+      padding: 4%;
+      font-size: 1.1em;
+      line-height: 1em;
+      display: block;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: #666;
+      color: white;
+      content: attr(data-headline);
+    }
+    .chat-wrapper iframe {
+      width: 94%;
+      height: 84%;
+      border: 0;
+      border-radius: 5px;
+      padding: 3%;
+      overflow: hidden;
+    }
+    .chat-wrapper.is-open {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    /*메달 색깔*/
+    .gold{
+    color: gold;
+    
+    }
+    .silver{
+    color: silver;
+    }
+    .bronze{
+    color: brown;
+    }
+    
+    
+    
+    
