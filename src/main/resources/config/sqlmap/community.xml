@@ -2,5 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.CommunityMapper">
-
+<resultMap id="comMap" type="comBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_title" property="comTitle" />
+		<result column="com_writer" property="comWriter" />
+		<result column="com_content" property="comContent" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_rec_cnt" property="comRecCnt" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+	</resultMap>
+	<!-- 커뮤니티 CRUD -->
+	
+	<!-- 커뮤니티 무한스크롤 전체목록 가져오기 -->
+	<select id = "selectBoard"  resultMap ="comMap">
+	select *
+	from mn_com
+	order by com_no desc
+	</select>
+	
+	<!-- 상세보기 -->
+	<select id = "detailBoard" parameterType = "int" resultMap = "comMap">
+	select *
+	from mn_com
+	where com_no = #{comNo}
+	</select>
+	
+	<!-- 커뮤니티 글 등록 -->
+	<insert id = "insertBoard" parameterType ="comBoard">
+	insert into mn_com
+ 	(com_title, com_writer, com_content, com_category)
+	 values(#{comTitle},#{comWriter}, #{comContent}, #{comCategory});
+	</insert>
+	
+	<!-- 커뮤니티 글 삭제 -->
+	<delete id = "deleteBoard" parameterType = "int">
+	delete
+	from mn_com
+	where com_no = #{comNo}
+	</delete>
+	
+	<!-- 커뮤니티 글 수정 -->
+	<update id = "updateBoard" parameterType = "comBoard">
+	update mn_com
+	set com_title = #{comTitle},
+	 	com_writer = #{comWriter},
+	 	com_content = #{comContent},
+	 	com_category = #{comCategory}
+	where com_no = #{comNo}
+	</update>
+	
+	<!-- 커뮤니티 전체 게시물의 수 -->
+	<select id = "selectBoardCount" resultType = "int">
+	select count(*)
+	from
+	mn_com
+	</select>
+	
+	
+	
 </mapper>

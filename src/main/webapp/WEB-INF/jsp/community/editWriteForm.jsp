@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -208,21 +209,20 @@ z-index: -1;
                     <div class= "justforHr1"></div>
                     <br>
                     <div class="column-6 form-select">
-                            <select name="" id="">
-                              <option value=""  selected="selected">자유게시판</option>
-                              <option>꿀팁</option>
-                              <option>갤러리</option>
-                              <option>상담</option>
-                              <option>QnA</option>
-                            </select>
+                         <select name="comCategory">
+	                          <option value="자유게시판">자유게시판</option>
+	                          <option value="꿀팁">꿀팁</option>
+	                          <option value="갤러리">갤러리</option>
+	                          <option value="QnA">QnA</option>
+                        </select>
                           </div>
                     <br>
                     <div class= "writeContainer">
                         <div class = "writeMargin">
-                            <div class= "titleContainer"><input class = "title"type= "text" placeholder="Title" style = "padding-left:10px"></div>
-                        
+                            <div class= "titleContainer"><input class = "title" name = "comTitle" type= "text" placeholder="Title" style = "padding-left:10px"></div>
+                       		<input type="hidden" name="comWriter" value="${user.id}"/>
                             <div class= "textContainer">
-                                    <textarea name="content" id="summernote" value=""></textarea>
+                                    <textarea name="comContent" id="summernote"></textarea>
                             </div>
                         </div>
                     </div>
@@ -247,9 +247,13 @@ z-index: -1;
                         <div class = "main-column3">
                             <div class = "imgsize2"></div>
                             <div class = "goWrite">위의 글을 읽어보셨다면</div>
-                            <button class= "writeBtn">글 수정하기</button>
+                            <button class= "writeBtn">
+                            	<a href="<c:url value="/community/edit.mn"/>">글 수정하기</a>
+                            </button>
                             <div class = "goWrite">맘이 변하셨다구요?</div>
-                            <button class= "writeBtn">목록으로</button>
+                            <button class= "writeBtn">
+                            	<a href="<c:url value="/community/communityPage.mn"/>">목록으로</a>
+                            </button>
                         </div>
 
             </div>
@@ -271,7 +275,7 @@ z-index: -1;
             $('.dropdown-toggle').dropdown()
     $(document).ready(function() {
      $('#summernote').summernote({
-            width:735,
+             minwidth:700,
              height: 300,                 // set editor height
              minHeight: null,             // set minimum height of editor
              maxHeight: null,             // set maximum height of editor

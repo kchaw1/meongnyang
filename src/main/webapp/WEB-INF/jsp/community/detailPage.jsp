@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>ore" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -200,14 +201,14 @@ z-index: -1;
     <div class = "body1">
         <div class = "body2">
             <div class = "left">
-                    <p style = "font-family: 'Jua'">여기에 제목 넣어라~</p>
+                    <p style = "font-family: 'Jua'">${communityBoard.comTitle}</p>
                     <div class= "justforHr1"></div>
                     <br>
-                   <div class = "category"><i class="fas fa-user-circle"> 아란누나<span class="regDate"> ·2018-11-17</span></i></div>
+                   <div class = "category"><i class="fas fa-user-circle"> ${communityBoard.comWriter}<span class="regDate"> ·<fmt:formatDate value="${communityBoard.comTitle}" pattern="yyyy-MM-dd HH:mm"/></span></i></div>
                     <br>
                     <div class= "writeContainer">
                         <div class = "writeMargin">
-                          
+                          ${communityBoard.comContent}
                         </div>
                     </div>
                     
