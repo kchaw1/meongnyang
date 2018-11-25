@@ -35,3 +35,5 @@
   <script src="<c:url value="/resources/js/admin/tui-code-snippet.js"/>"></script>
   <script src="  <c:url value="/resources/js/admin/tui-date-picker.js"/>"></script>
   
+  <!-- header/footer -->
+  <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">

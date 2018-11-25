@@ -40,7 +40,7 @@
 					</div>
 					<div id="management" class="item">관리</div>
 					<div class="mgm-hidden abs-member">
-						<a href="mgm-ABS.html">행동전문가</a>
+						<a href="<c:url value="/admin/abs/detail.mn" />">행동전문가</a>
 					</div>
 					<div class="mgm-hidden gen-member">
 						<a href="mgm-general.html">일반회원</a>

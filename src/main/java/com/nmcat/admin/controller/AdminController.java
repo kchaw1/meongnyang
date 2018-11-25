@@ -9,5 +9,6 @@ public class AdminController {
 	
 		@RequestMapping("/admin.mn")
 		public void adminMain() {}
+		
 }
 
