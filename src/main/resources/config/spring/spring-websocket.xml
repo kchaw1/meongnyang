@@ -13,23 +13,23 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<websocket:handlers>
+	<!-- <websocket:handlers>
 	    <websocket:mapping handler="test01" path="/test01.do" />
 	    <websocket:mapping handler="test02" path="/test02.do" />
 	    <websocket:mapping handler="test03" path="/test03.do" />
 	    <websocket:mapping handler="chat" path="/chat.do" />
 	    <websocket:mapping handler="file" path="/file.do" />
-	    <websocket:mapping handler="webrtc01" path="/webrtc01.do" />
+	    <websocket:mapping handler="webrtc01" path="/webrtc01.do" /> -->
 		<!-- 
 			WebSocketHandler에 접근하기 전에 HttpSession에 접근하여 저장된 값을
 			읽어 들여 WebSocketHandler에서 사용할 수 있도록 처리함
 		-->	
-		<websocket:handshake-interceptors>
+		<!-- <websocket:handshake-interceptors>
 	    	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 	    </websocket:handshake-interceptors>
-	    <!-- 순서 바뀌면 안된다. -->
-<!-- 		<websocket:sockjs />	 -->
-	</websocket:handlers>
+	    순서 바뀌면 안된다.
+		<websocket:sockjs />	
+	</websocket:handlers> -->
 	
 	<!-- 설정이 크면 에러 종료 : 문제는 에러메세지가 안보인다는거... -->
 	<bean class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">

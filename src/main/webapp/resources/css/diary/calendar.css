@@ -200,7 +200,7 @@ div.modal-content {
   position: relative;
   overflow: hidden;
   height: 103%;
-  background-image : url("./img/diary2.png");
+  background-image : url("../../img/diary/diary2.png");
   background-size: 1350px auto; 
   background-repeat: no-repeat; 
   background-position: -100px;
