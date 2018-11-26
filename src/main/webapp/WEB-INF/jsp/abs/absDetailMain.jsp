@@ -37,7 +37,7 @@
                   <a href="#">1:1 화상채팅하기</a>
                 </li>
                 <li>
-                  <a href="absDetailBoard.mn">질문게시판</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}">질문게시판</a>
                 </li>
               </ul>
             </nav>
@@ -58,7 +58,7 @@
           <figure class="snip1091 navy"><img src="https://post-phinf.pstatic.net/MjAxNzA5MjBfNTcg/MDAxNTA1ODgzNTk1MDcz.HLD5l_7_XzGcU2Q7pwZAmAAJeIEjmhud7ZbqMOcq-Fsg.G4FlzFGc6wjF03jSb9wXnUNft913XACg_gkKahR8dgUg.JPEG/ask-questions.jpg?type=w1200" alt="sq-sample10" />
             <figcaption>
               <h2>질문 <span>게시판</span></h2>
-            </figcaption><a href="absDetailBoard.mn"></a>
+            </figcaption><a href="absDetailBoard.mn?no=${map.b.no}"></a>
           </figure>
             </section>
         <script>

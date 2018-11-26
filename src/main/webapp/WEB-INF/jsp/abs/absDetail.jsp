@@ -38,7 +38,7 @@
                   <a href="#">1:1 화상채팅하기</a>
                 </li>
                 <li>
-                  <a href="ABSDetailBoard.html">질문게시판</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}">질문게시판</a>
                 </li>
               </ul>
             </nav>

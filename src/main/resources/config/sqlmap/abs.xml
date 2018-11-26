@@ -15,6 +15,18 @@
 		<result column="auth_state" property="authState" />
 		
 	</resultMap>
+	<resultMap id="qnaMap" type="QnABoard">
+		<result column="abs_no" property="absNo"/>
+		<result column="no" property="no"/>
+		<result column="abs_writer" property="absWriter"/>
+		<result column="abs_title" property="absTitle"/>
+		<result column="abs_content" property="absContent"/>
+		<result column="abs_reg_date" property="absRegDate"/>
+		<result column="abs_view_cnt" property="absViewCnt"/>
+		<result column="abs_like" property="absLike"/>
+		<result column="abs_complete" property="absComplete"/>
+		
+	</resultMap>
 	
 	
 	<!-- 행동전문가 리스트 보여주기 -->
@@ -27,10 +39,18 @@
 	<!-- 행동전문가 상세 팝업창 -->
 	 <select id="selectAbsDetail" parameterType="int" resultMap="absMap">
     	select *
-    	
-    	
     	  from mn_member 
     	 where no = #{no} 
     </select>	
+    
+    <!--행동전문가별 게시물 조회 -->
+	<select id="selectAbsBoard" parameterType="int" resultMap="qnaMap">
+
+		 select *
+		   from mn_absboard
+		   where no=#{no}
+
+	</select>
+ 	
 	
 </mapper>

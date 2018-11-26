@@ -53,7 +53,7 @@
               <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
-                  전체 ${count}개
+     전체
                   </div>
               </div>
               <div class="table-responsive">
@@ -64,33 +64,17 @@
                   <th>제목</th>
                   <th>글쓴이</th>
                   <th>등록일</th>
-                </tr>
+                </tr>  	 
+                     <c:forEach var="b" items="${map.b}">
+                        <tr class="clickde">
+                        	<td>${b.absNo}</td>
+                        	<td>${b.absTitle}</td>
+                        	<td>${b.absWriter}</td>
+                        </tr>
+                      </c:forEach>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>11</td>
-                    <td><a href="absDetailBoardDetail.mn">안녕</a></td>
-                    <td>하세요</td>
-                    <td>2018-11-19</td>
-                  </tr>               
-                  <tr>
-                    <td>1111</td>
-                    <td>안녕</td>
-                    <td>하세요</td>
-                    <td>2018-11-19</td>
-                  </tr>               
-                  <tr>
-                    <td>1111</td>
-                    <td>안녕</td>
-                    <td>하세요</td>
-                    <td>2018-11-19</td>
-                  </tr>               
-                  <tr>
-                    <td>1111</td>
-                    <td>안녕</td>
-                    <td>하세요</td>
-                    <td>2018-11-19</td>
-                  </tr>               
+              
                 </tbody>
               </table>
               </div><br>

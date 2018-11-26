@@ -37,4 +37,10 @@ public class AbsController {
 
 		model.addAttribute("map", absService.detail(no));
 	}
+	
+	@RequestMapping("/absDetailBoard.mn")
+	public void absboardlist(int no, Model model) {
+		Map<String,Object> map = absService.absboardlist(no);
+		model.addAttribute("map",map);
+	}
 }
