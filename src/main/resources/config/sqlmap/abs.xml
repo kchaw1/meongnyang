@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.AbsMapper">
-	<resultMap id="absMap" type="member">
+	<resultMap id="absMap" type="Abs">
 		<result column="no" property="no" />
 		<result column="id" property="id" />
 		<result column="type" property="type" />
@@ -12,14 +12,16 @@
 		<result column="image_path" property="imagePath" />		
 		<result column="abs_like_cnt" property="absLikeCnt" />
 		<result column="greetings" property="greetings" />
+		<result column="auth_state" property="authState" />
+		
 	</resultMap>
 	
 	
 	<!-- 행동전문가 리스트 보여주기 -->
-	<select id="selectAbsList"  parameterType = "int" resultMap = "absMap">
+	<select id="selectAbsList"  parameterType="Abs" resultMap="absMap">
 		select * 
 		  from mn_member 
-		  where type='2';	
+		  where type='2' and auth_state ='y';	
 	</select>
 	
 </mapper>

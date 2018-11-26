@@ -10,6 +10,15 @@ public class Abs {
 	private String imagePath;	
 	private int absLikeCnt;
 	private String greetings;
+	private String authState;
+	
+	
+	public String getAuthState() {
+		return authState;
+	}
+	public void setAuthState(String authState) {
+		this.authState = authState;
+	}
 	public int getNo() {
 		return no;
 	}
