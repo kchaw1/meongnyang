@@ -86,7 +86,7 @@ img {
   }
   .u-form-group input[type="email"],
   .u-form-group input[type="password"]{
-    width: calc(50% - 22px);
+    width: calc(54% - 22px);
     height:45px;
     outline: none;
     border: 1px solid #ddd;
@@ -139,7 +139,7 @@ img {
     margin: 0 3%;
     text-align: center; */
     position: relative;
-    width: calc(40% - 8px);
+    width: calc(16% - 8px);
     /* margin: 0 3%; */
     /* width:50%; */
     background-color: #1CB94E;

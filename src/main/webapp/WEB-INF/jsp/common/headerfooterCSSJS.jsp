@@ -23,5 +23,5 @@
 <script>
 $(function() {
   $('.dropdown-toggle').dropdown()	
-})
+});
 </script>

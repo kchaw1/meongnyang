@@ -22,7 +22,12 @@
     font-size: 15px;
     margin-left: 15px;
     color: #ff7680;
-}
+  }
+  
+.u-form-group input[type="email"],
+.u-form-group input[type="password"]{
+    width: calc(54% - 22px);
+}    
 </style>
 </head>
 <body>
