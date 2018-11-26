@@ -24,4 +24,13 @@
 		  where type='2' and auth_state ='y';	
 	</select>
 	
+	<!-- 행동전문가 상세 팝업창 -->
+	 <select id="selectAbsDetail" parameterType="int" resultMap="absMap">
+    	select *
+    	
+    	
+    	  from mn_member 
+    	 where no = #{no} 
+    </select>	
+	
 </mapper>

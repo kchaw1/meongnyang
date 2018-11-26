@@ -26,5 +26,15 @@ public class AbsController {
 		model.addAttribute("map", map);
 		
 	}
-}
+	@RequestMapping("/absDetailMain.mn")
+	public void detail(int no, Model model) throws Exception {
+		
+		model.addAttribute("map", absService.detail(no));
+		
+	}
+	@RequestMapping("/absDetail.mn")
+	public void detailIntro(int no, Model model) {
 
+		model.addAttribute("map", absService.detail(no));
+	}
+}

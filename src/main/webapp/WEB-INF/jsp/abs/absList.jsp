@@ -39,7 +39,7 @@
                 <h1 class="name"><span class="nameSpan">${b.name}</span></h1>
                 <small>${b.category} 행동전문가</small>
                 <hr>
-                <button type="button" class="btn btn-primary btn-sm" onclick="doDetail()">More</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="doDetail(${b.no})">More</button>
                 <p>${b.greetings}</p>
               </div>
             </div>
@@ -59,8 +59,8 @@ slideEl.flickity({
 	pauseAutoPlayOnHover: false
 });
 
-function doDetail() {
-   window.open("absDetailMain.mn", "Detail", "width=1000, height=700,resizable=no");
+function doDetail(no) {
+   window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700,resizable=no");
 }
 
 function doChatList() {

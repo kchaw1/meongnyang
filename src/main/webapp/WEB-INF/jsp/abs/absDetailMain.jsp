@@ -27,7 +27,7 @@
             <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
-            <p class="logo">강형욱</p>
+            <p class="logo">${map.b.name}</p>
             <nav>
               <ul>
                 <li>
@@ -48,7 +48,7 @@
             <img src="https://t1.daumcdn.net/cfile/tistory/24FB78335979C45A09" alt="sq-sample6" />
             <figcaption>
               <h2>경력 및 <span>인사말</span></h2>
-            </figcaption><a href="absDetail.mn"></a>
+            </figcaption><a href="absDetail.mn?no=${map.b.no}"></a>
           </figure>
           <figure class="snip1091 green" ><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
             <figcaption>

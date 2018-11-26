@@ -28,11 +28,11 @@
             <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
-            <p class="logo">강형욱</p>
+            <p class="logo">${map.b.name}</p>
             <nav>
               <ul>
                 <li>
-                  <a href="absDetail.mn">경력 및 인사말</a>
+                  <a href="absDetail.mn?no=${map.b.no}">경력 및 인사말</a>
                 </li>
                 <li>
                   <a href="#">1:1 화상채팅하기</a>
@@ -52,11 +52,11 @@
             Like
           </button>
               좋아요: 
-              <span class="counter" data-count="150">0</span>
+              <span class="counter" data-count="${map.b.absLikeCnt}">0</span>
             </h4>
           <hr> 
           <div class="DetailContainer">
-               <p id="name">"강형욱"</p>
+               <p id="name">"${map.b.name}"</p>
               <p>출생: 1985년 5월 27일 (33세)</p> 
               <p>가족: 배우자 수잔 엘더, 아들 강주운</p>
               <p>소속: 보듬컴퍼니 (대표)</p>

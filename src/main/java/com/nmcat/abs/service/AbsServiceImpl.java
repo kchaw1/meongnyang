@@ -25,4 +25,24 @@ public class AbsServiceImpl implements AbsService{
 		return map;	
 	}
 
+	@Override
+	public Map<String, Object> detail(int no) {
+		Map<String, Object> map = new HashMap<>();
+		
+		Abs detail = absMapper.selectAbsDetail(no);
+		
+		map.put("b",detail);
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> detailIntro(int no) {
+		Map<String, Object> map = new HashMap<>();
+		
+		Abs detail = absMapper.selectAbsDetail(no);
+		
+		map.put("b",detail);
+		return map;
+	}
+
 }
