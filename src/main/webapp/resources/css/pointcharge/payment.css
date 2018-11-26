@@ -1,0 +1,100 @@
+* {
+  padding : 0px;
+  margin : 0px;
+}
+html, body {
+	/* max-width: 1200px;  */
+	margin: 0 auto; 
+  font-family: 'Jua', sans-serif;
+}
+header {
+  width: 100%;
+}
+div.title {
+  background: white;
+  color: rgb(128, 128, 128, 0.6);
+  height: 100px;
+  line-height: 60px;
+  padding: 10px;
+}
+h1{
+ font-weight: lighter;
+}
+div.title {
+  float: left;
+}
+div.animate {
+  float: right;
+  margin-right : 150px;
+}
+div.content {
+  text-align: center;
+  clear: both;
+}
+img {
+  z-index: 1;
+  position: absolute;
+  width:120px;
+  height:auto;
+}
+table.payment {
+  margin: 30px auto;
+  width: 60%;
+  text-align: center;
+  border-collapse: collapse;
+  /* border: 1px solid rgb(128, 128, 128, 0.6); */
+}
+tr {
+  height: 50px;
+  vertical-align: middle;
+  border-bottom : 1px solid rgb(128, 128, 128, 0.6);
+}
+tr:hover {
+  background-color: rgb(255, 194, 64, 0.2)
+}
+input[type='radio'] {
+  margin: 5px;
+}
+.no1 {
+  width: 70px;
+}
+tr.buttons {
+  text-align: right;
+  height: 70px;
+  border-bottom: none;
+}
+tr.title:hover, tr.buttons:hover {
+  background: none;
+}
+tr.title{
+  border-bottom: 2px solid rgb(128, 128, 128);
+  text-align: center;
+}
+/* td {
+  border : 1px solid black;
+} */
+
+button {
+  margin : 3px;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 16px;
+  color : white;
+  background-color: rgb(65, 192, 142, 0.7);
+  border-color : rgb(65, 192, 142, 0.7);
+  font-family: 'Jua', sans-serif;
+}
+
+button:hover {
+  background-color: rgb(65, 192, 142);
+  border-color : rgb(65, 192, 142);
+}
+button:focus {
+  background-color: rgb(65, 192, 142, 0.7);
+  border-color : rgb(65, 192, 142, 0.7);
+}
+button:active {
+  background-color: rgb(65, 192, 142);
+  border-color : rgb(65, 192, 142);
+}

@@ -50,19 +50,32 @@
       </div>
     </div> 
     <div class="form">
+    <form action="<c:url value="/diary/write.mn"/>" method="post">
+    <!-- <input type="hidden" name="drNo" value="1"/> -->
+    <input type="hidden" name="drWriter" value="${user.id}"/>
       <div id="input form-group" class="write">
         <div class="submit">
           <table class="submit">
             <tr>
-              <td class="date">오늘 날짜</td>
-              <td class="input-form">
-                <input type="text" name="date" class="form-control" disabled="disabled"/>
+              <td class="date" data-toggle="tooltip" data-placement="bottom" title="달력에 날짜를 클릭하면 작성날짜가 바뀝니다">작성 날짜</td>
+              <td class="input-form" >
+                <input type="text" name="drDate" class="form-control" 
+                disabled="disabled" />
+              </td>
+              <td class="checkbox">
+              	<input type="radio" id="all" name="drShare" value="1"/>
+              	<label for="all">모두 공개</label><br>
+              	<input type="radio" id="friend" name="drShare" value="2"/>
+              	<label for="friend">친구에게만 공개</label><br>
+              	<input type="radio" id="no" name="drShare" value="3"/>
+              	<label for="no">나만 보기</label>
               </td>
               <td>
-                <button>작성</button>
+                <button type="button" id="submit">작성</button>
               </td>
             </tr>
           </table>
+        
         </div>
         </div> 
         <table class="writeform">
@@ -73,110 +86,45 @@
             <td class="text">제목</td>
             <td>
               <div class="title form-group">
-                <input type="text" name="title" class="form-control" />
+                <input type="text" name="drTitle" class="form-control" />
               </div>
             </td>
           </tr>
           <tr>
             <td colspan="2" class="textarea">
-              <textarea name="content" id="summernote" value=""></textarea>
+              <textarea name="drContent" id="summernote"></textarea>
             </td>
           </tr>
         </table>
+      </form>  
       </div>
     </div> 
   </div>
   <!-- 다이어리 모달-->
-  <div class="modal fade" id="diary" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-center">
-      <div class="modal-content">
-        <!-- <img src="./img/diary.png"/ class="diary"> -->
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          <h3 class="header"><span> 2018.11.23 </span>일기</h3>
-        </div>
-        <div class="modal-body">
-          <div class="diaryList">
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-friend">친구에게만 공개</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-              <div class="buttons">
-                <div class="button-box">
-                  <button class="dr-delete">삭제</button>
-                  <button class="dr-update">수정</button>
-                </div>
-              </div>
-            </div>
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-share">전체 공개</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-              <div class="buttons">
-                <div class="button-box">
-                  <button class="dr-delete">삭제</button>
-                  <button class="dr-update">수정</button>
-                </div>
-              </div>
-            </div>
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-noshare">나만 보기</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> <!--모달-->
+  <c:import url="./list.jsp"/>
+  <!--모달-->
   <c:import url="../common/footer.jsp"/>
+<c:import url="calendarJS.jsp"/>
 <script>
-
+	$("button#submit").click(function (){
+		let drDate = $("input[name='drDate']").val().toString()
+		drDate = drDate.replace(".","").replace(".","");
+		//alert(radio)
+		//alert($("input[type='radio']:checked").val())
+		//alert($("input[name='drDate']").val())
+	 	$.ajax({
+			url : "<c:url value='/diary/write.mn' />",
+			data : {
+				"drDate" : drDate,
+				"drShare" : $("input[type='radio']:checked").val(),
+				"drTitle" : $("input[name='drTitle']").val(),
+				"drContent" : $("input[name='drContent']").val()
+			},
+			type : "POST"
+	 	}).done(function(map){
+	 		makeCalendar(now, map)
+	 	})
+	})//click
 </script>
 </body>
 </html>

@@ -321,3 +321,12 @@ button[class^='dr-']:hover {
 button.dr-update {
   background-color : rgb(120, 190, 151);
 } */
+
+a[data-toggle] span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  margin-left: 3px; 
+  background-color: salmon;
+}

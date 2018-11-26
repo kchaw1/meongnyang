@@ -2,5 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.DiaryMapper">
-
+	<resultMap type="DiaryBoard" id="boardMap">
+		<result column="dr_no" property="drNo"/>
+		<result column="dr_writer" property="drWriter"/>
+		<result column="dr_title" property="drTitle"/>
+		<result column="dr_content" property="drContent"/>
+		<result column="dr_reg_date_time" property="drRegDateTime"/>
+		<result column="dr_share" property="drShare"/>
+		<result column="dr_date" property="drDate"/>
+	</resultMap>
+	
+	<insert id="insertDiary" parameterType="DiaryBoard">
+		insert into mn_diary (
+			dr_writer, dr_title, dr_content, 
+			dr_reg_date_time, dr_share, dr_date
+		) values (
+			#{drWriter}, #{drTitle}, #{drContent},
+			#{drRegDateTime}, #{drShare}, #{drDate}
+		)
+	</insert> 
+	
+	<select id="selectAllDiaryByOneMonth" parameterType="string" resultMap="boardMap">
+		select * from mn_diary
+		where dr_date like concat(#{yearmonth},'__')
+		order by dr_date
+	</select>
+	
+	<select id="selectCntByOnedate" parameterType="string" resultType="int">
+		select count(*) from mn_diary
+		where dr_date = #{date}
+	</select>
 </mapper>

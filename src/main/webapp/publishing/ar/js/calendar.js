@@ -57,7 +57,13 @@ function makeCalendar(now){
         }
         str+= "<td>";
         str+= "<a href='#1' data-val='"+yearMonth+""+pointdate+"' data-toggle='modal'";
-        str+= "data-target='#diary'>" + no +"</a></td>";
+        str+= "data-target='#diary'>" + no +"<br>";
+        str+= "<span class='diary1'></span>"
+        str+= "<span class='diary2'></span>";
+        str+= "<span class='diary2'></span>";
+        str+= "<span class='diary2'></span>";
+        str+= "<span class='diary2'></span>";
+        str+= "<span class='diary2'></span>";
         str+= "</a></td>";
         no ++;
       }

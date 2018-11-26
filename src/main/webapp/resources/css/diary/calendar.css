@@ -81,7 +81,7 @@ div.yoil .yoils li {
   border-bottom: 1px solid rgb(128, 128, 128, 0.3);
 }
 div.form {
-  margin-top : 100px;
+  margin-top : 15px;
   width: 45%;
   float: right;
 }
@@ -97,14 +97,21 @@ div.submit {
 }
 table.submit,
 table.submit td {
-  height: 50px;
+  height: auto;
   text-align: right;
-  /* border : 1px solid gray; */
+ /*  border : 1px solid gray; */
   padding : 5px;
   font-size : 18px;
+  vertical-align : top;
 }
 td.input-form {
-  width: 40%;
+  width: 25%;
+}
+table.submit td.checkbox {
+	text-align : left;
+	padding-left : 20px;
+	margin : 0;
+	font-size : 15px;
 }
 table.submit td button {
   float: right;
@@ -120,6 +127,7 @@ table.submit td button {
 }
 table.submit td.date {
   width : 20%;
+  padding-top : 10px;
 }
 tr[class^='week'] td{
   width: auto;
@@ -321,3 +329,12 @@ button[class^='dr-']:hover {
 button.dr-update {
   background-color : rgb(120, 190, 151);
 } */
+a[data-toggle] span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  margin-right: 4px; 
+  margin-bottom : 4px;
+  background-color: salmon;
+}

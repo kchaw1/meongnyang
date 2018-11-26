@@ -65,7 +65,8 @@
       <!-- 컨트롤러에 메소드 거치지 않고 페이지 이동 
 			url path로 올경우에는...prefix + viewname + suffix 의 jsp로 이동해라!-->
      <mvc:view-controller path="/main.mn"
-      						view-name="diary/writeform"/> 
+      						view-name="friend/friendlist"/> 
+      						
     <!--  <mvc:view-controller path="/start.cf"
       						view-name="common/start"/>  -->
      <!--<mvc:view-controller path="/cityFarmer/writeform.cf"
