@@ -20,15 +20,81 @@
 		<result column="greetings" property="greetings" />
 		<result column="point" property="point" />
 </resultMap>
-		
-<select id="selectABSList" resultMap="memberMap">
+
+<resultMap id="historyMap" type="LoginHistory">
+		<result column="login_no" property="loginNo" />
+		<result column="login_id" property="loginId" />
+		<result column="login_date_time" property="loginDateTime" />
+		<result column="logout_date_time" property="logoutDateTime" />
+</resultMap>
+
+<resultMap id="comMap" type="CommunityBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_title" property="comTitle" />
+		<result column="com_writer" property="comWriter" />
+		<result column="com_content" property="comContent" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_rec_cnt" property="comRecCnt" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+</resultMap>
+
+<resultMap id="careerMap" type="Career">
+		<result column="career_no" property="careerNo" />
+		<result column="id" property="id" />
+		<result column="career_start" property="careerStart" />
+		<result column="career_end" property="careerEnd" />
+		<result column="career_content" property="careerContent" />
+</resultMap>
+
+
+<!-- 전문가 리스트 -->
+<select id="selectABSList" parameterType="Member" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2
+	 where type = 2 and auth_state = #{authState}
 	 order by no asc 
+	 limit #{begin}, 10
 </select>
 		
-		
+<!-- 최근접속일 -->		
+<select id="selectRecentLogin" parameterType="string" resultType="LoginHistory">
+	select max(login_date_time)
+	  from mn_login_history
+	 where login_id = #{loginId}  
+</select>	
 
+<!-- 디테일 -->
+<select id="selectABSDetail" parameterType="int" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where no = #{no}
+</select>
+
+<!-- 작성한 게시글 -->
+<select id="selectBoardById" parameterType="string" resultMap="comMap">
+	select *
+	  from mn_com
+	 where com_writer = #{comWriter} 
+</select>
+
+<!-- 작성한 코멘트 -->
+<!-- <select id="selectCommentById" parameterType="string" resultMap="comMap"> -->
+<!-- 	select * -->
+<!-- 	  from mn_com_comment -->
+<!-- 	 where id = {id}  -->
+<!-- </select> -->
+
+<update id="authApprove" parameterType="int">
+	update mn_member
+	   set auth_state = 'y'
+     where no = #{no}	   
+</update>
+
+<select id="selectCareerById" parameterType="string" resultMap="careerMap">
+	select *
+	  from mn_member_career
+	 where id = #{id}
+</select>
 
 </mapper>

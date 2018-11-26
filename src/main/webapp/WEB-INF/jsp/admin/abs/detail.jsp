@@ -39,7 +39,7 @@
 					</div>
 					<div id="management" class="item">관리</div>
 					<div class="mgm-hidden abs-member">
-						<a href="<c:url value="/admin/abs/detail.mn" />">행동전문가</a>
+						<a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a>
 					</div>
 					<div class="mgm-hidden gen-member">
 						<a href="mgm-general.html">일반회원</a>
@@ -76,19 +76,23 @@
 								<table>
 									<tr>
 										<td>이름</td>
-										<td>강형욱</td>
+										<td>${abs.name}</td>
 									</tr>
 									<tr>
-										<td>나이</td>
-										<td>45</td>
+										<td>전문분야</td>
+										<td>
+										<c:if test="${abs.category=='dog'}">강아지</c:if>
+										<c:if test="${abs.category=='cat'}">고양이</c:if>
+										<c:if test="${abs.category=='all'}">모두</c:if>
+										</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>kang@naver.com</td>
+										<td>${abs.email}</td>
 									</tr>
 									<tr>
 										<td>성별</td>
-										<td>남</td>
+										<td>없어짐</td>
 									</tr>
 								</table>
 							</div>
@@ -113,49 +117,43 @@
 
 						<div id="career-area">
 							<h1>경력사항</h1>
-							<!-- <table style="text-align: left; font-size:20px;">
-                        <tr>
-                          <td style="padding:5px;">1</td>
-                          <td style="padding:5px;">세상에 나쁜개는 없다 출연</td>
-                        </tr>
-                        <tr>
-                          <td style="padding:5px;">2</td>
-                          <td style="padding:5px;">강형욱 동물행동 교정소 대장</td>
-                        </tr>
-                        <tr>
-                          <td style="padding:5px;">3</td>
-                          <td style="padding:5px;">비트캠프 수료</td>
-                        </tr>
-                        <tr>
-                          <td style="padding:5px;">4</td>
-                          <td style="padding:5px;">마이 리틀 텔레비전 출연</td>
-                        </tr>
-                      </table> -->
+							 <table style="text-align: center; font-size:20px;">
+							 <tbody>
+								 <c:forEach var="c" items="${careerList}">
+								 	<tr>
+									 	<td>${c.careerStart} ~ ${c.careerEnd}</td>
+									 	<td>${c.careerContent}</td>
+								 	</tr>	
+								 </c:forEach>	
+                        	</tbody>
+                      </table> 
 
-							<div>
-								<span>1.</span><span>세상에 나쁜개는 없다 출연</span>
-							</div>
-							<div>
-								<span>2.</span><span>강형욱 동물행동 교정소 대장</span>
-							</div>
-							<div>
-								<span>3.</span><span>비트캠프 수료</span>
-							</div>
-							<div>
-								<span>4.</span><span>마이 리틀 텔레비전 출연</span>
-							</div>
+<!-- 							<div> -->
+<!-- 								<span>1.</span><span>세상에 나쁜개는 없다 출연</span> -->
+<!-- 							</div> -->
+<!-- 							<div> -->
+<!-- 								<span>2.</span><span>강형욱 동물행동 교정소 대장</span> -->
+<!-- 							</div> -->
+<!-- 							<div> -->
+<!-- 								<span>3.</span><span>비트캠프 수료</span> -->
+<!-- 							</div> -->
+<!-- 							<div> -->
+<!-- 								<span>4.</span><span>마이 리틀 텔레비전 출연</span> -->
+<!-- 							</div> -->
 						</div>
 						<div id="vertical-sep"></div>
 						<!-- <hr style="clear: both; border-color: orange;"> -->
 						<div id="introduce-area">
 							<h1>소개글</h1>
-							<div>안녕하세요 강형욱입니다.</div>
+							<div>${abs.greetings}</div>
 						</div>
 
 						<div id="button-area">
 							<!-- 승인대기중일경우에만 표시 -->
-							<button class="btn btn-default btn-lg">승인</button>
-							<button class="btn btn-default btn-lg">취소</button>
+							<c:if test="${abs.authState eq 'n'}">
+							<button class="btn btn-default btn-lg" id="approve">승인</button>
+							<button class="btn btn-default btn-lg" id="cancel">취소</button>
+							</c:if>
 						</div>
 
 					</div>
@@ -168,15 +166,26 @@
 								<div id="posts-header">
 									<div class="no-area">글번호</div>
 									<div class="title-area">제목</div>
+									<div class="view-cnt-area">조회수</div>
+									<div class="rec-cnt-area">추천수</div>
+									<div class="category-area">카테고리</div>
+									
 								</div>
+								<div class="clear-fix"></div>
+								<c:forEach var="post" items="${myPosts}">
 								<div class="posts-content">
-									<div class="no-area">1</div>
+									<div class="no-area">${post.comNo}</div>
 									<div class="title-area">
-										<a href="#">안녕하세요</a>
+										${post.comTitle}
 									</div>
+									<div class="view-cnt-area">${post.comViewCnt}</div>
+									<div class="rec-cnt-area">${post.comRecCnt}</div>
+									<div class="category-area">${post.comCategory}</div>
+									<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${post.comNo}' />'">이동</button></div>
 								</div>
-							</div>
+								</c:forEach>
 						</div>
+					</div>
 					</div>
 					<div id="tabs-3">
 						<div id="comment-area">
@@ -184,13 +193,14 @@
 							<div>
 								<div id="comment-header">
 									<div class="no-area">댓글번호</div>
-									<div class="title-area">제목</div>
+									<div class="cmt-content-area">댓글내용</div>
+									<div class="no-area">게시글 번호</div>
 								</div>
 								<div class="comment-content">
 									<div class="no-area">1</div>
-									<div class="title-area">
-										<a href="#">안녕하세요</a>
-									</div>
+									<div class="cmt-content-area">댓글내용</div>
+									<div class="no-area">게시글 번호</div>
+									<div class="btn-area"><button class="btn btn-default btn-xs">이동</button></div>
 								</div>
 							</div>
 						</div>
@@ -202,11 +212,21 @@
 		</div>
 	</div>
 	<div class="clear-fix"></div>
-
+	
 
 	<!-- 푸터 -->
 	<div id="footer">
 		<c:import url="../../common/footer.jsp" />
 	</div>
+	
+	<script>
+		$("#approve").click(function() {
+			location.href = "approve.mn?no=" + ${abs.no}
+			alert("승인되었습니다.")
+		});
+		$("#cancel").click(function() {
+			location.href = "list.mn"
+		})
+	</script>
 </body>
 </html>

@@ -70,21 +70,7 @@
               <div class="point-area">포인트 <a href="#"><i class="fas fa-sort"></i></a></div>
             </div>
             <div class="clear-fix"><hr></div>
-             <c:forEach var="abs" items="${list}">
-            <div class="clear-fix">
-              <div class="content-area">
-                <div class="no-area">${abs.no}</div>
-                <div class="name-area">${abs.name}</div>
-                <div class="sign-area"><fmt:formatDate value="${abs.signUpDate}" pattern="yy-MM-dd hh:mm:ss" /></div>
-                <div class="recent-area">2018-11-20 06:30</div>
-                <div class="active-area">${abs.score}</div>
-                <div class="point-area">${abs.point}</div>
-
-                <button class="btn btn-default btn-sm" onclick="window.location='mgm-abs-detail.html'">상세</button>
-                <button class="btn btn-default btn-sm">탈퇴</button>
-              </div>
-            </div>
-              </c:forEach>
+             
           </div>
           <div id="tabs-4">
             <div>
@@ -108,17 +94,21 @@
                   <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort"></i></a></div>
                   <div class="point-area">포인트 <a href="#"><i class="fas fa-sort"></i></a></div>
                   <div class="clear-fix"><hr></div>
-                  <div class="clear-fix">
-                    <div class="no-area">1</div>
-                    <div class="name-area">김세영</div>
-                    <div class="sign-area">2018-11-20</div>
-                    <div class="recent-area">2018-11-20 06:30</div>
-                    <div class="active-area">258</div>
-                    <div class="point-area">1000</div>
-
-                    <button class="btn btn-default btn-sm" onclick="window.location='mgm-abs-detail.html'">상세</button>
-                    <button class="btn btn-default btn-sm">탈퇴</button>
-                  </div>
+                   <c:forEach var="abs" items="${nlist}" varStatus="status">
+	            <div class="clear-fix">
+	              <div class="content-area">
+	                <div class="no-area">${abs.no}</div>
+	                <div class="name-area">${abs.name}</div>
+	                <div class="sign-area"><fmt:formatDate value="${abs.signUpDate}" pattern="yy-MM-dd hh:mm:ss" /></div>
+	                <div class="recent-area">${nRLDList[status.index]}</div>
+	                <div class="active-area">${abs.score}</div>
+	                <div class="point-area">${abs.point}</div>
+	
+	                <button class="btn btn-default btn-sm" onclick="window.location='detail.mn?no=${abs.no}&id=${abs.id}'">상세</button>
+	                <button class="btn btn-default btn-sm">탈퇴</button>
+	              </div>
+	            </div>
+              </c:forEach>
                 </div>
             </div>
           </div>
@@ -133,5 +123,89 @@
 	<div id="footer">
 		<c:import url="../../common/footer.jsp" />
 	</div>
+	
+	<script>
+	 
+
+    var pageNo=1;
+	$(document).ready(function () {
+		  ajaxYList(pageNo);
+		  ajaxNList(pageNo);
+		  
+		  $(document).scroll(function() {
+				++pageNo;
+			    var maxHeight = $(document).height();
+			    var currentScroll = $(window).scrollTop() + $(window).height();
+
+			    if (maxHeight <= currentScroll + 120) {
+			      ajaxYList(pageNo);
+			      ajaxNList(pageNo);
+			      console.log(pageNo)
+			    }
+			 })
+		
+// 		  ajaxNList();	  
+	})
+	
+	var ajaxYList = function(pageNo) { 
+								$.ajax({
+						       		url: "<c:url value='/admin/abs/printYList.mn'/>",
+						       		type: "POST",
+						       		data: "pageNo=" + pageNo
+						        }).done(function (result) {
+							    	   console.log(result)
+							    	   
+							    	   var html ="";
+							    	   for(var i in result.yList) {
+							    		   
+								       html +=     "<div class='content-area'>"
+									            +  "<div class='no-area'>"+ result.yList[i].no +"</div>"
+									            +  "<div class='name-area'>"+ result.yList[i].name +"</div>"
+									            +  "<div class='sign-area'>"+ result.yList[i].signUpDate +"</div>"
+									            +  "<div class='recent-area'>"+ result.yRLDList[i] + "</div>"
+									            +  "<div class='active-area'>"+ result.yList[i].score +"</div>"
+									            +  "<div class='point-area'>"+ result.yList[i].point +"</div>"
+									            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.yList[i].no + "' data-id='" + result.yList[i].id + "'>상세</button> "
+									            +  "<button class='btn btn-default btn-sm'>탈퇴</button>"
+									            +  "</div>"
+									            +  "<div class='clear-fix'></div>"
+							    	   }
+										$("#tabs-1").append(html);			          
+						        });
+	} // ajaxYList
+	
+	var ajaxNList = function(pageNo) { 
+								$.ajax({
+						       		url: "<c:url value='/admin/abs/printNList.mn'/>",
+						    	   type: "POST",
+					       		   data: "pageNo=" + pageNo
+						        }).done(function (result) {
+							    	   console.log(result)
+							    	   var html ="";
+							    	   for(var i in result.nList) {
+							    		   
+								       html +=     "<div class='content-area'>"
+									            +  "<div class='no-area'>"+ result.nList[i].no +"</div>"
+									            +  "<div class='name-area'>"+ result.nList[i].name +"</div>"
+									            +  "<div class='sign-area'>"+ result.nList[i].signUpDate +"</div>"
+									            +  "<div class='recent-area'>"+ result.nRLDList[i] + "</div>"
+									            +  "<div class='active-area'>"+ result.nList[i].score +"</div>"
+									            +  "<div class='point-area'>"+ result.nList[i].point +"</div>"
+									            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.nList[i].no + "' data-id='" + result.nList[i].id + "'>상세</button> "
+									            +  "<button class='btn btn-default btn-sm'>탈퇴</button>"
+									            +  "</div>"
+									            +  "<div class='clear-fix'></div>"
+							    	   }
+										$("#tabs-4").append(html);			          
+						        });
+	} // ajaxNList
+	
+	
+	$(document).on("click", ".move-detail", function() {
+		location.href = "detail.mn?no=" + $(this).data("no") + "&id=" + $(this).data("id");
+	});
+	
+
+	</script>
 </body>
 </html>
