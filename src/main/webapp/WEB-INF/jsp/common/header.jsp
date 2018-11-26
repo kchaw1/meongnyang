@@ -17,8 +17,12 @@
           <ul class="dropdown-menu pull-right" role="menu" id="drop">
             <li><a href="#">내 정보</a></li>
             <li><a href="#">마이펫 다이어리</a></li>
+            <li><a href="#">쪽지함</a></li>
+            <li><a href="#">내 등급</a></li>
+            <li><a href="#">내 활동</a></li>
+            <li><a href="#">쪽지함</a></li>
             <li class="divider"></li>
-            <li><a href="#">로그아웃</a></li>
+            <li><a href="#" id="logout" >로그아웃</a></li>
           </ul>
         </li>
       </ul>

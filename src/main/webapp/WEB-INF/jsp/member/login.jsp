@@ -40,16 +40,17 @@
       </a> -->
       <div id="kakao-login-btn"></div>
     </div>
-    <form class="email-login">
+    <form class="email-login" name="login">
       <div class="u-form-group">
-        <input type="email" placeholder="Email 또는 id"/>
+        <input type="email" name="loginid" placeholder="Email 또는 id"/>    
       </div>
       <div class="u-form-group">
-        <input type="password" placeholder="Password"/>
+        <input type="password" name="loginpass" placeholder="Password"/>
       </div>
       <div class="u-form-group">
-        <a class="btn" data-toggle="modal" data-target="#logInModal" 
-	            data-whatever="@getbootstrap" href="#">로그인</a> 
+      	<button type="button" class="btn btn-default" id="loginform">로그인</button>
+        <!-- <a class="btn" data-toggle="modal" data-target="#logInModal" 
+	            data-whatever="@getbootstrap" id="login" href="#">로그인</a> --> 
       </div>
       <div class="u-form-group">
         <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
@@ -83,7 +84,7 @@
         <h4 class="modal-title" id="myModalLabel">반려인 회원가입</h4>
       </div>
       <div class="modal-body">
-      	<form action="<c:url value="/member/signup.mn"/>" method="post" name="signup">
+      	<form action="<c:url value="/member/signup.mn"/>"  name="signup">
           <div id="login-box">
               <div class="sign_up">
                   <div id="sign">
