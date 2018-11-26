@@ -109,6 +109,15 @@
 	$("button#submit").click(function (){
 		let drDate = $("input[name='drDate']").val().toString()
 		drDate = drDate.replace(".","").replace(".","");
+		let drYear = drDate.substr(0,4);
+		let drMonth = drDate.substr(4,2);
+		let drDay = drDate.substr(6,2);
+		let now = new Date(drYear, (drMonth-1), drDay);
+		console.log(now)
+		let checked = $("input[type='radio']:checked");
+		let title = $("input[name='drTitle']");
+		let content = $("[name='drContent']");
+		//alert(content)
 		//alert(radio)
 		//alert($("input[type='radio']:checked").val())
 		//alert($("input[name='drDate']").val())
@@ -116,12 +125,23 @@
 			url : "<c:url value='/diary/write.mn' />",
 			data : {
 				"drDate" : drDate,
-				"drShare" : $("input[type='radio']:checked").val(),
-				"drTitle" : $("input[name='drTitle']").val(),
-				"drContent" : $("input[name='drContent']").val()
+				"drShare" : checked.val(),
+				"drTitle" : title.val(),
+				"drContent" : content.val()
 			},
 			type : "POST"
 	 	}).done(function(map){
+	 		swal({
+				  type: 'success',
+				  title: '일기가 저장되었습니다.',
+				  showConfirmButton: false,
+				  timer: 1500
+			})
+	 		
+	 		title.val("");
+	 		content.val("");
+	 		checked.attr("checked", false);
+	 		$(".months li").find("a[data-value="+drMonth+"]").removeClass("selected")
 	 		makeCalendar(now, map)
 	 	})
 	})//click

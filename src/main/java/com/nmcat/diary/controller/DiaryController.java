@@ -31,7 +31,7 @@ public class DiaryController {
 		diary.setDrRegDateTime(new Date());
 		diary.setDrWriter("victory");
 		System.out.println(diary);
-		//service.writeNewDiary(diary);
+		service.writeNewDiary(diary);
 		String yearmonth = diary.getDrDate().substring(0,6);
 		return service.list(yearmonth);
 		//return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "writeform.mn";

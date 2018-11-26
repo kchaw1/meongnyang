@@ -6,3 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/diary/calendar.css"/>">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+<!-- sweetalert -->
+<script src="<c:url value="/resources/js/diary/sweetalert2.all.min.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/diary/sweetalert2.min.css"/>">

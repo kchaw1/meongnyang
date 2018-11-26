@@ -209,9 +209,11 @@ div.modal-content {
   overflow: hidden;
   height: 103%;
   background-image : url("../../img/diary/diary2.png");
-  background-size: 1350px auto; 
+  /* background-size: 1350px auto;  */
+  background-size: 110% auto; 
   background-repeat: no-repeat; 
-  background-position: -100px;
+  /* background-position: -100px; */
+  background-position: -80px;
   /* transform: rotate(-10deg) */
 }
  /*

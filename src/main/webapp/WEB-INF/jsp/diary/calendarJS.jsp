@@ -77,21 +77,26 @@ function makeCalendar(now, map){
         let specificDate = yearMonth+""+pointdate;
         str+= "<td>";
         str+= "<a href='#1' data-val='"+specificDate+"'";
-        let keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
-        for(let key of keyArray) {
-        	if(key==specificDate){
-        		str+= "data-toggle='modal'";
-        	} 
-        } //
+        if(map!=null) {
+	        let keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
+	        for(let key of keyArray) {
+	        	if(key==specificDate){
+	        		str+= "data-toggle='modal'";
+	        	} 
+	        } //        	
+        } //if not null
+        
         str+= "id='setDate' data-target='#diary'>" + no +"<br>";
-        for(let key in map){
-        	if(specificDate===key) {
-        		for(let i=0; i<map[key]; i++) {
-	        		str+= "<span class='diary' value="+key+"></span>"        			
-        		} //일기 수만큼 span 추가
-        	} //a 태그에 있는날짜와 key 값이 같으면 span 태그 만들기
-        	
-        } //map 에서 key 꺼내오기
+        if(map!=null) {
+	        for(let key in map){
+	        	if(specificDate===key) {
+	        		for(let i=0; i<map[key]; i++) {
+		        		str+= "<span class='diary' value="+key+"></span>"        			
+	        		} //일기 수만큼 span 추가
+	        	} //a 태그에 있는날짜와 key 값이 같으면 span 태그 만들기
+	        	
+	        } //map 에서 key 꺼내오기        	
+        }//if not null
         str+= "</a></td>";
         no ++;
       }
@@ -126,8 +131,8 @@ function makeCalendar(now, map){
     // alert($(this).data("value"))
     $(".months li").find("a[data-value="+month+"]").removeClass("selected")
     now = new Date(now.getFullYear(), $(this).data("value")-1, now.getDate())
-    makeCalendar(now)
-  })
+    goMonth(now);
+  }) //원하는 월을 클릭했을때..
   
   $("a.prev").click(function(){
     $(".months li").find("a[data-value="+month+"]").removeClass("selected")
@@ -144,10 +149,42 @@ function makeCalendar(now, map){
 }
 
 function prevCalendar(now){
-  makeCalendar(now)
-}
+	let day = now.getFullYear()+""+(now.getMonth()+1)+""+now.getDate();
+	$.ajax({
+		url : "<c:url value='/diary/listall.mn' />",
+		data : {
+			"today" : day
+		},
+		type : "POST"
+		}).done(function(map) {
+			makeCalendar(now, map)			
+	}) //ajax
+} //prevCalendar
+
 function nextCalendar(now){
-  makeCalendar(now)
+	let day = now.getFullYear()+""+(now.getMonth()+1)+""+now.getDate();
+	$.ajax({
+		url : "<c:url value='/diary/listall.mn' />",
+		data : {
+			"today" : day
+		},
+		type : "POST"
+		}).done(function(map) {
+			makeCalendar(now, map)			
+	}) //ajax
+} // nextCalendar
+
+function goMonth(now) {
+	let day = now.getFullYear()+""+(now.getMonth()+1)+""+now.getDate();
+	$.ajax({
+		url : "<c:url value='/diary/listall.mn' />",
+		data : {
+			"today" : day
+		},
+		type : "POST"
+		}).done(function(map) {
+			makeCalendar(now, map)			
+	}) //ajax
 }
   
 </script>
