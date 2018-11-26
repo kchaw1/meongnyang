@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.nmcat.repository.mapper.AbsMapper">
+	<resultMap id="absMap" type="member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="name" property="name" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="image_path" property="imagePath" />		
+		<result column="abs_like_cnt" property="absLikeCnt" />
+		<result column="greetings" property="greetings" />
+	</resultMap>
+	
+	
+	<!-- 행동전문가 리스트 보여주기 -->
+	<select id="selectAbsList"  parameterType = "int" resultMap = "absMap">
+		select * 
+		  from mn_member 
+		  where type='2';	
+	</select>
+	
+</mapper>

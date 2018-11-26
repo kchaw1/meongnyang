@@ -25,6 +25,8 @@
 <body>
 <c:import url="../common/header.jsp" />
  <div class="slide--parent">
+ 
+	<c:forEach var="b" items="${map.list}">
         <div class="parent--el">
           <div class="two--col">
             <div class="is-item has--img">
@@ -34,19 +36,17 @@
             </div>
             <div class="is-item has--content">
               <div class="is-item--inner">
-                <h1 class="name"><span class="nameSpan">강형욱</span></h1>
-                <small>강아지 행동전문가</small>
+                <h1 class="name"><span class="nameSpan">${b.name}</span></h1>
+                <small>${b.category} 행동전문가</small>
                 <hr>
                 <button type="button" class="btn btn-primary btn-sm" onclick="doDetail()">More</button>
-                <p>무조건 칭찬만 하는 교육을 하진 않습니다.</p>
-                  <p>때로는 거절을 통해 옳고 그른 행동을 알려주어, 우리가 사는 이 복잡한 도시환경에 적응하여</p> 
-                  <p>함께 잘 살아갈 수 있게 보듬어 주는 교육을 보듬교육이라고 말합니다.</p>   
-                      <p>보듬교육은 보호자님과 반려견이 항상 행복하기를 바랍니다.</p>
+                <p>${b.greetings}</p>
               </div>
             </div>
           </div>
         </div>
-      
+	</c:forEach>
+      <!-- 
         <div class="parent--el">
             <div class="two--col">
               <div class="is-item has--img">
@@ -87,7 +87,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
       
       </div>
 <script>

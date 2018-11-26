@@ -2,13 +2,12 @@ package com.nmcat.qna.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-@RequestMapping("/abs")
-@Controller
+/*@RequestMapping("/abs")
+@Controller*/
 public class QnAController {
 		
-			@RequestMapping("/absList.mn")
+		/*	@RequestMapping("/absList.mn")
 			public void absmain() {}
-			
 			@RequestMapping("/absDetailMain.mn")
 			public void absDetailMain() {}
 
@@ -23,5 +22,5 @@ public class QnAController {
 			
 			@RequestMapping("/absDetailBoardDetail.mn")
 			public void absDetailBoardDetail() {}
-
+*/
 }
