@@ -1,0 +1,73 @@
+a:link { color: red; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Jua', sans-serif;
+}
+
+.title {
+    margin: 0px 0px 0px 40px;
+}
+
+.menu {
+    position: relative;
+    font-size: 20px;
+    left: 75%;
+    clear: both;
+}
+
+#hr1 {
+    width: 1000px;
+    margin: auto;
+}
+
+.point {
+    text-align: center;
+}
+
+#p-writer {
+    font-size: 40px;
+}
+
+#p-writer2 {
+    margin: 0 0 0 100px;
+    font-size: 30px;
+    color: gray;
+}
+
+input[type=text] {
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+}
+
+#Notice {
+    margin: 0 0 0 600px;
+    font-size: 20px;
+    color: tomato;
+}
+
+#tabs {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+#delBtn {
+    width: 100px;
+    height: 30px;
+    font-family: 'Jua', sans-serif;
+}
+
+#allP {
+    margin-top: 120px;
+}
