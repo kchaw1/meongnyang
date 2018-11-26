@@ -18,6 +18,7 @@ public class CommunityController {
 	
 	@RequestMapping("/communityPage.mn")
 	public void list(Model model)throws Exception{
+		
 		model.addAttribute("list", service.selectBoard());
 	}
 	@RequestMapping("/detailPage.mn")

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.CommunityMapper">
-<resultMap id="comMap" type="comBoard">
+<resultMap id="comMap" type="CommunityBoard">
 		<result column="com_no" property="comNo" />
 		<result column="com_title" property="comTitle" />
 		<result column="com_writer" property="comWriter" />
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 커뮤니티 글 등록 -->
-	<insert id = "insertBoard" parameterType ="comBoard">
+	<insert id = "insertBoard" parameterType ="CommunityBoard">
 	insert into mn_com
  	(com_title, com_writer, com_content, com_category)
 	 values(#{comTitle},#{comWriter}, #{comContent}, #{comCategory});
@@ -43,7 +43,7 @@
 	</delete>
 	
 	<!-- 커뮤니티 글 수정 -->
-	<update id = "updateBoard" parameterType = "comBoard">
+	<update id = "updateBoard" parameterType = "CommunityBoard">
 	update mn_com
 	set com_title = #{comTitle},
 	 	com_writer = #{comWriter},
