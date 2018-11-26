@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.mapper.AbsMapper;
 
+@Service
 public class AbsServiceImpl implements AbsService{
 
 	@Autowired
