@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -69,19 +70,21 @@
               <div class="point-area">포인트 <a href="#"><i class="fas fa-sort"></i></a></div>
             </div>
             <div class="clear-fix"><hr></div>
+             <c:forEach var="abs" items="${list}">
             <div class="clear-fix">
               <div class="content-area">
-                <div class="no-area">1</div>
-                <div class="name-area">김세영</div>
-                <div class="sign-area">2018-11-20</div>
+                <div class="no-area">${abs.no}</div>
+                <div class="name-area">${abs.name}</div>
+                <div class="sign-area"><fmt:formatDate value="${abs.signUpDate}" pattern="yy-MM-dd hh:mm:ss" /></div>
                 <div class="recent-area">2018-11-20 06:30</div>
-                <div class="active-area">258</div>
-                <div class="point-area">1000</div>
+                <div class="active-area">${abs.score}</div>
+                <div class="point-area">${abs.point}</div>
 
                 <button class="btn btn-default btn-sm" onclick="window.location='mgm-abs-detail.html'">상세</button>
                 <button class="btn btn-default btn-sm">탈퇴</button>
               </div>
             </div>
+              </c:forEach>
           </div>
           <div id="tabs-4">
             <div>
@@ -122,6 +125,9 @@
           <!-- /우측 콘텐츠 영역-->
         </div>
         <div class="clear-fix"></div>
+        </div>
+        </div>
+        </div>
 	
 	<!-- 푸터 -->
 	<div id="footer">
