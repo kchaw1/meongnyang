@@ -413,6 +413,10 @@
 <script>
 	var friend = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
     $(function () {
+   		friend.onopen = function() {
+			console.log("바디 웹소켓 서버 접속 성공");
+		}
+    	
       $('[data-toggle="tooltip"]').tooltip()
     
       $("a.tab").click(function(){
@@ -436,7 +440,7 @@
     }) //$function
     
     $("a#plusfriend").click(function() {
-    	console.log($(this))
+    	//console.log($(this))
     	friend.send("friend:")
     })
   </script>

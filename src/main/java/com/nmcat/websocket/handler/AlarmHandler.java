@@ -34,9 +34,10 @@ public class AlarmHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		System.out.println("신호 받음");
 		String msg = message.getPayload();
 		Set<String> keys = users.keySet();
-		if(msg.startsWith("fr")) {
+		if(msg.startsWith("friend:")) {
 			for(String key : keys) {
 				WebSocketSession wss = users.get(key);
 				wss.sendMessage(new TextMessage("친구 추가했어요"));				
