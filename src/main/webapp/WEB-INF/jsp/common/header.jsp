@@ -7,22 +7,29 @@
   <div class="animate"><img src="<c:url value='/resources/img/common/teddy_food_dribbble.gif'/>" /></div>
   <nav>
     <ul class="nav navbar-nav">
-      <li><a href="">반려인 커뮤니티</a></li>
-      <li><a href="">행동전문가와 상담</a></li>
+      <li><a href="<c:url value='/resources/img/common/teddy_food_dribbble.gif'/>">반려인 커뮤니티</a></li>
+      <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
+      <li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
       <li><a href="">포인트 충전</a></li>
       <li class="dropdown">  
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
         </a>
         <ul class="dropdown-menu pull-right" role="menu" id="drop">
-          <li><a href="#">내 정보</a></li>
-		  <li><a href="#">마이펫 다이어리</a></li>
+        <%-- <c:choose>
+        </c:choose> --%>
+        <c:if test="${empty user.id}">
+          <li><a href="<c:url value='/member/login.mn'/>">로그인</a></li>        
+        </c:if>
+          <li><a href="<c:url value='/login/login.mn'/>">내 정보</a></li>
+		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
 		  <li><a href="#">쪽지함</a></li>
 		  <li><a href="#">내 등급</a></li>
 		  <li><a href="#">내 활동</a></li>
 		  <li><a href="#">쪽지함</a></li>
+		  <li><a href="#">포인트 충전</a></li>
 		  <li class="divider"></li>
-		  <li><a href="#" id="logout" >로그아웃</a></li>
+		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
         </ul>
       </li>
      </ul>

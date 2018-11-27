@@ -28,7 +28,8 @@ $("button#loginform").click(function(){
 				f.loginid.select();
 			}, 1500)
 		} else {
-			location.href = "<c:url value='/main.mn'/>"
+			/* location.href = "<c:url value='/main.mn'/>" */
+			location.href = "<c:url value='/diary/writeform.mn'/>"
 		}
 	}) //done
 })
