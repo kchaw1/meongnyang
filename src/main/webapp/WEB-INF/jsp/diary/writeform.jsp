@@ -17,15 +17,15 @@
       <div class="month">
         <ul class="months">
           <li><a href="#1" class="prev"> << </a></li>
-          <li><a href="#1" title="Jan" data-value="1">Jan</a></li>
-          <li><a href="#1" title="Feb" data-value="2">Feb</a></li>
-          <li><a href="#1" title="Mar" data-value="3">Mar</a></li>
-          <li><a href="#1" title="Apr" data-value="4">Apr</a></li>
-          <li><a href="#1" title="May" data-value="5">May</a></li>
-          <li><a href="#1" title="Jun" data-value="6">Jun</a></li>
-          <li><a href="#1" title="Jul" data-value="7">Jul</a></li>
-          <li><a href="#1" title="Aug" data-value="8">Aug</a></li>
-          <li><a href="#1" title="Sep" data-value="9">Sep</a></li>
+          <li><a href="#1" title="Jan" data-value="01">Jan</a></li>
+          <li><a href="#1" title="Feb" data-value="02">Feb</a></li>
+          <li><a href="#1" title="Mar" data-value="03">Mar</a></li>
+          <li><a href="#1" title="Apr" data-value="04">Apr</a></li>
+          <li><a href="#1" title="May" data-value="05">May</a></li>
+          <li><a href="#1" title="Jun" data-value="06">Jun</a></li>
+          <li><a href="#1" title="Jul" data-value="07">Jul</a></li>
+          <li><a href="#1" title="Aug" data-value="08">Aug</a></li>
+          <li><a href="#1" title="Sep" data-value="09">Sep</a></li>
           <li><a href="#1" title="Oct" data-value="10">Oct</a></li>
           <li><a href="#1" title="Nov" data-value="11">Nov</a></li>
           <li><a href="#1" title="Dec" data-value="12">Dec</a></li>
@@ -63,11 +63,11 @@
                 disabled="disabled" />
               </td>
               <td class="checkbox">
-              	<input type="radio" id="all" name="drShare" value="1"/>
+              	<input type="radio" id="all" name="drShare" value="1" checked="checked"/>
               	<label for="all">모두 공개</label><br>
-              	<input type="radio" id="friend" name="drShare" value="2"/>
+              	<input type="radio" id="friend" name="drShare" value="2" />
               	<label for="friend">친구에게만 공개</label><br>
-              	<input type="radio" id="no" name="drShare" value="3"/>
+              	<input type="radio" id="no" name="drShare" value="3" />
               	<label for="no">나만 보기</label>
               </td>
               <td>

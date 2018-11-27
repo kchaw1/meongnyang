@@ -9,6 +9,16 @@ public interface DiaryService {
 
 	int writeNewDiary(DiaryBoard diary);
 
-	Map<String, Integer> list(String yearmonth);
+	Map<String, Object> list(String yearmonth);
+
+	List<DiaryBoard> detailDiary(String date);
+
+	Map<String, Object> deleteDiary(DiaryBoard diary);
+
+	DiaryBoard updateformDiary(int drNo);
+
+	List<DiaryBoard> updateDiary(DiaryBoard diary);
+
+
 
 }

@@ -210,10 +210,10 @@ div.modal-content {
   height: 103%;
   background-image : url("../../img/diary/diary2.png");
   /* background-size: 1350px auto;  */
-  background-size: 110% auto; 
+  background-size: 115% auto; 
   background-repeat: no-repeat; 
   /* background-position: -100px; */
-  background-position: -80px;
+  background-position: -100px;
   /* transform: rotate(-10deg) */
 }
  /*
@@ -276,7 +276,7 @@ div.diary {
 div.dr-title {
   padding-bottom : 5px;
   border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
-  width: 80%;
+  width: 100%;
 }
 span.label {
   margin: 10px;
@@ -304,6 +304,7 @@ span.label-noshare {
 }
 div.dr-content {
   padding : 15px 20px 0px;
+  font-size : 20px;
 }
 div.buttons {
   height: 40px;
@@ -339,4 +340,25 @@ a[data-toggle] span {
   margin-right: 4px; 
   margin-bottom : 4px;
   background-color: salmon;
+}
+
+div.updateform {
+	display : inline-block;
+	margin-left : 10px;
+}
+.updateform input[type='radio'] {
+	margin-left : 10px;
+	margin-right : 8px;
+}
+button.dr-updatecomplete{
+	width : 80px;
+}
+div.updatebutton-box {
+  float: right;
+  margin-right: 10px; 
+}
+
+.dr-content.update {
+  text-align: left;
+  font-size: 14px;
 }

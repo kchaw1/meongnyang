@@ -13,78 +13,12 @@
         </div>
         <div class="modal-body">
           <div class="diaryList">
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-friend">친구에게만 공개</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-              <div class="buttons">
-                <div class="button-box">
-                  <button class="dr-delete">삭제</button>
-                  <button class="dr-update">수정</button>
-                </div>
-              </div>
-            </div>
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-share">전체 공개</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-              <div class="buttons">
-                <div class="button-box">
-                  <button class="dr-delete">삭제</button>
-                  <button class="dr-update">수정</button>
-                </div>
-              </div>
-            </div>
-            <div class="diary">
-              <div class="dr-title">
-                <span class="title">${dr.title}</span>
-                <span class="date">${dr.regDate}</span>
-                <span class="label label-noshare">나만 보기</span>
-              </div>
-              <div class="dr-content">
-                ${dr.content}<br>
-                111<br>
-                11111<br>
-                1111<br>
-                11111<br>
-                1111<br>
-                1111<br>
-                111<br>
-                111<br>
-                1111<br>
-              </div>
-            </div>
-            
+
           </div>
         </div>
       </div>
     </div>
   </div> 
+ <script>
+
+ </script>

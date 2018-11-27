@@ -32,4 +32,29 @@
 		select count(*) from mn_diary
 		where dr_date = #{date}
 	</select>
-</mapper>
+	
+	<select id="selectDiarysByOnedate" parameterType="string" resultMap="boardMap">
+		select * from mn_diary
+		where dr_date = #{date}
+	</select>
+	
+	<delete id="deleteDiary" parameterType="int">
+		delete from mn_diary
+		where dr_no = #{drNo}
+	</delete> 
+	
+	<select id="selectOneDiaryBydrNo" parameterType="int" resultMap="boardMap">
+		select * from mn_diary
+		where dr_no = #{drNo}
+	</select>
+	
+	<update id="updateDiary" parameterType="DiaryBoard">
+		update mn_diary
+		   set dr_title = #{drTitle},
+		       dr_content = #{drContent},
+		       dr_share = #{drShare}
+		 where dr_no = #{drNo}
+	</update>
+	
+	
+	</mapper>
