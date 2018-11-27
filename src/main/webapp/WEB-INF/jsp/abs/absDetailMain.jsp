@@ -1,20 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Çàµ¿Àü¹®°¡ »ó¼¼ ÆË¾÷Ã¢ ¸ÞÀÎ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>í–‰ë™ì „ë¬¸ê°€ ìƒì„¸ íŒì—…ì°½ ë©”ì¸</title>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
- <!-- Çàµ¿Àü¹®°¡ »ó¼¼ ¸ÞÀÎ css -->
+ <!-- í–‰ë™ì „ë¬¸ê°€ ìƒì„¸ ë©”ì¸ css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetailMain.css"/>">
   
-  <!-- ÆùÆ® -->
+  <!-- í°íŠ¸ -->
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  
   
 </head>
 <body>
@@ -31,13 +32,13 @@
             <nav>
               <ul>
                 <li>
-                  <a href="absDetail.mn">°æ·Â ¹× ÀÎ»ç¸»</a>
+                  <a href="absDetail.mn?no=${map.b.no}">ê²½ë ¥ ë° ì¸ì‚¬ë§</a>
                 </li>
                 <li>
-                  <a href="#">1:1 È­»óÃ¤ÆÃÇÏ±â</a>
+                  <a href="#">1:1 í™”ìƒì±„íŒ…í•˜ê¸°</a>
                 </li>
                 <li>
-                  <a href="absDetailBoard.mn?no=${map.b.no}">Áú¹®°Ô½ÃÆÇ</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}">ì§ˆë¬¸ê²Œì‹œíŒ</a>
                 </li>
               </ul>
             </nav>
@@ -47,17 +48,17 @@
           <figure class="snip1091 red" >
             <img src="https://t1.daumcdn.net/cfile/tistory/24FB78335979C45A09" alt="sq-sample6" />
             <figcaption>
-              <h2>°æ·Â ¹× <span>ÀÎ»ç¸»</span></h2>
+              <h2>ê²½ë ¥ ë° <span>ì¸ì‚¬ë§</span></h2>
             </figcaption><a href="absDetail.mn?no=${map.b.no}"></a>
           </figure>
           <figure class="snip1091 green" ><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
             <figcaption>
-              <h2>Àü¹®°¡¿Í <span>È­»óÃ¤ÆÃ</span></h2>
+              <h2>ì „ë¬¸ê°€ì™€ <span>í™”ìƒì±„íŒ…</span></h2>
             </figcaption><a href="#"></a>
           </figure>
           <figure class="snip1091 navy"><img src="https://post-phinf.pstatic.net/MjAxNzA5MjBfNTcg/MDAxNTA1ODgzNTk1MDcz.HLD5l_7_XzGcU2Q7pwZAmAAJeIEjmhud7ZbqMOcq-Fsg.G4FlzFGc6wjF03jSb9wXnUNft913XACg_gkKahR8dgUg.JPEG/ask-questions.jpg?type=w1200" alt="sq-sample10" />
             <figcaption>
-              <h2>Áú¹® <span>°Ô½ÃÆÇ</span></h2>
+              <h2>ì§ˆë¬¸ <span>ê²Œì‹œíŒ</span></h2>
             </figcaption><a href="absDetailBoard.mn?no=${map.b.no}"></a>
           </figure>
             </section>
@@ -70,7 +71,7 @@
         }) 
 
 
-        /*¸ÞÀÎÀÌ¹ÌÁö*/
+        /*ë©”ì¸ì´ë¯¸ì§€*/
         $("figure").mouseleave(
           function() {
             $(this).removeClass("hover");

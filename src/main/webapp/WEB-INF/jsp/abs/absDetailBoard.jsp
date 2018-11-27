@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Çàµ¿ Àü¹®°¡ Áú¹®°Ô½ÃÆÇ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>í–‰ë™ ì „ë¬¸ê°€ ì§ˆë¬¸ê²Œì‹œíŒ</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
   
-    <!-- °Ô½ÃÆÇ css -->
+    <!-- ê²Œì‹œíŒ css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetailBoard.css"/>">
 
-	<!-- ÆùÆ® -->  
+	<!-- í°íŠ¸ -->  
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     
 </head>
@@ -35,37 +35,37 @@
             <nav>
               <ul>
                 <li>
-                  <a href="ABSDetail.html">°æ·Â ¹× ÀÎ»ç¸»</a>
+                  <a href="absDetail.mn?no=${map.a.no}">ê²½ë ¥ ë° ì¸ì‚¬ë§</a>
                 </li>
                 <li>
-                  <a href="#">1:1 È­»óÃ¤ÆÃÇÏ±â</a>
+                  <a href="#">1:1 í™”ìƒì±„íŒ…í•˜ê¸°</a>
                 </li>
                 <li>
-                  <a href="ABSDetailBoard.html">Áú¹®°Ô½ÃÆÇ</a>
+                  <a href="absDetailBoard.mn?no=${map.a.no}">ì§ˆë¬¸ê²Œì‹œíŒ</a>
                 </li>
               </ul>
             </nav>
           </div>
         </header>
         <section class="content">
-          <h1>Áú¹® °Ô½ÃÆÇ</h1>
+          <h1>ì§ˆë¬¸ ê²Œì‹œíŒ</h1>
           <hr>
           <div class="">
               <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
-     				ÀüÃ¼	
+     				ì „ì²´	
                   </div>
               </div>
               <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>Á¦¸ñ</th>
-                  <th>±Û¾´ÀÌ</th>
-                  <th>µî·ÏÀÏ</th>
-                  <th>Á¶È¸¼ö</th>
-                  <th>´äº¯¿©ºÎ</th>
+                  <th>ì œëª©</th>
+                  <th>ê¸€ì“´ì´</th>
+                  <th>ë“±ë¡ì¼</th>
+                  <th>ì¡°íšŒìˆ˜</th>
+                  <th>ë‹µë³€ì—¬ë¶€</th>
                 </tr>  	 
                      <c:forEach var="b" items="${map.b}">
                         <tr class="clickde">
@@ -83,7 +83,7 @@
               </table>
               </div><br>
               <div class="search-container">
-                  <input type="text" id="search-bar" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä...">
+                  <input type="text" id="search-bar" placeholder="ì œëª©ì„ ìž…ë ¥í•˜ì„¸ìš”...">
               </div>
               <div>
                   <ul class="pagination">
@@ -114,7 +114,7 @@
               <hr>
               <div id="wirte"> 
                   <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button class="btn btn-primary" id="write">±Û¾²±â</button>
+                  <button class="btn btn-primary" id="write">ê¸€ì“°ê¸°</button>
                 </div>
             
             </div>		

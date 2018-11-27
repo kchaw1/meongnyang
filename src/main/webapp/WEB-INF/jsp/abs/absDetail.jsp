@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Çàµ¿Àü¹®°¡ ÆË¾÷Ã¢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>í–‰ë™ì „ë¬¸ê°€ íŒì—…ì°½</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
-    <!-- Çàµ¿Àü¹®°¡ »ó¼¼ ÆË¾÷Ã¢ CSS -->
+    <!-- í–‰ë™ì „ë¬¸ê°€ ìƒì„¸ íŒì—…ì°½ CSS -->
         <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetail.css"/>">
         
-          <!-- ÆùÆ® -->
+          <!-- í°íŠ¸ -->
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   
     
@@ -32,38 +32,38 @@
             <nav>
               <ul>
                 <li>
-                  <a href="absDetail.mn?no=${map.b.no}">°æ·Â ¹× ÀÎ»ç¸»</a>
+                  <a href="absDetail.mn?no=${map.b.no}">ê²½ë ¥ ë° ì¸ì‚¬ë§</a>
                 </li>
                 <li>
-                  <a href="#">1:1 È­»óÃ¤ÆÃÇÏ±â</a>
+                  <a href="#">1:1 í™”ìƒì±„íŒ…í•˜ê¸°</a>
                 </li>
                 <li>
-                  <a href="absDetailBoard.mn?no=${map.b.no}">Áú¹®°Ô½ÃÆÇ</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}">ì§ˆë¬¸ê²Œì‹œíŒ</a>
                 </li>
               </ul>
             </nav>
           </div>
         </header>
   <section class="content">
-          <h1>°æ·Â ¹× ÀÎ»ç¸»</h1>
+          <h1>ê²½ë ¥ ë° ì¸ì‚¬ë§</h1>
           <h4 >
           <button type="button" id="like-button">
             <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
             Like
           </button>
-              ÁÁ¾Æ¿ä: 
+              ì¢‹ì•„ìš”: 
               <span class="counter" data-count="${map.b.absLikeCnt}">0</span>
             </h4>
           <hr> 
           <div class="DetailContainer">
                <p id="name">"${map.b.name}"</p>
-              <p>Ãâ»ý: 1985³â 5¿ù 27ÀÏ (33¼¼)</p> 
-              <p>°¡Á·: ¹è¿ìÀÚ ¼öÀÜ ¿¤´õ, ¾Æµé °­ÁÖ¿î</p>
-              <p>¼Ò¼Ó: º¸µëÄÄÆÛ´Ï (´ëÇ¥)</p>
-              <p>¹«Á¶°Ç ÄªÂù¸¸ ÇÏ´Â ±³À°À» ÇÏÁø ¾Ê½À´Ï´Ù.
-                ¶§·Î´Â °ÅÀýÀ» ÅëÇØ ¿Ç°í ±×¸¥ Çàµ¿À» ¾Ë·ÁÁÖ¾î, ¿ì¸®°¡ »ç´Â ÀÌ º¹ÀâÇÑ µµ½ÃÈ¯°æ¿¡ ÀûÀÀÇÏ¿©
-                ÇÔ²² Àß »ì¾Æ°¥ ¼ö ÀÖ°Ô º¸µë¾î ÁÖ´Â ±³À°À» º¸µë±³À°ÀÌ¶ó°í ¸»ÇÕ´Ï´Ù.   
-                º¸µë±³À°Àº º¸È£ÀÚ´Ô°ú ¹Ý·Á°ßÀÌ Ç×»ó Çàº¹ÇÏ±â¸¦ ¹Ù¶ø´Ï´Ù.</p>
+              <p>ì¶œìƒ: 1985ë…„ 5ì›” 27ì¼ (33ì„¸)</p> 
+              <p>ê°€ì¡±: ë°°ìš°ìž ìˆ˜ìž” ì—˜ë”, ì•„ë“¤ ê°•ì£¼ìš´</p>
+              <p>ì†Œì†: ë³´ë“¬ì»´í¼ë‹ˆ (ëŒ€í‘œ)</p>
+              <p>ë¬´ì¡°ê±´ ì¹­ì°¬ë§Œ í•˜ëŠ” êµìœ¡ì„ í•˜ì§„ ì•ŠìŠµë‹ˆë‹¤.
+                ë•Œë¡œëŠ” ê±°ì ˆì„ í†µí•´ ì˜³ê³  ê·¸ë¥¸ í–‰ë™ì„ ì•Œë ¤ì£¼ì–´, ìš°ë¦¬ê°€ ì‚¬ëŠ” ì´ ë³µìž¡í•œ ë„ì‹œí™˜ê²½ì— ì ì‘í•˜ì—¬
+                í•¨ê»˜ ìž˜ ì‚´ì•„ê°ˆ ìˆ˜ ìžˆê²Œ ë³´ë“¬ì–´ ì£¼ëŠ” êµìœ¡ì„ ë³´ë“¬êµìœ¡ì´ë¼ê³  ë§í•©ë‹ˆë‹¤.   
+                ë³´ë“¬êµìœ¡ì€ ë³´í˜¸ìžë‹˜ê³¼ ë°˜ë ¤ê²¬ì´ í•­ìƒ í–‰ë³µí•˜ê¸°ë¥¼ ë°”ëžë‹ˆë‹¤.</p>
                 
               </div>
           </div>
@@ -78,7 +78,7 @@
         }) 
 
 
-        /*--------ÁÁ¾Æ¿ä--------------*/
+        /*--------ì¢‹ì•„ìš”--------------*/
         document.addEventListener('DOMContentLoaded', function() {
          var likeButton = document.getElementById('like-button');
         likeButton.addEventListener('click', function() {
@@ -87,7 +87,7 @@
        });
         }, false);
 
-        /*ÁÁ¾Æ¿ä °³¼ö*/
+        /*ì¢‹ì•„ìš” ê°œìˆ˜*/
         $('.counter').each(function() {
   var $this = $(this),
       countTo = $this.attr('data-count');

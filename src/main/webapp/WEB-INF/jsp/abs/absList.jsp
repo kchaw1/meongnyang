@@ -1,26 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>«‡µø¿¸πÆ∞° ∏ÆΩ∫∆Æ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ÌñâÎèôÏ†ÑÎ¨∏Í∞Ä Î¶¨Ïä§Ìä∏</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"/>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   
-  <!-- ∏ÆΩ∫∆Æ css -->
+  <!-- Î¶¨Ïä§Ìä∏ css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absList.css"/>">
   
-  <!-- ∆˘∆Æ -->
+  <!-- Ìè∞Ìä∏ -->
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   
   <!-- header,footer  css -->
   <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
-  
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 </head>
 <body>
 <c:import url="../common/header.jsp" />
@@ -31,13 +32,13 @@
           <div class="two--col">
             <div class="is-item has--img">
               <figure class="the-img">
-                <img src="http://www.topstarnews.net/news/photo/first/201702/img_242167_1.jpg" alt="">
+                <img src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="">
               </figure>
             </div>
             <div class="is-item has--content">
               <div class="is-item--inner">
                 <h1 class="name"><span class="nameSpan">${b.name}</span></h1>
-                <small>${b.category} «‡µø¿¸πÆ∞°</small>
+                <small>${b.category} ÌñâÎèôÏ†ÑÎ¨∏Í∞Ä</small>
                 <hr>
                 <button type="button" class="btn btn-primary btn-sm" onclick="doDetail(${b.no})">More</button>
                 <p>${b.greetings}</p>

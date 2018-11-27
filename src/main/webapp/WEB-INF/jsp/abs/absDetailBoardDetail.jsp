@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
@@ -13,10 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
  	
- 	 <!-- °Ô½ÃÆÇ»ó¼¼ css -->
+ 	 <!-- ê²Œì‹œíŒìƒì„¸ css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetailBoardDetail.css"/>">
 
-<!-- ÆùÆ® -->
+<!-- í°íŠ¸ -->
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   
 </head>
@@ -34,31 +34,31 @@
             <nav>
               <ul>
                 <li>
-                  <a href="ABSDetail.html">°æ·Â ¹× ÀÎ»ç¸»</a>
+                  <a href="absDetail.mn?no=${map.b.no}">ê²½ë ¥ ë° ì¸ì‚¬ë§</a>
                 </li>
                 <li>
-                  <a href="#">1:1 È­»óÃ¤ÆÃÇÏ±â</a>
+                  <a href="#">1:1 í™”ìƒì±„íŒ…í•˜ê¸°</a>
                 </li>
                 <li>
-                  <a href="ABSDetailBoard.html">Áú¹®°Ô½ÃÆÇ</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}">ì§ˆë¬¸ê²Œì‹œíŒ</a>
                 </li>
               </ul>
             </nav>
           </div>
         </header>
         <section class="content">
-          <h1>»ó¼¼ Á¤º¸</h1>
+          <h1>ìƒì„¸ ì •ë³´</h1>
           <hr>
           <div>
-            <h4>ÀÛ¼ºÀÚ:${map.b.absWriter}</h4>
+            <h4>ì‘ì„±ì:${map.b.absWriter}</h4>
             <hr>
-            <h4>Á¦¸ñ:${map.b.absTitle}</h4>
+            <h4>ì œëª©:${map.b.absTitle}</h4>
   
-            <span>³»¿ë: ${map.b.absContent}</span>
+            <span>ë‚´ìš©: ${map.b.absContent}</span>
           </div><br>
           
-          <button type="button" class="btn btn-primary" id="rev">ÀÌÀüÀ¸·Î</button>
-			<button type="button" class="btn btn-danger" id="del">»èÁ¦</button>
+          <button type="button" class="btn btn-primary" id="rev">ì´ì „ìœ¼ë¡œ</button>
+			<button type="button" class="btn btn-danger" id="del">ì‚­ì œ</button>
           <div>
             <h3 class="heading">Comment</h3>
               <div class="con">

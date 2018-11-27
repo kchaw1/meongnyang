@@ -1,3 +1,4 @@
+ 
  header{
       font-family: 'Jua', sans-serif;
 
@@ -65,7 +66,6 @@ small:after {
   display: flex;
   align-items: center;
   margin-top: 150px;
-
 }
 
 figure {
