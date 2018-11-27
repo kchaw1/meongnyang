@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,7 @@
             <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
-            <p class="logo">강형욱</p>
+            <p class="logo">${map.a.name}</p>
             <nav>
               <ul>
                 <li>
@@ -53,23 +54,26 @@
               <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
-     전체
+     				전체	
                   </div>
               </div>
               <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>번호</th>
                   <th>제목</th>
                   <th>글쓴이</th>
                   <th>등록일</th>
+                  <th>조회수</th>
+                  <th>답변여부</th>
                 </tr>  	 
                      <c:forEach var="b" items="${map.b}">
                         <tr class="clickde">
-                        	<td>${b.absNo}</td>
                         	<td>${b.absTitle}</td>
                         	<td>${b.absWriter}</td>
+                            <td><fmt:formatDate value="${b.absRegDate}" pattern="yyyy-MM-dd" /></td>
+                        	<td>${b.absViewCnt}</td>
+                            <td>${b.absComplete}</td>                        	
                         </tr>
                       </c:forEach>
                 </thead>
@@ -110,7 +114,7 @@
               <hr>
               <div id="wirte"> 
                   <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button type="button" class="btn btn-primary" id="write">글쓰기</button>
+                  <button class="btn btn-primary" id="write">글쓰기</button>
                 </div>
             
             </div>		
@@ -123,7 +127,7 @@
         
         }) 
         $("#write").click(function(){
-            	 location.href="absDetailBoardWrite.mn";
+            	 location.href="absDetailBoardWrite.mn?no="+${map.a.no};
              }) 
        
         </script>

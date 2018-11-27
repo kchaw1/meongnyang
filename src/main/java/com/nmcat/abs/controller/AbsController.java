@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nmcat.abs.service.AbsService;
 import com.nmcat.repository.domain.Abs;
+import com.nmcat.repository.domain.board.QnABoard;
 
 @RequestMapping("/abs")
 @Controller
@@ -43,4 +44,17 @@ public class AbsController {
 		Map<String,Object> map = absService.absboardlist(no);
 		model.addAttribute("map",map);
 	}
+	
+	@RequestMapping("/write.mn")
+	public String write(QnABoard qnaboard)throws Exception {
+		System.out.println(qnaboard.getAbsTitle());
+		qnaboard.setAbsWriter("victory");
+		absService.write(qnaboard);
+		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
+
+	}
+	@RequestMapping("/absDetailBoardWrite.mn")
+	public void absBoardwriteForm(){
+	}
+	
 }

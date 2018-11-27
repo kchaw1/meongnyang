@@ -48,22 +48,28 @@
             </nav>
           </div>
         </header>
+        
+       	  <form action="write.mn" method="post">
         <section class="content">
           <h1>질문 하기</h1>
           <hr>
-          <div>
-            <h4>작성자:</h4>
-            <hr>
-            제목: <input type="text" id="titleBox"/>
-          </div><br>
+          	<div>
+            	<h4>작성자:${user.id}</h4>
+            	<input type="hidden" name="absWriter" value="${user.id}"/>
+            	<input type="hidden" name="no" value="${param.no}">
+            	<hr>
+               	제목: <input type="text" id="titleBox" name="absTitle"/>
+               	
+          	</div><br>
           
           <div class="smt" style="z-index: 110">
-              <textarea name="content" id="summernote" value=""></textarea>
+	            <textarea name="absContent" id="summernote" value=""></textarea>
           </div>
-          <button type="button" class="btn btn-primary" id="write">작성완료</button>
+    	      <button  class="btn btn-primary" id="write">작성완료</button>
 
           </section>
 
+          </form>  
         <script>
           $('.hamb-wrap').on('click', function(){
             $(this).parent().children('p').toggle();

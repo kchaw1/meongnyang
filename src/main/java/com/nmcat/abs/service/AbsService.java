@@ -1,6 +1,5 @@
 package com.nmcat.abs.service;
 
-import java.util.List;
 import java.util.Map;
 
 import com.nmcat.repository.domain.Abs;
@@ -15,4 +14,7 @@ public interface AbsService {
 	Map<String, Object> detailIntro(int no);
 
 	Map<String, Object> absboardlist(int no);
+	
+
+	void write(QnABoard qnaboard);
 }

@@ -54,11 +54,19 @@ public class AbsServiceImpl implements AbsService{
 
 		System.out.println(no);
 		List<QnABoard> list = absMapper.selectAbsBoard(no);
-		System.out.println("뭘까용"+list);
+		Abs detail = absMapper.selectAbsDetail(no);
 		map.put("b", list);
+		map.put("a",detail);
 		return map;
 		
 	}
+
+	@Override
+	public void write(QnABoard qnaboard) {
+		System.out.println(qnaboard);
+		absMapper.insertAbsBoard(qnaboard);
+	}
+
 
 
 

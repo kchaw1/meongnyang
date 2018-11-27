@@ -14,4 +14,6 @@ public interface AbsMapper {
 	Abs selectAbsDetail(int no); 
 	
 	List<QnABoard> selectAbsBoard(int no);
+	
+	void insertAbsBoard(QnABoard qnaboard);
 }

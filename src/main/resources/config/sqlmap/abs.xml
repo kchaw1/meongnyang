@@ -51,6 +51,15 @@
 		   where no=#{no}
 
 	</select>
- 	
+	<!-- 행동전문가 질문게시판 질문 등록 -->
+ 	<insert id="insertAbsBoard" parameterType="QnABoard">
+		<!-- <selectKey keyProperty="gaNo" resultType="int" order="BEFORE">
+			select cf_s_gallery_no.nextval from dual
+		</selectKey> -->
+		insert into mn_absboard
+		(abs_writer,abs_title,abs_content,no) 
+		values(#{absWriter}, #{absTitle},#{absContent},#{no})
+
+	</insert>
 	
 </mapper>
