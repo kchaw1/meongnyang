@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/community/communityMain.css"/>">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href = "communityMain.css" rel="stylesheet">
+    <link rel="stylesheet" href="headerfooter.css">
+    
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -30,9 +29,318 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+   
 </head>
+<style>
+body{
+    background-color: #fafafa;
+}
+.mainContainer{
+    margin-top: 104px;
+    width: 100%;
+    padding: 20px;
+    min-height: 600px;
+}
+.contentsContainer{
+    
+    margin: auto;
+    width: 63%;
+   
+}
+.left{
+    
+    float: left;
+    width: 60%;
+    
+    min-height: 585px;
+}
+
+
+.contentContainer{
+    /*margin-top은 그냥 구분을 위해서 나중에 지워두 된다.*/
+    margin-top: 20px;
+    width: 100%;
+    min-height: 500px;
+    border-bottom: 1px solid #efefef;
+
+}
+.top{
+    border-bottom: 1px solid #efefef;
+    BACKGROUND-COLOR: WHITE;
+    padding: 16px;
+    top: 0;
+
+    height: 60px;
+}
+.mid{
+    
+    border: 1px solid #efefef;
+    min-height: 500px;
+    background-color: white;
+}
+.bottom{
+    BACKGROUND-COLOR: WHITE;
+    padding: 16px;
+    padding-right: 20px;
+    bottom: 0;
+    border-bottom: 1px solid #efefef;
+    height: 50px;
+    vertical-align: bottom;
+}
+
+/*우측 스크롤할시 움직이는 부분들 fixed*/
+
+.profileAndName{
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-top: 145px;
+    right: 0;
+    top: 0;
+    margin-right: 360px;
+    position: absolute;
+    position: fixed;
+    width: 310px;
+    height: 60px;
+    
+}
+
+/*우측 상단 프로필 사진 사이즈 조절*/
+.imgSize{
+    border: 1px solid #e6e6e6;
+    margin-top: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+/*우측 상단 유저이름 크기, 두께 조절*/
+.userName{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    padding-left: 10px;
+    color: #262626;
+    font-weight: 600;
+}
+
+.writeForm{
+    
+    margin-top: 215px;
+    right: 0;
+    top: 0;
+    margin-right: 360px;
+    position: absolute;
+    position: fixed;
+    width: 310px;
+    height: 160px;
+    border: 1px solid rgb(226, 219, 219);
+    background-color: white;
+    border-radius: 5px;
+}
+.containSizeControl{
+    padding: 20px;
+}
+.decoration{
+    
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+    height: 15px;
+    background-color: rgb(65, 192, 142, 0.7);
+    
+
+
+}
+.decoration2{
+    text-align: center;
+    font-family: Do Hyeon;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 21px;
+    overflow-wrap: break-word;
+    
+    
+}
+.decoration3{
+    font-family: Do Hyeon;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 21px;
+    overflow-wrap: break-word;
+}
+.writeBtn{
+    padding-top: 1px;
+    margin-left: 31px;
+    border: 1px solid black;
+    width: 202px;
+    height: 34px;
+    display: block;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 32px;
+    text-transform: uppercase;
+    background-color: rgb(65, 192, 142,0.7);
+    color: rgb(255, 255, 255);
+    fill: rgb(255, 255, 255);
+    border-color: #6BF3D9;
+    border-radius: 10px;
+    font-family: Do Hyeon;
+}
+
+.putSomething{
+    padding: 14px;
+    margin-top: 395px;
+    right: 0;
+    top: 0;
+    margin-right: 360px;
+    position: absolute;
+    position: fixed;
+    width: 310px;
+    height: 134px;
+    border: 1px solid rgb(226, 219, 219);
+    background-color: white;
+    border-radius: 5px;
+}
+.mnFooter{
+    color: #c7c7c7;
+    padding-left: 10px;
+    margin-top: 560px;
+    right: 0;
+    top: 0;
+    margin-right: 360px;
+    position: absolute;
+    position: fixed;
+    width: 310px;
+    height: 160px;
+   
+}
+/*컨텐츠 상단  프로필 이름 날짜 부분 css*/
+.locationC{
+    margin-top: -15.5px;
+}
+/*날짜 시,분까지 넣는다면*/
+.regDate{
+    color: rgb(204, 204, 204);
+    /* position: absolute;
+    padding-top: 20px;
+    padding-left: 293px; */
+}
+
+/*컨텐츠 하단 댓글, 조회수, 카테고리 들어갈 부분 css*/
+.category{
+    float: left;
+    font-size: 16px;
+    color: gray;
+}
+.forCnt{
+    float: right;
+    color: gray;
+}
+.commentCnt{
+    margin-left: 30px;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.viewCnt{
+    float: right;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*카테고리 select*/
+.select {
+  position: relative;
+  display: block;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: black;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Arrow */
+.select::after {
+  border-top: 1px solid rgb(226, 219, 219);
+  border-right:  1px solid rgb(226, 219, 219);
+  border-bottom:  1px solid rgb(226, 219, 219);
+
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: white;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+.select::after {
+  transition: .25s all ease;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+
+  border: 1px solid rgb(226, 219, 219);
+  background-color: white;
+  background-image: none;
+}
+#slct{
+    font-weight: 600;
+   font-size: 15px;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.forContent{
+    padding: 16px;
+}
+.title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 30px;
+    font-size: 30px;
+    font-weight: 600;
+
+    
+}
+.content{
+font-size: 16px;
+line-height: 30px;
+}
+/*컨텐츠에서 img css*/
+.forImg{
+   width: 700.69px;
+}
+/*슬라이드 이미지*/
+
+
+
+
+</style>
 <body>
- <header class="dogcat">
+        <header class="dogcat">
                 <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
                 <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
                 <nav>
@@ -59,7 +367,6 @@
 
               <div class = "mainContainer">
     <!-- 컨텐츠 나중에 c:forEach들어갈 부분입니다. -->
- <c:forEach var = "b" items="${list}">
 <!-- 일반글용 -->
                    <div class = "contentsContainer">
                         <div class = "left">
@@ -69,16 +376,16 @@
                                     <div class = "locationC">
                                       <img src="./img/userImg.jpg" class ="imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
-                                      <span class = "userName">${b.comWriter}</span>
+                                      <span class = "userName">Aran자매님</span>
                                       <!--  컨텐츠 상단 날짜 -->
-                                      <span class = "regDate"> ·<fmt:formatDate value = "${b.comRegDate}" pattern="yyyy-MM-dd"/></span>
+                                      <span class = "regDate"> ·2018-11-27 11:20 AM</span>
                                     </div>
                                 </div>
                                 <div class = "mid">
                                     <!-- 이곳에 내용이 들어갑니다. -->
                                     <div class = "forContent">
-                                        <h1 class ="title">{b.comTitle}</h1>
-                                        <div class = "content">${b.comContent}</div>
+                                        <h1 class ="title">#진짜 사나이</h1>
+                                        <div class = "content">충성입니다.</div>
                                     </div>
                                     <!-- 이곳에 이미지가 들어 갑니다. -->
                                     <div class = "forImg"></div>
@@ -86,9 +393,9 @@
                                 </div>
                                 <!-- 이곳에 카테고리와 댓글 이모지, 조회수 이모지, (글수정 삭제(예정))가 들어갑니다. -->
                                 <div class = "bottom">
-                                      <div class = "category">${b.comCategory}</div>
+                                      <div class = "category">자유게시판</div>
                                       <div class = "forCnt">
-                                      <div class = "commentCnt"><i class="fas fa-comment-dots"></i> ${b.comViewCnt} Comments</div>
+                                      <div class = "commentCnt"><i class="fas fa-comment-dots"></i> 2 Comments</div>
                                       <div class = "viewCnt"><i class="fas fa-eye"></i> 1 View</div>
                                       </div>
   
@@ -98,7 +405,7 @@
                           
                           </div> <!--EndLeft-->
                     </div> <!--EndcontentsContainer여기까지가 좌측 컨텐츠의 전부!-->
-</c:forEach>
+
 
 <!-- 사진용 -->
                   <div class = "contentsContainer">
@@ -276,5 +583,7 @@
 
 
 </script>
+   
+    
 </body>
 </html>
