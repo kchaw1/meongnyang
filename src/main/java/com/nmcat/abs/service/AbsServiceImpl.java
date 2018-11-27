@@ -69,6 +69,7 @@ public class AbsServiceImpl implements AbsService{
 
 	@Override
 	public Map<String, Object> absBoardDetail(int absNo) {
+		absMapper.AbsBoardViewCnt(absNo);
 		Map<String, Object> map = new HashMap<>();
 		
 		QnABoard board = absMapper.selectAbsBoardByNo(absNo);
@@ -77,6 +78,11 @@ public class AbsServiceImpl implements AbsService{
 		
 		
 		return map;
+	}
+
+	@Override
+	public void absBoardDelete(int absNo) {
+		absMapper.AbsDeleteBoard(absNo);
 	}
 
 

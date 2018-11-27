@@ -58,7 +58,7 @@
           </div><br>
           
           <button type="button" class="btn btn-primary" id="rev">이전으로</button>
-
+			<button type="button" class="btn btn-danger" id="del">삭제</button>
           <div>
             <h3 class="heading">Comment</h3>
               <div class="con">
@@ -114,6 +114,9 @@
 
             $("#rev").click(function(){
             	 location.href="absDetailBoard.mn?no="+ ${map.b.no};
+             }) 
+            $("#del").click(function(){
+            	 location.href="absBoardDelete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
              }) 
           
         </script>

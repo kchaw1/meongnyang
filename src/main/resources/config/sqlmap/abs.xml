@@ -67,5 +67,16 @@
 		values(#{absWriter}, #{absTitle},#{absContent},#{no})
 
 	</insert>
-	
+	<!--행동전문가 질문게시판 삭제 -->
+	  <!-- 게시글 삭제 -->
+	<delete id="AbsDeleteBoard" parameterType="int">
+		delete from mn_absboard
+			  where abs_no = #{absNo}
+	</delete>
+	<!-- 게시글 조회수 -->
+ 	<update id="AbsBoardViewCnt" parameterType="int">
+    	update mn_absboard
+    	   set abs_view_cnt = abs_view_cnt + 1
+    	 where abs_no = #{absNo}
+    </update>	
 </mapper>

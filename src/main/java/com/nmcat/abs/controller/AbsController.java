@@ -67,5 +67,10 @@ public class AbsController {
 	public void absDetailBoardDetail(int absNo, Model model) {
 		model.addAttribute("map", absService.absBoardDetail(absNo));
 	}
-	
+	@RequestMapping("/absBoardDelete.mn")
+	public String absBoardDelete(int absNo,QnABoard qnaboard,int no) {
+		absService.absBoardDelete(absNo);
+		return "redirect:absDetailBoard.mn?no="+no;
+		
+	}
 }

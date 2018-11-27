@@ -21,4 +21,9 @@ public interface AbsMapper {
 	
 	//행동전문가 질문 등록
 	void insertAbsBoard(QnABoard qnaboard);
+	
+	//조회수
+	int AbsBoardViewCnt(int absNo);
+	
+	void AbsDeleteBoard(int absNo);
 }
