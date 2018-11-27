@@ -30,7 +30,7 @@
             <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
-            <p class="logo">강형욱</p>
+            <p class="logo"></p>
             <nav>
               <ul>
                 <li>
@@ -50,11 +50,11 @@
           <h1>상세 정보</h1>
           <hr>
           <div>
-            <h4>작성자:</h4>
+            <h4>작성자:${map.b.absWriter}</h4>
             <hr>
-            <h4>제목: 우리애들이 말을 해요</h4>
+            <h4>제목:${map.b.absTitle}</h4>
   
-            <span>내용: 우리애들이 말을 하기 시작했어요!!!!!!!</span>
+            <span>내용: ${map.b.absContent}</span>
           </div><br>
           
           <button type="button" class="btn btn-primary" id="rev">이전으로</button>
@@ -113,7 +113,7 @@
 
 
             $("#rev").click(function(){
-            	 location.href="absDetailBoard.mn";
+            	 location.href="absDetailBoard.mn?no="+ ${map.b.no};
              }) 
           
         </script>

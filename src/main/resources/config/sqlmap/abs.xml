@@ -51,6 +51,12 @@
 		   where no=#{no}
 
 	</select>
+	<!--행동전문가 질문게시판 상세 -->
+	 <select id="selectAbsBoardByNo" parameterType="int" resultMap="qnaMap">
+    	select *
+    	  from mn_absboard
+    	 where abs_no = #{absNo} 
+    </select>	
 	<!-- 행동전문가 질문게시판 질문 등록 -->
  	<insert id="insertAbsBoard" parameterType="QnABoard">
 		<!-- <selectKey keyProperty="gaNo" resultType="int" order="BEFORE">

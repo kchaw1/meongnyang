@@ -17,4 +17,7 @@ public interface AbsService {
 	
 
 	void write(QnABoard qnaboard);
+	
+	Map<String, Object> absBoardDetail(int absNo); //질문게시판 상세
+
 }

@@ -67,6 +67,18 @@ public class AbsServiceImpl implements AbsService{
 		absMapper.insertAbsBoard(qnaboard);
 	}
 
+	@Override
+	public Map<String, Object> absBoardDetail(int absNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		QnABoard board = absMapper.selectAbsBoardByNo(absNo);
+	
+		map.put("b", board);
+		
+		
+		return map;
+	}
+
 
 
 

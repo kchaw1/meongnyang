@@ -27,24 +27,27 @@ public class AbsController {
 		model.addAttribute("map", map);
 		
 	}
+	//행동전문가 팝업창 메인
 	@RequestMapping("/absDetailMain.mn")
 	public void detail(int no, Model model) throws Exception {
 		
 		model.addAttribute("map", absService.detail(no));
 		
 	}
+	//행동전문가 팝업창 상세
 	@RequestMapping("/absDetail.mn")
 	public void detailIntro(int no, Model model) {
 
 		model.addAttribute("map", absService.detail(no));
 	}
 	
+	//행동전문가 질문게시판 
 	@RequestMapping("/absDetailBoard.mn")
 	public void absboardlist(int no, Model model) {
 		Map<String,Object> map = absService.absboardlist(no);
 		model.addAttribute("map",map);
 	}
-	
+	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")
 	public String write(QnABoard qnaboard)throws Exception {
 		System.out.println(qnaboard.getAbsTitle());
@@ -53,8 +56,16 @@ public class AbsController {
 		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
 
 	}
+	//행동전문가 질문게시판 질문 등록 폼
 	@RequestMapping("/absDetailBoardWrite.mn")
 	public void absBoardwriteForm(){
+		
+	}
+	
+	//행동전문가 질문게시판 질문 상세
+	@RequestMapping("/absDetailBoardDetail.mn")
+	public void absDetailBoardDetail(int absNo, Model model) {
+		model.addAttribute("map", absService.absBoardDetail(absNo));
 	}
 	
 }

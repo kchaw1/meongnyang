@@ -13,7 +13,12 @@ public interface AbsMapper {
 	//행동전문가 상세팝업창
 	Abs selectAbsDetail(int no); 
 	
+	//행동전문가 개별 질문게시판 리스트
 	List<QnABoard> selectAbsBoard(int no);
 	
+	//행동전문가 질문게시판 상세
+	QnABoard selectAbsBoardByNo(int no);
+	
+	//행동전문가 질문 등록
 	void insertAbsBoard(QnABoard qnaboard);
 }
