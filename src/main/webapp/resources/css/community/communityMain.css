@@ -1,5 +1,5 @@
 body{
-    background-color: #fafafa;
+ background-color: #fafafa;
 }
 .mainContainer{
     margin-top: 104px;
@@ -62,7 +62,7 @@ body{
     margin-top: 145px;
     right: 0;
     top: 0;
-    margin-right: 360px;
+    margin-right: 300px;
     position: absolute;
     position: fixed;
     width: 310px;
@@ -92,7 +92,7 @@ body{
     margin-top: 215px;
     right: 0;
     top: 0;
-    margin-right: 360px;
+    margin-right: 300px;
     position: absolute;
     position: fixed;
     width: 310px;
@@ -160,7 +160,7 @@ body{
     margin-top: 395px;
     right: 0;
     top: 0;
-    margin-right: 360px;
+    margin-right: 300px;
     position: absolute;
     position: fixed;
     width: 310px;
@@ -175,7 +175,7 @@ body{
     margin-top: 560px;
     right: 0;
     top: 0;
-    margin-right: 360px;
+    margin-right: 300px;
     position: absolute;
     position: fixed;
     width: 310px;
@@ -299,4 +299,3 @@ line-height: 30px;
 .forImg{
    width: 700.69px;
 }
-/*슬라이드 이미지*/

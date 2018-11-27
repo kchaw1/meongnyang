@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>ore" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value="/resources/css/community/detailPage.css"/>">
+<c:import url="../common/headerfooterCSSJS.jsp"/>
 
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <!-- include libraries(jQuery, bootstrap) -->
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -28,7 +29,6 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="headerfooter.css">
 
 <!-- 부트스트랩 -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -204,7 +204,7 @@ z-index: -1;
                     <p style = "font-family: 'Jua'">${communityBoard.comTitle}</p>
                     <div class= "justforHr1"></div>
                     <br>
-                   <div class = "category"><i class="fas fa-user-circle"> ${communityBoard.comWriter}<span class="regDate"> ·<fmt:formatDate value="${communityBoard.comTitle}" pattern="yyyy-MM-dd HH:mm"/></span></i></div>
+                   <div class = "category"><i class="fas fa-user-circle"> ${communityBoard.comWriter}<span class="regDate"> ·<fmt:formatDate value="${communityBoard.comRegDate}" pattern="yyyy-MM-dd HH:mm"/></span></i></div>
                     <br>
                     <div class= "writeContainer">
                         <div class = "writeMargin">
@@ -269,8 +269,8 @@ z-index: -1;
                             <div class = "main-column3">
                                     <div class = "imgsize2"></div>
                                     <div class = "goWrite">작성자세요?</div>
-                                    <button class= "writeBtn">글 수정하기</button>
-                                    <button class= "writeBtn">글 삭제하기</button>
+                                    <button class= "writeBtn btnDelete" id = "${communityBoard.comNo}">글 수정하기</button>
+                                    <button class= "writeBtn btnEdit" id = "${communityBoard.comNo}">글 삭제하기</button>
                                 </div>
                             
                         </div>
@@ -292,5 +292,19 @@ z-index: -1;
             <div class="chat-wrapper" data-headline="Chat">
             </div>
     </footer>
+<script>
+//클릭시 글 삭제
+$("button.btnDelete").click(function() {
+	var no = $(this).attr('id');
+	console.log(no);
+	location.href = "editWriteForm.mn?comNo="+no;
+});
+//클릭시 글 수정
+$("button.btnEdit").click(function() {
+	var no = $(this).attr('id');
+	location.href = "delete.mn?comNo="+no;
+});
+</script>
+    
 </body>
 </html>
