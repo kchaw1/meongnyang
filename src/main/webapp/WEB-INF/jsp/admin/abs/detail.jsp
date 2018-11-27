@@ -182,7 +182,7 @@
 									<div class="view-cnt-area">${post.comViewCnt}</div>
 									<div class="rec-cnt-area">${post.comRecCnt}</div>
 									<div class="category-area">${post.comCategory}</div>
-									<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${post.comNo}' />'">이동</button></div>
+									<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${post.comNo}'/>'">이동</button></div>
 								</div>
 								</c:forEach>
 						</div>
@@ -197,12 +197,14 @@
 									<div class="cmt-content-area">댓글내용</div>
 									<div class="no-area">게시글 번호</div>
 								</div>
+								<c:forEach var="cmt" items="${myComments}">
 								<div class="comment-content">
-									<div class="no-area">1</div>
-									<div class="cmt-content-area">댓글내용</div>
-									<div class="no-area">게시글 번호</div>
-									<div class="btn-area"><button class="btn btn-default btn-xs">이동</button></div>
+									<div class="no-area">${cmt.comcNo}</div>
+									<div class="cmt-content-area">${cmt.comcContent}</div>
+									<div class="no-area">${cmt.comNo}</div>
+									<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${cmt.comNo}'/>'">이동</button></div>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
