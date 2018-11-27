@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -51,10 +52,50 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 		mapper.authApprove(no);
 	}
 	
+	// 탈퇴
+	@Override
+	public void deleteMember(int no) {
+		mapper.deleteMember(no);
+	}
+	
 	// 경력조회
 	@Override
 	public List<Career> selectCareer(String id) {
 		return mapper.selectCareerById(id);
+	}
+	
+	// 검색
+	@Override
+	public List<Member> search(Member member) {
+		return mapper.searchABSByName(member);
+	}
+	
+	// 자격증 이름 조회
+	@Override
+	public List<License> licenseName(String id) {
+		return mapper.selectLicenceOriName(id);
+	}
+	
+	// 정렬
+	@Override
+	public List<Member> listById(Member member) {
+		return mapper.selectABSListSortedbyId(member);
+	}
+	@Override
+	public List<Member> listByName(Member member) {
+		return mapper.selectABSListSortedbyName(member);
+	}
+	@Override
+	public List<Member> listBySignUpDate(Member member) {
+		return mapper.selectABSListSortedbySignUpDate(member);
+	}
+	@Override
+	public List<Member> listByScore(Member member) {
+		return mapper.selectABSListSortedbyScore(member);
+	}
+	@Override
+	public List<Member> listByPoint(Member member) {
+		return mapper.selectABSListSortedbyPoint(member);
 	}
 
 }

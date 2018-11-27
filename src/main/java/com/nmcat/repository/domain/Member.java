@@ -28,6 +28,7 @@ public class Member {
 	private String authState;
 	private String greetings;
 	private int point;
+	private int sort;
 	
 	
 	// 페이지 번호

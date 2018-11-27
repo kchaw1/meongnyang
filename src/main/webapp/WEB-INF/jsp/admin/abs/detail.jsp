@@ -105,11 +105,12 @@
 							<h1>첨부파일</h1>
 							<!-- <div><span style="margin-right:20px;">animal.jpg</span><button class="btn btn-default">다운</button></div> -->
 							<table>
-								<tr>
-									<td>animal.jpg</td>
-									<td><button class="btn btn-default btn-xs">다운</button></td>
-								</tr>
-
+								<c:forEach var="l" items="${licenseList}">
+									<tr>
+										<td>${l.lifOriName}</td>
+										<td><button class="btn btn-default btn-xs">다운</button></td>
+									</tr>
+								</c:forEach>
 							</table>
 						</div>
 

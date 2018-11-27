@@ -47,6 +47,15 @@
 		<result column="career_content" property="careerContent" />
 </resultMap>
 
+<resultMap id="licenseMap" type="License">
+		<result column="license_no" property="licenseNo" />
+		<result column="id" property="id" />
+		<result column="lif_sys_name" property="lifSysName" />
+		<result column="lif_path" property="lifPath" />
+		<result column="lif_ori_name" property="lifOriName" />
+		<result column="lif_size" property="lifSize" />
+</resultMap>
+
 
 <!-- 전문가 리스트 -->
 <select id="selectABSList" parameterType="Member" resultMap="memberMap">
@@ -54,6 +63,42 @@
 	  from mn_member
 	 where type = 2 and auth_state = #{authState}
 	 order by no asc 
+	 limit #{begin}, 10
+</select>
+
+<select id="selectABSListSortedbyId" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type = 2 and auth_state = #{authState}
+	 order by id asc 
+	 limit #{begin}, 10
+</select>
+<select id="selectABSListSortedbyName" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type = 2 and auth_state = #{authState}
+	 order by name asc 
+	 limit #{begin}, 10
+</select>
+<select id="selectABSListSortedbySignUpDate" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type = 2 and auth_state = #{authState}
+	 order by sign_up_date asc 
+	 limit #{begin}, 10
+</select>
+<select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type = 2 and auth_state = #{authState}
+	 order by score desc 
+	 limit #{begin}, 10
+</select>
+<select id="selectABSListSortedbyPoint" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type = 2 and auth_state = #{authState}
+	 order by point desc 
 	 limit #{begin}, 10
 </select>
 		
@@ -85,16 +130,40 @@
 <!-- 	 where id = {id}  -->
 <!-- </select> -->
 
+<!-- 승인 -->
 <update id="authApprove" parameterType="int">
 	update mn_member
 	   set auth_state = 'y'
      where no = #{no}	   
 </update>
 
+<!-- 경력조회 -->
 <select id="selectCareerById" parameterType="string" resultMap="careerMap">
 	select *
 	  from mn_member_career
 	 where id = #{id}
+</select>
+
+<!-- 탈퇴처리 -->
+<delete id="deleteMember" parameterType="int">
+	delete from mn_member
+		  where no = #{no}
+</delete>
+
+<!-- 검색 -->
+<select id="searchABSByName" parameterType="Member" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where name like CONCAT('%',#{name},'%') and type='2' and auth_state = #{authState}
+	 order by no asc 
+	 limit #{begin}, 10
+</select> 
+
+<!-- 자격증 파일이름 호출 -->
+<select id="selectLicenceOriName" parameterType="string" resultMap="licenseMap">
+	select *
+	  from mn_member_license
+	 where id = #{id}  
 </select>
 
 </mapper>

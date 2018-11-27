@@ -1,5 +1,6 @@
-.no-area,
+	.no-area,
     .name-area,
+    .id-area,
     .active-area,
     .point-area {
       float: left;
@@ -16,10 +17,22 @@
       width: 15%;
     }
 
-    #search-area {
+    .search-area {
       float: right; 
       margin:0;
     }
+    
+    .search, .btn-area {
+    	float: left;
+    	margin-right: 5px;
+    	margin-bottom: 30px;
+    }
+    
+/*     #y-keyword, #n-keyword { */
+/*     	float:left; */
+/*     	width: 80%; */
+/*     	margin-right: 5px; */
+/*     } */
 
   .header-area a { text-decoration: none; }
   .header-area a { text-decoration: none; color: black;}
