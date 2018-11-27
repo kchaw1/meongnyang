@@ -7,10 +7,9 @@
   <div class="animate"><img src="<c:url value='/resources/img/common/teddy_food_dribbble.gif'/>" /></div>
   <nav>
     <ul class="nav navbar-nav">
-      <li><a href="<c:url value='/resources/img/common/teddy_food_dribbble.gif'/>">반려인 커뮤니티</a></li>
+      <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
-      <li><a href="">포인트 충전</a></li>
       <li class="dropdown">  
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
@@ -27,7 +26,7 @@
 		  <li><a href="#">내 등급</a></li>
 		  <li><a href="#">내 활동</a></li>
 		  <li><a href="#">쪽지함</a></li>
-		  <li><a href="#">포인트 충전</a></li>
+		  <li><a href="#1" class="pointcharge">포인트 충전</a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
         </ul>
@@ -38,6 +37,14 @@
 </header>
 
 <script>
+$("a.pointcharge").click(function(e){
+	//alert("충전")
+    var left = (screen.width-1000) /2
+    var top = (screen.height-600) /2
+    window.open(
+    	"<c:url value='/member/pointcharge.mn'/>", "payment", "width=1000, height=600, left="+left+", top="+top
+    )
+  })
 	var ws = null;
 	$(function() {
 		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');

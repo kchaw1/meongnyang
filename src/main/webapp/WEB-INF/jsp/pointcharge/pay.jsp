@@ -67,6 +67,10 @@
      </tr>
    </table>
  </div>
-
+ <script>
+ 	$("button.cancel").click(function() {
+ 		window.close();
+ 	})
+ </script>
 </body>
 </html>
