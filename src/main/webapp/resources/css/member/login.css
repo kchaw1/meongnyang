@@ -124,28 +124,13 @@ img {
   #email {
   	width: 70%;
   }
-
+  
   .btn {
-    /* position: relative;
-    float: left;
-    width: calc(40% - 8px);
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid rgba(0,0,0,0.05);
-    padding: 12px;
-    border-radius: 2px;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0 3%;
-    text-align: center; */
     position: relative;
     width: calc(16% - 8px);
-    /* margin: 0 3%; */
-    /* width:50%; */
     background-color: #1CB94E;
     border: none;
     outline: none;
-    /* color: #fff; */
     font-size: 12px;
     font-weight: normal;
     padding: 12px;
@@ -160,6 +145,15 @@ span[id^='warn'] {
     color: #ff7680;
 }
 
+#sendMail {
+  	position: relative;
+    width: calc(16% - 8px);
+    float: left;
+  }
+  
+.form-control {
+	
+}
   
 /* img {
     width: 100%;

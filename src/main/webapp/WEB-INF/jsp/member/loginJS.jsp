@@ -32,6 +32,56 @@ $("button#loginform").click(function(){
 		}
 	}) //done
 })
-
-
+</script>
+<script>
+	$(document).on('click', '.browse', function() {
+		var file = $(this).parent().parent().parent().find('.file');
+		file.trigger('click');
+	});
+	$(document).on('change', '.file', function() {
+		$(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+		var formData = new FormData();
+		  console.dir($("input[name=userProfile]")[0].files[0]); 
+		 formData.append("file", $("input[name=userProfile]")[0].files[0]);
+		 
+		 var reader = new FileReader();
+		 reader.onload = function () {
+			 $(".browse").attr("src", reader.result);
+			 $.ajax({
+				 url : false,
+				 type : "POST",
+				 processData: false,
+				 contentType: false,
+				 data : formData
+			 }).done(function (data) {
+				 
+			 });
+		 }
+		 reader.readAsDataURL($("input[name=userProfile]")[0].files[0]);
+	}) 
+	/* $("#profile").click(function() {
+		$("#file").click();
+	});
+	
+	$("#file").on('change', function() {
+		alert("파일이 첨부되었습니다.");
+		var formData = new FormData();
+		console.dir($("input[name=file]")[0].files[0]);
+		formData.append("file", $("input[name=file]").[0].files[0]);
+		
+		var reader = new FileReader();
+		reader.onload = function () {
+			$("#profile").attr("src", reader.result);
+			$.ajax({
+				url : false,
+				type : "POST",
+				processData: false,
+				contentType: false,
+				data : formData
+			}).done(function (data){
+				
+			});
+		}
+		reader.readAsDataURL($("input[name=file]").[0].files[0]);
+	}) */
 </script>

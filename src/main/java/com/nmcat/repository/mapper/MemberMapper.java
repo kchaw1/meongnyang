@@ -12,4 +12,7 @@ public interface MemberMapper {
 	public Member selectMemeberIdandPass(Login login);
 	
 	public List<String> selectId();
+	
+	// 프로필 사진 파일
+	void insertProfile(Member member);
 } // end class

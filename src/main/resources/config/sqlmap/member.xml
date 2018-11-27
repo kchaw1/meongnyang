@@ -6,17 +6,25 @@
 		<result column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="pass" property="pass"/>
-		<!-- <result column="email" property="email"/> -->
-		<result column="image_name" property="ImageName"/>
-		<result column="image_path" property="ImagePath"/>
-		<result column="image_size" property="ImageSize"/>
+		<result column="email" property="email"/>
+		<result column="category" property="category"/>
+		<result column="image_name" property="imageName"/>
+		<result column="image_path" property="imagePath"/>
+		<result column="image_size" property="imageSize"/>
 	</resultMap>
 	
 	<insert id="insertNewMemberNofile" parameterType="Member">
 		insert into mn_member (
-			id, name, pass
+			id, name, pass, image_name, image_path, image_size, email, category
 			) values (
-				#{id}, #{name}, #{pass}
+				#{id}, 
+				#{name}, 
+				#{pass}, 
+				#{imageName}, 
+				#{imagePath}, 
+				#{imageSize}, 
+				#{email},
+				#{category}
 			)
 	</insert>
 	
@@ -24,11 +32,17 @@
 		select * from mn_member
 			where id = #{id} and
 				  pass = #{pass}
+				  
 	</select>
 	
 	<select id="selectId" resultType="string">
 		select id
 			from mn_member
 	</select>
+	
+	<insert id="insertProfile" parameterType="Member">
+		insert into mn_member(image_name, image_path, image_size) values
+		(#{ImageName}, #{ImagePath}, #{ImageSize})
+	</insert>
 	
 </mapper>

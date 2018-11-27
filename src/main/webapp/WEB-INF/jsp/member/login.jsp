@@ -89,19 +89,21 @@
         <h4 class="modal-title" id="myModalLabel">반려인 회원가입</h4>
       </div>
       <div class="modal-body">
-      	<form action="<c:url value="/member/signup.mn"/>"  name="signup">
+      	<form action="<c:url value="/member/signupform.mn"/>">
           <div id="login-box">
               <div class="sign_up">
                   <div id="sign">
                       <div id="pro">
                           <div id="poto">
                               <span>프로필 사진</span><br>
+                             <!--  <form method="post" enctype="multipart/form-data" id="fileUploadForm" name="fileUploadForm" > -->
                               <input id="file" type="file" accept=".gif, .jpg, .png" />
                               <div class="img_wrap">
                                   <label for="image1">
-                                      <img id="img" />
+                                      <img id="img"/>
                                   </label>
                               </div>
+                             <!--  </form> -->
                           </div>
                           <hr>
                           <div class="form-group">
@@ -141,25 +143,44 @@
                                             </span>
                                         </div>
                           				<hr>
-			                         	 <span id="animal">반려동물 : <select id="catdog">
+			                         	 <span id="animal">반려동물 : <select id="catdog" name="category">
 			                                  <option value="0">선택</option>
-			                                  <option value="1">개</option>
-			                                  <option value="2">고양이</option>
-			                                  <option value="3">ALL</option>
+			                                  <option value="dog">개</option>
+			                                  <option value="cat">고양이</option>
+			                                  <option value="all">ALL</option>
 			                              </select></span>
 			                         </form>
 			                      </div>
 			                  </div>
 			              </div>
 			          </div>
-			      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="newmember">회원가입</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
-    </div>
-  </div>
-</div>
+      
+      <div class="modal fade" id="certify">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title">이메일 인증</h3>
+				</div>
+				<div class="modal-body">
+					<h4>
+						입력한 이메일로 인증번호를 보냈습니다.
+					</h4><br>
+					<div class="input-group input-group-lg">
+                         <span class="input-group-addon"><i class="fas fa-key"></i></span>
+                         <input id="certifyNo" type="text" class="form-control" name="certifyNo" placeholder="인증번호">
+                    </div>
+				</div>
+				<div class="modal-footer text-center">
+					<button id="auth" type="button" class="btn btn-primary btn-lg">인증하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 <c:import url="signupJS.jsp" />
   <script>
       Kakao.init('a48660e1ad76fecc7e41245f473d42cb');

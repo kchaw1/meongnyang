@@ -7,3 +7,15 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/member/sweetalert2.min.css"/>">
 <%-- <script src="<c:url value="/resources/js/member/login.js" />"></script> --%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+	#sendMail {
+  	position: relative;
+    width: calc(16% - 8px);
+    float: left;
+  }
+  
+  .file {
+  	visibility: hidden;
+  	position: absolute;
+  }
+</style>
