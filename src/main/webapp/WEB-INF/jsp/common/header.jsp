@@ -15,11 +15,12 @@
         <i class="fas fa-user-circle fa-2x"></i>
         </a>
         <ul class="dropdown-menu pull-right" role="menu" id="drop">
-        <%-- <c:choose>
-        </c:choose> --%>
-        <c:if test="${empty user.id}">
-          <li><a href="<c:url value='/member/login.mn'/>">로그인</a></li>        
-        </c:if>
+        <c:choose>
+        <c:when test="${empty user.id}">
+          <li><a href="<c:url value='/member/login.mn'/>">로그인</a></li>                
+          <li><a href="<c:url value='/member/signup.mn'/>">회원가입</a></li>                
+        </c:when>
+        <c:otherwise>
           <li><a href="<c:url value='/login/login.mn'/>">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
 		  <li><a href="#">쪽지함</a></li>
@@ -29,6 +30,9 @@
 		  <li><a href="#1" class="pointcharge">포인트 충전</a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
+        </c:otherwise>
+        </c:choose>
+          
         </ul>
       </li>
      </ul>

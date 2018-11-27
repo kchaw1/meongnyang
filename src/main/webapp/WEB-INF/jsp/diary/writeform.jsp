@@ -116,7 +116,7 @@
 		console.log(now)
 		let checked = $("input[type='radio']:checked");
 		let title = $("input[name='drTitle']");
-		let content = $("[name='drContent']");
+		let content = $("textarea[name='drContent']");
 		//alert(content)
 		//alert(radio)
 		//alert($("input[type='radio']:checked").val())
@@ -139,7 +139,8 @@
 			})
 	 		
 	 		title.val("");
-	 		content.val("");
+	 		$("div.note-editable").html("");
+	 		$("input#all").prop("checked", true)
 	 		checked.attr("checked", false);
 	 		$(".months li").find("a[data-value="+drMonth+"]").removeClass("selected")
 	 		makeCalendar(now, map)
