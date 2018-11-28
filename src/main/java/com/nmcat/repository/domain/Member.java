@@ -18,6 +18,7 @@ public class Member {
 	private String email;
 	private int absLikeCnt;
 	private int score;
+	private String gradeName;
 	private String gradeNo;
 	private String imageName;
 	private String imagePath;

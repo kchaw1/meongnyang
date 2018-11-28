@@ -194,3 +194,30 @@ i#show {
     opacity: 0;
   }
 }
+
+/*paging */
+.pagination {
+	display : inline-block;
+}
+.pagination a {
+	color : black;
+	float: left;
+	padding : 8px 16px;
+	text-decoration: none;
+	position: relative;
+	text-align: center;
+}
+.pagination a.active {
+	background-color : #4caf50;
+	color : white;
+}
+.pagination a:hover:not(.active) {
+	background-color : #ddd;
+}
+
+/* div#paging {
+	margin-top : 60px;
+} */
+a#now {
+	background-color : #8ccfa3;
+}

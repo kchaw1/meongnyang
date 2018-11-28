@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>List of Friends</title>
 <c:import url="../common/headerfooterCSSJS.jsp"/>
-<c:import url="friendCSSJS.jsp"/>
+<c:import url="friendCSS.jsp"/>
 </head>
 <body>
 <c:import url="../common/header.jsp"/>
@@ -66,87 +66,7 @@
               </div>
             </div>
           </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
-                  <i class="far fa-comments fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
-                  <i class="fas fa-address-book fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
-                  <i class="far fa-comments fa-2x"></i>
-                </a>  
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
-                  <i class="fas fa-address-book fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
-                  <i class="far fa-comments fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
-                  <i class="fas fa-address-book fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
+        
         </div>
         <div class="line2">
 
@@ -170,110 +90,10 @@
         </div>
       </div>
       <div class="list">
-        <div class="line1">
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="plusfriend" title="친구 추가">
-                  <i class="fas fa-user-plus fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="blockuser" title="회원 차단">
-                  <i class="fas fa-user-slash fa-2x"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
-                  <i class="fas fa-user-plus fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
-                  <i class="fas fa-user-plus fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="친구 추가">
-                  <i class="fas fa-user-plus fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="line2">
 
-        </div>
+      </div>
+      <div id="paging" class="text-center">
+      
       </div>
     </div>
     <!-- 차단된 회원 리스트 -->
@@ -321,87 +141,6 @@
               </div>
             </div>
           </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock-open fa-2x" id="hidden"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock-open fa-2x" id="hidden"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock-open fa-2x" id="hidden"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="line2">
 
@@ -410,39 +149,6 @@
     </div>
   </div>
 </div>
-<script>
-	var friend = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-    $(function () {
-   		friend.onopen = function() {
-			console.log("바디 웹소켓 서버 접속 성공");
-		}
-    	
-      $('[data-toggle="tooltip"]').tooltip()
-    
-      $("a.tab").click(function(){
-        var id = $(this).attr("href").substring(1)
-        // alert(id)
-        $("div#"+id).siblings().css("display", "none")
-        $("div#"+id).css("display", "block")
-      })
-      
-      $("i.fa-lock").mouseenter(function(){
-        $(this).attr("id", "hidden")
-        $("i.fa-lock-open").attr("id", "show");
-      })
-      
-      $("i.fa-lock-open").mouseleave(function(){
-        $("i.fa-lock-open").attr("id", "hidden")
-        $("i.fa-lock").removeAttr("id");
-      })
-      
-     
-    }) //$function
-    
-    $("a#plusfriend").click(function() {
-    	//console.log($(this))
-    	friend.send("friend:")
-    })
-  </script>
+<c:import url="./friendJS.jsp"/>
 </body>
 </html>

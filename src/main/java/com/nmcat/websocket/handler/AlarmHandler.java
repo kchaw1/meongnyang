@@ -39,7 +39,9 @@ public class AlarmHandler extends TextWebSocketHandler {
 		Set<String> keys = users.keySet();
 		if(msg.startsWith("friend:")) {
 			for(String key : keys) {
+				System.out.println("key : " +key);
 				WebSocketSession wss = users.get(key);
+				System.out.println("wss : " +wss);
 				wss.sendMessage(new TextMessage("친구 추가했어요"));				
 			}
 		} else {

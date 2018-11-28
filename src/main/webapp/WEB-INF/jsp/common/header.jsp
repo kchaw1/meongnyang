@@ -24,7 +24,7 @@
           <li><a href="<c:url value='/login/login.mn'/>">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
 		  <li><a href="#">쪽지함</a></li>
-		  <li><a href="#">내 등급</a></li>
+		  <li><a href="<c:url value='/member/signup.mn'/>">내 친구</a></li>
 		  <li><a href="#">내 활동</a></li>
 		  <li><a href="#">쪽지함</a></li>
 		  <li><a href="#1" class="pointcharge">포인트 충전</a></li>
@@ -52,6 +52,7 @@ $("a.pointcharge").click(function(e){
 	var ws = null;
 	$(function() {
 		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+		//ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 		ws.onopen = function() {
 			console.log("헤더 웹소켓 서버 접속 성공");
 		}
@@ -59,6 +60,9 @@ $("a.pointcharge").click(function(e){
 		ws.onmessage = function(evt){
 			alert(evt.data)
 		}
+		ws.onclose = function() {
+	   	    console.log("헤더 웹소켓 연결 종료.");
+	    };
 		
 	}) //function
 	$("a#logout").click(function() {
