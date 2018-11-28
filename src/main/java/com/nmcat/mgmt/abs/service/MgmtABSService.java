@@ -1,19 +1,18 @@
 package com.nmcat.mgmt.abs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
-import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtABSService {
 
-	List<Member> list(Member member); // 리스트
-	LoginHistory recentLogin(String id); // 최근접속일
+	Date recentLogin(String id); // 최근접속일
 	Member detail(int no); // 상세
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트
@@ -24,6 +23,7 @@ public interface MgmtABSService {
 	List<License> licenseName(String id);// 자격증 이름
 	
 	// 오름차순정렬
+	List<Member> list(Member member); // 리스트
 	List<Member> listById(Member member);
 	List<Member> listByName(Member member);
 	List<Member> listBySignUpDate(Member member);

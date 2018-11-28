@@ -159,7 +159,7 @@
 			            +  "<div class='id-area'>"+ result.yList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.yList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.yList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.yRLDList[i] + "</div>"
+			            +  "<div class='recent-area'>"+ result.yRLDList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.yList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.yList[i].point +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.yList[i].no + "' data-id='" + result.yList[i].id + "'>상세</button> "
@@ -188,11 +188,11 @@
 			            +  "<div class='id-area'>"+ result.nList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.nList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.nList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.nRLDList[i] + "</div>"
+			            +  "<div class='recent-area'>"+ result.nRLDList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.nList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.nList[i].point +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.nList[i].no + "' data-id='" + result.nList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.nList[i].no +">탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.nList[i].no + "' data-id='" + result.nList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -220,7 +220,7 @@
 			            +  "<div class='id-area'>"+ result.searchYList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.searchYList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.searchYList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.searchYRLDList[i] + "</div>"
+			            +  "<div class='recent-area'>"+ result.searchYRLDList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.searchYList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.searchYList[i].point +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchYList[i].no + "' data-id='" + result.searchYList[i].id + "'>상세</button> "
@@ -252,7 +252,7 @@
 		    	    +  "<div class='id-area'>"+ result.searchNList[i].id +"</div>"
 		            +  "<div class='name-area'>"+ result.searchNList[i].name +"</div>"
 		            +  "<div class='sign-area'>"+ result.searchNList[i].signUpDate +"</div>"
-		            +  "<div class='recent-area'>"+ result.searchNRLDList[i] + "</div>"
+		            +  "<div class='recent-area'>"+ result.searchNRLDList[i].loginDateTime + "</div>"
 		            +  "<div class='active-area'>"+ result.searchNList[i].score +"</div>"
 		            +  "<div class='point-area'>"+ result.searchNList[i].point +"</div>"
 		            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchNList[i].no + "' data-id='" + result.searchNList[i].id + "'>상세</button> "
@@ -442,7 +442,7 @@
 	
 	// 삭제 버튼 클릭
 	$(document).on("click", ".delete", function() {
-		if (confirm($(this).data("id") + "회원을 탈퇴처리 하시겠습니까?") == true){    //확인
+		if (confirm($(this).data("id") + " 회원을 탈퇴처리 하시겠습니까?") == true){    //확인
 			location.href = "delete.mn?no=" + $(this).data("no");
 		}else{   //취소
 		    return;

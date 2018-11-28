@@ -148,7 +148,7 @@
 <!-- /내림차순 정렬 -->
 		
 <!-- 최근접속일 -->		
-<select id="selectRecentLogin" parameterType="string" resultType="LoginHistory">
+<select id="selectRecentLogin" parameterType="string" resultType="date">
 	select max(login_date_time)
   	  from mn_login_history
  	 where login_id = #{loginId}

@@ -1,11 +1,11 @@
 package com.nmcat.repository.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
-import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -13,7 +13,7 @@ import com.nmcat.repository.domain.board.CommunityBoard;
 public interface MgmtABSMapper {
 	
 	List<Member> selectABSList(Member member); // ABS 리스트
-	LoginHistory selectRecentLogin(String id); // 최근접속일
+	Date selectRecentLogin(String id); // 최근접속일
 	Member selectABSDetail(int no); // ABS 디테일
 	List<CommunityBoard> selectBoardById(String id); // 내가 쓴 게시글
 	List<CommunityComment> selectCommentById(String id);

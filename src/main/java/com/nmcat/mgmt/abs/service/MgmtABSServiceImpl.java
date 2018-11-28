@@ -1,5 +1,6 @@
 package com.nmcat.mgmt.abs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
-import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -25,14 +25,10 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	public List<Member> list(Member member) {
 		return mapper.selectABSList(member);
 	}
-//	@Override
-//	public List<Member> list(String auth) {
-//		return mapper.selectABSList(auth);
-//	}
 	
 	// 최근접속일
 	@Override
-	public LoginHistory recentLogin(String id) {
+	public Date recentLogin(String id) {
 		return mapper.selectRecentLogin(id);
 	}
 	

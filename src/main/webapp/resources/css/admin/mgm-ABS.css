@@ -45,6 +45,14 @@
 		overflow: scroll;
 		overflow-x: hidden;
 	}
+	
+	.content-area {
+		margin-bottom: 5px;
+	}
+	
+	.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+		font-family: 'Jua', sans-serif;
+	}
 
   .header-area a { text-decoration: none; }
   .header-area a { text-decoration: none; color: black;}
