@@ -3,11 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- sweetalert -->
-<script src="<c:url value="/resources/js/diary/sweetalert2.all.min.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/resources/css/diary/sweetalert2.min.css"/>">
+<script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
-//var friend = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-var friend = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+var friend = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+//var friend = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var friend = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 $(function () {
 	friend.onopen = function() {
 		console.log("바디 웹소켓 서버 접속 성공");
@@ -35,6 +36,7 @@ function showMemberList(pageNo){
 			str += '<div class="line'+i+'">'
 			let memberArray = Object.keys(map);
 			let list = null;
+			
 			for(let key of memberArray) {
 				if(key == "list"+i){
 					list = map[key];

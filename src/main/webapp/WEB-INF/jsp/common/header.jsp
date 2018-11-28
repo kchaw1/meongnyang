@@ -51,8 +51,9 @@ $("a.pointcharge").click(function(e){
   })
 	var ws = null;
 	$(function() {
-		//ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-		ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+		//ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+		//ws = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 		ws.onopen = function() {
 			console.log("헤더 웹소켓 서버 접속 성공");
 		}
@@ -61,7 +62,7 @@ $("a.pointcharge").click(function(e){
 			//alert(evt.data)
 			if(evt.data.startsWith("friend:")){
 				let id = evt.data.substring("friend:".length)
-				alert(id)
+				//alert(id)
 				$("span.headeralarm").attr("id", "show");
 				$("span.friend").attr("id", "show")
 			}

@@ -53,25 +53,26 @@ public class AlarmHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		String callerId = member.getId();
 		System.out.println("callerId:" +callerId);
-		Set<String> keys = users.keySet();
-		System.out.println("keys: "+ keys);
+		//Set<String> keys = users.keySet();
+		//System.out.println("keys: "+ keys);
 		
 		if(msg.startsWith("friend:")) {
 			String calleeId = msg.substring("friend:".length());
 			System.out.println("callerId:" +calleeId);
 			//users map 중에 실시간 calleeid 없으면 메소드 중단
 			if(users.get(calleeId)==null) return;
-			
-			for(String key : keys) {
-				System.out.println("key : " +key);
-				if(key.equals(callerId)) continue;
-				if(key.equals(calleeId)) {
-					WebSocketSession wss = users.get(key);
-					System.out.println("wss : " +wss);
-					wss.sendMessage(new TextMessage("friend:" + callerId));				
-					return;
-				}
-			}
+			WebSocketSession wss = users.get(calleeId);
+			wss.sendMessage(new TextMessage("friend:" + callerId));	
+//			for(String key : keys) {
+//				System.out.println("key : " +key);
+//				if(key.equals(callerId)) continue;
+//				if(key.equals(calleeId)) {
+//					WebSocketSession wss = users.get(key);
+//					System.out.println("wss : " +wss);
+//					wss.sendMessage(new TextMessage("friend:" + callerId));				
+//					return;
+//				}
+//			}
 		} else {
 			session.sendMessage(new TextMessage("쪽지 왔어요"));
 		}
