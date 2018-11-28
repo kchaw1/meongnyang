@@ -69,6 +69,9 @@
 
           </section>
 
+   					<input id="imageBoard" name="fileUrl" type="hidden"/>
+			    	<input id="imagesysname" name="sysName" type="hidden"/>
+				    	<input id="imagepath" name="path" type="hidden"/>
           </form>  
         <script>
           $('.hamb-wrap').on('click', function(){
@@ -84,9 +87,40 @@
              height: 300,                 // set editor height
              minHeight: null,             // set minimum height of editor
              maxHeight: null,             // set maximum height of editor
-             focus: true
+             focus: true,
+             callbacks: {
+            		onImageUpload : function(files, editor, welEditable) {
+               			console.log(files);
+               			console.log(this);
+               			for(let i=files.length -1; i>=0; i--){
+               				sendFile(files[i], this);
+               			}
+               		}
+               	} // callbacks
           })
            });
+          
+          function sendFile(file, ele) {
+          	var form_data = new FormData();
+          	console.log("form_data", form_data)
+          	form_data.append('file', file);
+          	$.ajax({
+          		data : form_data,
+          		type : "POST",
+          		url : "<c:url value='/abs/uploadfile.mn'/>",
+          		cache : false,
+          		contentType : false,
+          		enctype : "multipart/form_data",
+          		processData : false,
+          		success : function(aFile) {
+          			console.log(aFile.url);
+          			$("input#imageBoard").val(aFile.url)
+          			$("input#imagesysname").val(aFile.absfSysName)
+          			$("input#imagepath").val(aFile.absfPath)
+          			$(ele).summernote("editor.insertImage", aFile.url);
+          		}
+          	})//ajax
+          }
         </script>
 </body>
 </html>

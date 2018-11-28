@@ -27,6 +27,12 @@
 		<result column="abs_complete" property="absComplete"/>
 		
 	</resultMap>
+	<resultMap id="absFileMap" type="AbsBoardFile">
+		<result column="abs_no" property="absNo"/>
+		<result column="absf_sys_name" property="absfSysName"/>
+		<result column="absf_path" property="absfPath"/>
+		
+	</resultMap>
 	
 	
 	<!-- 행동전문가 리스트 보여주기 -->
@@ -66,6 +72,14 @@
 		(abs_writer,abs_title,abs_content,no) 
 		values(#{absWriter}, #{absTitle},#{absContent},#{no})
 
+	</insert>
+	<!-- 질문게시판 파일 등록 -->
+	<insert id="insertAbsBoardFile" parameterType="AbsBoardFile">
+		insert into mn_absf_file (
+			abs_no, absf_sys_name, absf_path
+		) values (
+			#{absNo},#{absfSysName},#{absfPath}
+		)
 	</insert>
 	<!--행동전문가 질문게시판 삭제 -->
 	  <!-- 게시글 삭제 -->

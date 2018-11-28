@@ -136,7 +136,7 @@
              
              $("#complete").click(function(){
             		 
-            	 if(${map.b.no}==${user.no}){
+            	 if('${map.b.no}'=='${user.no}'){
         			 alert("답변이 채택되었습니다");
         	    	 location.href="absBoardComplete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
     	    	 }else{

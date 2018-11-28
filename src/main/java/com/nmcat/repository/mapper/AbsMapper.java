@@ -3,6 +3,7 @@ package com.nmcat.repository.mapper;
 import java.util.List;
 
 import com.nmcat.repository.domain.Abs;
+import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsMapper {
@@ -28,5 +29,8 @@ public interface AbsMapper {
 	//답변채택
 	int AbsBoardComplete(int absNo);
 	
+	//게시글 삭제
 	void AbsDeleteBoard(int absNo);
+	
+	void insertAbsBoardFile(AbsBoardFile file);
 }

@@ -3,6 +3,7 @@ package com.nmcat.abs.service;
 import java.util.Map;
 
 import com.nmcat.repository.domain.Abs;
+import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsService {
@@ -16,10 +17,13 @@ public interface AbsService {
 	Map<String, Object> absboardlist(int no);
 	
 
-	void write(QnABoard qnaboard);
+	void write(QnABoard qnaboard,AbsBoardFile file);
 	
 	Map<String, Object> absBoardDetail(int absNo); //질문게시판 상세
 	void absBoardDelete(int absNo);
 	
 	void absComplete(int absNo);
+	
+	void uploadFile(AbsBoardFile file);
+
 }

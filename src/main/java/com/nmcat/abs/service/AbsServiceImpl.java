@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Abs;
+import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -62,9 +63,13 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public void write(QnABoard qnaboard) {
+	public void write(QnABoard qnaboard,AbsBoardFile file) {
 		System.out.println(qnaboard);
 		absMapper.insertAbsBoard(qnaboard);
+		file.setAbsNo(qnaboard.getAbsNo());
+		
+		absMapper.insertAbsBoardFile(file);
+		
 	}
 
 	@Override
@@ -89,6 +94,12 @@ public class AbsServiceImpl implements AbsService{
 	public void absComplete(int absNo) {
 
 		absMapper.AbsBoardComplete(absNo);
+	}
+
+	@Override
+	public void uploadFile(AbsBoardFile file) {
+		absMapper.insertAbsBoardFile(file);
+		
 	}
 
 

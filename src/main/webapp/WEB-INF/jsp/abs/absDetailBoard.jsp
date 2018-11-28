@@ -73,7 +73,16 @@
                         	<td>${b.absWriter}</td>
                             <td><fmt:formatDate value="${b.absRegDate}" pattern="yyyy-MM-dd" /></td>
                         	<td>${b.absViewCnt}</td>
-                            <td>${b.absComplete}</td>                        	
+                            <td>
+                            <c:choose>
+                            <c:when test="${b.absComplete=='n'}">
+                            	<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: red;"></span>                           	
+                            </c:when>
+                      		<c:otherwise>
+                      			<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green;"></span>
+                      		</c:otherwise>
+                            </c:choose>
+                            </td>                        	
                         </tr>
                       </c:forEach>
                 </thead>
