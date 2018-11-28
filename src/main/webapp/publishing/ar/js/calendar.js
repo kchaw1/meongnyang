@@ -68,6 +68,7 @@ function makeCalendar(now){
         no ++;
       }
     }
+    //str.substring("fri".length)
     // str += "<td>&nbsp;</td>"
     str += "</tr>"
   }

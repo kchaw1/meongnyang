@@ -2,6 +2,7 @@ package com.nmcat.repository.mapper;
 
 import java.util.List;
 
+import com.nmcat.repository.domain.Friend;
 import com.nmcat.repository.domain.Member;
 
 public interface FriendMapper {
@@ -11,4 +12,6 @@ public interface FriendMapper {
 	public int selectCntAllMembers();
 	
 	public List<Member> selectAllMembersOneLine(int lineBegin);
+	
+	public void insertNewRequest(Friend friend);
 }

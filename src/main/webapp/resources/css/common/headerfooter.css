@@ -94,8 +94,8 @@ footer.dogcat  div {
 
 /* 알림 표시 관련*/
 
-.nav li:hover a{
-  background-color: white;
+.nav li a:hover {
+  background-color: rgb(94, 94, 94, 0.1);
 }
 
 span.headeralarm {

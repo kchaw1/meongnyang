@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.Friend;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MemberPageResult;
 import com.nmcat.repository.mapper.FriendMapper;
@@ -36,6 +37,11 @@ public class FriendServiceImpl implements FriendService{
 		map.put("pageResult", pageResult);
 		
 		return map;
+	}
+
+	@Override
+	public void addFriend(Friend friend) {
+		mapper.insertNewRequest(friend);
 	}
 
 }

@@ -11,7 +11,7 @@
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
       <li class="dropdown">
-		<span class="headeralarm" id="show">1</span>
+		<span class="headeralarm" id="hidden">1</span>
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
         </a>
@@ -24,10 +24,10 @@
         <c:otherwise>
           <li><a href="<c:url value='/member/MyPage.mn'/>">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
-		  <li><a href="<c:url value='/member/msg.mn'/>">쪽지함<span class="lialarm" id="hidden">1</span></a></li>
-		  <li><a href="<c:url value='/friend/friendlist.mn'/>">내 친구<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="<c:url value='/member/msg.mn'/>">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
+		  <li><a href="<c:url value='/friend/friendlist.mn'/>">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
 		  <!-- <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li> -->
-		  <li><a href="#1" class="pointcharge">포인트 충전<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="#1" class="pointcharge">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
         </c:otherwise>
@@ -51,14 +51,20 @@ $("a.pointcharge").click(function(e){
   })
 	var ws = null;
 	$(function() {
-		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-		//ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+		//ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+		ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 		ws.onopen = function() {
 			console.log("헤더 웹소켓 서버 접속 성공");
 		}
 		
 		ws.onmessage = function(evt){
-			alert(evt.data)
+			//alert(evt.data)
+			if(evt.data.startsWith("friend:")){
+				let id = evt.data.substring("friend:".length)
+				alert(id)
+				$("span.headeralarm").attr("id", "show");
+				$("span.friend").attr("id", "show")
+			}
 		}
 		ws.onclose = function() {
 	   	    console.log("헤더 웹소켓 연결 종료.");

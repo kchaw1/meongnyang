@@ -32,4 +32,20 @@
 		 where type = '1'
 	</select>
 	
+	<resultMap id="friendMap" type="Friend">
+		<result column="friend_no" property="friendNo"/>
+		<result column="caller_id" property="callerId"/>
+		<result column="callee_id" property="calleeId"/>
+		<result column="call_date" property="callDate"/>
+		<result column="answer_date" property="answerDate"/>
+	</resultMap>
+	
+	<insert id="insertNewRequest" parameterType="Friend">
+		insert into mn_friend(
+			caller_id, callee_id, call_date
+		) values(
+			#{callerId}, #{calleeId}, #{callDate}
+		)
+	</insert>
+	
 </mapper>
