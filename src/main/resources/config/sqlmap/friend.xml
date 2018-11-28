@@ -19,6 +19,7 @@
 		 order by name desc
 		 limit #{begin}, 12
 	</select>
+	
 	<select id="selectAllMembersOneLine" parameterType="int" resultMap="memberMap">
 		select * from mn_member
 		 where type='1'
