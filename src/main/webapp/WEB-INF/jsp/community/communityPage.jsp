@@ -55,6 +55,20 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-family: 'Jua', sans-serif;
 	font-weight: 100; */
 }
+.profileAndName{
+   
+    padding-bottom: 10px;
+    margin-top: 165px;
+    right: 0;
+    top: 0;
+    margin-right: 300px;
+    position: absolute;
+    position: fixed;
+    width: 310px;
+    height: 60px;
+    
+}
+
 
 
 </style>
@@ -112,7 +126,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                 <!-- 이곳에 프로필 사진과 이름, 날짜가 들어갑니다. -->
                                 <div class = "top">
                                     <div class = "locationC">
-                                      <img src="드럽게 안들어가네 프로필 사진" class ="imgSize">
+                                      <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
                                       <span class = "userName">Aran자매님</span>
                                       <!--  컨텐츠 상단 날짜 -->
@@ -126,7 +140,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                         <div class = "content">아하핳하하하하하하</div>
                                     </div>
                                     <!-- 이곳에 이미지가 들어 갑니다. -->
-                                    <div class = "forImg"><img src="./img/이유비.PNG" width="557px"></div>
+                                    <div class = "forImg"><img src="<c:url value = "/resources/img/community/이유비.PNG"/>" width="100%"></div>
                                     
                                 </div>
                                 <!-- 이곳에 카테고리와 댓글 이모지, 조회수 이모지, (글수정 삭제(예정))가 들어갑니다. -->
@@ -152,7 +166,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                 <!-- 이곳에 프로필 사진과 이름, 날짜가 들어갑니다. -->
                                 <div class = "top">
                                     <div class = "locationC">
-                                      <img src="./img/userImg.jpg" class ="imgSize">
+                                       <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
                                       <span class = "userName">Aran자매님</span>
                                       <!--  컨텐츠 상단 날짜 -->
@@ -166,10 +180,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                         <div class = "content">충성입니다.</div>
                                     </div>
                                     <!-- 이곳에 이미지가 들어 갑니다. -->
-                                    <div class = "forImg">
-                                            
-
-                                    </div>
+                                    <div class = "forImg"><img src="<c:url value = "/resources/img/community/이유비2.PNG"/>" width="100%"></div>
                                     
                                 </div>
                                 <!-- 이곳에 카테고리와 댓글 이모지, 조회수 이모지, (글수정 삭제(예정))가 들어갑니다. -->
@@ -194,7 +205,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                 <!-- 이곳에 프로필 사진과 이름, 날짜가 들어갑니다. -->
                                 <div class = "top">
                                     <div class = "locationC">
-                                      <img src="./img/userImg.jpg" class ="imgSize">
+                                      <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
                                       <span class = "userName">Aran자매님</span>
                                       <!--  컨텐츠 상단 날짜 -->
@@ -208,11 +219,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                         <div class = "content">충성입니다.</div>
                                     </div>
                                     <!-- 이곳에 이미지가 들어 갑니다. -->
-                                    <div class = "forImg">
-                                        
-                                        
-
-                                    </div>
+                                    <div class = "forImg"><img src="<c:url value = "/resources/img/community/이유비3.PNG"/>" width="100%"></div>
                                     
                                 </div>
                                 <!-- 이곳에 카테고리와 댓글 이모지, 조회수 이모지, (글수정 삭제(예정))가 들어갑니다. -->

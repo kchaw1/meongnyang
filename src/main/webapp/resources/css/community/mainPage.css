@@ -37,7 +37,7 @@ body{
         font-family: 'Noto Sans KR', sans-serif;
     }
     .main-items{
-        margin-top: 80px;
+        margin-top: 130px;
     }
     .main-items2{
         margin-top:40px;
@@ -117,6 +117,9 @@ body{
     p{
         line-height: 6.5px;
       
+    }
+    img{
+    margin-top: 20px;
     }
     .btn{
         margin-top: 40px;
@@ -252,10 +255,7 @@ body{
     div.progress-bar{
         background-color: #f2809f;
     }
-    .pclass{
-        padding-left: 5px;
-        line-height: 20px;
-    }
+    
     .crowdImg{
         border-radius: 5px;
     }

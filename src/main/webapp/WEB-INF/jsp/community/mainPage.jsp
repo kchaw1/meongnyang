@@ -28,6 +28,12 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 </head>
+<style>
+.pclass{
+color: gray;
+ line-height: 20px;
+}
+</style>
 <body>
 	<c:import url = "../common/header.jsp"/>
 
@@ -42,7 +48,7 @@
             <div class = "main-column">
                 
                 <div class = "main-items recruit-item">
-                        <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
+                        <img src="<c:url value = "/resources/img/community/line.png"/>">
                         <div class = "leftRight">
                                 <h2 class = "leftRight1" style="font-family: 'Jua'">크라우드 펀딩</h2>
                                 <button class ="btn2 leftRight1">더보기 </button>
@@ -73,7 +79,7 @@
                 
                 </div>
                 <div class = "main-items5">
-                    <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
+                    <img src="<c:url value = "/resources/img/community/line.png"/>">
                     <div class = "leftRight">
                     <h1 class = "leftRight1" style="font-family: 'Jua'">최신동영상</h1>
                     <button class ="btn1 leftRight1">더보기 </button>
@@ -95,7 +101,7 @@
                     <img src="<c:url value = "/resources/img/community/main-outlink-store.png"/>" class ="forimg2">
                     </div>
                     <div class = "main-items">
-                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
+                            <img src="<c:url value = "/resources/img/community/line.png"/>">
                             <div>
                             <div class = "font2">커뮤니티</div>
                             
@@ -109,7 +115,7 @@
                         <p style="font-family: 'Jua'">${b.comTitle}</p>
                         <!-- 이클립스주기 -->
                         <p>${b.comContent}</p>
-                        <p style="font-family: 'Jua'">${b.comWriter} <span><fmt:formatDate value = "${b.comRegDate}" pattern="yyyy-MM-dd"/></span></p>
+                        <p class = "pclass" style="font-family: 'Jua'">${b.comWriter} <span><fmt:formatDate value = "${b.comRegDate}" pattern="yyyy-MM-dd"/></span></p>
                         <hr>
                        </c:forEach>
                         
@@ -121,7 +127,7 @@
             <!-- 세번쨰 파트 -->
             <div class = "main-column main-column3">
                     <div class = "main-items">
-                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
+                            <img src="<c:url value = "/resources/img/community/line.png"/>">
                             <div class = "leftRight">
                                     <h2 class = "leftRight1" style="font-family: 'Jua'">마이펫 다이어리</h2>
                                     <button class ="btn4 leftRight1">더보기 </button>
@@ -152,7 +158,7 @@
                         <!-- 나중 이름과 메달부분 가운데 정렬 하기 -->
                        
                             <div class = "main-items main-items2">
-                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>" class = "formargin2"> 
+                            <img src="<c:url value = "/resources/img/community/line.png"/>" class = "formargin2"> 
                                     <div class = "leftRight">
                                             <h2 class = "leftRight1" style="font-family: 'Jua'">랭킹</h2>
                                             <button class ="btn5 leftRight1">더보기 </button>

@@ -252,10 +252,7 @@ body{
     div.progress-bar{
         background-color: #f2809f;
     }
-    .pclass{
-        padding-left: 5px;
-        line-height: 20px;
-    }
+    
     .crowdImg{
         border-radius: 5px;
     }
