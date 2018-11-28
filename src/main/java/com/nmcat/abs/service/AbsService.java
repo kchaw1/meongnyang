@@ -26,4 +26,8 @@ public interface AbsService {
 	
 	void uploadFile(AbsBoardFile file);
 
+	void updateAbsBoard(QnABoard qnaboard);
+	QnABoard updateForm(int absNo);
+
+
 }

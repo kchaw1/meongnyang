@@ -102,13 +102,22 @@
             
           })
 
-                      var main = function() {
+           var main = function() {
               $('#post').click(function() {
                 var post = $('.status-box').val();
-                $('<li class="comment">').text(post).prependTo('.posts');
+
+                if('${map.b.no}'=='${user.no}'){
+            		  
+                $('<li class="comment">').text('전문가의 한마디:'+post).prependTo('.posts');
                 $('.status-box').val('');
                 $('.counter').text('250'); 
                 $('#post').addClass('disabled');
+            	  }else{
+            		  $('<li class="comment">').text('반려인의 한마디:'+post).prependTo('.posts');
+                      $('.status-box').val('');
+                      $('.counter').text('250'); 
+                      $('#post').addClass('disabled');
+            	  }
               });
               $('.status-box').keyup(function() {
                 var postLength = $(this).val().length;
@@ -132,6 +141,9 @@
              }) 
             $("#del").click(function(){
             	 location.href="absBoardDelete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
+             }) 
+            $("#update").click(function(){
+            	 location.href="absDetailBoardUpdate.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
              }) 
              
              $("#complete").click(function(){

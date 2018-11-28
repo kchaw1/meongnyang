@@ -62,11 +62,6 @@ public class AbsController {
 	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")
 	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file)throws Exception {
-		System.out.println(qnaboard.getAbsTitle());
-		System.out.println(form.getAbsTitle());
-		System.out.println(form.getAbsTitle());
-		System.out.println(form.getAbsContent());
-		
 		qnaboard.setAbsWriter(form.getAbsWriter());
 		qnaboard.setAbsTitle(form.getAbsTitle());
 		qnaboard.setAbsContent(form.getAbsContent());
@@ -88,18 +83,34 @@ public class AbsController {
 	public void absDetailBoardDetail(int absNo, Model model) {
 		model.addAttribute("map", absService.absBoardDetail(absNo));
 	}
+	
+	//게시글 삭제!!!!!!
 	@RequestMapping("/absBoardDelete.mn")
 	public String absBoardDelete(int absNo,QnABoard qnaboard,int no) {
 		absService.absBoardDelete(absNo);
 		return "redirect:absDetailBoard.mn?no="+no;
 		
 	}
+	//답변 채택 기능
 	@RequestMapping("/absBoardComplete.mn")
 	public String absBoardComplete(int absNo,QnABoard qnaboard,int no) {
 		absService.absComplete(absNo);
 		return "redirect:absDetailBoard.mn?no="+no;
 	}
-//--------------------------------------------------------------------------
+	
+	//게시물 수정 완료
+	@RequestMapping("/absDetailBoardUpdate.mn")
+	public void absBoardUpdate(int absNo, Model model){
+		model.addAttribute("b",absService.updateForm(absNo));
+	}
+	@RequestMapping("/update.mn")
+	public String update(int absNo,QnABoard qnaboard,int no) throws Exception {
+		absService.updateAbsBoard(qnaboard);
+		return "redirect:absDetailBoardDetail.mn?no="+no+"&absNo="+absNo;
+	}
+	
+	
+//---------------------------파일 등록-----------------------------------------------
 	
 	@PostMapping("/uploadfile.mn")
 	@ResponseBody

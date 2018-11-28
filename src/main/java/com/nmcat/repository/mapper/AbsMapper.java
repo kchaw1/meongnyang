@@ -32,5 +32,9 @@ public interface AbsMapper {
 	//게시글 삭제
 	void AbsDeleteBoard(int absNo);
 	
+	//파일 등록
 	void insertAbsBoardFile(AbsBoardFile file);
+
+	//게시글 수정
+	void updateAbsBoard(QnABoard qnaboard);
 }

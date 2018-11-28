@@ -81,8 +81,15 @@
 			#{absNo},#{absfSysName},#{absfPath}
 		)
 	</insert>
+	<!-- 질문게시판 게시물 수정 -->
+	<update id="updateAbsBoard" parameterType="QnABoard">
+    	update mn_absboard
+    	   set abs_title = #{absTitle},
+    	       abs_content = #{absContent}
+    	 where abs_no = #{absNo}
+    </update>	 
 	<!--행동전문가 질문게시판 삭제 -->
-	  <!-- 게시글 삭제 -->
+	
 	<delete id="AbsDeleteBoard" parameterType="int">
 		delete from mn_absboard
 			  where abs_no = #{absNo}

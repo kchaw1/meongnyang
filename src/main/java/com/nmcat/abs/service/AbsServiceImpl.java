@@ -102,6 +102,17 @@ public class AbsServiceImpl implements AbsService{
 		
 	}
 
+	@Override
+	public void updateAbsBoard(QnABoard qnaboard) {
+
+		absMapper.updateAbsBoard(qnaboard);
+	}
+
+	@Override
+	public QnABoard updateForm(int absNo) {
+		return absMapper.selectAbsBoardByNo(absNo);
+	}
+
 
 
 
