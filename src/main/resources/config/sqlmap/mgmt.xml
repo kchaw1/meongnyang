@@ -56,6 +56,15 @@
 		<result column="lif_size" property="lifSize" />
 </resultMap>
 
+<resultMap id="commentMap" type="CommunityComment">
+		<result column="comc_no" property="comcNo" />
+		<result column="comc_writer" property="comcWriter" />
+		<result column="com_no" property="comNo" />
+		<result column="comc_content" property="comcContent" />
+		<result column="comc_reg_date" property="comcRegDate" />
+		<result column="comc_ref" property="comcRef" />
+		<result column="comc_parent_no" property="comcParentNo" />
+</resultMap>
 
 <!-- 전문가 리스트 -->
 <select id="selectABSList" parameterType="Member" resultMap="memberMap">
@@ -66,6 +75,7 @@
 	 limit #{begin}, 10
 </select>
 
+<!-- 오름차순 정렬 -->
 <select id="selectABSListSortedbyId" parameterType="Member" resultMap="memberMap">
 	select *
 	  from mn_member
@@ -91,22 +101,23 @@
 	select *
 	  from mn_member
 	 where type = 2 and auth_state = #{authState}
-	 order by score desc 
+	 order by score asc 
 	 limit #{begin}, 10
 </select>
 <select id="selectABSListSortedbyPoint" parameterType="Member" resultMap="memberMap">
 	select *
 	  from mn_member
 	 where type = 2 and auth_state = #{authState}
-	 order by point desc 
+	 order by point asc 
 	 limit #{begin}, 10
 </select>
+<!-- /정렬 -->
 		
 <!-- 최근접속일 -->		
 <select id="selectRecentLogin" parameterType="string" resultType="LoginHistory">
 	select max(login_date_time)
-	  from mn_login_history
-	 where login_id = #{loginId}  
+  	  from mn_login_history
+ 	 where login_id = #{loginId}
 </select>	
 
 <!-- 디테일 -->
@@ -124,11 +135,11 @@
 </select>
 
 <!-- 작성한 코멘트 -->
-<!-- <select id="selectCommentById" parameterType="string" resultMap="comMap"> -->
-<!-- 	select * -->
-<!-- 	  from mn_com_comment -->
-<!-- 	 where id = {id}  -->
-<!-- </select> -->
+<select id="selectCommentById" parameterType="string" resultMap="commentMap">
+	select *
+	  from mn_com_comment
+	 where comc_writer = #{comcWriter}
+</select>
 
 <!-- 승인 -->
 <update id="authApprove" parameterType="int">
@@ -165,5 +176,7 @@
 	  from mn_member_license
 	 where id = #{id}  
 </select>
+
+
 
 </mapper>

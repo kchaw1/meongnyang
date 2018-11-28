@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
@@ -44,6 +45,11 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	@Override
 	public List<CommunityBoard> myPosts(String id) {
 		return mapper.selectBoardById(id);
+	}
+	
+	@Override
+	public List<CommunityComment> myComments(String id) {
+		return mapper.selectCommentById(id);
 	}
 	
 	// 승인

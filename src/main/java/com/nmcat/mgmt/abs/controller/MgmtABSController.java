@@ -25,36 +25,6 @@ public class MgmtABSController {
 	@Autowired
 	private MgmtABSService service;
 	
-	/*
-	// 행동전문가 리스트
-	@RequestMapping("/abs/list")
-	public void list(Model model) {
-		// y = yes , n = no
-		// rld = recent login date
-		
-//		System.out.println(service.recentLogin("bbbb"));
-		
-		List<Member> yList = service.list("y");
-		List<Date> yRLDList = new ArrayList<>();
-		
-		List<Member> nList = service.list("n");
-		List<Date> nRLDList = new ArrayList<>();
-		
-		for(Member m : yList) {
-			yRLDList.add(service.recentLogin(m.getId()));
-		}
-		for(Member m : nList) {
-			nRLDList.add(service.recentLogin(m.getId()));
-		}
-		
-		model.addAttribute("yList", yList);
-		model.addAttribute("yrldList", yRLDList);
-		
-		model.addAttribute("nList", nList);
-		model.addAttribute("nrldList", nRLDList);
-	}
-	*/
-	
 	// 리스트 페이지 이동
 	@RequestMapping("/abs/list")
 	public void list() {}
@@ -95,6 +65,9 @@ public class MgmtABSController {
 //		int lastPage = (int) Math.ceil(yListCount / 10d);
 		
 		for(Member m : yList) {
+			System.out.println(m.getId());
+			System.out.println(m.getSignUpDate());
+			
 			LoginHistory lh = service.recentLogin(m.getId());
 			
 			if(lh==null) continue;
@@ -163,6 +136,7 @@ public class MgmtABSController {
 	public void detail(Model model, int no, String id) {
 		model.addAttribute("abs", service.detail(no));
 		model.addAttribute("myPosts", service.myPosts(id));
+		model.addAttribute("myComments", service.myComments(id));
 		model.addAttribute("careerList", service.selectCareer(id));
 		model.addAttribute("licenseList", service.licenseName(id));
 	}

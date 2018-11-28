@@ -30,7 +30,7 @@
           <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
           <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
           <div id="management" class="item">관리</div>
-          <div class="mgm-hidden abs-member"><a href="mgm-ABS.html">행동전문가</a></div>
+          <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
           <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
           <div id="statistics" class="item"><a href="statistics.html" style="color:black;">통계</a></div>
         </div>
@@ -113,22 +113,24 @@
 	</div>
 	
 	<script>
-    var pageNo=1;
+	
+	var pageNo = 1;
+	
 	$(document).ready(function () {
-		  ajaxYList(pageNo);
-		  ajaxNList(pageNo);
-		  
+		
+		      ajaxYList(pageNo,1);
+		      ajaxNList(pageNo,1);
+
 		  $(document).scroll(function() {
-				++pageNo;
 			    var maxHeight = $(document).height();
 			    var currentScroll = $(window).scrollTop() + $(window).height();
 
 			    if (maxHeight <= currentScroll + 120) {
-			      ajaxYList(pageNo);
-			      ajaxNList(pageNo);
+			      ajaxYList(++pageNo);
+			      ajaxNList(++pageNo);
 			      console.log(pageNo)
 			    }
-			 })  
+			 })
 	})
 	
 	var ajaxYList = function(pageNo, sort) { 
@@ -307,6 +309,8 @@
 		if($(this).closest("div#tabs-1").length == 1) {
 			 $("#tabs-1 > .content-area").remove();
 			 ajaxYList(1,$(this).data("sort"));
+			 
+			 return;
 		 } 
 			 $("#tabs-4 > .content-area").remove();
 			 ajaxNList(1,$(this).data("sort"));
