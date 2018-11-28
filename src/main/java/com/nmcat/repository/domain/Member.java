@@ -41,8 +41,9 @@ public class Member {
 		}
 		// #{begin} -> board.xml
 		public int getBegin() {
-			return (pageNo - 1) * 10;
+			return (pageNo - 1) * 12;
 		}
+		
 		
 	
 } //endclass
