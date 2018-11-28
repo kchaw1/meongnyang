@@ -22,7 +22,7 @@ $("input[name='id']").blur(function(){
 		$warnid.text("영문 대소문자, 숫자만 가능합니다.")
 	} else if(isValidId($(this).val()) == true) {
 		$.ajax({
-			url : "<c:url value='/member/checkid.cf'/>",
+			url : "<c:url value='/member/checkid.mn'/>",
 			data : "id="+$(this).val(),
 			type : "POST"
 		}).done(function(result) {

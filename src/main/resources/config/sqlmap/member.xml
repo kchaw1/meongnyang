@@ -40,9 +40,4 @@
 			from mn_member
 	</select>
 	
-	<insert id="insertProfile" parameterType="Member">
-		insert into mn_member(image_name, image_path, image_size) values
-		(#{ImageName}, #{ImagePath}, #{ImageSize})
-	</insert>
-	
 </mapper>

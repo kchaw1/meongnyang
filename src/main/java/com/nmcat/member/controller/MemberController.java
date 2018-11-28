@@ -2,20 +2,21 @@ package com.nmcat.member.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -33,6 +34,7 @@ public class MemberController {
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) {
+		System.out.println("이름" + member.getPass());
 		service.signup(member);
 		return "redirect:/member/login.mn";
 		
@@ -42,7 +44,7 @@ public class MemberController {
 	@ResponseBody
 	public boolean checkId(String id) {
 		return service.checkId(id);
-	} // id check
+	} //checkId
 	
 	
 	
@@ -67,6 +69,7 @@ public class MemberController {
 	public boolean login(HttpSession session, Login login) {
 		System.out.println("login id : " + login.getId());
 		Member member = service.login(login);
+		
 		System.out.println("loginpass : " + login.getPass());
 		if(member != null) {
 			session.setAttribute("user", member);
@@ -75,8 +78,6 @@ public class MemberController {
 		return false;
 	} // 로그인
 	
-	
-	
 	@RequestMapping("/logout.mn")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -84,11 +85,35 @@ public class MemberController {
 		return "redirect:/member/login.mn";
 	} // 로그아웃
 	
-	@RequestMapping("signupform.mn")
-	public String sendMail(Member member) {
-		System.out.println(member.toString());
-		return service.sendMail(member);
-	}
+//	@RequestMapping(value="/test1.mn", method=RequestMethod.POST)
+//	public String test1(String imageName, MultipartFile attach) throws Exception {
+//		System.out.println("id : " + imageName);
+//		System.out.println("attach : " + attach);
+//		
+//		// 실제 파일이 전송되었는지 확인
+//		System.out.println("attach.isEmpty() : " + attach.isEmpty());
+//		
+//		if (attach.isEmpty() == true) return "redirect:/login.mn";
+//		
+//		// 파일이 존재하는 경우 처리
+//		// 서버의 특정 위치에 저장하자..
+//		// 실제 사용자가 선택한 파일 이름 가져오기
+//		System.out.println("원본파일명 : " + attach.getOriginalFilename());
+//		System.out.println("크기 : " + attach.getSize());
+//		
+//		// 서버의 특정 위치에 파일을 저장하기
+//		attach.transferTo(new File("C:/data/upload", attach.getOriginalFilename()));
+//		
+//		return "redirect:/login.mn";
+//	}
+
+}	
+//	@RequestMapping("signupform.mn")
+//	@ResponseBody
+//	public String sendMail(Member member) {
+//		System.out.println(member.toString());
+//		return service.sendMail(member);
+//	}
 	
 //	 @RequestMapping("/signup.mn")
 //	    public String requestupload1(MultipartHttpServletRequest mtfRequest) {
@@ -119,7 +144,6 @@ public class MemberController {
 //	        return "redirect:/member/signup.mn";
 //	    }
 //
-	}
 	/*@PostMapping("/login.mn")
 	@ResponseBody
 	public Member uploadFile(@RequestParam("file") List<MultipartFile> attach) throws IllegalStateException, IOException {

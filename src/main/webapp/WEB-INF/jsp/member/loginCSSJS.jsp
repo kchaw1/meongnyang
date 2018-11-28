@@ -6,7 +6,8 @@
 <%-- <script src="<c:url value="/resources/js/member/sweetalert2.all.min.js"/>"></script> --%>
 <link rel="stylesheet" href="<c:url value="/resources/css/member/sweetalert2.min.css"/>">
 <%-- <script src="<c:url value="/resources/js/member/login.js" />"></script> --%>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<c:url value="https://unpkg.com/sweetalert/dist/sweetalert.min.js"/>"></script>
+
 <style>
 	#sendMail {
   	position: relative;

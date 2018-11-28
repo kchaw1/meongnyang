@@ -12,7 +12,6 @@ public interface MemberService {
 	boolean checkId(String id);
 	
 	// 프로필 파일 부분
-	void uploadFile(Member member);
 	
 	// 이메일 인증 부분
 	String sendMail(Member member);

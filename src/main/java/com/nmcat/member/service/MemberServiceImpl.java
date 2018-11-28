@@ -29,6 +29,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean checkId(String id) {
+		System.out.println("id" + id);
 		List<String> idList = mapper.selectId();
 		boolean result = false;
 		for(String oriId : idList) {
@@ -39,11 +40,6 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return result;
 		
-	}
-
-	@Override
-	public void uploadFile(Member member) {
-		mapper.insertProfile(member);		
 	}
 
 	@Override
