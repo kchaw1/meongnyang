@@ -31,7 +31,7 @@
           <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
           <div id="management" class="item">관리</div>
           <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
-          <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
+          <div class="mgm-hidden gen-member"><a href="<c:url value="/admin/general/list.mn" />">일반회원</a></div>
           <div id="statistics" class="item"><a href="statistics.html" style="color:black;">통계</a></div>
         </div>
 
@@ -51,50 +51,72 @@
           <div id="tabs-1">
             <h2>목록</h2>
             <div class="search-area">
+            	<div class="select-area">
+              	  	<select id="y-searchType" class="form-control">
+							<option value="0">선택</option>
+							<option value="1">아이디</option>
+							<option value="2">이름</option>
+							<option value="3">가입일</option>
+							<option value="4">최근접속일</option>
+							<option value="5">활동점수</option>
+							<option value="6">포인트</option>
+					</select>
+              	  </div>	 
                 <div class="search">
-                  <input type="text" id="y-keyword" name="name" class="form-control" placeholder="검색할 이름을 입력하세요">
+                  <input type="text" id="y-keyword" name="name" class="form-control" placeholder="검색어를 입력하세요">
                 </div>
                 &nbsp;
                 <div class="btn-area">
-                  <button id="searchYBtn" class="btn btn-default">검색</button>
+                  <button type="button" id="searchYBtn" class="btn btn-default">검색</button>
                 </div>
             </div>
 			<br>                            
             <div class="clear-fix"></div>
             <div class="header-area">
-              <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort no" data-sort="1"></i></a></div>
-              <div class="id-area">아이디 <a href="#"><i class="fas fa-sort id" data-sort="2"></i></a></div>
-              <div class="name-area">이름 <a href="#"><i class="fas fa-sort name" data-sort="3"></i></a></div>
-              <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort sign_up_date" data-sort="4"></i></a></div>
-              <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort login_date_time" data-sort="login_date_time"></i></a></div>
-              <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort score" data-sort="5"></i></a></div>
-              <div class="point-area">포인트 <a href="#"><i class="fas fa-sort point" data-sort="6"></i></a></div>
+               <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort no" data-sort="1" data-flag="1" data-search="n"></i></a></div>
+               <div class="id-area">아이디 <a href="#"><i class="fas fa-sort id" data-sort="2" data-flag="1" data-search="n"></i></a></div>
+               <div class="name-area">이름 <a href="#"><i class="fas fa-sort name" data-sort="3"  data-flag="1" data-search="n"></i></a></div>
+               <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort sign_up_date" data-sort="4"  data-flag="1" data-search="n"></i></a></div>
+               <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort login_date_time" data-sort="5" data-flag="1" data-search="n"></i></a></div>
+               <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort score" data-sort="6" data-flag="1" data-search="n"></i></a></div>
+               <div class="point-area">포인트 <a href="#"><i class="fas fa-sort point" data-sort="7" data-flag="1" data-search="n"></i></a></div>
             </div>
             <div class="clear-fix"><hr></div>
              
           </div>
           <div id="tabs-4">
             <div>
-              <h2>승인대기중</h2>
+              <h2>목록</h2>
               <div class="search-area">
+              	  <div class="select-area">
+              	  	<select id="n-searchType" class="form-control">
+							<option value="0">선택</option>
+							<option value="1">아이디</option>
+							<option value="2">이름</option>
+							<option value="3">가입일</option>
+							<option value="4">최근접속일</option>
+							<option value="5">활동점수</option>
+							<option value="6">포인트</option>
+					</select>
+              	  </div>	 
                   <div class="search">
-                  	<input type="text" id="n-keyword" name="name" class="form-control" placeholder="검색할 이름을 입력하세요">
+                  	<input type="text" id="n-keyword" name="name" class="form-control" placeholder="검색어를 입력하세요">
                   </div>
                   &nbsp;
                   <div class="btn-area">
-                  	<button id="searchNBtn" class="btn btn-default">검색</button>
+                  	<button type="button" id="searchNBtn" class="btn btn-default">검색</button>
                   </div>
               </div>
               <br>
               <div class="clear-fix"></div>
               <div class="header-area">
-	              <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort no" data-sort="1"></i></a></div>
-	              <div class="id-area">아이디 <a href="#"><i class="fas fa-sort id" data-sort="2"></i></a></div>
-	              <div class="name-area">이름 <a href="#"><i class="fas fa-sort name" data-sort="3"></i></a></div>
-	              <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort sign_up_date" data-sort="4"></i></a></div>
-	              <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort login_date_time" data-sort="login_date_time"></i></a></div>
-	              <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort score" data-sort="5"></i></a></div>
-	              <div class="point-area">포인트 <a href="#"><i class="fas fa-sort point" data-sort="6"></i></a></div>
+	              <div class="no-area">회원번호 <a href="#"><i class="fas fa-sort no" data-sort="1" data-flag="1" data-search="n"></i></a></div>
+	              <div class="id-area">아이디 <a href="#"><i class="fas fa-sort id" data-sort="2" data-flag="1" data-search="n"></i></a></div>
+	              <div class="name-area">이름 <a href="#"><i class="fas fa-sort name" data-sort="3"  data-flag="1" data-search="n"></i></a></div>
+	              <div class="sign-area">가입일 <a href="#"><i class="fas fa-sort sign_up_date" data-sort="4"  data-flag="1" data-search="n"></i></a></div>
+	              <div class="recent-area">최근접속일 <a href="#"><i class="fas fa-sort login_date_time" data-sort="5" data-flag="1" data-search="n"></i></a></div>
+	              <div class="active-area">활동점수 <a href="#"><i class="fas fa-sort score" data-sort="6" data-flag="1" data-search="n"></i></a></div>
+	              <div class="point-area">포인트 <a href="#"><i class="fas fa-sort point" data-sort="7" data-flag="1" data-search="n"></i></a></div>
               <div class="clear-fix"><hr></div>
                   
                 </div>
@@ -114,39 +136,24 @@
 	
 	<script>
 	
-	var pageNo = 1;
-	
 	$(document).ready(function () {
-		
-		      ajaxYList(pageNo,1);
-		      ajaxNList(pageNo,1);
-
-		  $(document).scroll(function() {
-			    var maxHeight = $(document).height();
-			    var currentScroll = $(window).scrollTop() + $(window).height();
-
-			    if (maxHeight <= currentScroll + 120) {
-			      ajaxYList(++pageNo);
-			      ajaxNList(++pageNo);
-			      console.log(pageNo)
-			    }
-			 })
+		      ajaxYList(1, 1);
+		      ajaxNList(1, 1);
 	})
 	
-	var ajaxYList = function(pageNo, sort) { 
+	var ajaxYList = function(sort, flag) { 
 		$.ajax({
        		url: "<c:url value='/admin/abs/printYList.mn'/>",
        		type: "POST",
        		data: {
-       				"pageNo" : pageNo,
-       				"sort" : sort
+       				"sort" : sort,
+       				"flag" : flag
        			  }
         }).done(function (result) {
 	    	   console.log(result)
 	    	   
 	    	   var html ="";
 	    	   for(var i in result.yList) {
-	    		   
 		       html +=     "<div class='content-area'>"
 			            +  "<div class='no-area'>"+ result.yList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.yList[i].id +"</div>"
@@ -156,7 +163,7 @@
 			            +  "<div class='active-area'>"+ result.yList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.yList[i].point +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.yList[i].no + "' data-id='" + result.yList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.yList[i].no +">탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.yList[i].no + "' data-id='" + result.yList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -164,19 +171,18 @@
         });
 	} // ajaxYList
 	
-	var ajaxNList = function(pageNo, sort) { 
+	var ajaxNList = function(sort, flag) { 
 		$.ajax({
        		url: "<c:url value='/admin/abs/printNList.mn'/>",
     	   type: "POST",
       		   data: {
-	       				"pageNo" : pageNo,
-	       				"sort" : sort
+	       				"sort" : sort,
+	       				"flag" : flag
 	       			  }
         }).done(function (result) {
 	    	   console.log(result)
 	    	   var html ="";
 	    	   for(var i in result.nList) {
-	    		   
 		       html +=     "<div class='content-area'>"
 			            +  "<div class='no-area'>"+ result.nList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.nList[i].id +"</div>"
@@ -194,16 +200,15 @@
         });
 	} // ajaxNList
 	
-	
-	var ajaxYSearchList = function(pageNo, sort) { 
+	var ajaxYSearchList = function(searchType, keyword, sort, flag) { 
 		$.ajax({
        		url: "<c:url value='/admin/abs/ySearch.mn'/>",
     	   type: "POST",
    		   data: {
-   			   		"pageNo" : pageNo,
-   			   		"authState" : 'y',
-   			   		"name" : $("#y-keyword").val(),
-   			   		"sort" : sort
+	   				"searchType" : searchType,
+			   		"keyword" : keyword,
+			   		"sort" : sort,
+			   		"flag" : flag
    		   		 }
         }).done(function (result) {
 	    	   console.log(result)
@@ -219,7 +224,7 @@
 			            +  "<div class='active-area'>"+ result.searchYList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.searchYList[i].point +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchYList[i].no + "' data-id='" + result.searchYList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchYList[i].no +">탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchYList[i].no + "' data-id='" + result.searchYList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -227,15 +232,15 @@
         });
 	} // ajaxYSearchList
 	
-	var ajaxNSearchList = function(pageNo, sort) { 
+	var ajaxNSearchList = function(searchType, keyword, sort, flag) { 
 		$.ajax({
        		url: "<c:url value='/admin/abs/nSearch.mn'/>",
     	   type: "POST",
    		   data: {
-   			   		"pageNo" : pageNo,
-   			   		"authState" : 'n',
-   			   		"name" : $("#n-keyword").val(),
-   			   		"sort" : sort
+		   			"searchType" : searchType,
+			   		"keyword" : keyword,
+			   		"sort" : sort,
+			   		"flag" : flag
    		   		 }
         }).done(function (result) {
 	    	   console.log(result)
@@ -271,96 +276,179 @@
 	} // ajaxDeleteMember
 	*/
 	
-	// 상세 버튼 클릭
-	$(document).on("click", ".move-detail", function() {
-		location.href = "detail.mn?no=" + $(this).data("no") + "&id=" + $(this).data("id");
-	});
-	
-	// 삭제 버튼 클릭
-	$(document).on("click", ".delete", function() {
-		location.href = "delete.mn?no=" + $(this).data("no");
-		//ajaxDeleteMember($(this).data("no"));
-	});
 	
 	// 승인페이지에서 검색
 	$("#searchYBtn").click(function() {
+		var $searchType = $("#y-searchType option:selected").val()
+		var $keyword = $("#y-keyword").val()
+		
+		console.log($searchType)
+		console.log($keyword)
+		
+		if($searchType == 0) { // 셀렉트가 '선택' 으로 되어있을경우
+			$("#tabs-1 > .content-area").remove();
+			ajaxYList(1,1)
+			$("#tabs-1 i").data("search", "n")
+			return;
+		}
+		
 		$("#tabs-1 > .content-area").remove();
-		ajaxYSearchList(1);
+		ajaxYSearchList($searchType, $keyword, 1,1);
+		$("#tabs-1 i").data("search", "y")
 	})
 	
 	// 미승인페이지에서 검색
 	$("#searchNBtn").click(function() {
+		var $searchType = $("#n-searchType option:selected").val()
+		var $keyword = $("#n-keyword").val()
+		
+		if($searchType == 0) { // 셀렉트가 '선택' 으로 되어있을경우
+			$("#tabs-4 > .content-area").remove();
+			ajaxNList(1,1)
+			$("#tabs-4 i").data("search", "n")
+			return;
+		}
+		
 		$("#tabs-4 > .content-area").remove();
-		ajaxNSearchList(1);
+		ajaxNSearchList($searchType, $keyword, 1,1);
+		$("#tabs-4 i").data("search", "y")
 	})
 	
 	// 정렬
-	$(".no").click(function() { // 번호순		
-		 if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-			 
-			 return;
-		 } 
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
+	$(".no").click(function() { // 번호순
+		console.log($(this).data("search"))
+		if ($(this).data("search")== 'y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".id").click(function() { // 아이디순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-			 
-			 return;
-		 } 
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".name").click(function() { // 이름순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-		 } else {
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
-		 }
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".sign_up_date").click(function() { // 가입일순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-		 } else {
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
-		 }
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".login_date_time").click(function() { // 최근접속일순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-		 } else {
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
-		 }
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".score").click(function() { // 활동점수순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-		 } else {
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
-		 }
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
 	$(".point").click(function() { // 포인트순
-		if($(this).closest("div#tabs-1").length == 1) {
-			 $("#tabs-1 > .content-area").remove();
-			 ajaxYList(1,$(this).data("sort"));
-		 } else {
-			 $("#tabs-4 > .content-area").remove();
-			 ajaxNList(1,$(this).data("sort"));
-		 }
+		if ($(this).data("search")=='y') {
+			searchSort(this)
+			return;
+		} 
+		sort(this)
 	})
-
+	
+	// 정렬 함수 
+	var sort = function(call) {
+		var $sort = $(call).data("sort");
+		
+		 if($(call).closest("div#tabs-1").length == 1) {
+			 if ($(call).data("flag") == 1) {
+				 $(call).data("flag", 2)
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
+			 } else {
+				 $(call).data("flag", 1)
+				 // 다른 flag를 전부 1로
+				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+			 }
+			 $("#tabs-1 > .content-area").remove();
+			 ajaxYList($sort, $(call).data("flag"));
+		 } else {
+			 if ($(call).data("flag") == 1) {
+				 $(call).data("flag", 2)
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
+			 } else {
+				 $(call).data("flag", 1)
+				 // 다른 flag를 전부 1로
+				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+			 }
+			 $("#tabs-4 > .content-area").remove();
+			 ajaxNList($sort, $(call).data("flag"));
+		 }
+	}
+	
+	// 정렬 함수 (검색)
+	var searchSort = function(call) {
+		var $sort = $(call).data("sort");
+		
+		 if($(call).closest("div#tabs-1").length == 1) {
+			 var $searchType = $("#y-searchType option:selected").val()
+			 var $keyword = $("#y-keyword").val()
+			 
+			 if ($(call).data("flag") == 1) {
+				 $(call).data("flag", 2)
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
+			 } else {
+				 $(call).data("flag", 1)
+				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+				 // 다른 flag를 전부 1로
+			 }
+			 $("#tabs-1 > .content-area").remove();
+			 ajaxYSearchList($searchType, $keyword, $sort, $(call).data("flag"));
+		 } else {
+			 var $searchType = $("#n-searchType option:selected").val()
+			 var $keyword = $("#n-keyword").val()
+			 
+			 if ($(call).data("flag") == 1) {
+				 $(call).data("flag", 2)
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
+			 } else {
+				 $(call).data("flag", 1)
+				 // 다른 flag를 전부 1로
+				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+			 }
+			 $("#tabs-4 > .content-area").remove();
+			 ajaxNSearchList($searchType, $keyword, $sort, $(call).data("flag"));
+		 }
+	}
+	
+	// 상세 버튼 클릭
+	$(document).on("click", ".move-detail", function() {
+	    var windowW = 1000;  // 창의 가로 길이
+        var windowH = 700;  // 창의 세로 길이
+        var left = Math.ceil((window.screen.width - windowW)/2);
+        var top = Math.ceil((window.screen.height - windowH)/2);
+		
+		 window.open("detail.mn?no="+$(this).data("no")+ "&id=" + $(this).data("id"), "Detail", "top="+top+", left="+left+", height="+windowH+", width="+windowW);
+	});
+	
+	// 삭제 버튼 클릭
+	$(document).on("click", ".delete", function() {
+		if (confirm($(this).data("id") + "회원을 탈퇴처리 하시겠습니까?") == true){    //확인
+			location.href = "delete.mn?no=" + $(this).data("no");
+		}else{   //취소
+		    return;
+		}
+		//ajaxDeleteMember($(this).data("no"));
+	});
 	</script>
 </body>
 </html>

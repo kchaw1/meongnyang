@@ -10,6 +10,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.MgmtABSMapper;
 
@@ -72,8 +73,8 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	
 	// 검색
 	@Override
-	public List<Member> search(Member member) {
-		return mapper.searchABSByName(member);
+	public List<Member> search(MgmtSearch search) {
+		return mapper.searchABS(search);
 	}
 	
 	// 자격증 이름 조회
@@ -82,7 +83,7 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 		return mapper.selectLicenceOriName(id);
 	}
 	
-	// 정렬
+	// 오름차순 정렬
 	@Override
 	public List<Member> listById(Member member) {
 		return mapper.selectABSListSortedbyId(member);
@@ -103,5 +104,30 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	public List<Member> listByPoint(Member member) {
 		return mapper.selectABSListSortedbyPoint(member);
 	}
-
+	
+	// 내림차순 정렬
+	@Override
+	public List<Member> listDesc(Member member) {
+		return mapper.selectABSListDesc(member);
+	}
+	@Override
+	public List<Member> listByIdDesc(Member member) {
+		return mapper.selectABSListSortedbyIdDesc(member);
+	}
+	@Override
+	public List<Member> listByNameDesc(Member member) {
+		return mapper.selectABSListSortedbyNameDesc(member);
+	}
+	@Override
+	public List<Member> listBySignUpDateDesc(Member member) {
+		return mapper.selectABSListSortedbySignUpDateDesc(member);
+	}
+	@Override
+	public List<Member> listByScoreDesc(Member member) {
+		return mapper.selectABSListSortedbyScoreDesc(member);
+	}
+	@Override
+	public List<Member> listByPointDesc(Member member) {
+		return mapper.selectABSListSortedbyPointDesc(member);
+	}
 }

@@ -1,22 +1,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="generalDetailCSSJS.jsp" />
 </head>
 <body>
-	<!-- 헤더 -->
-	<div id="header">
-		<c:import url="../../common/header.jsp" />
-	</div>
+
+			<!-- 우측 콘텐츠 영역-->
+			<div class="view">
+				<div class="seperator"></div>
+
+				<div class="tabs">
+					<ul>
+						<li><a href="#tabs-1">정보</a></li>
+						<li><a href="#tabs-2">작성한 게시글</a></li>
+						<li><a href="#tabs-3">작성한 댓글</a></li>
+					</ul>
+
+					<div id="tabs-1">
+						<div id="img-area">
+							<img
+								src="https://post-phinf.pstatic.net/MjAxNzEyMjhfMjc1/MDAxNTE0NDQwMDQ3MDQz.jAzATJmNbLbERcMt6hm01vOwJZTulYER_z63d6m4fM8g.QjKmA8EPdjkJy_QXpCx4vOjQOTSyG3vbtJZmwJX6wMMg.JPEG/%EC%84%A4%EC%B1%84%ED%98%84.JPG?type=w1200" />
+						</div>
+						<div id="info-area">
+							<h1>개인정보</h1>
+							<div>
+								<!-- <div style="font-size: 20px;">이름 : 강형욱</div>
+                      <div style="font-size: 20px;">나이 : 45</div>
+                      <div style="font-size: 20px;">이메일 : kang@naver.com</div>
+                      <div style="font-size: 20px;">성별 : 남</div> -->
+								<table>
+									<tr>
+										<td>이름</td>
+										<td>강형욱</td>
+									</tr>
+									<tr>
+										<td>나이</td>
+										<td>45</td>
+									</tr>
+									<tr>
+										<td>이메일</td>
+										<td>kang@naver.com</td>
+									</tr>
+									<tr>
+										<td>성별</td>
+										<td>남</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div id="attach-area">
+							<h1>활동내역</h1>
+							<table>
+								<tr>
+									<td>등급:</td>
+									<td><img src="/img/challenger.png"
+										style="width: 40px; height: 40px;" />챌린저</td>
+								</tr>
+								<tr>
+									<td>포인트:</td>
+									<td>1000점
+										<button class="btn btn-default btn-xs"
+											style="font-size: 14px;">포인트 지급</button>
+									</td>
+								</tr>
+								<tr>
+									<td>활동점수:</td>
+									<td>10000점</td>
+								</tr>
+								<tr>
+									<td>가입일:</td>
+									<td>2018.11.25</td>
+								</tr>
+								<tr>
+									<td>최근접속:</td>
+									<td>2018.11.25 14:00</td>
+								</tr>
+							</table>
+						</div>
+						<div class="clear-fix"></div>
+					</div>
+					<div id="tabs-2">
+
+						<div id="posts-area">
+							<h1>작성한 게시글 목록</h1>
+							<div>
+								<!-- <div>작성한 게시글이 없습니다.</div> -->
+								<div id="posts-header">
+									<div class="no-area">글번호</div>
+									<div class="title-area">제목</div>
+								</div>
+								<div class="posts-content">
+									<div class="no-area">1</div>
+									<div class="title-area">
+										<a href="#">안녕하세요</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="tabs-3">
+						<div id="comment-area">
+							<h1>작성한 댓글 목록</h1>
+							<div>
+								<div id="comment-header">
+									<div class="no-area">댓글번호</div>
+									<div class="title-area">제목</div>
+								</div>
+								<div class="comment-content">
+									<div class="no-area">1</div>
+									<div class="title-area">
+										<a href="#">안녕하세요</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	
-	<!-- 푸터 -->
-	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
-	</div>
+	<div class="clear-fix"></div>
+
+	
 </body>
 </html>

@@ -10,52 +10,10 @@
 <c:import url="absDetailCSSJS.jsp" />
 </head>
 <body>
-	<!-- 헤더 -->
-	<div id="header">
-		<c:import url="../../common/header.jsp" />
-	</div>
-
-	<div id="container">
-			<!-- 좌측 메뉴 -->
-		<div class="panel">
-			<div class="aside">
-				<div class="avatar">
-					<a href="admin1.html"><img
-						src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a>
-				</div>
-				<br>
-				<div class="log-out">LOG OUT</div>
-				<div class="seperator"></div>
-				<div class="list">
-					<div id="board" class="item">게시판</div>
-					<div class="board-hidden youtube">
-						<a href="youtube.html">유튜브</a>
-					</div>
-					<div class="board-hidden crowd-fund">
-						<a href="crowd-funding.html">크라우드펀딩</a>
-					</div>
-					<div class="board-hidden notice">
-						<a href="notice.html">공지사항</a>
-					</div>
-					<div id="management" class="item">관리</div>
-					<div class="mgm-hidden abs-member">
-						<a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a>
-					</div>
-					<div class="mgm-hidden gen-member">
-						<a href="mgm-general.html">일반회원</a>
-					</div>
-					<div id="statistics" class="item">
-						<a href="statistics.html" style="color: black;">통계</a>
-					</div>
-				</div>
-
-			</div>
-			<!-- /좌측 메뉴 -->
+				<!-- /좌측 메뉴 -->
 
 			<!-- 우측 콘텐츠 영역-->
 			<div class="view">
-				<div class="sub-title">Management > ABS</div>
-				<div class="main-title">행동전문가</div>
 				<div class="seperator"></div>
 
 				<div class="tabs">
@@ -152,8 +110,7 @@
 						<div id="button-area">
 							<!-- 승인대기중일경우에만 표시 -->
 							<c:if test="${abs.authState eq 'n'}">
-							<button class="btn btn-default btn-lg" id="approve">승인</button>
-							<button class="btn btn-default btn-lg" id="cancel">취소</button>
+								<button class="btn btn-default btn-lg" id="approve">승인</button>
 							</c:if>
 						</div>
 
@@ -212,24 +169,25 @@
 			</div>
 
 		<!-- /우측 콘텐츠 영역-->
-		</div>
-	</div>
+		
 	<div class="clear-fix"></div>
 	
 
 	<!-- 푸터 -->
-	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
-	</div>
+	
 	
 	<script>
-		$("#approve").click(function() {
-			location.href = "approve.mn?no=" + ${abs.no}
-			alert("승인되었습니다.")
+	$("#approve").click(function() {
+		$.ajax({
+			url: "approve.mn",
+			type: "POST",
+			data: "no=" + ${abs.no}
+		}).done(function (result) {
+			alert("승인되었습니다.");
+			window.opener.location.reload();
 		});
-		$("#cancel").click(function() {
-			location.href = "list.mn"
-		})
+	});
+
 	</script>
 </body>
 </html>

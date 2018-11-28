@@ -1,6 +1,7 @@
 .no-area,
 .name-area,
 .active-area,
+.id-area,
 .point-area,
 .grade-area {
   float: left;
@@ -9,6 +10,12 @@
   width: 10%;
 }
 
+.select-area {
+    	float: left;
+    	width: 30%;
+    	padding-right: 5px;
+	}
+
 .sign-area,
 .recent-area {
   float: left;
@@ -16,11 +23,23 @@
   margin: 5px;
   width: 15%;
 }
-
-#search-area {
+.search-area {
   float: right; 
   margin:0;
 }
+
+.search, .btn-area {
+    	float: left;
+    	margin-right: 5px;
+    	margin-bottom: 30px;
+    }
+
+.ui-tabs-panel {
+		height: 600px;
+		overflow: scroll;
+		overflow-x: hidden;
+	}
+
 
 #header-area a { text-decoration: none; }
 #header-area a { text-decoration: none; color: black;}

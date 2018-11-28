@@ -7,6 +7,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtABSService {
@@ -19,16 +20,21 @@ public interface MgmtABSService {
 	void authApprove(int no); // 승인
 	void deleteMember(int no); // 탈퇴
 	List<Career> selectCareer(String id); // 경력조회
-	List<Member> search(Member member); // 검색
+	List<Member> search(MgmtSearch search); // 검색
 	List<License> licenseName(String id);// 자격증 이름
 	
-	// 정렬
+	// 오름차순정렬
 	List<Member> listById(Member member);
 	List<Member> listByName(Member member);
 	List<Member> listBySignUpDate(Member member);
 	List<Member> listByScore(Member member);
 	List<Member> listByPoint(Member member);
 	
-	
-	
+	// 내림차순
+	List<Member> listDesc(Member member);
+	List<Member> listByIdDesc(Member member);
+	List<Member> listByNameDesc(Member member);
+	List<Member> listBySignUpDateDesc(Member member);
+	List<Member> listByScoreDesc(Member member);
+	List<Member> listByPointDesc(Member member);
 }

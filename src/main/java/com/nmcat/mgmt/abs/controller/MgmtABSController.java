@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nmcat.mgmt.abs.service.MgmtABSService;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
-import com.nmcat.repository.domain.Page;
+import com.nmcat.repository.domain.MgmtSearch;
 
 @RequestMapping("/admin")
 @Controller
@@ -32,32 +32,60 @@ public class MgmtABSController {
 	// 승인된 전문가 리스트
 	@RequestMapping("/abs/printYList")
 	@ResponseBody
-	public Map<String, Object> printYList(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "sort", defaultValue = "1") int sort) {
+	public Map<String, Object> printYList(@RequestParam(value = "sort", defaultValue = "1") int sort, int flag) {
+		
 		Map<String, Object> map = new HashMap<>();
 		
 		Member member = new Member();
-		member.setPageNo(pageNo);
 		member.setAuthState("y");
 		
 		List<Member> yList = null;
 		switch(sort) {
 			case 1:
-				yList = service.list(member);
+				if(flag == 1) {
+					yList = service.list(member);
+				} else {
+					yList = service.listDesc(member);
+				}
 				break;
 			case 2:
-				yList = service.listById(member);
+				if(flag == 1) {
+					yList = service.listById(member);
+				} else {
+					yList = service.listByIdDesc(member);
+				}
 				break;
 			case 3:
-				yList = service.listByName(member);
+				if(flag == 1) {
+					yList = service.listByName(member);
+				} else {
+					yList = service.listByNameDesc(member);
+				}
 				break;
 			case 4:
-				yList = service.listBySignUpDate(member);
+				if(flag == 1) {
+					yList = service.listBySignUpDate(member);
+				} else {
+					yList = service.listBySignUpDateDesc(member);
+				}
 				break;
 			case 5:
-				yList = service.listByScore(member);
+				// 최근접속시간순
 				break;
 			case 6:
-				yList = service.listByPoint(member);
+				if(flag == 1) { 
+					yList = service.listByScore(member);
+				} else {
+					yList = service.listByScoreDesc(member);
+				}
+				break;
+			case 7:
+				if(flag == 1) { 
+					yList = service.listByPoint(member);
+				} else {
+					yList = service.listByPointDesc(member);
+				}
+				break;
 		}
 		List<Date> yRLDList = new ArrayList<>();
 		
@@ -65,8 +93,8 @@ public class MgmtABSController {
 //		int lastPage = (int) Math.ceil(yListCount / 10d);
 		
 		for(Member m : yList) {
-			System.out.println(m.getId());
-			System.out.println(m.getSignUpDate());
+//			System.out.println(m.getId());
+//			System.out.println(m.getSignUpDate());
 			
 			LoginHistory lh = service.recentLogin(m.getId());
 			
@@ -84,32 +112,61 @@ public class MgmtABSController {
 	// 미승인 전문가 리스트
 	@RequestMapping("/abs/printNList")
 	@ResponseBody
-	public Map<String, Object> printNList(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "sort", defaultValue = "1") int sort) {
+	public Map<String, Object> printNList(@RequestParam(value = "sort", defaultValue = "1") int sort, int flag) {
+		System.out.println("flag---------------------------------------------------" + flag);
+		
 		Map<String, Object> map = new HashMap<>();
 		
 		Member member = new Member();
-		member.setPageNo(pageNo);
 		member.setAuthState("n");
 		
 		List<Member> nList = null;
 		switch(sort) {
-			case 1:
+		case 1:
+			if(flag == 1) {
 				nList = service.list(member);
-				break;
-			case 2:
+			} else {
+				nList = service.listDesc(member);
+			}
+			break;
+		case 2:
+			if(flag == 1) {
 				nList = service.listById(member);
-				break;
-			case 3:
+			} else {
+				nList = service.listByIdDesc(member);
+			}
+			break;
+		case 3:
+			if(flag == 1) {
 				nList = service.listByName(member);
-				break;
-			case 4:
+			} else {
+				nList = service.listByNameDesc(member);
+			}
+			break;
+		case 4:
+			if(flag == 1) {
 				nList = service.listBySignUpDate(member);
-				break;
-			case 5:
+			} else {
+				nList = service.listBySignUpDateDesc(member);
+			}
+			break;
+		case 5:
+			// 최근접속시간순
+			break;
+		case 6:
+			if(flag == 1) { 
 				nList = service.listByScore(member);
-				break;
-			case 6:
+			} else {
+				nList = service.listByScoreDesc(member);
+			}
+			break;
+		case 7:
+			if(flag == 1) { 
 				nList = service.listByPoint(member);
+			} else {
+				nList = service.listByPointDesc(member);
+			}
+			break;
 		}
 		List<Date> nRLDList = new ArrayList<>();
 		
@@ -143,9 +200,10 @@ public class MgmtABSController {
 	
 	// 전문가 승인
 	@RequestMapping("/abs/approve")
-	public String approve(int no) {
+	@ResponseBody
+	public void approve(int no) {
+		System.out.println(no);
 		service.authApprove(no);
-		return "redirect:list.mn";
 	}
 	
 	// 전문가 탈퇴
@@ -166,57 +224,139 @@ public class MgmtABSController {
 	// 승인전문가 검색
 	@RequestMapping("/abs/ySearch")
 	@ResponseBody
-	public Map<String, Object> ySearch(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, String name, String authState) {
-		System.out.println("페이지번호" + pageNo);
-		System.out.println("이름" + name);
-		System.out.println("승인여부" + authState);
+	public Map<String, Object> ySearch(String searchType, String keyword, @RequestParam(value = "sort", defaultValue = "1") int sort, int flag) {
+		MgmtSearch search= new MgmtSearch();
+		search.setAuthState("y");		
+		search.setKeyword(keyword);
+		search.setSearchType(searchType);
+		System.out.println("서치타입서치타입서치타입서치타입서치타입서치타입서치타입" + searchType);
 		
-		Member member = new Member();
-		member.setPageNo(pageNo);
-		member.setAuthState(authState);
-		member.setName(name);
+		if(flag==1) { 
+			search.setSortMethod("asc");
+		} else {
+			search.setSortMethod("desc");
+		}
 		
-		List<Member> yList = service.search(member);
-		List<Date> yRLDList = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
 		
-		for(Member m : yList) {
+		List<Member> searchYList = null;
+		switch(sort) {
+			case 1:
+				search.setSortColumn("no");
+				searchYList = service.search(search);
+				break;
+			case 2:
+				search.setSortColumn("id");
+				searchYList = service.search(search);
+				break;
+			case 3:
+				search.setSortColumn("name");
+				searchYList = service.search(search);
+				break;
+			case 4:
+				search.setSortColumn("sign_up_date");
+				searchYList = service.search(search);
+				break;
+			case 5:
+				// 최근접속시간순
+				break;
+			case 6:
+				search.setSortColumn("score");
+				searchYList = service.search(search);
+				break;
+			case 7:
+				search.setSortColumn("point");
+				searchYList = service.search(search);
+				break;
+		}
+		List<Date> searchYRLDList = new ArrayList<>();
+		
+		int yListCount = searchYList.size();
+//		int lastPage = (int) Math.ceil(yListCount / 10d);
+		
+		for(Member m : searchYList) {
+//			System.out.println(m.getId());
+//			System.out.println(m.getSignUpDate());
+			
 			LoginHistory lh = service.recentLogin(m.getId());
 			
 			if(lh==null) continue;
 			
-			yRLDList.add(lh.getLoginDateTime());
+			searchYRLDList.add(lh.getLoginDateTime());
 		}
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("searchYList", yList);
-		map.put("searchYRLDList", yRLDList);
+		map.put("searchYList", searchYList);
+		map.put("searchYRLDList", searchYRLDList);
 		
 		return map;
 	}
 	
-	// 미승인전문가 검색
+	// 미승인전문가 검색 
 	@RequestMapping("/abs/nSearch")
 	@ResponseBody
-	public Map<String, Object> nSearch(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, String name, String authState) {
-		Member member = new Member();
-		member.setPageNo(pageNo);
-		member.setAuthState(authState);
-		member.setName(name);
+	public Map<String, Object> nSearch(String searchType, String keyword, @RequestParam(value = "sort", defaultValue = "1") int sort, int flag) {
+		MgmtSearch search= new MgmtSearch();
+		search.setAuthState("n");		
+		search.setKeyword(keyword);
+		search.setSearchType(searchType);
 		
-		List<Member> nList = service.search(member);
-		List<Date> nRLDList = new ArrayList<>();
+		System.out.println("서치타입서치타입서치타입서치타입서치타입서치타입서치타입" + searchType);
+		if(flag==1) { 
+			search.setSortMethod("asc");
+		} else {
+			search.setSortMethod("desc");
+		}
 		
-		for(Member m : nList) {
+		Map<String, Object> map = new HashMap<>();
+		
+		List<Member> searchNList = null;
+		switch(sort) {
+			case 1:
+				search.setSortColumn("no");
+				searchNList = service.search(search);
+				break;
+			case 2:
+				search.setSortColumn("id");
+				searchNList = service.search(search);
+				break;
+			case 3:
+				search.setSortColumn("name");
+				searchNList = service.search(search);
+				break;
+			case 4:
+				search.setSortColumn("sign_up_date");
+				searchNList = service.search(search);
+				break;
+			case 5:
+				// 최근접속시간순
+				break;
+			case 6:
+				search.setSortColumn("score");
+				searchNList = service.search(search);
+				break;
+			case 7:
+				search.setSortColumn("point");
+				searchNList = service.search(search);
+				break;
+		}
+		List<Date> searchNRLDList = new ArrayList<>();
+		
+		int nListCount = searchNList.size();
+//		int lastPage = (int) Math.ceil(yListCount / 10d);
+		
+		for(Member m : searchNList) {
+			System.out.println(m.getId());
+			System.out.println(m.getSignUpDate());
+			
 			LoginHistory lh = service.recentLogin(m.getId());
 			
 			if(lh==null) continue;
 			
-			nRLDList.add(lh.getLoginDateTime());
+			searchNRLDList.add(lh.getLoginDateTime());
 		}
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("searchNList", nList);
-		map.put("searchNRLDList", nRLDList);
+		map.put("searchNList", searchNList);
+		map.put("searchNRLDList", searchNRLDList);
 		
 		return map;
 	}
