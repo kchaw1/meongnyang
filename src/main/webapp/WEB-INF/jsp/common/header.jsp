@@ -3,18 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <header class="dogcat">
-  <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+  <div class="logo"><span class="logo-title"><a href="<c:url value='/community/mainPage.mn'/>">멍하고노냥</a></span></div>
   <div class="animate"><img src="<c:url value='/resources/img/common/teddy_food_dribbble.gif'/>" /></div>
   <nav>
     <ul class="nav navbar-nav">
       <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
-      <li class="dropdown">  
+      <li class="dropdown">
+		<span class="headeralarm" id="show">1</span>
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
         </a>
-        <ul class="dropdown-menu pull-right" role="menu" id="drop">
+        <ul class="dropdown-menu pull-right" role="menu" id="drop zindex">
         <c:choose>
         <c:when test="${empty user.id}">
           <li><a href="<c:url value='/member/login.mn'/>">로그인</a></li>                
@@ -23,11 +24,10 @@
         <c:otherwise>
           <li><a href="<c:url value='/login/login.mn'/>">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
-		  <li><a href="#">쪽지함</a></li>
-		  <li><a href="<c:url value='/member/signup.mn'/>">내 친구</a></li>
-		  <li><a href="#">내 활동</a></li>
-		  <li><a href="#">쪽지함</a></li>
-		  <li><a href="#1" class="pointcharge">포인트 충전</a></li>
+		  <li><a href="#">쪽지함<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="<c:url value='/friend/friendlist.mn'/>">내 친구<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="#1" class="pointcharge">포인트 충전<span class="lialarm" id="hidden">1</span></a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
         </c:otherwise>
