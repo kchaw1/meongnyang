@@ -1,4 +1,4 @@
-ㅠㅊㅎㅍ   <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,11 +22,11 @@
           <li><a href="<c:url value='/member/signup.mn'/>">회원가입</a></li>                
         </c:when>
         <c:otherwise>
-          <li><a href="<c:url value='/login/login.mn'/>">내 정보</a></li>
+          <li><a href="<c:url value='/member/MyPage.mn'/>">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
-		  <li><a href="#">쪽지함<span class="lialarm" id="hidden">1</span></a></li>
+		  <li><a href="<c:url value='/member/msg.mn'/>">쪽지함<span class="lialarm" id="hidden">1</span></a></li>
 		  <li><a href="<c:url value='/friend/friendlist.mn'/>">내 친구<span class="lialarm" id="hidden">1</span></a></li>
-		  <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li>
+		  <!-- <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li> -->
 		  <li><a href="#1" class="pointcharge">포인트 충전<span class="lialarm" id="hidden">1</span></a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>

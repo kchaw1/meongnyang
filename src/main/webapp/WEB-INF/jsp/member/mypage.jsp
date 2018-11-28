@@ -1,47 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <c:import url="MyPageCSSJS.jsp"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <!-- MyPage css -->
+    <link rel="stylesheet" href="<c:url value="/resources/css/member/Mypage.1.css"/>">
+    
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    
+    <!-- hederfooter css -->
+    <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+    <!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 </head>
-
 <body>
-    <header class="dogcat">
-        <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
-        <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
-        <nav>
-            <ul class="nav navbar-nav">
-                <li><a href="">반려인 커뮤니티</a></li>
-                <li><a href="">행동전문가와 상담</a></li>
-                <li><a href="">Locations</a></li>
-                <li class="dropdown">
-                    <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fas fa-user-circle fa-2x"></i>
-                    </a>
-                    <ul class="dropdown-menu pull-right" role="menu" id="drop">
-                        <li><a href="#">내 정보</a></li>
-                        <li><a href="#">마이펫 다이어리</a></li>
-                        <li><a href="#">쪽지함</a></li>
-                        <li><a href="#">내 등급</a></li>
-                        <li><a href="#">내 활동</a></li>
-                        <li><a href="#">쪽지함</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="clear-fix"></div>
-    </header>
-    <div class="clear-fix"></div>
-    <br>
+	<c:import url="../common/header.jsp" />
     <div id="mypageAll">
         <div class="allpage">
             <span id="mpall">Mypage</span>
@@ -81,7 +64,7 @@
             <div class="grade">
                 <p id="mygrade">내 등급</p>
                 <img src="diamond_i.png"/><br>
-                <button type="button" id="btn2">등급 정보확인하기</button>
+                <button type="button" id="btn2" onclick="mygrade()">등급 정보확인하기</button>
             </div>
         </div>
         <hr>
@@ -92,7 +75,7 @@
         <div class="Allmenu">
             <table>
                 <tr>
-                    <th colspan="2">내 활동 <button type="button" name="all" id="all">전체보기</button></th>
+                    <th colspan="2">내 활동 <button type="button" name="all" id="all" onclick="activity()">전체보기</button></th>
                     <th>마이펫 다이어리 <button type="button" name="all2" id="all2">전체보기</button></th>
                 </tr>
                 <tr>
@@ -101,7 +84,7 @@
                     <td>등록된 다이어리가 없습니다.</td>
                 </tr>
                 <tr>
-                    <th colspan="2">내 게시물에 달린 댓글 <button type="button" name="all3" id="all3">전체보기</button></th>
+                    <th colspan="2">내 게시물에 달린 댓글<button type="button" name="all3" id="all3" onclick="myboardcomn()">전체보기</button></th>
                     <th colspan="2">친구 관리 <button type="button" name="all4" id="all4">전체보기</button></th>
                 </tr>
                 <tr>
@@ -112,16 +95,50 @@
         </div>
     </div>
     </div>
-    <footer class="dogcat">
-        <div class="footertitle">
-            <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
-            <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
-        </div>
-    </footer>
-    <!-- <script src="./Mypage.1.js"></script> -->
-    <script>
+
+<c:import url="../common/footer.jsp"/>
+   <script>
         $('.dropdown-toggle').dropdown()
     </script>
-</body>
+ <script>
+ $('input[type="file"]').each(function(){
+     // Refs
+     var $file = $(this),
+         $label = $file.next('label'),
+         $labelText = $label.find('span'),
+         labelDefault = $labelText.text();
+     
+     // When a new file is selected
+     $file.on('change', function(event){
+       var fileName = $file.val().split( '\\' ).pop(),
+           tmppath = URL.createObjectURL(event.target.files[0]);
+       //Check successfully selection
+           if( fileName ){
+         $label
+           .addClass('file-ok')
+           .css('background-image', 'url(' + tmppath + ')');
+               $labelText.text(fileName);
+       }else{
+         $label.removeClass('file-ok');
+               $labelText.text(labelDefault);
+       }
+     });
+     
+   // End loop of file input elements  
+   });    
+ </script>
+<script>
+function myboardcomn(){
+    window.location.href="myboardcomn.mn";
+}
 
+function mygrade(){
+    window.location.href="mygrade.mn";
+}
+
+function activity() {
+	window.location.href="activity.mn"
+}
+</script>
+</body>
 </html>
