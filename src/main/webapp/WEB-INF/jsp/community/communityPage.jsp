@@ -10,30 +10,46 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/community/communityMain.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
 
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 배민폰트 -->
+
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     
-    
-    <!-- 배민폰트 -->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
    
-    
-    <!-- 부트스트랩 -->
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src = "https://code.jquery.com/jquery-latest.min.js"></script> 
 </head>
 
 <style>
-body{background-color: #fafafa;}
+body{
+background-color: #fdfdfd;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+ header.dogcat{
+ margin: 0 auto; 
+  font-family: 'Jua', sans-serif;
+  }
+.category{
+	margin-right: 15px;
+	width: auto;
+	height: 20px;
+	color: black;
+	font-size: 16px;
+	font-family: 'Jua', sans-serif;
+	font-weight: 100;
+}
+
 
 </style>
 <body>
@@ -90,7 +106,7 @@ body{background-color: #fafafa;}
                                 <!-- 이곳에 프로필 사진과 이름, 날짜가 들어갑니다. -->
                                 <div class = "top">
                                     <div class = "locationC">
-                                      <img src="./img/userImg.jpg" class ="imgSize">
+                                      <img src="드럽게 안들어가네 프로필 사진" class ="imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
                                       <span class = "userName">Aran자매님</span>
                                       <!--  컨텐츠 상단 날짜 -->
@@ -104,7 +120,7 @@ body{background-color: #fafafa;}
                                         <div class = "content">아하핳하하하하하하</div>
                                     </div>
                                     <!-- 이곳에 이미지가 들어 갑니다. -->
-                                    <div class = "forImg"><img src="./img/이유비.PNG" width="700.69px"></div>
+                                    <div class = "forImg"><img src="./img/이유비.PNG" width="557px"></div>
                                     
                                 </div>
                                 <!-- 이곳에 카테고리와 댓글 이모지, 조회수 이모지, (글수정 삭제(예정))가 들어갑니다. -->
@@ -253,6 +269,33 @@ body{background-color: #fafafa;}
               <footer></footer>    
 	
 <script>
+var pageNo = 1;
+$(document).ready(function(){
+	$(window).scroll(function() {
+		++pageNo;
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+	      console.log(++page);
+	  /* 이곳에 추가할 목록들 넣어주기!  */
+	      
+	    }
+	});
+});
+var nextList = function(pageNo){
+	
+	$.ajax({
+		url: "<c:url value = '/community/communityPage.mn'/>",
+		type: "POST",
+		data : "pageNo="+pageNo
+	}).done(function(result){
+		/* result를 어떻게 가공해야할지  모든 contentsContainer 안에있는걸 가져와서 해야하느지 아닌지 해보기! */
+		console.log(result)
+		/* $(".contentsContainer").append(result); */
+	})
+}//nextList
+
+
+
+
 //클릭시 글작성 Form
 $(".writeBtn").click(function() {
 	location.href = "writeForm.mn";

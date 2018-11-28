@@ -14,12 +14,19 @@
 	</resultMap>
 	<!-- 커뮤니티 CRUD -->
 	
-	<!-- 커뮤니티 무한스크롤 전체목록 가져오기 -->
+<!-- 	커뮤니티 무한스크롤 전체목록 가져오기  -->
 	<select id = "selectBoard"  resultMap ="comMap">
 	select *
 	from mn_com
 	order by com_no desc
 	</select>
+	
+	<!-- 커뮤니티 무한스크롤 전체카테고리목록 가져오기 +페이징
+	<select id = "selectBoardAll" parameterType = "CommunityBoard" resultMap = "comMap">
+	select *
+	from mn_com order by com_no desc
+	limit #{begin}, 10
+	</select>-->
 	
 	<!-- 상세보기 -->
 	<select id = "detailBoard" parameterType = "int" resultMap = "comMap">

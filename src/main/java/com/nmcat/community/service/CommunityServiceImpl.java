@@ -13,12 +13,17 @@ public class CommunityServiceImpl implements CommunityService{
 	@Autowired
 	private CommunityMapper mapper;
 	
-	//Ŀ�´�Ƽ CRUD
+	//Ŀ�´�Ƽ CRUD
 	@Override
 	public List<CommunityBoard> selectBoard() {
 		return mapper.selectBoard();
 	}
 
+	/*@Override
+	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
+		return mapper.selectBoard(comBoard);
+	}
+*/
 	@Override
 	public CommunityBoard detailBoard(int comNo) {
 		return mapper.detailBoard(comNo);

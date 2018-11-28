@@ -18,9 +18,15 @@ public class CommunityController {
 	
 	@RequestMapping("/communityPage.mn")
 	public void list(Model model)throws Exception{
-		
 		model.addAttribute("list", service.selectBoard());
 	}
+	
+/*	public void list(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
+		CommunityBoard comBoard = new CommunityBoard();
+		comBoard.setPageNo(pageNo);
+		
+		model.addAttribute("list", service.selectBoard(comBoard));
+	}*/
 	@RequestMapping("/detailPage.mn")
 	public void detail(Model model, int comNo)throws Exception{
 		model.addAttribute("communityBoard", service.detailBoard(comNo));
@@ -41,6 +47,11 @@ public class CommunityController {
 	@RequestMapping("/edit.mn")
 	public String update(CommunityBoard comBoard)throws Exception{
 		service.updateBoard(comBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "communityPage.mn";
+	}
+	@RequestMapping("/delete.mn")
+	public String delete(int comNo)throws Exception{
+		service.deleteBoard(comNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "communityPage.mn";
 	}
 }

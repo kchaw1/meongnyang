@@ -10,51 +10,40 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/community/writeForm.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
 
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR"
-	rel="stylesheet">
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Jua"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon"
-	rel="stylesheet">
-<!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<!-- 부트스트랩 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- include summernote css/js -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
 	rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<!-- 배민폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Jua"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css"
-	integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css"
-	integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부트스트랩 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <style>
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+ header.dogcat{
+margin: 0 auto; 
+ font-family: 'Jua', sans-serif;}
 .body {
 	height: 100%;
 	margin-top: 70px;
@@ -78,6 +67,24 @@
 	float: right;
 	width: 30%;
 	height: 100%;
+}
+.writeMargin{
+padding-left : 10px;
+padding-right : 20px;
+}
+.title{
+margin-top: 10px;
+width: 100%;
+height: 30px;
+border: 1px solid rgb(230, 219, 219); /* some kind of blue border */
+
+/* other CSS styles */
+
+/* round the corners */
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+
 }
 
 /*채팅*/
@@ -264,33 +271,7 @@
 }
 </style>
 <body>
-	<header class="dogcat">
-	<div class="logo">
-		<span class="logo-title"><a href="">멍하고노냥</a></span>
-	</div>
-	<div class="animate">
-		<img src="teddy_food_dribbble.gif" />
-	</div>
-	<nav>
-	<ul class="nav navbar-nav">
-		<li><a href="">반려인 커뮤니티</a></li>
-		<li><a href="">행동전문가와 상담</a></li>
-		<li><a href="">Locations</a></li>
-		<li class="dropdown"><a href="#" id="user"
-			class="dropdown-toggle" data-toggle="dropdown" role="button"
-			aria-expanded="false"> <i class="fas fa-user-circle fa-2x"></i>
-		</a>
-			<ul class="dropdown-menu pull-right" role="menu" id="drop">
-				<li><a href="#">내 정보</a></li>
-				<li><a href="#">마이펫 다이어리</a></li>
-				<li class="divider"></li>
-				<li><a href="#">로그아웃</a></li>
-			</ul></li>
-	</ul>
-	</nav>
-	<div class="clear-fix"></div>
-
-	</header>
+	<c:import url = "../common/header.jsp"/>
 <form action = "write.mn" method = "post">
 	<div class="body">
 		<div class="body2">
@@ -368,7 +349,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#summernote').summernote({
-				width : 705,
+				minwidth : 705,
 				height : 300, // set editor height
 				minHeight : null, // set minimum height of editor
 				maxHeight : null, // set maximum height of editor

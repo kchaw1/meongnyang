@@ -5,23 +5,24 @@ import java.util.List;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityService {
-		//Ä¿¹Â´ÏÆ¼ CRUD
-		//Ä¿¹Â´ÏÆ¼ ¹«ÇÑ½ºÅ©·Ñ ÀüÃ¼¸ñ·Ï °¡Á®¿À±â
+		//Ä¿ï¿½Â´ï¿½Æ¼ CRUD
+		//Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ï¿½Ñ½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<CommunityBoard> selectBoard();
+	/*	List<CommunityBoard> selectBoard(CommunityBoard comBoard);*/
 		
-		//»ó¼¼º¸±â
+		//ï¿½ó¼¼ºï¿½ï¿½ï¿½
 		CommunityBoard detailBoard(int comNo);
 		
-		//Ä¿¹Â´ÏÆ¼ ±Û µî·Ï
+		//Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		void insertBoard(CommunityBoard comBoard);
 		
-		//Ä¿¹Â´ÏÆ¼ ±Û »èÁ¦
+		//Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		void deleteBoard(int comNo);
 		
-		//Ä¿¹Â´ÏÆ¼ ±Û ¼öÁ¤
+		//Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		void updateBoard(CommunityBoard comBoard);
 		
-		// Ä¿¹Â´ÏÆ¼ ÀüÃ¼ ±Û °¹¼ö
+		// Ä¿ï¿½Â´ï¿½Æ¼ ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int selectBoardCount();
 		
 

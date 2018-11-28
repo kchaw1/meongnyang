@@ -9,32 +9,35 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value="/resources/css/community/detailPage.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
-
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+ <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
-<!-- 배민폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <!-- 부트스트랩 -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </head>
 <style>
+body{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    }
+ header.dogcat{
+ 
+ 	margin: 0 auto; 
+  font-family: 'Jua', sans-serif;}
 .body1{
 
 height: 100%;
@@ -172,30 +175,7 @@ z-index: -1;
 
 </style>
 <body>
-  <header class="dogcat">
-                <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
-                <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
-                <nav>
-                  <ul class="nav navbar-nav">
-                    <li><a href="">반려인 커뮤니티</a></li>
-                    <li><a href="">행동전문가와 상담</a></li>
-                    <li><a href="">Locations</a></li>
-                    <li class="dropdown">  
-                      <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      <i class="fas fa-user-circle fa-2x"></i>
-                      </a>
-                      <ul class="dropdown-menu pull-right" role="menu" id="drop">
-                        <li><a href="#">내 정보</a></li>
-                        <li><a href="#">마이펫 다이어리</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">로그아웃</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </nav>
-                <div class="clear-fix"></div>
-                
-              </header>
+  <c:import url = "../common/header.jsp"/>
 
 
     <div class = "body1">
@@ -269,8 +249,8 @@ z-index: -1;
                             <div class = "main-column3">
                                     <div class = "imgsize2"></div>
                                     <div class = "goWrite">작성자세요?</div>
-                                    <button class= "writeBtn btnDelete" id = "${communityBoard.comNo}">글 수정하기</button>
-                                    <button class= "writeBtn btnEdit" id = "${communityBoard.comNo}">글 삭제하기</button>
+                                    <button class= "writeBtn btnEdit" id = "${communityBoard.comNo}">글 수정하기</button>
+                                    <button class= "writeBtn btnDelete" id = "${communityBoard.comNo}">글 삭제하기</button>
                                 </div>
                             
                         </div>
@@ -297,12 +277,13 @@ z-index: -1;
 $("button.btnDelete").click(function() {
 	var no = $(this).attr('id');
 	console.log(no);
-	location.href = "editWriteForm.mn?comNo="+no;
+	location.href = "delete.mn?comNo="+no;
+	
 });
 //클릭시 글 수정
 $("button.btnEdit").click(function() {
 	var no = $(this).attr('id');
-	location.href = "delete.mn?comNo="+no;
+	location.href = "editWriteForm.mn?comNo="+no;
 });
 </script>
     

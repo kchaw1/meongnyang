@@ -5,9 +5,9 @@ import java.util.List;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityMapper {
-	//커뮤니티 무한스크롤 전체목록 가져오기
+	//커뮤니티 무한스크롤 전체카테고리목록 가져오기 +페이징
+//	List<CommunityBoard> selectBoard(CommunityBoard comBoard);
 	List<CommunityBoard> selectBoard();
-	
 	//상세보기
 	CommunityBoard detailBoard(int comNo);
 	
