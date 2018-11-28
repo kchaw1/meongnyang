@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../common/headerfooterCSSJS.jsp"/>
 <link rel="stylesheet" href="<c:url value="/resources/css/community/mainPage.css"/>">
+<c:import url="../common/headerfooterCSSJS.jsp"/>
 
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -21,21 +21,18 @@
  <!-- 배민폰트 -->
  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
- <link rel="stylesheet" href="headerfooter.css">
+
  
  <!-- 부트스트랩 -->
  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
-
-
 </head>
 <body>
 	<c:import url = "../common/header.jsp"/>
 
- <!-- 전체화면  -->
+   
+    <!-- 전체화면  -->
     <div class = "content">
         <!-- 헤더부분 -->
         
@@ -45,14 +42,15 @@
             <div class = "main-column">
                 
                 <div class = "main-items recruit-item">
-                        <img src="줄긋기4.PNG">
+                        <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
                         <div class = "leftRight">
                                 <h2 class = "leftRight1" style="font-family: 'Jua'">크라우드 펀딩</h2>
                                 <button class ="btn2 leftRight1">더보기 </button>
                             </div>
                        <!-- 크라우드 펀딩 1개 -->
                         <div class = "crowdImg">
-                            <img src="치아미백.PNG" width="300" class = "crowdImg">
+                        <img src="<c:url value = "/resources/img/community/치아미백.PNG"/>" width="300" class = "crowdImg">
+
                             <p class = "fontp">치아미백부터 구취및 잇몸 케어까지 우리가족 구강건강을 책임질 맞춤형 치약 클로라</p>
                             
                             <div class="progress">
@@ -63,7 +61,7 @@
                         </div>
                         <!-- 크라우드 펀딩 12개 -->
                         <div class = "crowdImg">
-                                <img src="치아미백.PNG" width="300" class = "crowdImg">
+                                <img src="<c:url value = "/resources/img/community/치아미백.PNG"/>" width="300" class = "crowdImg">
                                 <p class = "fontp">치아미백부터 구취및 잇몸 케어까지 우리가족 구강건강을 책임질 맞춤형 치약 클로라</p>
                                 <div class="progress">
                                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
@@ -75,14 +73,14 @@
                 
                 </div>
                 <div class = "main-items5">
-                    <img src="줄긋기4.PNG">
+                    <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
                     <div class = "leftRight">
                     <h1 class = "leftRight1" style="font-family: 'Jua'">최신동영상</h1>
                     <button class ="btn1 leftRight1">더보기 </button>
                     </div>
-                    <div class = "youtube"><img src="./캡처.PNG" width="300"></div>
+                    <div class = "youtube"><img src="<c:url value = "/resources/img/community/캡처.PNG"/>" width="300"></div>
                     <p class = "pclass"style="font-family: 'Jua'">제목제목 <span>2018-11-17</span></p>
-                    <div class = "youtube"><img src="./캡처.PNG" width="300"></div>
+                    <div class = "youtube"><img src="<c:url value = "/resources/img/community/캡처.PNG"/>" width="300"></div>
                     <p class = "pclass"style="font-family: 'Jua'">제목제목 <span>2018-11-17</span></p>
                    
                     
@@ -94,10 +92,10 @@
             <!-- 두번째 파트 -->
             <div class = "main-column forimg1">
                     <div class = "main-items">
-                            <img src="img/main-outlink-store.png" class ="forimg2"/>
+                    <img src="<c:url value = "/resources/img/community/main-outlink-store.png"/>" class ="forimg2">
                     </div>
                     <div class = "main-items">
-                            <img src="줄긋기4.PNG">
+                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
                             <div>
                             <div class = "font2">커뮤니티</div>
                             
@@ -107,42 +105,14 @@
                             <p class = "fontp">낭만코양이 회원들과 일상, 팁, 사진 등을 공유해 보세요!</p>
                         <div class = "caption2" style="font-family: 'Jua'">최신글</div>
                         <hr>
-                        <p style="font-family: 'Jua'">멍하고노냥, 격월간 반려견 잡지 '매거진A' 창간</p>
+                         <c:forEach var = "b" items = "${list}">
+                        <p style="font-family: 'Jua'">${b.comTitle}</p>
                         <!-- 이클립스주기 -->
-                        <p>반려동물 전문 커뮤니티 '멍하고노냥'이 격--</p>
-                        <p style="font-family: 'Jua'">이데일리 <span>2018-11-17</span></p>
-                       
+                        <p>${b.comContent}</p>
+                        <p style="font-family: 'Jua'">${b.comWriter} <span><fmt:formatDate value = "${b.comRegDate}" pattern="yyyy-MM-dd"/></span></p>
                         <hr>
-                       
-                        <p style="font-family: 'Jua'">멍하고노냥, 격월간 반려견 잡지 '매거진A' 창간</p>
-                        <!-- 이클립스주기 -->
-                        <p>반려동물 전문 커뮤니티 '멍하고노냥'이 격--</p>
-                        <p style="font-family: 'Jua'">이데일리 <span>2018-11-17</span></p>
-                      
-                        <hr>
-                      
-                        <p style="font-family: 'Jua'">멍하고노냥, 격월간 반려견 잡지 '매거진A' 창간</p>
-                        <!-- 이클립스주기 -->
-                        <p>반려동물 전문 커뮤니티 '멍하고노냥'이 격--</p>
-                        <p style="font-family: 'Jua'">이데일리 <span>2018-11-17</span></p>
+                       </c:forEach>
                         
-                        <hr>
-                        <p style="font-family: 'Jua'">멍하고노냥, 격월간 반려견 잡지 '매거진A' 창간</p>
-                        <!-- 이클립스주기 -->
-                        <p>반려동물 전문 커뮤니티 '멍하고노냥'이 격--</p>
-                        <p style="font-family: 'Jua'">이데일리 <span>2018-11-17</span></p>
-                        
-                        <hr>
-                        <p style="font-family: 'Jua'">멍하고노냥, 격월간 반려견 잡지 '매거진A' 창간</p>
-                        <!-- 이클립스주기 -->
-                        <p>반려동물 전문 커뮤니티 '멍하고노냥'이 격--</p>
-                        <p style="font-family: 'Jua'">이데일리 <span>2018-11-17</span></p>
-                        
-                      
-                  
-                      
-                        
-                        <hr>
                         <button class ="btn3 leftRight1">더보기 </button>
                     </div>
                     
@@ -151,12 +121,12 @@
             <!-- 세번쨰 파트 -->
             <div class = "main-column main-column3">
                     <div class = "main-items">
-                            <img src="줄긋기4.PNG">
+                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>">
                             <div class = "leftRight">
                                     <h2 class = "leftRight1" style="font-family: 'Jua'">마이펫 다이어리</h2>
                                     <button class ="btn4 leftRight1">더보기 </button>
                                 </div>
-                            <img src="img/diary.jpg" class = "fordiary">
+                                <img src="<c:url value = "/resources/img/community/diary.jpg"/>" class = "fordiary">
                             <p class = "fontp">멍멍냥냥이들과 함께 만들어가는 일기 지금 당장 써보세요!</p>
 
                             <div class = "caption2" style="font-family: 'Jua'">공개글</div>
@@ -182,7 +152,7 @@
                         <!-- 나중 이름과 메달부분 가운데 정렬 하기 -->
                        
                             <div class = "main-items main-items2">
-                                    <img src="줄긋기4.PNG" class = "formargin2">
+                            <img src="<c:url value = "/resources/img/community/줄긋기4.PNG"/>" class = "formargin2"> 
                                     <div class = "leftRight">
                                             <h2 class = "leftRight1" style="font-family: 'Jua'">랭킹</h2>
                                             <button class ="btn5 leftRight1">더보기 </button>
@@ -237,6 +207,8 @@
             </div>
 
 
+    -->
+
 
     <footer class="dogcat">
             <div class="footertitle">
@@ -255,6 +227,26 @@
     <!-- 푸터! -->
     <footer></footer>
     <script>
+    // 크라우드펀딩으로 가는 url
+    $(".btn2").on('click', function(){
+    	location.href = "communityPage.mn";
+    });
+    // 최신동영상으로 가는 url
+    $(".btn1").on('click', function(){
+    	location.href = "communityPage.mn";
+    });
+    // 커뮤니티로 가는 url
+    $(".btn3").on('click', function(){
+    	location.href = "communityPage.mn";
+    });
+    // 마이펫다이어리로 가는 url
+    $(".btn4").on('click', function(){
+    	location.href = "communityPage.mn";
+    });
+    // 랭킹으로 가는 url
+    $(".btn5").on('click', function(){
+    	location.href = "communityPage.mn";
+    });
         $(function () {
     $('.chat-launcher').on('click', function () {
         $('.chat-launcher').toggleClass('active');

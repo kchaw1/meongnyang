@@ -57,9 +57,9 @@ body{
 /*우측 스크롤할시 움직이는 부분들 fixed*/
 
 .profileAndName{
-    padding-left: 10px;
+   
     padding-bottom: 10px;
-    margin-top: 145px;
+    margin-top: 165px;
     right: 0;
     top: 0;
     margin-right: 300px;
@@ -89,7 +89,7 @@ body{
 
 .writeForm{
     
-    margin-top: 215px;
+    margin-top: 235px;
     right: 0;
     top: 0;
     margin-right: 300px;
@@ -157,7 +157,7 @@ body{
 
 .putSomething{
     padding: 14px;
-    margin-top: 395px;
+    margin-top: 415px;
     right: 0;
     top: 0;
     margin-right: 300px;

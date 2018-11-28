@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.MainMapper">
+<resultMap id="comMap" type="CommunityBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_title" property="comTitle" />
+		<result column="com_writer" property="comWriter" />
+		<result column="com_content" property="comContent" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_rec_cnt" property="comRecCnt" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+</resultMap>
+<select id = "selectComBoardRegDate" resultMap = "comMap">
+select *
+from mn_com order by com_no desc limit 0, 5
+</select>
+
+</mapper>

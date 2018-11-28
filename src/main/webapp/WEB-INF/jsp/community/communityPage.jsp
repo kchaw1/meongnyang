@@ -41,13 +41,19 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-family: 'Jua', sans-serif;
   }
 .category{
+    float: left;
+    font-size: 16px;
+    color: gray;
+	/* float: left;
+    font-size: 16px;
+    color: gray;
 	margin-right: 15px;
 	width: auto;
 	height: 20px;
-	color: black;
+	color: gray;
 	font-size: 16px;
 	font-family: 'Jua', sans-serif;
-	font-weight: 100;
+	font-weight: 100; */
 }
 
 
@@ -65,7 +71,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
                                 <!-- 이곳에 프로필 사진과 이름, 날짜가 들어갑니다. -->
                                 <div class = "top">
                                     <div class = "locationC">
-                                      <img src="<c:url value = "/publishing/bg/img"/>" class ="imgSize">
+                                       <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
                                       <!-- 컨텐츠 상단 유저이름 -->
                                       <span class = "userName">${b.comWriter}</span>
                                       <!--  컨텐츠 상단 날짜 -->
@@ -230,7 +236,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 
               <div class = "profileAndName">
                   <!-- 우측 상단 프로필 사진 -->
-                  <img src="./img/userImg.jpg" class ="imgSize">
+                  <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
                   <!-- 우측 상단 유저이름 -->
                   <span class = "userName">byoung_gwan_98</span>
                 </div>
