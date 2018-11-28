@@ -85,6 +85,12 @@ public class AbsServiceImpl implements AbsService{
 		absMapper.AbsDeleteBoard(absNo);
 	}
 
+	@Override
+	public void absComplete(int absNo) {
+
+		absMapper.AbsBoardComplete(absNo);
+	}
+
 
 
 

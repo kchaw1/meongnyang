@@ -79,4 +79,11 @@
     	   set abs_view_cnt = abs_view_cnt + 1
     	 where abs_no = #{absNo}
     </update>	
+    
+    <!-- 답변채택 -->
+    <update id="AbsBoardComplete" parameterType="int">
+    	update mn_absboard 
+    	   set abs_complete='y' 
+    	where abs_no=#{absNo};    	
+    </update>
 </mapper>

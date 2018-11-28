@@ -50,15 +50,30 @@
           <h1>상세 정보</h1>
           <hr>
           <div>
+          <div>
             <h4>작성자:${map.b.absWriter}</h4>
+            <c:choose >
+            	<c:when test="${map.b.absComplete =='n'}">
+            		<button id="complete" class="btn btn-success">답변완료</button>		
+            	</c:when>
+            	<c:otherwise>
+            		<h3 id="completeCheck"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;답변이 완료된 게시물입니다.</h3>
+            	</c:otherwise>
+            </c:choose>
+            	</div>
             <hr>
             <h4>제목:${map.b.absTitle}</h4>
   
             <span>내용: ${map.b.absContent}</span>
           </div><br>
-          
+          <div class="optionButton">
           <button type="button" class="btn btn-primary" id="rev">이전으로</button>
-			<button type="button" class="btn btn-danger" id="del">삭제</button>
+           <c:if test="${map.b.absWriter == user.id }">
+			<button type="button" class="btn btn-danger" id="del">삭제</button> 	
+			<button type="button" class="btn btn-info update"id="update">수정</button>
+		   </c:if>
+		   
+          </div>
           <div>
             <h3 class="heading">Comment</h3>
               <div class="con">
@@ -118,6 +133,16 @@
             $("#del").click(function(){
             	 location.href="absBoardDelete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
              }) 
+             
+             $("#complete").click(function(){
+            		 
+            	 if(${map.b.no}==${user.no}){
+        			 alert("답변이 채택되었습니다");
+        	    	 location.href="absBoardComplete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
+    	    	 }else{
+	        		 alert("행동전문가만 답변을 채택할 수 있습니다.");
+            	 }
+             })
           
         </script>
 </body>

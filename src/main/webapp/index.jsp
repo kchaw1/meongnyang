@@ -9,7 +9,8 @@
 </head>
 <body>
 	<%-- <c:redirect url="/member/signup.mn"></c:redirect>  --%>
-	<c:redirect url="/diary/writeform.mn"></c:redirect>
+	<%-- <c:redirect url="/diary/writeform.mn"></c:redirect> --%>
 	<%-- <c:redirect url="/friend/friendlist.mn"></c:redirect> --%>
+	<c:redirect url="/abs/absList.mn"></c:redirect>
 </body>
 </html>

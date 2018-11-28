@@ -25,5 +25,8 @@ public interface AbsMapper {
 	//조회수
 	int AbsBoardViewCnt(int absNo);
 	
+	//답변채택
+	int AbsBoardComplete(int absNo);
+	
 	void AbsDeleteBoard(int absNo);
 }

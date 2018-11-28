@@ -20,4 +20,6 @@ public interface AbsService {
 	
 	Map<String, Object> absBoardDetail(int absNo); //질문게시판 상세
 	void absBoardDelete(int absNo);
+	
+	void absComplete(int absNo);
 }

@@ -1,4 +1,15 @@
-
+.glyphicon-ok{
+	color:green;
+}
+#completeCheck{
+	float: right;
+		margin-top: -33px;
+	
+}
+.btn-success{
+	float: right;
+	margin-top: -37px;
+}
     #post, #rev{
       background-color: rgb(255, 194, 64) !important;
         border : none;
@@ -28,7 +39,9 @@ p {
   font-weight: 200;
   color: #525252;
 }
-
+.optionButton{
+	float: right;	
+}
 .fl {
   float: left;
   margin: 20px;

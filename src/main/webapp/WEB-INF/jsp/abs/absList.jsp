@@ -61,7 +61,8 @@ slideEl.flickity({
 });
 
 function doDetail(no) {
-   window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700,resizable=no");
+
+   window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700");
 }
 
 function doChatList() {

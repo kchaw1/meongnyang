@@ -51,7 +51,6 @@ public class AbsController {
 	@RequestMapping("/write.mn")
 	public String write(QnABoard qnaboard)throws Exception {
 		System.out.println(qnaboard.getAbsTitle());
-		qnaboard.setAbsWriter("victory");
 		absService.write(qnaboard);
 		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
 
@@ -73,4 +72,10 @@ public class AbsController {
 		return "redirect:absDetailBoard.mn?no="+no;
 		
 	}
+	@RequestMapping("/absBoardComplete.mn")
+	public String absBoardComplete(int absNo,QnABoard qnaboard,int no) {
+		absService.absComplete(absNo);
+		return "redirect:absDetailBoard.mn?no="+no;
+	}
+	
 }
