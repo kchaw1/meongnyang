@@ -51,7 +51,7 @@ body{
     
     }
     .main-items h2{
-        /*ì—¬ê¸°ìˆ˜ì •*/
+        /*¿©±â¼öÁ¤*/
         /* padding-top: 22px; */
         margin-bottom: 16px;
         font-family: 'Jua', sans-serif;
@@ -96,7 +96,7 @@ body{
         border: 0;
         border-top: 1px solid #111111;
         border-bottom: 1px solid #111111;
-        text-align: left;
+    
         border-spacing: 2px;
     }
     .main-items table th{
@@ -106,16 +106,16 @@ body{
         width: 80px;
         padding-right: 10px;
         position: relative;
-        border-bottom: 1px solid #d7d8da;
+        
         font-weight: 500;
         border: 0;
         height: 36px;
         font-size: 15.6px;
-        text-align: left;
+        text-align: center;
         
     }
     p{
-        line-height: 29%;
+        line-height: 6.5px;
       
     }
     .btn{
@@ -146,7 +146,7 @@ body{
         margin-bottom: 10px;
         margin-top: 10px;
     }
-    /*ì±„íŒ… ë¡œê³ !*/
+    /*Ã¤ÆÃ ·Î°í!*/
     
     
     .chat-launcher {
@@ -238,7 +238,7 @@ body{
       -webkit-transform: translateY(0);
       transform: translateY(0);
     }
-    /*ë©”ë‹¬ ìƒ‰ê¹”*/
+    /*¸Þ´Þ »ö±ò*/
     .gold{
     color: gold;
     
@@ -249,7 +249,155 @@ body{
     .bronze{
     color: brown;
     }
+    div.progress-bar{
+        background-color: #f2809f;
+    }
+    .pclass{
+        padding-left: 5px;
+        line-height: 20px;
+    }
+    .crowdImg{
+        border-radius: 5px;
+    }
+    .leftRight1{
+    float: left;
+    }
+    .leftRight2{
+        float: right;
     
+    }
+    .btn1{
+        margin-left: 107px;
+        margin-top: 19px;
+        color: #ffffff;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: #f2809f;
+    }
+    .btn2{
+        margin-left: 68px;
+        margin-top: 20px;
+        color: #ffffff;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: #f2809f;
+    }
+    .btn3{
+        margin-left: 120px;
+        margin-top: 20px;
+        color: #ffffff;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: #f2809f;
+    }
+    .font2{
+        margin-top: 10px;
+        font-family: 'Jua';
+        font-size: 36px;
+        line-height: 42px;
+        font-weight: 400;
+    }
+    .btn4{
+        margin-left: 38.5px;
+        margin-top: 20px;
+        color: #ffffff;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: #f2809f;
+    }
+    .btn5{
+        margin-left: 197px;
+            margin-top: 20px;
+            color: #ffffff;
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background: #f2809f;
+    }
     
     
     
