@@ -22,12 +22,12 @@
           <li><a href="<c:url value='/member/signup.mn'/>">회원가입</a></li>                
         </c:when>
         <c:otherwise>
-          <li><a href="<c:url value='/member/MyPage.mn'/>">내 정보</a></li>
-		  <li><a href="<c:url value='/diary/writeform.mn'/>">마이펫 다이어리</a></li>
-		  <li><a href="<c:url value='/member/msg.mn'/>">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
-		  <li><a href="<c:url value='/friend/friendlist.mn'/>">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
+          <li><a href="<c:url value='/member/MyPage.mn'/>" id="mypdage">내 정보</a></li>
+		  <li><a href="<c:url value='/diary/writeform.mn'/>" id="diary">마이펫 다이어리</a></li>
+		  <li><a href="<c:url value='/member/msg.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
+		  <li><a href="<c:url value='/friend/friendlist.mn'/>" id="friend">내 친구<span class="lialarm friend" id="show">1</span></a></li>
 		  <!-- <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li> -->
-		  <li><a href="#1" class="pointcharge">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
+		  <li><a href="#1" class="pointcharge" id="point">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
         </c:otherwise>
@@ -42,6 +42,9 @@
 
 <script>
 $("a.pointcharge").click(function(e){
+/* 	if($(this).find("span").attr("id")=="show"){
+		
+	} */
 	//alert("충전")
     var left = (screen.width-1000) /2
     var top = (screen.height-600) /2
@@ -50,6 +53,7 @@ $("a.pointcharge").click(function(e){
     )
   })
 	var ws = null;
+	var callerId = null;
 	$(function() {
 		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 		//ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
@@ -61,10 +65,26 @@ $("a.pointcharge").click(function(e){
 		ws.onmessage = function(evt){
 			//alert(evt.data)
 			if(evt.data.startsWith("friend:")){
-				let id = evt.data.substring("friend:".length)
+				callerId = evt.data.substring("friend:".length)
 				//alert(id)
 				$("span.headeralarm").attr("id", "show");
 				$("span.friend").attr("id", "show")
+				
+				
+				/* $("a#friend").click(function(e) {
+						e.preventDefault();
+						alert($(this))	
+					if($(this).find("span").attr("id")=="show"){
+					}
+					$.notify({
+						title : id + "님이 친구요청을 하셨습니다.",
+						button : "Confirm"
+					}, {
+						style : "success",
+						autoHide : false,
+						clickToHide : false
+					})
+				}) */
 			}
 		}
 		ws.onclose = function() {
@@ -72,8 +92,56 @@ $("a.pointcharge").click(function(e){
 	    };
 		
 	}) //function
+	
+	//동적 이벤트 적용은 document.ready안에서 작용하지 않는다.
+	$("ul.dropdown-menu").on("click", "a#friend", function (e){
+		if($(this).find("span").attr("id")=="show"){
+			e.preventDefault();
+			console.log($(this))
+		
+			$.notify({
+				title : callerId + " 님이 친구요청을 하셨습니다.",
+				button : "요청 수락"
+			}, {
+				style : "foo",
+				autoHide : false,
+				clickToHide : false
+			}) //notify
+		} // span show 일때만..
+	})
+	
+	//foo style 만들기..
+	$.notify.addStyle("foo", {
+		html : "<div>" +
+	      "<div class='clearfix'>" +
+	        "<div class='title' data-notify-html='title'/>" +
+	        "<div class='buttons'>" +
+	          "<button class='wait'>보류</button>" +
+	          "<button class='no'>거절</button>" +
+	          "<button class='yes' data-notify-text='button'></button>" +
+	        "</div>" +
+	      "</div>" +
+	    "</div>"
+	}) //foo addStyle
+	
+	//listen for click events from this style
+	$(document).on('click', '.notifyjs-foo-base .no', function() {
+	  //programmatically trigger propogating hide event
+	  $(this).trigger('notify-hide');
+	});
+	$(document).on('click', '.notifyjs-foo-base .wait', function() {
+	  //programmatically trigger propogating hide event
+	  $(this).trigger('notify-hide');
+	});
+	$(document).on('click', '.notifyjs-foo-base .yes', function() {
+	  //show button text
+	  alert($(this).text() + " clicked!");
+	  //hide notification
+	  $(this).trigger('notify-hide');
+	});
+	
 	$("a#logout").click(function() {
 		alert("로그아웃 되었습니다.")
 		location.href = "<c:url value='/member/logout.mn'/>";
-		});
+	});
 </script>

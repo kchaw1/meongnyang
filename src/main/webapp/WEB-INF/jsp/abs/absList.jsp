@@ -6,22 +6,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>행동전문가 리스트</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<c:import url="../common/headerfooterCSSJS.jsp"/>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"/>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  
   
   <!-- 리스트 css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absList.css"/>">
   
-  <!-- 폰트 -->
-  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   
   <!-- header,footer  css -->
-  <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+
 </head>
 <body>
 <c:import url="../common/header.jsp" />
@@ -61,8 +58,9 @@ slideEl.flickity({
 });
 
 function doDetail(no) {
-
-   window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700");
+    var left = (screen.width-1000) /2
+       var top = (screen.height-700) /2
+   window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700, left="+left+", top="+top);
 }
 
 function doChatList() {

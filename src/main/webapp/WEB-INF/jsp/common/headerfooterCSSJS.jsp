@@ -13,13 +13,14 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 
 <!-- 부트스트랩 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/bootstrap.min.css"/>">
+<script src="<c:url value="/resources/js/common/bootstrap.min.js"/>"></script>
 <!--ajax jquery -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 
 <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
 
+<script src="<c:url value="/resources/js/common/notify.min.js"/>"></script>
 <script>
 $(function() {
   $('.dropdown-toggle').dropdown()	
