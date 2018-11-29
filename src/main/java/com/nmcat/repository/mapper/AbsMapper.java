@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
+import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsMapper {
@@ -37,4 +38,11 @@ public interface AbsMapper {
 
 	//게시글 수정
 	void updateAbsBoard(QnABoard qnaboard);
+	
+	//게시글 댓글 리스트
+	List<AbsComment> selectCommentListByabsNo(int absNo);
+
+	//게시글 댓글 등록
+	void insertComment(AbsComment comment);
+
 }

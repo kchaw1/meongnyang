@@ -1,9 +1,11 @@
 package com.nmcat.abs.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
+import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsService {
@@ -28,6 +30,11 @@ public interface AbsService {
 
 	void updateAbsBoard(QnABoard qnaboard);
 	QnABoard updateForm(int absNo);
+	
+	List<AbsComment> listComment(int absNo);
+
+	List<AbsComment> writeComment(AbsComment comment);
+
 
 
 }

@@ -2,6 +2,7 @@ package com.nmcat.abs.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,7 @@ import com.nmcat.abs.service.AbsService;
 import com.nmcat.repository.domain.AFormVO;
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
+import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.board.QnABoard;
 
 @RequestMapping("/abs")
@@ -108,7 +110,28 @@ public class AbsController {
 		absService.updateAbsBoard(qnaboard);
 		return "redirect:absDetailBoardDetail.mn?no="+no+"&absNo="+absNo;
 	}
+//----------------------------댓글---------------------------------------------
+	@PostMapping("/comment/list.mn")
+	@ResponseBody
+	public List<AbsComment> listComment(@RequestParam("absNo")int absNo) throws ParseException {
+		return convertDate(absService.listComment(absNo));
+	}
+	@PostMapping("/comment/write.mn")
+	@ResponseBody
+	public List<AbsComment> writeComment(AbsComment comment) throws ParseException {
+		return convertDate(absService.writeComment(comment));
+	}
 	
+	
+//---------------------------댓글 regdate---------------------------------------------------------	
+	private List<AbsComment> convertDate(List<AbsComment> list) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		for(AbsComment co : list) {
+			String date = sdf.format(co.getAbscRegDate());
+			co.setRegDateString(date);
+		}
+		return list;
+	}
 	
 //---------------------------파일 등록-----------------------------------------------
 	

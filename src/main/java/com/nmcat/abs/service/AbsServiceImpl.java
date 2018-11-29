@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
+import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -85,6 +86,7 @@ public class AbsServiceImpl implements AbsService{
 		return map;
 	}
 
+	//게시글 삭제
 	@Override
 	public void absBoardDelete(int absNo) {
 		absMapper.AbsDeleteBoard(absNo);
@@ -101,7 +103,8 @@ public class AbsServiceImpl implements AbsService{
 		absMapper.insertAbsBoardFile(file);
 		
 	}
-
+	
+	//게시글 수정
 	@Override
 	public void updateAbsBoard(QnABoard qnaboard) {
 
@@ -111,6 +114,20 @@ public class AbsServiceImpl implements AbsService{
 	@Override
 	public QnABoard updateForm(int absNo) {
 		return absMapper.selectAbsBoardByNo(absNo);
+	}
+
+	//댓글 리스트 가져오기 
+	@Override
+	public List<AbsComment> listComment(int absNo) {
+	
+		return absMapper.selectCommentListByabsNo(absNo);
+		
+	}
+
+	@Override
+	public List<AbsComment> writeComment(AbsComment comment) {
+		absMapper.insertComment(comment);
+		return absMapper.selectCommentListByabsNo(comment.getAbsNo());
 	}
 
 

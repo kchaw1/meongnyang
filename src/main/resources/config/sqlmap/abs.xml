@@ -33,6 +33,13 @@
 		<result column="absf_path" property="absfPath"/>
 		
 	</resultMap>
+	<resultMap id="absCommentMap" type="AbsComment">
+		<result column="no" property="no"/>
+		<result column="abs_no" property="absNo"/>
+		<result column="abs_Writer" property="absWriter"/>
+		<result column="absc_content" property="abscContent"/>
+		<result column="absc_reg_date" property="abscRegDate"/>
+	</resultMap>
 	
 	
 	<!-- 행동전문가 리스트 보여주기 -->
@@ -107,4 +114,21 @@
     	   set abs_complete='y' 
     	where abs_no=#{absNo};    	
     </update>
+    
+    <!-- 행동전문가 질문게시판 댓글 리스트 -->
+    <select id="selectCommentListByabsNo" parameterType="int" resultMap="absCommentMap">
+		select * 
+		  from mn_abs_comment
+	     where abs_no = #{absNo}
+		 order by absc_reg_date
+	</select>
+	
+	<!-- 행동전문가 댓글 작성 -->
+	<insert id="insertComment" parameterType="AbsComment">
+		insert into mn_abs_comment (
+		 abs_no, abs_writer, absc_content, no
+		) values ( #{absNo}, #{absWriter}, #{abscContent},#{no}
+		)
+	</insert>
+	
 </mapper>

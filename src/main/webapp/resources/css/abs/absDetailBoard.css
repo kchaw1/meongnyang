@@ -1,4 +1,6 @@
-
+#detailboard:hover{
+	color: rgb(255, 194, 64);
+}
       .table-responsive{
         border:2px solid rgb(255, 194, 64);
         border-top: none;

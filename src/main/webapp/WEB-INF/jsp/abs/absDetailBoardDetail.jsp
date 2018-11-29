@@ -52,13 +52,25 @@
           <div>
           <div>
             <h4>작성자:${map.b.absWriter}</h4>
-            <c:choose >
-            	<c:when test="${map.b.absComplete =='n'}">
-            		<button id="complete" class="btn btn-success">답변완료</button>		
-            	</c:when>
-            	<c:otherwise>
-            		<h3 id="completeCheck"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;답변이 완료된 게시물입니다.</h3>
-            	</c:otherwise>
+            <c:choose>
+              <c:when test="${user.no==map.b.no}">
+           	 	<c:choose >
+            		<c:when test="${map.b.absComplete =='n'}">
+            			<button id="complete" class="btn btn-success">답변완료</button>		
+            		</c:when>
+            		<c:otherwise>
+        	    		<h3 id="completeCheck"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;답변이 완료된 게시물입니다.</h3>
+    	        	</c:otherwise>
+	            </c:choose>
+              </c:when>
+              <c:otherwise>
+              	<c:choose>
+              		<c:when test="${map.b.absComplete =='y'}">
+        	    		<h3 id="completeCheck"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;답변이 완료된 게시물입니다.</h3>
+              		</c:when>
+              		<c:otherwise></c:otherwise>
+              	</c:choose>
+              </c:otherwise>
             </c:choose>
             	</div>
             <hr>
@@ -77,6 +89,8 @@
           <div>
             <h3 class="heading">Comment</h3>
               <div class="con">
+              <c:choose>
+              	<c:when test="${map.b.absComplete =='n'}">
                 <form method="POST">
                   <div class="form-group">
                     <textarea id="writecomment" class="form-control status-box" rows="2" placeholder="Enter your comment here..."></textarea>
@@ -85,6 +99,11 @@
                 <div class="button-group pull-right">
                   <p class="counter">250</p>
                   <a href="#" class="btn btn-primary" id="post">Post</a>
+              	</c:when>
+              	<c:otherwise>
+              	
+              	</c:otherwise>
+              </c:choose>
                 </div>
                 <ul class="posts">
                   
@@ -152,9 +171,60 @@
         			 alert("답변이 채택되었습니다");
         	    	 location.href="absBoardComplete.mn?absNo="+ ${map.b.absNo}+"&no="+${map.b.no};
     	    	 }else{
-	        		 alert("행동전문가만 답변을 채택할 수 있습니다.");
+	        		 alert("자기 페이지에서만 답변을 채택할 수 있습니다.");
             	 }
              })
+             
+             //-----------------------------------------------------------------------------
+             //댓글작성
+   				$("#post").click(function() {
+    				$.ajax({
+    					url : "<c:url value='/abs/comment/write.mn'/>",
+    					data : {
+    						"abscContent" :  $('.status-box').val(),
+    						"absWriter" : "${user.id}",
+    						"absNo" : "${map.b.absNo}",
+    						"no" : "${param.no}"
+    						   },
+    						type : "POST"
+    				}).done(function(result){
+           				 	commentList();
+
+    		});
+  		 });
+             //댓글 조회
+    		var commentList = function(){
+            		 
+    			$.ajax({
+    				url : "<c:url value='/abs/comment/list.mn'/>",
+    				type : "POST",
+    				data : "absNo=${map.b.absNo}"
+    			}).done(function(result){
+    				console.log(result);
+    				$("ul.posts").html("");
+    					for(let i=0; i<result.length; i++){
+  			  					$("ul.posts").append(
+									"<li class='comment' data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
+									+result[i].absWriter+"의 한마디:"  
+									+"<br>"
+									+"내용:"+ result[i].abscContent
+									+"<br>"
+									+"작성일:"+result[i].abscRegDate+"</li>"
+	                           		+"<a href=" + result[i].abscNo + " data-writer=" + result[i].absWriter + "></a>"
+	                           	
+  			  					);
+    						
+    						
+    						
+    					}
+    				
+    			})
+            
+            	 
+    		};
+    		
+    		//댓글뿌려주기
+         	commentList();
           
         </script>
 </body>

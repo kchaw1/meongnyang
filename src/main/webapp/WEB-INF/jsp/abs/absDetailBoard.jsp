@@ -69,7 +69,7 @@
                 </tr>  	 
                      <c:forEach var="b" items="${map.b}">
                         <tr class="clickde">
-                        	<td><a href="absDetailBoardDetail.mn?absNo=${b.absNo}&no=${map.a.no}">${b.absTitle}</a></td>
+                        	<td><a href="absDetailBoardDetail.mn?absNo=${b.absNo}&no=${map.a.no}" id="detailboard">${b.absTitle}</a></td>
                         	<td>${b.absWriter}</td>
                             <td><fmt:formatDate value="${b.absRegDate}" pattern="yyyy-MM-dd" /></td>
                         	<td>${b.absViewCnt}</td>
