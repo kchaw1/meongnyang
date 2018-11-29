@@ -87,7 +87,7 @@ public class CommunityController {
 		service.updateComment(comComment);
 	}
 	//댓글 총 갯수
-	@RequestMapping("/updateComment.mn")
+	@RequestMapping("/selectCommentCount.mn")
 	@ResponseBody
 	public int selectCommentCount(int comNo)throws Exception{
 		return service.selectCommentCount(comNo);

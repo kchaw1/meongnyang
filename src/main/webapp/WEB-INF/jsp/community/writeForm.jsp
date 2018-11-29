@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value="/resources/css/community/writeForm.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
+<link rel="stylesheet" href="<c:url value="/resources/css/community/writeForm.css"/>">
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nmcat.main.service.MainService;
 
 @Controller
-@RequestMapping("/community")
+@RequestMapping("/main")
 public class MainController {
 	@Autowired
 	private MainService service;

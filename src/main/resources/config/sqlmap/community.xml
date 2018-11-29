@@ -20,6 +20,7 @@
 	<result column = "comc_writer" property= "comcWriter"/>
 	<result column = "comc_content" property= "comcContent"/>
 	<result column = "comc_reg_date" property="comcRegDate" />
+	
 </resultMap>
 	<!-- 커뮤니티 CRUD -->
 	
@@ -83,7 +84,7 @@
 	<select id = "selectComment" parameterType = "int" resultMap = "comcMap">
 	select *
 	from mn_com_comment
-	where com_no = ${comNo}
+	where com_no = #{comNo}
 	</select>
 	
 	<!-- 댓글 등록 -->
@@ -91,14 +92,14 @@
 	insert into mn_com_comment
 	(com_no, comc_writer, comc_content)
 	 values
-	 ((${comNo}, ${comcWriter}, ${comcContent})
+	 (#{comNo}, #{comcWriter}, #{comcContent})
 	</insert>
 	
 	<!-- 댓글 삭제 -->
 	<delete id = "deleteComment" parameterType = "int">
 	delete
 	from mn_com_comment
-	where comc_no = ${comcNo}
+	where comc_no = #{comcNo}
 	</delete>
 	
 	<!-- 댓글 수정 -->
@@ -108,8 +109,8 @@
 	where comc_no = #{comcNo}
 	</update>
 	<!-- 각 게시물당 댓글 갯수 -->
-		<!-- 커뮤니티 전체 게시물의 수 -->
-	<select id = "selectCommentCount" resultType = "int" >
+	<!-- 커뮤니티 전체 게시물의 수 -->
+	<select id = "selectCommentCount" parameterType = "int" resultType = "int" >
 	select count(*)
 	from
 	mn_com_comment

@@ -7,8 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value="/resources/css/community/detailPage.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
+<link rel="stylesheet" href="<c:url value="/resources/css/community/detailPage.css"/>">
+
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -44,6 +45,13 @@ height: 100%;
 margin-top: 105px;
 /* padding-right: 270px;
 padding-left: 270px; */
+}
+
+.coWriter{
+	 font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgb(0, 63, 109);
 }
 /* .left{
 margin-top: 70px;
@@ -195,22 +203,24 @@ z-index: -1;
                      <!-- 댓글 -->
                      <div class = "commentHr">
                          <div class ="commentmargin">
-                            <div class = "coWriter">rlaqudrhks258</div>
-                            <form>
-                            <textarea class = "commentForm"></textarea>
-                        </form>
+         <form id = "insertComment" method = "POST">
+                            <div class = "coWriter">${user.id}</div>
+                            <input type="hidden" name="comcWriter" value="${user.id}" />
+                            <input type="hidden" name="comNo" value="${communityBoard.comNo}"/>
+                            <textarea class = "commentForm" name = "comcContent" ></textarea>
+         </form>
                             <button class = "commentBtn">등록</button>
                             <div class = "brbr"></div>
                         </div>
                      </div>
 
-                     <div class ="commnetsHr">Comments</div>
+                     <div class ="commnetsHr"></div>
                    <br>
                    <br>
                    
                    <div class = "commentList">
                         <div class ="commentWriter"></div>
-                        <ul class="comments">
+                        <ul class="comments" id = "comments">
                                 <li class="comment">
                                   <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
                                   <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
@@ -273,6 +283,73 @@ z-index: -1;
             </div>
     </footer>
 <script>
+//댓글 등록
+$(document).on("click",".commentBtn", function(e){
+	$.ajax({
+		url : "<c:url value = '/community/insertComment.mn'/>",
+		type : "POST",
+		data : $("#insertComment").serialize()
+	}).done(function(result){
+		console.log(result);
+		//이곳에 댓글 조회 실시간으로 할 수있게 함수 넣어주기!
+		
+		
+	});
+});
+
+$(document).on("click",".commentBtn", function(e){
+	commentConunt();
+	commentList();
+});
+//댓글 갯수 함수
+function commentConunt(){
+	$.ajax({
+		url : "<c:url value = '/community/selectCommentCount.mn'/>",
+		type :"POST",
+		data : "comNo=${communityBoard.comNo}"
+	}).done(function(count){
+		console.log(count);
+	$(".commnetsHr").html('Comments'+'&nbsp'+count);
+		
+		
+	});
+};
+
+// 댓글 조회함수
+function commentList(){
+	$.ajax({
+		url : "<c:url value = '/community/selectComment.mn'/>",
+		type : "POST",
+		data : "comNo=${communityBoard.comNo}"
+		
+	}).done(function(result){
+		console.log(result);
+		var text = "";
+		console.log(result.length);
+		for(let i = 0; i < result.length; i++){
+			text += "<li class='comment'>"
+					+"<a href=''#' title='View this user profile' class='photo'><img src='https://placehold.it/32x32' alt='Kasper'></a>"
+					+"<div class='meta'>"
+					+result[i].comcWriter+"&nbsp|&nbsp"+result[i].comcRegDate
+					+"<a class='reply'>Reply</a></div>"
+					+"<div class='body'>"
+					+result[i].comcContent
+					+"</div>"
+					
+					
+			/* <li class="comment">
+                 <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
+                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                   <div class="body">하하하하</div>
+               </li> */
+		}
+		$("#comments").html(text);
+	});
+};
+commentList();
+commentConunt();
+
+
 //클릭시 글 삭제
 $("button.btnDelete").click(function() {
 	var no = $(this).attr('id');

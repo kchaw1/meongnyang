@@ -320,6 +320,12 @@ border-radius: 5px;
 margin-top: 20px;
 border-bottom: 1px solid rgb(226, 219, 219);
 }
+.coWriter{
+	 font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgb(0, 63, 109);
+}
 .brbr{
 height:50px;
 }
