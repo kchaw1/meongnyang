@@ -9,20 +9,19 @@ import com.nmcat.repository.domain.Message;
 import com.nmcat.repository.mapper.MessageMapper;
 
 @Service
-public class MsgServiceImpl implements MsgService{
+public class MessageServiceImpl implements MessageService{
 	
-/*	@Autowired
+	@Autowired
 	private MessageMapper mapper;
-	
 	
 	@Override
 	public List<Message> list() {
-		return mapper.selectMsglist();
+		return mapper.selectRecvMsglist();
 	}
 
 	@Override
 	public void writer(Message msg) {
 		mapper.insertMsg(msg);
-	}*/
+	}
 
 }

@@ -6,6 +6,6 @@ import com.nmcat.repository.domain.Message;
 
 public interface MessageMapper {
 	
-/*	List<Message>selectMsglist();
-	void insertMsg(Message msg);*/
+	List<Message>selectRecvMsglist();
+	void insertMsg(Message msg);
 }

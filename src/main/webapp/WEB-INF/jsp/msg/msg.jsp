@@ -6,9 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+#create-user {
+    margin: 15px 0 0 152px;
+    margin-bottom: 20px;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(65, 192, 142, 0.7);
+    border-color: rgb(65, 192, 142, 0.7);
+    font-family: 'Jua', sans-serif;
+}
+
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- modal ui -->
+<!-- <link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
 <!-- activity css -->
 <link rel="stylesheet" href="<c:url value="/resources/css/member/memo.css"/>">
@@ -27,6 +47,7 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+
 </head>
 <body>
 <c:import url="../common/header.jsp" />
@@ -48,38 +69,19 @@
                         <th>번호</th>
                         <th>보낸이</th>
                         <th>제목</th>
-                        <th>날짜</th>
+                        <th>읽은날짜</th>
                     </tr>
                 </thead>
                 <tbody>
+                	<c:forEach var="msg" items="${msglist}">
                     <tr>
                         <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                        <td>1</td>
-                        <td>김병관</td>
-                        <td>~~안녕하세요</td>
-                        <td>2018.11.21</td>
+                        <td></td>
+                        <td>${msg.recvId}</td>
+                        <td>${msg.MsgTitle}</td>
+                        <td><fmt:formatDate value="${msg.readDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
-                    <tr>
-                        <td><input id="check2" type="checkbox" name="check" value="1" /></td>
-                        <td>2</td>
-                        <td>김차원</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
-                    <tr>
-                        <td><input id="check3" type="checkbox" name="check" value="1" /></td>
-                        <td>3</td>
-                        <td>이현규</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
-                    <tr>
-                        <td><input id="check4" type="checkbox" name="check" value="1" /></td>
-                        <td>4</td>
-                        <td>박아란</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <form id="searchForm">
@@ -107,45 +109,19 @@
                         <th>번호</th>
                         <th>받는이</th>
                         <th>제목</th>
-                        <th>날짜</th>
+                        <th>받은날짜</th>
                     </tr>
                 </thead>
                 <tbody>
+                	<c:forEach var="msg" items="${msglist}">
                     <tr>
                         <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                        <td>1</td>
-                        <td>관리자</td>
-                        <td>안녕하세요.</td>
-                        <td>2018.11.21</td>
+                        <td></td>
+                        <td>${msg.sendId}</td>
+                        <td>${msg.MsgTitle}</td>
+                        <td><fmt:formatDate value="${msg.sendDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
-                    <tr>
-                        <td><input id="check6" type="checkbox" name="check" value="1" /></td>
-                        <td>2</td>
-                        <td>김병관</td>
-                        <td>~~안녕하세요</td>
-                        <td>2018.11.21</td>
-                    </tr>
-                    <tr>
-                        <td><input id="check7" type="checkbox" name="check" value="1" /></td>
-                        <td>3</td>
-                        <td>김차원</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
-                    <tr>
-                        <td><input id="check8" type="checkbox" name="check" value="1" /></td>
-                        <td>4</td>
-                        <td>이현규</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
-                    <tr>
-                        <td><input id="check9" type="checkbox" name="check" value="1" /></td>
-                        <td>5</td>
-                        <td>박아란</td>
-                        <td>환영합니다.</td>
-                        <td>2018.11.21</td>
-                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <div>
@@ -169,10 +145,30 @@
     </div>
     <div style="clear: both;"></div>
     </div>
-    <div class="memowriter">
-        <input type="button" id="memowriter" value="쪽지쓰기" onclick="showmemo();">
-    </div>
-</div>
+    <button id="create-user">쪽지쓰기</button>
+		 <div id="dialog-form" title="Create new user">
+			<form action="<c:url value="/msg/msgwrite.mn"/>" method="post">
+				<fieldset>
+					<div class="contents">
+						<div class="memopop">
+							<div id=sendId>${user.id}</div>
+        					<input type="hidden" name="sendId" value="${user.id}" />
+							<span>받는사람 : </span> <input type="text" name=recvId id="name" />
+						</div>
+						<hr>
+						<span>제목 : </span> <input type="text" name="MsgTitle" id="title" />
+						<hr>
+						<div class="content">
+							<textarea name="msgContent" placeholder="내용을 입력하세요." rows="15" cols="80" value=""></textarea>
+						</div>
+						<div class="check">
+							<input id="check" type="checkbox" name="check" value="1" />
+							<span id="check1">보낸 쪽지함에 저장<span id="check2">(보낸쪽지함에 저장하면수신 확인이 가능합니다.) </span></span>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div> 
 <c:import url="../common/footer.jsp"/>
 <script>
 $( function() {
@@ -210,10 +206,42 @@ $(document).ready(function(){
         }
     })
 })
-
-function showmemo() { 
-    window.open("msgpop.mn", "쪽지쓰기", "width=620, height=400, left=100, top=50, resizable=no, toolbars=no, menubar=no"); 
-}
 </script>
+<script>
+  $( function() {
+    var dialog, form;
+
+ 
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 550,
+      width: 650,
+      modal: true,
+      buttons: {
+        "보내기": addmsg,
+                    닫기: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+		//alert("1");
+      }
+    });
+ 
+//     form = dialog.find( "form" ).on( "submit", function( event ) {
+// //       event.preventDefault();
+// //       addUser();
+//     });
+    
+    function addmsg() {
+    	alert("쪽지를 보냈습니다.");
+    	$( "#dialog-form form" ).submit();
+        dialog.dialog( "close" );
+    }
+    $( "#create-user" ).button().on( "click", function() {
+      dialog.dialog( "open" );
+    });
+  } );
+  </script>
 </body>
 </html>

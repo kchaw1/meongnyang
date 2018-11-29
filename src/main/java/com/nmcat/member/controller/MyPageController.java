@@ -24,12 +24,7 @@ public class MyPageController {
 	@RequestMapping("myboardcomn.mn")
 	public void mybcmn() {}
 	
-	@RequestMapping("msg.mn")
-	public void msg() {}
-	
 	@RequestMapping("mygrade")
 	public void mygrade() {}
 	
-	@RequestMapping("msgpop.mn")
-	public void msgpop() {}
 }

@@ -6,12 +6,13 @@ import lombok.Data;
 
 @Data
 public class Message {
-	
-/*	private String recvId;
+	private String msgNo;
+	private String recvId;
 	private String sendId;
+	private String MsgTitle;
 	private String MsgContent;
 	private Date sendDate;
 	private Date readDate;
 	private Boolean recvDel;
-	private Boolean sendDel;*/
+	private Boolean sendDel;
 }

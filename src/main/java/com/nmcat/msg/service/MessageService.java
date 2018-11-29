@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.nmcat.repository.domain.Message;
 
-public interface MsgService {
+public interface MessageService {
 	
-/*	List<Message> list();
-	void writer(Message msg);*/
+	List<Message> list();
+	void writer(Message msg);
 }

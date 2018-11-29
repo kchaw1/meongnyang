@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.MessageMapper">
-	<!-- <resultMap id="mssageMap" type="Message" >
+<resultMap id="MessageMap" type="Message" >
+		<result column="msg_no" property="msgNo"/>
 		<result column="recv_id" property="recvId"/>
 		<result column="send_id" property="sendId"/>
+		<result column="msg_title" property="MsgTitle"/>
 		<result column="msg_content" property="MsgContent"/>
 		<result column="send_date" property="sendDate"/>
 		<result column="read_date" property="readDate"/>
@@ -12,19 +14,17 @@
 		<result column="send_del" property="sendDel"/>
 	</resultMap>
 	
-	<select id="selectMsglist" resultMap="MessageMap">
+	<!-- 받은 쪽지 목록 -->
+	<select id="selectRecvMsglist" parameterType="string" resultMap="MessageMap">
 		select * 
 		from mn_msg
-		order by desc
+		where recv_id = #{recvId}
+		order by msg_no desc
 	</select>
 	
+	<!-- 쪽지 쓰기 -->
 	<insert id="insertMsg" parameterType="Message">
-		insert into mn_msg(msg_no, recv_id, send_id, msg_content) values 
-		(#{recvId}, #{sendId}, #{MsgContent})
-	</insert> -->
-	
-	
-	
-	
-	
+		insert into mn_msg(recv_id, send_id, msg_title, msg_content) values 
+		(#{recvId}, #{sendId}, #{MsgTitle}, #{MsgContent})
+	</insert>
 </mapper>

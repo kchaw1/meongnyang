@@ -63,7 +63,7 @@
             <hr style="width: 1px; height: 200px; float: left; background: black">
             <div class="grade">
                 <p id="mygrade">내 등급</p>
-                <img src="diamond_i.png"/><br>
+                <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/><br>
                 <button type="button" id="btn2" onclick="mygrade()">등급 정보확인하기</button>
             </div>
         </div>

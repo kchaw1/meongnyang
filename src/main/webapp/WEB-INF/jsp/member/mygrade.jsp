@@ -38,7 +38,7 @@
             다이아
         </div>
         <div id="grdImg">
-            <img src="diamond_i.png"/>
+            <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/>
         </div>
     </div>
     <!-- <hr style="width: 0px; height: 150px; float: left; margin: 0 0 0 15px;"> -->
@@ -61,49 +61,49 @@
     </div>
     <div class="image">
     <div class="new">
-        <img src="뉴비.jpg" />
+        <img src="<c:url value="/resources/img/member/뉴비.jpg"/>" />
         <div style="text-align: center;">
             1 ~ 199
         </div>
     </div>
     <div class="new">
-        <img src="루키.png" />
+        <img src="<c:url value="/resources/img/member/루키.png"/>" />
         <div style="text-align: center;">
                 200 ~ 299
         </div>
     </div>
     <div class="new">
-        <img src="멤버.jpg" />
+        <img src="<c:url value="/resources/img/member/멤버.jpg"/>" />
         <div style="text-align: center;">
                 300 ~ 399
         </div>
     </div>
     <div class="new">
-        <img src="bronze_i.png" />
+        <img src="<c:url value="/resources/img/member/bronze_i.png"/>" />
         <div style="text-align: center;">
                 400 ~ 499
         </div>
     </div>
     <div class="new">
-        <img src="silver_i.png" />
+        <img src="<c:url value="/resources/img/member/silver_i.png"/>" />
         <div style="text-align: center;">
                 500 ~ 699
         </div>
     </div>
     <div class="new">
-        <img src="gold_i.png" />
+        <img src="<c:url value="/resources/img/member/gold_i.png"/>" />
         <div style="text-align: center;">
                 700 ~ 999
         </div>
     </div>
     <div class="new">
-        <img src="platinum_i.png" />
+        <img src="<c:url value="/resources/img/member/platinum_i.png"/>" />
         <div style="text-align: center;">
                 1000 ~ 1499
         </div>
     </div>
     <div class="new">
-        <img src="diamond_i.png" />
+        <img src="<c:url value="/resources/img/member/diamond_i.png"/>" />
         <div style="text-align: center;">
                 1500 ~ 
         </div>

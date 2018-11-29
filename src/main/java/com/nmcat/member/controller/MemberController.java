@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -47,20 +48,6 @@ public class MemberController {
 	} //checkId
 	
 	
-	
-/*	@RequestMapping("/login.mn")
-	@ResponseBody
-	public boolean login(HttpSession session, Login login) {
-		System.out.println("login id : " + login.getId());
-		Member member = service.login(login);
-		System.out.println("loginpass : " + login.getPass());
-		if(member != null) {
-			session.setAttribute("user", member);
-			return true;
-		}
-		return false;
-	} // 로그인
-*/	
 	@RequestMapping("/login.mn")
 	public void login() {}
 	
@@ -85,27 +72,34 @@ public class MemberController {
 		return "redirect:/member/login.mn";
 	} // 로그아웃
 	
-//	@RequestMapping(value="/test1.mn", method=RequestMethod.POST)
-//	public String test1(String imageName, MultipartFile attach) throws Exception {
-//		System.out.println("id : " + imageName);
-//		System.out.println("attach : " + attach);
-//		
-//		// 실제 파일이 전송되었는지 확인
-//		System.out.println("attach.isEmpty() : " + attach.isEmpty());
-//		
-//		if (attach.isEmpty() == true) return "redirect:/login.mn";
-//		
-//		// 파일이 존재하는 경우 처리
-//		// 서버의 특정 위치에 저장하자..
-//		// 실제 사용자가 선택한 파일 이름 가져오기
-//		System.out.println("원본파일명 : " + attach.getOriginalFilename());
-//		System.out.println("크기 : " + attach.getSize());
-//		
-//		// 서버의 특정 위치에 파일을 저장하기
-//		attach.transferTo(new File("C:/data/upload", attach.getOriginalFilename()));
-//		
-//		return "redirect:/login.mn";
-//	}
+	@RequestMapping("sendMail.mn")
+	@ResponseBody
+	public String sendMail(Member member) {
+		
+		return service.sendMail(member);
+	}
+	
+	@RequestMapping(value="/test1.mn", method=RequestMethod.POST)
+	public String test1(String imageName, MultipartFile attach) throws Exception {
+		System.out.println("id : " + imageName);
+		System.out.println("attach : " + attach);
+		
+		// 실제 파일이 전송되었는지 확인
+		System.out.println("attach.isEmpty() : " + attach.isEmpty());
+		
+		if (attach.isEmpty() == true) return "redirect:/login.mn";
+		
+		// 파일이 존재하는 경우 처리
+		// 서버의 특정 위치에 저장하자..
+		// 실제 사용자가 선택한 파일 이름 가져오기
+		System.out.println("원본파일명 : " + attach.getOriginalFilename());
+		System.out.println("크기 : " + attach.getSize());
+		
+		// 서버의 특정 위치에 파일을 저장하기
+		attach.transferTo(new File("C:/data/upload", attach.getOriginalFilename()));
+		
+		return "redirect:/signup.mn";
+	}
 
 }	
 //	@RequestMapping("signupform.mn")

@@ -86,7 +86,7 @@ $("button#loginform").click(function(){
 		reader.readAsDataURL($("input[name=file]").[0].files[0]);
 	}) */
 </script>
-<script>
+<!-- <script>
 $(document).ready( function() {
     
     $("input[type=file]").change(function () {
@@ -142,5 +142,4 @@ $(document).ready( function() {
     });
      
 });
-</script>
-</script>
+</script> -->

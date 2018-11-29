@@ -11,6 +11,8 @@ public interface MemberService {
 	
 	boolean checkId(String id);
 	
+	
+	
 	// 프로필 파일 부분
 	
 	// 이메일 인증 부분
