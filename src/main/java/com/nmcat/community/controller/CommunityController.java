@@ -1,12 +1,16 @@
 package com.nmcat.community.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.nmcat.community.service.CommunityService;
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 @Controller
@@ -54,4 +58,45 @@ public class CommunityController {
 		service.deleteBoard(comNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "communityPage.mn";
 	}
+	
+	//-----------------------------------------
+	//댓글 CRUD
+	
+	@RequestMapping("/selectComment.mn")
+	@ResponseBody
+	public List<CommunityComment> selectComment(int comNo)throws Exception{
+		return service.selectComment(comNo);
+	}
+	
+	@RequestMapping("/deleteComment.mn")
+	@ResponseBody
+	public void deleteComment(int comcNo)throws Exception{
+		service.deleteComment(comcNo);
+		
+	}
+	
+	@RequestMapping("/insertComment.mn")
+	@ResponseBody
+	public void insertComment(CommunityComment comComment)throws Exception{
+		service.insertComment(comComment);
+	}
+	
+	@RequestMapping("/updateComment.mn")
+	@ResponseBody
+	public void updateComment(CommunityComment comComment)throws Exception{
+		service.updateComment(comComment);
+	}
+	//댓글 총 갯수
+	@RequestMapping("/updateComment.mn")
+	@ResponseBody
+	public int selectCommentCount(int comNo)throws Exception{
+		return service.selectCommentCount(comNo);
+		
+	}
+	
+	
+	
+	
+	
+	
 }

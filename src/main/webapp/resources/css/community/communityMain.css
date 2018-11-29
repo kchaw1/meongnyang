@@ -17,8 +17,7 @@ body{
     
     float: left;
     width: 60%;
-    
-    min-height: 2s00px;
+    min-height: 140px;
 }
 
 
@@ -26,7 +25,7 @@ body{
     /*margin-top은 그냥 구분을 위해서 나중에 지워두 된다.*/
     margin-top: 20px;
     width: 100%;
-    min-height: 200px;
+    min-height: 140px;
     border-bottom: 1px solid #efefef;
 
 }
@@ -41,7 +40,7 @@ body{
 .mid{
     
     border: 1px solid #efefef;
-    min-height: 200px;
+    min-height: 140px;
     background-color: white;
 }
 .bottom{

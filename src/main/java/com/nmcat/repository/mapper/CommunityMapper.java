@@ -2,6 +2,7 @@ package com.nmcat.repository.mapper;
 
 import java.util.List;
 
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityMapper {
@@ -22,6 +23,15 @@ public interface CommunityMapper {
 	
 	// 커뮤니티 전체 글 갯수
 	int selectBoardCount();
+	
+	
+	//--------------------------------------------------------------------------------
+	// 댓글 CRUD
+	List<CommunityComment> selectComment(int comNo);
+	void insertComment(CommunityComment comComment);
+	void deleteComment(int comcNo);
+	void updateComment(CommunityComment comComment);
+	int selectCommentCount(int comNo);
 	
 	
 	

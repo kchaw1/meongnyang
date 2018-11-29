@@ -319,6 +319,7 @@ $(".mid").click(function() {
 	location.href = "detailPage.mn?comNo="+no;
 });
 
+
 </script>
 
 

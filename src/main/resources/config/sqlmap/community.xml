@@ -12,6 +12,15 @@
 		<result column="com_view_cnt" property="comViewCnt" />
 		<result column="com_reg_date" property="comRegDate" />
 	</resultMap>
+	
+	
+<resultMap id = "comcMap" type = "CommunityComment">
+	<result column = "comc_no" property= "comcNo"/>
+	<result column = "com_no" property= "comNo"/>
+	<result column = "comc_writer" property= "comcWriter"/>
+	<result column = "comc_content" property= "comcContent"/>
+	<result column = "comc_reg_date" property="comcRegDate" />
+</resultMap>
 	<!-- 커뮤니티 CRUD -->
 	
 <!-- 	커뮤니티 무한스크롤 전체목록 가져오기  -->
@@ -60,12 +69,52 @@
 	</update>
 	
 	<!-- 커뮤니티 전체 게시물의 수 -->
-	<select id = "selectBoardCount" resultType = "int">
+	<select id = "selectBoardCount" resultType = "int" >
 	select count(*)
 	from
 	mn_com
 	</select>
 	
+	<!-- **************************************************** -->
+	<!-- 댓글 CRUD -->
+	
+	
+	<!-- 댓글 조회 -->
+	<select id = "selectComment" parameterType = "int" resultMap = "comcMap">
+	select *
+	from mn_com_comment
+	where com_no = ${comNo}
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id = "insertComment" parameterType = "CommunityComment">
+	insert into mn_com_comment
+	(com_no, comc_writer, comc_content)
+	 values
+	 ((${comNo}, ${comcWriter}, ${comcContent})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id = "deleteComment" parameterType = "int">
+	delete
+	from mn_com_comment
+	where comc_no = ${comcNo}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id = "updateComment" parameterType = "CommunityComment">
+	update mn_com_comment
+	set comc_content = #{comcContent}
+	where comc_no = #{comcNo}
+	</update>
+	<!-- 각 게시물당 댓글 갯수 -->
+		<!-- 커뮤니티 전체 게시물의 수 -->
+	<select id = "selectCommentCount" resultType = "int" >
+	select count(*)
+	from
+	mn_com_comment
+	where com_no = #{comNo}
+	</select>
 	
 	
 </mapper>
