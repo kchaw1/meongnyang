@@ -33,13 +33,27 @@ public class FriendController {
 		
 	}
 	
-	@PostMapping("/addfriend.mn")
+	@PostMapping("/requestfriend.mn")
 	@ResponseBody
-	public Map<String, Object> addFriend(Friend friend){
+	public Map<String, Object> requestFriend(Friend friend){
 		friend.setCallDate(new Date());
-		service.addFriend(friend);
+		service.requestFriend(friend);
 		return null;
 	}
+	
+	@PostMapping("/answer.mn")
+	@ResponseBody
+	public void answerRequest(Friend friend) {
+		service.answerRequest(friend);
+	}
+	
+	@PostMapping("/selectrequest.mn")
+	@ResponseBody
+	public Map<String, Object> selectFriendRequest(String calleeId) {
+		return service.selectFriendRequest(calleeId);
+	}
+	
+	
 	
 	
 	

@@ -10,6 +10,10 @@ public interface FriendService {
 
 	Map<String, Object> showAllMembers(int PageNo);
 
-	void addFriend(Friend friend);
+	void requestFriend(Friend friend);
+
+	void answerRequest(Friend friend);
+
+	Map<String, Object> selectFriendRequest(String calleeId);
 
 }

@@ -1,5 +1,6 @@
 package com.nmcat.friend.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,8 +41,23 @@ public class FriendServiceImpl implements FriendService{
 	}
 
 	@Override
-	public void addFriend(Friend friend) {
+	public void requestFriend(Friend friend) {
 		mapper.insertNewRequest(friend);
+	}
+
+	@Override
+	public void answerRequest(Friend friend) {
+		friend.setAnswerDate(new Date());
+		mapper.updateFirstAnswer(friend);
+	}
+
+	@Override
+	public Map<String, Object> selectFriendRequest(String calleeId) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("count", mapper.selectRequestCnt(calleeId));
+		map.put("callerList", mapper.selectCallerList(calleeId));
+		return map;
+		
 	}
 
 }

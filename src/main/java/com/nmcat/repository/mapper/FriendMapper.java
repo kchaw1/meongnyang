@@ -14,4 +14,10 @@ public interface FriendMapper {
 	public List<Member> selectAllMembersOneLine(int lineBegin);
 	
 	public void insertNewRequest(Friend friend);
+	
+	public void updateFirstAnswer(Friend friend);
+	
+	public int selectRequestCnt(String calleeId);
+	
+	public List<String> selectCallerList(String calleeId);
 }

@@ -55,7 +55,7 @@ function showMemberList(pageNo){
 				str += '<i class="fas fa-trophy fa-2x"></i>'
 				str += member.gradeName + '</div>';
 				str += '<div class="icons">'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="plusfriend" title="친구 추가"'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="plusfriend" title="친구 신청"'
 				str += 'data-id="'+member.id+'">';
 				str += '<i class="fas fa-user-plus fa-2x"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기"';
@@ -106,7 +106,7 @@ function showMemberList(pageNo){
 			
 		   	friend.send("friend:"+$(this).data("id"))
 		   	$.ajax({
-		   		url : "<c:url value='/friend/addfriend.mn'/>",
+		   		url : "<c:url value='/friend/requestfriend.mn'/>",
 		   		data : {
 		   			"callerId" : "${user.id}",
 		   			"calleeId" : $(this).data("id")

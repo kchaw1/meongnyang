@@ -48,4 +48,26 @@
 		)
 	</insert>
 	
+	<update id="updateFirstAnswer" parameterType="Friend" >
+		update mn_friend
+		   set answer_date = #{answerDate},
+		       answer = #{answer}
+		 where caller_id = #{callerId} and
+		 	   callee_id = #{calleeId} and
+		 	   answer_date is null
+	</update>
+	
+	<select id="selectRequestCnt" parameterType="string" resultType="int">
+		select count(*) from mn_friend
+		 where callee_id = #{calleeId} and
+			   answer_date is null
+	</select>
+	
+	<select id="selectCallerList" parameterType="string" resultType="string">
+		select caller_id 
+		  from mn_friend
+		 where callee_id = #{calleeId} and
+		       answer_date is null
+	</select>
+	
 </mapper>
