@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.MgmtGeneralMapper;
 
 @Service
@@ -15,6 +17,27 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	
 	@Autowired
 	private MgmtGeneralMapper mapper;
+	
+	// 상세
+	@Override
+	public Member detail(int no) {
+		return mapper.selectGeneralDetail(no);
+	}
+	// 내가 쓴 게시글
+	@Override
+	public List<CommunityBoard> myPosts(String id) {
+		return mapper.selectBoardById(id);
+	}
+	// 내가 쓴 코멘트
+	@Override
+	public List<CommunityComment> myComments(String id) {
+		return mapper.selectCommentById(id);
+	}
+	// 탈퇴
+	@Override
+	public void deleteMember(int no) {
+		mapper.deleteMember(no);
+	}
 	
 	// 검색
 	@Override

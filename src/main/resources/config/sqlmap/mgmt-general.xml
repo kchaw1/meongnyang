@@ -40,23 +40,6 @@
 		<result column="com_reg_date" property="comRegDate" />
 </resultMap>
 
-<resultMap id="careerMap" type="Career">
-		<result column="career_no" property="careerNo" />
-		<result column="id" property="id" />
-		<result column="career_start" property="careerStart" />
-		<result column="career_end" property="careerEnd" />
-		<result column="career_content" property="careerContent" />
-</resultMap>
-
-<resultMap id="licenseMap" type="License">
-		<result column="license_no" property="licenseNo" />
-		<result column="id" property="id" />
-		<result column="lif_sys_name" property="lifSysName" />
-		<result column="lif_path" property="lifPath" />
-		<result column="lif_ori_name" property="lifOriName" />
-		<result column="lif_size" property="lifSize" />
-</resultMap>
-
 <resultMap id="commentMap" type="CommunityComment">
 		<result column="comc_no" property="comcNo" />
 		<result column="comc_writer" property="comcWriter" />
@@ -95,11 +78,14 @@
 	 order by sign_up_date asc
 </select>
 <select id="selectGeneralListSortedbyRecentLoginDate" resultMap="memberMap">
-	SELECT * 
+	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN mn_login_history AS B 
+	 INNER JOIN 
+		 (select login_id, max(login_date_time) login_date_time
+		 from mn_login_history
+		 group by login_id) AS B
 	    ON A.id = B.login_id
-	 where type = 1 
+	 WHERE type = 1
 	 order by login_date_time asc
 </select>
 <select id="selectGeneralListSortedbyScore" resultMap="memberMap">
@@ -143,11 +129,14 @@
 	 order by sign_up_date desc
 </select>
 <select id="selectGeneralListSortedbyRecentLoginDateDesc" resultMap="memberMap">
-	SELECT * 
+		SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN mn_login_history AS B 
+	 INNER JOIN 
+		 (select login_id, max(login_date_time) login_date_time
+		 from mn_login_history
+		 group by login_id) AS B
 	    ON A.id = B.login_id
-	 where type = 1 
+	 WHERE type = 1
 	 order by login_date_time desc
 </select>
 <select id="selectGeneralListSortedbyScoreDesc" resultMap="memberMap">
@@ -215,10 +204,8 @@
  	 where login_id = #{loginId}
 </select>	
 
-
-
 <!-- 디테일 -->
-<select id="selectABSDetail" parameterType="int" resultMap="memberMap">
+<select id="selectGeneralDetail" parameterType="int" resultMap="memberMap">
 	select *
 	  from mn_member
 	 where no = #{no}
@@ -237,13 +224,6 @@
 	  from mn_com_comment
 	 where comc_writer = #{comcWriter}
 </select>
-
-<!-- 승인 -->
-<update id="authApprove" parameterType="int">
-	update mn_member
-	   set auth_state = 'y'
-     where no = #{no}	   
-</update>
 
 <!-- 탈퇴처리 -->
 <delete id="deleteMember" parameterType="int">

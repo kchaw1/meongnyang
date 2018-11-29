@@ -38,19 +38,19 @@
 								<table>
 									<tr>
 										<td>이름</td>
-										<td>강형욱</td>
+										<td>${general.name}</td>
 									</tr>
 									<tr>
 										<td>나이</td>
-										<td>45</td>
+										<td>없어졌다</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>kang@naver.com</td>
+										<td>${general.email}</td>
 									</tr>
 									<tr>
 										<td>성별</td>
-										<td>남</td>
+										<td>없어짐</td>
 									</tr>
 								</table>
 							</div>
@@ -66,22 +66,18 @@
 								</tr>
 								<tr>
 									<td>포인트:</td>
-									<td>1000점
+									<td>${general.point} 포인트
 										<button class="btn btn-default btn-xs"
 											style="font-size: 14px;">포인트 지급</button>
 									</td>
 								</tr>
 								<tr>
 									<td>활동점수:</td>
-									<td>10000점</td>
+									<td>${general.score} 점</td>
 								</tr>
 								<tr>
 									<td>가입일:</td>
-									<td>2018.11.25</td>
-								</tr>
-								<tr>
-									<td>최근접속:</td>
-									<td>2018.11.25 14:00</td>
+									<td>${general.signUpDate}</td>
 								</tr>
 							</table>
 						</div>
@@ -123,7 +119,7 @@
 							<div>
 								<div id="comment-header">
 									<div class="no-area">댓글번호</div>
-									<div class="title-area">제목</div>
+									<div class="cmt-content-area">댓글내용</div>
 									<div class="no-area">게시글 번호</div>
 								</div>
 								<c:forEach var="cmt" items="${myComments}">

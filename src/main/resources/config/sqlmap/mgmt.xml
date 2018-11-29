@@ -95,11 +95,14 @@
 	 order by sign_up_date asc 
 </select>
 <select id="selectABSListSortedbyRecentLoginDate" parameterType="Member" resultMap="memberMap">
-	SELECT * 
+	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN mn_login_history AS B 
+	 INNER JOIN 
+		 (select login_id, max(login_date_time) login_date_time
+		 from mn_login_history
+		 group by login_id) AS B
 	    ON A.id = B.login_id
-	 where type = 2 and auth_state = #{authState}
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by login_date_time asc
 </select>
 <select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
@@ -143,11 +146,14 @@
 	 order by sign_up_date desc 
 </select>
 <select id="selectABSListSortedbyRecentLoginDateDesc" parameterType="Member" resultMap="memberMap">
-	SELECT * 
+	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN mn_login_history AS B 
+	 INNER JOIN 
+		 (select login_id, max(login_date_time) login_date_time
+		 from mn_login_history
+		 group by login_id) AS B
 	    ON A.id = B.login_id
-	 where type = 2 and auth_state = #{authState}
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by login_date_time desc
 </select>
 <select id="selectABSListSortedbyScoreDesc" parameterType="Member" resultMap="memberMap">

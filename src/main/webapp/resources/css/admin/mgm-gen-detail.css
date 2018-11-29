@@ -1,4 +1,5 @@
-#info-area, #active-area { float:left; width:33%; padding: 30px; height:300px; }
+#info-area { float:left; width:25%; padding: 30px; height:300px; }
+#active-area { float:left; width:40%; padding: 30px; height:300px; }
 #info-area table { text-align: left; font-size:18px; }
 #info-area td { padding: 5px; }
 #img-area { float:left; width:33%; padding: 30px; height:300px; }
@@ -14,6 +15,13 @@
 #posts-area div { font-size: 20px; }
 #posts-header div, .posts-content div, #comment-header div, .comment-content div { display:inline-block; text-align: center; }
 #comment-area div { font-size: 20px; }
-.no-area { width: 20%; }
-.title-area { width: 70%; }
+.no-area { width: 10%; }
+.title-area { width: 30%; }
+.view-cnt-area { width: 10%; }
+.rec-cnt-area { width: 10%; }
+.category-area { width: 10%; }
+.btn-area { width: 20%; }
+.cmt-content-area { width: 35%;}
 .tabs {padding-bottom: 30px;}
+.no-area, .title-area, .view-cnt-area, .rec-cnt-area, .category-area, .cmt-content-area { text-align: center; }
+

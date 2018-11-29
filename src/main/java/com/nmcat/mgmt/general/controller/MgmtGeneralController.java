@@ -169,8 +169,10 @@ public class MgmtGeneralController {
 	
 	@RequestMapping("/general/detail")
 	public void detail(Model model, int no, String id) {
-//		model.addAttribute("general", service.detail(no));
-//		model.addAttribute("myPosts", service.myPosts(id));
-//		model.addAttribute("myComments", service.myComments(id));
+		model.addAttribute("general", service.detail(no));
+		model.addAttribute("myPosts", service.myPosts(id));
+		model.addAttribute("myComments", service.myComments(id));
 	}
+	
+	
 } // end class

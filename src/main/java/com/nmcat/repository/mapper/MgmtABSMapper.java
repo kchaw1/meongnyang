@@ -16,7 +16,7 @@ public interface MgmtABSMapper {
 	Date selectRecentLogin(String id); // 최근접속일
 	Member selectABSDetail(int no); // ABS 디테일
 	List<CommunityBoard> selectBoardById(String id); // 내가 쓴 게시글
-	List<CommunityComment> selectCommentById(String id);
+	List<CommunityComment> selectCommentById(String id); // 내가 쓴 코멘트
 	void authApprove(int no); // 승인
 	void deleteMember(int no); // 탈퇴
 	List<Career> selectCareerById(String id); // 경력 조회

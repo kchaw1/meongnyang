@@ -39,6 +39,10 @@
 		overflow: scroll;
 		overflow-x: hidden;
 	}
+	
+.content-area {
+		margin-bottom: 5px;
+}
 
 
 #header-area a { text-decoration: none; }

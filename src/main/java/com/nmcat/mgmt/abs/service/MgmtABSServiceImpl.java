@@ -44,6 +44,7 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 		return mapper.selectBoardById(id);
 	}
 	
+	// 내가 쓴 코멘트
 	@Override
 	public List<CommunityComment> myComments(String id) {
 		return mapper.selectCommentById(id);
