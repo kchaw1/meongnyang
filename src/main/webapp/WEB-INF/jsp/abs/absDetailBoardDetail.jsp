@@ -127,12 +127,12 @@
 
                 if('${map.b.no}'=='${user.no}'){
             		  
-                $('<li class="comment">').text('전문가의 한마디:'+post).prependTo('.posts');
+                $('<li class="comment">').text(post).prependTo('.posts');
                 $('.status-box').val('');
                 $('.counter').text('250'); 
                 $('#post').addClass('disabled');
             	  }else{
-            		  $('<li class="comment">').text('반려인의 한마디:'+post).prependTo('.posts');
+            		  $('<li class="comment">').text(post).prependTo('.posts');
                       $('.status-box').val('');
                       $('.counter').text('250'); 
                       $('#post').addClass('disabled');
@@ -192,9 +192,29 @@
 
     		});
   		 });
+            //댓글 삭제
+       	 $(document).on("click", "li > a" , function(e) {
+         	e.preventDefault();
+         	var abscNo = $(this).attr("href");
+         	if('${user.id}' !== $(this).data("writer")) {
+         		alert("본인이 작성한 댓글만 삭제할 수 있습니다.")
+     			return;
+         	}
+         	
+         	$.ajax({
+	            	url: "<c:url value='/abs/comment/delete.mn' />",
+	            	type: "POST",
+	            	data: "abscNo=" + abscNo
+	            }).done(function (result) {
+	            	/* console.log(result) */
+	            	commentList();
+	            });
+         })
+
              //댓글 조회
     		var commentList = function(){
-            		 
+       
+       			
     			$.ajax({
     				url : "<c:url value='/abs/comment/list.mn'/>",
     				type : "POST",
@@ -203,24 +223,21 @@
     				console.log(result);
     				$("ul.posts").html("");
     					for(let i=0; i<result.length; i++){
+    						console.log("${map.b.absWriter}");
+    						console.log("${user.id}");
   			  					$("ul.posts").append(
 									"<li class='comment' data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
-									+result[i].absWriter+"의 한마디:"  
+									+""
+									+result[i].absWriter+"반려인 의 한마디:"  
+									+ result[i].abscContent
 									+"<br>"
-									+"내용:"+ result[i].abscContent
-									+"<br>"
-									+"작성일:"+result[i].abscRegDate+"</li>"
-	                           		+"<a href=" + result[i].abscNo + " data-writer=" + result[i].absWriter + "></a>"
-	                           	
+									+"<p id='commentDate'>"+result[i].abscRegDate+"</p>"
+	                           		+"<a href=" + result[i].abscNo + " data-writer=" + result[i].absWriter + "><span id='deleteicon' class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>"
+									+"</li>"
   			  					);
-    						
-    						
-    						
+    			         	
     					}
-    				
-    			})
-            
-            	 
+    			})            	 
     		};
     		
     		//댓글뿌려주기

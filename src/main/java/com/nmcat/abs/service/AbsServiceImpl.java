@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
+import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -128,6 +129,46 @@ public class AbsServiceImpl implements AbsService{
 	public List<AbsComment> writeComment(AbsComment comment) {
 		absMapper.insertComment(comment);
 		return absMapper.selectCommentListByabsNo(comment.getAbsNo());
+	}
+
+	@Override
+	public List<AbsComment> deleteComment(AbsComment comment) {
+		absMapper.deleteComment(comment.getAbscNo());
+		return absMapper.selectCommentListByabsNo(comment.getAbsNo());
+	}
+
+	@Override
+	public int like(int no) {
+		return absMapper.like(no);
+	}
+
+	@Override
+	public int likeCount(AbsLikeVO likeVO) {
+		return absMapper.likeCount(likeVO);
+	}
+
+	@Override
+	public void insertLike(AbsLikeVO likeVO) {
+
+			absMapper.insertLike(likeVO);
+	}
+
+	@Override
+	public void updateLike(int no) {
+
+		absMapper.updateLike(no);
+	}
+
+	@Override
+	public void deleteLike(AbsLikeVO likeVO) {
+
+		absMapper.deleteLike(likeVO);
+	}
+
+	@Override
+	public void cancelLike(int no) {
+
+		absMapper.cancelLike(no);
 	}
 
 

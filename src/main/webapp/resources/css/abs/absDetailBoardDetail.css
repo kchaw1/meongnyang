@@ -1,3 +1,17 @@
+#deleteicon{
+		
+    width: 15px;
+    height: 15px;
+    margin: -40px;
+    margin-top: -46px;
+    color:red;
+}
+
+#commentDate{
+	color: rgb(255, 194, 64);
+	font-size: 12px;
+}
+
 .glyphicon-ok{
 	color:green;
 }

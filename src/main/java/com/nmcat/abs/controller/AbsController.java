@@ -23,6 +23,7 @@ import com.nmcat.repository.domain.AFormVO;
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
+import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.board.QnABoard;
 
 @RequestMapping("/abs")
@@ -109,18 +110,56 @@ public class AbsController {
 	public String update(int absNo,QnABoard qnaboard,int no) throws Exception {
 		absService.updateAbsBoard(qnaboard);
 		return "redirect:absDetailBoardDetail.mn?no="+no+"&absNo="+absNo;
+		
+	}
+	
+//---------------------------좋아요----------------------------------------------------
+	@RequestMapping("/insertLike.mn")
+	@ResponseBody
+	public int insertLike(AbsLikeVO likeVO, @RequestParam("no")int no) {
+		absService.insertLike(likeVO);
+		absService.updateLike(no);
+		return absService.likeCount(likeVO);
+	}
+	@RequestMapping("/deleteLike.mn")
+	@ResponseBody
+	public int deleteLike(AbsLikeVO likeVO, @RequestParam("no")int no) {
+		absService.cancelLike(no);
+		absService.deleteLike(likeVO);;
+		return absService.likeCount(likeVO);
+	}
+	@RequestMapping("/like.mn")
+	@ResponseBody
+	public int Like(int no) {
+		return absService.like(no);
+	}
+	@RequestMapping("/likecount.mn")
+	@ResponseBody
+	public int recount(AbsLikeVO likeVO) {
+		return absService.likeCount(likeVO);
 	}
 //----------------------------댓글---------------------------------------------
+	//댓글 조회
 	@PostMapping("/comment/list.mn")
 	@ResponseBody
 	public List<AbsComment> listComment(@RequestParam("absNo")int absNo) throws ParseException {
 		return convertDate(absService.listComment(absNo));
 	}
+	//댓글 쓰기
 	@PostMapping("/comment/write.mn")
 	@ResponseBody
 	public List<AbsComment> writeComment(AbsComment comment) throws ParseException {
 		return convertDate(absService.writeComment(comment));
 	}
+	//댓글 삭제
+	@PostMapping("/comment/delete.mn")
+	@ResponseBody
+	public List<AbsComment> deleteComment(AbsComment comment) throws ParseException {
+		return convertDate(absService.deleteComment(comment));
+	}
+	
+	
+	
 	
 	
 //---------------------------댓글 regdate---------------------------------------------------------	

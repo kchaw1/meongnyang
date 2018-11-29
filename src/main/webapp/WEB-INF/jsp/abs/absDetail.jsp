@@ -49,7 +49,7 @@
           <h4 >
           <button type="button" id="like-button">
             <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
-            Like
+            <span id="rc" style="float:right;">like</span>
           </button>
               좋아요: 
               <span class="counter" data-count="${map.b.absLikeCnt}">0</span>
@@ -79,14 +79,13 @@
 
 
         /*--------좋아요--------------*/
-        document.addEventListener('DOMContentLoaded', function() {
+        /* document.addEventListener('DOMContentLoaded', function() {
          var likeButton = document.getElementById('like-button');
         likeButton.addEventListener('click', function() {
          window.lb = likeButton;
           likeButton.classList.toggle('selected');
        });
-        }, false);
-
+        }, false); */ 
         /*좋아요 개수*/
         $('.counter').each(function() {
   var $this = $(this),
@@ -106,6 +105,62 @@
 
   });   
 });
+    	likeCount();
+		
+    	//--------------------------------------------------------------------------------------------------
+    			var absLikeCnt = ${map.b.absLikeCnt};
+    		
+    			$("#like-button").click(function(){
+    				var LUrl = "insertLike";
+    			if (likeExist == 1) {
+    				LUrl = "deleteLike";
+    			}
+    			
+    			$.ajax({
+    				url : '/nmcat/abs/' + LUrl + '.mn',
+    				data : {"no" : "${map.b.no}","id":"${user.id}"}
+    			
+    			}).done(function(){
+    				if (likeExist == 0){
+    					likeExist=1;
+    					alert("추천되었습니다.");
+    					$("#like-button").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    				} else {
+    					likeExist = 0;
+    					alert("추천취소되었습니다.");
+    					$("#like-button").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    				}
+    				like();
+    				location.href="absDetail.mn?no=${map.b.no}";
+    			});
+    			
+    			function like () {			
+    			$.ajax({
+    				url: "<c:url value='/abs/like.mn'/>",
+    				data : {"no" : "${map.b.no}"}
+    			}).done(function(result){
+    				$("#rc").html(result);
+    			});
+    			}
+    			
+    		});
+    	 
+    	 		var likeExist;
+    	 
+    			function likeCount(){
+    				$.ajax({
+    					url: "<c:url value='/abs/likecount.mn'/>",
+    					data : {"no" : "${map.b.no}","id":"${user.id}"}
+    				}).done(function(result){
+    					likeExist = result;
+    					if (likeExist == 1){
+        					$("#like-button").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    					} else {
+        					$("#like-button").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    					}
+    				})
+    			}      
+        
 
         </script>
 </body>

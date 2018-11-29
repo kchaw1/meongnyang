@@ -34,6 +34,8 @@
 		
 	</resultMap>
 	<resultMap id="absCommentMap" type="AbsComment">
+	
+		<result column="absc_no" property="abscNo"/>
 		<result column="no" property="no"/>
 		<result column="abs_no" property="absNo"/>
 		<result column="abs_Writer" property="absWriter"/>
@@ -130,5 +132,49 @@
 		) values ( #{absNo}, #{absWriter}, #{abscContent},#{no}
 		)
 	</insert>
+		<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="int">
+		delete from mn_abs_comment
+			  where absc_no = #{abscNo}	
+	</delete>
+	<!-- 추천추천추천 -->
 	
+	
+	
+	<!-- 게시글 추천수 -->
+	<select id="like" resultType="int">
+		select count(*)
+		from mn_abs_like
+		where no = #{no}
+	</select>
+
+	<!-- 추천여부 확인 -->
+	<select id="likeCount" resultType="int" parameterType="AbsLikeVO">
+		select
+		count(*)
+		from mn_abs_like
+		where id = #{id} AND no = #{no}
+	</select>
+
+	<!-- 추천하기 -->
+	<insert id="insertLike" parameterType="AbsLikeVO">
+		INSERT INTO mn_abs_like(no, id)
+            VALUES (#{no}, #{id})
+	</insert>
+	<update id="updateLike" parameterType="int">
+		update mn_member
+		   set abs_like_cnt= abs_like_cnt+ 1
+		 where no=#{no}  
+	</update>
+
+	<!-- 추천취소 -->
+	<delete id="deleteLike" parameterType="AbsLikeVO">
+		delete from mn_abs_like
+		where id = #{id} AND no = #{no}
+	</delete>
+	<update id="cancelLike" parameterType="int">
+		update mn_member
+		   set abs_like_cnt= abs_like_cnt-1
+		 where no=#{no}  
+	</update>
 </mapper>

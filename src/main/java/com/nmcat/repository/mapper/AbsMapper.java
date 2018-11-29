@@ -5,6 +5,7 @@ import java.util.List;
 import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
+import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsMapper {
@@ -44,5 +45,15 @@ public interface AbsMapper {
 
 	//게시글 댓글 등록
 	void insertComment(AbsComment comment);
+	
+	//게시글 댓글 삭제
+	void deleteComment(int abscNo);
+
+	int like(int no); // 행동전문가 추천수
+	int likeCount(AbsLikeVO likeVO); // 행동전문가 추천여부 확인
+	void insertLike(AbsLikeVO likeVO); //행동전문가 추천
+	void updateLike(int no); //행동전문가 총 추천수 증가
+	void deleteLike(AbsLikeVO likeVO); //행동전문가 추천 취소
+	void cancelLike(int no);  // 행동전문가 총 추천수 감소
 
 }
