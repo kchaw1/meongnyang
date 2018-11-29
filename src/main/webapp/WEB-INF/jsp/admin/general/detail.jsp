@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<c:import url="../../common/headerfooterCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
 <c:import url="generalDetailCSSJS.jsp" />
 </head>
@@ -55,7 +56,7 @@
 							</div>
 						</div>
 
-						<div id="attach-area">
+						<div id="active-area">
 							<h1>활동내역</h1>
 							<table>
 								<tr>
@@ -95,13 +96,24 @@
 								<div id="posts-header">
 									<div class="no-area">글번호</div>
 									<div class="title-area">제목</div>
+									<div class="view-cnt-area">조회수</div>
+									<div class="rec-cnt-area">추천수</div>
+									<div class="category-area">카테고리</div>
 								</div>
+								<c:forEach var="post" items="${myPosts}">
 								<div class="posts-content">
 									<div class="no-area">1</div>
 									<div class="title-area">
-										<a href="#">안녕하세요</a>
+										제목
+									</div>
+									<div class="view-cnt-area">${post.comViewCnt}</div>
+									<div class="rec-cnt-area">${post.comRecCnt}</div>
+									<div class="category-area">${post.comCategory}</div>
+									<div class="btn-area">
+										<button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${post.comNo}'/>'">이동</button>
 									</div>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -112,13 +124,16 @@
 								<div id="comment-header">
 									<div class="no-area">댓글번호</div>
 									<div class="title-area">제목</div>
+									<div class="no-area">게시글 번호</div>
 								</div>
-								<div class="comment-content">
-									<div class="no-area">1</div>
-									<div class="title-area">
-										<a href="#">안녕하세요</a>
+								<c:forEach var="cmt" items="${myComments}">
+									<div class="comment-content">
+										<div class="no-area">${cmt.comcNo}</div>
+										<div class="cmt-content-area">${cmt.comcContent}</div>
+										<div class="no-area">${cmt.comNo}</div>
+										<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${cmt.comNo}'/>'">이동</button></div>
 									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

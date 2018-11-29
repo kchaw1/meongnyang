@@ -93,6 +93,10 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 		return mapper.selectABSListSortedbySignUpDate(member);
 	}
 	@Override
+	public List<Member> listByRecentLoginDate(Member member) {
+		return mapper.selectABSListSortedbyRecentLoginDate(member);
+	}
+	@Override
 	public List<Member> listByScore(Member member) {
 		return mapper.selectABSListSortedbyScore(member);
 	}
@@ -117,6 +121,9 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	@Override
 	public List<Member> listBySignUpDateDesc(Member member) {
 		return mapper.selectABSListSortedbySignUpDateDesc(member);
+	}
+	public List<Member> listByRecentLoginDateDesc(Member member) {
+		return mapper.selectABSListSortedbyRecentLoginDateDesc(member);
 	}
 	@Override
 	public List<Member> listByScoreDesc(Member member) {

@@ -27,6 +27,7 @@ public interface MgmtABSMapper {
 	List<Member> selectABSListSortedbyId(Member member);
 	List<Member> selectABSListSortedbyName(Member member);
 	List<Member> selectABSListSortedbySignUpDate(Member member);
+	List<Member> selectABSListSortedbyRecentLoginDate(Member member);
 	List<Member> selectABSListSortedbyScore(Member member);
 	List<Member> selectABSListSortedbyPoint(Member member);
 	
@@ -35,6 +36,7 @@ public interface MgmtABSMapper {
 	List<Member> selectABSListSortedbyIdDesc(Member member);
 	List<Member> selectABSListSortedbyNameDesc(Member member);
 	List<Member> selectABSListSortedbySignUpDateDesc(Member member);
+	List<Member> selectABSListSortedbyRecentLoginDateDesc(Member member);
 	List<Member> selectABSListSortedbyScoreDesc(Member member);
 	List<Member> selectABSListSortedbyPointDesc(Member member);
 }

@@ -19,6 +19,7 @@
 		<result column="auth_state" property="authState" />
 		<result column="greetings" property="greetings" />
 		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
 </resultMap>
 
 <resultMap id="historyMap" type="LoginHistory">
@@ -93,6 +94,14 @@
 	 where type = 2 and auth_state = #{authState}
 	 order by sign_up_date asc 
 </select>
+<select id="selectABSListSortedbyRecentLoginDate" parameterType="Member" resultMap="memberMap">
+	SELECT * 
+	  FROM mn_member AS A 
+	 INNER JOIN mn_login_history AS B 
+	    ON A.id = B.login_id
+	 where type = 2 and auth_state = #{authState}
+	 order by login_date_time asc
+</select>
 <select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
 	select *
 	  from mn_member
@@ -132,6 +141,14 @@
 	  from mn_member
 	 where type = 2 and auth_state = #{authState}
 	 order by sign_up_date desc 
+</select>
+<select id="selectABSListSortedbyRecentLoginDateDesc" parameterType="Member" resultMap="memberMap">
+	SELECT * 
+	  FROM mn_member AS A 
+	 INNER JOIN mn_login_history AS B 
+	    ON A.id = B.login_id
+	 where type = 2 and auth_state = #{authState}
+	 order by login_date_time desc
 </select>
 <select id="selectABSListSortedbyScoreDesc" parameterType="Member" resultMap="memberMap">
 	select *
@@ -198,7 +215,9 @@
 <!-- 검색 -->
 <select id="searchABS" parameterType="MgmtSearch" resultMap="memberMap">
 	select *
-	  from mn_member
+	   FROM mn_member AS A 
+ INNER JOIN mn_login_history AS B 
+    	 ON A.id = B.login_id
 	 <where>
 	 	type='2' and auth_state = #{authState}
 	 	<choose>
@@ -212,9 +231,10 @@
 	 			and name like CONCAT('%',#{keyword},'%')
 	 		</when>
 	 		<when test="searchType==3">
-	 			and signUpDate like CONCAT('%',#{keyword},'%')
+	 			and sign_up_date like CONCAT('%',#{keyword},'%')
 	 		</when>
 	 		<when test="searchType==4">
+	 			and login_date_time like CONCAT('%',#{keyword},'%')
 	 		</when>
 	 		<when test="searchType==5">
 	 			and score like CONCAT('%',#{keyword},'%')

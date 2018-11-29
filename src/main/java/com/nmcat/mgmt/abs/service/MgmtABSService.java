@@ -27,6 +27,7 @@ public interface MgmtABSService {
 	List<Member> listById(Member member);
 	List<Member> listByName(Member member);
 	List<Member> listBySignUpDate(Member member);
+	List<Member> listByRecentLoginDate(Member member);	
 	List<Member> listByScore(Member member);
 	List<Member> listByPoint(Member member);
 	
@@ -35,6 +36,7 @@ public interface MgmtABSService {
 	List<Member> listByIdDesc(Member member);
 	List<Member> listByNameDesc(Member member);
 	List<Member> listBySignUpDateDesc(Member member);
+	List<Member> listByRecentLoginDateDesc(Member member);
 	List<Member> listByScoreDesc(Member member);
 	List<Member> listByPointDesc(Member member);
 }

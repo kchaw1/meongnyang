@@ -19,6 +19,7 @@
 		<result column="auth_state" property="authState" />
 		<result column="greetings" property="greetings" />
 		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
 </resultMap>
 
 <resultMap id="historyMap" type="LoginHistory">
@@ -66,93 +67,155 @@
 		<result column="comc_parent_no" property="comcParentNo" />
 </resultMap>
 
-<!-- 전문가 리스트 -->
-<select id="selectABSList" parameterType="Member" resultMap="memberMap">
+<!-- 일반회원 리스트 -->
+<select id="selectGeneralList" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by no asc 
+	 where type = 1
+	 order by no asc
 </select>
 
 <!-- 오름차순 정렬 -->
-<select id="selectABSListSortedbyId" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyId" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by id asc 
+	 where type = 1
+	 order by id asc
 </select>
-<select id="selectABSListSortedbyName" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyName" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by name asc 
+	 where type = 1
+	 order by name asc
 </select>
-<select id="selectABSListSortedbySignUpDate" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbySignUpDate" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by sign_up_date asc 
+	 where type = 1
+	 order by sign_up_date asc
 </select>
-<select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyRecentLoginDate" resultMap="memberMap">
+	SELECT * 
+	  FROM mn_member AS A 
+	 INNER JOIN mn_login_history AS B 
+	    ON A.id = B.login_id
+	 where type = 1 
+	 order by login_date_time asc
+</select>
+<select id="selectGeneralListSortedbyScore" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by score asc 
+	 where type = 1
+	 order by score asc
 </select>
-<select id="selectABSListSortedbyPoint" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyPoint" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by point asc 
+	 where type = 1
+	 order by point asc
 </select>
+<!-- 이부분에 등급순 추가해야함 -->
 <!-- /오름차순정렬 -->
 
 <!-- 내림차순정렬 -->
-<select id="selectABSListDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by no desc 
+	 where type = 1
+	 order by no desc
 </select>
-
-<select id="selectABSListSortedbyIdDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyIdDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by id desc 
+	 where type = 1
+	 order by id desc
 </select>
-<select id="selectABSListSortedbyNameDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyNameDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by name desc 
+	 where type = 1
+	 order by name desc
 </select>
-<select id="selectABSListSortedbySignUpDateDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbySignUpDateDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by sign_up_date desc 
+	 where type = 1
+	 order by sign_up_date desc
 </select>
-<select id="selectABSListSortedbyScoreDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyRecentLoginDateDesc" resultMap="memberMap">
+	SELECT * 
+	  FROM mn_member AS A 
+	 INNER JOIN mn_login_history AS B 
+	    ON A.id = B.login_id
+	 where type = 1 
+	 order by login_date_time desc
+</select>
+<select id="selectGeneralListSortedbyScoreDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by score desc 
+	 where type = 1
+	 order by score desc
 </select>
-<select id="selectABSListSortedbyPointDesc" parameterType="Member" resultMap="memberMap">
+<select id="selectGeneralListSortedbyPointDesc" resultMap="memberMap">
 	select *
 	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by point desc 
+	 where type = 1
+	 order by point desc
 </select>
+<!-- 이부분에 등급순 추가해야함 -->
 <!-- /내림차순 정렬 -->
+
+<!-- 검색 -->
+<select id="selectSearchGeneralList" parameterType="MgmtSearch" resultMap="memberMap">
+	select *
+	   FROM mn_member AS A 
+ INNER JOIN mn_login_history AS B 
+    	 ON A.id = B.login_id
+   GROUP BY id
+	 HAVING	type=1
+	 	<choose>
+	 		<when test="searchType==0">
+	 			and no like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==1">
+	 			and id like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==2">
+	 			and name like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==3">
+	 			and sign_up_date like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==4">
+	 			and login_date_time like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==5">
+	 			and score like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<when test="searchType==6">
+	 			and point like CONCAT('%',#{keyword},'%')
+	 		</when>
+	 		<!-- 
+		 		<otherwise>
+		 			<choose>
+			 			<when test="keyword=='루키'">
+			 				and grade_no = 1
+			 			</when>
+		 			</choose>
+		 		</otherwise>
+	 		 -->
+	 	</choose>
+	 order by ${sortColumn} ${sortMethod} 
+</select>
 		
 <!-- 최근접속일 -->		
-<select id="selectRecentLogin" parameterType="string" resultType="LoginHistory">
+<select id="selectRecentLogin" parameterType="string" resultType="date">
 	select max(login_date_time)
   	  from mn_login_history
  	 where login_id = #{loginId}
 </select>	
+
+
 
 <!-- 디테일 -->
 <select id="selectABSDetail" parameterType="int" resultMap="memberMap">
@@ -182,58 +245,10 @@
      where no = #{no}	   
 </update>
 
-<!-- 경력조회 -->
-<select id="selectCareerById" parameterType="string" resultMap="careerMap">
-	select *
-	  from mn_member_career
-	 where id = #{id}
-</select>
-
 <!-- 탈퇴처리 -->
 <delete id="deleteMember" parameterType="int">
 	delete from mn_member
 		  where no = #{no}
 </delete>
-
-<!-- 검색 -->
-<select id="searchABS" parameterType="MgmtSearch" resultMap="memberMap">
-	select *
-	  from mn_member
-	 <where>
-	 	type='2' and auth_state = #{authState}
-	 	<choose>
-	 		<when test="searchType==0">
-	 			and no like CONCAT('%',#{keyword},'%')
-	 		</when>
-	 		<when test="searchType==1">
-	 			and id like CONCAT('%',#{keyword},'%')
-	 		</when>
-	 		<when test="searchType==2">
-	 			and name like CONCAT('%',#{keyword},'%')
-	 		</when>
-	 		<when test="searchType==3">
-	 			and signUpDate like CONCAT('%',#{keyword},'%')
-	 		</when>
-	 		<when test="searchType==4">
-	 		</when>
-	 		<when test="searchType==5">
-	 			and score like CONCAT('%',#{keyword},'%')
-	 		</when>
-	 		<otherwise>
-	 			and point like CONCAT('%',#{keyword},'%')
-	 		</otherwise>
-	 	</choose>
-	 </where>
-	 order by ${sortColumn} ${sortMethod} 
-</select> 
-
-<!-- 자격증 파일이름 호출 -->
-<select id="selectLicenceOriName" parameterType="string" resultMap="licenseMap">
-	select *
-	  from mn_member_license
-	 where id = #{id}  
-</select>
-
-
 
 </mapper>

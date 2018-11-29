@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<c:import url="../../common/headerfooterCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
 <c:import url="absListCSSJS.jsp" />
 </head>
@@ -22,7 +23,6 @@
       <div class="aside">
         <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
-        <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
           <div id="board" class="item">게시판</div>
@@ -377,7 +377,7 @@
 			 } else {
 				 $(call).data("flag", 1)
 				 // 다른 flag를 전부 1로
-				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
 			 }
 			 $("#tabs-1 > .content-area").remove();
 			 ajaxYList($sort, $(call).data("flag"));
@@ -388,7 +388,7 @@
 			 } else {
 				 $(call).data("flag", 1)
 				 // 다른 flag를 전부 1로
-				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
 			 }
 			 $("#tabs-4 > .content-area").remove();
 			 ajaxNList($sort, $(call).data("flag"));
@@ -408,7 +408,7 @@
 				 $(call).parent().parent().siblings().children().children().data("flag", "1")
 			 } else {
 				 $(call).data("flag", 1)
-				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
 				 // 다른 flag를 전부 1로
 			 }
 			 $("#tabs-1 > .content-area").remove();
@@ -423,7 +423,7 @@
 			 } else {
 				 $(call).data("flag", 1)
 				 // 다른 flag를 전부 1로
-				 $(call).parent().parent().siblings().children().children().data("flag", "2")
+				 $(call).parent().parent().siblings().children().children().data("flag", "1")
 			 }
 			 $("#tabs-4 > .content-area").remove();
 			 ajaxNSearchList($searchType, $keyword, $sort, $(call).data("flag"));

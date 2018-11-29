@@ -130,6 +130,11 @@ public class MgmtABSController {
 				break;
 			case 5:
 				// 최근접속시간순
+				if(flag == 1) {
+					list = service.listByRecentLoginDate(member);
+				} else {
+					list = service.listByRecentLoginDateDesc(member);
+				}
 				break;
 			case 6:
 				if(flag == 1) { 
@@ -201,6 +206,7 @@ public class MgmtABSController {
 				break;
 			case 5:
 				// 최근접속시간순
+				search.setSortColumn("login_date_time");
 				break;
 			case 6:
 				search.setSortColumn("score");

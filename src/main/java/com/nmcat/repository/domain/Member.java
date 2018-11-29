@@ -30,6 +30,9 @@ public class Member {
 	private String greetings;
 	private int point;
 	
+	// 로긴 시간 (조인때문에 만듦)
+	private Date LoginDateTime;
+	
 	// 페이지 번호
 		private int pageNo;
 		public int getPageNo() {
