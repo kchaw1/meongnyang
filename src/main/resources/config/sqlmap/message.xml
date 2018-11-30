@@ -6,8 +6,8 @@
 		<result column="msg_no" property="msgNo"/>
 		<result column="recv_id" property="recvId"/>
 		<result column="send_id" property="sendId"/>
-		<result column="msg_title" property="MsgTitle"/>
-		<result column="msg_content" property="MsgContent"/>
+		<result column="msg_title" property="msgTitle"/>
+		<result column="msg_content" property="msgContent"/>
 		<result column="send_date" property="sendDate"/>
 		<result column="read_date" property="readDate"/>
 		<result column="recv_del" property="recvDel"/>
@@ -15,16 +15,31 @@
 	</resultMap>
 	
 	<!-- 받은 쪽지 목록 -->
-	<select id="selectRecvMsglist" parameterType="string" resultMap="MessageMap">
+	<select id="selectRecvMsglist" resultMap="MessageMap">
 		select * 
 		from mn_msg
-		where recv_id = #{recvId}
+		where recv_id = #{id}
+		order by msg_no desc
+	</select>
+	
+	<!-- 보낸 쪽지 목록 -->
+	<select id="selectSendMsglist" parameterType="string" resultMap="MessageMap">
+		select * 
+		from mn_msg
+		where send_id = #{id}
 		order by msg_no desc
 	</select>
 	
 	<!-- 쪽지 쓰기 -->
 	<insert id="insertMsg" parameterType="Message">
 		insert into mn_msg(recv_id, send_id, msg_title, msg_content) values 
-		(#{recvId}, #{sendId}, #{MsgTitle}, #{MsgContent})
+		(#{recvId}, #{sendId}, #{msgTitle}, #{msgContent})
 	</insert>
+	
+	<!-- 쪽지 삭제 -->
+	<delete id="deleteMsg" parameterType="int">
+    	delete 
+    	  from mn_msg
+    	 where msg_no = #{msgNo}
+    </delete>
 </mapper>

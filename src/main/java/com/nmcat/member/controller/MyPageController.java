@@ -24,7 +24,7 @@ public class MyPageController {
 	@RequestMapping("myboardcomn.mn")
 	public void mybcmn() {}
 	
-	@RequestMapping("mygrade")
+	@RequestMapping("mygrade.mn")
 	public void mygrade() {}
 	
 }

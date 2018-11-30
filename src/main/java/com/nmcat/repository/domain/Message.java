@@ -9,8 +9,8 @@ public class Message {
 	private String msgNo;
 	private String recvId;
 	private String sendId;
-	private String MsgTitle;
-	private String MsgContent;
+	private String msgTitle;
+	private String msgContent;
 	private Date sendDate;
 	private Date readDate;
 	private Boolean recvDel;

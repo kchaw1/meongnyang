@@ -25,11 +25,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- modal ui -->
-<!-- <link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-
 <!-- activity css -->
 <link rel="stylesheet" href="<c:url value="/resources/css/member/memo.css"/>">
 
@@ -50,7 +45,7 @@
 
 </head>
 <body>
-<c:import url="../common/header.jsp" />
+<c:import url="/WEB-INF/jsp/common/header.jsp" />
 <div style="margin-top: 120px;">
     <div class="Tmemo">
         <span id="submemo">쪽지함</span>
@@ -65,7 +60,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th><input id="checkall" type="checkbox" name="checkall" value="1" /></th>
+                        <th><input id="checkall" type="checkbox" name="checkall" value="1"/></th>
                         <th>번호</th>
                         <th>보낸이</th>
                         <th>제목</th>
@@ -73,15 +68,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach var="msg" items="${msglist}">
+                	<%-- <c:forEach var="msg" items="${msglist}"> --%>
                     <tr>
-                        <td><input id="check1" type="checkbox" name="check" value="1" /></td>
+                        <td><input id="check1" type="checkbox" name="checkRow" value="1" /></td>
                         <td></td>
-                        <td>${msg.recvId}</td>
-                        <td>${msg.MsgTitle}</td>
+                        <td></td>
+                        <td></td>
                         <td><fmt:formatDate value="${msg.readDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
-                    </c:forEach>
+                    <%-- </c:forEach> --%>
                 </tbody>
             </table>
             <form id="searchForm">
@@ -117,8 +112,8 @@
                     <tr>
                         <td><input id="check5" type="checkbox" name="check" value="1" /></td>
                         <td></td>
-                        <td>${msg.sendId}</td>
-                        <td>${msg.MsgTitle}</td>
+                        <td>${msg.recvId}</td>
+                        <td>${msg.msgTitle}</td>
                         <td><fmt:formatDate value="${msg.sendDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
                     </c:forEach>
@@ -161,19 +156,30 @@
 						<div class="content">
 							<textarea name="msgContent" placeholder="내용을 입력하세요." rows="15" cols="80" value=""></textarea>
 						</div>
-						<div class="check">
+						<!-- <div class="check">
 							<input id="check" type="checkbox" name="check" value="1" />
 							<span id="check1">보낸 쪽지함에 저장<span id="check2">(보낸쪽지함에 저장하면수신 확인이 가능합니다.) </span></span>
-						</div>
+						</div> -->
 					</div>
 				</fieldset>
 			</form>
 		</div> 
-<c:import url="../common/footer.jsp"/>
+<c:import url="/WEB-INF/jsp/common/footer.jsp"/>
+<!-- <script>
+$(document).ready(function(){
+    //체크박스 전체 선탣&해제
+    $('#checkall').click(function(){
+         if($("#checkall").prop("checked")){
+            $("input[name=check]").prop("checked",true); 
+        }else{
+            $("input[name=check]").prop("checked",false); 
+        }
+    });
+</script> -->
 <script>
 $( function() {
     $( "#tabs" ).tabs({
-      collapsible: true
+    	collapsible: true
     });
   } );
 
@@ -205,6 +211,19 @@ $(document).ready(function(){
             $("input[name=check]").prop("checked",false);
         }
     })
+    
+    $('#delBtn').button().on("click", function(){
+    	alert("안됨");
+        if(confirm("삭제하시겠습니까?")){
+            $("input[name=check]:checked").each(function(){
+                var tr_value =$(this).val();
+                var tr=$("tr[data-tr_value='"+tr_value+"']");
+                tr.remove();
+            });
+        }else{
+            return false;
+        }
+    });
 })
 </script>
 <script>
@@ -227,11 +246,6 @@ $(document).ready(function(){
 		//alert("1");
       }
     });
- 
-//     form = dialog.find( "form" ).on( "submit", function( event ) {
-// //       event.preventDefault();
-// //       addUser();
-//     });
     
     function addmsg() {
     	alert("쪽지를 보냈습니다.");
@@ -241,7 +255,7 @@ $(document).ready(function(){
     $( "#create-user" ).button().on( "click", function() {
       dialog.dialog( "open" );
     });
-  } );
-  </script>
+});
+</script>
 </body>
 </html>

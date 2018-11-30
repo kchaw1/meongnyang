@@ -6,6 +6,8 @@ import com.nmcat.repository.domain.Message;
 
 public interface MessageService {
 	
-	List<Message> list();
+	List<Message> recvlist(String id);
+	List<Message> sendlist(String id);
 	void writer(Message msg);
+	void deleteMsg(int no);
 }

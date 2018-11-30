@@ -15,13 +15,24 @@ public class MessageServiceImpl implements MessageService{
 	private MessageMapper mapper;
 	
 	@Override
-	public List<Message> list() {
-		return mapper.selectRecvMsglist();
-	}
-
-	@Override
 	public void writer(Message msg) {
 		mapper.insertMsg(msg);
 	}
+
+	@Override
+	public List<Message> recvlist(String id) {
+		return mapper.selectRecvMsglist(id);
+	}
+
+	@Override
+	public List<Message> sendlist(String id) {
+		return mapper.selectSendMsglist(id);
+	}
+
+	@Override
+	public void deleteMsg(int no) {
+		mapper.deleteMsg(no);
+	}
+
 
 }
