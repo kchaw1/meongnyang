@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +54,7 @@
     <br>
     <div id="tabs">
         <ul style="border: 1px solid #dddddd; background:none;">
-            <li><a href="#tabs-1">받은쪽지함</a></li>
+            <li id="recv"><a href="#tabs-1">받은쪽지함</a></li>
             <li><a href="#tabs-2">보낸쪽지함</a></li>
         </ul>
         <div id="tabs-1">
@@ -64,19 +65,19 @@
                         <th>번호</th>
                         <th>보낸이</th>
                         <th>제목</th>
-                        <th>읽은날짜</th>
+                        <th>받은날짜</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<%-- <c:forEach var="msg" items="${msglist}"> --%>
+                	<c:forEach var="msg" items="${msgrecvlist}">
                     <tr>
                         <td><input id="check1" type="checkbox" name="checkRow" value="1" /></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${msg.msgNo}</td>
+                        <td>${msg.sendId}</td>
+                        <td>${msg.msgTitle}</td>
                         <td><fmt:formatDate value="${msg.readDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
-                    <%-- </c:forEach> --%>
+                   </c:forEach>
                 </tbody>
             </table>
             <form id="searchForm">
@@ -104,14 +105,14 @@
                         <th>번호</th>
                         <th>받는이</th>
                         <th>제목</th>
-                        <th>받은날짜</th>
+                        <th>보낸날짜</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach var="msg" items="${msglist}">
+                	<c:forEach var="msg" items="${msgsendlist}">
                     <tr>
                         <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                        <td></td>
+                        <td>${msg.msgNo}</td>
                         <td>${msg.recvId}</td>
                         <td>${msg.msgTitle}</td>
                         <td><fmt:formatDate value="${msg.sendDate}" pattern="yyyy-MM-dd" /></td>
@@ -256,6 +257,17 @@ $(document).ready(function(){
       dialog.dialog( "open" );
     });
 });
+  
+  $("#recv").click(function () {
+		$.ajax({
+			url: "<c:url value='msgrecv.mn'/>",
+			type: "post",
+			success:function(result){
+				console.log(result);
+			}
+			
+		});
+	});
 </script>
 </body>
 </html>
