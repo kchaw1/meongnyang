@@ -58,8 +58,8 @@ public class AbsController {
 	
 	//행동전문가 질문게시판 
 	@RequestMapping("/absDetailBoard.mn")
-	public void absboardlist(int no, Model model) {
-		Map<String,Object> map = absService.absboardlist(no);
+	public void absboardlist(int no, Model model,@RequestParam(value="pageNo", defaultValue="1")int pageNo) {
+		Map<String,Object> map = absService.absboardlist(no,pageNo);
 		model.addAttribute("map",map);
 	}
 	//행동전문가 질문게시판 질문 등록

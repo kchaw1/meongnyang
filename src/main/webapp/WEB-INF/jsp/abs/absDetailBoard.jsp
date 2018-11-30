@@ -54,7 +54,7 @@
               <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
-     				전체	
+     				전체 : ${map.pageResult.count}개 
                   </div>
               </div>
               <div class="table-responsive">
@@ -94,31 +94,29 @@
               <div class="search-container">
                   <input type="text" id="search-bar" placeholder="제목을 입력하세요...">
               </div>
-              <div>
-                  <ul class="pagination">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">&laquo;</a>
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">5</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">&raquo;</a>
-                    </li>
-                  </ul>
-                </div>
+             <c:if test="${map.pageResult.count != 0 }">
+                       	<input type="hidden" name="pageNo" value="1"> 
+				<div id="paging" class="text-center">
+  				<ul class="pagination">
+			        <li<c:if test="${map.pageResult.prev eq false }"> class="disabled"</c:if>>
+			          <a href="${map.pageResult.beginPage-1}" aria-label="Previous">
+			            <span aria-hidden="true">&laquo;</span>
+			          </a>
+			        </li>
+			    
+			    <c:forEach var="i" begin="${map.pageResult.beginPage}" end="${map.pageResult.endPage}">
+			        		<li<c:if test="${i eq map.pageResult.pageNo }"> class="active"</c:if>>
+			        			<a href="${i}">${i}</a>
+			        		</li>
+			    </c:forEach>
+			        <li <c:if test="${map.pageResult.next eq false}"> class=""</c:if>>
+			          <a href="${map.pageResult.endPage }" aria-label="Next">
+			            <span aria-hidden="true">&raquo;</span>
+			          </a>
+			        </li>
+  				</ul>
+				</div>
+		</c:if>  
                 
               <hr>
               <div id="wirte"> 
@@ -138,7 +136,16 @@
         $("#write").click(function(){
             	 location.href="absDetailBoardWrite.mn?no="+${map.a.no};
              }) 
-       
+       $("div > ul.pagination > li > a").click(function(e){
+				e.preventDefault();
+		
+				var pageNo = $(this).attr("href")
+				if(pageNo == 0)return false;
+					
+				location.href = "absDetailBoard.mn?no="+ ${map.a.no}+"&pageNo="+pageNo; //넘어온 페이지를 스크립에서 처리
+				
+				
+				});
         </script>
 
 </body>

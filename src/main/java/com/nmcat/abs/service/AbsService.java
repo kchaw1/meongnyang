@@ -17,7 +17,7 @@ public interface AbsService {
 	Map<String, Object> detail(int no);
 	Map<String, Object> detailIntro(int no);
 
-	Map<String, Object> absboardlist(int no);
+	Map<String, Object> absboardlist(int no, int pageNo);
 	
 
 	void write(QnABoard qnaboard,AbsBoardFile file);

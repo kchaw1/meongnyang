@@ -17,7 +17,7 @@ public interface AbsMapper {
 	Abs selectAbsDetail(int no); 
 	
 	//행동전문가 개별 질문게시판 리스트
-	List<QnABoard> selectAbsBoard(int no);
+	List<QnABoard> selectAbsBoard(int no, int begin);
 	
 	//행동전문가 질문게시판 상세
 	QnABoard selectAbsBoardByNo(int no);
@@ -55,5 +55,10 @@ public interface AbsMapper {
 	void updateLike(int no); //행동전문가 총 추천수 증가
 	void deleteLike(AbsLikeVO likeVO); //행동전문가 추천 취소
 	void cancelLike(int no);  // 행동전문가 총 추천수 감소
+	
+	int selectCntBoard();
+
+	List<QnABoard> selectAbsBoard(QnABoard board);
+
 
 }

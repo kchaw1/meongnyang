@@ -64,7 +64,12 @@
 		 select *
 		   from mn_absboard
 		   where no=#{no}
-
+		   limit #{begin}, 10
+		   
+	</select>
+	<!-- 행동전문가 질문게시판 카운트 -->
+	<select id="selectCntBoard" resultType="int">
+		select count(*) from mn_absboard
 	</select>
 	<!--행동전문가 질문게시판 상세 -->
 	 <select id="selectAbsBoardByNo" parameterType="int" resultMap="qnaMap">

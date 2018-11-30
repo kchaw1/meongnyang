@@ -11,6 +11,7 @@ import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
+import com.nmcat.repository.domain.AbsPageResult;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -52,13 +53,21 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public Map<String, Object> absboardlist(int no) {
+	public Map<String, Object> absboardlist(int no, int pageNo) {
 		Map<String, Object> map = new HashMap<>();
-
-		System.out.println(no);
-		List<QnABoard> list = absMapper.selectAbsBoard(no);
 		Abs detail = absMapper.selectAbsDetail(no);
+		int count = absMapper.selectCntBoard();
+		
+		
+		QnABoard board = new QnABoard();
+		board.setPageNo(pageNo);
+		board.setNo(no);
+		
+		
+		System.out.println("패이지번호"+pageNo);
+		List<QnABoard> list = absMapper.selectAbsBoard(no,board.getBegin());
 		map.put("b", list);
+		map.put("pageResult",  new AbsPageResult(pageNo, count));
 		map.put("a",detail);
 		return map;
 		
