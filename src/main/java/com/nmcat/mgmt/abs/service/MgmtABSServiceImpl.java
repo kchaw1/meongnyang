@@ -1,11 +1,8 @@
 package com.nmcat.mgmt.abs.service;
 
-import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
@@ -20,17 +17,7 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	@Autowired
 	private MgmtABSMapper mapper;
 	
-	// 행동전문가 리스트
-	@Override
-	public List<Member> list(Member member) {
-		return mapper.selectABSList(member);
-	}
 	
-	// 최근접속일
-	@Override
-	public Date recentLogin(String id) {
-		return mapper.selectRecentLogin(id);
-	}
 	
 	// 디테일
 	@Override
@@ -82,56 +69,21 @@ public class MgmtABSServiceImpl implements MgmtABSService{
 	
 	// 오름차순 정렬
 	@Override
-	public List<Member> listById(Member member) {
-		return mapper.selectABSListSortedbyId(member);
-	}
-	@Override
-	public List<Member> listByName(Member member) {
-		return mapper.selectABSListSortedbyName(member);
-	}
-	@Override
-	public List<Member> listBySignUpDate(Member member) {
-		return mapper.selectABSListSortedbySignUpDate(member);
-	}
-	@Override
-	public List<Member> listByRecentLoginDate(Member member) {
-		return mapper.selectABSListSortedbyRecentLoginDate(member);
-	}
-	@Override
-	public List<Member> listByScore(Member member) {
-		return mapper.selectABSListSortedbyScore(member);
-	}
-	@Override
-	public List<Member> listByPoint(Member member) {
-		return mapper.selectABSListSortedbyPoint(member);
-	}
+	public List<Member> list(Member member) { return mapper.selectABSList(member); }
+	public List<Member> listById(Member member) { return mapper.selectABSListSortedbyId(member); }
+	public List<Member> listByName(Member member) { return mapper.selectABSListSortedbyName(member); }
+	public List<Member> listBySignUpDate(Member member) { return mapper.selectABSListSortedbySignUpDate(member); }
+	public List<Member> listByRecentLoginDate(Member member) { return mapper.selectABSListSortedbyRecentLoginDate(member); }
+	public List<Member> listByScore(Member member) { return mapper.selectABSListSortedbyScore(member); }
+	public List<Member> listByPoint(Member member) { return mapper.selectABSListSortedbyPoint(member); }
 	
 	// 내림차순 정렬
 	@Override
-	public List<Member> listDesc(Member member) {
-		return mapper.selectABSListDesc(member);
-	}
-	@Override
-	public List<Member> listByIdDesc(Member member) {
-		return mapper.selectABSListSortedbyIdDesc(member);
-	}
-	@Override
-	public List<Member> listByNameDesc(Member member) {
-		return mapper.selectABSListSortedbyNameDesc(member);
-	}
-	@Override
-	public List<Member> listBySignUpDateDesc(Member member) {
-		return mapper.selectABSListSortedbySignUpDateDesc(member);
-	}
-	public List<Member> listByRecentLoginDateDesc(Member member) {
-		return mapper.selectABSListSortedbyRecentLoginDateDesc(member);
-	}
-	@Override
-	public List<Member> listByScoreDesc(Member member) {
-		return mapper.selectABSListSortedbyScoreDesc(member);
-	}
-	@Override
-	public List<Member> listByPointDesc(Member member) {
-		return mapper.selectABSListSortedbyPointDesc(member);
-	}
+	public List<Member> listDesc(Member member) { return mapper.selectABSListDesc(member); }
+	public List<Member> listByIdDesc(Member member) { return mapper.selectABSListSortedbyIdDesc(member); } 
+	public List<Member> listByNameDesc(Member member) { return mapper.selectABSListSortedbyNameDesc(member); } 
+	public List<Member> listBySignUpDateDesc(Member member) { return mapper.selectABSListSortedbySignUpDateDesc(member); }
+	public List<Member> listByRecentLoginDateDesc(Member member) { return mapper.selectABSListSortedbyRecentLoginDateDesc(member); }
+	public List<Member> listByScoreDesc(Member member) { return mapper.selectABSListSortedbyScoreDesc(member); }
+	public List<Member> listByPointDesc(Member member) { return mapper.selectABSListSortedbyPointDesc(member); }
 }

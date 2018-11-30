@@ -20,13 +20,7 @@
 		<result column="greetings" property="greetings" />
 		<result column="point" property="point" />
 		<result column="login_date_time" property="loginDateTime" />
-</resultMap>
-
-<resultMap id="historyMap" type="LoginHistory">
-		<result column="login_no" property="loginNo" />
-		<result column="login_id" property="loginId" />
-		<result column="login_date_time" property="loginDateTime" />
-		<result column="logout_date_time" property="logoutDateTime" />
+		<result column="code_name" property="codeName" />
 </resultMap>
 
 <resultMap id="comMap" type="CommunityBoard">
@@ -52,116 +46,232 @@
 
 <!-- 일반회원 리스트 -->
 <select id="selectGeneralList" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by no asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY no asc;
 </select>
 
 <!-- 오름차순 정렬 -->
 <select id="selectGeneralListSortedbyId" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by id asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY id asc;
 </select>
 <select id="selectGeneralListSortedbyName" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by name asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY name asc;
 </select>
 <select id="selectGeneralListSortedbySignUpDate" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by sign_up_date asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY sign_up_date asc;
 </select>
 <select id="selectGeneralListSortedbyRecentLoginDate" resultMap="memberMap">
 	SELECT *
-	  FROM mn_member AS A 
-	 INNER JOIN 
-		 (select login_id, max(login_date_time) login_date_time
-		 from mn_login_history
-		 group by login_id) AS B
-	    ON A.id = B.login_id
-	 WHERE type = 1
-	 order by login_date_time asc
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY login_date_time asc;
 </select>
 <select id="selectGeneralListSortedbyScore" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by score asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY score asc;
 </select>
 <select id="selectGeneralListSortedbyPoint" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by point asc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY point asc;
 </select>
-<!-- 이부분에 등급순 추가해야함 -->
+<select id="selectGeneralListSortedbyGrade" resultMap="memberMap">
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY grade_no asc;
+</select>   
 <!-- /오름차순정렬 -->
 
 <!-- 내림차순정렬 -->
 <select id="selectGeneralListDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by no desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY no desc;
 </select>
 <select id="selectGeneralListSortedbyIdDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by id desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY id desc;
 </select>
 <select id="selectGeneralListSortedbyNameDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by name desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY name desc;
 </select>
 <select id="selectGeneralListSortedbySignUpDateDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by sign_up_date desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY sign_up_date desc;
 </select>
 <select id="selectGeneralListSortedbyRecentLoginDateDesc" resultMap="memberMap">
-		SELECT *
-	  FROM mn_member AS A 
-	 INNER JOIN 
-		 (select login_id, max(login_date_time) login_date_time
-		 from mn_login_history
-		 group by login_id) AS B
-	    ON A.id = B.login_id
-	 WHERE type = 1
-	 order by login_date_time desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY login_date_time desc;
 </select>
 <select id="selectGeneralListSortedbyScoreDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by score desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY score desc;
 </select>
 <select id="selectGeneralListSortedbyPointDesc" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 1
-	 order by point desc
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY point desc;
 </select>
-<!-- 이부분에 등급순 추가해야함 -->
+<select id="selectGeneralListSortedbyGradeDesc" resultMap="memberMap">
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
+    ORDER BY grade_no desc;
+</select>    
 <!-- /내림차순 정렬 -->
 
 <!-- 검색 -->
 <select id="selectSearchGeneralList" parameterType="MgmtSearch" resultMap="memberMap">
-	select *
-	   FROM mn_member AS A 
- INNER JOIN mn_login_history AS B 
-    	 ON A.id = B.login_id
-   GROUP BY id
-	 HAVING	type=1
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+    WHERE type = 1   
 	 	<choose>
 	 		<when test="searchType==0">
 	 			and no like CONCAT('%',#{keyword},'%')
@@ -179,36 +289,30 @@
 	 			and login_date_time like CONCAT('%',#{keyword},'%')
 	 		</when>
 	 		<when test="searchType==5">
-	 			and score like CONCAT('%',#{keyword},'%')
+	 			and score = #{keyword}
 	 		</when>
 	 		<when test="searchType==6">
-	 			and point like CONCAT('%',#{keyword},'%')
+	 			and point = #{keyword}
 	 		</when>
-	 		<!-- 
-		 		<otherwise>
-		 			<choose>
-			 			<when test="keyword=='루키'">
-			 				and grade_no = 1
-			 			</when>
-		 			</choose>
-		 		</otherwise>
-	 		 -->
+	 		<otherwise>
+	 			and code_name like CONCAT('%',#{keyword},'%')
+	 		</otherwise>
 	 	</choose>
-	 order by ${sortColumn} ${sortMethod} 
+	 ORDER BY ${sortColumn} ${sortMethod} 
 </select>
-		
-<!-- 최근접속일 -->		
-<select id="selectRecentLogin" parameterType="string" resultType="date">
-	select max(login_date_time)
-  	  from mn_login_history
- 	 where login_id = #{loginId}
-</select>	
 
 <!-- 디테일 -->
 <select id="selectGeneralDetail" parameterType="int" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where no = #{no}
+	SELECT *
+  	 FROM mn_member as A
+  	INNER JOIN (select login_id, max(login_date_time) login_date_time
+			      from mn_login_history
+			     group by login_id) AS B
+	   ON A.id = B.login_id
+    INNER JOIN (select each_code, code_name
+				from mn_code) AS C
+	   ON A.grade_no = C.each_code
+	WHERE no = #{no}
 </select>
 
 <!-- 작성한 게시글 -->

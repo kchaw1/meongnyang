@@ -10,7 +10,6 @@ import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtGeneralMapper {
 	
-	Date selectRecentLogin(String id); // 최근접속일
 	List<Member> selectSearchGeneralList(MgmtSearch search); // 검색
 	Member selectGeneralDetail(int no); // 일반회원 상세
 	List<CommunityBoard> selectBoardById(String id); // 내가 쓴 게시글
@@ -25,6 +24,7 @@ public interface MgmtGeneralMapper {
 	List<Member> selectGeneralListSortedbyRecentLoginDate();
 	List<Member> selectGeneralListSortedbyScore();
 	List<Member> selectGeneralListSortedbyPoint();
+	List<Member> selectGeneralListSortedbyGrade();
 	
 	// 내림차순
 	List<Member> selectGeneralListDesc();
@@ -34,7 +34,6 @@ public interface MgmtGeneralMapper {
 	List<Member> selectGeneralListSortedbyRecentLoginDateDesc();
 	List<Member> selectGeneralListSortedbyScoreDesc();
 	List<Member> selectGeneralListSortedbyPointDesc();
-	
-
-	
+	List<Member> selectGeneralListSortedbyGradeDesc();
+		
 }

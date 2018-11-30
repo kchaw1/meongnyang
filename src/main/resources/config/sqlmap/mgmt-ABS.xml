@@ -22,13 +22,6 @@
 		<result column="login_date_time" property="loginDateTime" />
 </resultMap>
 
-<resultMap id="historyMap" type="LoginHistory">
-		<result column="login_no" property="loginNo" />
-		<result column="login_id" property="loginId" />
-		<result column="login_date_time" property="loginDateTime" />
-		<result column="logout_date_time" property="logoutDateTime" />
-</resultMap>
-
 <resultMap id="comMap" type="CommunityBoard">
 		<result column="com_no" property="comNo" />
 		<result column="com_title" property="comTitle" />
@@ -69,119 +62,162 @@
 
 <!-- 전문가 리스트 -->
 <select id="selectABSList" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by no asc 
 </select>
 
 <!-- 오름차순 정렬 -->
 <select id="selectABSListSortedbyId" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by id asc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by id asc  
 </select>
 <select id="selectABSListSortedbyName" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by name asc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by name asc   
 </select>
 <select id="selectABSListSortedbySignUpDate" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by sign_up_date asc 
 </select>
 <select id="selectABSListSortedbyRecentLoginDate" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN 
-		 (select login_id, max(login_date_time) login_date_time
-		 from mn_login_history
-		 group by login_id) AS B
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
 	    ON A.id = B.login_id
 	 WHERE type = 2 and auth_state = #{authState}
-	 order by login_date_time asc
+	 order by login_date_time asc 
 </select>
 <select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by score asc 
 </select>
 <select id="selectABSListSortedbyPoint" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by point asc 
 </select>
 <!-- /오름차순정렬 -->
 
 <!-- 내림차순정렬 -->
 <select id="selectABSListDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by no desc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by no desc  
 </select>
 
 <select id="selectABSListSortedbyIdDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by id desc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by id desc   
 </select>
 <select id="selectABSListSortedbyNameDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by name desc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by name desc   
 </select>
 <select id="selectABSListSortedbySignUpDateDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by sign_up_date desc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by sign_up_date desc   
 </select>
 <select id="selectABSListSortedbyRecentLoginDateDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN 
-		 (select login_id, max(login_date_time) login_date_time
-		 from mn_login_history
-		 group by login_id) AS B
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
 	    ON A.id = B.login_id
 	 WHERE type = 2 and auth_state = #{authState}
 	 order by login_date_time desc
 </select>
 <select id="selectABSListSortedbyScoreDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
 	 order by score desc 
 </select>
 <select id="selectABSListSortedbyPointDesc" parameterType="Member" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where type = 2 and auth_state = #{authState}
-	 order by point desc 
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE type = 2 and auth_state = #{authState}
+	 order by point desc  
 </select>
 <!-- /내림차순 정렬 -->
-		
-<!-- 최근접속일 -->		
-<select id="selectRecentLogin" parameterType="string" resultType="date">
-	select max(login_date_time)
-  	  from mn_login_history
- 	 where login_id = #{loginId}
-</select>	
 
 <!-- 디테일 -->
 <select id="selectABSDetail" parameterType="int" resultMap="memberMap">
-	select *
-	  from mn_member
-	 where no = #{no}
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
+	 WHERE no = #{no}
 </select>
 
 <!-- 작성한 게시글 -->
@@ -220,10 +256,12 @@
 
 <!-- 검색 -->
 <select id="searchABS" parameterType="MgmtSearch" resultMap="memberMap">
-	select *
-	   FROM mn_member AS A 
- INNER JOIN mn_login_history AS B 
-    	 ON A.id = B.login_id
+	SELECT *
+	  FROM mn_member AS A 
+	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+				   from mn_login_history
+				  group by login_id) AS B
+	    ON A.id = B.login_id
 	 <where>
 	 	type='2' and auth_state = #{authState}
 	 	<choose>

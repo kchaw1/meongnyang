@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../adminCommonCSSJS.jsp" />
 <c:import url="absDetailCSSJS.jsp" />
+<c:import url="../adminCommonCSSJS.jsp" />
 </head>
 <body>
 				<!-- /좌측 메뉴 -->

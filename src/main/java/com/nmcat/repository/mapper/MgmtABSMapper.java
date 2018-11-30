@@ -1,6 +1,5 @@
 package com.nmcat.repository.mapper;
 
-import java.util.Date;
 import java.util.List;
 
 import com.nmcat.repository.domain.Career;
@@ -13,7 +12,6 @@ import com.nmcat.repository.domain.board.CommunityBoard;
 public interface MgmtABSMapper {
 	
 	List<Member> selectABSList(Member member); // ABS 리스트
-	Date selectRecentLogin(String id); // 최근접속일
 	Member selectABSDetail(int no); // ABS 디테일
 	List<CommunityBoard> selectBoardById(String id); // 내가 쓴 게시글
 	List<CommunityComment> selectCommentById(String id); // 내가 쓴 코멘트

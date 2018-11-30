@@ -30,8 +30,11 @@ public class Member {
 	private String greetings;
 	private int point;
 	
-	// 로긴 시간 (조인때문에 만듦)
-	private Date LoginDateTime;
+	// 조인때문에 만듦
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+	private Date loginDateTime; // 로긴 시간
+	
+	private String codeName; // 등급 이름
 	
 	// 페이지 번호
 		private int pageNo;

@@ -35,7 +35,6 @@ public class MgmtGeneralController {
 	public Map<String, Object> printGeneralList(@RequestParam(value = "sort", defaultValue = "1") int sort, int flag) {
 		Map<String, Object> map = new HashMap<>();
 		List<Member> list = null;
-		List<LoginHistory> rldList = new ArrayList<>();
 		
 		switch(sort) {
 			case 1:
@@ -88,20 +87,15 @@ public class MgmtGeneralController {
 				}
 				break;
 			case 8:
-				// 등급 추가하자.
+				if(flag == 1) {
+					list = service.generalMemberListByGrade();
+				} else {
+					list = service.generalMemberListByGradeDesc();
+				}
 				break;
 		}
-		
-		for(Member m : list) {
-			LoginHistory lh = new LoginHistory();
-			Date recentLoginDate = service.recentLogin(m.getId());
-			lh.setLoginDateTime(recentLoginDate);
-			rldList.add(lh);
-		}
-		
+	
 		map.put("list", list);
-		map.put("rldList",  rldList);
-		
 		return map; 
 	}	
 	
@@ -151,19 +145,9 @@ public class MgmtGeneralController {
 		}
 		
 		searchList = service.search(search);
-		
-		for(Member m : searchList) {
-			LoginHistory lh = new LoginHistory();
-			
-			Date recentLoginDate = service.recentLogin(m.getId());
-			lh.setLoginDateTime(recentLoginDate);
-			
-			searchRLDList.add(lh);
-		}
-		
+	
 		map.put("searchList", searchList);
-		map.put("searchRLDList", searchRLDList);
-		
+
 		return map;
 	}
 	
@@ -172,6 +156,12 @@ public class MgmtGeneralController {
 		model.addAttribute("general", service.detail(no));
 		model.addAttribute("myPosts", service.myPosts(id));
 		model.addAttribute("myComments", service.myComments(id));
+	}
+	
+	@RequestMapping("/general/delete")
+	public String delete(int no) {
+		service.deleteMember(no);
+		return "redirect:list.mn";
 	}
 	
 	

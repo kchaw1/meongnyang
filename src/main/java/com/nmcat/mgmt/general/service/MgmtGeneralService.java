@@ -10,13 +10,11 @@ import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtGeneralService {
 	
-	Date recentLogin(String id); // 최근접속일
 	List<Member> search(MgmtSearch search); // 검색
 	Member detail(int no); // 상세
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트
 	void deleteMember(int no);
-	
 	
 	// 오름차순
 	List<Member> generalMemberList();	// 리스트 번호순
@@ -26,6 +24,7 @@ public interface MgmtGeneralService {
 	List<Member> generalMemberListByRecentLoginDate(); // 최근로그인
 	List<Member> generalMemberListByScore(); // 활동점수
 	List<Member> generalMemberListByPoint(); // 포인트
+	List<Member> generalMemberListByGrade(); // 등급
 	
 	// 내림차순
 	List<Member> generalMemberListDesc(); // 번호
@@ -35,4 +34,5 @@ public interface MgmtGeneralService {
 	List<Member> generalMemberListByRecentLoginDateDesc(); // 최근접속일
 	List<Member> generalMemberListByScoreDesc();  // 활동점수
 	List<Member> generalMemberListByPointDesc();  // 포인트
+	List<Member> generalMemberListByGradeDesc(); // 등급
 }

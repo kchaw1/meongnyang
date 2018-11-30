@@ -26,14 +26,17 @@
   <!-- Chart JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
   
-  <!-- timepicker-->
+  <!-- Swal alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
+  <!-- timepicker
   <link href="<c:url value="/resources/css/admin/tui-time-picker.css"/>" rel="stylesheet">
-  <script src="<c:url value="/resources/js/admin/tui-time-picker.js"/>"></script>
+  <script src="<c:url value="/resources/js/admin/tui-time-picker.js"/>"></script>-->
 
-  <!-- datepicker-->
+  <!-- datepicker
   <link href="<c:url value="/resources/css/admin/tui-date-picker.css"/>" rel="stylesheet">
   <script src="<c:url value="/resources/js/admin/tui-code-snippet.js"/>"></script>
-  <script src="  <c:url value="/resources/js/admin/tui-date-picker.js"/>"></script>
+  <script src="  <c:url value="/resources/js/admin/tui-date-picker.js"/>"></script>-->
   
   <!-- header/footer -->
   <!-- <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">  -->

@@ -1,8 +1,6 @@
 package com.nmcat.mgmt.abs.service;
 
-import java.util.Date;
 import java.util.List;
-
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
@@ -11,8 +9,6 @@ import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtABSService {
-
-	Date recentLogin(String id); // 최근접속일
 	Member detail(int no); // 상세
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트

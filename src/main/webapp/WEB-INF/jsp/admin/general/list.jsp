@@ -138,12 +138,12 @@
 			            +  "<div class='id-area'>"+ result.list[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.list[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.list[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.rldList[i].loginDateTime + "</div>"
+			            +  "<div class='recent-area'>"+ result.list[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.list[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.list[i].point +"</div>"
-			            +  "<div class='grade-area'>"+ result.list[i].gradeNo +"</div>"
-			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.list[i].no + "' data-id='" + result.list[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.list[i].no + "' data-id='" + result.list[i].id + "'>탈퇴</button>"
+			            +  "<div class='grade-area'>"+ result.list[i].codeName +"</div>"
+			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.list[i].no + " data-id='" + result.list[i].id + "'>상세</button> "
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.list[i].no + " data-id='" + result.list[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 		   }
@@ -171,12 +171,12 @@
 			            +  "<div class='id-area'>"+ result.searchList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.searchList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.searchList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.searchRLDList[i].loginDateTime + "</div>"
+			            +  "<div class='recent-area'>"+ result.searchList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.searchList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.searchList[i].point +"</div>"
-			            +  "<div class='grade-area'>"+ result.searchList[i].gradeNo +"</div>"
-			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchList[i].no + "' data-id='" + result.searchList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchList[i].no + "' data-id='" + result.searchList[i].id + "'>탈퇴</button>"
+			            +  "<div class='grade-area'>"+ result.searchList[i].codeName +"</div>"
+			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchList[i].no + " data-id='" + result.searchList[i].id + "'>상세</button> "
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchList[i].no + " data-id='" + result.searchList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -186,6 +186,15 @@
 	
 	// 검색
 	$("#searchBtn").click(function() {
+		if($("#searchType").val() == 0 && $("#keyword").val() != "") {
+    		swal("카테고리를 선택하세요","" ,"error");
+ 			return false;
+    	}
+ 		if($("#searchType").val() != 0 && $("#keyword").val() == "") {
+ 			swal("검색어를 입력해주세요","","error");
+ 			return false;
+ 		}
+		
 		var $searchType = $("#searchType option:selected").val()
 		var $keyword = $("#keyword").val()
 		
@@ -315,8 +324,9 @@
 	
 	// 삭제 버튼 클릭
 	$(document).on("click", ".delete", function() {
-		if (confirm($(this).data("id") + "회원을 탈퇴처리 하시겠습니까?") == true){    //확인
+		if (confirm($(this).data("id") + "회원을 탈퇴처리 하시겠습니까?") == true){ //확인
 			location.href = "delete.mn?no=" + $(this).data("no");
+			swal("탈퇴처리되었습니다.", "", "success")
 		}else{   //취소
 		    return;
 		}

@@ -9,7 +9,9 @@
     <ul class="nav navbar-nav">
       <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
-      <li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
+      <c:if test= "${user.type eq 3}">
+      	<li><a href="<c:url value='/admin/abs/list.mn'/>">관리자</a></li>
+      </c:if>
       <li class="dropdown">
 		<span class="headeralarm" id="hidden">1</span>
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

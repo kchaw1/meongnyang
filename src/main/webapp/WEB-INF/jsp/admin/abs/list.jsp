@@ -159,11 +159,11 @@
 			            +  "<div class='id-area'>"+ result.yList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.yList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.yList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.yRLDList[i].loginDateTime + "</div>"
+			            +  "<div class='recent-area'>"+ result.yList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.yList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.yList[i].point +"</div>"
-			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.yList[i].no + "' data-id='" + result.yList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.yList[i].no + "' data-id='" + result.yList[i].id + "'>탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.yList[i].no + " data-id='" + result.yList[i].id + "'>상세</button> "
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.yList[i].no + " data-id='" + result.yList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -188,11 +188,11 @@
 			            +  "<div class='id-area'>"+ result.nList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.nList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.nList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.nRLDList[i].loginDateTime + "</div>"
+			            +  "<div class='recent-area'>"+ result.nList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.nList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.nList[i].point +"</div>"
-			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.nList[i].no + "' data-id='" + result.nList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.nList[i].no + "' data-id='" + result.nList[i].id + "'>탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.nList[i].no + " data-id='" + result.nList[i].id + "'>상세</button> "
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.nList[i].no + " data-id='" + result.nList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -220,11 +220,11 @@
 			            +  "<div class='id-area'>"+ result.searchYList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.searchYList[i].name +"</div>"
 			            +  "<div class='sign-area'>"+ result.searchYList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.searchYRLDList[i].loginDateTime + "</div>"
+			            +  "<div class='recent-area'>"+ result.searchYList[i].loginDateTime + "</div>"
 			            +  "<div class='active-area'>"+ result.searchYList[i].score +"</div>"
 			            +  "<div class='point-area'>"+ result.searchYList[i].point +"</div>"
-			            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchYList[i].no + "' data-id='" + result.searchYList[i].id + "'>상세</button> "
-			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchYList[i].no + "' data-id='" + result.searchYList[i].id + "'>탈퇴</button>"
+			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchYList[i].no + " data-id='" + result.searchYList[i].id + "'>상세</button> "
+			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchYList[i].no + " data-id='" + result.searchYList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
 	    	   }
@@ -252,10 +252,10 @@
 		    	    +  "<div class='id-area'>"+ result.searchNList[i].id +"</div>"
 		            +  "<div class='name-area'>"+ result.searchNList[i].name +"</div>"
 		            +  "<div class='sign-area'>"+ result.searchNList[i].signUpDate +"</div>"
-		            +  "<div class='recent-area'>"+ result.searchNRLDList[i].loginDateTime + "</div>"
+		            +  "<div class='recent-area'>"+ result.searchNList[i].loginDateTime + "</div>"
 		            +  "<div class='active-area'>"+ result.searchNList[i].score +"</div>"
 		            +  "<div class='point-area'>"+ result.searchNList[i].point +"</div>"
-		            +  "<button class='btn btn-default btn-sm move-detail' data-no='" + result.searchNList[i].no + "' data-id='" + result.searchNList[i].id + "'>상세</button> "
+		            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchNList[i].no + " data-id='" + result.searchNList[i].id + "'>상세</button> "
 		            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchNList[i].no +">탈퇴</button>"
 			            +  "</div>"
 			            +  "<div class='clear-fix'></div>"
@@ -279,6 +279,16 @@
 	
 	// 승인페이지에서 검색
 	$("#searchYBtn").click(function() {
+		if($("#y-searchType").val() == 0 && $("#y-keyword").val() != "") {
+    		swal("카테고리를 선택하세요","" ,"error");
+ 			return false;
+    	}
+ 		if($("#y-searchType").val() != 0 && $("#y-keyword").val() == "") {
+ 			swal("검색어를 입력해주세요","","error");
+ 			return false;
+ 		}
+		
+		
 		var $searchType = $("#y-searchType option:selected").val()
 		var $keyword = $("#y-keyword").val()
 		
@@ -299,6 +309,15 @@
 	
 	// 미승인페이지에서 검색
 	$("#searchNBtn").click(function() {
+		if($("#n-searchType").val() == 0 && $("#n-keyword").val() != "") {
+    		swal("카테고리를 선택하세요","" ,"error");
+ 			return false;
+    	}
+ 		if($("#n-searchType").val() != 0 && $("#n-keyword").val() == "") {
+ 			swal("검색어를 입력해주세요","","error");
+ 			return false;
+ 		}
+		
 		var $searchType = $("#n-searchType option:selected").val()
 		var $keyword = $("#n-keyword").val()
 		

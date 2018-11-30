@@ -14,4 +14,6 @@ public class CommunityComment {
 	String comcContent;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	Date comcRegDate;
+	int comcRef;
+	int comcParentNo;
 }

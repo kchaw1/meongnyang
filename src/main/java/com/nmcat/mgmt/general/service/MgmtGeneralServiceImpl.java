@@ -54,6 +54,8 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	public List<Member> generalMemberListByRecentLoginDate() { return mapper.selectGeneralListSortedbyRecentLoginDate(); }
 	public List<Member> generalMemberListByScore() { return mapper.selectGeneralListSortedbyScore(); }
 	public List<Member> generalMemberListByPoint() { return mapper.selectGeneralListSortedbyPoint(); }
+	public List<Member> generalMemberListByGrade() { return mapper.selectGeneralListSortedbyGrade(); }
+	
 	
 	// 내림차순
 	@Override
@@ -64,10 +66,6 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	public List<Member> generalMemberListByRecentLoginDateDesc() { return mapper.selectGeneralListSortedbyRecentLoginDateDesc(); }
 	public List<Member> generalMemberListByScoreDesc() { return mapper.selectGeneralListSortedbyScoreDesc(); }
 	public List<Member> generalMemberListByPointDesc() { return mapper.selectGeneralListSortedbyPointDesc(); }
+	public List<Member> generalMemberListByGradeDesc() { return mapper.selectGeneralListSortedbyGradeDesc(); }
 	
-	// 최근 접속일
-	@Override
-	public Date recentLogin(String id) {
-		return mapper.selectRecentLogin(id);
-	}
 }

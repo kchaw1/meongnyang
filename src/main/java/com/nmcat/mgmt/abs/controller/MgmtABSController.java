@@ -95,7 +95,6 @@ public class MgmtABSController {
 		Map<String, Object> map = new HashMap<>();
 		Member member = new Member();
 		List<Member> list = null;
-		List<LoginHistory> rldList = new ArrayList<>();
 		
 		member.setAuthState(auth); // y값 n 값
 		
@@ -129,7 +128,6 @@ public class MgmtABSController {
 				}
 				break;
 			case 5:
-				// 최근접속시간순
 				if(flag == 1) {
 					list = service.listByRecentLoginDate(member);
 				} else {
@@ -152,21 +150,10 @@ public class MgmtABSController {
 				break;
 		}
 		
-		for(Member m : list) {
-			LoginHistory lh = new LoginHistory();
-			
-			Date recentLoginDate = service.recentLogin(m.getId());
-			lh.setLoginDateTime(recentLoginDate);
-			
-			rldList.add(lh);
-		}
-		
 		if (auth=="y") {
 			map.put("yList", list);
-			map.put("yRLDList",  rldList);
 		} else {
 			map.put("nList", list);
-			map.put("nRLDList",  rldList);
 		}
 		return map;
 	}
@@ -176,7 +163,6 @@ public class MgmtABSController {
 		Map<String, Object> map = new HashMap<>();
 		MgmtSearch search= new MgmtSearch();		
 		List<Member> searchList = null;
-		List<LoginHistory> searchRLDList = new ArrayList<>();
 		
 		search.setKeyword(keyword);
 		search.setSearchType(searchType);
@@ -205,7 +191,6 @@ public class MgmtABSController {
 				search.setSortColumn("sign_up_date");
 				break;
 			case 5:
-				// 최근접속시간순
 				search.setSortColumn("login_date_time");
 				break;
 			case 6:
@@ -217,21 +202,10 @@ public class MgmtABSController {
 		}
 		searchList = service.search(search);
 		
-		for(Member m : searchList) {
-			LoginHistory lh = new LoginHistory();
-			
-			Date recentLoginDate = service.recentLogin(m.getId());
-			lh.setLoginDateTime(recentLoginDate);
-			
-			searchRLDList.add(lh);
-		}
-		
 		if (auth == "y") {
 			map.put("searchYList", searchList);
-			map.put("searchYRLDList", searchRLDList);
 		} else {
 			map.put("searchNList", searchList);
-			map.put("searchNRLDList", searchRLDList);
 		}
 
 		return map;
