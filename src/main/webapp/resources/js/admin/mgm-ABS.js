@@ -3,9 +3,6 @@ $(document).ready(function () {
 	  $(".mgm-hidden").toggle();
 	  $(".abs-member").css("font-weight", "bold");
 })
-// 헤더푸터
-// $("#header").load("../headfoot/header.html"); 
-// $("#footer").load("../headfoot/footer.html");
 
 
 //좌측 메뉴 스크립트
@@ -19,6 +16,9 @@ $("#board").click(function () {
 
 $("#management").click(function () {
   $(".mgm-hidden").slideToggle(500);
+})
+$("#management").hover(function () {
+	$(this).addClass("selected");
 })
 
 $("#statistics").hover(function () {

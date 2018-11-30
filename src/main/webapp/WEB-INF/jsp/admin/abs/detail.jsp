@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,9 +67,12 @@
 								<c:forEach var="l" items="${licenseList}">
 									<tr>
 										<td>${l.lifOriName}</td>
-										<td><button class="btn btn-default btn-xs">다운</button></td>
+										<td><button type="button" id="downBtn" class="btn btn-default btn-xs">다운</button></td>
 									</tr>
 								</c:forEach>
+								<tr>
+									<td><button type="button" id="downBtn" class="btn btn-default btn-xs">다운</button></td>
+								</tr>
 							</table>
 						</div>
 
@@ -124,6 +128,7 @@
 								<div id="posts-header">
 									<div class="no-area">글번호</div>
 									<div class="title-area">제목</div>
+									<div class="reg-date-area">등록일</div>
 									<div class="view-cnt-area">조회수</div>
 									<div class="rec-cnt-area">추천수</div>
 									<div class="category-area">카테고리</div>
@@ -136,6 +141,7 @@
 									<div class="title-area">
 										${post.comTitle}
 									</div>
+									<div class="reg-date-area"><fmt:formatDate value="${post.comRegDate}" pattern="yyyy-MM-dd hh:mm:ss" /></div>
 									<div class="view-cnt-area">${post.comViewCnt}</div>
 									<div class="rec-cnt-area">${post.comRecCnt}</div>
 									<div class="category-area">${post.comCategory}</div>
@@ -152,12 +158,14 @@
 								<div id="comment-header">
 									<div class="no-area">댓글번호</div>
 									<div class="cmt-content-area">댓글내용</div>
+									<div class="reg-date-area">등록일</div>
 									<div class="no-area">게시글 번호</div>
 								</div>
 								<c:forEach var="cmt" items="${myComments}">
 								<div class="comment-content">
 									<div class="no-area">${cmt.comcNo}</div>
 									<div class="cmt-content-area">${cmt.comcContent}</div>
+									<div class="reg-date-area"><fmt:formatDate value="${cmt.comcRegDate}" pattern="yyyy-MM-dd hh:mm:ss" /></div>
 									<div class="no-area">${cmt.comNo}</div>
 									<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${cmt.comNo}'/>'">이동</button></div>
 								</div>
@@ -187,6 +195,11 @@
 			window.opener.location.reload();
 		});
 	});
+	
+
+	$("#downBtn").click(function() {
+		location.href = "<c:url value='/common/download.mn?path=/test&fileName=hello.jpg'/>"
+	})
 
 	</script>
 </body>

@@ -15,11 +15,12 @@
 #posts-header div, .posts-content div, #comment-header div, .comment-content div { display:inline-block; text-align: center; margin-bottom:10px; }
 #comment-area div { font-size: 20px; }
 .no-area { width: 10%; }
-.title-area { width: 30%; }
+.title-area { width: 25%; }
 .view-cnt-area { width: 10%; }
 .rec-cnt-area { width: 10%; }
 .category-area { width: 10%; }
-.btn-area { width: 20%; }
+.reg-date-area { width: 20%; }
+.btn-area { width: 10%; }
 .cmt-content-area { width: 35%;}
 #career-area table,tr,td {padding:5px; font-size:15px; text-align:center;}
 .view { width: 100%; }

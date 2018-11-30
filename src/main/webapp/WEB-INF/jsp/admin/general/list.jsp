@@ -115,7 +115,6 @@
 	</div>
 	
 <script>
-
 	$(document).ready(function () {
 	    ajaxList(1, 1);
 	})

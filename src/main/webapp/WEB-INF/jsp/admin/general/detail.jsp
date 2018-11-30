@@ -93,6 +93,7 @@
 								<div id="posts-header">
 									<div class="no-area">글번호</div>
 									<div class="title-area">제목</div>
+									<div class="reg-date-area">등록일</div>
 									<div class="view-cnt-area">조회수</div>
 									<div class="rec-cnt-area">추천수</div>
 									<div class="category-area">카테고리</div>
@@ -103,6 +104,7 @@
 									<div class="title-area">
 										제목
 									</div>
+									<div class="reg-date-area"><fmt:formatDate value="${post.comRegDate}" pattern="yyyy-MM-dd hh:mm:ss" /></div>
 									<div class="view-cnt-area">${post.comViewCnt}</div>
 									<div class="rec-cnt-area">${post.comRecCnt}</div>
 									<div class="category-area">${post.comCategory}</div>
@@ -121,12 +123,14 @@
 								<div id="comment-header">
 									<div class="no-area">댓글번호</div>
 									<div class="cmt-content-area">댓글내용</div>
+									<div class="reg-date-area">등록일</div>
 									<div class="no-area">게시글 번호</div>
 								</div>
 								<c:forEach var="cmt" items="${myComments}">
 									<div class="comment-content">
 										<div class="no-area">${cmt.comcNo}</div>
 										<div class="cmt-content-area">${cmt.comcContent}</div>
+										<div class="reg-date-area"><fmt:formatDate value="${cmt.comcRegDate}" pattern="yyyy-MM-dd hh:mm:ss" /></div>
 										<div class="no-area">${cmt.comNo}</div>
 										<div class="btn-area"><button class="btn btn-default btn-xs" onclick="window.location='<c:url value='/community/detailPage.mn?comNo=${cmt.comNo}'/>'">이동</button></div>
 									</div>

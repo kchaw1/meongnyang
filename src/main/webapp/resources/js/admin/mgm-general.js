@@ -1,7 +1,4 @@
 
-    // 헤더푸터
-    // $("#header").load("../headfoot/header.html"); 
-    // $("#footer").load("../headfoot/footer.html");
 
     $(document).ready(function () {
       $("#management").addClass("selected");
@@ -21,6 +18,9 @@
     $("#management").click(function () {
       $(".mgm-hidden").slideToggle(500);
     })
+    $("#management").hover(function () {
+		$(this).addClass("selected");
+	})
 
     $("#statistics").hover(function () {
       $(this).addClass("selected");
