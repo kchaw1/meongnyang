@@ -10,4 +10,5 @@ public interface MessageMapper {
 	List<Message>selectSendMsglist(String id);
 	void insertMsg(Message msg);
 	int deleteMsg(int no); // 게시물 삭제
+	Message selectMsgDetail(int no);
 }

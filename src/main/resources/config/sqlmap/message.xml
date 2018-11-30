@@ -42,4 +42,11 @@
     	  from mn_msg
     	 where msg_no = #{msgNo}
     </delete>
+    
+    <!-- 쪽지 상세보기 -->
+    <select id="selectMsgDetail" parameterType="int" resultMap="MessageMap">
+    	select *
+    	  from mn_msg
+    	 where msg_no = #{msgNo} 
+    </select>	
 </mapper>

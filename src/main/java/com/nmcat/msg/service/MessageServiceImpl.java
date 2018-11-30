@@ -34,5 +34,10 @@ public class MessageServiceImpl implements MessageService{
 		mapper.deleteMsg(no);
 	}
 
+	@Override
+	public Message detail(int no) {
+		return mapper.selectMsgDetail(no);
+	}
+
 
 }

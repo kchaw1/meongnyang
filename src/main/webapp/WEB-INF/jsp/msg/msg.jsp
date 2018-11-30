@@ -61,7 +61,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th><input id="checkall" type="checkbox" name="checkall" value="1"/></th>
+                        <th><input id="allCheck" type="checkbox" name="checkall" value="1" onclick="selectAll();" /></th>
                         <th>번호</th>
                         <th>보낸이</th>
                         <th>제목</th>
@@ -71,10 +71,10 @@
                 <tbody>
                 	<c:forEach var="msg" items="${msgrecvlist}">
                     <tr>
-                        <td><input id="check1" type="checkbox" name="checkRow" value="1" /></td>
+                        <td><input type="checkbox" name="foo" value="1" /></td>
                         <td>${msg.msgNo}</td>
                         <td>${msg.sendId}</td>
-                        <td>${msg.msgTitle}</td>
+                        <td><a href='detailmsg.mn?no=${msg.msgNo}'>${msg.msgTitle}</a></td>
                         <td><fmt:formatDate value="${msg.readDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
                    </c:forEach>
@@ -101,7 +101,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th><input id="checkall2" type="checkbox" name="checkall2" value="1" /></th>
+                        <th><input type="checkbox" id="allCheck1" name="foo" value="1"/></th>
                         <th>번호</th>
                         <th>받는이</th>
                         <th>제목</th>
@@ -111,10 +111,10 @@
                 <tbody>
                 	<c:forEach var="msg" items="${msgsendlist}">
                     <tr>
-                        <td><input id="check5" type="checkbox" name="check" value="1" /></td>
+                        <td><input type="checkbox" name="foo" value="1" /></td>
                         <td>${msg.msgNo}</td>
                         <td>${msg.recvId}</td>
-                        <td>${msg.msgTitle}</td>
+                        <td><a href='detailmsg.mn?no=${msg.msgNo}'>${msg.msgTitle}</a></td>
                         <td><fmt:formatDate value="${msg.sendDate}" pattern="yyyy-MM-dd" /></td>
                     </tr>
                     </c:forEach>
@@ -152,7 +152,7 @@
 							<span>받는사람 : </span> <input type="text" name=recvId id="name" />
 						</div>
 						<hr>
-						<span>제목 : </span> <input type="text" name="MsgTitle" id="title" />
+						<span>제목 : </span> <input type="text" name="msgTitle" id="title" />
 						<hr>
 						<div class="content">
 							<textarea name="msgContent" placeholder="내용을 입력하세요." rows="15" cols="80" value=""></textarea>
@@ -182,9 +182,42 @@ $( function() {
     $( "#tabs" ).tabs({
     	collapsible: true
     });
-  } );
+  });
+</script>
+<script>
+$(function(){
+	//전체선택 체크박스 클릭 
+	$("#allCheck").click(function(){ 
+	//만약 전체 선택 체크박스가 체크된상태일경우 
+	if($("#allCheck").prop("checked")) { 
+	//해당화면에 전체 checkbox들을 체크해준다 
+	$("input[type=checkbox]").prop("checked",true); 
+	// 전체선택 체크박스가 해제된 경우 
+	} else { 
+	//해당화면에 모든 checkbox들의 체크를해제시킨다. 
+	$("input[type=checkbox]").prop("checked",false); 
+	} 
+	}) 
+})
 
-$(document).ready(function(){
+$(function(){ 
+	//전체선택 체크박스 클릭 
+	$("#allCheck1").click(function(){ 
+	//만약 전체 선택 체크박스가 체크된상태일경우 
+	if($("#allCheck1").prop("checked")) { 
+	//해당화면에 전체 checkbox들을 체크해준다 
+	$("input[type=checkbox]").prop("checked",true); 
+	// 전체선택 체크박스가 해제된 경우 
+	} else { 
+	//해당화면에 모든 checkbox들의 체크를해제시킨다. 
+	$("input[type=checkbox]").prop("checked",false); 
+	} 
+	}) 
+})
+
+</script>
+<script>
+/*  $(document).ready(function(){
     //최상단 체크박스 클릭
     $("#checkall").click(function(){
         //클릭되었으면
@@ -211,7 +244,7 @@ $(document).ready(function(){
             //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
             $("input[name=check]").prop("checked",false);
         }
-    })
+    })  */
     
     $('#delBtn').button().on("click", function(){
     	alert("안됨");

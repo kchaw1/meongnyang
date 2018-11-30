@@ -10,4 +10,5 @@ public interface MessageService {
 	List<Message> sendlist(String id);
 	void writer(Message msg);
 	void deleteMsg(int no);
+	Message detail(int no);
 }

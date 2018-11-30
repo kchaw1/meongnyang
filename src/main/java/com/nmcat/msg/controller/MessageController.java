@@ -55,4 +55,9 @@ public class MessageController {
 		service.deleteMsg(no);
 		return "msg/msg";
 	}
+	
+	@RequestMapping("detailmsg.mn")
+	public void detail(int no, Model model) {
+		model.addAttribute("msg", service.detail(no));
+	}
 }
