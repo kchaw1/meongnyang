@@ -44,6 +44,10 @@ table.payment {
   border-collapse: collapse;
   /* border: 1px solid rgb(128, 128, 128, 0.6); */
 }
+th {
+	font-size : 22px;
+	font-weight : lighter;
+}
 tr {
   height: 50px;
   vertical-align: middle;
@@ -59,7 +63,6 @@ input[type='radio'] {
   width: 70px;
 }
 tr.buttons {
-  text-align: right;
   height: 70px;
   border-bottom: none;
 }
@@ -73,11 +76,27 @@ tr.title{
 /* td {
   border : 1px solid black;
 } */
+div.buttonBox {
+	float : right;
+	width : 50%;
+	vertical-align : middle;
+}
+img.kakao {
+	width : auto;
+	height : 30px;
+	float : right;
+	position : relative;
+	vertical-align : middle;
+}
+/* a.pay {
+	vertical-align : middle;
+} */
 
 button {
-  margin : 3px;
-  width: 80px;
-  height: 40px;
+	float : right;
+  margin-left : 10px;
+  width: 70px;
+  height: 30px;
   border-radius: 5px;
   font-size: 16px;
   color : white;

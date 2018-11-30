@@ -28,77 +28,86 @@
        <td class="no1">
          <input type="radio" id="no1" name="point" value="1000"/>
        </td>
-       <td><label for="no1">1,100 포인트</label></td>
+       <td><label for="no1" data-value="1100">1,100 포인트</label></td>
        <td>1,000 원</td>
      </tr>
      <tr>
        <td class="no1">
          <input type="radio" id="no2" name="point" value="2000"/>
        </td>
-       <td><label for="no2">2,200 포인트</label></td>
+       <td><label for="no2" data-value="2200">2,200 포인트</label></td>
        <td>2,000 원</td>
      </tr>
      <tr>
        <td class="no1">
          <input type="radio" id="no3" name="point" value="3000"/>
        </td>
-       <td><label for="no3">3,300 포인트</label></td>
+       <td><label for="no3" data-value="3300">3,300 포인트</label></td>
        <td>3,000 원</td>
      </tr>
      <tr>
        <td class="no1">
          <input type="radio" id="no4" name="point" value="4000"/>
        </td>
-       <td><label for="no4">4,400 포인트</label></td>
+       <td><label for="no4" data-value="4400">4,400 포인트</label></td>
        <td>4,000 원</td>
      </tr>
      <tr>
        <td class="no1">
          <input type="radio" id="no5" name="point" value="5000"/>
        </td>
-       <td><label for="no5">5,500 포인트</label></td>
+       <td><label for="no5" data-value="5500">5,500 포인트</label></td>
        <td>5,000 원</td>
      </tr>
      <tr class="buttons">
        <td colspan="3">
+       	<div class="buttonBox">
          <button type="button" class="cancel">취소하기</button>
-         <button type="button" class="pay">결제하기</button>
+         <a href="#1" class="pay"><img class="kakao" src="<c:url value="/resources/img/point/payment_icon_yellow_medium.png"/>"/></a>       	
+       	</div>
        </td>
      </tr>
    </table>
  </div>
  <script>
  $(function() {
- })
 	IMP.init('imp59975900');
+ })
  	$("button.cancel").click(function() {
  		window.close();
  	})
  	
- 	$("button.pay").click(function() {
- 		console.log(parseInt($("input[type='radio']:checked").val()));
- 		console.log("${user.id}")
- 		
+ 	$("a.pay").click(function() {
+ 		//console.log(parseInt($("input[type='radio']:checked").val()));
+ 		//console.log("${user.id}")
+ 		var checked = $("input[type='radio']:checked");
+ 		let forValue = checked.attr("id")
+ 		var plusPoint = $("label[for="+forValue+"]").data("value")
+ 		alert(plusPoint);
+ 		//결제 요청..
  		IMP.request_pay({
- 			pg : 'kakao',
+ 			pg : 'kakao', // 카카오페이
  			pay_method : 'card',
  			merchant_uid : 'merchant_' + new Date().getTime(),
  			name : '멍하고 노냥 포인트 결제',
- 			amount : parseInt($("input[type='radio']:checked").val()),
+ 			amount : parseInt(checked.val()), // 결제금액
  			buyer_email : '${user.email}',
  			buyer_name : '${user.name}',
  			buyer_tel : '010-8907-9574'
  		}, function(rsp){
+ 			console.dir(rsp)
  			if ( rsp.success ) {
- 		    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
- 		    	jQuery.ajax({
- 		    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+ 		/* //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+    	jQuery.ajax({
+    		url:  "<c:url value='/payments/complete.mn' />",*/ //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+ 		    	$.ajax({
+ 		    		url : "<c:url value='/point/buy.mn' />",	    	
  		    		type: 'POST',
- 		    		dataType: 'json',
  		    		data: {
- 			    		imp_uid : rsp.imp_uid,
- 			    		merchant_uid: rsp.merchant_uid
- 			    		//기타 필요한 데이터가 있으면 추가 전달
+ 			    		impUid : rsp.imp_uid,
+ 			    		merchantUid: rsp.merchant_uid,
+ 			    		id : "${user.id}",
+ 			    		plusPoint : plusPoint
  		    		}
  		    	}).done(function(data) {
  		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
@@ -115,14 +124,15 @@
  		    			//[3] 아직 제대로 결제가 되지 않았습니다.
  		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
  		    		}
- 		    	});
+ 		    	});// ajax done 
+ 		    	
  		    } else {
  		        var msg = '결제에 실패하였습니다.';
  		        msg += '에러내용 : ' + rsp.error_msg;
 
  		        alert(msg);
- 		    }
- 		})
+ 		    } // response가 실패 떳을때..결제 실패 했을때..
+ 		}) //callback함수..
  	})
  </script>
 </body>

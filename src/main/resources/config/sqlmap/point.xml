@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.PointMapper">
+	<resultMap type="PointPlus" id="plusMap">
+		<result column="plus_no" property="plusNo"/> 
+		<result column="plus_point" property="plusPoint"/> 
+		<result column="plus_date" property="plusDate"/> 
+		<result column="plus_type" property="plusType"/> 
+		<result column="merchant_uid" property="merchantUid"/> 
+		<result column="imp_uid" property="impUid"/> 
+	</resultMap>
+	
+	<insert id="insertPointByPaying" parameterType="PointPlus">
+		insert into mn_point_plus (
+			plus_point, plus_date, plus_type, 
+			merchant_uid, imp_uid
+		) values (
+			#{plusPoint}, #{plusDate}, #{plusType},
+			#{merchantUid}, #{impUid}
+		)
+	</insert>
+	
+	</mapper>
