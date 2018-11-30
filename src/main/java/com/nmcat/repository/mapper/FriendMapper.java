@@ -3,6 +3,7 @@ package com.nmcat.repository.mapper;
 import java.util.List;
 
 import com.nmcat.repository.domain.Friend;
+import com.nmcat.repository.domain.FriendList;
 import com.nmcat.repository.domain.Member;
 
 public interface FriendMapper {
@@ -20,4 +21,12 @@ public interface FriendMapper {
 	public int selectRequestCnt(String calleeId);
 	
 	public List<String> selectCallerList(String calleeId);
+	
+	public List<Friend> selectAllFriendsOnePage(Friend friend);
+
+	public int selectCntAllFriends(String userId);
+
+	public List<Friend> selectAllFriendsOneLine(Friend friend);
+	
+	
 }

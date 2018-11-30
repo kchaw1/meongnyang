@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.nmcat.repository.domain.Friend;
+import com.nmcat.repository.domain.FriendList;
 import com.nmcat.repository.domain.Member;
 
 public interface FriendService {
@@ -15,5 +16,7 @@ public interface FriendService {
 	void answerRequest(Friend friend);
 
 	Map<String, Object> selectFriendRequest(String calleeId);
+
+	Map<String, Object> showAllFriends(Friend friend);
 
 }

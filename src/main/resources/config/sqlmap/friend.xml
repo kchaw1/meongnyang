@@ -70,4 +70,27 @@
 		       answer_date is null
 	</select>
 	
+	<select id="selectAllFriendsOnePage" parameterType="Friend" resultMap="friendMap">
+		select * from mn_friend
+		 where caller_id = #{userId} and
+		 	   callee_id = #{userId} and
+		 	   answer = 'y'
+		 limit #{begin}, 12
+	</select>
+	
+	<select id="selectAllFriendsOneLine" parameterType="Friend" resultMap="friendMap">
+		select * from mn_friend
+		 where caller_id = #{userId} and
+		 	   callee_id = #{userId} and
+		 	   answer = 'y'
+		 limit #{lineBegin}, 4
+	</select>
+	
+	<select id="selectCntAllFriends" resultType="string">
+		select count(*) from mn_friend
+		 where caller_id = #{userId} and
+		 	   callee_id = #{userId} and
+		 	   answer = 'y'
+	</select>
+	
 </mapper>

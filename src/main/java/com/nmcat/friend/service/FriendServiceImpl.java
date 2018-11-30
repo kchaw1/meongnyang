@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Friend;
+import com.nmcat.repository.domain.FriendList;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MemberPageResult;
 import com.nmcat.repository.mapper.FriendMapper;
@@ -58,6 +59,28 @@ public class FriendServiceImpl implements FriendService{
 		map.put("callerList", mapper.selectCallerList(calleeId));
 		return map;
 		
+	}
+
+	@Override
+	public Map<String, Object> showAllFriends(Friend friend) {
+		Map<String, Object> map = new HashMap<>();
+		Friend f = new Friend();
+		int count = mapper.selectCntAllFriends(friend.getUserId());
+		
+		int begin = f.getBegin(); //12 (2-1)*12
+		
+		MemberPageResult pageResult = new MemberPageResult(friend.getPageNo(), count);
+		int lineNo = pageResult.getPageLineNo();
+		
+		for(int i=1; i<=lineNo; i++) {
+			friend.setLineBegin(begin);
+			map.put("list"+i, mapper.selectAllFriendsOneLine(friend));
+			begin += 4;
+		}			
+		map.put("lineNo", lineNo);
+		map.put("pageResult", pageResult);
+		
+		return map;
 	}
 
 }

@@ -10,7 +10,7 @@
 <!--   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet"> -->
   
   <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
   
   <!-- jQuery UI -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

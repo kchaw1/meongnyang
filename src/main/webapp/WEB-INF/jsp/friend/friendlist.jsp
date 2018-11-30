@@ -54,13 +54,13 @@
                 뉴비
               </div>
               <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="채팅 하기">
+                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="dochat" title="채팅 하기">
                     <i class="far fa-comments fa-2x"></i>
                 </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="다이어리 보기">
+                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="goDiary" title="다이어리 보기">
                   <i class="fas fa-address-book fa-2x"></i>
                 </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
+                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기">
                   <i class="far fa-envelope fa-2x" ></i>
                 </a>
               </div>
@@ -149,6 +149,7 @@
     </div>
   </div>
 </div>
+<c:import url="./memberJS.jsp"/>
 <c:import url="./friendJS.jsp"/>
 </body>
 </html>

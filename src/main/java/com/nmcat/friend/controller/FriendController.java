@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.friend.service.FriendService;
 import com.nmcat.repository.domain.Friend;
+import com.nmcat.repository.domain.FriendList;
 
 @Controller
 @RequestMapping("/friend")
@@ -52,6 +53,12 @@ public class FriendController {
 	public Map<String, Object> selectFriendRequest(String calleeId) {
 		return service.selectFriendRequest(calleeId);
 	}
+	
+	@PostMapping("/showallfriend.mn")
+	@ResponseBody
+	public Map<String, Object> showAllFriends(Friend friend) {
+		return service.showAllFriends(friend);
+	} // 
 	
 	
 	

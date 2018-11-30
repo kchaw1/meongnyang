@@ -6,25 +6,38 @@
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
+var friendws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+//var friend = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var friend = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 $(function () {
-   	showFriendList(1);	
+	friendws.onopen = function() {
+		console.log("바디 웹소켓 서버 접속 성공");
+	}
+	friendws.onerror = function(evt) {
+   	   console.log('바디 웹소켓 에러 발생 : ' + evt.data)
+    };
+    friendws.onclose = function() {
+   	    console.log("바디 웹소켓 연결 종료.");
+    };
+    
+    $("a[href='#search']").click(function(){
+    	showMemberList(1);	
+    }) //search tab 클릭...
+   
 }) //$function
 
-function showFriendList(pageNo){
+function showMemberList(pageNo){
 	$.ajax({
-		url : "<c:url value='/friend/showallfriend.mn'/>",
-		data : {"pageNo" : pageNo,
-				"userId" : "${user.id}"
-				},
-		type : "POST"
+		url : "<c:url value='/friend/memberlist.mn'/>",
+		data : "pageNo="+pageNo
 	}).done(function(map) {
 		let str = "";
 		for(let i=1; i <= map.lineNo; i++){
 			str += '<div class="line'+i+'">'
-			let friendArray = Object.keys(map);
+			let memberArray = Object.keys(map);
 			let list = null;
 			
-			for(let key of friendArray) {
+			for(let key of memberArray) {
 				if(key == "list"+i){
 					list = map[key];
 					//alert(list)
@@ -32,25 +45,25 @@ function showFriendList(pageNo){
 				}
 			} // list + i 값 꺼내오기....
 			
-			for(let friend of list) {
+			for(let member of list) {
 				str += '<div class="users" name="users">'
 				str += '<div class="profile"><div class="image">'
 				str += '<i class="fas fa-user-circle fa-7x"></i>'
 				str += '</div><div class="text">'
-				str += '<span class="id">'+friend.id+'</span></div></div>'
+				str += '<span class="id">'+member.id+'</span></div></div>'
 				str += '<div class="info"><div class="grade">';
 				str += '<i class="fas fa-trophy fa-2x"></i>'
-				str += friend.gradeName + '</div>';
+				str += member.gradeName + '</div>';
 				str += '<div class="icons">'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="dochat" title="채팅 하기"'
-				str += 'data-id="'+friend.id+'">';
-				str += '<i class="far fa-comments fa-2x"></i></a>'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="goDiary" title="다이어리 보기"';
-				str += 'data-id="'+friend.id+'">';
-				str += '<i class="fas fa-address-book fa-2x"></i>'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="plusfriend" title="친구 신청"'
+				str += 'data-id="'+member.id+'">';
+				str += '<i class="fas fa-user-plus fa-2x"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기"';
-				str += 'data-id="'+friend.id+'">';
-				str += '<i class="far fa-envelope fa-2x" ></i>'
+				str += 'data-id="'+member.id+'">';
+				str += '<i class="fas fa-envelope fa-2x"></i></a>'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="blockuser" title="회원 차단"';
+				str += 'data-id="'+member.id+'">';
+				str += '<i class="fas fa-user-slash fa-2x"></i></a>'
 				str += '</div></div></div>'
 				
 			} // list for 문
@@ -60,7 +73,48 @@ function showFriendList(pageNo){
 		$("div#search div.list").html(str);
 		
 		showPaging(map);
-
+		
+		$('[data-toggle="tooltip"]').tooltip()
+		   
+	    $("a.tab").click(function(){
+	      var id = $(this).attr("href").substring(1)
+	       // alert(id)
+	      $("div#"+id).siblings().css("display", "none")
+	      $("div#"+id).css("display", "block")
+	    })
+	     
+	    $("i.fa-lock").mouseenter(function(){
+	      $(this).attr("id", "hidden")
+	      $("i.fa-lock-open").attr("id", "show");
+	    })
+	     
+	    $("i.fa-lock-open").mouseleave(function(){
+	      $("i.fa-lock-open").attr("id", "hidden")
+	      $("i.fa-lock").removeAttr("id");
+	    })
+	   
+	   $("a#plusfriend").click(function() {
+		   	console.log("calleeId:", $(this).data("id"))
+		   	console.log("${user.id}")
+		   	
+   			swal({
+			  type: 'success',
+			  title: '친구 신청이 완료되었습니다.',
+			  showConfirmButton: false,
+			  timer: 2000
+			})
+			
+		   	friendws.send("friend:"+$(this).data("id"))
+		   	$.ajax({
+		   		url : "<c:url value='/friend/requestfriend.mn'/>",
+		   		data : {
+		   			"callerId" : "${user.id}",
+		   			"calleeId" : $(this).data("id")
+		   		},
+		   		type : "POST"
+		   	}) // 웹소켓 send
+		   	
+	   })//친구 추가 클릭..
 	}) //done
 } //showMemberList
 
@@ -116,7 +170,7 @@ function showPaging(map) {
 	
 	$("a[data-pageno]").click(function() {
 		//alert($(this).data("pageno"))
-		showFriendList($(this).data("pageno"));
+		showMemberList($(this).data("pageno"));
 	})
 	
 }//showpaging function
