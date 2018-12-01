@@ -33,8 +33,8 @@ function sendFile(file, ele) {
     })//ajax
 }
 
-$("#writeButton").click(function() {
-    if($("input[name='gbTitle']").val()=="") {
+$("#write-button").click(function() {
+    if($("input[name='notice-title']").val()=="") {
         alert("제목을 입력해주세요")
         return false;
     }

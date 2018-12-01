@@ -68,8 +68,7 @@
 								<tr>
 									<td>포인트:</td>
 									<td>${general.point} 포인트
-										<button class="btn btn-default btn-xs"
-											style="font-size: 14px;">포인트 지급</button>
+										<button id="pay" class="btn btn-default btn-xs" data-no='${general.no}' style="font-size: 14px;">포인트 지급</button>
 									</td>
 								</tr>
 								<tr>
@@ -143,6 +142,15 @@
 	
 	<div class="clear-fix"></div>
 
-	
+	<script>
+	 $(document).on("click", "#pay", function() {
+		    var windowW = 600;  // 창의 가로 길이
+		    var windowH = 300;  // 창의 세로 길이
+		    var left = Math.ceil((window.screen.width - windowW)/2);
+		    var top = Math.ceil((window.screen.height - windowH)/2);
+			
+			 window.open("pay.mn?no="+$(this).data("no"), "포인트 지급", "top="+top+", left="+left+", height="+windowH+", width="+windowW);
+		});
+	</script>
 </body>
 </html>

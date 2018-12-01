@@ -1,8 +1,7 @@
 package com.nmcat.mgmt.general.service;
 
-import java.util.Date;
-import java.util.List;
 
+import java.util.List;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
@@ -15,6 +14,7 @@ public interface MgmtGeneralService {
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트
 	void deleteMember(int no);
+	void payPoint(Member member);
 	
 	// 오름차순
 	List<Member> generalMemberList();	// 리스트 번호순

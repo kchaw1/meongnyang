@@ -1,14 +1,5 @@
 
-$("#writeButton").click(function(e){
-    if('${user.id}' == '') {
-           e.preventDefault()
-           alert("먼저 로그인을 해주세요.")
-           return
-       }
-       
-    // location.href = "gb_writeForm.cf"
-    location.href = "notice-write.html"
-});
+
 
 $("#listButton").click(function() {
     location.href = "gb_board.cf"

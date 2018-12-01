@@ -26,9 +26,9 @@
         <div class="seperator"></div>
         <div class="list">
           <div id="board" class="item">게시판</div>
+          <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
           <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
           <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
-          <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
           <div id="management" class="item">관리</div>
           <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
           <div class="mgm-hidden gen-member"><a href="<c:url value="/admin/general/list.mn" />">일반회원</a></div>
@@ -139,6 +139,33 @@
 	$(document).ready(function () {
 		      ajaxYList(1, 1);
 		      ajaxNList(1, 1);
+		      $("#management").addClass("selected");
+			  $(".mgm-hidden").toggle();
+			  $(".abs-member").css("font-weight", "bold");
+	})
+
+	//좌측 메뉴 스크립트
+	$("#board").hover(function () {
+	  $(this).addClass("selected");
+	 })
+	
+	$("#board").click(function () {
+	  $(".board-hidden").slideToggle(500);
+	})
+	
+	$("#management").hover(function () {
+		$(this).addClass("selected");
+	})
+	$("#management").click(function () {
+	  $(".mgm-hidden").slideToggle(500);
+	})
+	
+	$("#statistics").hover(function () {
+	  $(this).addClass("selected");
+	})
+	
+	$(".item").mouseleave(function () {
+	  $(this).removeClass("selected");
 	})
 	
 	var ajaxYList = function(sort, flag) { 

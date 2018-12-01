@@ -29,14 +29,14 @@
 				<div class="seperator"></div>
 				<div class="list">
 					<div id="board" class="item">게시판</div>
+					<div class="board-hidden notice">
+						<a href="notice.html">공지사항</a>
+					</div>
 					<div class="board-hidden youtube">
 						<a href="youtube.html">유튜브</a>
 					</div>
 					<div class="board-hidden crowd-fund">
 						<a href="crowd-funding.html">크라우드펀딩</a>
-					</div>
-					<div class="board-hidden notice">
-						<a href="notice.html">공지사항</a>
 					</div>
 					<div id="management" class="item">관리</div>
 					<div class="mgm-hidden abs-member">
@@ -115,10 +115,39 @@
 	</div>
 	
 <script>
-	$(document).ready(function () {
-	    ajaxList(1, 1);
+$(document).ready(function () {
+	ajaxList(1, 1);
+    $("#management").addClass("selected");
+    $("div.mgm-hidden").toggle();
+    $("div.gen-member").css("font-weight", "bold");
+  })
+
+  //좌측 메뉴 스크립트
+  $("#board").hover(function () {
+    $(this).addClass("selected");
+  })
+
+  $("#board").click(function () {
+    $(".board-hidden").slideToggle(500);
+  })
+
+  $("#management").click(function () {
+    $(".mgm-hidden").slideToggle(500);
+  })
+  $("#management").hover(function () {
+		$(this).addClass("selected");
 	})
-	
+
+  $("#statistics").hover(function () {
+    $(this).addClass("selected");
+  })
+
+  $(".item").mouseleave(function () {
+    $(this).removeClass("selected");
+  })
+
+
+	// 리스트 ajax
 	var ajaxList = function(sort, flag) { 
 	$.ajax({
 			url: "<c:url value='/admin/general/printGeneralList.mn'/>",
@@ -150,6 +179,7 @@
 		});
 	} // ajaxList
 	
+	// 검색 ajax
 	var ajaxSearchList = function(searchType, keyword, sort, flag) { 
 		$.ajax({
        		url: "<c:url value='/admin/general/search.mn'/>",
@@ -183,7 +213,7 @@
         });
 	} // ajaxYSearchList
 	
-	// 검색
+	// 검색버튼 클릭
 	$("#searchBtn").click(function() {
 		if($("#searchType").val() == 0 && $("#keyword").val() != "") {
     		swal("카테고리를 선택하세요","" ,"error");

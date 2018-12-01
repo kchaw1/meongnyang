@@ -19,12 +19,13 @@ button.note-btn{
   }
 
 form {
-    margin-top: 100px;
+    margin-top: 140px;
+    min-height: 700px;
 }
 
 .top-section, 
 .bottom-section {
-    width: 80%; 
+    width: 70%; 
     margin: 0 auto; 
     clear: both;
 }
@@ -64,7 +65,7 @@ form {
 
 .section-one, 
 .section-two {
-    border-right: 1px solid #eee;
+   
 }
 
 .section-one h4 {
@@ -97,6 +98,6 @@ form {
     line-height: 24px;
 }
 
-#writebtn {
+#button-area {
     float: right;
 }

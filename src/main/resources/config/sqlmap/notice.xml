@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.NoticeMapper">
+<resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+		<result column="code_name" property="codeName" />
+</resultMap>
+
+<resultMap id="noticeMap" type="Notice">
+		<result column="ntc_no" property="ntcNo" />
+		<result column="ntc_writer" property="ntcWriter" />
+		<result column="ntc_title" property="ntcTitle" />
+		<result column="ntc_content" property="ntcContent" />
+		<result column="ntc_view_cnt" property="ntcViewCnt" />
+		<result column="ntc_reg_date" property="ntcRegDate" />
+</resultMap>
+
+<!-- 공지사항 작성 -->
+<insert id="insertNotice" parameterType="Notice">
+	insert into mn_notice (ntc_writer, ntc_title, ntc_content) 
+	     values(#{ntcWriter}, #{ntcTitle}, #{ntcContent})
+</insert>
+
+<!-- 공지사항 리스트 -->
+<select id="selectNoticeList" parameterType="Notice" resultMap="noticeMap">
+	select *
+	  from mn_notice
+	 order by ntc_no desc
+	 limit #{begin}, 10 
+</select> 
+
+<!-- 공지사항 개수 -->
+<select id="selectNoticeCount" resultType="int">
+	select count(*)
+	  from mn_notice
+</select>
+
+</mapper>

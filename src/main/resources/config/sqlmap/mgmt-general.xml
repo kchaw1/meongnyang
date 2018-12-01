@@ -335,4 +335,11 @@
 		  where no = #{no}
 </delete>
 
+<!-- 포인트지급 -->
+<update id="updatePoint" parameterType="Member">
+	update mn_member
+	   set point = point + #{point}
+	 where no = #{no}
+</update>
+
 </mapper>

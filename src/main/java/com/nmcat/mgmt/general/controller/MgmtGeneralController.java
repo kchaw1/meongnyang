@@ -99,6 +99,7 @@ public class MgmtGeneralController {
 		return map; 
 	}	
 	
+	// 검색
 	@RequestMapping("/general/search")
 	@ResponseBody
 	public Map<String, Object> search(String searchType, String keyword, int sort, int flag) {
@@ -151,6 +152,7 @@ public class MgmtGeneralController {
 		return map;
 	}
 	
+	// 상세
 	@RequestMapping("/general/detail")
 	public void detail(Model model, int no, String id) {
 		model.addAttribute("general", service.detail(no));
@@ -158,10 +160,27 @@ public class MgmtGeneralController {
 		model.addAttribute("myComments", service.myComments(id));
 	}
 	
+	// 탈퇴
 	@RequestMapping("/general/delete")
 	public String delete(int no) {
 		service.deleteMember(no);
 		return "redirect:list.mn";
+	}
+	
+	// 포인트지급 페이지 이동
+	@RequestMapping("/general/pay")
+	public void pay(Model model, int no) {
+		model.addAttribute("no", no);
+	}
+	
+	// 포인트 지급
+	@RequestMapping("/general/pay-point")
+	@ResponseBody
+	public void pay(int no, int point) {
+		Member member = new Member();
+		member.setNo(no);
+		member.setPoint(point);
+		service.payPoint(member);
 	}
 	
 	

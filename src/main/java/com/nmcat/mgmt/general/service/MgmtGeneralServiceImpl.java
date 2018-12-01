@@ -23,16 +23,19 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	public Member detail(int no) {
 		return mapper.selectGeneralDetail(no);
 	}
+	
 	// 내가 쓴 게시글
 	@Override
 	public List<CommunityBoard> myPosts(String id) {
 		return mapper.selectBoardById(id);
 	}
+	
 	// 내가 쓴 코멘트
 	@Override
 	public List<CommunityComment> myComments(String id) {
 		return mapper.selectCommentById(id);
 	}
+	
 	// 탈퇴
 	@Override
 	public void deleteMember(int no) {
@@ -43,6 +46,12 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	@Override
 	public List<Member> search(MgmtSearch search) {
 		return mapper.selectSearchGeneralList(search);
+	}
+	
+	// 포인트 지급
+	@Override
+	public void payPoint(Member member) {
+		mapper.updatePoint(member);
 	}
 
 	// 오름차순
@@ -55,7 +64,6 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	public List<Member> generalMemberListByScore() { return mapper.selectGeneralListSortedbyScore(); }
 	public List<Member> generalMemberListByPoint() { return mapper.selectGeneralListSortedbyPoint(); }
 	public List<Member> generalMemberListByGrade() { return mapper.selectGeneralListSortedbyGrade(); }
-	
 	
 	// 내림차순
 	@Override

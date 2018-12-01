@@ -28,7 +28,7 @@
 }
 
 .main-title {
-    width: 100%; 
+    margin-top: 40px;
     height: auto; 
     float: left;
 }
@@ -42,14 +42,10 @@
 .section-one {
     width: 100%; 
     height: auto; 
+    min-height: 700px;
     float: left; 
     border-top: 1px solid #eee;
     text-align: center;
-}
-
-.section-one, 
-.section-two {
-    border-right: 1px solid #eee;
 }
 
 .section-one h4 {
@@ -81,3 +77,23 @@
     font-size: 16px; 
     line-height: 24px;
 }
+
+#button-area {
+	margin-bottom:70px;
+}
+
+#list-button-area {
+	float: left;
+	margin-left: 30px;
+}
+
+#write-button-area {
+	float: right;
+	margin-left: 30px;
+}
+
+thead > tr > td:nth-child(2), tbody tr td:nth-child(2) {
+	width:50%;
+}
+
+
