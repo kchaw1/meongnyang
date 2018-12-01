@@ -43,30 +43,7 @@
                             </table>
             
                             <div id="paging">
-                                <c:if test="${pageResult.count != 0}">
-                                    <nav>
-                                    <ul class="pagination">
-                                        <li
-                                            <c:if test="${pageResult.prev eq false}">class="disabled"</c:if>>
-                                            <a href="${pageResult.beginPage - 1}" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                        	</a>
-                                        </li>
-                                        <c:forEach var="i" begin="${pageResult.beginPage}"
-                                            end="${pageResult.endPage}">
-                                            <li <c:if test="${i eq pageResult.pageNo}">class="active"</c:if>>
-                                                <a href="${i}">${i}</a>
-                                            </li>
-                                        </c:forEach>
-                                        <li
-                                            <c:if test="${pageResult.next eq false}">class="disabled"</c:if>>
-                                            <a href="${pageResult.endPage + 1}" aria-label="Next"> 
-                                            	<spanaria-hidden="true">&raquo;</span>
-                                        	</a>
-                                        </li>
-                                    </ul>
-                                    </nav>
-                                </c:if>
+                               
                             </div>
                         </div>
                         <form action="gb_search.cf" method="POST" id="searchForm" class="navbar-form navbar" role="search">
@@ -124,22 +101,71 @@
 							+ "<td>"+ result.noticeList[i].ntcViewCnt +"</td>"
 							+ "<td>"+ result.noticeList[i].ntcRegDate +"</td>"
 						+"</tr>"
-			}
+			} // for
+			
+			var paging = ""
+			if(result.pageResult.count != 0) {
+					paging += 	"<nav>"
+								+ "<ul class='pagination'>"
+					
+					if(result.pageResult.prev == false) {
+						paging += "<li class='disabled'>"
+					} else {
+						paging += "<li>"
+					} // if-else
+					paging += 	  "<a href='"+ (result.pageResult.beginPage-1) +"' aria-label='Previous'>"
+								+ "<span aria-hidden='true'>&laquo;</span>"
+								+ "</a>"
+								+ "</li>"
+					for(var i=result.pageResult.beginPage; i<=result.pageResult.endPage; i++) {
+						if(i == result.pageResult.pageNo) {
+							paging += "<li class='active'>"
+						} else {
+							paging += "<li>"
+						} // if-else
+						paging += "<a href='"+ i +"'>" + i + "</a>"
+								  "</li>"
+					} // for
+					if(result.pageResult.next == false) {
+						paging += "<li class='disabled'>"
+					} else {
+						paging += "<li>"
+					} // if-else
+					if(result.pageResult.endPage+1 == result.pageResult.lastPage+1) {
+						paging += "<a href='last' aria-label='Next'>"		
+					} else {
+						paging += "<a href='"+ (result.pageResult.endPage+1) +"' aria-label='Next'>"						
+					} // if-else	
+					paging +=     "<span aria-hidden='true'>&raquo;</span>"
+								+ "</a>"
+								+ "</li>"
+								+ "</ul>"
+								+ "</nav>"
+				} // if
+			
 			$("tbody").append(html);
-		});
+			$("#paging").append(paging)
+		}); // done();
 	} // ajaxNoticeList()
 	
+	
+	
+	
+	
 	// 페이지 이동
-	 $("nav > ul.pagination > li > a").click(function(e) {
-        		// 기본 이벤트 막기...
-        		e.preventDefault();
-        		
-        		var pageNo = $(this).attr("href");
-//         		alert(pageNo)
-        		if (pageNo == 0 || pageNo == '${pageResult.lastPage+1}') return false;
-        		
-//         	 	location.href = "gb_board.cf?pageNo=" + pageNo;
-        	});
+	 $(document).on("click", "nav > ul.pagination > li > a", function(e) {
+	   		e.preventDefault();
+	   
+	   		var pageNo = $(this).attr("href");
+	   
+	   		if (pageNo == 0 || pageNo == 'last') return false;
+	   		
+	   		console.log(pageNo)
+	   		
+	   		$("tbody").html("")
+	   		$("div#paging").html("")
+	   		ajaxNoticeList(pageNo)
+   	 });
 	</script>
 </body>
 </html>
