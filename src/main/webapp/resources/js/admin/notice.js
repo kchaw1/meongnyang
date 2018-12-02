@@ -2,19 +2,8 @@
 
 
 $("#listButton").click(function() {
-    location.href = "gb_board.cf"
+    location.href = "list.mn"
 })
-
-$("nav > ul.pagination > li > a").click(function(e) {
-    // 기본 이벤트 막기...
-    e.preventDefault();
-    
-    var pageNo = $(this).attr("href");
-//         		alert(pageNo)
-    if (pageNo == 0 || pageNo == '${pageResult.lastPage+1}') return false;
-    
-     location.href = "gb_board.cf?pageNo=" + pageNo;
-});
 
  $(document).on("click", "#searchBtn" ,function(e) {
      if($("#searchType").val() == 0 && $("#keyword").val() != "") {

@@ -26,7 +26,7 @@
         <div class="seperator"></div>
         <div class="list">
           <div id="board" class="item">게시판</div>
-          <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
+          <div class="board-hidden notice"><a href="<c:url value="/admin/notice/list.mn" />">공지사항</a></div>
           <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
           <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
           <div id="management" class="item">관리</div>

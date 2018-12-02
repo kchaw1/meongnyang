@@ -14,7 +14,9 @@ public class Notice {
 	private String ntcContent;
 	private int ntcViewCnt;
 	@JsonFormat(pattern="yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Date ntcRegDate;	
+	private Date ntcRegDate;
+	private String searchType;
+	private String keyword;	
 	
 	// 페이지 번호
 	private int pageNo;

@@ -33,6 +33,7 @@
 
 .section-one {
     width: 100%; 
+    min-height: 700px;
     height: auto; 
     float: left; 
     border-top: 1px solid #eee;
@@ -69,11 +70,11 @@
     line-height: 24px;
 }
 
-#listbtn {
+#left-area {
     float: left;
 }
 
-#writebtn {
+#right-area {
     float: right;
 }
 

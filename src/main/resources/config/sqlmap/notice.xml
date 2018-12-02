@@ -32,24 +32,91 @@
 		<result column="ntc_reg_date" property="ntcRegDate" />
 </resultMap>
 
+<resultMap id="noticeFileMap" type="NoticeFile">
+		<result column="ntcf_no" property="ntcfNo" />
+		<result column="ntc_no" property="ntcNo" />
+		<result column="ntcf_writer" property="ntcfWriter" />
+		<result column="ntcf_ori_name" property="ntcfOriName" />
+		<result column="ntcf_sys_name" property="ntcfSysName" />
+		<result column="ntcf_path" property="ntcfPath" />
+		<result column="ntcf_size" property="ntcfSize" />
+</resultMap>
+
 <!-- 공지사항 작성 -->
 <insert id="insertNotice" parameterType="Notice">
 	insert into mn_notice (ntc_writer, ntc_title, ntc_content) 
 	     values(#{ntcWriter}, #{ntcTitle}, #{ntcContent})
 </insert>
 
+<!-- 파일첨부 -->
+<insert id="insertNoticeFile" parameterType="NoticeFile">
+	<selectKey keyProperty="ntcNo" resultType="int" order="BEFORE">
+		 SELECT IFNULL(MAX(ntc_no+1),1) FROM mn_notice;
+	</selectKey> 
+	insert into mn_ntc_file (
+		 ntc_no, ntcf_ori_name, ntcf_sys_name, ntcf_path, ntcf_size
+	) values (
+		 #{ntcNo}, #{ntcfOriName}, #{ntcfSysName}, #{ntcfPath}, #{ntcfSize}
+	)
+</insert>
+
 <!-- 공지사항 리스트 -->
 <select id="selectNoticeList" parameterType="Notice" resultMap="noticeMap">
 	select *
 	  from mn_notice
-	 order by ntc_no desc
-	 limit #{begin}, 10 
+	 <where>
+		 <choose>
+		 		<when test="searchType==0">
+		 		</when>
+		 		<when test="searchType==1">
+		 			ntc_title like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<when test="searchType==2">
+		 			ntc_content like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<when test="searchType==3">
+		 			ntc_title like CONCAT('%',#{keyword},'%')
+		 			 or ntc_content like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<otherwise>
+		 			ntc_reg_date like CONCAT('%',#{keyword},'%')
+		 		</otherwise>
+		 	</choose>
+	 	</where>
+	 	order by ntc_no desc
+		limit #{begin}, 10 
 </select> 
 
 <!-- 공지사항 개수 -->
-<select id="selectNoticeCount" resultType="int">
+<select id="selectNoticeCount" parameterType="Notice" resultType="int">
 	select count(*)
 	  from mn_notice
+	 <where>
+		 <choose>
+		 		<when test="searchType==0">
+		 		</when>
+		 		<when test="searchType==1">
+		 			ntc_title like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<when test="searchType==2">
+		 			ntc_content like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<when test="searchType==3">
+		 			ntc_title like CONCAT('%',#{keyword},'%')
+		 			 or ntc_content like CONCAT('%',#{keyword},'%')
+		 		</when>
+		 		<otherwise>
+		 			ntc_reg_date like CONCAT('%',#{keyword},'%')
+		 		</otherwise>
+		 	</choose>
+	 	</where>
+</select>
+
+<!-- 디테일 -->
+<select id="selectNoticeDetail" parameterType="int" resultType="Notice">
+	select *
+	  from mn_notice
+	 where ntc_no = #{ntcNo}
 </select>
 
 </mapper>

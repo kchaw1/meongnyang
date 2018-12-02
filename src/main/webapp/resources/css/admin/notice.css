@@ -96,4 +96,24 @@ thead > tr > td:nth-child(2), tbody tr td:nth-child(2) {
 	width:50%;
 }
 
+#search {
+	width: 30%;
+	margin: 0 auto;
+}
 
+#search-type {
+	width:30%;
+}
+
+#keyword {
+	width:50%;
+}
+
+#search-type, #keyword {
+	display:inline-block;
+}
+
+a:link {text-decoration:none; color: black; }
+a:visited {text-decoration:none; color: black; }
+a:active {text-decoration:none; color: black; }
+/* a:hover {text-decoration:none; color: black; } */
