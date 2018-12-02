@@ -67,6 +67,22 @@
 		   limit #{begin}, 10
 		   
 	</select>
+	<!-- 행동전문가 질문게시판 작성자로 검색 -->
+	<select id="selectAbsBoardSearch" parameterType="AbsSearchVO" resultMap="qnaMap">
+		
+		select * 	
+		  from mn_absboard 
+		 where no=#{no} 
+		 	<choose>
+		 		<when test="searchType==0">
+		 			and abs_title like CONCAT('%',#{keyword},'%') limit #{begin}, 10 ;
+		 		</when>
+		 		<otherwise>	
+		 			and abs_writer like CONCAT('%',#{keyword},'%') limit #{begin}, 10 ;
+		 		</otherwise>
+		 	</choose>
+	</select>
+	
 	<!-- 행동전문가 질문게시판 카운트 -->
 	<select id="selectCntBoard" resultType="int">
 		select count(*) from mn_absboard
