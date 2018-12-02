@@ -53,6 +53,11 @@ padding-left: 270px; */
     line-height: 16px;
     color: rgb(0, 63, 109);
 }
+.reply{
+	margin-left: 5px;
+	display: none;
+    float: right;
+}
 /* .left{
 margin-top: 70px;
 float: left;
@@ -155,7 +160,7 @@ top: 2px;
 .comments .photo img {
 border: 1px solid #fff;
 border-radius: 32px;
-overflow: hidden;
+overflow : hidden;
 }
 .comments .meta { margin-bottom: 5px; }
 .comments .meta .reply { display: none; float: right; }
@@ -181,6 +186,36 @@ z-index: -1;
 .comments .level-5 .photo:before { width: 80px; left: -70px;}
 .comments .level-6 .photo:before { width: 100px; left: -90px;}
 
+.reTextArea{
+  width: 590px;
+  height: 40px;
+}
+.reBtn{
+  float: right;
+  width: 40px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(65, 192, 142, 0.7);
+    height: 42px;
+    font-family: Do Hyeon;
+    letter-spacing: 3px;
+}
+.displayNone{
+  display: none;
+}
+.cancelReply{
+  right: 0;
+}
+.editTextArea{
+  margin: 0px; width: 621px; height: 41px;
+}
+.editBtn{
+  display: none;
+    float: right;
+    color: gray;
+}
 </style>
 <body>
   <c:import url = "../common/header.jsp"/>
@@ -221,22 +256,7 @@ z-index: -1;
                    <div class = "commentList">
                         <div class ="commentWriter"></div>
                         <ul class="comments" id = "comments">
-                                <li class="comment">
-                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
-                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
-                                  <div class="body">하하하하</div>
-                                </li>
-                                <li class="comment level-2">
-                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Photo"></a>
-                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
-                                  <div class="body">하하하하</div>
-                                </li>
-                                
-                                <li class="comment">
-                                  <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
-                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
-                                  <div class="body">하하하하.</div>
-                                </li>
+                               <!-- 이곳에 댓글이 들어감 -->
                               </ul>
                    </div>
                    
@@ -290,12 +310,13 @@ $(document).on("click",".commentBtn", function(e){
 		type : "POST",
 		data : $("#insertComment").serialize()
 	}).done(function(result){
-		console.log(result);
+	
 		//이곳에 댓글 조회 실시간으로 할 수있게 함수 넣어주기!
 		
 		
 	});
 });
+
 
 $(document).on("click",".commentBtn", function(e){
 	commentConunt();
@@ -308,7 +329,7 @@ function commentConunt(){
 		type :"POST",
 		data : "comNo=${communityBoard.comNo}"
 	}).done(function(count){
-		console.log(count);
+		
 	$(".commnetsHr").html('Comments'+'&nbsp'+count);
 		
 		
@@ -325,16 +346,45 @@ function commentList(){
 	}).done(function(result){
 		console.log(result);
 		var text = "";
-		console.log(result.length);
+		
 		for(let i = 0; i < result.length; i++){
-			text += "<li class='comment'>"
-					+"<a href=''#' title='View this user profile' class='photo'><img src='https://placehold.it/32x32' alt='Kasper'></a>"
+			text += "<li class='comment "
+					+result[i].comcNo
+					+"'>"
+					+"<a href='#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Kasper'></a>"
 					+"<div class='meta'>"
 					+result[i].comcWriter+"&nbsp|&nbsp"+result[i].comcRegDate
-					+"<a class='reply'>Reply</a></div>"
+					+"<a class='reply'>Reply</a>"
+					+"<a class='reply' id = 'deleteComment' name = '"
+					+result[i].comcNo
+					+"'>Delete</a>"
+					+"<a class='reply "
+					+result[i].comcNo
+					+"' id = 'editComment' onclick = 'editFunction("
+					+result[i].comcNo
+					+")'>Edit</a></div>"
 					+"<div class='body'>"
 					+result[i].comcContent
-					+"</div>"
+					+"</div></li>"
+					+"<li class='comment editForm displayNone "
+					+result[i].comcNo
+					+"' id = 'forC"
+					+result[i].comcNo
+					+"'><form class = 'updateComment "
+					+result[i].comcNo
+					+"' method = 'POST'>"
+					+"<a href=''#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Photo'></a>"
+					+" <div><textarea name = 'comcContent' class = 'editTextArea "
+					+result[i].comcNo
+					+"'></textarea><input type='hidden' name='comcNo' value = '"
+					+result[i].comcNo
+					+"'/><button onclick = 'editBtn("
+					+result[i].comcNo
+					+")'class = 'reBtn'>등록</button></div>"
+					+"<a class='cancelEdit' onclick = 'editCancel("
+					+result[i].comcNo
+					+")'>수정취소</a></form>"
+					+"</li>"
 					
 					
 			/* <li class="comment">
@@ -344,16 +394,97 @@ function commentList(){
                </li> */
 		}
 		$("#comments").html(text);
+		
+	/* 	
+		$(document).on("click", "#editComment",console.log($(this).parent("id")),function(){
+			// .body의 값을 넣어줌 그런데 모든 editComment란 아이디를 가진 값들이 다 선택된다..
+			var text = $(this).parent().siblings(".body").text();
+	        $(this).parent().parent().addClass("displayNone");
+	        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
+	        $(".editTextArea").html(text);
+	      }); */
+
+		});
+		//댓글 수정 토글
+	/* 	$("#editComment").click(function(){
+			// .body의 값을 넣어줌 그런데 모든 editComment란 아이디를 가진 값들이 다 선택된다..
+				var text = $(this).parent().siblings(".body").text();
+		        $(this).parent().parent().addClass("displayNone");
+		        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
+		        $(".editTextArea").html(text);
+		      }); 
+
+
+		$(".cancelEdit").click(function(){
+		       console.log();
+		        $(this).parent().siblings(".comment").removeClass("displayNone");
+		        $(this).parent().addClass("displayNone");
+		 })
+		
+		
 	});
+	*/
 };
 commentList();
 commentConunt();
+
+//댓글 삭제
+ $(document).on("click","#deleteComment", function(e){
+	 var comcNo = $(this).attr("name");
+	 
+	$.ajax({
+		url : "<c:url value = '/community/deleteComment.mn'/>",
+		type : "POST",
+		data : "comcNo="+ comcNo
+		}).done(function(result){
+			
+			commentList();
+		})
+});
+//댓글 수정
+function editBtn(comment_no){
+	
+	$.ajax({
+		url : "<c:url value = '/community/updateComment.mn'/>",
+		type : "POST",
+		data : $(".updateComment."+comment_no).serialize()
+	}).done(function(result){
+		commentList();
+	});
+}
+
+//댓굴 수정시form형태로 변환하는  function
+function editFunction(comment_no){
+			
+	var text = $(".reply."+comment_no).parent().siblings(".body").text();
+
+	$(".comment."+comment_no).addClass("displayNone");
+	//이놈이 문제야 이놈이!!!!!!!!!!!!!!!!!!
+	/* console.log($(".editForm.displayNone."+comment_no).removeClass("displayNone "+comment_no)); */
+	$(".editForm.displayNone."+comment_no).removeClass("displayNone "+comment_no);
+    $(".editTextArea."+comment_no).html(text);
+			
+		/* 	var text = $(this).parent().siblings(".body").text();
+	        $(this).parent().parent().addClass("displayNone");
+	        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
+	        $(".editTextArea").html(text); */
+		}
+//댓글 수정 취소시 형태 바꾸기.
+function editCancel(comment_no){
+	
+	$(".comment."+comment_no).removeClass("displayNone");
+	console.log($("#forC"+comment_no));
+	$("#forC"+comment_no).addClass("displayNone "+comment_no);
+/* 	$(".editForm.displayNone."+comment_no).addClass("displayNone "+comment_no); */
+}
+
+
 
 
 //클릭시 글 삭제
 $("button.btnDelete").click(function() {
 	var no = $(this).attr('id');
-	console.log(no);
+	
 	location.href = "delete.mn?comNo="+no;
 	
 });

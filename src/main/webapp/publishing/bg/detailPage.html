@@ -169,6 +169,43 @@ z-index: -1;
 .comments .level-4 .photo:before { width: 60px; left: -50px;}
 .comments .level-5 .photo:before { width: 80px; left: -70px;}
 .comments .level-6 .photo:before { width: 100px; left: -90px;}
+.replyText{
+
+}
+.display-none{
+
+}
+.reTextArea{
+  width: 590px;
+  height: 40px;
+}
+.reBtn{
+  float: right;
+  width: 40px;
+    font-size: 16px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background-color: rgb(65, 192, 142, 0.7);
+    height: 42px;
+    font-family: Do Hyeon;
+    letter-spacing: 3px;
+}
+.displayNone{
+  display: none;
+}
+.cancelReply{
+  right: 0;
+}
+.editTextArea{
+  width: 620px;
+  height: 40px;
+}
+.editBtn{
+  display: none;
+    float: right;
+    color: gray;
+}
 
 </style>
 <body>
@@ -233,14 +270,31 @@ z-index: -1;
                         <ul class="comments">
                                 <li class="comment">
                                   <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
-                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply" id = "editBtn" onclick="editfunction(86)">Edit</a> <a class="reply">Reply</a></div>
                                   <div class="body">하하하하</div>
                                 </li>
-                                <li class="comment level-2">
+
+                                <li class="displayNone" id = "editForm">
+                                    <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Photo"></a>
+                                    <div><textarea class = "editTextArea" value = ""></textarea><button class = "reBtn">등록</button></div>
+                                    <a class="cancelEdit">수정취소</a>
+                                  </li>
+
+
+<!--                                 
+                                <li class="comment level-2 displayNone" id = "replyForm">
                                   <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Photo"></a>
-                                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
-                                  <div class="body">하하하하</div>
-                                </li>
+                                  <div><textarea class = "reTextArea"></textarea><button class = "reBtn">등록</button></div>
+                                  <a class="cancelReply">답글취소</a>
+                                </li> -->
+                                
+                                
+                                
+                                 <li class="comment level-2">
+                                   <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Photo"></a>
+                                   <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
+                                   <div class="body">하하하하</div>
+                                 </li>
                                 
                                 <li class="comment">
                                   <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
@@ -292,6 +346,40 @@ z-index: -1;
             <div class="chat-wrapper" data-headline="Chat">
             </div>
     </footer>
+    <script>
+     function editFunction(comment_num){
+       var text = $(this).parent().siblings(".body").text();
+       $(this).parent().parent().addClass("displayNone");
+        $(this).parent().parent().siblings("#editForm").removeAttr("displayNone");
+        $(".editTextArea").html(text);
+
+     }
+ $("#editBtn").click(function(){
+       var text = $(this).parent().siblings(".body").text();
+       
+       
+        $(this).parent().parent().addClass("displayNone");
+        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
+        $(".editTextArea").html(text);
+      });
+
+
+      $(".cancelEdit").click(function(){
+       console.log();
+        $(this).parent().siblings(".comment").chil("displayNone");
+        $(this).parent().addClass("displayNone");
+      })
+
+
+/*
+      $(".reply").click(function(){
+        $(this).parent().parent().siblings("#replyForm").removeClass("displayNone");
+      });
+      $(".cancelReply").click(function(){
+        $(this).parent().addClass("displayNone");
+      }) */
+
+    </script>
     
 </body>
 </html>

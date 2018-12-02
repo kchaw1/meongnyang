@@ -293,7 +293,7 @@ border-radius: 4px;
 						<div class="titleContainer">
 							<input class="title" name = "comTitle"  type="text" placeholder="Title" style="padding-left: 10px">
 							<!-- ${user.id}로 바꾸기 -->
-								<input type="hidden" name="comWriter" value="아란누나"/>
+								<input type="hidden" name="comWriter" value="${user.id}"/>
 						</div>
 
 						<div class="textContainer">

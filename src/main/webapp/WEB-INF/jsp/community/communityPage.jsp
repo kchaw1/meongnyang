@@ -49,7 +49,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 .profileAndName{
    
     padding-bottom: 10px;
-    margin-top: 165px;
+    margin-top: 145px;
     right: 0;
     top: 0;
     margin-right: 300px;
