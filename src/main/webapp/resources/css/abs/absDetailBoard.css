@@ -35,6 +35,15 @@ font-weight: lighter;
   font-family: 'Jua', sans-serif;
 
 }
+#return{
+  float: left;
+  border : #5eb69d;
+  background-color:  rgb(255, 194, 64);
+  text-shadow: 3px 3px 10px gray;
+font-weight: lighter;
+  font-family: 'Jua', sans-serif;
+
+}
 html {
   font-size: 21px;
   font-family: "Open Sans";
@@ -219,14 +228,15 @@ a{
 	outline: none;
 }
 .search-container {
-  width: 180px;
   display: block;
-  margin: 0 auto;
+  text-align: center;
+    font-family: 'Jua', sans-serif;
+  
 }
 
 input#search-bar {
   margin: 0 auto;
-  width: 100%;
+  width: 180px;
   height: 30px;
   padding: 0 20px;
   font-size: 5px;
@@ -250,4 +260,11 @@ input#search-bar:focus::-moz-placeholder {
 input#search-bar:focus:-ms-placeholder {
   transition: opacity 0.45s ease;
   opacity: 0;
+}
+#search-button{
+	
+ background-color:  rgb(255, 194, 64) !important;
+ text-shadow: 3px 3px 10px gray;
+ font-weight: lighter;
+ color: white;
 }

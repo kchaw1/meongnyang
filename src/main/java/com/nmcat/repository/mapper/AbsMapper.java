@@ -61,6 +61,7 @@ public interface AbsMapper {
 	void cancelLike(int no);  // 행동전문가 총 추천수 감소
 	
 	int selectCntBoard();
+	int selectCntBoardSearch(AbsSearchVO absSearch);
 
 	List<QnABoard> selectAbsBoard(QnABoard board);
 

@@ -6,7 +6,6 @@ public class AbsSearchVO {
 	private String keyword;
 	private int pageNo;
 	private int no;
-	private int begin;
 	
 	
 	
@@ -18,14 +17,14 @@ public class AbsSearchVO {
 		this.no = no;
 	}
 
-	public void setBegin(int begin) {
+/*	public void setBegin(int begin) {
 		this.begin = begin;
 	}
 
+ */
 	public int getBegin() {
 		return (pageNo - 1) * 10;
 	}
-
 	public String getsearchType() {
 		return searchType;
 	}

@@ -12,6 +12,7 @@ import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsPageResult;
+import com.nmcat.repository.domain.AbsSearchVO;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -178,6 +179,24 @@ public class AbsServiceImpl implements AbsService{
 	public void cancelLike(int no) {
 
 		absMapper.cancelLike(no);
+	}
+
+	
+	// 검색
+	@Override
+	public Map<String, Object> AbsBoardSearch(AbsSearchVO absSearch,int no,int pageNo) {
+		Map<String, Object> map = new HashMap<>();
+		List<QnABoard> list = absMapper.selectAbsBoardSearch(absSearch);
+		Abs detail = absMapper.selectAbsDetail(no);
+//		int count = absMapper.selectCntBoard();
+		int count = absMapper.selectCntBoardSearch(absSearch);
+
+		map.put("pageResult2",  new AbsPageResult(pageNo, count));
+		map.put("ca", list);
+		map.put("a",detail);
+
+		return map;
+		
 	}
 
 

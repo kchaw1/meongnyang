@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -24,6 +26,10 @@ import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
+import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.LoginHistory;
+import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.board.QnABoard;
 
 @RequestMapping("/abs")
@@ -33,6 +39,9 @@ public class AbsController {
 	@Autowired
 	public AbsService absService;
 	
+	private String keyword="";
+	private String searchType="";
+
 	
 	//행동전문가 리스트 가져오기
 	@RequestMapping("/absList.mn")
@@ -61,6 +70,25 @@ public class AbsController {
 	public void absboardlist(int no, Model model,@RequestParam(value="pageNo", defaultValue="1")int pageNo) {
 		Map<String,Object> map = absService.absboardlist(no,pageNo);
 		model.addAttribute("map",map);
+	}
+	
+	@RequestMapping("/absDetailBoard2.mn")
+	public void search(AbsSearchVO search , int no,@RequestParam(value="pageNo", defaultValue="1")int pageNo,Model model) {
+	if(search.getKeyword() != null && search.getsearchType() !=null ){
+			keyword =search.getKeyword();
+			searchType = search.getsearchType();
+		}else {
+			
+			search.setKeyword(keyword);
+			search.setsearchType(searchType);
+		}
+		search.setNo(no);
+		search.setPageNo(pageNo);
+		 
+		
+		model.addAttribute("map", absService.AbsBoardSearch(search,no,pageNo));
+		
+		
 	}
 	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")

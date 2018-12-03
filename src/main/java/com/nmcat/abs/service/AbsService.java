@@ -7,6 +7,7 @@ import com.nmcat.repository.domain.Abs;
 import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
+import com.nmcat.repository.domain.AbsSearchVO;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsService {
@@ -46,4 +47,10 @@ public interface AbsService {
 	void updateLike(int no); //게시글 총 추천수 증가
 	void deleteLike(AbsLikeVO likeVO); //게시글 추천 취소
 	void cancelLike(int no);  // 게시글 총 추천수 감소
+	
+/*	Map<String, Object> AbsBoardSearch(AbsSearchVO absSearch); //검색
+*/
+
+	Map<String, Object> AbsBoardSearch(AbsSearchVO absSearch, int no, int pageNo);
+
 }

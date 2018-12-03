@@ -54,7 +54,7 @@
               <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2" style="text-align: right;font-family: 'Jua', sans-serif;">
-     				전체 : ${map.pageResult.count}개 
+     				전체 : ${map.pageResult2.count}개 
                   </div>
               </div>
               <div class="table-responsive">
@@ -69,7 +69,7 @@
                 </tr>  	 
                 
                
-                     <c:forEach var="b" items="${map.b}">    
+                     <c:forEach var="b" items="${map.ca}">    
                         <tr class="clickde">
                         	<td><a href="absDetailBoardDetail.mn?absNo=${b.absNo}&no=${map.a.no}" id="detailboard">${b.absTitle}</a></td>
                         	<td>${b.absWriter}</td>
@@ -93,7 +93,7 @@
             
               </table>
               </div><br>
-                <form method="POST"  role="search" action="<c:url value='/abs/absDetailBoard2.mn?no=${map.a.no}'/>" class="navbar-form" name="searchForm" > 
+                <form method="POST"  role="search" action="<c:url value='/abs/absDetailBoard2.mn?no=${map.a.no}+"&pageNo="+pageNo;'/>" class="navbar-form" name="searchForm" > 
          	<input type="hidden" name="pageNo" value="1"> 
                	<input type="hidden" name="no" value="${param.no}">
               <div class="search-container">
@@ -106,23 +106,23 @@
                   
               </div>
           </form> 
-             <c:if test="${map.pageResult.count != 0 }">
+             <c:if test="${map.pageResult2.count != 0 }">
                        	<input type="hidden" name="pageNo" value="1"> 
 				<div id="paging" class="text-center">
   				<ul class="pagination">
-			        <li<c:if test="${map.pageResult.prev eq false }"> class="disabled"</c:if>>
-			          <a href="${map.pageResult.beginPage-1}" aria-label="Previous">
+			        <li<c:if test="${map.pageResult2.prev eq false }"> class="disabled"</c:if>>
+			          <a href="${map.pageResult2.beginPage-1}" aria-label="Previous">
 			            <span aria-hidden="true">&laquo;</span>
 			          </a>
 			        </li>
 			    
-			    <c:forEach var="i" begin="${map.pageResult.beginPage}" end="${map.pageResult.endPage}">
-			        		<li<c:if test="${i eq map.pageResult.pageNo }"> class="active"</c:if>>
+			    <c:forEach var="i" begin="${map.pageResult2.beginPage}" end="${map.pageResult2.endPage}">
+			        		<li<c:if test="${i eq map.pageResult2.pageNo }"> class="active"</c:if>>
 			        			<a href="${i}">${i}</a>
 			        		</li>
 			    </c:forEach>
-			        <li <c:if test="${map.pageResult.next eq false}"> class=""</c:if>>
-			          <a href="${map.pageResult.endPage }" aria-label="Next">
+			        <li <c:if test="${map.pageResult2.next eq false}"> class=""</c:if>>
+			          <a href="${map.pageResult2.endPage }" aria-label="Next">
 			            <span aria-hidden="true">&raquo;</span>
 			          </a>
 			        </li>
@@ -130,8 +130,9 @@
 				</div>
 		</c:if>  
                 
-              <hr>
+              <hr> 
               <div id="wirte"> 
+           		  <button class="btn btn-primary" id="return">전체 목록으로</button>
                   <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                   <button class="btn btn-primary" id="write">글쓰기</button>
                 </div>
@@ -148,28 +149,23 @@
         $("#write").click(function(){
             	 location.href="absDetailBoardWrite.mn?no="+${map.a.no};
              }) 
+        $("#return").click(function(){
+            	 location.href="absDetailBoard.mn?no="+ ${map.a.no};
+             }) 
        $("div > ul.pagination > li > a").click(function(e){
 				e.preventDefault();
 		
 				var pageNo = $(this).attr("href")
 				if(pageNo == 0)return false;
 					
-				location.href = "absDetailBoard.mn?no="+ ${map.a.no}+"&pageNo="+pageNo; //넘어온 페이지를 스크립에서 처리
+				location.href = "absDetailBoard2.mn?no="+ ${map.a.no}+"&pageNo="+pageNo; //넘어온 페이지를 스크립에서 처리
 				
 				
 				});
         
      // 검색버튼 클릭
  // 검색버튼 클릭
-	$(document).on("click", "#search-button", function () {
-				e.preventDefault();
-		
-		var pageNo = $(this).attr("href")
-		if(pageNo == 0)return false;
-			
-		location.href = "absSearch.mn.mn?no="+ ${map.a.no}+"&pageNo="+pageNo; //넘어온 페이지를 스크립에서 처리
 
-	});
         </script>
 
 </body>
