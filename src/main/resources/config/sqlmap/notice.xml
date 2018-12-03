@@ -113,10 +113,38 @@
 </select>
 
 <!-- 디테일 -->
-<select id="selectNoticeDetail" parameterType="int" resultType="Notice">
+<select id="selectNoticeDetail" parameterType="int" resultMap="noticeMap">
 	select *
 	  from mn_notice
 	 where ntc_no = #{ntcNo}
+</select>
+
+<!-- 조회수 -->
+<update id="updateViewCnt" parameterType="int">
+	update mn_notice
+	   set ntc_view_cnt = ntc_view_cnt + 1
+	 where ntc_no = #{ntcNo}   
+</update>
+
+<!-- 삭제 -->
+<delete id="deleteNotice" parameterType="int">
+	delete from mn_notice
+	      where ntc_no = #{ntcNo}
+</delete>
+
+<!-- 글 수정 -->
+<update id="updateNotice" parameterType="Notice">
+	update mn_notice
+	   set ntc_title = #{ntcTitle},
+	   	   ntc_content = #{ntcContent}
+	 where ntc_no = #{ntcNo}  	   
+</update>
+
+<!-- 첨부한 파일 보여주기 -->
+<select id="selectNoticeFile" parameterType="int" resultMap="noticeFileMap">
+	select *
+	  from mn_ntc_file
+	 where ntc_no = #{ntcNo} 
 </select>
 
 </mapper>

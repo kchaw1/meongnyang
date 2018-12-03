@@ -29,8 +29,8 @@
 			<div class="section-one">
 				<div class="panel panel-default" style="text-align: left;">
 					<div class="panel-heading">
-						<h3 class="panel-title"
-							style="text-align: left; font-weight: bold;">${ntc.ntcTitle}</h3>
+						<h1 class="panel-title" style="text-align: left; font-weight: bold;">${ntc.ntcTitle}</h1>
+						<br>
 						<div id="writer" style="display: inline-block;">
 							<h3 class="panel-title">${ntc.ntcWriter}
 								&nbsp&nbsp&nbsp<span id="reg_time"><fmt:formatDate value="${ntc.ntcRegDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
@@ -40,7 +40,22 @@
 							<span id="view_cnt">조회수 ${ntc.ntcViewCnt}</span>
 						</div>
 					</div>
-					<div class="panel-body">${ntc.ntcContent}</div>
+					<div class="panel-body">
+						<div id="file-list">
+							<table>
+								<tbody>
+									<tr>
+										<th>첨부 파일</th>
+										<c:forEach var="f" items="${fileList}">
+											<td><a href="<c:url value="/common/download.mn?fileName=${f.ntcfSysName}&path=${f.ntcfPath}"/>">${f.ntcfOriName}</a></td>
+										</c:forEach>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<hr>
+						${ntc.ntcContent}
+					</div>
 				</div>
 				<div id="button-area">
 					<div id="left-area">
@@ -63,11 +78,30 @@
 	</div>
 	
 	<script>
-		console.log(${notice});
-	
 		$("#list-button").click(function() {
 			location.href = "list.mn";
 		});
+		
+		$("#update-button").click(function() {
+			if('${user.id}' != $(this).data("writer")) {
+				swal("작성자만 수정할 수 있습니다", "", "error");
+				return;
+			}
+			
+			location.href = "updateForm.mn?ntcNo=" + '${ntc.ntcNo}';
+		});
+		
+		$("#delete-button").click(function() {
+			if('${user.id}' != $(this).data("writer")) {
+				swal("작성자만 삭제할 수 있습니다", "", "error");
+				return;
+			}
+			
+			location.href = "delete.mn?ntcNo=" + '${ntc.ntcNo}';
+		})
 	</script>
 </body>
 </html>
+
+
+

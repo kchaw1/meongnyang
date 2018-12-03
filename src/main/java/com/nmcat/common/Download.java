@@ -24,9 +24,9 @@ public class Download {
 		 
 		 String uploadPath = "c:/app/upload";
          
-	     File file = new File(uploadPath + path, fileName);
+	     File file = new File(uploadPath, fileName);
 	     
-	     System.out.println("DownloadView --> file.getPath() : " + file.getPath());
+	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
 	        System.out.println("DownloadView --> file.getName() : " + file.getName());
 	         
 	        response.setContentType("application/download; utf-8");

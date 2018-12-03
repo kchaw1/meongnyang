@@ -48,4 +48,28 @@ public class NoticeServiceImpl implements NoticeService{
 	public Notice detail(int ntcNo) {
 		return mapper.selectNoticeDetail(ntcNo);
 	}
+	
+	// 조회수
+	@Override
+	public void viewCnt(int ntcNo) {
+		mapper.updateViewCnt(ntcNo);
+	}
+	
+	// 삭제
+	@Override
+	public void delete(int ntcNo) {
+		mapper.deleteNotice(ntcNo);
+	}	
+	
+	// 수정
+	@Override
+	public void update(Notice notice) {
+		mapper.updateNotice(notice);
+	}
+	
+	// 첨부파일 보여주기
+	@Override
+	public List<NoticeFile> showFile(int ntcNo) {
+		return mapper.selectNoticeFile(ntcNo);
+	}
 }

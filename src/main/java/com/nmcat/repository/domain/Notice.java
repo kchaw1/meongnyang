@@ -18,6 +18,7 @@ public class Notice {
 	private String searchType;
 	private String keyword;	
 	
+	
 	// 페이지 번호
 	private int pageNo;
 	public int getPageNo() {

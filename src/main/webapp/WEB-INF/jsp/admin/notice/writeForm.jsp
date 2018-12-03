@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html5>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../common/headerfooterCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
@@ -23,17 +23,18 @@
             </div>
         </div>
            
-            </div>
-            <form action="write.mn" method="POST">
+            <form action="write.mn" method="POST" enctype="multipart/form-data">
             <div class="bottom-section">
                 <div class="section-two">
                         <div class="panel panel-default">
                                 <div class="panel-heading">
                                         <div id="title"><input type="text" class="form-control" name="ntcTitle" placeholder="제목을 입력하세요" style="margin-bottom: 10px;"> </div>  <!-- 작성자파라미터 -->
-                                        <div id="writer">${user.id}</div>
+                                        <div id="writer" style="font-size:25px; margin:10px;">${user.id}</div>
                                         <input type="hidden" name="ntcWriter" value="${user.id}" />
                                 </div>
                                 <div class="panel-body">
+                                        <div><input type="file" name="attach" multiple /></div>
+                                        <br>
                                         <div id="smnt-area"><textarea name="ntcContent" id="summernote"></textarea> </div> <!-- 작성자파라미터 -->
                                         <input id="imageBoard" name="url" type="hidden"/>
                                 </div>
@@ -81,7 +82,7 @@
 	    $.ajax({
 	        data : form_data, 
 	        type : "POST",
-	        url : "<c:url value='/admin/notice/uploadfile.mn'/>",
+	        url : "<c:url value='/admin/notice/upload-picture.mn'/>",
 	        cache : false,
 	        contentType : false,
 	        enctype : "multipart/form_data",
@@ -92,6 +93,27 @@
 	        }
 	    })//ajax
 	}
+	
+	/*
+	function uploadFile() {
+		var data = new FormData();
+        $.each($('#file-attach')[0].files, function(i, file) {
+            data.append('file-'+i, file);
+        });
+		$.ajax({
+			url: "<c:url value='/admin/notice/uploadfile.mn'/>",
+			type: "POST",
+	        data: data, 
+	        enctype : "multipart/form_data",
+			cache : false,
+	        contentType : false,
+	        processData : false
+		}).done(function(result){
+			console.log(result);
+		}) 
+	}
+	*/
+	
 	
 	$("#cancel-button").click(function() {
 		location.href = "list.mn"

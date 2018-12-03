@@ -12,4 +12,8 @@ public interface NoticeService {
 	List<Notice> list(Notice notice); // 공지사항 리스트
 	int listCount(Notice notice); // 공지사항 개수
 	Notice detail(int ntcNo); // 공지사항 디테일
+	void viewCnt(int ntcNo); // 조회수
+	void delete(int ntcNo); // 삭제
+	void update(Notice notice); // 수정
+	List<NoticeFile> showFile(int ntcNo); // 첨부파일 보여주기
 }

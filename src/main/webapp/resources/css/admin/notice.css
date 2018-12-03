@@ -113,6 +113,10 @@ thead > tr > td:nth-child(2), tbody tr td:nth-child(2) {
 	display:inline-block;
 }
 
+th,td {
+	height: 40px;
+}
+
 a:link {text-decoration:none; color: black; }
 a:visited {text-decoration:none; color: black; }
 a:active {text-decoration:none; color: black; }

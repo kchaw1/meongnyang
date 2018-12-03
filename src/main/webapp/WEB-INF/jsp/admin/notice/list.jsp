@@ -33,8 +33,8 @@
                                         <td>글 번호</td>
                                         <td>제목</td>
                                         <td>작성자</td>
-                                        <td>조회수</td>
                                         <td>작성일</td>
+                                        <td>조회수</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,8 +102,8 @@
 								+ "<td>"+ result.noticeList[i].ntcNo +"</td>"
 								+ "<td><a href='detail.mn?ntcNo="+ result.noticeList[i].ntcNo +"'>"+ result.noticeList[i].ntcTitle +"</a></td>"
 								+ "<td>"+ result.noticeList[i].ntcWriter +"</td>"
-								+ "<td>"+ result.noticeList[i].ntcViewCnt +"</td>"
 								+ "<td>"+ result.noticeList[i].ntcRegDate +"</td>"
+								+ "<td>"+ result.noticeList[i].ntcViewCnt +"</td>"
 							+"</tr>"
 				} // for
 			} else {

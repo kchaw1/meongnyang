@@ -63,11 +63,6 @@ form {
     text-align: center;
 }
 
-.section-one, 
-.section-two {
-   
-}
-
 .section-one h4 {
     padding: 10px 0px;
 }
@@ -101,3 +96,4 @@ form {
 #button-area {
     float: right;
 }
+

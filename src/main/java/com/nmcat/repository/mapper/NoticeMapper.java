@@ -12,4 +12,8 @@ public interface NoticeMapper {
 	List<Notice> selectNoticeList(Notice notice); // 공지사항 리스트
 	int selectNoticeCount(Notice notice); // 공지사항 개수
 	Notice selectNoticeDetail(int ntcNo); // 공지사항 디테일
+	void updateViewCnt(int ntcNo); // 조회수
+	void deleteNotice(int ntcNo); // 삭제
+	void updateNotice(Notice notice); // 수정
+	List<NoticeFile> selectNoticeFile(int ntcNo); // 파일보여주기
 }

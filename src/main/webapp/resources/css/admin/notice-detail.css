@@ -23,6 +23,7 @@
     width: 100%; 
     height: auto; 
     float: left;
+    margin-top:30px;
 }
 
 .main-title p {
@@ -38,6 +39,7 @@
     float: left; 
     border-top: 1px solid #eee;
     text-align: center;
+    margin-bottom:30px;
 }
 
 .section-one h4 {
@@ -88,4 +90,8 @@
 
 .panel {
     box-shadow: none;
+}
+
+#file-list > table tr, td {
+	padding: 5px;
 }
