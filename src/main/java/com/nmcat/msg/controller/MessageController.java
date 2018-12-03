@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nmcat.common.PageResult;
 import com.nmcat.msg.service.MessageService;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Message;
+import com.nmcat.repository.domain.Page;
 
 @Controller
 @RequestMapping("/msg")
@@ -25,10 +28,13 @@ public class MessageController {
 	@RequestMapping("msgrecv.mn")
 	@ResponseBody
 	public List<Message> msgrecvlist(Model model, HttpSession session) {
+		/*Page page = new Page();
+		page.setPageNo(pageNo);*/
 		// 세션을 받아와서 세션을 꺼내는데 멤버로 형변환을 해줘야 한다.
 		Member member = (Member)session.getAttribute("user");
-		/*	System.out.println(service.recvlist(member.getId()));
-		model.addAttribute("msgrecvlist", service.recvlist(member.getId()));*/
+		/*	System.out.println(service.recvlist(member.getId()));*/
+		model.addAttribute("msgrecvlist", service.recvlist(member.getId()));
+		/*model.addAttribute("msgrecvlist", service.recvlist(member.getId(), page));*/
 		return service.recvlist(member.getId());
 	}
 	
@@ -50,6 +56,7 @@ public class MessageController {
 		return "redirect:/msg/msgsend.mn";
 	}
 	
+	// 쪽지 삭제
 	@RequestMapping("msgdelete.mn")
 	public String msgdelete(int no) {
 		service.deleteMsg(no);

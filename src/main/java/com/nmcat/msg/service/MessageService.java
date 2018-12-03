@@ -3,6 +3,7 @@ package com.nmcat.msg.service;
 import java.util.List;
 
 import com.nmcat.repository.domain.Message;
+import com.nmcat.repository.domain.Page;
 
 public interface MessageService {
 	
@@ -11,4 +12,5 @@ public interface MessageService {
 	void writer(Message msg);
 	void deleteMsg(int no);
 	Message detail(int no);
+	int count();
 }

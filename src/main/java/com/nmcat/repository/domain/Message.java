@@ -15,4 +15,5 @@ public class Message {
 	private Date readDate;
 	private Boolean recvDel;
 	private Boolean sendDel;
+	private int pageNo;
 }

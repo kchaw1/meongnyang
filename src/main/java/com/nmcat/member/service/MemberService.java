@@ -1,6 +1,7 @@
 package com.nmcat.member.service;
 
 import com.nmcat.repository.domain.Login;
+import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 
 public interface MemberService {
@@ -10,6 +11,12 @@ public interface MemberService {
 	Member login(Login login);
 	
 	boolean checkId(String id);
+	
+	// 로그인 내역
+	void insertHistory(String loginId);
+	
+	// 로그인 할때 +10
+	void updqteScore(String id);
 	
 	
 	

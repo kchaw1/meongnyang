@@ -58,9 +58,11 @@
             <li><a href="#tabs-2">보낸쪽지함</a></li>
         </ul>
         <div id="tabs-1">
+        	<form method="post" action="msgdelete.mn" name="form1">
             <table class="table table-hover">
+            <caption>전체 ${pageResult.count}개</caption>
                 <thead>
-                    <tr>
+                    <tr data-tr_value="1">
                         <th><input id="allCheck" type="checkbox" name="checkall" value="1" onclick="selectAll();" /></th>
                         <th>번호</th>
                         <th>보낸이</th>
@@ -71,7 +73,7 @@
                 <tbody>
                 	<c:forEach var="msg" items="${msgrecvlist}">
                     <tr>
-                        <td><input type="checkbox" name="foo" value="1" /></td>
+                        <td><input type="checkbox" name="checkRow" value="${msg.msgNo}" /></td>
                         <td>${msg.msgNo}</td>
                         <td>${msg.sendId}</td>
                         <td><a href='detailmsg.mn?no=${msg.msgNo}'>${msg.msgTitle}</a></td>
@@ -80,6 +82,32 @@
                    </c:forEach>
                 </tbody>
             </table>
+            </form>
+            <c:if test="${pageResult.count != 0}">
+				<nav class="text-center">
+					<ul class="pagination">
+						<li
+							<c:if test="${pageResult.prev eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.beginPage - 1}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a>
+						</li>
+						<c:forEach var="i" begin="${pageResult.beginPage}"
+							end="${pageResult.endPage}">
+							<li <c:if test="${i eq pageResult.pageNo}">class="active"</c:if>>
+								<a href="${i}">${i}</a>
+							</li>
+						</c:forEach>
+						<li
+							<c:if test="${pageResult.next eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.endPage + 1}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+	
+						</a>
+						</li>
+					</ul>
+				</nav>
+			</c:if> 
             <form id="searchForm">
                 <div id="search">
                     <div class="search-group">
@@ -94,7 +122,7 @@
                 </div>
             </form>
             <div class="deleteBtn">
-                <button type="button" id="delBtn">삭제</button>
+                <button type="button" id="delBtn" onclick="deleteAction()">삭제</button>
             </div>
         </div>
         <div id="tabs-2">
@@ -164,7 +192,9 @@
 					</div>
 				</fieldset>
 			</form>
-		</div> 
+		</div>
+		
+		
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
 <!-- <script>
 $(document).ready(function(){
@@ -217,48 +247,31 @@ $(function(){
 
 </script>
 <script>
-/*  $(document).ready(function(){
-    //최상단 체크박스 클릭
-    $("#checkall").click(function(){
-        //클릭되었으면
-        if($("#checkall").prop("checked")){
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-            $("input[name=check]").prop("checked",true);
-            //클릭이 안되있으면
-        }else{
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-            $("input[name=check]").prop("checked",false);
-        }
-    })
-})
-
-$(document).ready(function(){
-    //최상단 체크박스 클릭
-    $("#checkall2").click(function(){
-        //클릭되었으면
-        if($("#checkall2").prop("checked")){
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-            $("input[name=check]").prop("checked",true);
-            //클릭이 안되있으면
-        }else{
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-            $("input[name=check]").prop("checked",false);
-        }
-    })  */
-    
-    $('#delBtn').button().on("click", function(){
-    	alert("안됨");
-        if(confirm("삭제하시겠습니까?")){
-            $("input[name=check]:checked").each(function(){
-                var tr_value =$(this).val();
-                var tr=$("tr[data-tr_value='"+tr_value+"']");
-                tr.remove();
-            });
-        }else{
-            return false;
-        }
-    });
-})
+function deleteAction(){
+	  var checkRow = "";
+	  $( "input[name='checkRow']:checked" ).each (function (){
+	    checkRow = checkRow + $(this).val()+"," ;
+	  });
+	  checkRow = checkRow.substring(0,checkRow.lastIndexOf( ",")); //맨끝 콤마 지우기
+	 
+	  if(checkRow == ''){
+	    alert("삭제할 대상을 선택하세요.");
+	    return false;
+	  }
+	  console.log("### checkRow => {}"+checkRow);
+	 
+	  if(confirm("정보를 삭제 하시겠습니까?")){
+	      
+	      //삭제처리 후 다시 불러올 리스트 url      
+	      var url = document.location.href;
+	     /*  var page = $("#page").val();
+	      var saleType = $("#saleType").val();
+	      var schtype = $("#schtype").val();
+	      var schval = $("#schval").val(); */
+	      /* location.href="nmcat/msg/msgdelete.mn?idx="+checkRow+"&goUrl="+url+"&page="+page+"&saleType="+saleType+"schtype="+schtype+"schval="+schval; */      
+	      location.href="nmcat/msg/msgdelete.mn?idx="+checkRow+"&goUrl="+url;      
+	  }
+	}
 </script>
 <script>
   $( function() {

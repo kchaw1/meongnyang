@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Login;
+import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.mapper.LoginHistoryMapper;
 import com.nmcat.repository.mapper.MemberMapper;
 
 @Service
@@ -16,6 +18,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Autowired
 	private MemberMapper mapper;
+	@Autowired
+	private LoginHistoryMapper lomapper;
 	
 	@Override
 	public void signup(Member member) {
@@ -95,6 +99,17 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return sb.toString();
+	}
+
+	@Override
+	public void insertHistory(String loginId) {
+		lomapper.insertHistory(loginId);
+		
+	}
+
+	@Override
+	public void updqteScore(String id) {
+		mapper.updateScore(id);
 	}
 
 }

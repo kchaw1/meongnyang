@@ -13,6 +13,7 @@ public interface MemberMapper {
 	
 	public List<String> selectId();
 	
+	void updateScore(String id);
 	// 프로필 사진 파일
 //	void insertProfile(Member member);
 } // end class

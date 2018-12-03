@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.nmcat.member.service.MemberService;
 import com.nmcat.repository.domain.Login;
+import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 
 @Controller
@@ -56,10 +58,12 @@ public class MemberController {
 	public boolean login(HttpSession session, Login login) {
 		System.out.println("login id : " + login.getId());
 		Member member = service.login(login);
-		
+		service.insertHistory(login.getId());
+		service.updqteScore(login.getId());
 		System.out.println("loginpass : " + login.getPass());
 		if(member != null) {
 			session.setAttribute("user", member);
+			
 			return true;
 		}
 		return false;

@@ -11,6 +11,7 @@
 		<result column="image_name" property="imageName"/>
 		<result column="image_path" property="imagePath"/>
 		<result column="image_size" property="imageSize"/>
+		<result column="score" property="score"/>
 	</resultMap>
 
 	<insert id="insertNewMemberNofile" parameterType="Member">
@@ -39,5 +40,14 @@
 		select id
 			from mn_member
 	</select>
+	
+	<!-- 로그인시 + 10점 -->
+	<update id="updateScore" parameterType="string">
+		update mn_member
+			set score = score + 10
+			where id = #{id}
+	</update>
+	
+	
 	
 </mapper>

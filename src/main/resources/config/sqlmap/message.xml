@@ -16,10 +16,23 @@
 	
 	<!-- 받은 쪽지 목록 -->
 	<select id="selectRecvMsglist" resultMap="MessageMap">
-		select * 
+			select * 
+				from mn_msg
+				where recv_id = #{id}
+				order by msg_no desc
+		<!-- select *
+		from (select rownum rnum, a.*
+			from (	select *
+						from mn_msg
+						where recv_id = #{id}
+				 	 order by msg_no desc) a
+			where rownum &lt;= #{end})				 	 
+		where rnum &gt;= #{begin} -->
+	</select>
+	
+	<select id="selectRecvCount" resultType="int">
+		select count(*)
 		from mn_msg
-		where recv_id = #{id}
-		order by msg_no desc
 	</select>
 	
 	<!-- 보낸 쪽지 목록 -->

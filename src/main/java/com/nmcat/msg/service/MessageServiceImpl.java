@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Message;
+import com.nmcat.repository.domain.Page;
 import com.nmcat.repository.mapper.MessageMapper;
 
 @Service
@@ -17,11 +18,6 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public void writer(Message msg) {
 		mapper.insertMsg(msg);
-	}
-
-	@Override
-	public List<Message> recvlist(String id) {
-		return mapper.selectRecvMsglist(id);
 	}
 
 	@Override
@@ -37,6 +33,16 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public Message detail(int no) {
 		return mapper.selectMsgDetail(no);
+	}
+
+	@Override
+	public List<Message> recvlist(String id) {
+		return mapper.selectRecvMsglist(id);
+	}
+
+	@Override
+	public int count() {
+		return mapper.selectRecvCount();
 	}
 
 
