@@ -43,6 +43,7 @@ public class NoticeController {
 	public String write(Notice notice, NoticeFile ntcFile) throws Exception {
 		
 		// 파일첨부
+		String uploadPath = "c:/app/upload";
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
 		String datePath = sdf.format(new Date());
 		
@@ -63,7 +64,7 @@ public class NoticeController {
 			ntcFile.setNtcfPath(datePath);
 			ntcFile.setNtcfSize(file.getSize());
 			
-			File uploadFile = new File(datePath, fileSysName);
+			File uploadFile = new File(uploadPath + datePath, fileSysName);
 			if(uploadFile.exists() == false) {
 				uploadFile.mkdirs();
 			}

@@ -47,7 +47,7 @@
 									<tr>
 										<th>첨부 파일</th>
 										<c:forEach var="f" items="${fileList}">
-											<td><a href="<c:url value="/common/download.mn?fileName=${f.ntcfSysName}&path=${f.ntcfPath}"/>">${f.ntcfOriName}</a></td>
+											<td><a href="<c:url value="/common/download.mn?sysName=${f.ntcfSysName}&path=${f.ntcfPath}&oriName=${f.ntcfOriName}"/>">${f.ntcfOriName}</a></td>
 										</c:forEach>
 									</tr>
 								</tbody>

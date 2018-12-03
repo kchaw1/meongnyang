@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Download {
 	
 	 @RequestMapping("/download")
-	 public void download(String path,String fileName,
+	 public void download(String path,String sysName, String oriName,
 		 HttpServletRequest request, HttpServletResponse response) throws Exception{
 //		 String fullPath = path + "\\" + fileName;
 		 
 		 System.out.println(path);
-		 System.out.println(fileName);
+		 System.out.println(sysName);
 		 
 		 String uploadPath = "c:/app/upload";
          
-	     File file = new File(uploadPath, fileName);
+	     File file = new File(uploadPath + path, sysName);
 	     
 	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
 	        System.out.println("DownloadView --> file.getName() : " + file.getName());
@@ -33,13 +33,12 @@ public class Download {
 	        response.setContentLength((int)file.length());
 	         
 	           
-	        fileName = new String(file.getName().getBytes("utf-8"));
+	        sysName = new String(file.getName().getBytes("utf-8"));
 	                
-	        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+	        response.setHeader("Content-Disposition", "attachment;filename=" + oriName);
 	        response.setHeader("Content-Transfer-Encoding", "binary");
 	         
 	        OutputStream out = response.getOutputStream();
-	         
 	        FileInputStream fis = null;
 	         
 	        try {
