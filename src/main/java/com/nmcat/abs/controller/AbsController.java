@@ -92,14 +92,14 @@ public class AbsController {
 	}
 	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")
-	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file)throws Exception {
+	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file,Abs abs)throws Exception {
 		qnaboard.setAbsWriter(form.getAbsWriter());
 		qnaboard.setAbsTitle(form.getAbsTitle());
 		qnaboard.setAbsContent(form.getAbsContent());
 		file.setAbsfSysName(form.getSysName());
 		file.setAbsfPath(form.getPath());
-		
-		absService.write(qnaboard,file);
+		abs.setId(form.getAbsWriter());
+		absService.write(qnaboard,file,abs);
 		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
 
 	}

@@ -13,6 +13,7 @@
 		<result column="abs_like_cnt" property="absLikeCnt" />
 		<result column="greetings" property="greetings" />
 		<result column="auth_state" property="authState" />
+		<result column="point" property="point" />
 		
 	</resultMap>
 	<resultMap id="qnaMap" type="QnABoard">
@@ -210,5 +211,12 @@
 		update mn_member
 		   set abs_like_cnt= abs_like_cnt-1
 		 where no=#{no}  
+	</update>
+	
+	<!-- 포인트부과 -->
+	<update id="pointUse" parameterType="Abs">
+		update mn_member
+		   set point=point-500
+		 where id=#{id}  
 	</update>
 </mapper>

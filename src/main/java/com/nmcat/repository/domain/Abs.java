@@ -11,8 +11,16 @@ public class Abs {
 	private int absLikeCnt;
 	private String greetings;
 	private String authState;
+	private int point;
 	
 	
+	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	public String getAuthState() {
 		return authState;
 	}

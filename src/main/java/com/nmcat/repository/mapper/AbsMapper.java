@@ -65,5 +65,6 @@ public interface AbsMapper {
 
 	List<QnABoard> selectAbsBoard(QnABoard board);
 
+	void pointUse(Abs abs); // 질문게시판 질문등록시 포인트사용
 
 }

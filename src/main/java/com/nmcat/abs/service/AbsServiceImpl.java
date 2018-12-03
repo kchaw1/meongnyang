@@ -75,13 +75,15 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public void write(QnABoard qnaboard,AbsBoardFile file) {
+	public void write(QnABoard qnaboard,AbsBoardFile file,Abs abs) {
 		System.out.println(qnaboard);
 		absMapper.insertAbsBoard(qnaboard);
-		file.setAbsNo(qnaboard.getAbsNo());
-		
+		file.setAbsNo(qnaboard.getAbsNo());		
 		absMapper.insertAbsBoardFile(file);
 		
+		//포인트
+		absMapper.pointUse(abs);
+
 	}
 
 	@Override
