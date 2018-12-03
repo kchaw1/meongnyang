@@ -19,6 +19,7 @@
 </head>
 
 <body>
+  <form method="post" enctype="multipart/form-data" action="/signup.mn">
     <div id="login-box">
         <div class="sign_up">
             <h1>반려인 회원가입</h1>
@@ -26,12 +27,13 @@
                 <div id="pro">
                     <div id="poto">
                         <span>프로필 사진</span><br>
-                        <input id="file" type="file" accept=".gif, .jpg, .png" />
+                        <input id="file" type="file" name="profile" accept=".gif, .jpg, .png" />
                         <div class="img_wrap">
                             <label for="image1">
                                 <img id="img" />
                             </label>
                         </div>
+                       
                     </div>
                     <hr>
                     <span>이름</span><br><input type="text" name="name" placeholder="이름을 입력하세요." />
@@ -61,6 +63,7 @@
         <button type="submit" id="sup">가입하기</button>
         <button type="submit" id="cancel">취소</button>
     </div>
+   </form>
 </body>
 
 </html>

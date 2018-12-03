@@ -10,10 +10,13 @@
 <title>Document</title>
 <c:import url="loginCSSJS.jsp" />
 <c:import url="signupCSSJS.jsp" />
+
 <script src="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 css -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 자바 스크립트 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
@@ -62,25 +65,27 @@
       </div>
     </form>
     <form class="email-signup">
-      <div class="u-form-group">
+    <!--   <div class="u-form-group">
         <input type="email" placeholder="Email"/>
       </div>
       <div class="u-form-group">
         <input type="password" placeholder="Password"/>
-      </div>
+      </div> -->
       <div class="u-form-group">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           반려인 회원가입
         </button>
       </div>
       <div class="u-form-group">
-        <button>행동전문가 회원가입</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+         	 행동전문가 회원가입
+        </button>
       </div>
     </form>
   </div>
   <c:import url="loginJS.jsp" />
 
-  <!-- Modal -->
+  <!-- 반려인 회원가입 Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -88,22 +93,20 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">반려인 회원가입</h4>
       </div>
+	<form name="signup" enctype="multipart/form-data" method="post" action="<c:url value="/member/signup.mn"/>">
       <div class="modal-body">
-      	<form action="<c:url value="/member/signup.mn"/>"  name="signup" >
           <div id="login-box">
               <div class="sign_up">
                   <div id="sign">
                       <div id="pro">
                           <div id="poto">
                               <span>프로필 사진</span><br>
-                              <form id="fileupload" enctype="multipart/formdata" method="post" action="/nmcat/test1.mn">
-                               <input id="file" type="file" accept=".gif, .jpg, .png" />
+                               <input id="file" type="file" name="profile" accept=".gif, .jpg, .png" />
                               <div class="img_wrap">
                                   <label for="image1">
                                       <img id="img" />
                                   </label>
-                              </div>
-                              </form>
+                              </div>                             
                           </div>
                           <hr>
                           <div class="form-group">
@@ -149,7 +152,6 @@
 			                                  <option value="cat">고양이</option>
 			                                  <option value="all">ALL</option>
 			                              </select></span>
-			                         </form>
 			                      </div>
 			                  </div>
 			              </div>
@@ -158,6 +160,13 @@
 				        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			      		</div>
 			          </div>
+			         </div>
+			         </form>
+			        </div>
+			       </div>
+			      </div>
+			           <!-- 행동전문가 회원가입 Modal -->
+						
 	<div class="modal fade" id="certify">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -251,7 +260,7 @@ fail: function(err) {
   	}
   })
 
-  $("button#newmember").click(function(){
+  $("button#newmember1").click(function(){
   	let f = document.signup;
   	if(f.name.value==""){
           alert("이름을 입력하세요")

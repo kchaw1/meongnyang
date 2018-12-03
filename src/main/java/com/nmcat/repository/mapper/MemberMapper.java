@@ -11,7 +11,7 @@ public interface MemberMapper {
 	
 	public Member selectMemeberIdandPass(Login login);
 	
-	public List<String> selectId();
+	public String selectId(String id);
 	
 	void updateScore(String id);
 	// 프로필 사진 파일

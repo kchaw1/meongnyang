@@ -2,6 +2,8 @@ package com.nmcat.repository.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -20,6 +22,7 @@ public class Member {
 	private int score;
 	private String gradeName;
 	private String gradeNo;
+	private MultipartFile profile;
 	private String imageName;
 	private String imagePath;
 	private int imageSize;

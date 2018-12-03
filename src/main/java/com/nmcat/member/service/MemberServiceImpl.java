@@ -33,14 +33,11 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean checkId(String id) {
-		System.out.println("id" + id);
-		List<String> idList = mapper.selectId();
+		System.out.println("id : " + id);
+		String fId = mapper.selectId(id);
 		boolean result = false;
-		for(String oriId : idList) {
-			if(oriId.equals(id)) {
+		if(fId != null) {
 				result = true;
-				break;
-			}
 		}
 		return result;
 		
@@ -101,12 +98,14 @@ public class MemberServiceImpl implements MemberService{
 		return sb.toString();
 	}
 
+	// 로그인 내역
 	@Override
 	public void insertHistory(String loginId) {
 		lomapper.insertHistory(loginId);
 		
 	}
-
+	
+	// 로그인시 + 10
 	@Override
 	public void updqteScore(String id) {
 		mapper.updateScore(id);

@@ -83,31 +83,7 @@
                 </tbody>
             </table>
             </form>
-            <c:if test="${pageResult.count != 0}">
-				<nav class="text-center">
-					<ul class="pagination">
-						<li
-							<c:if test="${pageResult.prev eq false}">class="disabled"</c:if>>
-							<a href="${pageResult.beginPage - 1}" aria-label="Previous"> <span
-								aria-hidden="true">&laquo;</span>
-						</a>
-						</li>
-						<c:forEach var="i" begin="${pageResult.beginPage}"
-							end="${pageResult.endPage}">
-							<li <c:if test="${i eq pageResult.pageNo}">class="active"</c:if>>
-								<a href="${i}">${i}</a>
-							</li>
-						</c:forEach>
-						<li
-							<c:if test="${pageResult.next eq false}">class="disabled"</c:if>>
-							<a href="${pageResult.endPage + 1}" aria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
-	
-						</a>
-						</li>
-					</ul>
-				</nav>
-			</c:if> 
+            
             <form id="searchForm">
                 <div id="search">
                     <div class="search-group">
@@ -185,10 +161,6 @@
 						<div class="content">
 							<textarea name="msgContent" placeholder="내용을 입력하세요." rows="15" cols="80" value=""></textarea>
 						</div>
-						<!-- <div class="check">
-							<input id="check" type="checkbox" name="check" value="1" />
-							<span id="check1">보낸 쪽지함에 저장<span id="check2">(보낸쪽지함에 저장하면수신 확인이 가능합니다.) </span></span>
-						</div> -->
 					</div>
 				</fieldset>
 			</form>
