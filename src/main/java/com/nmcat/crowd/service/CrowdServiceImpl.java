@@ -26,10 +26,10 @@ public class CrowdServiceImpl implements CrowdService{
 		return mapper.selectCrowdList(crowd);
 	}
 	
-	// 크라우드 펀딩 리스트 개수
+	// 크라우드 펀딩 디테일
 	@Override
-	public int listCount() {
-		return mapper.selectCrowdListCount();
+	public Crowd detail(int crNo) {
+		return mapper.selectCrowdDetail(crNo);
 	}
-	
+		
 }

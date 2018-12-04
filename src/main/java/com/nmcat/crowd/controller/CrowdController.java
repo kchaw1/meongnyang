@@ -9,11 +9,11 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nmcat.common.PageResult;
 import com.nmcat.crowd.service.CrowdService;
 import com.nmcat.repository.domain.Crowd;
 
@@ -79,10 +79,13 @@ public class CrowdController {
 		return map;
 	}
 	
-	
-	
-	
-	
+	// 크라우드펀딩 디테일
+	@RequestMapping("/crowd/detail")
+	public void detail(Model model, int crNo) {
+		System.out.println(service.detail(crNo).getCrTitle());
+		System.out.println(service.detail(crNo).getCrContent());
+		model.addAttribute("detail",service.detail(crNo));
+	}
 	
 	
 	/* 일반 메소드 */

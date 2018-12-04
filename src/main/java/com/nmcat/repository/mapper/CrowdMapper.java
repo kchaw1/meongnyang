@@ -8,5 +8,5 @@ public interface CrowdMapper {
 	
 	void insertCrowd(Crowd crowd); // 크라우드펀딩 작성
 	List<Crowd> selectCrowdList(Crowd crowd); // 크라우드펀딩 리스트
-	int selectCrowdListCount();
+	Crowd selectCrowdDetail(int crNo); // 크라우드펀딩 디테일
 }

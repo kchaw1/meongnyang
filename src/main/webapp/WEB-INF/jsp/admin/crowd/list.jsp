@@ -56,6 +56,20 @@
 	
 	var pageNo = 1;
 	
+	var date = new Date()
+	console.log(date)
+	
+	$(document).ready(function () {
+	      $(document).scroll(function() {
+	        var maxHeight = $(document).height();
+	        var currentScroll = $(window).scrollTop() + $(window).height();
+
+	        if (maxHeight <= currentScroll + 100) {
+	        	ajaxCrowdList(++pageNo)
+        	}
+      	})
+    });
+	
 	var ajaxCrowdList = function(pageNo) {
 		$.ajax({
 			url: "<c:url value='/admin/crowd/printList.mn' />",
@@ -71,19 +85,19 @@
 				for(var i in crowdList) {
 					html += "<div class='list-item'>"
 							+ "<div class='image-area'><a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
-							+ "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='width:100%; height:290px;' />"
+							+ "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
 							+ "</a></div>"
 							+ "<div class='cr-title'>"
 							+ 	"<h4>"+ crowdList[i].crTitle +"</h4>"
 							+ "</div>"
 							+ "<div class='progress'>"
 							+	"<div class='progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100'"
-							+ 	"aria-valuemin='0' aria-valuemax='100' style='width: 40%;' >" // width 값 변수로 받아야함
-								// 이부분 도 width 랑 같은값
-							+ 	"</div>"
+							+ 	"aria-valuemin='0' aria-valuemax='100' style='width:"+ Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100) +"%;' >" 
+							+  Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
+							+ "%</div>"
 							+ "</div>"
 							+ 	"<div>"
-							+  		"<span class='now-money'>원 달성</span>"
+							+  		"<span class='now-money'>"+ crowdList[i].crNowMoney +"원 달성</span>"
 							+  		"<span class='remain-day'>일 남음</span>"
 							+ 	"</div>"
 							+ "</div>"

@@ -35,11 +35,11 @@
 	 limit #{begin}, 8 
 </select>
 
-<!-- 크라우드펀딩 개수 (종료되지 않은) -->
-<select id="selectCrowdListCount" resultType="int">
-	select count(*)
-	  from mn_crowd 
-	 where cr_end_yn = 'n'  
+<!-- 크라우드 펀딩 디테일 -->
+<select id="selectCrowdDetail" parameterType="int" resultMap="crowdMap">
+	select * 
+	  from mn_crowd
+	 where cr_no = #{crNo}
 </select>
 
 </mapper>
