@@ -23,9 +23,11 @@ public class Member {
 	private String gradeName;
 	private String gradeNo;
 	private MultipartFile profile;
+	private String url;
 	private String imageName;
 	private String imagePath;
 	private int imageSize;
+	private String imageOriName;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	private Date signUpDate;
 	private String loginState;

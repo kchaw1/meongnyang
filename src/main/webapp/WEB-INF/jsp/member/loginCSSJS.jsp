@@ -19,4 +19,19 @@
   	visibility: hidden;
   	position: absolute;
   }
+  
+  .u-form-group button{
+    width:50%;
+    height: 70px;
+    background-color: #1CB94E;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 21px;
+    font-weight: normal;
+    padding: 14px 0;
+    border-radius: 2px;
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
 </style>

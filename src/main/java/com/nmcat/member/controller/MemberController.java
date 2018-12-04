@@ -30,13 +30,30 @@ public class MemberController {
 	public String signup(Member member) throws Exception {
 		
 		MultipartFile profile = member.getProfile();
-		String imageName = UUID.randomUUID().toString();
-		profile.transferTo(new File("C:/data/upload", imageName));
-		
-		System.out.println("이름" + member.getPass());
-		member.setImagePath("C:/data/upload");
-		member.setImageName(imageName);
-		member.setImageSize((int)profile.getSize());
+	      String uploadPath = "c:/app/upload";
+	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+	      String datePath = sdf.format(new Date());
+	      
+	      String fileExtension ="";
+	      String fileSysName = "";
+	         
+	         String newName = UUID.randomUUID().toString();
+	         newName = newName.replace("-", "");
+	         
+	         
+	         fileExtension = getExtension(profile.getOriginalFilename());
+	         fileSysName = newName + "." + fileExtension;
+	         
+	         member.setImageOriName(profile.getOriginalFilename());
+	         member.setImageName(fileSysName);
+	         member.setImagePath(datePath);
+	         member.setImageSize((int)profile.getSize());
+	       
+	         File uploadFile = new File(uploadPath + datePath, fileSysName);
+	         if(uploadFile.exists() == false) {
+	            uploadFile.mkdirs();
+	         }
+	         profile.transferTo(uploadFile);
 		
 		service.signup(member);
 		return "redirect:/member/login.mn";
@@ -83,97 +100,15 @@ public class MemberController {
 		return service.sendMail(member);
 	}
 	
-	/*@RequestMapping(value="/signup.mn", method=RequestMethod.POST)
-	public String profile1(String id, MultipartFile profile) throws Exception {
-		System.out.println("id : " + id);
-		System.out.println("profile : " + profile);
-		
-		// 실제 파일이 전송되었는지 확인
-		System.out.println("profile.isEmpty() : " + profile.isEmpty());
-		
-		if (profile.isEmpty() == true) return "redirect:/member/signup.jsp";
-		
-		// 파일이 존재하는 경우 처리
-		// 서버의 특정 위치에 저장하자..
-		// 실제 사용자가 선택한 파일 이름 가져오기
-		System.out.println("원본파일명 : " + profile.getOriginalFilename());
-		System.out.println("크기 : " + profile.getSize());
-		
-		// 서버의 특정 위치에 파일을 저장하기
-		profile.transferTo(new File("C:/data/upload", profile.getOriginalFilename()));
-		
-		return "redirect:/member/signup.jsp";
-	}
-*/
-	/*@PostMapping("/signup.mn")
-	@ResponseBody
-	public Member profile(Member member, MultipartFile profile) {
-		String uploadPath = "/C:/data/upload";
-		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
-		String datePath = sdf.format(new Date());
-		
-		String newName = UUID.randomUUID().toString();
-		newName = newName.replace("-", "");
-		
-		String fileExtension ="";
-		String fileSysName = "";
-		
-		System.out.println(profile);
-		
-		fileExtension = getExtension(profile.getOriginalFilename());
-		fileSysName = newName + "." + fileExtension;
-		System.out.println(uploadPath + datePath + "/"+fileSysName);
-			
-		member.setImageName(fileSysName);
-		member.setImagePath(datePath + uploadPath);
-		member.setImageSize(profile.getSize());
-		
-		File pro = new File(uploadPath + datePath, fileSysName);
-		
-		if(pro.exists() == false) {
-			pro.mkdirs();
-		}
-		profile.transferTo(pro);
-		
-		service.signup(member);
-		
-		return "redirect:/member/signup.mn";
-	}*/
-}	
-//	@RequestMapping("signupform.mn")
-//	@ResponseBody
-//	public String sendMail(Member member) {
-//		System.out.println(member.toString());
-//		return service.sendMail(member);
-//	}
-	
-	/* @RequestMapping("/signup.mn")
-	    public String requestupload1(MultipartHttpServletRequest mtfRequest) {
-	        String src = mtfRequest.getParameter("src");
-	        System.out.println("src value : " + src);
-	        MultipartFile mf = mtfRequest.getFile("file");
-
-	        String imagePath = "C:/data/upload";
-
-	        String imageName = mf.getOriginalFilename(); // 원본 파일 명
-	        long imageSize = mf.getSize(); // 파일 사이즈
-
-	        System.out.println("originFileName : " + imageName);
-	        System.out.println("fileSize : " + imageSize);
-
-	        String safeFile = imagePath + System.currentTimeMillis() + imageName;
-
-	        try {
-	            mf.transferTo(new File(safeFile));
-	        } catch (IllegalStateException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
+	 private static String getExtension(String fileName) {
+	        int dotPosition = fileName.lastIndexOf('.');
+	        
+	        if (dotPosition != -1 && fileName.length() - 1 > dotPosition) {
+	            return fileName.substring(dotPosition + 1);
+	        } else {
+	            return "";
 	        }
-
-	        return "redirect:/member/signup.mn";
-	    }*/
+	   }
+}
 
 

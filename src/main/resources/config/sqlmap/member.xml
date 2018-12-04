@@ -12,11 +12,12 @@
 		<result column="image_path" property="imagePath"/>
 		<result column="image_size" property="imageSize"/>
 		<result column="score" property="score"/>
+		<result column="image_ori_name" property="imageOriName"/>
 	</resultMap>
 
 	<insert id="insertNewMemberNofile" parameterType="Member">
 		insert into mn_member (
-			id, name, pass, email, image_name, image_path, image_size, category
+			id, name, pass, email, image_name, image_path, image_size, category, image_ori_name
 			) values (
 				#{id}, 
 				#{name}, 
@@ -25,7 +26,8 @@
 				#{imageName},
 				#{imagePath},
 				#{imageSize},
-				#{category}
+				#{category},
+				#{imageOriName}
 			)
 	</insert>
 	
