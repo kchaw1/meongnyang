@@ -22,9 +22,13 @@ public class MemberPageResult {
 		this.pageNo = pageNo;
 		this.count = count;
 		lastPage = (int)Math.ceil(count / (double)listSize);
-		
+		//System.out.println("lastPage :" + lastPage);
 		if(lastPage == pageNo) {
-			pageCount = count % (12 * (lastPage-1));
+			if(lastPage == 1) {
+				pageCount = count;
+			} else {
+				pageCount = count % (12 * (lastPage-1));				
+			}
 			pageLineNo = (int)Math.ceil(pageCount / (double)4);
 		} else {
 			pageCount = 12;

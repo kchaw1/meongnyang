@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +21,7 @@
   </div>
   <div id="myTabContent" class="tab-content">
   <!-- 친구 탭 -->
-    <div class="tab-pane fade" id="friend">
+    <div class="tab-pane active" id="friend">
       <div class="searchbox">
         <div class="input form-group">
           <input type="text" class="form-control" name="id" placeholder="아이디로 검색하세요"/ >
@@ -37,40 +37,10 @@
         </div>
       </div>
       <div class="list">
-        <div class="line1">
-          <div class="users" name="users">
-            <div class="profile">
-              <span class="online"></span>
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="dochat" title="채팅 하기">
-                    <i class="far fa-comments fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="goDiary" title="다이어리 보기">
-                  <i class="fas fa-address-book fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
         
-        </div>
-        <div class="line2">
-
-        </div>
+      </div>
+      <div id="paging" class="text-center">
+      
       </div>
     </div>
     <!--회원 찾기 탭 -->

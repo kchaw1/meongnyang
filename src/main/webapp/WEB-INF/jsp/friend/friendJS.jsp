@@ -6,9 +6,9 @@
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
-$(function () {
+/* $(function () {
    	showFriendList(1);	
-}) //$function
+}) //$function */
 
 function showFriendList(pageNo){
 	$.ajax({
@@ -18,6 +18,7 @@ function showFriendList(pageNo){
 				},
 		type : "POST"
 	}).done(function(map) {
+		console.dir(map)
 		let str = "";
 		for(let i=1; i <= map.lineNo; i++){
 			str += '<div class="line'+i+'">'
@@ -27,7 +28,7 @@ function showFriendList(pageNo){
 			for(let key of friendArray) {
 				if(key == "list"+i){
 					list = map[key];
-					//alert(list)
+					console.log(list)
 					break;
 				}
 			} // list + i 값 꺼내오기....
@@ -47,17 +48,17 @@ function showFriendList(pageNo){
 				str += '<i class="far fa-comments fa-2x"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="goDiary" title="다이어리 보기"';
 				str += 'data-id="'+friend.id+'">';
-				str += '<i class="fas fa-address-book fa-2x"></i>'
+				str += '<i class="fas fa-address-book fa-2x"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기"';
 				str += 'data-id="'+friend.id+'">';
-				str += '<i class="far fa-envelope fa-2x" ></i>'
+				str += '<i class="far fa-envelope fa-2x" ></i></a>'
 				str += '</div></div></div>'
 				
 			} // list for 문
 			str += '</div>'
 		} // line for 문
 		
-		$("div#search div.list").html(str);
+		$("div#friend div.list").html(str);
 		
 		showPaging(map);
 

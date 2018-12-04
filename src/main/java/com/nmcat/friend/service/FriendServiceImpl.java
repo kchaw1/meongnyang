@@ -71,17 +71,16 @@ public class FriendServiceImpl implements FriendService{
 		int begin = friend.getBegin(); //12 (2-1)*12
 		
 		MemberPageResult pageResult = new MemberPageResult(friend.getPageNo(), count);
+		//System.out.println("pageResult: " + pageResult.toString());
 		int lineNo = pageResult.getPageLineNo();
 		
 		for(int i=1; i<=lineNo; i++) {
 			friend.setLineBegin(begin);
-			List<Friend> list = mapper.selectAllFriendsOneLine(friend);
-			List<String> idList = new ArrayList<>();
-			for(Friend fr : list) {
-				idList.add(fr.getFriendsId());
-			}
-			m.setFriendIdList(idList);
-			map.put("list"+i, mapper.selectAllFriendsOneLine(friend));
+			List<String> list = mapper.selectAllFriendsOneLine(friend);
+			
+			m.setFriendIdList(list);
+			System.out.println("친구 리스트 : " +mapper.selectFriendInfoByIdList(m));
+			map.put("list"+i, mapper.selectFriendInfoByIdList(m));
 			begin += 4;
 		}			
 		map.put("lineNo", lineNo);

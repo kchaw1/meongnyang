@@ -20,11 +20,11 @@ $(function () {
    	    console.log("바디 웹소켓 연결 종료.");
     };
     
-    $("a[href='#search']").click(function(){
-    	showMemberList(1);	
-    }) //search tab 클릭...
-   
+    showFriendList(1);	
 }) //$function
+$("a[href='#search']").click(function(){
+	showMemberList(1);	
+}) //search tab 클릭...
 
 function showMemberList(pageNo){
 	$.ajax({
@@ -79,8 +79,10 @@ function showMemberList(pageNo){
 	    $("a.tab").click(function(){
 	      var id = $(this).attr("href").substring(1)
 	       // alert(id)
-	      $("div#"+id).siblings().css("display", "none")
-	      $("div#"+id).css("display", "block")
+	      /* $("div#"+id).siblings().css("display", "none")
+	      $("div#"+id).css("display", "block") */
+	      $("div#"+id).siblings().addClass("fade").removeClass("active")
+	      $("div#"+id).removeClass("fade").addClass("active")
 	    })
 	     
 	    $("i.fa-lock").mouseenter(function(){
