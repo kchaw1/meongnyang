@@ -21,7 +21,8 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	private Map<String,Object> room = new HashMap<>();
 	private List<WebSocketSession> userlist = new ArrayList<>();*/
 	private Map<String, WebSocketSession> users = new HashMap<>();
-
+	Map<String, Object> attrs;
+	Member member;
 	
 	public ChatSocketHandler() {
 		System.out.println("chat 객체 생성");
@@ -29,25 +30,32 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		debug(session.getId() + "연결");
-		users.put(session.getId(), session);
+		attrs = session.getAttributes();
+		member = (Member) attrs.get("user");
+		debug(member.getId() + "연결");
+		users.put(member.getId(), session);
 	}
 
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		debug(session.getId() + " 연결 종료됨");
-		users.remove(session.getId());
+		attrs = session.getAttributes();
+		member = (Member) attrs.get("user");
+		debug(member.getId() + " 연결 종료됨");
+		users.remove(member.getId());
 	}
 	
 	@Override
 	public void handleTextMessage(WebSocketSession wss, TextMessage message) throws Exception {
-		debug("보낸 아이디 - " + wss.getId());
+		attrs = wss.getAttributes();
+		member = (Member) attrs.get("user");
+		debug("보낸 아이디 - " + member.getId());
 		debug("보낸 메세지 - " + message.getPayload());
 		Set<String> keys = users.keySet();
 		for (String key : keys) {
 			WebSocketSession wSession = users.get(key);
-			wSession.sendMessage(new TextMessage(wss.getId() + " : " + message.getPayload()));
+			wSession.sendMessage(new TextMessage(member.getId() + " : " + message.getPayload()));
+		
 		}
 	}
 

@@ -56,6 +56,9 @@
     
       
       </div>
+       <a href="<c:url value="/chat/chat.mn" />">
+		ChatController(/chat/chat.mn)
+	</a><br />	
 <script>
   var slideEl = $(".slide--parent");
 
