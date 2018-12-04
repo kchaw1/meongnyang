@@ -51,6 +51,7 @@ public class NoticeController {
 		String fileSysName = "";
 		
 		for(MultipartFile file : ntcFile.getAttach()) {
+			
 			String newName = UUID.randomUUID().toString();
 			newName = newName.replace("-", "");
 			

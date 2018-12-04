@@ -21,7 +21,7 @@
 	<div id="notice-area">
 		<div class="top-section">
 			<div class="main-title">
-				<h1>공지사항</h1>
+				<a href="<c:url value='/admin/notice/list.mn' />"><h1>공지사항</h1></a>
 			</div>
 		</div>
 
@@ -29,7 +29,7 @@
 			<div class="section-one">
 				<div class="panel panel-default" style="text-align: left;">
 					<div class="panel-heading">
-						<h1 class="panel-title" style="text-align: left; font-weight: bold;">${ntc.ntcTitle}</h1>
+						<span class="panel-title" style="font-size:25px; margin-bottom:10px; text-align: left; font-weight: bold;">${ntc.ntcTitle}</span>
 						<br>
 						<div id="writer" style="display: inline-block;">
 							<h3 class="panel-title">${ntc.ntcWriter}

@@ -26,8 +26,7 @@
 
 					<div id="tabs-1">
 						<div id="img-area">
-							<img
-								src="https://post-phinf.pstatic.net/MjAxNzEyMjhfMjc1/MDAxNTE0NDQwMDQ3MDQz.jAzATJmNbLbERcMt6hm01vOwJZTulYER_z63d6m4fM8g.QjKmA8EPdjkJy_QXpCx4vOjQOTSyG3vbtJZmwJX6wMMg.JPEG/%EC%84%A4%EC%B1%84%ED%98%84.JPG?type=w1200" />
+							<img src="<c:url value='/common/download.mn?sysName=${general.imageName}&path=${general.imagePath}&oriName=${general.imageOriName}'/>" />
 						</div>
 						<div id="info-area">
 							<h1>개인정보</h1>

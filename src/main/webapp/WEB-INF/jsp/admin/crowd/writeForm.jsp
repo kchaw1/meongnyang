@@ -83,6 +83,9 @@
           <textarea id="cf-textarea" class="form-control" name="crContent" rows=14 placeholder="내용을 입력하세요" ></textarea><br>
           <div>
             <input id="input-money" class="form-control" type="text" placeholder="목표 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
+            <span id="hanguel-money"></span>
+            
+            
             <button type="button" class="btn btn-default btn-default">초기화</button>
           </div>
           </div>
@@ -161,9 +164,14 @@
     </script>
 
     <script>
+    
+    function inputChangedHanguel() {
+    	$("#hanguel-money").html(fn_change_hangul_money(removeComma($("#input-money").val())))
+    }
       // 금액 쉼표
       function inputNumberFormat(obj) { 
         obj.value = comma(uncomma(obj.value)); 
+        inputChangedHanguel();
       } 
 
       function comma(str) { 
@@ -174,6 +182,64 @@
       function uncomma(str) { 
           str = String(str); 
           return str.replace(/[^\d]+/g, ''); 
+      }
+      
+   	// 쉼표 제거
+      function removeComma(str) {
+			n = parseInt(str.replace(/,/g,""));
+			return n;
+	}
+   	
+   	// 금액 한글 표시
+   	  // 1 ~ 9 한글 표시
+      var arrNumberWord = new Array("","일","이","삼","사","오","육","칠","팔","구");
+      // 10, 100, 100 자리수 한글 표시
+      var arrDigitWord = new  Array("","십","백","천");
+      // 만단위 한글 표시
+      var arrManWord = new  Array("","만","억", "조");
+
+ 
+
+      // Copyright 취생몽사(http://bemeal2.tistory.com)
+
+      // 소스는 자유롭게 사용가능합니다. Copyright 는 삭제하지 마세요.
+
+      function fn_change_hangul_money(txt_id)
+      {
+            var num_value = txt_id.value;
+            var num_length = num_value.length;
+
+            if(isNaN(num_value) == true) return;
+
+            var han_value = "";
+            var man_count = 0;      // 만단위 0이 아닌 금액 카운트.
+
+            for(i=0; i < num_value.length; i++)
+            {
+                  // 1단위의 문자로 표시.. (0은 제외)
+                  var strTextWord = arrNumberWord[num_value.charAt(i)];
+
+                  // 0이 아닌경우만, 십/백/천 표시
+                  if(strTextWord != "")
+                  {
+                        man_count++;
+                        strTextWord += arrDigitWord[(num_length - (i+1)) % 4];
+                  }
+
+                  // 만단위마다 표시 (0인경우에도 만단위는 표시한다)
+                  if(man_count != 0 && (num_length - (i+1)) % 4 == 0)
+                  {
+                        man_count = 0;
+                        strTextWord = strTextWord + arrManWord[(num_length - (i+1)) / 4];
+                  }
+
+                  han_value += strTextWord;
+            }
+
+            if(num_value != 0)
+                  han_value = "금 " + han_value + " 원";
+
+            document.all.han_money.innerText = han_value;
       }
     </script>
 

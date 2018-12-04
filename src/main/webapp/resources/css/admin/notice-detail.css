@@ -95,3 +95,7 @@
 #file-list > table tr, td {
 	padding: 5px;
 }
+
+a:link {text-decoration:none; color: black; }
+a:visited {text-decoration:none; color: black; }
+a:active {text-decoration:none; color: black; }
