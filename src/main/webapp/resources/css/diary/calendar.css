@@ -202,6 +202,9 @@ div.form-group input:focus, div.form-group select:focus{
 }
 
 /* 모달 css */
+div.modal {
+	z-index : 2000;
+}
 div.modal-dialog {
   width : 70%;
   height: 90%;

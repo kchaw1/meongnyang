@@ -8,6 +8,7 @@ import lombok.Data;
 public class Friend {
 
 	int friendNo;
+	String friendsId;
 	String callerId;
 	String calleeId;
 	String answer;

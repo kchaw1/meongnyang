@@ -1,6 +1,7 @@
 package com.nmcat.repository.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class Member {
 	private String authState;
 	private String greetings;
 	private int point;
+	private List<String> FriendIdList;
 	
 	// 조인때문에 만듦
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

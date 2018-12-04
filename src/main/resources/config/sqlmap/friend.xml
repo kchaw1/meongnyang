@@ -34,6 +34,7 @@
 	
 	<resultMap id="friendMap" type="Friend">
 		<result column="friend_no" property="friendNo"/>
+		<result column="friends_id" property="friendsId"/>
 		<result column="caller_id" property="callerId"/>
 		<result column="callee_id" property="calleeId"/>
 		<result column="call_date" property="callDate"/>
@@ -70,27 +71,43 @@
 		       answer_date is null
 	</select>
 	
-	<select id="selectAllFriendsOnePage" parameterType="Friend" resultMap="friendMap">
-		select * from mn_friend
-		 where caller_id = #{userId} and
-		 	   callee_id = #{userId} and
-		 	   answer = 'y'
-		 limit #{begin}, 12
+	<select id="selectAllFriendsList" parameterType="string" resultType="string">
+		(select caller_id as friends_id, 
+			call_date from mn_friend where callee_id=#{userId} 
+										and answer='y')
+		union
+		(select callee_id as friends_id, 
+			call_date from mn_friend where caller_id=#{userId} 
+										and answer='y')
+	</select>
+	<select id="selectFriendsListOnePage" parameterType="Friend" resultMap="friendMap">
+		(select caller_id as friends_id, 
+			call_date from mn_friend where callee_id=#{userId} 
+										and answer='y')
+		union
+		(select callee_id as friends_id, 
+			call_date from mn_friend where caller_id=#{userId} 
+										and answer='y')
+		order by call_date
+		limit #{begin}, 12
 	</select>
 	
 	<select id="selectAllFriendsOneLine" parameterType="Friend" resultMap="friendMap">
-		select * from mn_friend
-		 where caller_id = #{userId} and
-		 	   callee_id = #{userId} and
-		 	   answer = 'y'
-		 limit #{lineBegin}, 4
+		(select caller_id as friends_id, 
+			call_date from mn_friend where callee_id = #{userId} 
+										and answer='y')
+		union
+		(select callee_id as friends_id, 
+			call_date from mn_friend where caller_id = #{userId} 
+										and answer='y')
+		order by call_date
+		limit #{lineBegin}, 4
 	</select>
 	
-	<select id="selectCntAllFriends" resultType="string">
-		select count(*) from mn_friend
-		 where caller_id = #{userId} and
-		 	   callee_id = #{userId} and
-		 	   answer = 'y'
+	<select id="selectFriendInfoByIdList" parameterType="Member" resultMap="memberMap">
+		select * from mn_member
+		  where id = 
 	</select>
 	
+
 </mapper>

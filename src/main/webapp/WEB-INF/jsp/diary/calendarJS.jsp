@@ -5,11 +5,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
 	var now = new Date();
+	var updatedMonth = now.getMonth()+1
 	var updatedDate = now.getDate();
+	if(updatedMonth < 10) {
+		updatedMonth = "0" + updatedMonth;
+	}
 	if(updatedDate < 10) {
 		updatedDate = "0" + updatedDate;
 	}
-	var today = now.getFullYear()+""+(now.getMonth()+1)+""+updatedDate;
+	var today = now.getFullYear()+""+updatedMonth+""+updatedDate;
 	var year, month, date;
 	var days = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
 	
@@ -24,7 +28,7 @@
 	    placeholder : '내용을 입력하여 주세요',                  // set focus to editable area after initializing summernote
 	  });
 
-	  $("input[name='drDate']").val(now.getFullYear()+"."+(now.getMonth()+1)+"."+now.getDate())
+	  $("input[name='drDate']").val(now.getFullYear()+"."+updatedMonth+"."+updatedDate)
 	  console.log(today)
 	  $.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
@@ -296,7 +300,11 @@
 		if(month<10){
 			month = "0"+month
 		}
-		let day = now.getFullYear()+""+month+""+now.getDate();
+		let date = now.getDate();
+		if(date <10) {
+			date = "0" + date;
+		}
+		let day = now.getFullYear()+""+month+""+date;
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
@@ -313,7 +321,11 @@
 		if(month<10){
 			month = "0"+month
 		}
-		let day = now.getFullYear()+""+month+""+now.getDate();
+		let date = now.getDate();
+		if(date <10) {
+			date = "0" + date;
+		}
+		let day = now.getFullYear()+""+month+""+date;
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
@@ -330,7 +342,11 @@
 		if(month<10){
 			month = "0"+month
 		}
-		let day = now.getFullYear()+""+month+""+now.getDate();
+		let date = now.getDate();
+		if(date <10) {
+			date = "0" + date;
+		}
+		let day = now.getFullYear()+""+month+""+date;
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {

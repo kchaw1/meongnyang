@@ -57,6 +57,7 @@ public class FriendController {
 	@PostMapping("/showallfriend.mn")
 	@ResponseBody
 	public Map<String, Object> showAllFriends(Friend friend) {
+		//System.out.println("friend:" + friend);
 		return service.showAllFriends(friend);
 	} // 
 	

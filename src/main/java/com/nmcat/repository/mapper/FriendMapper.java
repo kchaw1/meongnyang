@@ -22,9 +22,9 @@ public interface FriendMapper {
 	
 	public List<String> selectCallerList(String calleeId);
 	
-	public List<Friend> selectAllFriendsOnePage(Friend friend);
-
-	public int selectCntAllFriends(String userId);
+	public List<String> selectAllFriendsList(String userId);
+	
+	public List<Friend> selectFriendsListOnePage(Friend friend);
 
 	public List<Friend> selectAllFriendsOneLine(Friend friend);
 	
