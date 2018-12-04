@@ -16,11 +16,30 @@
 		<result column="cr_view_cnt" property="crViewCnt" />
 		<result column="cr_file_name" property="crFileName" />
 		<result column="cr_file_path" property="crFilePath" />
+		<result column="cr_file_ori_name" property="crFileOriName" />
+		<result column="cr_end_yn" property="crEndYN" />
 	</resultMap>
 
+<!-- 크라우드펀딩 등록 -->
 <insert id="insertCrowd" parameterType="Crowd">
-	insert into mn_crowd(cr_writer, cr_title, cr_content, cr_goal_money, cr_end_day, cr_file_name, cr_file_path) 
-	     values(#{crWriter}, #{crTitle}, #{crContent}, #{crGoalMoney}, #{crEndDay}, #{crFileName}, #{crFilePath})
+	insert into mn_crowd(cr_writer, cr_title, cr_content, cr_goal_money, cr_start_day, cr_end_day, cr_file_name, cr_file_path, cr_file_ori_name) 
+	     values(#{crWriter}, #{crTitle}, #{crContent}, #{crGoalMoney}, #{crStartDay}, #{crEndDay}, #{crFileName}, #{crFilePath}, #{crFileOriName})
 </insert>
+
+<!-- 크라우드펀딩 리스트 -->
+<select id="selectCrowdList" parameterType="Crowd" resultMap="crowdMap">
+	select *
+	  from mn_crowd 
+	 where cr_end_yn = 'n'
+	 order by cr_end_day asc
+	 limit #{begin}, 8 
+</select>
+
+<!-- 크라우드펀딩 개수 (종료되지 않은) -->
+<select id="selectCrowdListCount" resultType="int">
+	select count(*)
+	  from mn_crowd 
+	 where cr_end_yn = 'n'  
+</select>
 
 </mapper>

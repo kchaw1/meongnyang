@@ -53,12 +53,12 @@
         <div class="sub-title">Board > Crowd-Funding</div>
         <div class="main-title">크라우드 펀딩</div>
         <div class="seperator"></div>
-        <form action="write.mn" method="POST">
+        <form action="write.mn" method="POST" enctype="multipart/form-data">
         <h2>크라우드 펀딩 만들기</h2>
         <div id="calendar-area">
             <div id="datepicker">
               <div class="tui-datepicker-input tui-datetime-input tui-has-focus"  style="width:276px;">
-                  <input type="text" name="" id="datepicker-input-2" aria-label="Date-Time">  <!-- 날짜파라미터 -->
+                  <input type="text" name="crEndDay" id="datepicker-input-2" aria-label="Date-Time">  <!-- 날짜파라미터 -->
                   <span class="tui-ico-date"></span>
                 </div>     
                 <div id="wrapper-2"></div>
@@ -69,7 +69,8 @@
           <div id="page">
               <!-- Our File Inputs -->
               <div class="wrap-custom-file">
-                <input type="file" name="image1" id="image1" accept=".gif, .jpg, .png" />
+                <input type="file" name="attach" id="image1" accept=".gif, .jpg, .png" />
+<!--                 <input type="file" name="attach"  /> -->
                 <label  for="image1">
                   <span>이미지를 첨부하세요</span>
                   <i class="fa fa-plus-circle"></i>
@@ -82,19 +83,23 @@
           <input id="cf-title" type="text" class="form-control" name="crTitle" placeholder="제목을 입력하세요"/><br>
           <textarea id="cf-textarea" class="form-control" name="crContent" rows=14 placeholder="내용을 입력하세요" ></textarea><br>
           <div>
-            <input id="input-money" class="form-control" type="text" placeholder="목표 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
-            <span id="hanguel-money"></span>
+            <input id="input-money" class="form-control" type="text" placeholder="목표 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />(원)
+            <input id="remove-comma-money" type="hidden" name="crGoalMoney"  />
+            <button type="button" id="initialize" class="btn btn-default btn-default">초기화</button>
+            <br>
+            <br>
+            <br>
+            <span id="hanguel-money">금액이 이곳에 출력</span>
             
             
-            <button type="button" class="btn btn-default btn-default">초기화</button>
           </div>
           </div>
           
 
               <div id="button-area">
-                <button class="btn btn-default btn-lg">등록</button>
+                <button id="reg-btn" class="btn btn-default btn-lg">등록</button>
                   &nbsp;
-                <button type="button" class="btn btn-default btn-lg">취소</button>
+                <button type="button" id="cancel-btn" class="btn btn-default btn-lg">취소</button>
               </div>
             </form>
           </div>
@@ -122,8 +127,6 @@
     })
 
     //좌측 메뉴 스크립트
-
-
     $("#board").click(function () {
       $(".board-hidden").slideToggle(500);
     })
@@ -142,6 +145,10 @@
 
     $(".item").mouseleave(function () {
       $(this).removeClass("selected");
+    })
+    
+    $("#cancel-btn").click(function() {
+    	location.href="list.mn"
     })
   </script>
 
@@ -164,112 +171,68 @@
     </script>
 
     <script>
+    /* 금액 관련 스크립트 */
+    $("#reg-btn").click(function() {
+    	$("#remove-comma-money").val(removeComma($("#input-money").val()));
+    })
     
-    function inputChangedHanguel() {
-    	$("#hanguel-money").html(fn_change_hangul_money(removeComma($("#input-money").val())))
+    
+    $("#initialize").click(function() {
+    	$("#input-money").val("")
+    })
+    
+    // 금액 쉼표
+    function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
     }
-      // 금액 쉼표
-      function inputNumberFormat(obj) { 
-        obj.value = comma(uncomma(obj.value)); 
-        inputChangedHanguel();
-      } 
 
-      function comma(str) { 
-          str = String(str); 
-          return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
-      } 
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
 
-      function uncomma(str) { 
-          str = String(str); 
-          return str.replace(/[^\d]+/g, ''); 
-      }
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
       
    	// 쉼표 제거
-      function removeComma(str) {
-			n = parseInt(str.replace(/,/g,""));
-			return n;
+    function removeComma(str) {
+		n = parseInt(str.replace(/,/g,""));
+		return n;
 	}
    	
    	// 금액 한글 표시
-   	  // 1 ~ 9 한글 표시
-      var arrNumberWord = new Array("","일","이","삼","사","오","육","칠","팔","구");
-      // 10, 100, 100 자리수 한글 표시
-      var arrDigitWord = new  Array("","십","백","천");
-      // 만단위 한글 표시
-      var arrManWord = new  Array("","만","억", "조");
-
- 
-
-      // Copyright 취생몽사(http://bemeal2.tistory.com)
-
-      // 소스는 자유롭게 사용가능합니다. Copyright 는 삭제하지 마세요.
-
-      function fn_change_hangul_money(txt_id)
-      {
-            var num_value = txt_id.value;
-            var num_length = num_value.length;
-
-            if(isNaN(num_value) == true) return;
-
-            var han_value = "";
-            var man_count = 0;      // 만단위 0이 아닌 금액 카운트.
-
-            for(i=0; i < num_value.length; i++)
-            {
-                  // 1단위의 문자로 표시.. (0은 제외)
-                  var strTextWord = arrNumberWord[num_value.charAt(i)];
-
-                  // 0이 아닌경우만, 십/백/천 표시
-                  if(strTextWord != "")
-                  {
-                        man_count++;
-                        strTextWord += arrDigitWord[(num_length - (i+1)) % 4];
-                  }
-
-                  // 만단위마다 표시 (0인경우에도 만단위는 표시한다)
-                  if(man_count != 0 && (num_length - (i+1)) % 4 == 0)
-                  {
-                        man_count = 0;
-                        strTextWord = strTextWord + arrManWord[(num_length - (i+1)) / 4];
-                  }
-
-                  han_value += strTextWord;
-            }
-
-            if(num_value != 0)
-                  han_value = "금 " + han_value + " 원";
-
-            document.all.han_money.innerText = han_value;
-      }
+   	 
     </script>
 
-  <script>
+	<script>
     // 파일업로드
     $('input[type="file"]').each(function(){
-  // Refs
-  var $file = $(this),
-      $label = $file.next('label'),
-      $labelText = $label.find('span'),
-      labelDefault = $labelText.text();
-  
-  // When a new file is selected
-  $file.on('change', function(event){
-    var fileName = $file.val().split( '\\' ).pop(),
-        tmppath = URL.createObjectURL(event.target.files[0]);
-    //Check successfully selection
-		if( fileName ){
-      $label
-        .addClass('file-ok')
-        .css('background-image', 'url(' + tmppath + ')');
-			$labelText.text(fileName);
-    }else{
-      $label.removeClass('file-ok');
-			$labelText.text(labelDefault);
-    }
-  });
-  
-  // End loop of file input elements  
-  });
+	  // Refs
+	  var $file = $(this),
+	      $label = $file.next('label'),
+	      $labelText = $label.find('span'),
+	      labelDefault = $labelText.text();
+	  
+	  // When a new file is selected
+	  $file.on('change', function(event){
+	    var fileName = $file.val().split( '\\' ).pop(),
+	        tmppath = URL.createObjectURL(event.target.files[0]);
+	    //Check successfully selection
+			if( fileName ){
+	      $label
+	        .addClass('file-ok')
+	        .css('background-image', 'url(' + tmppath + ')');
+				$labelText.text(fileName);
+	    }else{
+	      $label.removeClass('file-ok');
+				$labelText.text(labelDefault);
+	    }
+	  });
+	  
+	  // End loop of file input elements  
+	 });
     </script>
 </body>
 </html>
