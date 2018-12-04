@@ -12,8 +12,7 @@
 <c:import url="signupCSSJS.jsp" />
 
 <script src="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
 <!-- 모달  -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,9 +21,10 @@
 
 <!-- 탭 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
 	span[id^='warn'] {
@@ -46,8 +46,24 @@
     margin-right: 115px;
 }
 
+#sendMail2 {
+    height: 33px;
+    width: 50px;
+    float: right;
+    margin-right: 115px;
+}
+
 #email {
     display: inline-block;
+}
+
+#email2 {
+    display: inline-block;
+    width: 350px;
+}
+#loginform {
+	margin-top: -15px;
+	height: 30%;
 }
   
 </style>
@@ -60,11 +76,8 @@
     </div>
     <div class="social-login">
       <a href="#">
-        <img src="./네이버 아이디로 로그인_완성형_White.PNG"/>
+        <img src="<c:url value="/resources/img/member/네이버 아이디로 로그인_완성형_White.PNG"/>"/>
       </a>
-      <!-- <a href="#">
-        <img src="./kakao_account_login_btn_medium_narrow.png"/>
-      </a> -->
       <div id="kakao-login-btn"></div>
     </div>
     <form class="email-login" name="login">
@@ -76,14 +89,12 @@
       </div>
       <div class="u-form-group">
       	<button type="button" class="btn btn-default" id="loginform">로그인</button>
-        <!-- <a class="btn" data-toggle="modal" data-target="#logInModal" 
-	            data-whatever="@getbootstrap" id="login" href="#">로그인</a> --> 
       </div>
       <div class="u-form-group">
         <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
       </div>
     </form>
-    <form class="email-signup">
+    <form class="email-signup" id="abnsin">
       <div class="u-form-group">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           반려인 회원가입
@@ -96,7 +107,7 @@
       </div>
     </form>
   </div>
-  <c:import url="loginJS.jsp" />
+  
 
   <!-- 반려인 회원가입 Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -124,21 +135,19 @@
                               <input type="text" class="form-control" name="name">
                                         </div>
                                         <hr>
-                                        <!-- <span>아이디</span><br><input type="text" name="id" placeholder="아이디를 입력하세요." /> -->
+                                        <input type="hidden" name="type" value="1" />
                                         <div class="form-group">
                                             <label for="recipient-name" class="control-label"><span id="red">*</span>아이디</label>
                                             <span id='warnid'></span>
                                             <input type="text" class="form-control" name="id">
                                         </div>
                                         <hr>
-                                        <!-- <span>비밀번호</span><br><input type="password" name="pass" placeholder="비밀번호를 입력하세요." /> -->
                                         <div class="form-group">
                                             <label for="recipient-name" class="control-label"><span id="red">*</span>비밀번호</label>
                                             <span id='warnpass'></span>
                                             <input type="password" class="form-control" name="pass">
                                         </div>
                                         <hr>
-                                        <!-- <span>비밀번호 확인</span><br><input type="password" name="pass" placeholder="비밀번호를 다시 입력하세요." /> -->
                                         <div class="form-group">
                                             <label for="recipient-name" class="control-label"><span id="red">*</span>비밀번호 확인</label>
                                             <span id='warnpasscheck'></span>
@@ -169,83 +178,7 @@
 			        </div>
 			       </div>
 			      </div>
-			           <!-- 행동전문가 회원가입 Modal -->
-						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">행동전문가 회원가입</h4>
-									</div>
-									<div class="modal-body">
-										<div id="tabs">
-											<ul style="border: 1px solid #dddddd; background: none;">
-												<li><a href="#tabs-1">행동전문가 회원가입</a></li>
-												<li><a href="#tabs-2">경력 및 기타 사항</a></li>
-											</ul>
-											<div id="tabs-1">
-												<div class="abs_signup">
-													<h1>행동전문가 회원가입</h1>
-													<hr>
-													<div id="pro">
-														<div id="poto">
-															<span>프로필 사진</span><br> <input id="file" type="file" name="profile" accept=".gif, .jpg, .png" />
-															<div class="img_wrap">
-																<label for="image1"> <img id="img" />
-																</label>
-															</div>
-														</div>
-														<hr>
-														<span>이름 : </span><input type="text" name="username" placeholder="이름" />
-														<hr>
-														<span>아이디 : </span><input type="text" name="id" placeholder="아이디를 입력하세요.">
-														<hr>
-														<span>비밀번호 : </span><input type="password" name="password" placeholder="비밀번호" />
-														<hr>
-														<span>비밀번호 확인 : </span><input type="password" name="password2" placeholder="비밀번호 확인" />
-														<hr>
-														<span>E-mail : </span><input type="text" id="email2" name="email" placeholder="E-mail" /> <span class="input-group-btn">
-															<button id="sendMail" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>
-														</span>
-														<hr>
-														<span>인사말 : </span>
-														<textarea rows="8" cols="80" placeholder="인사말을 적어주세요." value=""></textarea>
-														<hr>
-														<div style="clear: both;"></div>
-														<span id="animal">담당 반려동물 : <select id="catdog">
-																<option value="0">선택</option>
-																<option value="1">개</option>
-																<option value="2">고양이</option>
-																<option value="3">ALL</option>
-														</select></span>
-													</div>
-												</div>
-											</div>
-											<div id="tabs-2">
-												<span id="car">경력 :</span> <input type="date" name="career1" id="career1" /> <span id="car2">~ </span><input type="date" name="career2" id="career2" />
-												<button type="button" id="combtn"
-													class="btn pull-right btn-success">추가</button>
-												<hr>
-												<span>상세경력 : </span>
-												<textarea rows="8" cols="80" placeholder="업무내용을 적어주세요." value=""></textarea>
-												<hr>
-												<div class="file_input">
-													<label> 자격증 첨부 : <input type="file" onchange="javascript:document.getElementById('file_route').value=this.value">
-													</label> <input type="text" readonly="readonly" title="File Route" id="file_route">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-										<button type="button" class="btn btn-primary">가입하기</button>
-									</div>
-								</div>
-							</div>
-						</div>
-	<div class="modal fade" id="certify">
+			<div class="modal fade" id="certify">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -267,7 +200,110 @@
 			</div>
 		</div>
 	</div> 
-      
+    
+			       
+	<!-- 행동전문가 회원가입 Modal -->
+						 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					        <div class="modal-dialog">
+					            <div class="modal-content">
+					                <div class="modal-header">
+					                    <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+					                        <span aria-hidden="true">&times;</span>
+					                    </button>
+					                    <h4 class="modal-title" id="myModalLabel">행동전문가</h4>
+					                </div>
+					      <form name="absignup" enctype="multipart/form-data" method="post" action="<c:url value="/member/absignup.mn"/>">
+					                <div class="modal-body">
+					                    <div id="tabs">
+					                        <ul style="border: 1px solid #dddddd; background: none;">
+					                            <li><a href="#tabs-1">행동전문가 회원가입</a></li>
+					                            <li><a href="#tabs-2">경력 및 기타 사항</a></li>
+					                        </ul>
+					                        <div id="tabs-1">
+					                            <div class="abs_signup">
+					                                <div id="pro2">
+					                                    <div id="poto2">
+					                                        <span>프로필 사진</span><br> <input id="file2" type="file" name="profile" accept=".gif, .jpg, .png" />
+					                                        <div class="img_wrap">
+					                                            <label for="image1"> 
+					                                            	<img id="img2" />
+					                                            </label>
+					                                        </div>
+					                                    </div>
+					                                    <hr>
+					                                    <input type="hidden" name="type" value="2" />
+					                                    <div class="form-group">
+					                                            <label for="recipient-name" class="control-label" id="name2"><span id="red2">*</span>이름</label>
+					                                            <span id='warnname2'></span>
+					                                            <input type="text" class="form-control" name="name" id="absname">
+					                                    </div>
+					                                    <hr>
+					                                    <div class="form-group">
+					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>아이디</label>
+					                                            <span id='warnid2'></span>
+					                                            <input type="text" class="form-control" name="id" id="absid">
+					                                    </div>
+					                                    <hr>
+					                                    <div class="form-group">
+					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>비밀번호</label>
+					                                            <span id='warnpass2'></span>
+					                                            <input type="password" class="form-control" name="pass" id="abspass">
+					                                    </div>
+					                                    <hr>
+					                                    <div class="form-group">
+					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>비밀번호 확인</label>
+					                                            <span id='warnpasscheck2'></span>
+					                                            <input type="password" class="form-control" name="passcheck" id="abspasscheck">
+					                                    </div>
+					                                    <hr>
+					                                    <div class="row" id="ckNameMsg2"></div>
+					                                    <div class="form-group">
+					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>E-mail</label>
+					                                            <span id='warnemail2'></span><br>
+					                                                <input id="email2" type="text" class="form-control" name="email" placeholder="이메일">                     
+					                                                <button id="sendMail2" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+					                                            <span class="input-group-btn"></span>
+					                                    </div>
+					                                    <hr>
+					                                    <label for="recipient-name" class="control-label"><span id="red2">*</span>인사말</label>
+					                                    <span id='warngree'></span>
+					                                    <textarea rows="8" cols="70" placeholder="인사말을 적어주세요." value="" name="greetings"></textarea>
+					                                    <hr>
+					                                    <span id="animal">담당 반려동물 : <select id="catdog2" name="category">
+					                                            <option value="0">선택</option>
+					                                            <option value="1">개</option>
+					                                            <option value="2">고양이</option>
+					                                            <option value="3">ALL</option>
+					                                    </select></span>
+					                                </div>
+					                            </div>
+					                            
+					                        </div>
+					                        <div id="tabs-2">
+					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
+					                            <button type="button" id="combtn"
+					                                class="btn pull-right btn-success">추가</button>
+					                            <hr>
+					                            <span>상세경력 : </span>
+					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>
+					                            <hr>
+					                            <div class="file_input">
+					                                <label> 자격증 첨부 : <input type="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+					                                </label> <input id="lifile" type="file" name="lifile" />
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+										<button type="button" class="btn btn-primary" id="newmember2">가입하기</button>
+									</div>
+								</form>
+							  </div>
+							</div>
+						</div>
+						
+<c:import url="loginJS.jsp" />     
 <c:import url="signupJS.jsp" />
 <script>
 $( function() {
@@ -321,7 +357,7 @@ $( function() {
 				}
 			});
 		</script>
-  <script>
+<!--   <script>
   $("input[name='name']").blur(function(){
   	//console.log($(this).val())
   	//alert($(this).val().length)
@@ -359,8 +395,8 @@ $( function() {
   }) //id 유효성에 따른 경고창
 
   $("input[name='passcheck']").blur(function(){
-  	let form = document.signup;
-  	if(form.pass.value != form.passcheck.value) {
+  	var form = document.signup;
+  	if(form.pass.value() != form.passcheck.value()) {
   		$("span#warnpasscheck").text("입력된 패스워드가 서로 다릅니다.")
   		form.passcheck.value ="";
   		form.pass.focus();
@@ -374,8 +410,8 @@ $( function() {
   })
 
   $("button#newmember1").click(function(){
-  	let f = document.signup;
-  	if(f.name.value==""){
+  	var f = document.signup;
+  	if(f.name.value()==""){
           alert("이름을 입력하세요")
           f.name.focus()
           return;
@@ -434,6 +470,6 @@ $( function() {
     let regx = /[^\w]/;
     return !regx.test(emailId);   // 유효하면 true반환
   }
-  </script>
+  </script> -->
 </body>
 </html>

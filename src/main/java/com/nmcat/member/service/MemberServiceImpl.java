@@ -7,6 +7,8 @@ import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
@@ -109,6 +111,27 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updqteScore(String id) {
 		mapper.updateScore(id);
+	}
+	
+	// 경력
+	@Override
+	public void insertCaree(Career career) {
+		mapper.insertCaree(career);
+		
+	}
+	
+	// 행동전문가 회원가입
+	@Override
+	public void absup(Member member) {
+		mapper.insertabsMemberfile(member);
+		
+	}
+	
+	// 자격증
+	@Override
+	public void license(License license) {
+		mapper.insertLicense(license);
+		
 	}
 
 }

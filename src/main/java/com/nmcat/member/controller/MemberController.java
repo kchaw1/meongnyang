@@ -1,7 +1,6 @@
 package com.nmcat.member.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.member.service.MemberService;
+import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
 
@@ -28,7 +29,6 @@ public class MemberController {
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) throws Exception {
-		
 		MultipartFile profile = member.getProfile();
 	      String uploadPath = "c:/app/upload";
 	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
@@ -54,11 +54,72 @@ public class MemberController {
 	            uploadFile.mkdirs();
 	         }
 	         profile.transferTo(uploadFile);
-		
+	         
 		service.signup(member);
 		return "redirect:/member/login.mn";
 		
-	} // 회원가입
+	} // 반려인 회원가입
+	
+	@RequestMapping("/absignup.mn")
+	public String absup(Member member, Career career, License license) throws Exception {
+		MultipartFile profile = member.getProfile();
+	      String uploadPath = "c:/app/upload";
+	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+	      String datePath = sdf.format(new Date());
+	      
+	      String fileExtension ="";
+	      String fileSysName = "";
+	         
+	         String newName = UUID.randomUUID().toString();
+	         newName = newName.replace("-", "");
+	         
+	         
+	         fileExtension = getExtension(profile.getOriginalFilename());
+	         fileSysName = newName + "." + fileExtension;
+	         
+	         member.setImageOriName(profile.getOriginalFilename());
+	         member.setImageName(fileSysName);
+	         member.setImagePath(datePath);
+	         member.setImageSize((int)profile.getSize());
+	       
+	         File uploadFile = new File(uploadPath + datePath, fileSysName);
+	         if(uploadFile.exists() == false) {
+	            uploadFile.mkdirs();
+	         } 
+	        /* profile.transferTo(uploadFile);
+	         
+	         MultipartFile lifile = license.getLifile();
+		      String liuploadPath = "c:/app/license";
+		      SimpleDateFormat lisdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+		      String lidatePath = sdf.format(new Date());
+		      
+		      String lifileExtension ="";
+		      String lifileSysName = "";
+		         
+		         String linewName = UUID.randomUUID().toString();
+		         newName = newName.replace("-", "");
+		         
+		         
+		         fileExtension = getExtension(profile.getOriginalFilename());
+		         fileSysName = newName + "." + fileExtension;
+		         
+		         member.setImageOriName(profile.getOriginalFilename());
+		         member.setImageName(fileSysName);
+		         member.setImagePath(datePath);
+		         member.setImageSize((int)profile.getSize());
+		       
+		         File liuploadFile = new File(uploadPath + datePath, fileSysName);
+		         if(uploadFile.exists() == false) {
+		            uploadFile.mkdirs();
+		         } 
+		         profile.transferTo(uploadFile);*/
+	         
+	    service.license(license);
+	    service.insertCaree(career);
+		service.absup(member);
+		return "redirect:/member/login.mn";
+		
+	} // 행동전문가 회원가입
 	
 	@PostMapping("/checkid.mn")
 	@ResponseBody

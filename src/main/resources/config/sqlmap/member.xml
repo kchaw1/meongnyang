@@ -13,11 +13,33 @@
 		<result column="image_size" property="imageSize"/>
 		<result column="score" property="score"/>
 		<result column="image_ori_name" property="imageOriName"/>
+		<result column="type" property="type"/>
+		<result column="greetings" property="greetings" />
 	</resultMap>
-
+	
+	<!-- 경력 컬럼 -->
+	<resultMap id="careerMap" type="Career">
+		<result column="career_no" property="careerNo"/>
+		<result column="career_start" property="careerStart"/>
+		<result column="career_end" property="careerEnd"/>
+		<result column="career_content" property="careerContent"/>
+		<result column="id" property="id"/>
+	</resultMap>
+	
+	<!-- 자격증 -->
+	<resultMap id="licenseMap" type="license">
+		<result column="license_no" property="licenseNo"/>
+		<result column="id" property="id"/>
+		<result column="lif_sys_name" property="lifSysName"/>
+		<result column="lif_path" property="lifPath"/>
+		<result column="lif_ori_name" property="lifOriName"/>
+		<result column="lif_size" property="lifSize"/>
+	</resultMap>
+	
+	<!-- 반려인 -->
 	<insert id="insertNewMemberNofile" parameterType="Member">
 		insert into mn_member (
-			id, name, pass, email, image_name, image_path, image_size, category, image_ori_name
+			id, name, pass, email, image_name, image_path, image_size, category, image_ori_name, type
 			) values (
 				#{id}, 
 				#{name}, 
@@ -27,8 +49,28 @@
 				#{imagePath},
 				#{imageSize},
 				#{category},
-				#{imageOriName}
+				#{imageOriName},
+				#{type}
 			)
+	</insert>
+	
+	<!-- 행동전문가  -->
+	<insert id="insertabsMemberfile" parameterType="Member">
+		insert into mn_member (
+			id, name, pass, email, image_name, image_path, image_size, category, image_ori_name, type, greetings
+		) values (
+			#{id},
+			#{name},
+			#{pass},
+			#{email},
+			#{imageName},
+			#{imagePath},
+			#{imageSize},
+			#{category},
+			#{imageOriName},
+			#{type},
+			#{greetings}
+		)
 	</insert>
 	
 	<select id="selectMemeberIdandPass" parameterType="Login" resultMap="memberMap">
@@ -51,4 +93,17 @@
 			where id = #{id}
 	</update>
 	
+	<!-- 경력 입력 -->
+	<insert id="insertCaree" parameterType="Career">
+		insert into mn_member_career (
+		id, career_start, career_end, career_content
+		) values(#{id}, #{careerStart}, #{careerEnd}, #{careerContent})
+	</insert>
+	
+	<!-- 자격증 첨부 -->
+	<insert id="insertLicense" parameterType="License">
+		insert into mn_member_license (
+			id, lif_sys_name, lif_path, lif_ori_name, lif_size		
+		) values(#{id}, #{lifSysName}, #{lifPath}, #{lifOriName}, #{lifSize})
+	</insert>
 </mapper>
