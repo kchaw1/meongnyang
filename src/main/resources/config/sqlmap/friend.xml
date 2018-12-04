@@ -11,6 +11,7 @@
 		<result column="image_name" property="imageName"/>
 		<result column="image_path" property="imagePath"/>
 		<result column="image_size" property="imageSize"/>
+		<result column="grade_name" property="gradeName"/>
 	</resultMap>
 	
 	<select id="selectAllMembersOnePage" parameterType="int" resultMap="memberMap">
@@ -21,9 +22,12 @@
 	</select>
 	
 	<select id="selectAllMembersOneLine" parameterType="int" resultMap="memberMap">
-		select * from mn_member
-		 where type='1'
-		 order by name desc
+		select m.* , c.code_name grade_name
+		  from mn_member m
+		  inner join mn_code c
+			 on m.grade_no = c.each_code
+		  where type= '1'
+		  order by id desc
 		 limit #{lineBegin}, 4
 	</select>
 	
@@ -104,7 +108,10 @@
 	</select>
 	
 	<select id="selectFriendInfoByIdList" parameterType="Member" resultMap="memberMap">
-		select * from mn_member
+		select m.* , c.code_name grade_name
+		  from mn_member m
+		  inner join mn_code c
+			 on m.grade_no = c.each_code
 		  where id in <foreach item ="friendId" collection="FriendIdList"
      	 						open="(" separator="," close=")">
      	 					#{friendId}
