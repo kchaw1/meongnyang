@@ -87,12 +87,14 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public Map<String, Object> absBoardDetail(int absNo) {
+	public Map<String, Object> absBoardDetail(int absNo, int no) {
 		absMapper.AbsBoardViewCnt(absNo);
 		Map<String, Object> map = new HashMap<>();
 		
 		QnABoard board = absMapper.selectAbsBoardByNo(absNo);
 	
+		Abs detail = absMapper.selectAbsDetail(no);
+		map.put("a", detail);
 		map.put("b", board);
 		
 		

@@ -14,6 +14,10 @@
 		<result column="greetings" property="greetings" />
 		<result column="auth_state" property="authState" />
 		<result column="point" property="point" />
+		<result column="image_name" property="imageName" />
+		<result column="image_size" property="imageSize" />
+		<result column="image_ori_name" property="imageOriName" />
+		
 		
 	</resultMap>
 	<resultMap id="qnaMap" type="QnABoard">

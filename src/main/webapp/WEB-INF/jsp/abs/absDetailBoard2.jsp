@@ -27,8 +27,10 @@
         <meta name="viewport" content="width=device-width, user-scalable=no">
         
         <header style="nav-index: 100;">
-          <div class="hero">
-            <div class="hamb-wrap">
+		<div class="hero" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%),url(<c:url value='/common/download.mn?sysName=${map.a.imageName}&path=${map.a.imagePath}&oriName=${map.a.imageOriName}'/>);
+          background-size: cover;
+  		  background-position: center;">            
+  		  <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
             <p class="logo">${map.a.name}</p>

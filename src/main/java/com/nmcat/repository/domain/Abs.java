@@ -13,8 +13,39 @@ public class Abs {
 	private String authState;
 	private int point;
 	
+	private String url;
+	private String imageName;
+	private int imageSize;
+	private String imageOriName;
 	
 	
+	
+	
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getImageName() {
+		return imageName;
+	}
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+	public int getImageSize() {
+		return imageSize;
+	}
+	public void setImageSize(int imageSize) {
+		this.imageSize = imageSize;
+	}
+	public String getImageOriName() {
+		return imageOriName;
+	}
+	public void setImageOriName(String imageOriName) {
+		this.imageOriName = imageOriName;
+	}
 	public int getPoint() {
 		return point;
 	}

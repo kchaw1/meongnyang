@@ -23,15 +23,23 @@
 <body>
 <c:import url="../common/header.jsp" />
  <div class="slide--parent">
- 
+
     <c:forEach var="b" items="${map.list}">
         <div class="parent--el">
           <div class="two--col">
             <div class="is-item has--img">
-              <figure class="the-img">
-	            <img src="<c:url value='/common/download.mn?sysName=${b.imageName}&path=${b.imagePath}&oriName=${b.imageOriName}'/>" />
-                <!-- <img src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt=""> -->
-              </figure>
+            <c:choose>
+            	<c:when test="${b.imageSize!='0'}">
+              	<figure class="the-img">              	
+               		<img src="<c:url value='/common/download.mn?sysName=${b.imageName}&path=${b.imagePath}&oriName=${b.imageOriName}'/>" alt="">
+              	</figure>
+            	</c:when>
+            	<c:otherwise>
+            	<figure class="the-img">              	
+               		<img src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="">
+              	</figure>
+            	</c:otherwise>
+            </c:choose>
             </div>
             <div class="is-item has--content">
               <div class="is-item--inner">

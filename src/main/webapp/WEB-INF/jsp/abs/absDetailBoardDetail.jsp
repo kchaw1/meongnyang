@@ -26,21 +26,23 @@
         <meta name="viewport" content="width=device-width, user-scalable=no">
         
         <header style="nav-index: 100;">
-          <div class="hero">
+          <div class="hero" style="background:linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%),url(<c:url value='/common/download.mn?sysName=${map.a.imageName}&path=${map.a.imagePath}&oriName=${map.a.imageOriName}'/>);
+          background-size: cover;
+  		  background-position: center;">
             <div class="hamb-wrap">
               <div class="hamb"></div>
             </div>
-            <p class="logo"></p>
+            <p class="logo">${map.a.name}</p>
             <nav>
               <ul>
                 <li>
-                  <a href="absDetail.mn?no=${map.b.no}">경력 및 인사말</a>
+                  <a href="absDetail.mn?no=${map.a.no}">경력 및 인사말</a>
                 </li>
                 <li>
                   <a href="#">1:1 화상채팅하기</a>
                 </li>
                 <li>
-                  <a href="absDetailBoard.mn?no=${map.b.no}">질문게시판</a>
+                  <a href="absDetailBoard.mn?no=${map.a.no}">질문게시판</a>
                 </li>
               </ul>
             </nav>

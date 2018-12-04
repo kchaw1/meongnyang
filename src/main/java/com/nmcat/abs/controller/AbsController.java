@@ -111,8 +111,12 @@ public class AbsController {
 	
 	//행동전문가 질문게시판 질문 상세
 	@RequestMapping("/absDetailBoardDetail.mn")
-	public void absDetailBoardDetail(int absNo, Model model) {
-		model.addAttribute("map", absService.absBoardDetail(absNo));
+	public void absDetailBoardDetail(int absNo, Model model, Abs abs, int no) {
+		abs.setImageName(abs.getImageName());
+		abs.setImageOriName(abs.getImageOriName());
+		abs.setImagePath(abs.getImagePath());
+		
+		model.addAttribute("map", absService.absBoardDetail(absNo,no));
 	}
 	
 	//게시글 삭제!!!!!!
