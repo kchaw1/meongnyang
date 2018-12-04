@@ -60,7 +60,7 @@ public class CrowdController {
         setEndDay(crowd);
 		
 		service.write(crowd);
-		return "redirect:writeForm.mn";
+		return "redirect:list.mn";
 	}
 	
 	// 크라우드펀딩 리스트 이동
