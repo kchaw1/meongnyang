@@ -299,6 +299,7 @@ border-radius: 4px;
 						<div class="textContainer">
 							<textarea name="comContent" id="summernote"></textarea>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -331,6 +332,9 @@ border-radius: 4px;
 					<button type = "button" class="writeBtn " id = "cancel">목록으로</button>
 				</div>
 			</div>
+			<input id="imageBoard" name="fileUrl" type="hidden"/>
+			<input id="imagesysname" name="sysName" type="hidden"/>
+			<input id="imagepath" name="path" type="hidden"/>
 </form>
 		
 	<footer class="dogcat">
@@ -346,24 +350,76 @@ border-radius: 4px;
 	<div class="chat-launcher"></div>
 	<div class="chat-wrapper" data-headline="Chat"></div>
 	</footer>
+	
+	
 	<script>
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				minwidth : 705,
-				height : 300, // set editor height
-				minHeight : null, // set minimum height of editor
-				maxHeight : null, // set maximum height of editor
-				focus : true
-			// set focus to editable area after initializing summernote
-			});
+	
+	 $(document).ready(function() {
+		$('#summernote').summernote({
+			minwidth : 705,
+			height : 300, // set editor height
+			minHeight : null, // set minimum height of editor
+			maxHeight : null, // set maximum height of editor
+			focus : true,
+			
+		// set focus to editable area after initializing summernote
 		});
-		
-		// 버튼 클릭시 글 작성
-		
-		// 버튼 클릭시 목록으로
-		$("#cancel").click(function() {
-			location.href = "communityPage.mn";
+	});  
+	
+	$(document).ready(function() {
+		$('#summernote').summernote({
+		    minwidth : 705,
+			height : 300, // set editor height
+			minHeight : null, // set minimum height of editor
+			maxHeight : null, // set maximum height of editor
+			focus : true,
+			callbacks : {
+				onImageUpload : function(files, editor, welEditable) {
+					console.log(files);
+					console.log(this);
+					for (let i = files.length - 1; i >= 0; i--) {
+						sendFile(files[i], this);
+					}
+				}
+			}
+		// callbacks
 		});
+	});
+	
+
+   function sendFile(file, ele) {
+   	var form_data = new FormData();
+   	console.log("form_data", form_data)
+   	form_data.append('file', file);
+   	$.ajax({
+   		data : form_data,
+   		type : "POST",
+   		url : "<c:url value='/community/uploadfile.mn'/>",
+   		cache : false,
+   		contentType : false,
+   		enctype : "multipart/form_data",
+   		processData : false,
+   		success : function(cFile) {
+   			console.log(cFile.url);
+   			$("input#imageBoard").val(cFile.url)
+   			$("input#imagesysname").val(cFile.comfSysName)
+   			$("input#imagepath").val(cFile.comfPath)
+   			$(ele).summernote("editor.insertImage", cFile.url);
+   		}
+   	})//ajax
+   }
+	
+
+
+	// 버튼 클릭시 글 작성
+
+	// 버튼 클릭시 목록으로
+	$("#cancel").click(function() {
+		location.href = "communityPage.mn";
+	});
+
+	
+	
 	</script>
 
 </body>

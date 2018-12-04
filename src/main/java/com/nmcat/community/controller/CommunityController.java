@@ -1,16 +1,28 @@
 package com.nmcat.community.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.nmcat.community.service.CommunityService;
+import com.nmcat.repository.domain.CFormVO;
 import com.nmcat.repository.domain.CommunityComment;
+import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 @Controller
@@ -21,8 +33,19 @@ public class CommunityController {
 	private CommunityService service;
 	
 	@RequestMapping("/communityPage.mn")
-	public void list(Model model)throws Exception{
-		model.addAttribute("list", service.selectBoard());
+	public void list() {};
+	
+	@RequestMapping("/communityPageList.mn")
+	@ResponseBody
+	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo, @RequestParam(value="searchType", defaultValue="1")String searchType)throws Exception{
+		
+		comBoard.setPageNo(pageNo);
+//		model.addAttribute("list", service.selectBoard(comBoard));
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("list", service.selectBoard(comBoard));
+		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
+		return map;
 	}
 	
 /*	public void list(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
@@ -40,8 +63,14 @@ public class CommunityController {
 		
 	}
 	@RequestMapping("/write.mn")
-	public String write(CommunityBoard comBoard)throws Exception{
-		service.insertBoard(comBoard);
+	public String write(CFormVO form, CommunityBoard comBoard, CommunityFile file)throws Exception{
+		comBoard.setComWriter(form.getComWriter());
+		comBoard.setComTitle(form.getComTitle());
+		comBoard.setComContent(form.getComContent());
+		file.setComfSysName(form.getSysName());
+		file.setComfPath(form.getPath());
+		
+		service.insertBoard(comBoard,file);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "communityPage.mn";
 	}
 	@RequestMapping("/editWriteForm.mn")
@@ -93,6 +122,64 @@ public class CommunityController {
 		return service.selectCommentCount(comNo);
 		
 	}
+	//-------------------------------파일등록
+	@PostMapping("/uploadfile.mn")
+	@ResponseBody
+	public CommunityFile uploadFile(@RequestParam("file") List<MultipartFile> attach, CommunityFile cFile) throws IllegalStateException, IOException {
+		String uploadPath = "/app/upload";
+		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+		String datePath = sdf.format(new Date());
+		
+		String newName = UUID.randomUUID().toString();
+		newName = newName.replace("-", "");
+		
+		String fileExtension ="";
+		String fileSysName = "";
+
+		/*System.out.println(attach);*/
+		
+		for(MultipartFile file : attach) {
+			if(file.isEmpty()==true) continue;
+			fileExtension = getExtension(file.getOriginalFilename());
+			fileSysName = newName + "." + fileExtension;
+/*			System.out.println(uploadPath + datePath + "/"+fileSysName);*/
+			
+			cFile.setComfSysName(fileSysName);
+			cFile.setComfPath(uploadPath + datePath);
+			
+			File img = new File(uploadPath + datePath, fileSysName);
+			
+			if(img.exists() == false) {
+				img.mkdirs();
+			}
+			file.transferTo(img);
+			//service.uploadFile(ef);
+			cFile.setUrl("http://localhost:8000"+ uploadPath + datePath +"/"+ fileSysName);
+
+		}
+		//source="org.eclipse.jst.jee.server:cityFarmer"
+		return cFile;
+	}
+	
+	 private static String getExtension(String fileName) {
+        int dotPosition = fileName.lastIndexOf('.');
+        
+        if (dotPosition != -1 && fileName.length() - 1 > dotPosition) {
+            return fileName.substring(dotPosition + 1);
+        } else {
+            return "";
+        }
+	 }
+	 
+	/* private static String getParentUrl(String fileUrl) {
+		 int dotPosi = fileUrl.lastIndexOf('/');
+		 
+		 if(dotPosi != -1 && fileUrl.length() -1 > dotPosi) {
+			 return fileUrl.substring(0,dotPosi);
+		 } else {
+			 return "";
+		 }
+	 }*/
 	
 	
 	

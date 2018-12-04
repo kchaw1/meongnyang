@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.ComSearchVO;
 import com.nmcat.repository.domain.CommunityComment;
+import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 
@@ -16,8 +18,8 @@ public class CommunityServiceImpl implements CommunityService{
 	
 	//Ŀ�´�Ƽ CRUD
 	@Override
-	public List<CommunityBoard> selectBoard() {
-		return mapper.selectBoard();
+	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
+		return mapper.selectBoard(comBoard);
 	}
 
 	/*@Override
@@ -31,8 +33,16 @@ public class CommunityServiceImpl implements CommunityService{
 	}
 
 	@Override
-	public void insertBoard(CommunityBoard comBoard) {
+	public void insertBoard(CommunityBoard comBoard, CommunityFile file) {
 		mapper.insertBoard(comBoard);
+		file.setComNo(comBoard.getComNo());
+		mapper.insertBoardFile(file);
+	}
+	
+
+	@Override
+	public void insertBoardFile(CommunityFile file) {
+		mapper.insertBoardFile(file);
 		
 	}
 

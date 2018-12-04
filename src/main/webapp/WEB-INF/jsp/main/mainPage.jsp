@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/community/mainPage.css"/>">
 <c:import url="../common/headerfooterCSSJS.jsp"/>
 
-<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"

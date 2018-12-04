@@ -25,6 +25,11 @@
 <!-- 부트스트랩 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- sweetAlert -->
+
+<script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
+
 
 </head>
 <style>
@@ -257,7 +262,7 @@ z-index: -1;
                         <div class ="commentWriter"></div>
                         <ul class="comments" id = "comments">
                                <!-- 이곳에 댓글이 들어감 -->
-                              </ul>
+                        </ul>
                    </div>
                    
 
@@ -279,6 +284,7 @@ z-index: -1;
                             <div class = "main-column3">
                                     <div class = "imgsize2"></div>
                                     <div class = "goWrite">작성자세요?</div>
+                                
                                     <button class= "writeBtn btnEdit" id = "${communityBoard.comNo}">글 수정하기</button>
                                     <button class= "writeBtn btnDelete" id = "${communityBoard.comNo}">글 삭제하기</button>
                                 </div>
@@ -310,10 +316,7 @@ $(document).on("click",".commentBtn", function(e){
 		type : "POST",
 		data : $("#insertComment").serialize()
 	}).done(function(result){
-	
-		//이곳에 댓글 조회 실시간으로 할 수있게 함수 넣어주기!
-		
-		
+
 	});
 });
 
@@ -345,6 +348,7 @@ function commentList(){
 		
 	}).done(function(result){
 		console.log(result);
+		
 		var text = "";
 		
 		for(let i = 0; i < result.length; i++){
@@ -354,16 +358,22 @@ function commentList(){
 					+"<a href='#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Kasper'></a>"
 					+"<div class='meta'>"
 					+result[i].comcWriter+"&nbsp|&nbsp"+result[i].comcRegDate
-					+"<a class='reply'>Reply</a>"
-					+"<a class='reply' id = 'deleteComment' name = '"
+					+"<a class='reply' onclick='replyComment("
+					+result[i].comcNo
+					+")'>Reply</a>"
+					
+			if("${user.id}" == result[i].comcWriter){
+				
+			text +=	"<a class='reply' id = 'deleteComment' name = '"
 					+result[i].comcNo
 					+"'>Delete</a>"
 					+"<a class='reply "
 					+result[i].comcNo
 					+"' id = 'editComment' onclick = 'editFunction("
 					+result[i].comcNo
-					+")'>Edit</a></div>"
-					+"<div class='body'>"
+					+")'>Edit</a>"
+													}
+			text+="</div><div class='body'>"
 					+result[i].comcContent
 					+"</div></li>"
 					+"<li class='comment editForm displayNone "
@@ -384,50 +394,33 @@ function commentList(){
 					+"<a class='cancelEdit' onclick = 'editCancel("
 					+result[i].comcNo
 					+")'>수정취소</a></form>"
-					+"</li>"
-					
-					
-			/* <li class="comment">
-                 <a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>
-                  <div class="meta">박아란 | 2018.07.24 14:58 <a class="reply">Reply</a></div>
-                   <div class="body">하하하하</div>
-               </li> */
+					+"</li><li class='comment level-2 displayNone' id = 'replyForm"
+					+result[i].comcNo
+					+"'>"
+                    +"<form class = 'replyCommentForm"
+                    +result[i].comcNo
+                    +"' method = 'POST'><a href='#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Photo'></a>"
+                    +"<div><textarea class = 'reTextArea' name = 'comcContent'></textarea><button class = 'reBtn'  onclick= replyFunction("
+                    +result[i].comcNo
+                    +")>등록</button>"
+                    +"<input type='hidden' name='comcWriter' value='${user.id}' />"
+                    +"<input type='hidden' name='comNo' value='"+result[i].comNo+"'/>"
+                    +"</div>"
+                    +"<a class='cancelReply' onclick= 'cancelReply("
+                    +result[i].comcNo
+                    +")'>답글취소</a>"
+                  	+"</li></form>"
+
+                  	
 		}
 		$("#comments").html(text);
-		
-	/* 	
-		$(document).on("click", "#editComment",console.log($(this).parent("id")),function(){
-			// .body의 값을 넣어줌 그런데 모든 editComment란 아이디를 가진 값들이 다 선택된다..
-			var text = $(this).parent().siblings(".body").text();
-	        $(this).parent().parent().addClass("displayNone");
-	        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
-	        $(".editTextArea").html(text);
-	      }); */
 
 		});
-		//댓글 수정 토글
-	/* 	$("#editComment").click(function(){
-			// .body의 값을 넣어줌 그런데 모든 editComment란 아이디를 가진 값들이 다 선택된다..
-				var text = $(this).parent().siblings(".body").text();
-		        $(this).parent().parent().addClass("displayNone");
-		        $(this).parent().parent().siblings("#editForm").removeClass("displayNone");
-		        $(".editTextArea").html(text);
-		      }); 
 
-
-		$(".cancelEdit").click(function(){
-		       console.log();
-		        $(this).parent().siblings(".comment").removeClass("displayNone");
-		        $(this).parent().addClass("displayNone");
-		 })
-		
-		
-	});
-	*/
 };
 commentList();
 commentConunt();
-
+//---------------------------------------------------------------------댓글 삭제파트!--------------------------------------------------------------
 //댓글 삭제
  $(document).on("click","#deleteComment", function(e){
 	 var comcNo = $(this).attr("name");
@@ -441,6 +434,7 @@ commentConunt();
 			commentList();
 		})
 });
+//---------------------------------------------------------------------댓글 수정파트!--------------------------------------------------------------
 //댓글 수정
 function editBtn(comment_no){
 	
@@ -473,24 +467,79 @@ function editFunction(comment_no){
 function editCancel(comment_no){
 	
 	$(".comment."+comment_no).removeClass("displayNone");
-	console.log($("#forC"+comment_no));
 	$("#forC"+comment_no).addClass("displayNone "+comment_no);
 /* 	$(".editForm.displayNone."+comment_no).addClass("displayNone "+comment_no); */
+}
+//---------------------------------------------------------------------대댓글 파트!--------------------------------------------------------------
+//대댓글 등록
+
+ function replyFunction(comment_no){
+	$.ajax({
+		url : "<c:url value = '/community/insertComment.mn'/>",
+		type : "POST",
+		data : $(".replyCommentForm"+comment_no).serialize()
+	}).done(function(result){
+		
+		commentList();
+	});
+}
+
+
+//대댓글 reply 클릭시 폼형태 띄우기
+function replyComment(comment_no){
+	//reply를 누르면 .comment level-2 form이 뜬다.(displayNone클래스가 지워져야함)
+	$("#replyForm"+comment_no).removeClass("displayNone");
+
+	
+}
+//대댓글 reply 폼형태 나와있는 상태에서 답글 취소를 누르면 사라지게 하기.
+function cancelReply(comment_no){
+	$("#replyForm"+comment_no).addClass("displayNone");
 }
 
 
 
-
+//-------------------------------------------------------------게시글 삭제와 글수정 파트!--------------------------------------------------------------
 //클릭시 글 삭제
 $("button.btnDelete").click(function() {
 	var no = $(this).attr('id');
+	if('${communityBoard.comWriter}'!='${user.id}'){
+		swal({
+			  type: 'error',
+			  title: '삡..작성자만 수정 가능해요..',
+			  showConfirmButton: false,
+			  timer: 1500
+		})
+		return;	
+	}else{
+		swal({
+			  type: 'success',
+			  title: '삭제 완료!',
+			  showConfirmButton: false,
+			  timer: 2000
+			  })
+	setTimeout(function() {
+							location.href = "delete.mn?comNo="+no;
+							}, 1000);
+			  /* location.href = "delete.mn?comNo="+no; */
+	}
 	
-	location.href = "delete.mn?comNo="+no;
 	
 });
 //클릭시 글 수정
 $("button.btnEdit").click(function() {
 	var no = $(this).attr('id');
+	if('${communityBoard.comWriter}'!='${user.id}'){
+		swal({
+			  type: 'error',
+			  title: '삡..작성자만 삭제 가능해요..',
+			  showConfirmButton: false,
+			  timer: 1500
+		})
+		return;	
+	}
+	
+	
 	location.href = "editWriteForm.mn?comNo="+no;
 });
 </script>
