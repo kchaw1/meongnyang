@@ -44,6 +44,7 @@
             <li>토</li>
           </ul>
         </div>
+        <hr>
         <div class="date">
           
         </div>

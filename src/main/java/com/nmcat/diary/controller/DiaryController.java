@@ -26,7 +26,7 @@ public class DiaryController {
 	public Map<String, Object> writeNewDiary (DiaryBoard diary) {
 //		System.out.println(diary);
 		diary.setDrRegDateTime(new Date());
-		diary.setDrWriter("victory");
+//		diary.setDrWriter("victory");
 		//System.out.println(diary);
 		service.writeNewDiary(diary);
 		String yearmonth = diary.getDrDate().substring(0,6);

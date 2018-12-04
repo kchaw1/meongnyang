@@ -5,7 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
 	var now = new Date();
-	var today = now.getFullYear()+""+(now.getMonth()+1)+""+now.getDate();
+	var updatedDate = now.getDate();
+	if(updatedDate < 10) {
+		updatedDate = "0" + updatedDate;
+	}
+	var today = now.getFullYear()+""+(now.getMonth()+1)+""+updatedDate;
 	var year, month, date;
 	var days = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
 	
@@ -21,7 +25,7 @@
 	  });
 
 	  $("input[name='drDate']").val(now.getFullYear()+"."+(now.getMonth()+1)+"."+now.getDate())
-	  
+	  console.log(today)
 	  $.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
@@ -66,7 +70,7 @@
 	  }
 	  let yearMonth = year + "" + month ;
 	  let pointdate = 0;
-	  var str = "<table>";
+	  var str = "<table class='calendar'>";
 	  for(let r=0; r<weekNo; r++){
 	    str += "<tr class='week"+(r+1)+"'>";
 	    for(let col=0; col<7; col++){

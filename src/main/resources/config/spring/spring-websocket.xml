@@ -15,6 +15,7 @@
 
 	<websocket:handlers>
 	    <websocket:mapping handler="alarm" path="/alarm.mn" />
+	    <websocket:mapping handler="facechat" path="/facechat.mn" />
 	    <!-- <websocket:mapping handler="test02" path="/test02.do" />
 	    <websocket:mapping handler="test03" path="/test03.do" />
 	    <websocket:mapping handler="chat" path="/chat.do" />
