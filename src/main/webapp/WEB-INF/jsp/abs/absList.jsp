@@ -29,7 +29,8 @@
           <div class="two--col">
             <div class="is-item has--img">
               <figure class="the-img">
-                <img src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="">
+	            <img src="<c:url value='/common/download.mn?sysName=${b.imageName}&path=${b.imagePath}&oriName=${b.imageOriName}'/>" />
+                <!-- <img src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt=""> -->
               </figure>
             </div>
             <div class="is-item has--content">
