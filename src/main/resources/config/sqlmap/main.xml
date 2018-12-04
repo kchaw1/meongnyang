@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.MainMapper">
+<!-- 커뮤니티 -->
 <resultMap id="comMap" type="CommunityBoard">
 		<result column="com_no" property="comNo" />
 		<result column="com_title" property="comTitle" />
@@ -12,6 +13,27 @@
 		<result column="com_view_cnt" property="comViewCnt" />
 		<result column="com_reg_date" property="comRegDate" />
 </resultMap>
+<!-- 크라우드 펀딩
+<resultMap id="crowdMap" type="Crowd">
+		<result column="cr_no" property="crNo" />
+		<result column="cr_writer" property="crWriter" />
+		<result column="cr_title" property="crTitle" />
+		<result column="cr_content" property="crContent" />
+		<result column="cr_now_money" property="crNowMoney" />
+		<result column="cr_goal_money" property="crGoalMoney" />
+		<result column="cr_start_day" property="crStartDay" />		
+		<result column="cr_end_day" property="crEndDay" />
+		<result column="cr_like_cnt" property="crLikeCnt" />
+		<result column="cr_reg_date" property="crRegDate" />
+		<result column="cr_view_cnt" property="crViewCnt" />
+		<result column="cr_file_name" property="crFileName" />
+		<result column="cr_file_path" property="crFilePath" />
+		<result column="cr_file_ori_name" property="crFileOriName" />
+		<result column="cr_end_yn" property="crEndYN" />
+</resultMap> -->
+
+
+
 <select id = "selectComBoardRegDate" resultMap = "comMap">
 select *
 from mn_com order by com_no desc limit 0, 5

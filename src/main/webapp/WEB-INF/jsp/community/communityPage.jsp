@@ -19,7 +19,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <style>
@@ -65,8 +66,9 @@ float: left;
 width: 650px;
 height: 100%;
 padding-left: 34.2%;
+
 }
-.bubbly-button {
+#bubbly-button {
 font-size: 16px;
       font-family: Do Hyeon;
   text-align: center;
@@ -86,10 +88,10 @@ font-size: 16px;
   box-shadow: 0 2px 25px  rgb(65, 192, 142, 0.7);
   font-weight: 500;
 }
-.bubbly-button:focus {
+#bubbly-button:focus {
   outline: 0;
 }
-.bubbly-button:before, .bubbly-button:after {
+#bubbly-button:before, .bubbly-button:after {
   position: absolute;
   content: '';
   display: block;
@@ -100,31 +102,34 @@ font-size: 16px;
   transition: all ease-in-out 0.5s;
   background-repeat: no-repeat;
 }
-.bubbly-button:before {
+#bubbly-button:before {
   display: none;
   top: -75%;
   background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
   background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
 }
-.bubbly-button:after {
+#bubbly-button:after {
   display: none;
   bottom: -75%;
   background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
   background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
 }
-.bubbly-button:active {
+#bubbly-button:active {
   transform: scale(0.9);
   background-color: rgb(65, 192, 142, 0.7);
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
 }
-.bubbly-button.animate:before {
+#bubbly-button.animate:before {
   display: block;
   animation: topBubbles ease-in-out 0.75s forwards;
 }
-.bubbly-button.animate:after {
+#bubbly-button.animate:after {
   display: block;
   animation: bottomBubbles ease-in-out 0.75s forwards;
 }
+
+
+
 
 
 </style>
@@ -158,23 +163,27 @@ font-size: 16px;
                 <div class = "putSomething">
                         <h1 class = "decoration2">카테고리</h1>
                     <div class="select">
-                        <form action = "<c:url value='/community/communityPageList.mn'/>" method = "POST">
-                        <select name="searchType" id="slct">
-                               		<option value="1">전체보기</option>
-									<option value="2">자유게시판</option>
-									<option value="3">꿀팁</option>
-									<option value="4">갤러리</option>
-									<option value="5">QnA</option>
-                              </select>
-                         </form>
+
+                        <select name="searchType" id="slct" onchange = "categoryFunction(this.value)">
+                        			<option class = "all"  id = "1" value="전체보기" >전체보기</option>
+									<option class = "free" id = "2" value="자유게시판" >자유게시판</option>
+									<option class = "tip"  id = "3" value="꿀팁" >꿀팁</option>
+									<option class = "pic"  id = "4" value="갤러리" >갤러리</option>
+									<option class = "qna"  id = "5" value="QnA" >QnA</option>
+                               		
+                         </select>
+
+                    
+
                     </div>
+        
                 </div>
                 <!-- 낭만 코양이 푸터 -->
                 <div class = "mnFooter">
                     <div>Copyright ⓒ 낭만코양이 All rights reserved.<br>
                            with AR, CW, HK, SY, BG
                     </div>
-                    <div class = "showMore"><button class="bubbly-button">더보기</button></div>
+                    <div class = "showMore"><button class="forAll" id = "bubbly-button">더보기</button></div>
                 </div>
                 
 
@@ -182,23 +191,51 @@ font-size: 16px;
 	
 <script>
 //---------------------------------------------------------------------------------------------------------------
+// 처음 커뮤니티페이지 뜰때 
 
+ $(document).ready(function(){
+	
+	nextList(1);
+
+}); 
+
+
+//전역변수- 처음 화면을위해서!
 var pageNo = 2;
+var comCategory =  $("#slct option:selected").val();
+console.log(comCategory);
 
-$(document).ready(function(){
-	nextList(2);
+  
+$(".forCa").click(function(){
+	//카테고리를 위한 버튼
+	  console.log(comCategory);
+	  console.log("카테고리들을 위한 버튼");
+	  ++pageNo;
+	  categoryFunction(comCategory);
+
 });
-	$(".bubbly-button").click(function(){
-		++pageNo;
-		nextList(pageNo);
-	});
-var nextList = function(pageNo){
+
+
+$(".forAll").click(function(){
+	//전체보기를 위한 버튼
+	console.log("전체보기를 위한 버튼");
+	++pageNo;
+	nextList(pageNo);
+
+});
+
+
+
+
+
+
+ var nextList = function(pageNo){
+
 	$.ajax({
 		url : "<c:url value = '/community/communityPageList.mn'/>",
 		type : "POST",
 		data : "pageNo="+pageNo
 	}).done(function(result){
-		
 		
 		console.log(result);
 		var text = "";
@@ -234,11 +271,152 @@ var nextList = function(pageNo){
               
 		}
 		$(".mainContainer").append(text);
+		//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
+		$(".mid").click(function() {
+			var no = $(this).attr('id');
+			location.href = "detailPage.mn?comNo="+no;
+									});
 	})
+
+}; 
+//------------------------------------------------카테고리 ----------------------------------------------------
+
+ function categoryFunction(comCategory){
+	//더보기를 누를경우 nextList(pageNo) 이함수가 실행되며 communityPageList.mn로 가게된다.()
+	//그래서 다른 카테고리를 선택해도 전체보기의 게시글들이 뜨게된다! 구별해주기위해 아래의 if문을 사용한 것이다.(버튼의 클래스를 다르게하여 보내주는 URL을 다르게!)
+ 	if(comCategory != "전체보기"){
+		$("#bubbly-button").removeClass("forAll");
+		$("#bubbly-button").addClass("forCa");
+		
+ 	 
+	}else{
+		$("#bubbly-button").removeClass("forCa");
+		$("#bubbly-button").addClass("forAll");
+ 		
+	}
+	
+
+
+
+	//pageNo의 값을 1 리셋시켜야한다!
+	pageNo = 1;
+	if(comCategory == "전체보기" || comCategory == null){
+		
+		
+		console.log("전체보기!")
+			$.ajax({
+		url : "<c:url value = '/community/communityPageList.mn'/>",
+		type : "POST",
+		data : "pageNo="+pageNo
+	}).done(function(result){
+		
+		console.log(result);
+		var text = "";
+		for(let i = 0; i < result.list.length; i++){
+		text+=  "<div class = 'contentsContainer'>"
+        		+"<div class = 'left'>"
+        		+"<div class = 'contentContainer'>"
+           		+"<div class = 'top'>"
+              	+"<div class = 'locationC'>"
+                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+                +"<span class = 'userName'>"
+                +result.list[i].comWriter
+                +"</span>"
+                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
+				+"<div class = 'mid' id = '"
+				+result.list[i].comNo
+				+"'>"
+                +"<div class = 'forContent'>"
+                +"<h1 class ='title'>"
+                +result.list[i].comTitle
+                +"</h1>"
+                +"<div class = 'content'>"
+                +result.list[i].comContent
+                +"</div></div>"
+                +"<div class = 'forImg'></div></div>"
+                +"<div class = 'bottom'>"
+                +"<div class = 'category'>"
+                +result.list[i].comCategory
+                +"</div>"
+                +"<div class = 'forCnt'>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
+                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
+              
+		}
+		$(".mainContainer").html(text);
+		//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
+		$(".mid").click(function() {
+			var no = $(this).attr('id');
+			location.href = "detailPage.mn?comNo="+no;
+									});
+	})
+		
+}else{
+	
+	
+		console.log("전체보기를 제외한 다른애들!")
+
+			 $.ajax({
+					url : "<c:url value = '/community/communityPageListC.mn'/>",
+					type : "POST",
+					data : "pageNo="+pageNo+"&comCategory="+comCategory
+				}).done(function(result){
+
+					console.log(result);
+					var text = "";
+					for(let i = 0; i < result.list.length; i++){
+					text+=  "<div class = 'contentsContainer'>"
+			        		+"<div class = 'left'>"
+			        		+"<div class = 'contentContainer'>"
+			           		+"<div class = 'top'>"
+			              	+"<div class = 'locationC'>"
+			                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+			                +"<span class = 'userName'>"
+			                +result.list[i].comWriter
+			                +"</span>"
+			                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
+							+"<div class = 'mid' id = '"
+							+result.list[i].comNo
+							+"'>"
+			                +"<div class = 'forContent'>"
+			                +"<h1 class ='title'>"
+			                +result.list[i].comTitle
+			                +"</h1>"
+			                +"<div class = 'content'>"
+			                +result.list[i].comContent
+			                +"</div></div>"
+			                +"<div class = 'forImg'></div></div>"
+			                +"<div class = 'bottom'>"
+			                +"<div class = 'category'>"
+			                +result.list[i].comCategory
+			                +"</div>"
+			                +"<div class = 'forCnt'>"
+			                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
+			                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
+			              
+					}
+					$(".mainContainer").html(text);
+					//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
+					$(".mid").click(function() {
+						var no = $(this).attr('id');
+						location.href = "detailPage.mn?comNo="+no;
+												});
+					
+					
+					
+	}) 
+			
+}
+	
+
+	
+	
 };
 
 
 //---------------------------------------------------------------------------------------------------------------
+
+
 
 
 //클릭시 글작성 Form
@@ -246,12 +424,16 @@ $(".writeBtn").click(function() {
 	location.href = "writeForm.mn";
 });
 //클릭시 상세 글 보기
-$(".mid").click(function() {
+/* $(".mid").click(function() {
 	var no = $(this).attr('id');
 	location.href = "detailPage.mn?comNo="+no;
 });
-
-//------------------------------------------------더보기 ----------------------------------------------------
+ */
+/*  $(".mid").on("click", function(){
+	 console.log("ehlsek!s");
+	 location.href = "detailPage.mn?comNo="+no;
+ });
+  */
 
 </script>
 

@@ -327,6 +327,7 @@ $(document).on("click",".commentBtn", function(e){
 });
 //댓글 갯수 함수
 function commentConunt(){
+	
 	$.ajax({
 		url : "<c:url value = '/community/selectCommentCount.mn'/>",
 		type :"POST",

@@ -30,6 +30,15 @@
 	<result column = "comc_reg_date" property="comcRegDate" />
 	
 </resultMap>
+<resultMap id = "comcReMap" type = "CommunityReComment">
+	<result column = "com_no" property= "comNo"/>
+	<result column = "comc_no" property= "comcNo"/>
+	<result column = "comc_reno" property= "comcReNo"/>
+	<result column = "comc_rewriter" property= "comcReWriter"/>
+	<result column = "comc_recontent" property= "comcReContent"/>
+	<result column = "comc_re_reg_date" property="comcReRegDate" />
+
+</resultMap>
 	<!-- 커뮤니티 CRUD -->
 	
 
@@ -37,28 +46,17 @@
 	<select id = "selectBoard" parameterType = "CommunityBoard" resultMap = "comMap">
 	select *
 	from mn_com
-	<choose>
-		<when test = "searchType == 1">
-		 order by com_no desc
-		</when>
-		<when test = "searchType == 2">
-		where com_category ='자유게시판'
-		 order by com_no desc
-		</when>
-		<when test = "searchType == 3">
-		where com_category ='꿀팁'
-		 order by com_no desc
-		</when>
-		<when test = "searchType == 4">
-		where com_category ='갤러리'
-		 order by com_no desc
-		</when>
-		<otherwise>
-		where com_category ='QnA'
-		 order by com_no desc
-		</otherwise>
-	</choose>
+	order by com_no desc
  	limit #{begin}, 10
+ 
+ 	
+	</select>
+	<select id = "selectBoardC" parameterType = "CommunityBoard" resultMap = "comMap">
+	select *
+	from mn_com
+	where com_category = #{comCategory}
+	order by com_no desc
+<!-- 	limit #{begin}, 10 -->
 	</select>
 	
 	<!-- 상세보기 -->
@@ -132,13 +130,47 @@
 	where comc_no = #{comcNo}
 	</update>
 	<!-- 각 게시물당 댓글 갯수 -->
-	<!-- 커뮤니티 전체 게시물의 수 -->
+
 	<select id = "selectCommentCount" parameterType = "int" resultType = "int" >
+		<!-- 게시글넘버를 where절에 이너조인써서 게시글 갯수 구하기-->
 	select count(*)
 	from
 	mn_com_comment
 	where com_no = #{comNo}
+	
+	<!-- ******************************************************** -->
+	<!-- 대댓글CRUD -->
 	</select>
+	<!-- 대댓글 조회 -->
+	<select id = "selectReComment" parameterType = "int" resultMap ="comcReMap">
+	select *
+	from
+	mn_com_recomment
+	where comc_no= #{comcNo}
+	</select>
+	<!-- 대댓글 등록 -->
+	<insert id = "insertReComment" parameterType ="CommunityReComment">
+	insert into mn_com_recomment
+	(comc_no, comc_rewriter, comc_recontent)
+	 values
+	 (#{comcNo}, #{comcReWriter}, #{comcReContent})
+	
+	</insert>
+	
+	<!-- 대댓글 수정-->
+	<update id = "uploadeReComment" parameterType ="CommunityReComment">
+	update mn_com_recomment
+	set comc_recontent = #{comcReContent}
+	where comc_reno = #{comcReNo}
+	</update>
+	<!-- 대댓글 삭제-->
+	<delete id = "deleteReComment" parameterType ="int">
+	delete
+	from mn_com_recomment
+	where comc_reno = #{comcReNo}
+	
+	</delete>
+	<!-- 대댓글 -->
 	<!-- 파일 등록 -->
 	<insert id = "insertBoardFile" parameterType = "CommunityComment">
 	insert into mn_com_file(

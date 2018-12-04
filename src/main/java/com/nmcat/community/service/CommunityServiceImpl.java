@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nmcat.repository.domain.ComSearchVO;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
+import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 
@@ -20,6 +21,12 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
 		return mapper.selectBoard(comBoard);
+	}
+
+	@Override
+	public List<CommunityBoard> selectBoardC(CommunityBoard comBoard) {
+
+		return mapper.selectBoardC(comBoard);
 	}
 
 	/*@Override
@@ -85,12 +92,38 @@ public class CommunityServiceImpl implements CommunityService{
 		mapper.updateComment(comComment);
 		
 	}
-
+		//댓글 갯수 카운트!
 	@Override
 	public int selectCommentCount(int comNo) {
 		
 		return mapper.selectCommentCount(comNo);
 	}
+
+	@Override
+	public List<CommunityReComment> selectReComment(int comcNo) {
+
+		return mapper.selectReComment(comcNo);
+	}
+
+	@Override
+	public void insertReComment(CommunityReComment comReComment) {
+		mapper.insertReComment(comReComment);
+		
+	}
+
+	@Override
+	public void deleteReComment(int comcReNo) {
+		mapper.deleteReComment(comcReNo);
+		
+	}
+
+	@Override
+	public void updateReComment(CommunityReComment comReComment) {
+		mapper.updateReComment(comReComment);
+		
+	}
+	
+	
 	
 	
 	

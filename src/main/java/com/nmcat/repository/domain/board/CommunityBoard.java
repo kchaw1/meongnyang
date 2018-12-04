@@ -15,7 +15,7 @@ private String comTitle;
 private String comWriter;
 private String comContent;
 private String comCategory;
-private String searchType;
+
 
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

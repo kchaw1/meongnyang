@@ -234,7 +234,7 @@ color: gray;
     <script>
     // 크라우드펀딩으로 가는 url
     $(".btn2").on('click', function(){
-    	location.href = "communityPage.mn";
+    	location.href = "<c:url value = '/admin/crowd/list.mn'/>";
     });
     // 최신동영상으로 가는 url
     $(".btn1").on('click', function(){

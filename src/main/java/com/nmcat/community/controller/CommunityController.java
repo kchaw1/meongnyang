@@ -37,8 +37,8 @@ public class CommunityController {
 	
 	@RequestMapping("/communityPageList.mn")
 	@ResponseBody
-	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo, @RequestParam(value="searchType", defaultValue="1")String searchType)throws Exception{
-		
+	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
+	
 		comBoard.setPageNo(pageNo);
 //		model.addAttribute("list", service.selectBoard(comBoard));
 		Map<String, Object> map = new HashMap<>();
@@ -47,6 +47,20 @@ public class CommunityController {
 		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
 		return map;
 	}
+	
+	@RequestMapping("/communityPageListC.mn")
+	@ResponseBody
+	public Map<String, Object> ajaxListC(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
+		System.out.println(comBoard.getComCategory());
+		comBoard.setPageNo(pageNo);
+//		model.addAttribute("list", service.selectBoard(comBoard));
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("list", service.selectBoardC(comBoard));
+		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
+		return map;
+	}
+	
 	
 /*	public void list(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
 		CommunityBoard comBoard = new CommunityBoard();

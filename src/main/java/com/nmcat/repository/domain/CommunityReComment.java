@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
-public class CommunityComment {
-	int comcNo;
+public class CommunityReComment {
 	int comNo;
-	String comcWriter;
-	String comcContent;
+	int comcNo;
+	int comcReNo;
+	String comcReWriter;
+	String comcReContent;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-	Date comcRegDate;
-	int comcRef;
-	int comcParentNo;
+	Date comcReRegDate;
+
 	
 }
