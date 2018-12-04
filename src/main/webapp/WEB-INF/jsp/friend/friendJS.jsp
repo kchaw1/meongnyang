@@ -6,10 +6,6 @@
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
-/* $(function () {
-   	showFriendList(1);	
-}) //$function */
-
 function showFriendList(pageNo){
 	$.ajax({
 		url : "<c:url value='/friend/showallfriend.mn'/>",
@@ -18,7 +14,7 @@ function showFriendList(pageNo){
 				},
 		type : "POST"
 	}).done(function(map) {
-		console.dir(map)
+		//console.dir(map)
 		let str = "";
 		for(let i=1; i <= map.lineNo; i++){
 			str += '<div class="line'+i+'">'
@@ -28,7 +24,7 @@ function showFriendList(pageNo){
 			for(let key of friendArray) {
 				if(key == "list"+i){
 					list = map[key];
-					console.log(list)
+					//console.log(list)
 					break;
 				}
 			} // list + i 값 꺼내오기....
@@ -60,12 +56,14 @@ function showFriendList(pageNo){
 		
 		$("div#friend div.list").html(str);
 		
-		showPaging(map);
+		if(map != null) {			
+			showPaging(map);
+		}
 
 	}) //done
 } //showMemberList
 
-function showPaging(map) {
+/* function showPaging(map) {
 	let pageStr = "";
 	if(map.pageResult.count !=0) {
 		pageStr += '<div class="pagination"><a ';
@@ -120,6 +118,6 @@ function showPaging(map) {
 		showFriendList($(this).data("pageno"));
 	})
 	
-}//showpaging function
+}//showpaging function */
 
 </script>

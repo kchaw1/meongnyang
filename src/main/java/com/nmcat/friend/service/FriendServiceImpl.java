@@ -32,6 +32,7 @@ public class FriendServiceImpl implements FriendService{
 		MemberPageResult pageResult = new MemberPageResult(pageNo, count);
 		int lineNo = pageResult.getPageLineNo();
 		
+		System.out.println(mapper.selectAllMembersOneLine(begin).toString());
 		for(int i=1; i<=lineNo; i++) {
 			map.put("list"+i, mapper.selectAllMembersOneLine(begin));
 			begin += 4;

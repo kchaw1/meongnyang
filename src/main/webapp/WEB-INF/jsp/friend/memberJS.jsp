@@ -25,6 +25,9 @@ $(function () {
 $("a[href='#search']").click(function(){
 	showMemberList(1);	
 }) //search tab 클릭...
+$("a[href='#friend']").click(function(){
+	showFriendList(1);	
+}) //search tab 클릭...
 
 function showMemberList(pageNo){
 	$.ajax({
@@ -83,6 +86,7 @@ function showMemberList(pageNo){
 	      $("div#"+id).css("display", "block") */
 	      $("div#"+id).siblings().addClass("fade").removeClass("active")
 	      $("div#"+id).removeClass("fade").addClass("active")
+	      $("div#paging").html("");
 	    })
 	     
 	    $("i.fa-lock").mouseenter(function(){
@@ -96,8 +100,8 @@ function showMemberList(pageNo){
 	    })
 	   
 	   $("a#plusfriend").click(function() {
-		   	console.log("calleeId:", $(this).data("id"))
-		   	console.log("${user.id}")
+		   	//console.log("calleeId:", $(this).data("id"))
+		   	//console.log("${user.id}")
 		   	
    			swal({
 			  type: 'success',
@@ -117,6 +121,29 @@ function showMemberList(pageNo){
 		   	}) // 웹소켓 send
 		   	
 	   })//친구 추가 클릭..
+	   
+	   $("a#blockuser").click(function() {
+		   let calleeId = $(this).data("id")
+		   console.log("calleeId:", calleeId)
+		   console.log("${user.id}")
+		   	
+			let check = confirm("정말 " +calleeId + "님을 차단하시겠습니까?")
+   			if(check==true) {
+			   	$.ajax({
+			   		url : "<c:url value='/friend/blockuser.mn'/>",
+			   		data : {
+			   			"callerId" : "${user.id}",
+			   			"calleeId" : calleeId
+			   		},
+			   		type : "POST"
+			   	}) // 웹소켓 send
+   				
+   			}
+		   	
+		   	
+	   })//친구 추가 클릭..
+	   
+	   
 	}) //done
 } //showMemberList
 
