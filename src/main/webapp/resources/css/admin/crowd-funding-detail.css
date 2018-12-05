@@ -25,25 +25,25 @@ input#input-money { width: 50%; text-align:right;}
 
 #my-point span { color: gray; }
   
-button.btn{
-  font-family: 'Jua', sans-serif;
-  color : white;
-  background-color: #f2809f;
-  border-color : rgb(65, 192, 142, 0.7);
-}
-
-button.btn:hover {
-  background-color: #f2809f;
-  border-color : rgb(65, 192, 142);
-}
-button.btn:focus {
-  background-color: #f2809f;
-  border-color : rgb(65, 192, 142, 0.7);
-}
-button.btn:active {
-  background-color: #f2809f;
-  border-color : rgb(65, 192, 142);
-}
+ button.btn{
+	  font-family: 'Jua', sans-serif;
+	  color : white;
+	  background-color: #f2809f;
+	  border-color : #f2809f;
+	}
+	
+	button.btn:hover {
+	  background-color: #d6728d;
+	  border-color : #d6728d;
+	}
+	button.btn:focus {
+	  background-color: #d6728d;
+	  border-color : #d6728d;
+	}
+	button.btn:active {
+	  background-color: #f2809f;
+	  border-color : #f2809f;
+	}
   
 
 #content-container {

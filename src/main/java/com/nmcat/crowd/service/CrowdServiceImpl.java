@@ -36,8 +36,8 @@ public class CrowdServiceImpl implements CrowdService{
 	
 	// 좋아요 개수
 	@Override
-	public int likeCnt() {
-		return mapper.selectLikeCount();
+	public int likeCnt(int crNo) {
+		return mapper.selectLikeCount(crNo);
 	}
 	
 	
