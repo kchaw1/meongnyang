@@ -23,14 +23,14 @@
   .u-form-group button{
     width:50%;
     height: 70px;
-    background-color: #1CB94E;
+    background-color: rgb(75, 222, 174);
     border: none;
     outline: none;
     color: #fff;
     font-size: 21px;
     font-weight: normal;
     padding: 14px 0;
-    border-radius: 2px;
+    border-radius: 21px;
     margin-top: 15px;
     text-transform: uppercase;
   }

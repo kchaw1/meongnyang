@@ -41,7 +41,7 @@
             </div>
             <div class="member">
                 <!-- <input type="text" name="level" id="level" /> <input type="text" name="name" id="name" />님 회원정보<br> -->
-                <div id="grdname">다이아&nbsp;</div><div id="username">김병관</div> <span id="ptext">님의 회원정보입니다.</span><br>
+                <div id="grdname">다이아&nbsp;</div><div id="username" name="name">김병관</div> <span id="ptext">님의 회원정보입니다.</span><br>
                 <!-- <input type="text" name="grade" id="grade"> 레벨점수 : <div id="point"> - </div>입니다. -->
                 <hr style="width: 350px; margin-left: 0px;">
                 <span id="sptext">다음 레벨까지&nbsp;</span> <div id="lvpoint">0</div> <span id="sptext2">점 남았습니다.</span>

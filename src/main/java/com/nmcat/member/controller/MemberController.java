@@ -1,8 +1,10 @@
 package com.nmcat.member.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +22,7 @@ import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.NoticeFile;
 
 @Controller
 @RequestMapping("/member")
@@ -73,7 +77,6 @@ public class MemberController {
 	         String newName = UUID.randomUUID().toString();
 	         newName = newName.replace("-", "");
 	         
-	         
 	         fileExtension = getExtension(profile.getOriginalFilename());
 	         fileSysName = newName + "." + fileExtension;
 	         
@@ -86,12 +89,12 @@ public class MemberController {
 	         if(uploadFile.exists() == false) {
 	            uploadFile.mkdirs();
 	         } 
-	        /* profile.transferTo(uploadFile);
+	         profile.transferTo(uploadFile);
 	         
-	         MultipartFile lifile = license.getLifile();
+	        MultipartFile lifile = license.getLifile();
 		      String liuploadPath = "c:/app/license";
 		      SimpleDateFormat lisdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
-		      String lidatePath = sdf.format(new Date());
+		      String lidatePath = lisdf.format(new Date());
 		      
 		      String lifileExtension ="";
 		      String lifileSysName = "";
@@ -100,26 +103,25 @@ public class MemberController {
 		         newName = newName.replace("-", "");
 		         
 		         
-		         fileExtension = getExtension(profile.getOriginalFilename());
-		         fileSysName = newName + "." + fileExtension;
+		         lifileExtension = getExtension(lifile.getOriginalFilename());
+		         lifileSysName = linewName + "." + fileExtension;
 		         
-		         member.setImageOriName(profile.getOriginalFilename());
-		         member.setImageName(fileSysName);
-		         member.setImagePath(datePath);
-		         member.setImageSize((int)profile.getSize());
+		         license.setLifOriName(lifile.getOriginalFilename());
+		         license.setLifSysName(lifileSysName);
+		         license.setLifPath(lidatePath);
+		         license.setLifSize((int)lifile.getSize());
 		       
-		         File liuploadFile = new File(uploadPath + datePath, fileSysName);
+		         File liuploadFile = new File(liuploadPath + lidatePath, lifileSysName);
 		         if(uploadFile.exists() == false) {
 		            uploadFile.mkdirs();
 		         } 
-		         profile.transferTo(uploadFile);*/
-	         
-	    service.license(license);
+		         lifile.transferTo(uploadFile);
+		service.license(license);
 	    service.insertCaree(career);
 		service.absup(member);
 		return "redirect:/member/login.mn";
 		
-	} // 행동전문가 회원가입
+	} // 행동전문가 회원가입	
 	
 	@PostMapping("/checkid.mn")
 	@ResponseBody

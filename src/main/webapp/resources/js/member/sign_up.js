@@ -28,6 +28,7 @@ $(document).ready(
         } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
     }
     
+    
     $("input[name='name']").blur(function(){
     	if(isValidName($(this).val()) == false) {
     		 $("span#warnname").text("잘못된 형식의 이름입니다.")

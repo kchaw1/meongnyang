@@ -59,5 +59,5 @@ $("button#loginform").click(function(){
 			 });
 		 }
 		 reader.readAsDataURL($("input[name=userProfile]")[0].files[0]);
-	}) 
+	})  
 </script>

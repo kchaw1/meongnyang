@@ -13,4 +13,5 @@ public class License {
 	private String lifOriName;
 	private int lifSize;
 	private MultipartFile lifile;
+	private String url;
 }

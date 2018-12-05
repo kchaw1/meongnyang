@@ -12,7 +12,7 @@
 <c:import url="signupCSSJS.jsp" />
 
 <script src="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></script>
-
+  
 <!-- 모달  -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -25,6 +25,13 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Do+Hyeon|Sunflower:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
 	span[id^='warn'] {
@@ -61,14 +68,25 @@
     display: inline-block;
     width: 350px;
 }
+
 #loginform {
 	margin-top: -15px;
 	height: 30%;
 }
-  
+
+.login-box, #myModal, #tabs, #myModal2 {
+	font-family: 'Jua', sans-serif;
+}
+
+.btn-primary:focus {
+    background-color: #2e6da4;
+    border-color: #2e6da4;
+}
+
 </style>
 </head>
 <body>
+
 	<div class="login-box">
     <div class="lb-header">
       <a href="#" class="active" id="login-box-link">로그인</a>
@@ -88,7 +106,7 @@
         <input type="password" name="loginpass" placeholder="Password"/>
       </div>
       <div class="u-form-group">
-      	<button type="button" class="btn btn-default" id="loginform">로그인</button>
+      	<button type="button" class="btn btn-primary" id="loginform">로그인</button>
       </div>
       <div class="u-form-group">
         <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
@@ -124,8 +142,9 @@
                                <input id="file" type="file" name="profile" accept=".gif, .jpg, .png" />
                               <div class="img_wrap">
                                   <label for="image1">
-                                      <img id="img" />
+                                      <img id="img" src="<c:url value="/resources/img/member/profile.png"/>"/>
                                   </label>
+                                  <!-- <button type="button" id="potocancel">취소</button> -->
                               </div>  
                               </div>                           
                           <hr>
@@ -226,7 +245,7 @@
 					                                        <span>프로필 사진</span><br> <input id="file2" type="file" name="profile" accept=".gif, .jpg, .png" />
 					                                        <div class="img_wrap">
 					                                            <label for="image1"> 
-					                                            	<img id="img2" />
+					                                            	<img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/>
 					                                            </label>
 					                                        </div>
 					                                    </div>
@@ -288,21 +307,20 @@
 					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>
 					                            <hr>
 					                            <div class="file_input">
-					                                <label> 자격증 첨부 : <input type="file" onchange="javascript:document.getElementById('file_route').value=this.value">
-					                                </label> <input id="lifile" type="file" name="lifile" />
+					                                <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
 					                            </div>
 					                        </div>
 					                    </div>
 					                </div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 										<button type="button" class="btn btn-primary" id="newmember2">가입하기</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 									</div>
 								</form>
 							  </div>
 							</div>
 						</div>
-						
+					
 <c:import url="loginJS.jsp" />     
 <c:import url="signupJS.jsp" />
 <script>
@@ -340,136 +358,22 @@ $( function() {
         } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
     }
 </script>
-  <script>
-			Kakao.init('a48660e1ad76fecc7e41245f473d42cb');
-			Kakao.Auth.createLoginButton({
-				container : '#kakao-login-btn',
-				success : function(authObj) {
-					Kakao.API.request({
-						url : '/v1/user/me',
-						success : function(res) {
-							console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-						}
-					})
-				},
-				fail : function(err) {
-					alert(JSON.stringify(err));
+ <script>
+	Kakao.init('a48660e1ad76fecc7e41245f473d42cb');
+	Kakao.Auth.createLoginButton({
+		container : '#kakao-login-btn',
+		success : function(authObj) {
+			Kakao.API.request({
+				url : '/v1/user/me',
+				success : function(res) {
+					console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
 				}
-			});
-		</script>
-<!--   <script>
-  $("input[name='name']").blur(function(){
-  	//console.log($(this).val())
-  	//alert($(this).val().length)
-  	if(isValidName($(this).val()) == false) {
-  		 $("span#warnname").text("잘못된 형식의 이름입니다.")
-  	} else {
-  		$("span#warnname").text("")
-  	}
-  }) //이름 유효성에 따른 경고창
-
-  $("input[name='id']").blur(function(){
-  	//console.log($(this).val())
-  	$warnid = $("span#warnid");
-  	if(isValidId($(this).val()) == false) {
-  		$warnid.removeClass("green")
-  		$warnid.text("영문 대소문자, 숫자만 가능합니다.")
-  	} else if(isValidId($(this).val()) == true) {
-  		$.ajax({
-  			url : "<c:url value='/member/checkid.mn'/>",
-  			data : "id="+$(this).val(),
-  			type : "POST"
-  		}).done(function(result) {
-  			if(result) {
-  				$warnid.removeClass("green")
-  				$warnid.text("이미 등록되어있는 아이디 입니다.")
-  			} else {
-  				$warnid.addClass("green")
-  				$warnid.text("사용가능한 아이디 입니다.")
-  			}
-  		}) //done
-  	} else if(isValidId($(this).val()) == 0){
-  		$warnid.text("3글자 이상 입력해주세요.")
-  	}  
-  	//if-else
-  }) //id 유효성에 따른 경고창
-
-  $("input[name='passcheck']").blur(function(){
-  	var form = document.signup;
-  	if(form.pass.value() != form.passcheck.value()) {
-  		$("span#warnpasscheck").text("입력된 패스워드가 서로 다릅니다.")
-  		form.passcheck.value ="";
-  		form.pass.focus();
-  		form.pass.select();
-  		
-  		return;
-  	} //비밀번호와 확인과 서로 다른지 확인
-  	else {
-  		$("span#warnpasscheck").text("")
-  	}
-  })
-
-  $("button#newmember1").click(function(){
-  	var f = document.signup;
-  	if(f.name.value()==""){
-          alert("이름을 입력하세요")
-          f.name.focus()
-          return;
-      }
-  	if(isValidName(f.name.value)==false) {
-  		alert("형식에 맞는 이름을 입력해주세요.")
-  		f.name.focus()
-          return;
-  	}
-  	
-  	if(f.id.value==""){
-          alert("아이디를 입력하세요")
-          f.id.focus()
-          return;
-      }
-  	if(isValidId(f.id.value) == false) {
-  		alert("형식에 맞는 아이디를 입력해주세요.")
-  		f.id.focus()
-          return;
-  	}
-  	
-      if(f.pass.value==""){
-          alert("비밀번호를 입력하세요")
-          f.pass.focus()
-          return;
-      }
-
-      if(f.passcheck.value==""){
-          alert("비밀번호 확인을 입력하세요")
-          f.passcheck.focus()
-          return;
-      }
-      
-    
-      alert("회원가입이 완료되었습니다.")
-  	
-  	f.submit()
-
-  })
-
-  function isValidName(name) {	//이름 유효성 확인..정규식으로
-    if(name.length > 20 ){
-      return false;
-    }
-   if(name.length <2){
-  	 return false;
-   }
-    let regx = /[^가-힣]/;
-    return !regx.test(name);      // 유효하면 true반환
-  }
-
-  function isValidId(emailId){ 	//아이디 유효성 확인..정규식으로
-  	if(emailId.length < 2) {
-  		return 0;
-  	}
-    let regx = /[^\w]/;
-    return !regx.test(emailId);   // 유효하면 true반환
-  }
-  </script> -->
+			})
+		},
+		fail : function(err) {
+			alert(JSON.stringify(err));
+		}
+	});
+</script>
 </body>
 </html>
