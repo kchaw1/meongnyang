@@ -20,6 +20,7 @@ public class Crowd {
 	private Date crRegDate;
 	private int crViewCnt;
 	private String crEndYN;
+	private int donateMoney;
 	
 	// 파일관련
 	private MultipartFile attach;

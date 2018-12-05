@@ -12,9 +12,9 @@ img { width:100%; height:100%; }
 span.remain-days { color: red; }
 #end-day { width:100%; height:84px; }
 #end-day > h2 { display: inline-block; }
-#donate-area { width:100%; height:84px; }
+#donate-area{ width:100%; height:84px; }
 input#input-money { width: 50%; text-align:right;}
-.form-control{display:inline-block;}
+.form-control{display:inline-block; width:60%;}
 #content-area2 { clear: both; font-size: 25px; padding:30px; }
 #button-area { text-align: right; margin-bottom:20px; padding:20px; }
 #heart-btn #like-count { font-family: 'Jua', sans-serif; }
@@ -22,6 +22,8 @@ input#input-money { width: 50%; text-align:right;}
 #detail-container {
     margin-top:130px;
  }
+
+#my-point span { color: gray; }
   
 button.btn{
   font-family: 'Jua', sans-serif;

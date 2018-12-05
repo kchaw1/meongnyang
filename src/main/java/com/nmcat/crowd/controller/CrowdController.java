@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.crowd.service.CrowdService;
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.CrowdLike;
+import com.nmcat.repository.domain.Member;
 
 @RequestMapping("/admin")
 @Controller
@@ -84,12 +89,52 @@ public class CrowdController {
 	
 	// 크라우드펀딩 디테일
 	@RequestMapping("/crowd/detail")
-	public void detail(Model model, int crNo) {
+	public void detail(Model model, int crNo, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Member member = (Member)session.getAttribute("user");
+		CrowdLike cl = new CrowdLike();
+		
 		System.out.println(service.detail(crNo).getCrTitle());
 		System.out.println(service.detail(crNo).getCrContent());
 		
+		if(member != null) {
+			model.addAttribute("myPoint", service.myPoint(member.getNo()));
+			
+			cl.setCrNo(crNo);
+			cl.setCrId(member.getId());
+			model.addAttribute("likeCheck", service.likeCheck(cl));
+		}
 		model.addAttribute("detail",service.detail(crNo));
 		model.addAttribute("remainDays", calRemainDays(service.detail(crNo).getCrEndDay()));
+	}
+	
+	// 크라우드펀딩 기부
+	@RequestMapping("/crowd/donate")
+	public String donate(Crowd crowd, Member member) {
+		service.minusPoint(member);
+		service.donate(crowd);
+		return "redirect:detail.mn?crNo=" + crowd.getCrNo();
+	}
+	
+	// 좋아요
+	@RequestMapping("/crowd/likeUp")
+	@ResponseBody
+	public int likeUp(CrowdLike cl) {
+		service.likeCntUp(cl.getCrNo()); // crowd 테이블 개수 올리기
+		service.userLikeUp(cl);
+		
+		return service.likeCnt();
+	}
+	
+	// 좋아요 취소
+	@RequestMapping("/crowd/likeDown")
+	@ResponseBody
+	public int likeDown(CrowdLike cl) {
+		service.likeCntDown(cl.getCrNo());
+		service.userLikeUp(cl);
+		
+		return service.likeCnt();
 	}
 	
 	

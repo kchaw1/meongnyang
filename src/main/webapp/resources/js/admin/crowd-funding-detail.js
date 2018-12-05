@@ -22,4 +22,10 @@
         str = String(str); 
         return str.replace(/[^\d]+/g, ''); 
     }
+    
+	// 쉼표 제거
+    function removeComma(str) {
+		n = parseInt(str.replace(/,/g,""));
+		return n;
+	}
 

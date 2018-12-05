@@ -19,6 +19,31 @@
 		<result column="cr_file_ori_name" property="crFileOriName" />
 		<result column="cr_end_yn" property="crEndYN" />
 	</resultMap>
+	
+	<resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+	</resultMap>
+	
+	<resultMap id="crowdLikeMap" type="CrowdLike">
+		<result column="cr_no" property="crNo" />
+		<result column="cr_id" property="crId" />
+	</resultMap>
 
 <!-- 크라우드펀딩 등록 -->
 <insert id="insertCrowd" parameterType="Crowd">
@@ -40,6 +65,63 @@
 	select * 
 	  from mn_crowd
 	 where cr_no = #{crNo}
+</select>
+
+<!-- 좋아요 업데이트 -->
+
+<!-- 추천 개수 -->
+<select id="selectLikeCount" resultType="int">
+	select cr_like_cnt
+	  from mn_crowd
+</select>
+
+<!-- 추천하기 -->	
+<insert id="insertLike" parameterType="CrowdLike">
+	INSERT INTO mn_crowd_like(cr_no, cr_id) VALUES (#{crNo}, #{crId})
+</insert>
+<update id="updateLikeCntUp" parameterType="int">
+	update mn_crowd
+	   set cr_like_cnt = cr_like_cnt + 1
+	 where cr_no = #{crNo}    
+</update>
+
+<!-- 취소하기 -->
+<delete id="deleteLike" parameterType="CrowdLike">
+	delete from mn_crowd_like
+	 where cr_id = #{crId} AND cr_no = #{crNo}
+</delete>
+<update id="updateLikeCntDown" parameterType="int">
+	update mn_crowd
+	   set cr_like_cnt = cr_like_cnt - 1
+	 where cr_no = #{crNo}    
+</update>
+
+<!-- 추천 여부 확인 -->
+<select id="selectLikeCheck" resultType="int" parameterType="CrowdLike">
+	select count(*)
+	  from mn_crowd_like
+	 where cr_id = #{crId} AND cr_no = #{crNo}
+</select>
+
+<!-- 기부하기 -->
+<update id="updateNowMoney" parameterType="Crowd">
+	update mn_crowd
+	   set cr_now_money = cr_now_money + #{donateMoney} 
+	 where cr_no = #{crNo}  
+</update>
+
+<!-- 포인트차감 -->
+<update id="updateMemberPoint" parameterType="Member">
+	update mn_member
+	   set point = point - #{donateMoney}
+	 where no = #{no}  
+</update>
+
+<!-- 보유포인트 -->
+<select id="selectNowPoint" parameterType="int" resultType="int">
+	select point
+	  from mn_member
+	 where no = #{no} 
 </select>
 
 </mapper>

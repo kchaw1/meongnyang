@@ -84,6 +84,8 @@
 			
 			var html = "";
 				for(var i in crowdList) {
+					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
+					
 					html += "<div class='list-item'>"
 							+ "<div class='image-area'><a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
 							if(crowdList[i].crFileName != null) {
@@ -97,8 +99,10 @@
 							+ "</div>"
 							+ "<div class='progress'>"
 							+	"<div class='progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100'"
-							+ 	"aria-valuemin='0' aria-valuemax='100' style='width:"+ Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100) +"%;' >" 
-							+  Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
+							+ 	"aria-valuemin='0' aria-valuemax='100' style='width:"
+							if(progress > 100) { html += "100%;' >" } 
+							else { html += progress + "%;' >" }
+					html +=  progress
 							+ "%</div>"
 							+ "</div>"
 							+ 	"<div>"
