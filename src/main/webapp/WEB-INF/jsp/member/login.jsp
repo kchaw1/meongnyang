@@ -11,6 +11,9 @@
 <c:import url="loginCSSJS.jsp" />
 <c:import url="signupCSSJS.jsp" />
 
+<!-- 네이버 아이디 로그인 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
 <script src="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></script>
   
 <!-- 모달  -->
@@ -110,9 +113,9 @@
       <a href="#" id="signup-box-link">회원가입</a>
     </div>
     <div class="social-login">
-      <a href="#">
-        <img src="<c:url value="/resources/img/member/네이버 아이디로 로그인_완성형_White.PNG"/>"/>
-      </a>
+        <%-- <img src="<c:url value="/resources/img/member/네이버 아이디로 로그인_완성형_White.PNG"/>"/> --%>
+      <div id="naverIdLogin"></div>
+      
       <div id="kakao-login-btn"></div>
     </div>
     <form class="email-login" name="login">
@@ -382,7 +385,7 @@ $( function() {
 		container : '#kakao-login-btn',
 		success : function(authObj) {
 			Kakao.API.request({
-				url : '/v1/user/me',
+				url : '/v2/user/me',
 				success : function(res) {
 					console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
 				}
@@ -408,6 +411,41 @@ $( function() {
            
            readURL(this);
         })
+</script>
+<%-- /* "<c:url value='/main/mainPage.mn'/>" */ --%>
+<script>
+/*네이버 로그인*/
+var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "yf6XqSXCa0vHUbfIL8Ll",
+			callbackUrl:"http://localhost:8000/nmcat/main/mainPage.mn",   
+			isPopup: false, 
+			loginButton: {color: "white", type: 2, height: 22, width: 20} //흰색 작은배너형 높이 30px 
+		}
+	);
+	
+	/* 설정정보를 초기화하고 연동을 준비 */
+	naverLogin.init();
+	
+	/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
+	window.addEventListener('load', function () {
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+				var email = naverLogin.user.getEmail();
+				if( email == undefined || email == null) {
+					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+					/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+					naverLogin.reprompt();
+					return;
+				}
+
+				window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/member/login.mn");
+			} else {
+				console.log("callback 처리에 실패하였습니다.");
+			}
+		});
+	});
 </script>
 </body>
 </html>
