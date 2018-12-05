@@ -83,6 +83,23 @@
     border-color: #2e6da4;
 }
 
+.img_wraps {
+  width: 300px;
+  margin-top: 10px;
+}
+
+.img_wraps img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+#potocancel, #potocancel2 {
+	background-color: white;
+	border-color: white;
+	width: 50px;
+    height: 30px;
+}
+
 </style>
 </head>
 <body>
@@ -144,8 +161,8 @@
                                   <label for="image1">
                                       <img id="img" src="<c:url value="/resources/img/member/profile.png"/>"/>
                                   </label>
-                                  <!-- <button type="button" id="potocancel">취소</button> -->
                               </div>  
+                                  	<button type="button" id="potocancel">취소</button>
                               </div>                           
                           <hr>
                           <div class="form-group">
@@ -243,11 +260,12 @@
 					                                <div id="pro2">
 					                                    <div id="poto2">
 					                                        <span>프로필 사진</span><br> <input id="file2" type="file" name="profile" accept=".gif, .jpg, .png" />
-					                                        <div class="img_wrap">
+					                                        <div class="img_wraps" id="signimg">
 					                                            <label for="image1"> 
 					                                            	<img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/>
 					                                            </label>
 					                                        </div>
+					                                        <button type="button" id="potocancel2">취소</button>
 					                                    </div>
 					                                    <hr>
 					                                    <input type="hidden" name="type" value="2" />
@@ -332,13 +350,13 @@ $( function() {
     function() {
         // 태그에 onchange를 부여한다.
         $('#file').change(function() {
-                addPreview($(this)); //preview form 추가하기
+                addPreviews($(this)); //preview form 추가하기
         });
     });
  
     // image preview 기능 구현
     // input = file object[]
-    function addPreview(input) {
+    function addPreviews(input) {
         if (input[0].files) {
             //파일 선택이 여러개였을 시의 대응
             for (var fileIndex = 0 ; fileIndex < input[0].files.length ; fileIndex++) {
@@ -348,7 +366,7 @@ $( function() {
                 reader.onload = function (img) {
                     //div id="preview" 내에 동적코드추가.
                     //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
-                    $(".img_wrap").html(
+                     $(".img_wrap").html(
                         "<img src=\"" + img.target.result + "\"\/>"
                     );
                 };
@@ -374,6 +392,22 @@ $( function() {
 			alert(JSON.stringify(err));
 		}
 	});
+</script>
+<script>
+	    /* 이력서 사진 미리보기 */
+        function readURL(input) {
+           if(input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                 $("#img2").attr("src", e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+           }
+        };
+        $("#file2").change(function () {
+           
+           readURL(this);
+        })
 </script>
 </body>
 </html>
