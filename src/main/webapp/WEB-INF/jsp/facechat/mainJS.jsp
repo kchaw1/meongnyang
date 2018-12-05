@@ -6,7 +6,8 @@
 	/* const socket = null; */
 	$(function(){
 		console.log('Loaded Main');
-		const socket = new WebSocket('wss://localhost:443/nmcat/facechat.mn');
+		//const socket = new WebSocket('wss://localhost:443/nmcat/facechat.mn');
+		const socket = new WebSocket('wss://socketio-over-nodejs2.herokuapp.com:443/');
 
 		socket.onopen = function(){
 			console.log("화상채팅 웹소켓 연결")
@@ -205,14 +206,14 @@
 		  setClipboard();
 		
 		  // 소켓 관련 이벤트 바인딩
-		  /*socket.emit('enter', roomId, userId);
+		  socket.emit('enter', roomId, userId);
 		  socket.on('join', onJoin);
 		  socket.on('leave', onLeave);
-		  socket.on('message', onMessage); */
-		  socket.send(roomId, userId)
+		  socket.on('message', onMessage); 
+		  /*socket.send(roomId, userId)
 		  socket.onjoin = onJoin;
 		  socket.onleave = onLeave;
-		  socket.onmessage = onMessage;
+		  socket.onmessage = onMessage;*/
 		  
 		  // Peer 관련 이벤트 바인딩
 		  peerHandler.on('addRemoteStream', onRemoteStream);

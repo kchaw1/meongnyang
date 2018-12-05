@@ -21,13 +21,7 @@
 </head>
 <body>
 
-<div class="wrapper">
-  <div id="setup-room">
-  	  <input type="text" id="conference-name">
-      <button id="setup-new-room" class="setup">new</button>
-      <!-- list of all available conferencing rooms -->
-      <table id="rooms-list"></table>
-  </div>
+<div class="content-wrapper">
 	<div class="main-doc">
 		<div class="media-container"></div>
 		<!-- <div id="videos-container"></div> -->
@@ -35,6 +29,12 @@
 			<table id="videos-container"></table>	
 		</div>
 	</div>
+</div>
+<div id="setup-room">
+	  <input type="text" id="conference-name">
+    <button id="setup-new-room" class="setup">new</button>
+    <!-- list of all available conferencing rooms -->
+    <table id="rooms-list"></table>
 </div>
 
 

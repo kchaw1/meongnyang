@@ -1,12 +1,17 @@
 package com.nmcat.websocket.handler;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -32,6 +37,7 @@ public class AlarmHandler extends TextWebSocketHandler {
 		System.out.println("map : " + attrs.toString());
 		member = (Member) attrs.get("user");
 //		log(session.getId() + " 연결 됨!!");
+		log(session.getId() + " 연결 됨!!");
 		log(member.getId() + " 연결 됨!!");
 		users.put(member.getId(), session);
 	}
@@ -43,6 +49,7 @@ public class AlarmHandler extends TextWebSocketHandler {
 		member = (Member) attrs.get("user");
 		debug(member.getId() + " 연결 종료됨");
 		users.remove(member.getId());
+		session.close();
 	}
 	
 	@Override
@@ -77,6 +84,34 @@ public class AlarmHandler extends TextWebSocketHandler {
 			session.sendMessage(new TextMessage("쪽지 왔어요"));
 		}
 	}//handleTextMessage
+	
+	@Override
+	//서버에 저장
+	public void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
+		log("handleBinaryMessage");
+		System.out.println("파일 크기 : " + message.getPayloadLength());
+		
+		ByteBuffer buffer = message.getPayload();
+		System.out.println("이미지 내용 :" + buffer);
+		try {
+			session.sendMessage(new BinaryMessage(buffer));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		try {
+//			String name = UUID.randomUUID().toString();
+//			System.out.println("name : " + name);
+//			if (fos == null) {
+//				fos = new FileOutputStream("/app/webrtc/upload/" + name);
+//			}
+//			System.out.println("buffer Array() : " +buffer.array());
+//			fos.write(buffer.array()); //공식처럼 쓰래...파일 이름 바꿔주는 거 같음..
+//			fos.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+	}
 	
 	@Override
 	public void handleTransportError(
