@@ -11,9 +11,9 @@
 </head>
 <body>
 <c:import url="../common/header.jsp"/>
-<div class="top-section">
-  <div class="tab-menu">
-  <ul class="nav nav-tabs">
+<div class="top-section" id="lookhere">
+  <div class="tab-menu" >
+  <ul class="nav nav-tabs" >
     <li role="presentation" class="active"><a href="#friend" class="tab" data-toggle="tab">친구인 회원</a></li>
     <li role="presentation" ><a href="#search" class="tab" data-toggle="tab">회원 찾기</a></li>
     <li role="presentation" ><a href="#blocked" class="tab" data-toggle="tab">차단된 회원</a></li>

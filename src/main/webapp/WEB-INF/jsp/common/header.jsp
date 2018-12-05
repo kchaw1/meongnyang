@@ -93,7 +93,7 @@
 	}
 	
 	//동적 이벤트 적용은 document.ready안에서 작용하지 않는다.
-	$("ul.dropdown-menu").on("click", "a#friend", function (e){
+	$("ul.dropdown-menu").on("click", "a#friendlist", function (e){
 		if($(this).find("span").attr("id")=="show"){
 			e.preventDefault();
 			console.log($(this))

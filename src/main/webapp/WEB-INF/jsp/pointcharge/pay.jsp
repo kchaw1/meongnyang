@@ -83,7 +83,7 @@
  		var checked = $("input[type='radio']:checked");
  		let forValue = checked.attr("id")
  		var plusPoint = $("label[for="+forValue+"]").data("value")
- 		alert(plusPoint);
+ 		//alert(plusPoint);
  		//결제 요청..
  		IMP.request_pay({
  			pg : 'kakao', // 카카오페이

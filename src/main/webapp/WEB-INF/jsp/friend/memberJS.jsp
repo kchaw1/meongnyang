@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
 var friendws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-//var friend = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
-//var friend = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
+//var friendws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var friendws = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 $(function () {
 	friendws.onopen = function() {
 		console.log("바디 웹소켓 서버 접속 성공");
@@ -154,14 +154,14 @@ function showPaging(map) {
 		if(map.pageResult.prev == false){
 			pageStr += 'class="disabled" href="#1"'
 		} else {
-			pageStr += 'href="#" data-pageno="1"';
+			pageStr += 'href="#lookhere" data-pageno="1"';
 		} //previousAll if 문
 		
 		pageStr += 'aria-label="PreviousAll">';
 		pageStr += '<span aria-hidden="true"> << </span></a>';
 		pageStr += '<a ';
 		if(map.pageResult.prev == true){
-			pageStr += 'href="#" data-pageno="'+(map.pageResult.pageNo-1)+'"';
+			pageStr += 'href="#lookhere" data-pageno="'+(map.pageResult.pageNo-1)+'"';
 		} else {
 			pageStr += 'href="#'+map.pageResult.beginPage+'" class="disabled"'
 		}//previous if 문
@@ -171,15 +171,15 @@ function showPaging(map) {
 		
 		for(let i=map.pageResult.beginPage; i<=map.pageResult.endPage; i++){
 			if(i == map.pageResult.pageNo){
-				pageStr += '<a href="#'+i+'" id="now">'+i+'</a>'
+				pageStr += '<a href="#lookhere" id="now">'+i+'</a>'
 			} else {
-				pageStr += '<a href="#'+i+'" data-pageno="'+i+'">'+i+'</a>'
+				pageStr += '<a href="#lookhere" data-pageno="'+i+'">'+i+'</a>'
 			}
 		} // 페이지 for 문
 		
 		pageStr += '<a ';
 		if(map.pageResult.next == true){
-			pageStr += 'href="#'+(map.pageResult.pageNo+1)+'" data-pageno="'+(map.pageResult.pageNo+1)+'"';
+			pageStr += 'href="#lookhere" data-pageno="'+(map.pageResult.pageNo+1)+'"';
 		} else {
 			pageStr += 'href="#'+map.pageResult.endPage+'" class="disabled"';
 		}
@@ -189,7 +189,7 @@ function showPaging(map) {
 		if(map.pageResult.next == false) {
 			pageStr += 'class="disabled" href="#'+map.pageResult.lastPage+'"';
 		} else {
-			pageStr += 'href="#'+map.pageResult.lastPage+'" data-pageno="'+map.pageResult.lastPage+'"';
+			pageStr += 'href="#lookhere" data-pageno="'+map.pageResult.lastPage+'"';
 		}
 		pageStr += 'aria-label="NextAll">';
 		pageStr += '<span aria-hidden="true"> >> </span></a></div>'
