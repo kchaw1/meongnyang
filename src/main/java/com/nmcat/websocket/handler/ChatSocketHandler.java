@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -47,18 +50,52 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	
 	@Override
 	public void handleTextMessage(WebSocketSession wss, TextMessage message) throws Exception {
+		
+		System.out.println("dsdsad"+wss.getId());
+		
+		attrs = wss.getAttributes();
+		member = (Member) attrs.get("user");
+		debug("보낸 아이디 - " + member.getId());
+		debug("보낸 메세지 - " + message.getPayload());
+		
+		String rcvMsg = message.getPayload();
+		Set<String> keys = users.keySet();
+
+		System.out.println("users : " + users);
+		for (String key : keys) {
+			WebSocketSession wSession = users.get(key);
+			wSession.sendMessage(new TextMessage("dsadas"+member.getId()+message.getPayload()));
+			}
+
+	
+		/*
 		attrs = wss.getAttributes();
 		member = (Member) attrs.get("user");
 		debug("보낸 아이디 - " + member.getId());
 		debug("보낸 메세지 - " + message.getPayload());
 		Set<String> keys = users.keySet();
+		String id = member.getId();
 		for (String key : keys) {
+			System.out.println("key"+keys);
 			WebSocketSession wSession = users.get(key);
-			wSession.sendMessage(new TextMessage(member.getId() + " : " + message.getPayload()));
-		
-		}
+			System.out.println("key : "+key);
+			System.out.println("member : "+member.getId());
+			System.out.println("wSeesion: " + wSession.getId());
+			System.out.println("wSession:"+wSession.getAttributes());
+			System.out.println("member.no :" + member.getNo());
+			
+			if(member.getId()==wSession.getId()) {
+				
+//			wSession.sendMessage(new TextMessage("id:"+member.getId()));
+			wSession.sendMessage(new TextMessage("msg:"+ id +message.getPayload()));
+			}else {
+				wSession.sendMessage(new TextMessage("asdasdmsg:"+member.getId()+message.getPayload()));
+				
+			}
+	
+		}*/
+	
 	}
-
 	@Override
 	public void handleTransportError(
 			WebSocketSession session, Throwable exception) throws Exception {

@@ -27,7 +27,9 @@
               <div class="user-item"> 
                 <img class="pull-left" src="https://plus.google.com/u/0/_/focus/photos/public/AIbEiAIAAABECND6k6O2gLWavQEiC3ZjYXJkX3Bob3RvKigyMjgzNGM2ZWZkYjJhZDZhZjI1YTI0MzQxYzJkYTRkODEzNDBhY2UyMAHQr8BxOTmI3m0dZJGY3Vj4osnP9g?sz=48" alt="" />
                 <div class="pull-left">
-                  <p class="name">Giowee Argao</p>
+                  <p class="name">${user.id}</p>
+                  <p class="name">${user.name}</p>
+                  
                 </div>
               </div>
             </div>
@@ -37,27 +39,7 @@
             <div class="list">
               <div class="list-item">
                 <img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Madayag</p>
-              </div>
-              <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh3.googleusercontent.com/-clvlFfHcYUE/AAAAAAAAAAI/AAAAAAAAAR0/Ba6VYUO6gME/s90-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Judith Dela Cruz</p>
-              </div>
-              <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh3.googleusercontent.com/-1DcoJxJGFEo/AAAAAAAAAAI/AAAAAAAAAAs/joIWEP4Cc14/s32-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Jordan Quiambao</p>
-              </div>
-              <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh3.googleusercontent.com/-2MAQZzjRHT8/AAAAAAAAAAI/AAAAAAAAAAs/4vIuT3giyBU/s32-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Ryan Nacpil</p>
-              </div>
-              <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh5.googleusercontent.com/-UkvkdLXLgsk/AAAAAAAAAAI/AAAAAAAAAjM/opa3LnfENDc/s32-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Marco Manalo</p>
-              </div>
-              <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/-1Ydq4Gs3stY/AAAAAAAAAAI/AAAAAAAAAT4/RqkS4pKwDpU/s24-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">Kevin Agatep</p>
+                <p class="pull-left">sdadsa</p>
               </div>
             </div>
           </div>
@@ -65,7 +47,7 @@
        
         <div class="col-xs-7">
           <div class="chat-wrapper">
-          <div class="chat-list">
+          <div class="chat-list" style="overflow-y:auto;">
           </div>
             <div class="chat-content">
             
@@ -73,17 +55,17 @@
             </div>  
           </div>
               <span class="chat-input"><input class="form-control pull-right" type="text" id="message" name="message" /></span><button id="sendBtn">전송</button>
+        		<input type="hidden" id="id" name="id"/> 
         </div>
       </div>
     </div>
     <script>
 
-var ws = null;
+var chat = null;
 var loginId = null;
-
 $(function () {
 	
-    ws = new WebSocket('ws://localhost:8000/nmcat/chat.mn');  /*
+	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
     url /info가 자동 붙는것을 해결해야 한다. 
 		    - 현재는 스프링이 *.do로 설정되어 있어 404가 된다.
 		      /*로 스프링의 경로를 수정하게 되면 문제는 페이지의 결과가 텍스트로 보인다.
@@ -92,30 +74,42 @@ $(function () {
 		      아래의 SockJS를 사용하기 위해서는 spring-websocket.xml파일에 사용부분의 주석을 해제해야 한다.
 		  */
 		
-		ws.onopen = function() {
+		  chat.onopen = function() {
 			    console.log('웹소켓 서버 접속 성공');
+			    $(".chat-list").append("<p>채팅이 시작되었습니다</p>")
 		};
 		// 메세지 받기
-		ws.onmessage = function(evt) {
-		  $(".chat-list").prepend(evt.data);
+		chat.onmessage = function(evt) {
+		  $(".chat-list").append("<div>"+evt.data+"</div>");
+			
 		};
-		ws.onerror = function(evt) {
-			    $("div").prepend('웹소켓 에러 발생 : ' + evt.data)
+		chat.onerror = function(evt) {
+			    $("div").append('웹소켓 에러 발생 : ' + evt.data)
 		};
-		ws.onclose = function() {
-			    $("div").prepend("웹소켓 연결이 종료됨.");
+		chat.onclose = function() {
+			    $("div").append("웹소켓 연결이 종료됨.");
 		};
 	});
 
 	$('#sendBtn').click(function() { 
 		var $msg = $("#message");
+		var $id = $("#id");
 		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
 		// 웹소켓 서버에 데이터 전송하기
-		
-		ws.send("<div class='chat-bubble pull-right right'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
+		console.log($msg.val());
+		if("${user.id}"== loginId){
+			
+		chat.send("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
 		$msg.val(""); 
+		}else{
+			chat.send("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
+			$msg.val(""); 
+				
+		}
 	});
-
+	
+	$(".chat-list").scrollTop($(".chat-list").height());
+	
 </script>
 </body>
 </html>

@@ -56,9 +56,11 @@
     
       
       </div>
-       <a href="<c:url value="/chat/chat.mn" />">
+       <%-- <a href="<c:url value="/chat/chat.mn" />"> --%>
+       <button onclick="doChatList()">
 		ChatController(/chat/chat.mn)
-	</a><br />	
+       </button>
+<br />	
 <script>
   var slideEl = $(".slide--parent");
 
@@ -76,7 +78,7 @@ function doDetail(no) {
 }
 
 function doChatList() {
-   window.open("chat.html", "chatList", "width=400, height=600, scrollbars=yes");
+   window.open("<c:url value='/chat/chat.mn' />", "chatList", "width=560, height=600, scrollbars=yes");
 }
 
 
