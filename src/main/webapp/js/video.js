@@ -127,6 +127,15 @@ var config = {
 
 var conferenceUI = conference(config);
 
+setTimeout(function(){
+	let joinBtn = $('.join');
+	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
+		joinBtn.trigger("click"); 
+	}else{
+		$('#setup-new-room').trigger("click");
+	}
+}, 6000);
+
 function setupNewRoomButtonClickHandler() {
     btnSetupNewRoom.disabled = true;
     document.getElementById('conference-name').disabled = true;
@@ -190,7 +199,8 @@ function captureUserMedia(callback, failure_callback) {
 //유니크 토큰이 roomtoken 이 되는 비밀은 conference.js 에 있다...
 (function() {
 	console.log("유니크 토큰을 찾자..")
-    var uniqueToken = document.querySelector('[data-roomtoken]');
+//	var uniqueToken = document.getElementById('unique-token');
+    var uniqueToken = document.querySelector('button[data-roomtoken]');
 	console.log("roomtoken==uniquetoken : " + uniqueToken);
     if (uniqueToken) {
     	console.log("location.hash :" + location.hash);
