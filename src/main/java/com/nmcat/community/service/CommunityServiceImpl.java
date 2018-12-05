@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nmcat.repository.domain.ComSearchVO;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 
+@SuppressWarnings("unused")
 @Service
 public class CommunityServiceImpl implements CommunityService{
 	@Autowired
@@ -20,6 +20,7 @@ public class CommunityServiceImpl implements CommunityService{
 	//Ŀ�´�Ƽ CRUD
 	@Override
 	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
+		
 		return mapper.selectBoard(comBoard);
 	}
 
@@ -27,6 +28,13 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<CommunityBoard> selectBoardC(CommunityBoard comBoard) {
 
 		return mapper.selectBoardC(comBoard);
+	}
+	
+
+	@Override
+	public List<CommunityBoard> selectBoardCa(CommunityBoard comBoard) {
+	
+		return mapper.selectBoardCa(comBoard);
 	}
 
 	/*@Override
@@ -36,7 +44,10 @@ public class CommunityServiceImpl implements CommunityService{
 */
 	@Override
 	public CommunityBoard detailBoard(int comNo) {
-		return mapper.detailBoard(comNo);
+		mapper.updateBoardViewCnt(comNo);
+		CommunityBoard comBoard = new CommunityBoard();
+		comBoard = mapper.detailBoard(comNo);
+		return comBoard;
 	}
 
 	@Override
