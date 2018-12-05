@@ -67,12 +67,9 @@
 								<c:forEach var="l" items="${licenseList}">
 									<tr>
 										<td>${l.lifOriName}</td>
-										<td><button type="button" id="downBtn" class="btn btn-default btn-xs">다운</button></td>
+										<td><button type="button" class="btn btn-default btn-xs downBtn" onclick="window.location='<c:url value='/common/download.mn?sysName=${l.lifSysName}&path=${l.lifPath}&oriName=${l.lifOriName}'/>'">다운</button></td>
 									</tr>
 								</c:forEach>
-								<tr>
-									<td><button type="button" id="downBtn" class="btn btn-default btn-xs">다운</button></td>
-								</tr>
 							</table>
 						</div>
 
@@ -197,10 +194,9 @@
 	});
 	
 
-	$("#downBtn").click(function() {
-		location.href = "<c:url value='/common/download.mn?path=/test&fileName=hello.jpg'/>"
+	$(document).on("click", ".downBtn" function() {
+		location.href = "<c:url value='/common/download.mn?sysName=${general.imageName}&path=${general.imagePath}&oriName=${general.imageOriName}'/>"
 	})
-
 	</script>
 </body>
 </html>

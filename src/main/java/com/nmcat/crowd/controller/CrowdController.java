@@ -2,8 +2,10 @@ package com.nmcat.crowd.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -75,6 +77,7 @@ public class CrowdController {
 		Map<String, Object> map = new HashMap<>();
 		
 		map.put("crowdList", service.list(crowd));
+		map.put("remainDaysList", calRemainDays(service.list(crowd)));
 
 		return map;
 	}
@@ -84,11 +87,57 @@ public class CrowdController {
 	public void detail(Model model, int crNo) {
 		System.out.println(service.detail(crNo).getCrTitle());
 		System.out.println(service.detail(crNo).getCrContent());
+		
 		model.addAttribute("detail",service.detail(crNo));
+		model.addAttribute("remainDays", calRemainDays(service.detail(crNo).getCrEndDay()));
 	}
 	
 	
+	
+	
 	/* 일반 메소드 */
+	// 남은 날짜 계산 (디테일)
+	private long calRemainDays(String endDay)  {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			
+			Date parsedEndDay = sdf.parse(endDay);
+			Date date = new Date(); // 오늘날짜
+			long diff = parsedEndDay.getTime() - date.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+			
+			return diffDays;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	// 남은 날짜 계산 (리스트)
+	private List<Long> calRemainDays(List<Crowd> crowdList)  {
+		try {
+			List<Long> remainDaysList = new ArrayList<>();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			for(Crowd c : crowdList) {
+				if(c.getCrEndDay()==null) continue;
+				Date parsedEndDay = sdf.parse(c.getCrEndDay());
+				Date date = new Date(); // 오늘날짜
+				long diff = parsedEndDay.getTime() - date.getTime();
+				long diffDays = diff / (24 * 60 * 60 * 1000);
+				
+				remainDaysList.add(diffDays);
+			}
+			
+			return remainDaysList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	// 확장자
     private static String getExtension(String fileName) {
         int dotPosition = fileName.lastIndexOf('.');

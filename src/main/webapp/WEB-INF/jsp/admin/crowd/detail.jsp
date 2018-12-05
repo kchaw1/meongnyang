@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +22,7 @@
       
       <!-- 우측 콘텐츠 영역-->
           <div id="content-container">
-	          <div class="main-title"><h1>크라우드 펀딩</h1></div>
+	          <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
 	          	<div id="content-wrapper">
 	          		<div id="cf-img"><img style="border-radius: 10%;" src="<c:url value='/common/download.mn?sysName=${detail.crFileName}&path=${detail.crFilePath}&oriName=${detail.crFileOriName}'/>" /></div>
 	          			<div id="content-area1">
@@ -35,20 +36,21 @@
 		              			</button>
 		              		</div>
 				            <div class="progress">
-				                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-				                      ${detail.crNowMoney/detail.crGoalMoney}
+				                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(detail.crNowMoney/detail.crGoalMoney*100)+(1-((detail.crNowMoney/detail.crGoalMoney*100)%1))%1}%;">
+				                      <fmt:parseNumber var="progress" value="${(detail.crNowMoney/detail.crGoalMoney*100)+(1-((detail.crNowMoney/detail.crGoalMoney*100)%1))%1}" integerOnly="true"/>
+				                      ${progress} %
 				                 </div>
 				            </div>
 		              		<div id="remain-days">
 		                		<h2>남은일수:</h2>
-		                		<h2><span class="remain-days">30일</span></h2>
+		                		<h2><span class="remain-days">${remainDays} 일</span></h2>
 		              		</div>
 		              		<div id="end-day">
 		               			 <h2>마감 날짜:</h2>
 		               			 <h2><span class="end-day">${detail.crEndDay}</span></h2>
 		             		</div>
 		              		<div id="donate-area">
-		            		  <input id="input-money" type="text" placeholder="기부 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
+		            		  <input id="input-money" class="form-control" type="text" placeholder="기부 금액을 입력하세요"  id="recycle_result_amt" value="" onkeyup="inputNumberFormat(this)" />
 		            		  <button type="button" class="btn btn-default btn-default">기부하기</button>
 		            		</div>
 	            		</div>
@@ -69,16 +71,6 @@
 	                    <!-- 댓글 들어가는부분 -->
 	                  </ul> 
 	              </div>
-	              
-	              <form id="commentForm">
-		              <div id="cmt_writeform">
-		                <input type="hidden" name="gbNo" value="${gbb.gbNo}" />
-		                  <div id="cmt_writer">${user.id}</div>
-		                  <input type="hidden" name="gbcWriter" value="${user.id}" />
-		                  <div id="cmt_textarea"><textarea id="gbcTxtarea" name="gbcContent"></textarea></div>
-		                  <div id="cmt_regbtn"><button id="cmtRegBtn" type="button" class="btn btn-success">등록</button></div>
-		              </div>
-	              </form>
 	          </div>
 	    </div>
 	</div>
@@ -91,5 +83,23 @@
 	<div id="footer">
 		<c:import url="../../common/footer.jsp" />
 	</div>
+	
+	<script>
+	$(document).on("click", "#heart-btn", function() {
+	      var count = parseInt($(this).children().children().text());
+	      // console.log($(this).children().attr("class")=="glyphicon glyphicon-heart-empty");
+	      if($(this).children().attr("class")=="glyphicon glyphicon-heart-empty") {
+	        $("span.glyphicon").removeClass();
+	        $(this).children().addClass("glyphicon glyphicon-heart");
+	        ++count
+	        $(this).children().children().text(count)
+	      } else {
+	        $("span.glyphicon").removeClass();
+	        $(this).children().addClass("glyphicon glyphicon-heart-empty");
+	        --count
+	        $(this).children().children().text(count)
+	      }
+	    });
+	</script>
 </body>
 </html>

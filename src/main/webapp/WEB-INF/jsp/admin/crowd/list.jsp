@@ -16,6 +16,7 @@
 	<!-- 헤더 -->
 	<div id="header">
 		<c:import url="../../common/header.jsp" />
+		
 	</div>
 	
 	<!-- start -->
@@ -24,7 +25,7 @@
       <!-- 우측 콘텐츠 영역-->
       <div class="content-area">
         
-        <div class="main-title"><h1>크라우드 펀딩</h1></div>
+        <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
         <div class="seperator"></div>
         <div style="float: right;">
           <button class="btn btn-default btn-lg" id="create-button">크라우펀딩 만들기</button>
@@ -79,14 +80,18 @@
 			console.log(result)
 			
 			var crowdList = result.crowdList;
+			var remainDaysList = result.remainDaysList;
 			
 			var html = "";
-			if(crowdList.length != 0) {
 				for(var i in crowdList) {
 					html += "<div class='list-item'>"
 							+ "<div class='image-area'><a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
-							+ "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
-							+ "</a></div>"
+							if(crowdList[i].crFileName != null) {
+								html += "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
+							} else {
+								html += "<img src='<c:url value='/resources/img/admin/crowd/01_preview.__large_preview.png' />' />"
+							}
+					html +=	  "</a></div>"
 							+ "<div class='cr-title'>"
 							+ 	"<h4>"+ crowdList[i].crTitle +"</h4>"
 							+ "</div>"
@@ -98,13 +103,11 @@
 							+ "</div>"
 							+ 	"<div>"
 							+  		"<span class='now-money'>"+ crowdList[i].crNowMoney +"원 달성</span>"
-							+  		"<span class='remain-day'>일 남음</span>"
+							+  		"<span class='remain-day'>"+ remainDaysList[i] +"일 남음</span>"
 							+ 	"</div>"
 							+ "</div>"
 				} // for
-			} else {
-				html +=   "크라우드펀딩이 없습니다."
-			}
+			 
 			
 			$("div.list-item-area").append(html);
 		}); // done();

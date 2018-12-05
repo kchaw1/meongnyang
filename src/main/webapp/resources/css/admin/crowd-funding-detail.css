@@ -13,19 +13,41 @@ span.remain-days { color: red; }
 #end-day { width:100%; height:84px; }
 #end-day > h2 { display: inline-block; }
 #donate-area { width:100%; height:84px; }
-input#input-money { width: 60%; }
+input#input-money { width: 50%; text-align:right;}
+.form-control{display:inline-block;}
 #content-area2 { clear: both; font-size: 25px; padding:30px; }
 #button-area { text-align: right; margin-bottom:20px; padding:20px; }
 #heart-btn #like-count { font-family: 'Jua', sans-serif; }
 #content-wrapper { margin-top: 30px;}
 #detail-container {
     margin-top:130px;
-  }
+ }
+  
+button.btn{
+  font-family: 'Jua', sans-serif;
+  color : white;
+  background-color: #f2809f;
+  border-color : rgb(65, 192, 142, 0.7);
+}
 
-  #content-container {
-    margin: 0 auto;
-    width: 80%;
-  }
+button.btn:hover {
+  background-color: #f2809f;
+  border-color : rgb(65, 192, 142);
+}
+button.btn:focus {
+  background-color: #f2809f;
+  border-color : rgb(65, 192, 142, 0.7);
+}
+button.btn:active {
+  background-color: #f2809f;
+  border-color : rgb(65, 192, 142);
+}
+  
+
+#content-container {
+  margin: 0 auto;
+  width: 80%;
+}
 
 /* 코멘트 */
 ul {
@@ -67,6 +89,15 @@ ul {
 /* 	cursor: pointer; */
 /* } */
 
+.progress-bar {
+		font-weight: bold;
+    	color: black;
+    }
+    
+.progress-bar-warning {
+    background-color: #f2809f;
+}
+
 #cmt_writer {
 	clear: both;
     float: left; width:15%; padding: 40px;
@@ -88,3 +119,7 @@ ul {
 #detail_info {
     float:right;
 }
+
+a:link {text-decoration:none; color: black; }
+a:visited {text-decoration:none; color: black; }
+a:active {text-decoration:none; color: black; }

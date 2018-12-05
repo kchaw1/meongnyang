@@ -11,8 +11,13 @@
     .item-wrapper:hover {
       background: rgba(50, 205, 89, 0.611);
     } */
+    .progress-bar {
+    	font-weight: bold;
+    	color: black;
+    }
+    
     .progress-bar-warning {
-        background-color: rgb(65, 192, 142, 0.7);
+        background-color: #f2809f;
     }
 
     .list-item {
@@ -49,3 +54,7 @@
         margin: auto;
         min-height: 1000px;
       }
+      
+a:link {text-decoration:none; color: black; }
+a:visited {text-decoration:none; color: black; }
+a:active {text-decoration:none; color: black; }
