@@ -10,6 +10,32 @@
 <c:import url="../../common/headerfooterCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
 <c:import url="detailCSSJS.jsp" />
+<script src="<c:url value="/resources/js/admin/countdown-timer.js" />"></script>
+<style>
+.timer {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.timer .timer-wrapper {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+
+.timer .timer-wrapper .time {
+  font-size: 28px;
+  font-weight: bold;
+  color: red;
+}
+
+.timer .timer-wrapper .text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+</style>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -61,12 +87,14 @@
 				            </div>
 		              		<div id="remain-days">
 		                		<h2>남은일수:</h2>
-		                		<h2><span class="remain-days">${remainDays} 일</span></h2>
+		                		<div class="timer" id="countdown"></div>
+<%-- 		                		<h2><span class="remain-days">${remainDays} 일</span></h2> --%>
 		              		</div>
 		              		<div id="end-day">
 		               			 <h2>마감 날짜:</h2>
 		               			 <h2><span class="end-day">${detail.crEndDay}</span></h2>
 		             		</div>
+		             		
 		            		<div id="my-point">
 		            		  <span>
 		            		  	<c:if test="${myPoint ne null}">
@@ -250,8 +278,37 @@
 				$("#like-count").text(result)
 			});
 		}
-		
-
+	</script>
+	
+	<script>
+	function parse(str) {
+	    var y = str.substr(0, 4);
+	    var m = str.substr(5, 2);
+	    var d = str.substr(8, 2);
+	    var h = str.substr(11, 2);
+	    var mm = str.substr(14, 2);
+	    console.log(y);
+	    console.log(m);
+	    console.log(d);
+	    console.log(h);
+	    console.log(mm);
+	    console.log(new Date(y,m-1,d , h,mm))
+	    return new Date(y,m-1,d , h,mm);
+	}
+	
+	var myDate1 = new Date();
+	console.log("테스트" , myDate1.getDate());
+	console.log("실제" , parse('${detail.crEndDay}').getDate())
+	
+	var myDate = new Date(myDate.getDate() + 2);
+	myDate.setDate();
+	$("#countdown").countdown(myDate, function (event) {
+	  $(this).html(
+	      event.strftime(
+	          '<div class="timer-wrapper"><div class="time">%D</div></div><div class="timer-wrapper">일</div><div class="timer-wrapper"><div class="time">%H</div></div><div class="timer-wrapper">:</div><div class="timer-wrapper"><div class="time">%M</div></div><div class="timer-wrapper">:</div><div class="timer-wrapper"><div class="time">%S</div></div>'
+	      )
+	  );
+	});
 	</script>
 </body>
 </html>

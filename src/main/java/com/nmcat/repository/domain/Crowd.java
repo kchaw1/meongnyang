@@ -19,7 +19,6 @@ public class Crowd {
 	private int crLikeCnt;
 	private Date crRegDate;
 	private int crViewCnt;
-	private String crEndYN;
 	private int donateMoney;
 	
 	// 파일관련

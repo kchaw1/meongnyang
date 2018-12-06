@@ -30,6 +30,11 @@ public class CrowdServiceImpl implements CrowdService{
 		return mapper.selectCrowdList(crowd);
 	}
 	
+	@Override
+	public List<Crowd> endList(Crowd crowd) {
+		return mapper.selectCrowdEndList(crowd);
+	}
+	
 	// 크라우드 펀딩 디테일
 	@Override
 	public Crowd detail(int crNo) {

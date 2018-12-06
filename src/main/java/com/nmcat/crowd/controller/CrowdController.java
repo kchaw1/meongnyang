@@ -84,6 +84,17 @@ public class CrowdController {
 		return map;
 	}
 	
+	@RequestMapping("/crowd/printEndList")
+	@ResponseBody
+	public Map<String, Object> printEndList(Crowd crowd) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("crowdList", service.endList(crowd));
+		
+		return map;
+	}
+	
 	// 크라우드펀딩 디테일
 	@RequestMapping("/crowd/detail")
 	public void detail(Model model, int crNo, HttpServletRequest req) {

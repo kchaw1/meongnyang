@@ -12,6 +12,7 @@ public interface CrowdMapper {
 	
 	void insertCrowd(Crowd crowd); // 크라우드펀딩 작성
 	List<Crowd> selectCrowdList(Crowd crowd); // 크라우드펀딩 리스트
+	List<Crowd> selectCrowdEndList(Crowd crowd); // 크라우드펀딩 종료 리스트
 	Crowd selectCrowdDetail(int crNo); // 크라우드펀딩 디테일
 	int selectLikeCount(int crNo); // 좋아요 개수
 	void insertLike(CrowdLike cl); // 좋아요

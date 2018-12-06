@@ -12,6 +12,7 @@ public interface CrowdService {
 	
 	void write(Crowd crowd); // 크라우드 펀딩 작성
 	List<Crowd> list(Crowd crowd); // 크라우드 펀딩 리스트
+	List<Crowd> endList(Crowd crowd); // 크라우드 펀딩 종료된 리스트
 	Crowd detail(int crNo); // 크라우드 펀딩 디테일
 	int likeCnt(int crNo); // 좋아요 개수
 	void userLikeUp(CrowdLike cl);  // 내역테이블에 넣기
