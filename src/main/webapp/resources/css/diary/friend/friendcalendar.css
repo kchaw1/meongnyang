@@ -1,0 +1,522 @@
+* {
+  padding : 0px;
+  margin : 0px;
+}
+.top-section {
+  width: 90%; 
+  min-height: 500px;
+  height: 1200px;
+  margin: auto; 
+  margin-bottom: 40px;
+  clear: both;
+  padding: 150px 30px 0;
+}
+div#calendar {
+  width: 100%;
+  float: left;
+}
+table {
+  width: 100%;
+  height: 300px;
+/*   padding-top : 10px; */
+  /* border: 1px solid gray; */
+}
+div#title {
+	display:none;
+	position : absolute;
+	width : 200px;
+	height : 80px;
+	top :120px;
+	left : 120px;
+}
+span.fixdiary {
+	font-family: 'Sacramento', 'Tangerine', cursive;
+	font-size : 90px;
+	color : rgb(243, 150, 154);
+	/* text-shadow: 0 0 4px #ccc,
+                    0 -5px 4px #ff3,
+                    2px -10px 6px #fd3,
+                    -2px -15px 11px #F80,
+                    2px -25px 18px #f20;   */
+}
+span#userid {
+	/* font-family: 'Sacramento', 'Tangerine', cursive; */
+	font-size : 32px;
+	font-weight : light;
+	color : gray;
+}
+span.s {
+	font-size : 25px;
+}
+div.yoil{
+  text-align: center;
+  font-size: 30px;
+  font-weight: lighter;
+  height: 60px;
+  margin-bottom : 10px;
+}
+div.year {
+  font-size: 50px;
+  font-weight: bold;
+  color : rgb(128, 128, 128, 0.6);
+  margin: 10px;
+  float : right;
+}
+div#calendarContent {
+  height: 500px;
+  width: 100%;
+  float: left;
+}
+
+div.month {
+  display: inline-block;
+  width: 100%;
+}
+div.month .months {
+	float: right;
+}
+div.month .months li {
+  list-style: none;
+	float: left;
+  text-transform: uppercase;
+  font-size: 20px;
+	text-align: center;
+	width: 40px;
+/*   margin-bottom: 20px; */
+  margin : 0 0px 40px 10px;
+}
+.months li a {
+	/* color: rgb(242, 128, 128, 0.4); */
+	color: rgb(53, 177, 191, 0.4);
+}
+div.month .months li a:active{
+  text-decoration: none;
+}
+div.month .months li a:hover{
+  text-decoration: none;
+}
+div.month .months li a:focus{
+  text-decoration: none;
+}
+div.month .months li .selected{
+	font-weight: bold;
+	color: #747978;
+}
+div.yoil .yoils li {
+  list-style: none;
+  float: left;
+  text-align: center;
+  width : 14.25%;
+  /* color: rgb(242, 128, 128, 0.8) */
+}
+.yoil {
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid rgb(128, 128, 128, 0.3);
+}
+div.form {
+  margin-top : 25px;
+  width: 45%;
+  float: right;
+}
+/* div.write {
+  width : 45%;
+  float: left;
+  margin-left: 8%;
+} */
+div.submit {
+  width: 100%;
+  float: right;
+  margin-bottom: 30px; 
+}
+table.submit,
+table.submit td {
+  height: auto;
+  text-align: right;
+ /*  border : 1px solid gray; */
+  padding : 5px;
+  font-size : 18px;
+  vertical-align : top;
+}
+td.input-form {
+  width: 25%;
+}
+table.submit td.checkbox {
+	text-align : left;
+	padding-left : 20px;
+	margin : 0;
+	font-size : 15px;
+}
+table.submit td button {
+  float: right;
+  margin : 3px;
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  color : white;
+  background-color: rgb(65, 192, 142, 0.7);
+  border-color : rgb(65, 192, 142, 0.7);
+  font-family: 'Jua', sans-serif;
+}
+table.submit td.date {
+  width : 20%;
+  padding-top : 10px;
+}
+tr[class^='week'] td{
+  width: auto;
+  height: 130px;
+  font-size : 24px;
+  padding : 20px 20px;
+  vertical-align: top;
+}
+tr[class^='week'] td a {
+  /* color: rgb(242, 128, 128, 0.4); */
+  color: rgb(128, 128, 128, 0.3);
+}
+tr[class^='week'] td a:hover {
+  /* color: rgb(242, 128, 128, 0.4); */
+  color: rgb(53, 177, 191);
+}
+tr[class^='week'] td:nth-child(7) a {
+  color: rgb(29, 67, 99,0.5);
+}
+tr[class^='week'] td:nth-child(1) a {
+  color: rgb(188, 44, 24, 0.5);
+}
+tr[class^='week'] td a:hover {
+  text-decoration: none;
+}
+tr[class^='week'] td a:active {
+  text-decoration: none;
+}
+tr[class^='week'] td a:focus {
+  text-decoration: none;
+}
+tr[class^='week'] td.today {
+  background-color : rgb(255, 194, 64,0.3);
+}
+tr[class^='week'] td.today a{
+  color : rgb(128, 128, 128, 0.7)
+}
+
+
+table.writeform, table.writeform tr,
+table.writeform td {
+  /* border: 1px solid gray; */
+}
+table.writeform td {
+  text-align: center;
+  padding: 20px 5px 0;
+  height: 20px;
+  font-size: 24px;
+}
+table.writeform td.textarea {
+  text-align: left;
+  font-size: 16px;
+}
+table.writeform tr:nth-child(1){
+  border-bottom: 1px solid rgb(128, 128, 128, 0.3);
+}
+th.up {
+  text-align: center;
+  font-size: 35px;
+  font-weight: lighter; 
+}
+
+div.title.form-group {
+  margin: 0;
+}
+div.form-group input:focus, div.form-group select:focus{
+  border: 3px solid rgb(122, 194, 173, 0.3);
+  box-shadow : none;
+}
+
+/* 모달 css */
+div.modal {
+	z-index : 2000;
+}
+div.modal-dialog {
+  width : 70%;
+  height: 90%;
+  border-radius: 20px;
+}
+div.modal-content {
+  position: relative;
+  overflow: hidden;
+  height: 103%;
+  background-image : url("../../../img/diary/diary2.png");
+  /* background-size: 1350px auto;  */
+  background-size: 115% auto; 
+  background-repeat: no-repeat; 
+  /* background-position: -100px; */
+  background-position: -100px;
+  /* transform: rotate(-10deg) */
+}
+ /*
+div.modal-contet:before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top : -50%;
+  left: -50%;
+   0 0 no-repeat;
+  background-size: 100% auto; 
+  background-repeat: no-repeat; */
+  /* background-position: bottom; 
+  z-index: 10;
+
+} */
+/* div.modal-content::before {
+  position: absolute;
+  width: 70%;
+  height: 90%;
+  z-index: 1;
+} */
+.modal {
+  text-align: center;
+}
+.modal .modal-center {
+ margin: 20px auto;
+}
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle
+}
+.modal-header {
+  height: 50px;
+  padding: 10px;
+}
+h3.header {
+  margin: 0 30px;
+  color: rgb(29, 67, 99)
+}
+div.diaryList {
+  width : 550px;
+  height: 750px;
+  /* border: 1px solid gray; */
+  margin: 10px auto 0;
+  overflow: scroll;
+  padding : 10px;
+  /* transform: skew(0deg, 10deg); */
+}
+.close {
+  float: left;
+}
+div.diary {
+  clear: both;
+  margin : 10px 10px;
+  width : 90%;
+}
+div.dr-title {
+  padding-bottom : 5px;
+  border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
+  width: 100%;
+}
+span.label {
+  margin: 10px;
+  /* display: inline-block; */
+  border-radius: 5px; 
+  font-size : 11px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+span.title {
+  color : rgb(94, 94, 94);
+  font-size : 24px;
+}
+span.date {
+  color : rgb(94, 94, 94, 0.5);
+  font-size : 15px;
+}
+span.label-share {
+  background-color: rgb(65, 192, 142);
+}
+span.label-friend {
+  background-color: rgb(255, 194, 64);
+}
+span.label-noshare {
+  background-color: rgb(247, 117, 78);
+}
+div.dr-content {
+  padding : 15px 20px 0px;
+  font-size : 20px;
+}
+div.buttons {
+  height: 40px;
+  /* border-bottom :1px solid  rgb(128, 128, 128, 0.3) */
+}
+div.button-box {
+  float: right;
+  margin-right: 10px 
+}
+button[class^='dr-']{
+  width : 40px;
+  height: 25px;
+  border-radius: 5px;
+  color : gray;
+  border-color: gray;
+  margin-right : 10px;
+  background-color: transparent;
+}
+button[class^='dr-']:hover {
+  color : black;
+}
+/* button.dr-delete {
+  background-color : rgb(213, 145, 106);
+}
+button.dr-update {
+  background-color : rgb(120, 190, 151);
+} */
+a[data-toggle] span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  margin-right: 4px; 
+  margin-bottom : 4px;
+  background-color: salmon;
+}
+
+div.updateform {
+	display : inline-block;
+	margin-left : 10px;
+}
+.updateform input[type='radio'] {
+	margin-left : 10px;
+	margin-right : 8px;
+}
+button.dr-updatecomplete{
+	width : 80px;
+}
+div.updatebutton-box {
+  float: right;
+  margin-right: 10px; 
+}
+
+.dr-content.update {
+  text-align: left;
+  font-size: 14px;
+}
+
+/* 고양이*/
+.ledge {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  max-height: 100%;
+  background: #111;
+}
+
+.kuro {
+  position: relative;
+  /* margin: 320px auto 0; */
+  width: 400px;
+  height: 500px;
+}
+
+.head {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 320px;
+  height: 200px;
+  background: #000;
+  border-radius: 50% / 50%;
+  z-index: 2;
+}
+
+.eyes {
+  width: 100%;
+}
+.eyes .eye {
+  position: absolute;
+  top: 45%;
+  -webkit-transform: translate(0, -45%);
+          transform: translate(0, -45%);
+  width: 95px;
+  height: 95px;
+  background: palegreen;
+  border-radius: 50%;
+}
+.eyes .eye:nth-of-type(1) {
+  left: 10%;
+}
+.eyes .eye:nth-of-type(2) {
+  right: 10%;
+}
+.eyes .eye:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 85%;
+  height: 85%;
+  background: #000;
+  border-radius: 50%;
+  content: '';
+}
+
+.ears {
+  position: absolute;
+  top: -40px;
+  width: 100%;
+  z-index: 1;
+}
+.ears .ear {
+  position: absolute;
+  width: 110px;
+  height: 135px;
+  background: #000;
+  border-radius: 50% 50% / 100% 100% 0 0;
+}
+.ears .ear:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 75%;
+  height: 85%;
+  background: pink;
+  border-radius: 50% 50% / 100% 100% 0 0;
+  content: '';
+}
+.ears .ear:nth-of-type(1) {
+  left: 60px;
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
+}
+.ears .ear:nth-of-type(2) {
+  right: 60px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+
+.body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 200px;
+  height: 300px;
+  background: #000;
+  border-radius: 50% 50% / 100% 100% 0 0;
+}
+
+.tail {
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+  -webkit-transform: rotate(25deg);
+          transform: rotate(25deg);
+  height: 300px;
+  border: 15px solid #000;
+  border-radius: 50% / 10%;
+}
+

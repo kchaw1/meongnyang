@@ -6,11 +6,11 @@
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
-function showFriendList(pageNo){
+function showblackList(pageNo){
 	$.ajax({
-		url : "<c:url value='/friend/showallfriend.mn'/>",
+		url : "<c:url value='/blacklist/showlist.mn'/>",
 		data : {"pageNo" : pageNo,
-				"userId" : "${user.id}"
+				"blackFromId" : "${user.id}"
 				},
 		type : "POST"
 	}).done(function(map) {
@@ -39,13 +39,13 @@ function showFriendList(pageNo){
 				str += '<i class="fas fa-trophy fa-2x"></i>'
 				str += friend.gradeName + '</div>';
 				str += '<div class="icons">'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="dochat" title="채팅 하기"'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제"'
 				str += 'data-id="'+friend.id+'">';
-				str += '<i class="far fa-comments fa-2x"></i></a>'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="goDiary" title="다이어리 보기"';
+				str += '<i class="fas fa-lock fa-2x"></i></a>'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제"';
 				str += 'data-id="'+friend.id+'">';
-				str += '<i class="fas fa-address-book fa-2x"></i></a>'
-				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" id="sendmsg" title="쪽지 쓰기"';
+				str += '<i class="fas fa-lock-open fa-2x" id="hidden"></i></a>'
+				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기"';
 				str += 'data-id="'+friend.id+'">';
 				str += '<i class="far fa-envelope fa-2x" ></i></a>'
 				str += '</div></div></div>'
@@ -54,22 +54,27 @@ function showFriendList(pageNo){
 			str += '</div>'
 		} // line for 문
 		
-		$("div#friend div.list").html(str);
+		$("div#blacklist div.list").html(str);
 		
 		if(map != null) {			
-			showfriendPaging(map);
+			showblackPaging(map);
 		}
 		
 		$('[data-toggle="tooltip"]').tooltip()
-		
-		$("a#goDiary").click(function() {
-			location.href = "<c:url value='/diary/friend/calendar.mn'/>"+"?no=${user.no}";
-		})
 
+		$("i.fa-lock").mouseenter(function(){
+	      $(this).attr("id", "hidden")
+	      $("i.fa-lock-open").attr("id", "show");
+	    })
+	     
+	    $("i.fa-lock-open").mouseleave(function(){
+	      $("i.fa-lock-open").attr("id", "hidden")
+	      $("i.fa-lock").removeAttr("id");
+	    })
 	}) //done
 } //showMemberList
 
-function showfriendPaging(map) {
+function showblackPaging(map) {
 	let pageStr = "";
 	if(map.pageResult.count !=0) {
 		pageStr += '<div class="pagination"><a ';
@@ -121,7 +126,7 @@ function showfriendPaging(map) {
 	
 	$("a[data-pageno]").click(function() {
 		//alert($(this).data("pageno"))
-		showFriendList($(this).data("pageno"));
+		showblackList($(this).data("pageno"));
 	})
 	
 }//showpaging function */

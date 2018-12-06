@@ -26,7 +26,7 @@ public interface FriendMapper {
 	
 	public List<Friend> selectFriendsListOnePage(Friend friend);
 
-	public List<String> selectAllFriendsOneLine(Friend friend);
+	public List<String> selectAllFriendsIdByOneLine(Friend friend);
 	
 	public List<Member> selectFriendInfoByIdList(Member m);
 	

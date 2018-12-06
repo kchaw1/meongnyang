@@ -6,11 +6,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../common/headerfooterCSSJS.jsp"/>
-<c:import url="calendarCSSJS.jsp"/>
+<c:import url="../../common/headerfooterCSSJS.jsp"/>
+<c:import url="./friendcalendarCSSJS.jsp"/>
 </head>
 <body>
-<c:import url="../common/header.jsp"/>
+<c:import url="../../common/header.jsp"/>
+  <div id="title">
+  <div class="kuro">
+  <div class="head">
+    <div class="eyes">
+      <div class="eye"></div>
+      <div class="eye"></div>
+    </div>
+  </div> <!-- !.head -->
+  <div class="ears">
+    <div class="ear"></div>
+    <div class="ear"></div>
+  </div>
+  <div class="body"></div>
+  <div class="tail"></div>
+</div> <!-- !.kuro -->
+  	<!-- <span id="userid">victory </span> <span class="s">'s</span></span> <span class="fixdiary">Diary</span> -->
+  </div>
   <div class="top-section">
     <div id="calendar">
       <div class="year"></div>
@@ -50,7 +67,7 @@
         </div>
       </div>
     </div> 
-    <div class="form">
+<%--     <div class="form">
     <form action="<c:url value="/diary/write.mn"/>" method="post">
     <!-- <input type="hidden" name="drNo" value="1"/> -->
     <input type="hidden" name="drWriter" value="${user.id}"/>
@@ -98,14 +115,14 @@
           </tr>
         </table>
       </form>  
-      </div>
+      </div> --%>
     </div> 
   </div>
   <!-- 다이어리 모달-->
-  <c:import url="./list.jsp"/>
+  <c:import url="../list.jsp"/>
   <!--모달-->
-  <c:import url="../common/footer.jsp"/>
-<c:import url="calendarJS.jsp"/>
+  <c:import url="../../common/footer.jsp"/>
+<c:import url="../calendarJS.jsp"/>
 <script>
 	$("button#submit").click(function (){
 		let drDate = $("input[name='drDate']").val().toString()
@@ -128,8 +145,7 @@
 				"drDate" : drDate,
 				"drShare" : checked.val(),
 				"drTitle" : title.val(),
-				"drContent" : content.val(),
-				"drWriter" : "${user.id}"
+				"drContent" : content.val()
 			},
 			type : "POST"
 	 	}).done(function(map){

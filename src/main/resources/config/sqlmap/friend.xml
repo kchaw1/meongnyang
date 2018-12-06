@@ -27,13 +27,16 @@
 		  inner join mn_code c
 			 on m.grade_no = c.each_code
 		  where type= '1'
-		  order by id desc
+		  order by m.id
 		 limit #{lineBegin}, 4
 	</select>
 	
 	<select id="selectCntAllMembers" resultType="int">
-		select count(*) from mn_member
-		 where type = '1'
+		select count(*) 
+		from mn_member m
+		  inner join mn_code c
+			 on m.grade_no = c.each_code
+		  where type= '1'
 	</select>
 	
 	<resultMap id="friendMap" type="Friend">
@@ -96,7 +99,7 @@
 		limit #{begin}, 12
 	</select>
 	
-	<select id="selectAllFriendsOneLine" parameterType="Friend" resultType="string">
+	<select id="selectAllFriendsIdByOneLine" parameterType="Friend" resultType="string">
 		(select caller_id as friends_id 
 			from mn_friend where callee_id = #{userId} 
 										and answer='y')
@@ -104,6 +107,7 @@
 		(select callee_id as friends_id 
 			from mn_friend where caller_id = #{userId} 
 										and answer='y')
+		order by friends_id
 		limit #{lineBegin}, 4
 	</select>
 	
@@ -112,7 +116,7 @@
 		  from mn_member m
 		  inner join mn_code c
 			 on m.grade_no = c.each_code
-		  where id in <foreach item ="friendId" collection="FriendIdList"
+		  where m.id in <foreach item ="friendId" collection="FriendIdList"
      	 						open="(" separator="," close=")">
      	 					#{friendId}
      	 			   </foreach>

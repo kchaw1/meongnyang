@@ -2,5 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.BlackListMapper">
-
+	<resultMap id="memberMap" type="Member">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="pass" property="pass"/>
+		<result column="email" property="email"/>
+		<result column="category" property="category"/>
+		<result column="image_name" property="imageName"/>
+		<result column="image_path" property="imagePath"/>
+		<result column="image_size" property="imageSize"/>
+		<result column="grade_name" property="gradeName"/>
+	</resultMap>
+	
+	
+	<resultMap id="blackMap" type="Blacklist">
+		<result column="black_no" property="blackNo"/>
+		<result column="black_from_id" property="blackFromId"/>
+		<result column="black_to_id" property="blackToId"/>
+		<result column="black_state" property="blackState"/>
+		<result column="black_date" property="blackDate"/>
+		<result column="cancel_date" property="cancelDate"/>
+	</resultMap>
+	
+	<insert id="insertNewBlackList" parameterType="Blacklist">
+		insert into mn_blacklist (
+			black_from_id, black_to_id, black_state, black_date
+		) values (
+			#{blackFromId}, #{blackToId}, #{blackState}, #{blackDate} 
+		)
+	</insert>
+	
+	<select id="selectBlackListIdByOneLine" parameterType="Blacklist" resultType="string">
+		select black_to_id 
+		  from mn_blacklist
+		 where black_from_id = #{blackFromId} and black_state ='y'
+		 order by black_to_id
+		 limit #{lineBegin}, 4
+	</select>
+	
+	<select id="selectBlackInfoByIdList" parameterType="Member" resultMap="memberMap">
+		select m.* , c.code_name grade_name
+		  from mn_member m
+		  inner join mn_code c
+		     on m.grade_no = c.each_code
+		  where m.id in <foreach item="blackId" collection="BlackIdList"
+		  						open="(" separator="," close=")">
+		  					#{blackId}
+		  				</foreach>
+	</select>
+	
+	<select id="selectBlackListCnt" parameterType="string" resultType="int">
+		select count(*)
+		  from mn_blacklist
+		 where black_from_id = #{blackFromId} and black_state ='y'
+	</select>
 </mapper>

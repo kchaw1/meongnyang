@@ -39,7 +39,7 @@
 			}).done(function(map) {
 				makeCalendar(now, map);
 		}) //ajax
-	})
+	}) //onready
 	
 	
 	function makeCalendar(now, map){

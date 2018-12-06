@@ -31,7 +31,7 @@ public class FriendServiceImpl implements FriendService{
 		
 		MemberPageResult pageResult = new MemberPageResult(pageNo, count);
 		int lineNo = pageResult.getPageLineNo();
-		
+		System.out.println("pageResult:" + pageResult.toString());
 		System.out.println(mapper.selectAllMembersOneLine(begin).toString());
 		for(int i=1; i<=lineNo; i++) {
 			map.put("list"+i, mapper.selectAllMembersOneLine(begin));
@@ -72,21 +72,21 @@ public class FriendServiceImpl implements FriendService{
 		int begin = friend.getBegin(); //12 (2-1)*12
 		
 		MemberPageResult pageResult = new MemberPageResult(friend.getPageNo(), count);
-		//System.out.println("pageResult: " + pageResult.toString());
+		System.out.println("pageResult: " + pageResult.toString());
 		int lineNo = pageResult.getPageLineNo();
 		
 		for(int i=1; i<=lineNo; i++) {
 			friend.setLineBegin(begin);
-			List<String> list = mapper.selectAllFriendsOneLine(friend);
+			List<String> list = mapper.selectAllFriendsIdByOneLine(friend);
 			
 			m.setFriendIdList(list);
-			System.out.println("친구 리스트 : " +mapper.selectFriendInfoByIdList(m));
+			//System.out.println("친구 리스트 : " +mapper.selectFriendInfoByIdList(m));
 			map.put("list"+i, mapper.selectFriendInfoByIdList(m));
 			begin += 4;
 		}			
 		map.put("lineNo", lineNo);
 		map.put("pageResult", pageResult);
-		
+		//System.out.println("blacklist map: " + map);
 		return map;
 	}
 

@@ -1,5 +1,8 @@
 package com.nmcat.repository.domain;
 
+import lombok.ToString;
+
+@ToString
 public class MemberPageResult {
 	private int count;
 	private int lastPage;

@@ -36,6 +36,7 @@ public class Member {
 	private String greetings;
 	private int point;
 	private List<String> FriendIdList;
+	private List<String> BlackIdList;
 	private int donateMoney;
 	
 	// 조인때문에 만듦

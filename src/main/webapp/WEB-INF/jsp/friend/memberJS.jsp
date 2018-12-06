@@ -27,7 +27,12 @@ $("a[href='#search']").click(function(){
 }) //search tab 클릭...
 $("a[href='#friend']").click(function(){
 	showFriendList(1);	
-}) //search tab 클릭...
+}) //친구 tab 클릭...
+$("a[href='#blacklist']").click(function(){
+	showblackList(1);	
+}) //차단 tab 클릭...
+
+
 
 function showMemberList(pageNo){
 	$.ajax({
@@ -88,17 +93,7 @@ function showMemberList(pageNo){
 	      $("div#"+id).removeClass("fade").addClass("active")
 	      $("div#paging").html("");
 	    })
-	     
-	    $("i.fa-lock").mouseenter(function(){
-	      $(this).attr("id", "hidden")
-	      $("i.fa-lock-open").attr("id", "show");
-	    })
-	     
-	    $("i.fa-lock-open").mouseleave(function(){
-	      $("i.fa-lock-open").attr("id", "hidden")
-	      $("i.fa-lock").removeAttr("id");
-	    })
-	   
+ 
 	   $("a#plusfriend").click(function() {
 		   	//console.log("calleeId:", $(this).data("id"))
 		   	//console.log("${user.id}")
@@ -110,7 +105,7 @@ function showMemberList(pageNo){
 			  timer: 2000
 			})
 			
-		   	friendws.send("friend:"+$(this).data("id"))
+		   	friendws.send("friend:"+$(this).data("id"))// 웹소켓 send
 		   	$.ajax({
 		   		url : "<c:url value='/friend/requestfriend.mn'/>",
 		   		data : {
@@ -118,33 +113,32 @@ function showMemberList(pageNo){
 		   			"calleeId" : $(this).data("id")
 		   		},
 		   		type : "POST"
-		   	}) // 웹소켓 send
+		   	})
 		   	
 	   })//친구 추가 클릭..
+	   
 	   
 	   $("a#blockuser").click(function() {
-		   let calleeId = $(this).data("id")
-		   console.log("calleeId:", calleeId)
+		   let blackToId = $(this).data("id")
+		   console.log("blackToId:", blackToId)
 		   console.log("${user.id}")
 		   	
-			let check = confirm("정말 " +calleeId + "님을 차단하시겠습니까?")
+			let check = confirm("정말 " +blackToId + "님을 차단하시겠습니까?")
    			if(check==true) {
 			   	$.ajax({
-			   		url : "<c:url value='/friend/blockuser.mn'/>",
+			   		url : "<c:url value='/blacklist/block.mn'/>",
 			   		data : {
-			   			"callerId" : "${user.id}",
-			   			"calleeId" : calleeId
+			   			"blackFromId" : "${user.id}",
+			   			"blackToId" : blackToId
 			   		},
 			   		type : "POST"
-			   	}) // 웹소켓 send
+			   	})
    				
-   			}
-		   	
-		   	
-	   })//친구 추가 클릭..
+   			} // 정말 차단 ?? yes	
+	   })//차단 클릭..
 	   
 	   
-	}) //done
+	}) //showMemberList 의 done
 } //showMemberList
 
 function showPaging(map) {

@@ -16,7 +16,7 @@
   <ul class="nav nav-tabs" >
     <li role="presentation" class="active"><a href="#friend" class="tab" data-toggle="tab">친구인 회원</a></li>
     <li role="presentation" ><a href="#search" class="tab" data-toggle="tab">회원 찾기</a></li>
-    <li role="presentation" ><a href="#blocked" class="tab" data-toggle="tab">차단된 회원</a></li>
+    <li role="presentation" ><a href="#blacklist" class="tab" data-toggle="tab">차단된 회원</a></li>
   </ul>
   </div>
   <div id="myTabContent" class="tab-content">
@@ -67,7 +67,7 @@
       </div>
     </div>
     <!-- 차단된 회원 리스트 -->
-    <div class="tab-pane fade" id="blocked">
+    <div class="tab-pane fade" id="blacklist">
       <div class="searchbox">
         <div class="input form-group">
           <input type="text" class="form-control" name="id" placeholder="아이디로 검색하세요"/ >
@@ -83,43 +83,16 @@
         </div>
       </div>
       <div class="list">
-        <div class="line1">
-          <div class="users" name="users">
-            <div class="profile">
-              <div class="image">
-                <i class="fas fa-user-circle fa-7x"></i>
-              </div>
-              <div class="text">
-                <span class="id">${user.id}</span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="grade">
-                <i class="fas fa-trophy fa-2x"></i>
-                뉴비
-              </div>
-              <div class="icons">
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock fa-2x"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제">
-                  <i class="fas fa-lock-open fa-2x" id="hidden"></i>
-                </a>
-                <a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기">
-                  <i class="far fa-envelope fa-2x" ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="line2">
-
-        </div>
+        
+      </div>
+      <div id="paging" class="text-center">
+      
       </div>
     </div>
   </div>
 </div>
 <c:import url="./memberJS.jsp"/>
 <c:import url="./friendJS.jsp"/>
+<c:import url="./blacklistJS.jsp"/>
 </body>
 </html>
