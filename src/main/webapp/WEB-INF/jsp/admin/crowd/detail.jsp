@@ -30,7 +30,7 @@
 		            	    <div id="content1">
 		              			<span><h2>현재: <span id="now-money">${detail.crNowMoney} 원</span></h2></span>
 		             			<span id="goal-span">(목표: <span id="goal-money">${detail.crGoalMoney}</span>원)</span>
-		             			<button id="heart-btn" class="btn btn-default btn-lg">
+		             			<button type="button" id="heart-btn" class="btn btn-default btn-lg">
 		             				<c:choose>
 		             					<c:when test="${likeCheck eq 0}">
 		             						<span class="glyphicon glyphicon-heart-empty" aria-hidden="true">
@@ -125,7 +125,7 @@
 				return;
 			}
 			// 비로그인이면 return false;
-			if('${user.id}'=="") {
+			if('${user.id}' == '') {
 				swal("로그인해주세요.", "", "error")
 				return;
 			}
@@ -136,21 +136,21 @@
 	
 	
 		$(document).on("click", "#heart-btn", function() {
-			 if('${likeCheck}' == 1) {
-				swal("이미 추천하셨습니다.")
+			if('${user.id}' == '') {
+				alert("로그인을 먼저 해주세요")
 				return;
-			 }
+			}
 			
-		      var count = parseInt($(this).children().children().text());
-		      // console.log($(this).children().attr("class")=="glyphicon glyphicon-heart-empty");
-		      if($(this).children().attr("class")=="glyphicon glyphicon-heart-empty") {
+			  if($(this).children().attr("class")=="glyphicon glyphicon-heart-empty") {
 		        $("span.glyphicon").removeClass();
 		        $(this).children().addClass("glyphicon glyphicon-heart");
 		        ajaxLike(false)
+		        swal("좋아요")
 		      } else {
 		        $("span.glyphicon").removeClass();
 		        $(this).children().addClass("glyphicon glyphicon-heart-empty");
 		        ajaxLike(true)
+		        swal("좋아요 취소")
 		      }
 	    });
 		
@@ -171,7 +171,8 @@
 						"crId": '${user.id}'
 					  } 
 			}).done(function(result){
-				$("#heart-btn").children().children().text(result)
+				console.log(result)
+				$("#like-count").text(result)
 			});
 		}
 

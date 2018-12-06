@@ -42,21 +42,35 @@
 	<!-- 커뮤니티 CRUD -->
 	
 
-	<!-- 커뮤니티 무한스크롤 전체게시물 가져오기 +페이징+ 카테고리별-->
-	<select id = "selectBoard" parameterType = "CommunityBoard" resultMap = "comMap">
+	<!-- 커뮤니티 무한스크롤 전체게시물 가져오기 +페이징+ 일반-->
+	<select id = "selectBoard" parameterType = "CommunityBoard" resultMap = "comMap" useCache="false"  flushCache="true">
 	select *
 	from mn_com
+	<if test="comCategory != null and comCategory != ''">
+		where com_category = #{comCategory}
+	</if>
 	order by com_no desc
- 	limit #{begin}, 10
+	limit #{begin}, 10		
+	</select>
+	
+	<!-- 커뮤니티 무한스크롤 전체게시물 가져오기 +페이징+ 카테고리-->
+	<select id = "selectBoardCa" parameterType = "CommunityBoard" resultMap = "comMap">
+	select *
+	from mn_com
+	where com_category = #{comCategory}
+	order by com_no desc
+ 	limit 0, 10
  
  	
 	</select>
+	
+	
 	<select id = "selectBoardC" parameterType = "CommunityBoard" resultMap = "comMap">
 	select *
 	from mn_com
 	where com_category = #{comCategory}
 	order by com_no desc
-<!-- 	limit #{begin}, 10 -->
+ 	limit #{begin}, 10
 	</select>
 	
 	<!-- 상세보기 -->
@@ -96,6 +110,12 @@
 	from
 	mn_com
 	</select>
+	<!-- 커뮤니티 조회수 -->
+	<update id = "updateBoardViewCnt" parameterType = "int">
+	update mn_com
+	set com_view_cnt = com_view_cnt+1
+	where com_no = #{comNo}
+	</update>
 	
 	<!-- **************************************************** -->
 	<!-- 댓글 CRUD -->
@@ -132,7 +152,6 @@
 	<!-- 각 게시물당 댓글 갯수 -->
 
 	<select id = "selectCommentCount" parameterType = "int" resultType = "int" >
-		<!-- 게시글넘버를 where절에 이너조인써서 게시글 갯수 구하기-->
 	select count(*)
 	from
 	mn_com_comment

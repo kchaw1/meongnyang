@@ -221,6 +221,12 @@ z-index: -1;
     float: right;
     color: gray;
 }
+.viewCnt{
+margin-top: 20px;
+  float: right;
+  font-size: 14px;
+
+}
 </style>
 <body>
   <c:import url = "../common/header.jsp"/>
@@ -229,7 +235,7 @@ z-index: -1;
     <div class = "body1">
         <div class = "body2">
             <div class = "left">
-                    <p style = "font-family: 'Jua'">${communityBoard.comTitle}</p>
+                    <p style = "font-family: 'Jua'">${communityBoard.comTitle}<span class = "viewCnt">조회수 : ${comViewCnt}</span></p>
                     <div class= "justforHr1"></div>
                     <br>
                    <div class = "category"><i class="fas fa-user-circle"> ${communityBoard.comWriter}<span class="regDate"> ·<fmt:formatDate value="${communityBoard.comRegDate}" pattern="yyyy-MM-dd HH:mm"/></span></i></div>

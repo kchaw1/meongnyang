@@ -28,7 +28,9 @@
         <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
         <div class="seperator"></div>
         <div style="float: right;">
-          <button class="btn btn-default btn-lg" id="create-button">크라우펀딩 만들기</button>
+          <c:if test="${user.type eq 3}">	
+          	<button class="btn btn-default btn-lg" id="create-button">크라우펀딩 만들기</button>
+          </c:if>
         </div>
         <div class="clear-fix"></div>
         <div class="list-item-area">

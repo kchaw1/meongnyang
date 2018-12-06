@@ -124,7 +124,7 @@ public class CrowdController {
 		service.likeCntUp(cl.getCrNo()); // crowd 테이블 개수 올리기
 		service.userLikeUp(cl);
 		
-		return service.likeCnt();
+		return service.likeCnt(cl.getCrNo());
 	}
 	
 	// 좋아요 취소
@@ -132,13 +132,10 @@ public class CrowdController {
 	@ResponseBody
 	public int likeDown(CrowdLike cl) {
 		service.likeCntDown(cl.getCrNo());
-		service.userLikeUp(cl);
+		service.userLikeDown(cl);
 		
-		return service.likeCnt();
+		return service.likeCnt(cl.getCrNo());
 	}
-	
-	
-	
 	
 	/* 일반 메소드 */
 	// 남은 날짜 계산 (디테일)

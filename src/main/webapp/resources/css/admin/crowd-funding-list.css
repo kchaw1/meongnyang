@@ -11,50 +11,84 @@
     .item-wrapper:hover {
       background: rgba(50, 205, 89, 0.611);
     } */
-    .progress-bar {
-    	font-weight: bold;
-    	color: black;
-    }
-    
-    .progress-bar-warning {
-        background-color: #f2809f;
-    }
+button.btn{
+  font-family: 'Jua', sans-serif;
+  color : white;
+  background-color: #f2809f;
+  border-color : #f2809f;
+}
 
-    .list-item {
-        margin: 15px;
-        width: 22%;
-        height: 400px;
-        display: inline-block;
-        border-bottom: 1px solid rgb(170, 170, 170);
-      }
-  
-      .img-area {
-        height: 300px;
-      }
-  
-      .img-area img {
-        width: 100%;
-        height: 100%;
-      }
-  
-      .cf-title {
-        height: 25px;
-      }
-  
-      .now-money {
-        float: left;
-      }
-  
-      .remain-day {
-        float: right;
-      }
+button.btn:hover {
+  background-color: #d6728d;
+  border-color : #d6728d;
+}
+button.btn:focus {
+  background-color: #d6728d;
+  border-color : #d6728d;
+}
+button.btn:active {
+  background-color: #f2809f;
+  border-color : #f2809f;
+}
+   
+.progress-bar {
+	font-weight: bold;
+	color: black;
+}
 
-      .content-area {
-        width: 80%;
-        margin: auto;
-        min-height: 1000px;
-      }
-      
+.progress-bar-warning {
+    background-color: #f2809f;
+}
+
+.list-item:hover {
+	background-color: #f2809f63;	
+}
+
+button {
+	background-color: #f2809f
+}
+
+.list-item {
+	padding: 10px;
+	border-radius: 15px;
+    margin: 15px;
+    width: 22%;
+    height: 400px;
+    display: inline-block;
+    border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+.img-area {
+  height: 300px;
+}
+
+.img-area img {
+  width: 100%;
+  height: 100%;
+}
+
+.cf-title {
+  height: 25px;
+}
+
+.now-money {
+  float: left;
+}
+
+.remain-day {
+  float: right;
+}
+
+.content-area {
+  width: 80%;
+  margin: auto;
+  min-height: 1000px;
+}
+
+input {
+	text-align: right;
+}
+     
 a:link {text-decoration:none; color: black; }
 a:visited {text-decoration:none; color: black; }
 a:active {text-decoration:none; color: black; }

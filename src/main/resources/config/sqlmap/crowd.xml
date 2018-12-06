@@ -70,9 +70,10 @@
 <!-- 좋아요 업데이트 -->
 
 <!-- 추천 개수 -->
-<select id="selectLikeCount" resultType="int">
+<select id="selectLikeCount" parameterType="int" resultType="int">
 	select cr_like_cnt
 	  from mn_crowd
+	 where cr_no = #{crNo}  
 </select>
 
 <!-- 추천하기 -->	

@@ -33,7 +33,9 @@ public class CommunityController {
 	private CommunityService service;
 	
 	@RequestMapping("/communityPage.mn")
-	public void list() {};
+	public void list() {
+		
+	};
 	
 	@RequestMapping("/communityPageList.mn")
 	@ResponseBody
@@ -48,7 +50,17 @@ public class CommunityController {
 		return map;
 	}
 	
-	@RequestMapping("/communityPageListC.mn")
+	@RequestMapping("/communityPage2.mn")
+	public Map<String, Object> selectBoardCategory(CommunityBoard comBoard, String comCategory)throws Exception{
+		comBoard.setComCategory(comCategory);
+		Map<String, Object> map = new HashMap<>();
+		map.put("list2", service.selectBoardCa(comBoard));
+		return map;
+	};
+
+	
+	
+	@RequestMapping("/communityPageList2.mn")
 	@ResponseBody
 	public Map<String, Object> ajaxListC(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
 		System.out.println(comBoard.getComCategory());
@@ -71,6 +83,8 @@ public class CommunityController {
 	@RequestMapping("/detailPage.mn")
 	public void detail(Model model, int comNo)throws Exception{
 		model.addAttribute("communityBoard", service.detailBoard(comNo));
+		
+	
 	}
 	@RequestMapping("/writeForm.mn")
 	public void writeForm() {
