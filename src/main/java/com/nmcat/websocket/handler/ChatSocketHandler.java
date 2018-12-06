@@ -51,7 +51,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	@Override
 	public void handleTextMessage(WebSocketSession wss, TextMessage message) throws Exception {
 		
-		System.out.println("dsdsad"+wss.getId());
+		/*System.out.println("dsdsad"+wss.getId());
 		
 		attrs = wss.getAttributes();
 		member = (Member) attrs.get("user");
@@ -59,41 +59,53 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		debug("보낸 메세지 - " + message.getPayload());
 		
 		String rcvMsg = message.getPayload();
-		Set<String> keys = users.keySet();
+		String sendMsg = "";
+		
+		if(rcvMsg.startsWith("id:")){
+			String id = rcvMsg.substring("id:".length());
+			System.out.println("id는"+id);
+		}
+			
+			Set<String> keys = users.keySet();
+			for (String key : keys) {
+				WebSocketSession wSession = users.get(key);
+				wSession.sendMessage(new TextMessage("id: "+member.getId()));
+				wSession.sendMessage(new TextMessage("msg: "+message.getPayload()));
+				}
+		
+		
 
 		System.out.println("users : " + users);
-		for (String key : keys) {
-			WebSocketSession wSession = users.get(key);
-			wSession.sendMessage(new TextMessage("dsadas"+member.getId()+message.getPayload()));
-			}
-
-	
-		/*
+		System.out.println("usersId:"+users.get(member.getId()));*/
+		
 		attrs = wss.getAttributes();
 		member = (Member) attrs.get("user");
 		debug("보낸 아이디 - " + member.getId());
 		debug("보낸 메세지 - " + message.getPayload());
 		Set<String> keys = users.keySet();
 		String id = member.getId();
+		
+		String Msg = message.getPayload();
+		String sendMsg = "";
+		
+		String[] arr = Msg.split(":");
+		sendMsg = arr[0]+ ":" + arr[1];
+				
 		for (String key : keys) {
-			System.out.println("key"+keys);
 			WebSocketSession wSession = users.get(key);
+			System.out.println("key"+keys);
 			System.out.println("key : "+key);
 			System.out.println("member : "+member.getId());
 			System.out.println("wSeesion: " + wSession.getId());
 			System.out.println("wSession:"+wSession.getAttributes());
 			System.out.println("member.no :" + member.getNo());
 			
-			if(member.getId()==wSession.getId()) {
-				
-//			wSession.sendMessage(new TextMessage("id:"+member.getId()));
-			wSession.sendMessage(new TextMessage("msg:"+ id +message.getPayload()));
-			}else {
-				wSession.sendMessage(new TextMessage("asdasdmsg:"+member.getId()+message.getPayload()));
-				
-			}
+//	     	wSession.sendMessage(new TextMessage("id:"+member.getId()));
+//	     	wSession.sendMessage(new TextMessage("content"+message.getPayload()));
+	     	wSession.sendMessage(new TextMessage(sendMsg));
+			
 	
-		}*/
+		}
 	
 	}
 	@Override

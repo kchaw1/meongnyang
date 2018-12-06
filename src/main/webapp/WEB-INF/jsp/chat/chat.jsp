@@ -47,14 +47,14 @@
        
         <div class="col-xs-7">
           <div class="chat-wrapper">
-          <div class="chat-list" style="overflow-y:auto;">
+          <div class="chat-list" id="out" style="overflow-y:auto;">
           </div>
             <div class="chat-content">
             
                         
             </div>  
           </div>
-              <span class="chat-input"><input class="form-control pull-right" type="text" id="message" name="message" /></span><button id="sendBtn">전송</button>
+              <span class="chat-input"><input class="form-control pull-right" type="text" id="message" name="message" onkeyup="enterkey();"/></span><button id="sendBtn">전송</button>
         		<input type="hidden" id="id" name="id"/> 
         </div>
       </div>
@@ -77,10 +77,24 @@ $(function () {
 		  chat.onopen = function() {
 			    console.log('웹소켓 서버 접속 성공');
 			    $(".chat-list").append("<p>채팅이 시작되었습니다</p>")
+			    
+			  	
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {
-		  $(".chat-list").append("<div>"+evt.data+"</div>");
+    		var $msg = $("#message");
+			$msg.val("");
+			console.dir(evt)
+			var chatId = evt.data.split(':');
+			console.log("과연...."+chatId[0]);
+			
+			console.log("eventdata 0 " +evt.data[0])
+			console.log("eventdata 1" +evt.data[1])
+			if("${user.id}"==chatId[0] ){				
+		  $(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
+			}else{
+		  $(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+evt.data+"</p></div><br>");
+			}
 			
 		};
 		chat.onerror = function(evt) {
@@ -91,24 +105,33 @@ $(function () {
 		};
 	});
 
-	$('#sendBtn').click(function() { 
+		$('#sendBtn').click(function() { 
 		var $msg = $("#message");
 		var $id = $("#id");
 		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
 		// 웹소켓 서버에 데이터 전송하기
-		console.log($msg.val());
-		if("${user.id}"== loginId){
-			
+		console.log($msg.val());		
 		chat.send("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
 		$msg.val(""); 
-		}else{
-			chat.send("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
-			$msg.val(""); 
-				
-		}
+	
 	});
 	
-	$(".chat-list").scrollTop($(".chat-list").height());
+	
+	function enterkey() {
+        if (window.event.keyCode == 13) {
+        		var $msg = $("#message");
+        		loginId = "${user.id}";
+        		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
+        		// 웹소켓 서버에 데이터 전송하기
+        		console.log($msg.val());
+        			
+        		chat.send(loginId + ":" + $msg.val());
+        		$msg.val("");
+        		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
+        		
+        }
+}
+ 
 	
 </script>
 </body>
