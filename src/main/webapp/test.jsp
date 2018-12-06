@@ -18,20 +18,33 @@
     <script src="https://cdn.webrtc-experiment.com/CodecsHandler.js"></script>
     <script src="https://cdn.webrtc-experiment.com/video-conferencing/RTCPeerConnection-v1.5.js"> </script>
     <script src="https://cdn.webrtc-experiment.com/video-conferencing/conference.js"> </script>
+    <!-- <script src="./js/conference.js"> </script> -->
 </head>
+<style>
+	#remoteVideo.media-container {
+		position : absolute;
+		z-index :-1;
+		border: none;
+    	border-radius: 8px;	
+	}
+	#localVideo.media-container {
+		position : absolute;
+		top : 20px;
+		left : 20px;
+		border: none;
+    	border-radius: 8px;	
+    	background : #333333;
+	}
+</style>
 <body>
 
 <div class="content-wrapper">
 	<div class="main-doc">
-		<div class="media-container"></div>
-		<!-- <div id="videos-container"></div> -->
-		<div class="video">
-			<table id="videos-container"></table>	
-		</div>
+		<div id="videos-container"></div>	
 	</div>
 </div>
 <div id="setup-room">
-	  <input type="text" id="conference-name">
+	<input type="text" id="conference-name">
     <button id="setup-new-room" class="setup">new</button>
     <!-- list of all available conferencing rooms -->
     <table id="rooms-list"></table>

@@ -10,10 +10,12 @@ var config = {
     openSocket: function (config) {
     	//console.log(1234);
         var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
-
+        console.log(config.channel, location.href)
         config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+
         //sender 난수
-        sender = Math.round(Math.random() * 999999999) + 999999999;
+//        sender = Math.round(Math.random() * 999999999) + 999999999;
+        sender = 1000;
        console.log("channel : "+config.channel);
        console.log("sender : "+sender);
        
@@ -41,48 +43,49 @@ var config = {
         socket.on('message', config.onmessage);
     },
     onRemoteStream: function(media) {
-    	console.log("리모트스트림")
+    	console.log("리모트 스트림")
     	
         var mediaElement = getMediaElement(media.video, {
-            width: 260,
+            width: $(document).width(),
             buttons: ['mute-audio', 'mute-video', 'volume-slider']
         });
-        mediaElement.id = media.stream.streamid;
-        mediaElement.onclick = function(event) {
-        	$('div.main-doc > .media-container').remove();
-        	/* 화면복사 */      	
-        	let dom = $('.main-doc');
-        	var video = document.createElement('video');
-        	    video.muted = true;
-        	    video.volume = 0;
-    	    try {
-    	        video.setAttributeNode(document.createAttribute('autoplay'));
-    	        video.setAttributeNode(document.createAttribute('playsinline'));
-    	        video.setAttributeNode(document.createAttribute('controls'));
-    	    } catch (e) {
-    	        video.setAttribute('autoplay', true);
-    	        video.setAttribute('playsinline', true);
-    	        video.setAttribute('controls', true);
-    	    }
-    	    getUserMedia({
-    	        video: video,
-    	        onsuccess: function(stream) {
-	            config.attachStream = media.video.srcObject;
-	            video.srcObject = media.video.srcObject;
-	            var mediaElement = getMediaElement(video, {
-	                width: '100%',
-	                buttons: ['stop']
-	            });
-	            dom.append(mediaElement);
-    	        },
-    	        onerror: function() {
-    	        }
-    	    });
-		};
+        mediaElement.id = "remoteVideo";
+//        mediaElement.onclick = function(event) {
+//        	$('div.main-doc > .media-container').remove();
+//        	/* 화면복사 */      	
+//        	let dom = $('.main-doc');
+//        	var video = document.createElement('video');
+//        	    video.muted = true;
+//        	    video.volume = 0;
+//    	    try {
+//    	        video.setAttributeNode(document.createAttribute('autoplay'));
+//    	        video.setAttributeNode(document.createAttribute('playsinline'));
+//    	        video.setAttributeNode(document.createAttribute('controls'));
+//    	    } catch (e) {
+//    	        video.setAttribute('autoplay', true);
+//    	        video.setAttribute('playsinline', true);
+//    	        video.setAttribute('controls', true);
+//    	    }
+//    	    getUserMedia({
+//    	        video: video,
+//    	        onsuccess: function(stream) {
+//		            config.attachStream = media.video.srcObject;
+//		            video.srcObject = media.video.srcObject;
+//		            var mediaElement = getMediaElement(video, {
+//		                width: '100%',
+//		                buttons: ['stop']
+//		            });
+//		            dom.append(mediaElement);
+//    	        },
+//    	        onerror: function() {
+//    	        }
+//    	    });
+//		}; //onclick
         videosContainer.appendChild(mediaElement);
     },
     onRoomFound: function(room) {
-    	console.log("room:" + room)
+    	console.log("room:")
+    	console.dir(room)
         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
         if (alreadyExist) return;
 
@@ -93,7 +96,7 @@ var config = {
             '<td><button class="join">Join</button></td>';
         roomsList.appendChild(tr);
 
-        //조인 버튼은 저절로 생기는 건가 봄...
+        //조인 버튼은 위에서 만들어줌...
         var joinRoomButton = tr.querySelector('.join');
         joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
         joinRoomButton.setAttribute('data-roomToken', room.roomToken);
@@ -127,14 +130,14 @@ var config = {
 
 var conferenceUI = conference(config);
 
-setTimeout(function(){
-	let joinBtn = $('.join');
-	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
-		joinBtn.trigger("click"); 
-	}else{
-		$('#setup-new-room').trigger("click");
-	}
-}, 6000);
+//setTimeout(function(){
+//	let joinBtn = $('.join');
+//	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
+//		joinBtn.trigger("click"); 
+//	}else{
+//		$('#setup-new-room').trigger("click");
+//	}
+//}, 6000);
 
 function setupNewRoomButtonClickHandler() {
     btnSetupNewRoom.disabled = true;
@@ -167,7 +170,7 @@ function captureUserMedia(callback, failure_callback) {
 //    video.onclick = function() {
 //    	console.log("새로만든 비디오 클릭함..")
 //    }
-    video.onclick = pinVideo;
+    //video.onclick = pinVideo;
     
     getUserMedia({
         video: video,
@@ -175,18 +178,20 @@ function captureUserMedia(callback, failure_callback) {
             config.attachStream = stream;
 
             var mediaElement = getMediaElement(video, {
-                width: 600,
+//                width: 400,
+                width: $(document).width()*0.25,
                 buttons: ['mute-audio', 'mute-video', 'volume-slider']
             });
             /*let span = document.createElement('span');
             let name = ${user};
             let txt = document.createTextNode(name);
             span.appendChild(txt);*/
+            mediaElement.id = "localVideo";
             mediaElement.toggle('mute-audio');
             videosContainer.appendChild(mediaElement);
 
             callback && callback();
-            pinVideo(stream);
+            //pinVideo(stream);
         },
         onerror: function() {
             alert('unable to get access to your webcam');
@@ -199,15 +204,23 @@ function captureUserMedia(callback, failure_callback) {
 //유니크 토큰이 roomtoken 이 되는 비밀은 conference.js 에 있다...
 (function() {
 	console.log("유니크 토큰을 찾자..")
+	let joinBtn = $('.join');
+	console.log(joinBtn)
 //	var uniqueToken = document.getElementById('unique-token');
-    var uniqueToken = document.querySelector('button[data-roomtoken]');
+    var uniqueToken = joinBtn.data("roomtoken");
 	console.log("roomtoken==uniquetoken : " + uniqueToken);
-    if (uniqueToken) {
+	if(uniqueToken){
     	console.log("location.hash :" + location.hash);
     	if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;display: block;"><a href="' + location.href + '" target="_blank">Right click to copy & share this private link</a></h2>';
     	else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');    	
     }
 })();
+//(function() {
+//    var uniqueToken = document.getElementById('unique-token');
+//    if (uniqueToken)
+//        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;display: block;"><a href="' + location.href + '" target="_blank">Right click to copy & share this private link</a></h2>';
+//        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+//})();
 
 
 //클릭시 이벤트 설정 함수
