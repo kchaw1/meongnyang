@@ -19,15 +19,15 @@ public class Download {
 		 HttpServletRequest request, HttpServletResponse response) throws Exception{
 //		 String fullPath = path + "\\" + fileName;
 		 
-		 System.out.println(path);
-		 System.out.println(sysName);
+//		 System.out.println(path);
+//		 System.out.println(sysName);
 		 
 		 String uploadPath = "c:/app/upload";
          
 	     File file = new File(uploadPath + path, sysName);
 	     
-	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
-	        System.out.println("DownloadView --> file.getName() : " + file.getName());
+//	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
+//	        System.out.println("DownloadView --> file.getName() : " + file.getName());
 	         
 	        response.setContentType("application/download; utf-8");
 	        response.setContentLength((int)file.length());

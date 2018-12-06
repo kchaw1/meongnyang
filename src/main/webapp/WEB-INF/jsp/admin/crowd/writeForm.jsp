@@ -30,19 +30,18 @@
     <div class="panel">
       <!-- 좌측 메뉴 -->
       <div class="aside">
-          <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+           <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
-        <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
-            <div id="board" class="item">게시판</div>
-            <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
-            <div class="board-hidden crowd-fund"><a href="crowd-funding.html">크라우드펀딩</a></div>
-            <div class="board-hidden notice"><a href="notice.html">공지사항</a></div>
-            <div id="management" class="item">관리</div>
-            <div class="mgm-hidden abs-member"><a href="mgm-ABS.html">행동전문가</a></div>
-            <div class="mgm-hidden gen-member"><a href="mgm-general.html">일반회원</a></div>
-            <div id="statistics" class="item"><a href="statistics.html"style="color:black;">통계</a></div>
+          <div id="board" class="item">게시판</div>
+          <div class="board-hidden notice"><a href="<c:url value="/admin/notice/list.mn" />">공지사항</a></div>
+          <div class="board-hidden youtube"><a href="youtube.html">유튜브</a></div>
+          <div class="board-hidden crowd-fund"><a href="<c:url value="/admin/crowd/list.mn" />">크라우드펀딩</a></div>
+          <div id="management" class="item">관리</div>
+          <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
+          <div class="mgm-hidden gen-member"><a href="<c:url value="/admin/general/list.mn" />">일반회원</a></div>
+          <div id="statistics" class="item"><a href="statistics.html" style="color:black;">통계</a></div>
         </div>
 
       </div>
@@ -90,13 +89,9 @@
             <br>
             <br>
             <span id="hanguel-money">금액이 이곳에 출력</span>
-            
-            
           </div>
           </div>
-          
-
-              <div id="button-area">
+                        <div id="button-area">
                 <button id="reg-btn" class="btn btn-default btn-lg">등록</button>
                   &nbsp;
                 <button type="button" id="cancel-btn" class="btn btn-default btn-lg">취소</button>

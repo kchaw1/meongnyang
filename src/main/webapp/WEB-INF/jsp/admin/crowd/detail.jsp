@@ -16,7 +16,8 @@
 	<div id="header">
 		<c:import url="../../common/header.jsp" />
 	</div>
-	
+	<fmt:formatNumber var="goalMoney" value="${detail.crGoalMoney}" pattern="#,###,###,###"/>
+	<fmt:formatNumber var="nowMoney" value="${detail.crNowMoney}" pattern="#,###,###,###"/>
 	<!-- start -->
 	  <div id="detail-container">
       
@@ -28,11 +29,11 @@
 	          			<div id="content-area1">
 		           			<div id="cf-title" style="margin-bottom:30px;"><h1>${detail.crTitle}</h1></div>
 		            	    <div id="content1">
-		              			<span><h2>현재: <span id="now-money">${detail.crNowMoney} 원</span></h2></span>
-		             			<span id="goal-span">(목표: <span id="goal-money">${detail.crGoalMoney}</span>원)</span>
+		              			<span><h2>현재: <span id="now-money">${nowMoney} 원</span></h2></span>
+		             			<span id="goal-span">(목표: <span id="goal-money">${goalMoney}</span>원)</span>
 		             			<button type="button" id="heart-btn" class="btn btn-default btn-lg">
 		             				<c:choose>
-		             					<c:when test="${likeCheck eq 0}">
+		             					<c:when test="${likeCheck eq 0 || likeCheck eq null}">
 		             						<span class="glyphicon glyphicon-heart-empty" aria-hidden="true">
 		             					</c:when>
 		             					<c:otherwise>
@@ -69,6 +70,7 @@
 		            		<div id="my-point">
 		            		  <span>
 		            		  	<c:if test="${myPoint ne null}">
+		            		  		<fmt:formatNumber var="myPoint" value="${myPoint}" pattern="#,###,###,###"/>
 		            		   		보유포인트: ${myPoint} 원
 		            		   	</c:if>	
 		            		  </span>
@@ -89,8 +91,10 @@
            		  </div>
 	          </div>
 	          <div id="button-area">
-	                <button type="button" class="btn btn-default btn-default" onclick="window.location='crowd-funding-mod.html'">수정</button>
-	                <button type="button" class="btn btn-default btn-default">삭제</button>
+	          		<c:if test="${user.type eq 3}">
+	                <button type="button" id="update-btn" class="btn btn-default btn-default">수정</button>
+	                <button type="button" id="delete-btn" class="btn btn-default btn-default">삭제</button>
+	                </c:if>
 	          </div>
 	          <div class="panel-footer">댓글 목록</div>
 	          <div class="panel-body">
@@ -113,28 +117,89 @@
 	</div>
 	
 	<script>
+	// 금액 쉼표
+    function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
+    }
+
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
+
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
+	</script>	
+	
+	<script>
+		$(document).ready(function() {
+			commentList();	
+		})
+	
+		// 초기화 버튼 클릭
 		$("#initialize").click(function() {
 			$("#recycle_result_amt").val("");
 		});
 		
+		// 기부하기 버튼 클릭
 		$("#donate").click(function() {
 			var donateMoney = parseInt(removeComma($("#recycle_result_amt").val()))
-			// if 보유포인트가 부족하면 return false;
-			if('${myPoint}' < donateMoney) {
-				swal("보유포인트가 모자랍니다.", "", "error")
-				return;
-			}
 			// 비로그인이면 return false;
 			if('${user.id}' == '') {
 				swal("로그인해주세요.", "", "error")
 				return;
 			}
+			// if 보유포인트가 부족하면 return false;
+			if('${myPoint}' < donateMoney) {
+				swal("보유포인트가 모자랍니다.", "", "error")
+				return;
+			}
+			// 값을 입력안했을시 
+			if($("#recycle_result_amt").val()=="") {
+				swal("기부금액을 입력해주세요","","error")
+				return;
+			}
+			
 		    swal("기부되었습니다.", "", "success");
-		    setTimeout(function() { location.href="donate.mn?donateMoney=" + donateMoney + "&crNo=" + ${detail.crNo} + "&no=" + ${user.no} }, 1000)
+		    
+		    commentList();
+		    
+		    setTimeout(function() {
+		    	location.href="donate.mn?donateMoney=" + donateMoney + "&crNo=" + ${detail.crNo} + "&no=" + ${user.no} + "&crcWriter=" + '${user.id}' + "&crcContent=" + '${user.id}' + "님이 후원합니다." 
+			}, 1000)
 		    
 		});
+		
+		 // 댓글 리스트 함수
+        var commentList = function() {
+        	  $.ajax({
+	            	url: "<c:url value='/admin/crowd/commentList.mn'/>",
+	            	type: "POST",
+	            	data: "crNo=${detail.crNo}"
+	            }).done(function (result) {
+	            	console.log(result)
+	            	
+	            	var commentList = result.commentList;
+	            	
+	            	$("ul#cmt_list").html("");
+	            	for(let i in commentList) {
+		            	$("ul#cmt_list").append(
+		            		 "<li>"
+                            +      "<div class='cmt_nickbox'>" + commentList[i].crcWriter + "</div>"
+		            		+	   "<div class='cmt_box'>" 
+                            +      "<div class='cmt_txtbox' data-writer=" + commentList[i].crcWriter + " data-no=" + commentList[i].crNo + ">" + commentList[i].crcContent + "</div>"
+                            +	   "</div>"	
+                            +	   "</div>" 
+                            +      "<div class='cmt_reg'>" + commentList[i].crcRegDate + "</div>"
+                            +"</li>"
+		            	);
+	            	}
+	            });
+        };
 	
-	
+		// 좋아요 버튼 클릭
 		$(document).on("click", "#heart-btn", function() {
 			if('${user.id}' == '') {
 				alert("로그인을 먼저 해주세요")
@@ -154,7 +219,17 @@
 		      }
 	    });
 		
+		// 수정 버튼 클릭
+		$("#update-btn").click(function() {
+			location.href = "updateForm.mn?crNo=" + '${detail.crNo}'
+		});
 		
+		// 삭제 버튼 클릭
+		$("#delete-btn").click(function() {
+			location.href = "delete.mn?crNo=" + '${detail.crNo}'
+		});
+		
+		// 좋아요 ajax
 		ajaxLike = function(check) {
 			var url=""
 			if(check==false) {
@@ -175,6 +250,7 @@
 				$("#like-count").text(result)
 			});
 		}
+		
 
 	</script>
 </body>

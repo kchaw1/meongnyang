@@ -52,15 +52,29 @@
 	</div>
 	
 	<script>
+	// 금액 쉼표
+    function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
+    }
+
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
+
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
+	</script>	
 	
+	<script>
 	$(document).ready(function() {
 		ajaxCrowdList(1);
 	})
 	
 	var pageNo = 1;
 	
-	var date = new Date()
-	console.log(date)
 	
 	$(document).ready(function () {
 	      $(document).scroll(function() {
@@ -102,13 +116,13 @@
 							+ "<div class='progress'>"
 							+	"<div class='progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100'"
 							+ 	"aria-valuemin='0' aria-valuemax='100' style='width:"
-							if(progress > 100) { html += "100%;' >" } 
+							if(progress > 100) { html += "100%;' >" }  
 							else { html += progress + "%;' >" }
 					html +=  progress
 							+ "%</div>"
 							+ "</div>"
 							+ 	"<div>"
-							+  		"<span class='now-money'>"+ crowdList[i].crNowMoney +"원 달성</span>"
+							+  		"<span class='now-money'>"+ comma(crowdList[i].crNowMoney) +"원 달성</span>"
 							+  		"<span class='remain-day'>"+ remainDaysList[i] +"일 남음</span>"
 							+ 	"</div>"
 							+ "</div>"
@@ -122,6 +136,8 @@
 	$("#create-button").click(function() {
 		location.href = "writeForm.mn"
 	})
+	
+
 	</script>
 </body>
 </html>

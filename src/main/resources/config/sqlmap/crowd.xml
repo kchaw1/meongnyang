@@ -44,6 +44,24 @@
 		<result column="cr_no" property="crNo" />
 		<result column="cr_id" property="crId" />
 	</resultMap>
+	
+	<resultMap id="crowdCommentMap" type="CrowdComment">
+		<result column="cr_no" property="crNo" />
+		<result column="crc_no" property="crcNo" />
+		<result column="crc_writer" property="crcWriter" />
+		<result column="crc_content" property="crcContent" />
+		<result column="crc_reg_date" property="crcRegDate" />
+	</resultMap>
+	
+	<resultMap id="pointMap" type="PointMinus">
+		<result column="minus_no" property="minusNo" />
+		<result column="id" property="id" />
+		<result column="cr_no" property="crNo" />
+		<result column="minus_point" property="minusPoint" />
+		<result column="minus_date" property="minusDate" />
+		<result column="minus_use" property="minusUse" />
+		<result column="fees" property="fees" />
+	</resultMap>
 
 <!-- 크라우드펀딩 등록 -->
 <insert id="insertCrowd" parameterType="Crowd">
@@ -124,5 +142,65 @@
 	  from mn_member
 	 where no = #{no} 
 </select>
+
+<!-- 댓글  -->
+<insert id="insertCrowdComment" parameterType="CrowdComment">
+	insert into mn_crowd_comment (cr_no, crc_writer, crc_content) 
+		 values(#{crNo}, #{crcWriter}, #{crcContent})
+</insert>
+
+<!-- 댓글 불러오기 -->
+<select id="selectCrowdComment" parameterType="int" resultMap="crowdCommentMap">
+	select * 
+	  from mn_crowd_comment
+	 where cr_no = #{crNo}  
+</select>
+
+<!-- 수정페이지 기존정보 가져오기 -->
+<select id="selectCrowdInfo" parameterType="int" resultMap="crowdMap">
+	select *
+	  from mn_crowd
+	 where cr_no = #{crNo}   	
+</select>
+
+<!-- 수정하기 -->
+<update id="updateCrowd" parameterType="Crowd">
+	update mn_crowd
+	   set cr_writer = #{crWriter},
+	       cr_title = #{crTitle},
+	       cr_content = #{crContent},
+	       cr_goal_money = #{crGoalMoney},
+	       cr_end_day = #{crEndDay},
+	       cr_file_name = #{crFileName},
+	       cr_file_path = #{crFilePath},
+	       cr_file_ori_name = #{crFileOriName}
+	 where cr_no = #{crNo}       
+</update>	 
+
+<!-- 포인트 사용 내역 테이블에 추가 -->  
+<insert id="insertPointMinus" parameterType="PointMinus">
+	insert into mn_point_minus (id, cr_no, minus_point, minus_use, fees)
+	     values(#{id}, #{crNo}, #{minusPoint}, 3, 0)
+</insert>  
+
+<!-- 게시글에 해당하는 후원 내역 -->
+<select id="selectPointMinus" parameterType="int" resultMap="pointMap">
+	select *
+	  from mn_point_minus
+	 where cr_no = #{crNo} 
+</select>
+
+<!-- 후원금 돌려주기 -->
+<update id="updateMemberPointPlus" parameterType="Member">
+	update mn_member
+	   set point = point + #{point}
+	 where id = #{id}
+</update>
+
+<!-- 크라우드펀딩 삭제 -->
+<delete id="deleteCrowd" parameterType="int">
+	delete from mn_crowd
+	 where cr_no = #{crNo}
+</delete>
 
 </mapper>

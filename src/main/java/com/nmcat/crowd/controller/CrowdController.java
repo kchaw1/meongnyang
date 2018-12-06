@@ -21,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.crowd.service.CrowdService;
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.CrowdComment;
 import com.nmcat.repository.domain.CrowdLike;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.PointMinus;
 
 @RequestMapping("/admin")
 @Controller
@@ -38,35 +40,30 @@ public class CrowdController {
 	// 크라우드펀딩 작성
 	@RequestMapping("/crowd/write") 
 	public String write(Crowd crowd) throws Exception {
-		// 파일첨부
-		MultipartFile attach = crowd.getAttach();
-        String uploadPath = "c:/app/upload";
-        SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
-        String datePath = sdf.format(new Date());
-        
-        String fileExtension ="";
-        String fileSysName = "";
-           
-           String newName = UUID.randomUUID().toString();
-           newName = newName.replace("-", "");
-           
-           fileExtension = getExtension(attach.getOriginalFilename());
-           fileSysName = newName + "." + fileExtension;
-           
-           crowd.setCrFileOriName(attach.getOriginalFilename());
-           crowd.setCrFileName(fileSysName);
-           crowd.setCrFilePath(datePath);
-         
-           File uploadFile = new File(uploadPath + datePath, fileSysName);
-           if(uploadFile.exists() == false) {
-              uploadFile.mkdirs();
-           }
-           attach.transferTo(uploadFile);
-           
-        setStartDay(crowd);
-        setEndDay(crowd);
+		service.write(fileAttach(crowd));
+		return "redirect:list.mn";
+	}
+	
+	// 크라우드 펀딩 수정
+	@RequestMapping("/crowd/update")
+	public String update(Crowd crowd) throws Exception {
+		service.update(fileAttach(crowd));
+		return "redirect:list.mn";
+	}
+	
+	// 크라우드 펀딩 삭제
+	@RequestMapping("/crowd/delete")
+	public String delete(int crNo) {
+		Member member = new Member();
 		
-		service.write(crowd);
+		for(PointMinus pm : service.pointHistory(crNo)) {
+			member.setId(pm.getId());
+			member.setPoint(pm.getMinusPoint());
+			
+			service.returnPoint(member); // 포인트 추가
+		}
+		
+		service.delete(crNo);
 		return "redirect:list.mn";
 	}
 	
@@ -109,11 +106,30 @@ public class CrowdController {
 		model.addAttribute("remainDays", calRemainDays(service.detail(crNo).getCrEndDay()));
 	}
 	
+	// 댓글 리스트
+	@RequestMapping("/crowd/commentList") 
+	@ResponseBody
+	public Map<String, Object> commentList(int crNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("commentList", service.commentList(crNo));
+		
+		return map;
+	}
+	
 	// 크라우드펀딩 기부
 	@RequestMapping("/crowd/donate")
-	public String donate(Crowd crowd, Member member) {
+	public String donate(Crowd crowd, Member member, CrowdComment cc, PointMinus pm) {
 		service.minusPoint(member);
 		service.donate(crowd);
+		service.addComment(cc);
+		
+		pm.setCrNo(crowd.getCrNo());
+		pm.setMinusPoint(crowd.getDonateMoney());
+		pm.setId(cc.getCrcWriter());
+		
+		service.addPointHistory(pm);
+		
 		return "redirect:detail.mn?crNo=" + crowd.getCrNo();
 	}
 	
@@ -136,6 +152,13 @@ public class CrowdController {
 		
 		return service.likeCnt(cl.getCrNo());
 	}
+	
+	// 수정 페이지 이동
+	@RequestMapping("/crowd/updateForm")
+	public void updateForm(Model model, int crNo) {
+		model.addAttribute("crowdInfo", service.crowdInfo(crNo));
+	} 
+	
 	
 	/* 일반 메소드 */
 	// 남은 날짜 계산 (디테일)
@@ -213,6 +236,38 @@ public class CrowdController {
 		}
 	}
 	
-	
+	// 작성 수정 파일첨부 관련 메소드
+    public Crowd fileAttach(Crowd crowd) throws Exception {
+    	// 파일첨부
+    			MultipartFile attach = crowd.getAttach();
+    	        String uploadPath = "c:/app/upload";
+    	        SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+    	        String datePath = sdf.format(new Date());
+    	        
+    	        String fileExtension ="";
+    	        String fileSysName = "";
+    	           
+    	           String newName = UUID.randomUUID().toString();
+    	           newName = newName.replace("-", "");
+    	           
+    	           fileExtension = getExtension(attach.getOriginalFilename());
+    	           fileSysName = newName + "." + fileExtension;
+    	           
+    	           crowd.setCrFileOriName(attach.getOriginalFilename());
+    	           crowd.setCrFileName(fileSysName);
+    	           crowd.setCrFilePath(datePath);
+    	         
+    	           File uploadFile = new File(uploadPath + datePath, fileSysName);
+    	           if(uploadFile.exists() == false) {
+    	              uploadFile.mkdirs();
+    	           }
+    	           attach.transferTo(uploadFile);
+    	           
+    	        setStartDay(crowd);
+    	        setEndDay(crowd);
+    	        
+    	   return crowd;
+    }
+    
 
 }

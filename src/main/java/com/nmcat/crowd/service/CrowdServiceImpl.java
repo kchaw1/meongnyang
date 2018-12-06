@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.CrowdComment;
 import com.nmcat.repository.domain.CrowdLike;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.PointMinus;
 import com.nmcat.repository.mapper.CrowdMapper;
 
 @Service
@@ -85,5 +87,51 @@ public class CrowdServiceImpl implements CrowdService{
 		return mapper.selectNowPoint(no);
 	}
 	
-		
+	// 댓글 추가
+	@Override
+	public void addComment(CrowdComment cc) {
+		mapper.insertCrowdComment(cc);
+	}
+	
+	// 댓글 목록
+	@Override
+	public List<CrowdComment> commentList(int crNo) {
+		return mapper.selectCrowdComment(crNo);
+	}
+	
+	// 크라우드펀딩 정보 가져오기
+	@Override
+	public Crowd crowdInfo(int crNo) {
+		return mapper.selectCrowdInfo(crNo);
+	}
+	
+	// 크라우드펀딩 수정
+	@Override
+	public void update(Crowd crowd) {
+		mapper.updateCrowd(crowd);
+	}
+	
+	// 포인트 사용내역테이블에 추가
+	@Override
+	public void addPointHistory(PointMinus pm) {
+		mapper.insertPointMinus(pm);
+	}
+	
+	// 포인트내역
+	@Override
+	public List<PointMinus> pointHistory(int crNo) {
+		return mapper.selectPointMinus(crNo);
+	}
+	
+	// 포인트 되돌려주기
+	@Override
+	public void returnPoint(Member member) {
+		mapper.updateMemberPointPlus(member);
+	}
+	
+	// 포인트 삭제
+	@Override
+	public void delete(int crNo) {
+		mapper.deleteCrowd(crNo);
+	}
 }

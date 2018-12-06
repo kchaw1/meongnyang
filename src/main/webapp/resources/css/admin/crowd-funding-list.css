@@ -30,6 +30,10 @@ button.btn:active {
   background-color: #f2809f;
   border-color : #f2809f;
 }
+
+.progress {
+	margin-bottom: 10px;
+}
    
 .progress-bar {
 	font-weight: bold;
@@ -41,7 +45,7 @@ button.btn:active {
 }
 
 .list-item:hover {
-	background-color: #f2809f63;	
+	background-color: #eee;	
 }
 
 button {
