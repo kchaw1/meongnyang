@@ -27,16 +27,20 @@
         
         <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
         <div class="seperator"></div>
-        <div style="float: right;">
+        <div class="btn-area">
           <c:if test="${user.type eq 3}">	
           	<button class="btn btn-default btn-lg" id="create-button">크라우펀딩 만들기</button>
           </c:if>
-         <div style="text-align:left; margin-top:10px; margin-right:80px;">
-         	<button class="btn btn-default" id="ing" style="background:white; color:black;">진행중</button>
-         	<button class="btn btn-default" id="end" style="background:white; color:black;">종료</button>
-         </div>
         </div>
         <div class="clear-fix"></div>
+        <hr>
+        <div class="clear-fix"></div>
+         <div class="btn-area">
+         	<a id="ing">진행중</a>
+         	<span>|</span>
+         	<a id="end">종료</a>         	
+         </div>
+           <div class="clear-fix"></div>
         <div class="list-item-area">
                 
         </div>
@@ -77,33 +81,47 @@
 		ajaxCrowdList(1);
 	})
 	
+	// 전역변수
 	var pageNo = 1;
 	var flag = 1;
+	var isLastPage = false;
 	
-	
+	// 스크롤 페이징
 	$(document).ready(function () {
 	      $(document).scroll(function() {
 	        var maxHeight = $(document).height();
 	        var currentScroll = $(window).scrollTop() + $(window).height();
 			
-	        if (maxHeight <= currentScroll + 100) {
+	        if (maxHeight <= currentScroll) {
 	        	if(flag == 1) {
-	        		ajaxCrowdList(++pageNo)
+	        		if(isLastPage == false) {
+	        			ajaxCrowdList(++pageNo)
+	        		} else {
+	        			return;
+	        		}
 	        	} else {
-	        		ajaxCrowdEndList(++pageNo)
+	        		if(isLastPage == false) {
+	        			ajaxCrowdEndList(++pageNo)
+	        		} else {
+	        			return;
+	        		}
 	        	}
         	}
       	})
     });
 	
+	// 진행중 버튼 클릭
 	$("#ing").click(function() {
+		$(document).scrollTop(0);
 		$(".list-item-area").html("");
 		flag = 1;
 		pageNo = 1;
 		ajaxCrowdList(pageNo);
 	})
 	
+	// 종료 버튼 클릭
 	$("#end").click(function() {
+		$(document).scrollTop(0);
 		$(".list-item-area").html("");
 		flag = 2;
 		pageNo = 1;
@@ -121,7 +139,10 @@
 			var crowdList = result.crowdList;
 			var remainDaysList = result.remainDaysList;
 			
+			if(crowdList.length == 0) isLastPage = true; 
+			
 			var html = "";
+			if(crowdList.length != 0) {
 				for(var i in crowdList) {
 					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
 					
@@ -150,6 +171,9 @@
 							+ 	"</div>"
 							+ "</div>"
 				} // for
+			} else {
+				html = "<div class='no-exist'>더이상 게시물이 없습니다.</div>"
+			}
 			 
 			
 			$("div.list-item-area").append(html);
@@ -167,6 +191,7 @@
 			var crowdList = result.crowdList;
 			
 			var html = "";
+			if(crowdList.length != 0) {
 				for(var i in crowdList) {
 					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
 					
@@ -195,6 +220,9 @@
 							+ 	"</div>"
 							+ "</div>"
 				} // for
+			} else {
+				html = "<div class='no-exist'>더이상 게시물이 없습니다.</div>"
+			}
 			 
 			
 			$("div.list-item-area").append(html);

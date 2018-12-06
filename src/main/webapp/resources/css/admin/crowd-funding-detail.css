@@ -14,7 +14,7 @@ span.remain-days { color: red; }
 #end-day > h2 { display: inline-block; }
 #donate-area{ width:100%; height:84px; }
 input#input-money { width: 50%; text-align:right;}
-.form-control{display:inline-block; width:60%;}
+.form-control{text-align:right; display:inline-block; width:50%;}
 #content-area2 { clear: both; font-size: 25px; padding:30px; }
 #button-area { text-align: right; margin-bottom:20px; padding:20px; }
 #heart-btn #like-count { font-family: 'Jua', sans-serif; }
@@ -49,6 +49,11 @@ input#input-money { width: 50%; text-align:right;}
 #content-container {
   margin: 0 auto;
   width: 80%;
+}
+
+span#countDown {
+	font-size:27px; 
+	color:red;
 }
 
 /* 코멘트 */
@@ -92,9 +97,10 @@ ul {
 /* } */
 
 .progress-bar {
-		font-weight: bold;
-    	color: black;
-    }
+	min-width: 5%;
+	font-weight: bold;
+  	color: black;
+}
     
 .progress-bar-warning {
     background-color: #f2809f;

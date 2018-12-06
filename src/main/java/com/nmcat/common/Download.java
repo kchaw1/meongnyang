@@ -17,6 +17,7 @@ public class Download {
 	 @RequestMapping("/download")
 	 public void download(String path,String sysName, String oriName,
 		 HttpServletRequest request, HttpServletResponse response) throws Exception{
+				 
 //		 String fullPath = path + "\\" + fileName;
 		 
 //		 System.out.println(path);
@@ -25,6 +26,12 @@ public class Download {
 		 String uploadPath = "c:/app/upload";
          
 	     File file = new File(uploadPath + path, sysName);
+	     
+	     if(file.isFile() == false) {
+	    	 System.out.println("파일이 존재하지 않습니다.");
+	    	 return;
+	     }
+	     
 	     
 //	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
 //	        System.out.println("DownloadView --> file.getName() : " + file.getName());

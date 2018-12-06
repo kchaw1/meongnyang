@@ -31,11 +31,18 @@ button.btn:active {
   border-color : #f2809f;
 }
 
+.no-exist {
+	font-size: 30px;
+	text-align: center;
+	color: gray;
+}
+
 .progress {
 	margin-bottom: 10px;
 }
    
 .progress-bar {
+	min-width: 5%;
 	font-weight: bold;
 	color: black;
 }
@@ -90,9 +97,14 @@ button {
 }
 
 input {
-	text-align: right;
+  text-align: right;
 }
-     
+
+.btn-area {
+	float: right;
+}
+a {color: black;}     
 a:link {text-decoration:none; color: black; }
 a:visited {text-decoration:none; color: black; }
 a:active {text-decoration:none; color: black; }
+a:hover {text-decoration:none; color: black; cursor:pointer;}

@@ -10,32 +10,7 @@
 <c:import url="../../common/headerfooterCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
 <c:import url="detailCSSJS.jsp" />
-<script src="<c:url value="/resources/js/admin/countdown-timer.js" />"></script>
-<style>
-.timer {
-  display: inline-block;
-  padding: 10px;
-  text-align: center;
-  padding-top: 15px;
-}
 
-.timer .timer-wrapper {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-}
-
-.timer .timer-wrapper .time {
-  font-size: 28px;
-  font-weight: bold;
-  color: red;
-}
-
-.timer .timer-wrapper .text {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-}
-</style>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -86,8 +61,7 @@
 				                 </div>
 				            </div>
 		              		<div id="remain-days">
-		                		<h2>남은일수:</h2>
-		                		<div class="timer" id="countdown"></div>
+		                		<h2>남은일시:</h2>&nbsp;&nbsp;&nbsp;<span id="countDown"></span>
 <%-- 		                		<h2><span class="remain-days">${remainDays} 일</span></h2> --%>
 		              		</div>
 		              		<div id="end-day">
@@ -164,6 +138,7 @@
 	<script>
 		$(document).ready(function() {
 			commentList();	
+			parse('${detail.crEndDay}')
 		})
 	
 		// 초기화 버튼 클릭
@@ -176,7 +151,7 @@
 			var donateMoney = parseInt(removeComma($("#recycle_result_amt").val()))
 			// 비로그인이면 return false;
 			if('${user.id}' == '') {
-				swal("로그인해주세요.", "", "error")
+				swal("로그인을 먼저 해주세요.", "", "error")
 				return;
 			}
 			// if 보유포인트가 부족하면 return false;
@@ -230,7 +205,7 @@
 		// 좋아요 버튼 클릭
 		$(document).on("click", "#heart-btn", function() {
 			if('${user.id}' == '') {
-				alert("로그인을 먼저 해주세요")
+				swal("로그인을 먼저 해주세요", "", "error")
 				return;
 			}
 			
@@ -287,28 +262,18 @@
 	    var d = str.substr(8, 2);
 	    var h = str.substr(11, 2);
 	    var mm = str.substr(14, 2);
-	    console.log(y);
-	    console.log(m);
-	    console.log(d);
-	    console.log(h);
-	    console.log(mm);
-	    console.log(new Date(y,m-1,d , h,mm))
-	    return new Date(y,m-1,d , h,mm);
+	    
+	      $('#countDown').revolver({
+	         year : y,
+	         month : m,
+	         day : d,
+	         hours: h,
+	         minutes: mm
+	       });
 	}
 	
-	var myDate1 = new Date();
-	console.log("테스트" , myDate1.getDate());
-	console.log("실제" , parse('${detail.crEndDay}').getDate())
 	
-	var myDate = new Date(myDate.getDate() + 2);
-	myDate.setDate();
-	$("#countdown").countdown(myDate, function (event) {
-	  $(this).html(
-	      event.strftime(
-	          '<div class="timer-wrapper"><div class="time">%D</div></div><div class="timer-wrapper">일</div><div class="timer-wrapper"><div class="time">%H</div></div><div class="timer-wrapper">:</div><div class="timer-wrapper"><div class="time">%M</div></div><div class="timer-wrapper">:</div><div class="timer-wrapper"><div class="time">%S</div></div>'
-	      )
-	  );
-	});
+	
 	</script>
 </body>
 </html>

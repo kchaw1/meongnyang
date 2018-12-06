@@ -6,3 +6,4 @@
   <!-- 페이지 css, js -->
   <link href="<c:url value="/resources/css/admin/crowd-funding-detail.css"/>" rel="stylesheet">
   <script src="<c:url value="/resources/js/admin/crowd-funding-detail.js"/>"></script>
+  <script src="<c:url value="/resources/js/admin/jquery.revolver.js" />"></script>

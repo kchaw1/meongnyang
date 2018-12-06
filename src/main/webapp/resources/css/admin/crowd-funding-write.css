@@ -84,6 +84,26 @@
     display: none;
   }
   
+   button.btn{
+	  font-family: 'Jua', sans-serif;
+	  color : white;
+	  background-color: #f2809f;
+	  border-color : #f2809f;
+	}
+	
+	button.btn:hover {
+	  background-color: #d6728d;
+	  border-color : #d6728d;
+	}
+	button.btn:focus {
+	  background-color: #d6728d;
+	  border-color : #d6728d;
+	}
+	button.btn:active {
+	  background-color: #f2809f;
+	  border-color : #f2809f;
+	}
+  
   /* 페이지 CSS */
   #image-area, #input-area { float: left; width:36%;  margin-right:10px; padding: 10px; box-sizing: border-box; }
   #calendar-area { float: left; width:24%;  padding: 10px; box-sizing: border-box; }

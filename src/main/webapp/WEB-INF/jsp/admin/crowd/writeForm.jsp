@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="writeFormCSSJS.jsp" />
 <c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="writeFormCSSJS.jsp" />
   <!-- timepicker-->
   <link href="<c:url value="/resources/css/admin/tui-time-picker.css"/>" rel="stylesheet">
   <script src="<c:url value="/resources/js/admin/tui-time-picker.js"/>"></script>
