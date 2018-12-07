@@ -224,7 +224,7 @@ color: gray;
 
     <footer>
 
-            <div class="chat-launcher"></div>
+            <div class="chat-launcher" onclick="doChatList()"></div>
            
 
     </footer>
@@ -251,6 +251,15 @@ color: gray;
     $(".btn5").on('click', function(){
     	location.href = "communityPage.mn";
     });
+    
+    function doChatList() {
+    	if("{user.id}"!= null){
+    		
+       	window.open("<c:url value='/chat/chat.mn' />", "chatList", "width=560, height=600, scrollbars=yes");
+    	}else{
+    		alert("로그인을 해주십시오.");
+    	}
+    }
 
         </script>
 </body>

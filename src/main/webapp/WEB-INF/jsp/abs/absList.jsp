@@ -57,10 +57,9 @@
       
       </div>
        <%-- <a href="<c:url value="/chat/chat.mn" />"> --%>
-       <button onclick="doChatList()">
-		ChatController(/chat/chat.mn)
-       </button>
-<br />	
+       
+       <button onclick="doChatList()"> ChatController(/chat/chat.mn)
+       </button><br />	
 <script>
   var slideEl = $(".slide--parent");
 
@@ -78,7 +77,12 @@ function doDetail(no) {
 }
 
 function doChatList() {
-   window.open("<c:url value='/chat/chat.mn' />", "chatList", "width=560, height=600, scrollbars=yes");
+	if("{user.id}"!= null){
+		
+   	window.open("<c:url value='/chat/chat.mn' />", "chatList", "width=560, height=600, scrollbars=yes");
+	}else{
+		alert("로그인을 해주십시오.");
+	}
 }
 
 

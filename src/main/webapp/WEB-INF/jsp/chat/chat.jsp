@@ -91,18 +91,18 @@ $(function () {
 			console.log("eventdata 0 " +evt.data[0])
 			console.log("eventdata 1" +evt.data[1])
 			if("${user.id}"==chatId[0] ){				
-		  $(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
+		 	 $(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
 			}else{
-		  $(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+evt.data+"</p></div><br>");
+		 	 $(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+evt.data+"</p></div><br>");
 			}
 			
 		};
 		chat.onerror = function(evt) {
 			    $("div").append('웹소켓 에러 발생 : ' + evt.data)
 		};
-		chat.onclose = function() {
-			    $("div").append("웹소켓 연결이 종료됨.");
-		};
+		chat.onclose = setTimeout(function() {
+			    $(".chat-list").append("<p>채팅 연결이 되지않아 종료됨.</p>");
+		},1000);
 	});
 
 		$('#sendBtn').click(function() { 
