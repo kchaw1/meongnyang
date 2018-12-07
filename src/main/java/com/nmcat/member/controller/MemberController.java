@@ -11,18 +11,26 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mysql.fabric.Server;
 import com.nmcat.member.service.MemberService;
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
-import com.nmcat.repository.domain.NoticeFile;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Controller
 @RequestMapping("/member")
@@ -133,7 +141,7 @@ public class MemberController {
 	@RequestMapping("/login.mn")
 	public void login() {}
 	
-	@PostMapping("/loginform.mn")
+	@RequestMapping("/loginform.mn")
 	@ResponseBody
 	public boolean login(HttpSession session, Login login) {
 		System.out.println("login id : " + login.getId());
@@ -149,10 +157,26 @@ public class MemberController {
 		return false;
 	} // 로그인
 	
+	@RequestMapping("/naverloginform.mn")
+	public String naverlogin(HttpSession session, Login login) {
+		System.out.println("login id : " + login.getId());
+		Member member = service.login(login);
+		service.insertHistory(login.getId());
+		service.updqteScore(login.getId());
+		
+		System.out.println("loginpass : " + login.getPass());
+			session.setAttribute("user", member);
+			
+			return "redirect:/main/mainPage.mn";
+
+	} // 로그인
+	
 	@RequestMapping("/logout.mn")
 	public String logout(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		System.out.println("아이디아이디아이디아이디아이디아이디아이디아이디아이디아이디아이디" + member.getId());
+		service.updateHistory(member.getId());
 		session.invalidate();
-		
 		return "redirect:/member/login.mn";
 	} // 로그아웃
 	
@@ -161,6 +185,33 @@ public class MemberController {
 	public String sendMail(Member member) {
 		
 		return service.sendMail(member);
+	}
+	
+	@RequestMapping("/naverSignup.mn")
+	public void naverSignup(Model model,Member member) {
+		
+		model.addAttribute("member", member);
+	}
+	
+	@RequestMapping("/naverlogin.mn")
+	public String naverlogin(Model model, Member member, RedirectAttributes redirectAttributes) {
+		Member nmb = service.naver(member);
+		
+		if(nmb == null) {
+			String name = member.getName();
+			String email = member.getEmail();
+			return "redirect:/member/naverSignup.mn?name="+name+"&email=" + email;
+		} 
+	
+		String id = nmb.getId();
+		String pass = nmb.getPass();
+		Login login = new Login();
+		login.setId(id);
+		login.setPass(pass);
+		
+		redirectAttributes.addFlashAttribute("login", login);
+		
+		return "redirect:/member/naverloginform.mn";
 	}
 	
 	 private static String getExtension(String fileName) {
@@ -172,6 +223,8 @@ public class MemberController {
 	            return "";
 	        }
 	   }
-}
+	
+	}
+
 
 

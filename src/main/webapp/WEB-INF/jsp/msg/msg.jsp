@@ -168,17 +168,7 @@
 		
 		
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
-<!-- <script>
-$(document).ready(function(){
-    //체크박스 전체 선탣&해제
-    $('#checkall').click(function(){
-         if($("#checkall").prop("checked")){
-            $("input[name=check]").prop("checked",true); 
-        }else{
-            $("input[name=check]").prop("checked",false); 
-        }
-    });
-</script> -->
+
 <script>
 $( function() {
     $( "#tabs" ).tabs({

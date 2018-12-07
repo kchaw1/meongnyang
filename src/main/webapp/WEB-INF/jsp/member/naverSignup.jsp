@@ -103,63 +103,28 @@
     height: 30px;
 }
 
- .social-login a:first-child{
-     background-color: transparent; 
-  }
-  
-  .social-login {
-    position: relative;
+ /* .social-login a{
+    position:relative;
     float: left;
-   /*  width: 100%;
-    height: auto; */
-    padding: 10px 0 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-img {
-	width: 100%;
-	height: 20%;
-}
-
-#kakao-login-btn{
-    float: right;
-    width: 48%;
-    margin-top: 10px;
-    margin-left: -1%;
-}
-  
+    width:calc(40% - 8px);
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(0,0,0,0.05); 
+    padding: 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 3%;
+    text-align:center;
+  }  */
 </style>
 </head>
 <body>
 
 	<div class="login-box">
     <div class="lb-header">
-      <a href="#" class="active" id="login-box-link">로그인</a>
       <a href="#" id="signup-box-link">회원가입</a>
     </div>
-    <div class="social-login">
-      <div id="naverIdLogin" style="width: 50%">
-      	 <%--   <a id="naver-login-btn" href="#" role="button">
-      	  	<img src="<c:url value="/resources/img/member/네이버 아이디로 로그인_완성형_White.PNG"/>" />
-      	  </a>   --%>
-      </div>
-  
-      <div id="kakao-login-btn"></div>
-    </div>
-    <form class="email-login" name="login">
-      <div class="u-form-group">
-        <input type="email" name="loginid" placeholder="Email 또는 id"/>    
-      </div>
-      <div class="u-form-group">
-        <input type="password" name="loginpass" placeholder="Password"/>
-      </div>
-      <div class="u-form-group">
-      	<button type="button" class="btn btn-primary" id="loginform">로그인</button>
-      </div>
-      <div class="u-form-group">
-        <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
-      </div>
-    </form>
     <form class="email-signup" id="abnsin">
       <div class="u-form-group">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -197,9 +162,9 @@ img {
                               </div>                           
                           <hr>
                           <div class="form-group">
-                              <label for="recipient-name" class="control-label" id="name"><span id="red">*</span>이름</label>
-                              <span id='warnname'></span>
-                              <input type="text" class="form-control" name="name">
+                              <!-- <label for="recipient-name" class="control-label" id="name"><span id="red">*</span>이름</label>
+                              <span id='warnname'></span> -->
+                              <input type="hidden" class="form-control" name="name" value="${member.name}">
                                         </div>
                                         <hr>
                                         <input type="hidden" name="type" value="1" />
@@ -223,10 +188,10 @@ img {
                                         <hr>
                                         <div class="row" id="ckNameMsg"></div>                           
                                         <div class="form-group">
-                                            <label for="recipient-name" class="control-label"><span id="red">*</span>E-mail</label>
-                                            <span id='warnemail'></span><br>
-                                                <input id="email" type="text" class="form-control" name="email" placeholder="이메일">                     
-                                                <button id="sendMail" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+                                            <!-- <label for="recipient-name" class="control-label"><span id="red">*</span>E-mail</label>
+                                            <span id='warnemail'></span><br> -->
+                                                <input id="email" type="hidden" class="form-control" name="email" placeholder="이메일" value="${member.email}">                     
+                                                <!-- <button id="sendMail" class="btn btn-default" type="hidden" data-toggle="modal" data-target="#certify">인증</button>     -->         
                                             <span class="input-group-btn"></span>
                                         </div>
                           				<hr>
@@ -303,7 +268,7 @@ img {
 					                                    <div class="form-group">
 					                                            <label for="recipient-name" class="control-label" id="name2"><span id="red2">*</span>이름</label>
 					                                            <span id='warnname2'></span>
-					                                            <input type="text" class="form-control" name="name" id="absname">
+					                                            <input type="hidden" class="form-control" name="name" id="absname">
 					                                    </div>
 					                                    <hr>
 					                                    <div class="form-group">
@@ -328,8 +293,8 @@ img {
 					                                    <div class="form-group">
 					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>E-mail</label>
 					                                            <span id='warnemail2'></span><br>
-					                                                <input id="email2" type="text" class="form-control" name="email" placeholder="이메일">                     
-					                                                <button id="sendMail2" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+					                                                <input id="email2" type="hidden" class="form-control" name="email" placeholder="이메일">                     
+					                                                            
 					                                            <span class="input-group-btn"></span>
 					                                    </div>
 					                                    <hr>
@@ -370,12 +335,12 @@ img {
 							</div>
 						</div>
 					
-<c:import url="loginJS.jsp" />     
-<c:import url="signupJS.jsp" />
+<%-- <c:import url="loginJS.jsp" />  --%>    
+<%-- <c:import url="signupJS.jsp" /> --%>
 <script>
-$( function() {
+ $( function() {
     $( "#tabs" ).tabs();
-  } );
+  } ); 
 
   $(document).ready(
     function() {
@@ -407,23 +372,6 @@ $( function() {
         } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
     }
 </script>
- <script>
-	Kakao.init('a48660e1ad76fecc7e41245f473d42cb');
-	Kakao.Auth.createLoginButton({
-		container : '#kakao-login-btn',
-		success : function(authObj) {
-			Kakao.API.request({
-				url : '/v2/user/me',
-				success : function(res) {
-					console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-				}
-			})
-		},
-		fail : function(err) {
-			alert(JSON.stringify(err));
-		}
-	});
-</script>
 <script>
 	    /* 이력서 사진 미리보기 */
         function readURL(input) {
@@ -440,120 +388,236 @@ $( function() {
            readURL(this);
         })
 </script>
-<%-- /* "<c:url value='/main/mainPage.mn'/>" */ --%>
 <script>
-/*네이버 로그인*/
- 
-		
-		var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "yf6XqSXCa0vHUbfIL8Ll",
-				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/main/mainPage.mn",
-				isPopup: false,
-				loginButton: {color: "white", type: 3, height: 25, float:"left"} 
-			}
-		);
-		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
-		naverLogin.init();
-		
-		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
-		$("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
+$("input[name='name']").blur(function(){
+	//console.log($(this).val())
+	//alert($(this).val().length)
+	if(isValidName($(this).val()) == false) {
+		 $("span#warnname").text("잘못된 형식의 이름입니다.")
+	} else {
+		$("span#warnname").text("")
+	}
+}) //이름 유효성에 따른 경고창
 
-		/* (5) 현재 로그인 상태를 확인 */
-		window.addEventListener('load', function () {
-			naverLogin.getLoginStatus(function (status) {
-				if (status) {
-					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-					setLoginStatus();
-				}
-			});
-		});
-
-		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-		function setLoginStatus() {
-			var profileImage = naverLogin.user.getProfileImage();
-			var nickName = naverLogin.user.getNickName();
-			$("#naverIdLogin_loginButton").html('<br><br><img src="' + profileImage + '" height=50 /> <p>' + nickName + '님 반갑습니다.</p>');
-			$("#gnbLogin").html("Logout");
-			$("#gnbLogin").attr("href", "#");
-			/* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
-			$("#gnbLogin").click(function () {
-				naverLogin.logout();
-				location.reload();
-			});
-		}
-	
- /*  var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "yf6XqSXCa0vHUbfIL8Ll",
-			callbackUrl: "개발자센터에 등록한 callback Url",
-			isPopup: false, 
-			loginButton: {color: "green", type: 3, height: 60} 
-		}
-	);
-	
-	
-	naverLogin.init(); */
- 
-/*  var naver_id_login = new naver_id_login("yf6XqSXCa0vHUbfIL8Ll", "http://localhost:8000/nmcat/main/mainPage.mn");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 2,40);
-  	naver_id_login.setDomain("YOUR_SERVICE_URL");
-  	naver_id_login.setState(state);
-  	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login(); */
-  	
-/* $(function() {
-	var naverLogin = new naver.loginWithNaverId({
-		clientId: "yf6XqSXCa0vHUbfIL8Ll",
-		callbackUrl: "http://localhost:8000/nmcat/main/mainPage.mn",
-		isPopup: true,
-		loginButton: {color: "green", type: 3, height: 45}
-	});
-	naverLogin.init();
-}) // e.o.naver */
-/* var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "yf6XqSXCa0vHUbfIL8Ll",
-			callbackUrl:"http://localhost:8000/nmcat/main/mainPage.mn",   
-			isPopup: false, 
-			loginButton: {color: "white", type: 2, height: 22, width: 20} //흰색 작은배너형 높이 30px 
-		}
-	);
-	
-	/* 설정정보를 초기화하고 연동을 준비 */
-	/* naverLogin.init();
-	
-	naverLogin.getLoginStatus(function (status) {
-		if (status) {
-			var email = naverLogin.user.getEmail();
-			var name = naverLogin.user.getNickName();
-			var profileImage = naverLogin.user.getProfileImage();
-			var uniqId = naverLogin.user.getId();
-		} else {
-			console.log("AccessToken이 올바르지 않습니다.");
-		}
-	}); */
-	
-	/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
- 	/*window.addEventListener('load', function () {
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				
-				var email = naverLogin.user.getEmail();
-				if( email == undefined || email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					
-					naverLogin.reprompt();
-					return;
-				}
-
-				window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/member/login.mn");
+$("input[name='id']").blur(function(){
+	//console.log($(this).val())
+	$warnid = $("span#warnid");
+	if(isValidId($(this).val()) == false) {
+		$warnid.removeClass("green")
+		$warnid.text("영문 대소문자, 숫자만 가능합니다.")
+	} else if(isValidId($(this).val()) == true) {
+		$.ajax({
+			url : "<c:url value='/member/checkid.mn'/>",
+			data : "id="+$(this).val(),
+			type : "POST"
+		}).done(function(result) {
+			if(result) {
+				$warnid.removeClass("green")
+				$warnid.text("이미 등록되어있는 아이디 입니다.")
 			} else {
-				console.log("callback 처리에 실패하였습니다.");
+				$warnid.addClass("green")
+				$warnid.text("사용가능한 아이디 입니다.")
 			}
-		});
-	});*/ 
+		}) //done
+	} else if(isValidId($(this).val()) == 0){
+		$warnid.text("3글자 이상 입력해주세요.")
+	}  
+	//if-else
+}) //id 유효성에 따른 경고창
+
+$("input[name='passcheck']").blur(function(){
+	let form = document.signup;
+	if(form.pass.value != form.passcheck.value) {
+		$("span#warnpasscheck").text("입력된 패스워드가 서로 다릅니다.")
+		form.passcheck.value ="";
+		form.pass.focus();
+		form.pass.select();
+		
+		return;
+	} //비밀번호와 확인과 서로 다른지 확인
+	else {
+		$("span#warnpasscheck").text("")
+	}
+})
+
+$("button#newmember").click(function(){
+	let f = document.signup;
+	/*if(f.name.value==""){
+        alert("이름을 입력하세요")
+        f.name.focus()
+        return;
+    }
+	if(isValidName(f.name.value)==false) {
+		alert("형식에 맞는 이름을 입력해주세요.")
+		f.name.focus()
+        return;
+	} */
+	
+	if(f.id.value==""){
+        alert("아이디를 입력하세요")
+        f.id.focus()
+        return;
+    }
+	if(isValidId(f.id.value) == false) {
+		alert("형식에 맞는 아이디를 입력해주세요.")
+		f.id.focus()
+        return;
+	}
+	
+    if(f.pass.value==""){
+        alert("비밀번호를 입력하세요")
+        f.pass.focus()
+        return;
+    }
+
+    if(f.passcheck.value==""){
+        alert("비밀번호 확인을 입력하세요")
+        f.passcheck.focus()
+        return;
+    }
+  
+    alert("회원가입이 완료되었습니다.")
+	
+	f.submit()
+
+})
+
+function isValidName(name) {	//이름 유효성 확인..정규식으로
+  if(name.length > 20 ){
+    return false;
+  }
+ if(name.length <2){
+	 return false;
+ }
+  let regx = /[^가-힣]/;
+  return !regx.test(name);      // 유효하면 true반환
+}
+
+
+function isValidId(emailId){ 	//아이디 유효성 확인..정규식으로
+	if(emailId.length < 2) {
+		return 0;
+	}
+  let regx = /[^\w]/;
+  return !regx.test(emailId);   // 유효하면 true반환
+}
+
+
+</script>
+<!----------------- 밑에 부터는 행동전문가 ---------------------->
+<script>
+$("#absname").blur(function(){
+	//console.log($(this).val())
+	//alert($(this).val().length)
+	if(isValidName($(this).val()) == false) {
+		 $("span#warnname2").text("잘못된 형식의 이름입니다.")
+	} else {
+		$("span#warnname2").text("")
+	}
+}) //이름 유효성에 따른 경고창
+
+$("#absid").blur(function(){
+	//console.log($(this).val())
+	$warnid = $("span#warnid2");
+	if(isValidId($(this).val()) == false) {
+		$warnid.removeClass("green")
+		$warnid.text("영문 대소문자, 숫자만 가능합니다.")
+	} else if(isValidId($(this).val()) == true) {
+		$.ajax({
+			url : "<c:url value='/member/checkid.mn'/>",
+			data : "id="+$(this).val(),
+			type : "POST"
+		}).done(function(result) {
+			if(result) {
+				$warnid.removeClass("green")
+				$warnid.text("이미 등록되어있는 아이디 입니다.")
+			} else {
+				$warnid.addClass("green")
+				$warnid.text("사용가능한 아이디 입니다.")
+			}
+		}) //done
+	} else if(isValidId($(this).val()) == 0){
+		$warnid.text("3글자 이상 입력해주세요.")
+	}  
+	//if-else
+}) //id 유효성에 따른 경고창
+
+$("#abspasscheck").blur(function(){
+	let form = document.signup;
+	if(form.pass.value != form.passcheck.value) {
+		$("span#warnpasscheck2").text("입력된 패스워드가 서로 다릅니다.")
+		form.passcheck.value ="";
+		form.pass.focus();
+		form.pass.select();
+		
+		return;
+	} //비밀번호와 확인과 서로 다른지 확인
+	else {
+		$("span#warnpasscheck2").text("")
+	}
+})
+
+$("button#newmember2").click(function(){
+	let f = document.absignup;
+	/* if(f.name.value==""){
+        alert("이름을 입력하세요")
+        f.name.focus()
+        return;
+    }
+	if(isValidName(f.name.value)==false) {
+		alert("형식에 맞는 이름을 입력해주세요.")
+		f.name.focus()
+        return;
+	} */
+	
+	if(f.id.value==""){
+        alert("아이디를 입력하세요")
+        f.id.focus()
+        return;
+    }
+	if(isValidId(f.id.value) == false) {
+		alert("형식에 맞는 아이디를 입력해주세요.")
+		f.id.focus()
+        return;
+	}
+	
+    if(f.pass.value==""){
+        alert("비밀번호를 입력하세요")
+        f.pass.focus()
+        return;
+    }
+
+    if(f.passcheck.value==""){
+        alert("비밀번호 확인을 입력하세요")
+        f.passcheck.focus()
+        return;
+    }
+  
+    alert("회원가입이 완료되었습니다.")
+	
+	f.submit()
+
+})
+
+function isValidName(name) {	//이름 유효성 확인..정규식으로
+  if(name.length > 20 ){
+    return false;
+  }
+ if(name.length <2){
+	 return false;
+ }
+  let regx = /[^가-힣]/;
+  return !regx.test(name);      // 유효하면 true반환
+}
+
+
+function isValidId(emailId){ 	//아이디 유효성 확인..정규식으로
+	if(emailId.length < 2) {
+		return 0;
+	}
+  let regx = /[^\w]/;
+  return !regx.test(emailId);   // 유효하면 true반환
+}
 </script>
 </body>
 </html>

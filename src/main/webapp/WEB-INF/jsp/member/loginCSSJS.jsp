@@ -34,4 +34,19 @@
     margin-top: 15px;
     text-transform: uppercase;
   }
+  
+   .social-login a{
+    position:relative;
+    float: left;
+    /* width:calc(40% - 8px);
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(0,0,0,0.05); */
+    padding: 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 3%;
+    text-align:center;
+  }
 </style>

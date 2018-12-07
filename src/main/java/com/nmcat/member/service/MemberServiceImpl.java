@@ -134,4 +134,17 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	// 네이버 추가 정보
+	@Override
+	public Member naver(Member member) {	
+		return mapper.selectCheckNaverLogin(member);
+	}
+	
+	// 로그아웃 타임
+	@Override
+	public void updateHistory(String loginId) {
+		lomapper.updateHistory(loginId);
+		
+	}
+
 }

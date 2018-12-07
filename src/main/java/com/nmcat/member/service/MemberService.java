@@ -29,4 +29,10 @@ public interface MemberService {
 	
 	// 이메일 인증 부분
 	String sendMail(Member member);
+	
+	// 네이버 추가정보
+	Member naver(Member member);
+	
+	// 로그아웃 시간
+	void updateHistory(String loginId);
 }

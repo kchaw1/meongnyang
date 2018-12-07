@@ -15,4 +15,13 @@
 			#{loginId}
 		)
 	</insert>
+	
+	<update id="updateHistory" parameterType="string">
+		update mn_login_history
+			set logout_date_time = now()
+  				where login_id = #{loginId}
+  				order by logout_date_time desc
+  				limit 1
+	</update>
+	
 </mapper>

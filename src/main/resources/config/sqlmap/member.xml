@@ -106,4 +106,13 @@
 			id, lif_sys_name, lif_path, lif_ori_name, lif_size		
 		) values(#{id}, #{lifSysName}, #{lifPath}, #{lifOriName}, #{lifSize})
 	</insert>
+	
+	<!-- 추가정보 받기 -->
+	<select id="selectCheckNaverLogin" parameterType="Member" resultMap="memberMap">
+		select *
+		  from mn_member
+		 where email = #{email} and 
+		 	   name = #{name}
+	</select>
+	
 </mapper>

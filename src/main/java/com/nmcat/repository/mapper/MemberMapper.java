@@ -23,5 +23,8 @@ public interface MemberMapper {
 	
 	/********자격증*********/
 	void insertLicense(License license);
+	
+	/******추가 정보 *********/
+	Member selectCheckNaverLogin(Member member);
 
 } // end class

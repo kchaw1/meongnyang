@@ -41,18 +41,18 @@ img {
   .social-login{
     position:relative;
     float: left;
-    width: 100%;
-    height:auto;
+   /*  width: 100%;
+    height:auto; */
     padding: 10px 0 15px 0;
     border-bottom: 1px solid #eee;
   }
   .social-login a{
     position:relative;
     float: left;
-    width:calc(40% - 8px);
+    /* width:calc(40% - 8px);
     text-decoration: none;
     color: #fff;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05); */
     padding: 12px;
     border-radius: 2px;
     font-size: 12px;
@@ -67,7 +67,7 @@ img {
     top: 2px;
   }
   .social-login a:first-child{
-    background-color: rgb(36, 216, 45);
+     background-color: rgb(36, 216, 45); 
   }
   /* .social-login a:last-child{
     background-color: rgb(241, 238, 25);

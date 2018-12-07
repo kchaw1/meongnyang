@@ -4,4 +4,5 @@ import com.nmcat.repository.domain.LoginHistory;
 
 public interface LoginHistoryMapper {
 	void insertHistory(String loginId);
+	void updateHistory(String loginId);
 }
