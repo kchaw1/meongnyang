@@ -92,6 +92,12 @@ public class CrowdServiceImpl implements CrowdService{
 		return mapper.selectNowPoint(no);
 	}
 	
+	// 코멘트 존재여부 체크
+	@Override
+	public int commentCheck(CrowdComment cc) {
+		return mapper.selectCommentCheck(cc);
+	}
+	
 	// 댓글 추가
 	@Override
 	public void addComment(CrowdComment cc) {

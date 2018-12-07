@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,9 +95,8 @@ public class CrowdController {
 	
 	// 크라우드펀딩 디테일
 	@RequestMapping("/crowd/detail")
-	public void detail(Model model, int crNo, HttpServletRequest req) {
+	public void detail(Model model, int crNo, HttpSession session) {
 		
-		HttpSession session = req.getSession();
 		Member member = (Member)session.getAttribute("user");
 		CrowdLike cl = new CrowdLike();
 		
@@ -131,9 +128,13 @@ public class CrowdController {
 	// 크라우드펀딩 기부
 	@RequestMapping("/crowd/donate")
 	public String donate(Crowd crowd, Member member, CrowdComment cc, PointMinus pm) {
+		member.setPoint(crowd.getDonateMoney());
 		service.minusPoint(member);
 		service.donate(crowd);
-		service.addComment(cc);
+		
+		if(service.commentCheck(cc)==0) {
+			service.addComment(cc);
+		}
 		
 		pm.setCrNo(crowd.getCrNo());
 		pm.setMinusPoint(crowd.getDonateMoney());

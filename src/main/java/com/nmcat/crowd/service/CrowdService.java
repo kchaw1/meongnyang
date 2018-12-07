@@ -31,4 +31,5 @@ public interface CrowdService {
 	List<PointMinus> pointHistory(int crNo); // 글번호에 해당하는 포인트 차감 내역
 	void returnPoint(Member member); // 포인트 되돌려주기
 	void delete(int crNo); // 크라우드펀딩 삭제
+	int commentCheck(CrowdComment cc);
 }

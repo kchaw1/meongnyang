@@ -54,6 +54,10 @@
 		<url-pattern>*.mn</url-pattern>
 	</servlet-mapping>
 	
+	 <listener>
+    	  <listener-class>com.nmcat.common.SessionListener</listener-class>
+  	</listener>
+	
 	
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

@@ -116,6 +116,7 @@
 		$(".list-item-area").html("");
 		flag = 1;
 		pageNo = 1;
+		isLastPage = false;
 		ajaxCrowdList(pageNo);
 	})
 	
@@ -125,6 +126,7 @@
 		$(".list-item-area").html("");
 		flag = 2;
 		pageNo = 1;
+		isLastPage = false;
 		ajaxCrowdEndList(pageNo);
 	})
 	
@@ -189,6 +191,8 @@
 			console.log(result)
 			
 			var crowdList = result.crowdList;
+			
+			if(crowdList.length == 0) isLastPage = true;
 			
 			var html = "";
 			if(crowdList.length != 0) {

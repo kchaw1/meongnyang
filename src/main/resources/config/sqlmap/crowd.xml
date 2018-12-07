@@ -140,7 +140,7 @@
 <!-- 포인트차감 -->
 <update id="updateMemberPoint" parameterType="Member">
 	update mn_member
-	   set point = point - #{donateMoney}
+	   set point = point - #{point}
 	 where no = #{no}  
 </update>
 
@@ -149,6 +149,13 @@
 	select point
 	  from mn_member
 	 where no = #{no} 
+</select>
+
+<!-- 댓글 있는지 체크 -->
+<select id="selectCommentCheck" parameterType="CrowdComment" resultType="int">
+	select count(*)
+	  from mn_crowd_comment
+	 where crc_writer = #{crcWriter} and cr_no = #{crNo}
 </select>
 
 <!-- 댓글  -->
