@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
+import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 
@@ -133,6 +134,25 @@ public class CommunityServiceImpl implements CommunityService{
 		mapper.updateReComment(comReComment);
 		
 	}
+
+	@Override
+	public int selectRefCnt(int comNo) {
+		return mapper.selectRefCnt(comNo);
+		
+	}
+
+	@Override
+	public void insertRef(CommunityRef comRef) {
+		mapper.insertRef(comRef);
+		
+	}
+
+	@Override
+	public void deleteRef(CommunityRef comRef) {
+		mapper.deleteRef(comRef);
+		
+	}
+	
 	
 	
 	

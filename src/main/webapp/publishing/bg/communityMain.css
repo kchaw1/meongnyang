@@ -20,7 +20,7 @@ div{
     float: left;
     
 }
-/* 3번 규격맞췄다 */
+/* 3踰� 洹쒓꺽留욎톬�떎 */
 
 .body{
 
@@ -99,7 +99,7 @@ select#searchsel.form-control{
     padding: 0px 0px;
     margin-right: -15px;
 }
-/* 첫번째 컬럼 css */
+/* 泥ル쾲吏� 而щ읆 css */
 .refcontents{
 background-color:  #fdfdfd;
 border: 0.5px solid #e9ebee;
@@ -171,19 +171,7 @@ padding-right: 5px;
 
 
 }
-.category{
-    margin-right: 15px;
-float: right;
-width: auto;
-height:20px;
-font-family: sans-serif;
-color: black;
-font-size: 12px;
-font-family: 'Jua';
-font-weight: 100;
 
-
-}
 .buttonContainer{
 color: gray;
 bottom: 0;
@@ -204,7 +192,7 @@ font-weight: 900;
 margin-left: 5px;
 margin-top: 8px;
 }
- /* 두번째 컬럼 css */
+ /* �몢踰덉㎏ 而щ읆 css */
 .writeBtn{
 margin-left: 49px;
 border: 1px solid black;
@@ -314,7 +302,7 @@ font-weight: 900;
 line-height: 21px;
 overflow-wrap: break-word;
 
-/*  이건 무조건 한나 써야하는데.. */
+/*  �씠嫄� 臾댁“嫄� �븳�굹 �뜥�빞�븯�뒗�뜲.. */
 }
 .imgsize2{
 border-top-left-radius: 5px;
@@ -323,8 +311,8 @@ width: 100%;
 height: 15px;
 background-color: rgb(65, 192, 142, 0.7);
 }
-/*헤더*/
-/*채팅로고*/
+/*�뿤�뜑*/
+/*梨꾪똿濡쒓퀬*/
 .chat-launcher {
 position: fixed;
 bottom: 20px;
@@ -415,14 +403,14 @@ overflow: hidden;
 -webkit-transform: translateY(0);
 transform: translateY(0);
 }
-/*추천 버튼 클릭시*/
+/*異붿쿇 踰꾪듉 �겢由��떆*/
 .changeColor1{
 color: red;
 }
 .changeColor2{
 color: blue;
 }
-/*메인 컨텐츠 마우스 올라왔을시 보더선 넣기*/
+/*硫붿씤 而⑦뀗痢� 留덉슦�뒪 �삱�씪�솕�쓣�떆 蹂대뜑�꽑 �꽔湲�*/
 /* .maincontentsBoarder{
 border: 1px solid black;
 } */

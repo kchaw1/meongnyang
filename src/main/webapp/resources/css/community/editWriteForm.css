@@ -11,7 +11,7 @@ div{
     width: 1076px;
 
 }
-/* 메인 컬럼 첫번쨰 */
+/* 硫붿씤 而щ읆 泥ル쾲夷� */
 .main-column1{
     margin-top: 140px;
     margin-left: 23.5%;
@@ -39,7 +39,7 @@ min-height: 370px;
 background-color: white;
 }
 
-/* 메인 컬럼 두번쨰 */
+/* 硫붿씤 而щ읆 �몢踰덉�� */
 .main-column2{
 margin-top: 170px;
 margin-right: -17%;
@@ -113,7 +113,7 @@ transition: box-shadow 0.2s;
 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .form-select:after {
-content: '▾';
+content: '�뼻';
 position: absolute;
 top: 0;
 right: 12px;
@@ -180,7 +180,7 @@ left: 50%;
 
 width: 300px;
 }
-/*푸터부분줄꺼였던거*/
+/*�뫖�꽣遺�遺꾩쨪爰쇱��뜕嫄�*/
 .imgsize2{
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
@@ -237,7 +237,7 @@ fill: rgb(255, 255, 255);
 border-color: #6BF3D9;
 border-radius: 10px;
 }
-/*채팅로고*/
+/*梨꾪똿濡쒓퀬*/
 .chat-launcher {
 position: fixed;
 bottom: 20px;
@@ -286,47 +286,6 @@ transform: rotate(70deg) scale(0);
 opacity: 1;
 -webkit-transform: rotate(0deg);
 transform: rotate(0deg);
-}
-
-.chat-wrapper {
-height: 430px;
-width: 385px;
-display: block;
-border-radius: 5px;
-background: #ebebeb;
-position: fixed;
-right: 20px;
-bottom: 110px;
-z-index: 999;
-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 22px rgba(0, 0, 0, 0.16);
--webkit-transition: transform 400ms ease;
-transition: transform 400ms ease;
--webkit-transform: translateY(130%);
-transform: translateY(130%);
-}
-.chat-wrapper:before {
-height: 3%;
-padding: 4%;
-font-size: 1.1em;
-line-height: 1em;
-display: block;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
-background: #666;
-color: white;
-content: attr(data-headline);
-}
-.chat-wrapper iframe {
-width: 94%;
-height: 84%;
-border: 0;
-border-radius: 5px;
-padding: 3%;
-overflow: hidden;
-}
-.chat-wrapper.is-open {
--webkit-transform: translateY(0);
-transform: translateY(0);
 }
 
 

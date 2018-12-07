@@ -37,8 +37,16 @@
 	<result column = "comc_rewriter" property= "comcReWriter"/>
 	<result column = "comc_recontent" property= "comcReContent"/>
 	<result column = "comc_re_reg_date" property="comcReRegDate" />
-
 </resultMap>
+
+ <resultMap id = "comRef" type = "CommunityRef">
+ <result column = "com_no" property= "comNo"/>
+	<result column = "com_ref_user" property= "comRefUser"/>
+	</resultMap>
+	
+
+
+
 	<!-- 커뮤니티 CRUD -->
 	
 
@@ -198,6 +206,31 @@
 		#{comNo}, #{comfSysName}, #{comfPath}
 	)
 	</insert>
+	<!-- ****************************************추천쿼리**************************************************** -->
+	
+	<!-- 게시글 추천수 -->
+	<select id="selectRefCnt" parameterType = "int" resultType="int">
+		select count(*)
+		from mn_com_ref
+		where com_no = #{comNo}
+	</select>
+	<!-- 게시글 추천 -->
+	<insert id = "insertRef" parameterType = "CommunityRef">
+		insert into mn_com_ref
+		(com_no, com_ref_user)
+		values
+		(
+		#{comNo}, #{comRefUser}
+		)
+	</insert>
+	<!-- 게시글 추천 취소 -->
+	<delete id = "deleteRef" parameterType ="CommunityRef">
+	delete
+	from mn_com_ref
+	where com_no = #{comNo} and com_ref_user = #{comRefUser}
+	</delete>
+	
+
 	
 	
 </mapper>

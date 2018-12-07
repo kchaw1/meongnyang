@@ -29,14 +29,7 @@ body{
     border-bottom: 1px solid #efefef;
 
 }
-.top{
-    border-bottom: 1px solid #efefef;
-    BACKGROUND-COLOR: WHITE;
-    padding: 16px;
-    top: 0;
 
-    height: 60px;
-}
 .mid{
     
     border: 1px solid #efefef;
@@ -195,7 +188,7 @@ body{
 
 /*컨텐츠 하단 댓글, 조회수, 카테고리 들어갈 부분 css*/
 .category{
-	margin-right: 15px;
+
 	width: auto;
     height: 20px;
     color: black;
@@ -305,3 +298,9 @@ line-height: 30px;
 .forImg2{
 	width: 100%;
 }
+
+
+/*채팅로고*/
+
+
+

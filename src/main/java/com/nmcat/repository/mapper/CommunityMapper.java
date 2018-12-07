@@ -5,6 +5,7 @@ import java.util.List;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
+import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityMapper {
@@ -50,6 +51,12 @@ public interface CommunityMapper {
 	void insertReComment(CommunityReComment comReComment);
 	void deleteReComment(int comcReNo);
 	void updateReComment(CommunityReComment comReComment);
+	//추천
+	int selectRefCnt(int comNo);
+	void insertRef(CommunityRef comRef);
+	void deleteRef(CommunityRef comRef);
+	
+	
 	
 	
 	

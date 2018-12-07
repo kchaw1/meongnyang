@@ -3,7 +3,6 @@ package com.nmcat.community.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +23,7 @@ import com.nmcat.community.service.CommunityService;
 import com.nmcat.repository.domain.CFormVO;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
+import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 @Controller
@@ -49,10 +49,11 @@ public class CommunityController {
 //		/*List <CommunityBoard> list2 = new ArrayList<>();*/
 		for(CommunityBoard c: list) {
 		c.setComCommentCnt(service.selectCommentCount(c.getComNo()));
-		System.out.println(c.getComCommentCnt());
+		c.setComRefCnt(service.selectRefCnt(c.getComNo()));
 		}
+
 		
-		map.put("list", service.selectBoard(comBoard));
+		map.put("list", list);
 		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
 		return map;
 	}
@@ -159,6 +160,32 @@ public class CommunityController {
 		return service.selectCommentCount(comNo);
 		
 	}
+	
+	 //추천
+	 
+		@RequestMapping("/selectRefCnt.mn")
+		@ResponseBody
+		public int selectRefCnt(int comNo)throws Exception{
+			return service.selectRefCnt(comNo);
+		}
+		@RequestMapping("/insertRefCnt.mn")
+		@ResponseBody
+		public void insertRefCnt(int comNo, String comRefUser)throws Exception{
+			CommunityRef comRef = new CommunityRef();
+			comRef.setComNo(comNo);
+			System.out.println(comRef.getComNo());
+			comRef.setComRefUser(comRefUser);
+			System.out.println(comRef.getComRefUser());
+			
+			service.insertRef(comRef);
+		}
+		@RequestMapping("/deleteRefCnt.mn")
+		@ResponseBody
+		public void deleteRefCnt(CommunityRef comRef)throws Exception{
+			service.deleteRef(comRef);
+			
+		}
+		
 	//-------------------------------파일등록
 	@PostMapping("/uploadfile.mn")
 	@ResponseBody
@@ -207,16 +234,7 @@ public class CommunityController {
             return "";
         }
 	 }
-	 
-	/* private static String getParentUrl(String fileUrl) {
-		 int dotPosi = fileUrl.lastIndexOf('/');
-		 
-		 if(dotPosi != -1 && fileUrl.length() -1 > dotPosi) {
-			 return fileUrl.substring(0,dotPosi);
-		 } else {
-			 return "";
-		 }
-	 }*/
+	
 	
 	
 	

@@ -10,18 +10,19 @@
 <c:import url="../common/headerfooterCSSJS.jsp"/>
 <link rel="stylesheet" href="<c:url value="/resources/css/community/communityMain.css"/>">
 
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+
 </head>
 
 <style>
@@ -34,19 +35,15 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-family: 'Jua', sans-serif;
   }
 .category{
-    float: left;
+	text-align:right;
+    float: right;
     font-size: 16px;
     color: gray;
-	/* float: left;
-    font-size: 16px;
-    color: gray;
-	margin-right: 15px;
-	width: auto;
-	height: 20px;
-	color: gray;
-	font-size: 16px;
-	font-family: 'Jua', sans-serif;
-	font-weight: 100; */
+    font-family: 'Jua';
+    font-weight: 100;
+    margin-top: -38px;
+    margin-right:0px;
+	
 }
 .profileAndName{
    
@@ -139,8 +136,84 @@ font-size: 16px;
 .displayNone{
 display: none;
 }
+.heart {
+float:left;
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+   	margin-top: -40px;
+    margin-left: -39px;
+}
+.heart.is-active {
+  transition-duration: 1s;
+  background-position: -2800px 0;
+}
+/* 채팅 */
+.chat-launcher {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+z-index: 9999;
+background: orange;
+color: white;
+border-radius: 50%;
+cursor: pointer;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
+}
+.chat-launcher:before, .chat-launcher:after {
+font-family: FontAwesome;
+font-size: 34px;
+position: absolute;
+-webkit-transition: transform 180ms linear, opacity 130ms linear;
+transition: transform 180ms linear, opacity 130ms linear;
+}
+.chat-launcher:before {
+content: "\f086";
 
+margin: 6px 0px 0px 13px;
+opacity: 1;
+-webkit-transform: rotate(0deg) scale(1);
+transform: rotate(0deg) scale(1);
+}
 
+/*챠팅  */
+.chat-launcher:after {
+content: "\f00d";
+padding-top: 20px;
+margin: 13px 17px;
+opacity: 0;
+-webkit-transform: rotate(-30deg);
+transform: rotate(-30deg);
+}
+.chat-launcher:hover {
+background: #ffb329;
+}
+.chat-launcher.active:before {
+opacity: 0;
+-webkit-transform: rotate(70deg) scale(0);
+transform: rotate(70deg) scale(0);
+}
+.chat-launcher.active:after {
+opacity: 1;
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+
+.top1{
+    border-bottom: 1px solid #efefef;
+    BACKGROUND-COLOR: WHITE;
+    top: 0;
+	
+}
+.top{
+height :0px;
+}
 
 
 
@@ -199,7 +272,10 @@ display: none;
                 </div>
                 
 
-              <footer></footer>    
+              <footer>
+	            <div class="chat-launcher"></div>
+	            
+    		  </footer>
 	
 <script>
 //---------------------------------------------------------------------------------------------------------------
@@ -252,13 +328,13 @@ function forAllBtn(){
 		text+=  "<div class = 'contentsContainer'>"
         		+"<div class = 'left'>"
         		+"<div class = 'contentContainer'>"
-           		+"<div class = 'top'>"
+           		+"<div class = 'top1'>"
               	+"<div class = 'locationC'>"
                 +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
                 +"<span class = 'userName'>"
                 +result.list[i].comWriter
                 +"</span>"
-                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
+                +"<span class = 'regDate'> ·"+result.list[i].comRegDate+"</span></div><div class ='category'>"+result.list[i].comCategory+"</div></div>"
 				+"<div class = 'mid' id = '"
 				+result.list[i].comNo
 				+"'>"
@@ -271,12 +347,10 @@ function forAllBtn(){
                 +"</div></div>"
                 +"<div class = 'forImg'></div></div>"
                 +"<div class = 'bottom'>"
-                +"<div class = 'category'>"
-                +result.list[i].comCategory
-                +"</div>"
+                +"<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}') data-toggle='tooltip' data-placement='top' title='"+result.list[i].comRefCnt+"'></div>"
                 +"<div class = 'forCnt'>"
-                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i>"+result.list[i].comCommentCnt+" Comments</div>"
-                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
               
 		}
 		if (comCategory && clickPlus == false) {
@@ -291,6 +365,19 @@ function forAllBtn(){
 			var no = $(this).attr('id');
 			location.href = "detailPage.mn?comNo="+no;
 									});
+		/* $('.heart').tooltip(options) */
+		$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+		/*    $(".heart").on("click", function() {
+		    $(this).toggleClass("is-active");
+		  }); */
+		  
+		
+		   
+		 
+
 	})
 
 }; 
@@ -321,6 +408,22 @@ function nextListSecond(comCategory){
 $(".writeBtn").click(function() {
 	location.href = "writeForm.mn";
 });
+
+
+function refFunction(comNo, comRefUser){
+console.log(comRefUser);
+	  $(".heart."+comNo).addClass("is-active");
+	  $.ajax({
+		  url : "<c:url value = '/community/insertRefCnt.mn'/>",
+		  type : "POST", 
+		  data : {comNo : comNo, comRefUser : comRefUser }
+	  }).done(function(result){
+		  console.log("추천 성공!!!!!")
+	  })
+}
+
+
+
 
 
 </script>
