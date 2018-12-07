@@ -205,12 +205,12 @@ div.form-group input:focus, div.form-group select:focus{
 div.modal {
 	z-index : 2000;
 }
-div.modal-dialog {
+div.modal#diary div.modal-dialog {
   width : 70%;
   height: 90%;
   border-radius: 20px;
 }
-div.modal-content {
+div.modal#diary div.modal-content {
   position: relative;
   overflow: hidden;
   height: 103%;
@@ -243,26 +243,26 @@ div.modal-contet:before {
   height: 90%;
   z-index: 1;
 } */
-.modal {
+.modal#diary {
   text-align: center;
 }
 .modal .modal-center {
  margin: 20px auto;
 }
-.modal-dialog.modal-center {
+div.modal#diary .modal-dialog.modal-center {
   display: inline-block;
   text-align: left;
-  vertical-align: middle
+  vertical-align: middle;
 }
-.modal-header {
+div.modal#diary .modal-header {
   height: 50px;
   padding: 10px;
 }
-h3.header {
+div.modal#diary h3.header {
   margin: 0 30px;
   color: rgb(29, 67, 99)
 }
-div.diaryList {
+div.modal#diary div.diaryList {
   width : 550px;
   height: 750px;
   /* border: 1px solid gray; */
@@ -271,52 +271,52 @@ div.diaryList {
   padding : 10px;
   /* transform: skew(0deg, 10deg); */
 }
-.close {
+div.modal#diary .close {
   float: left;
 }
-div.diary {
+div.modal#diary div.diary {
   clear: both;
   margin : 10px 10px;
   width : 90%;
 }
-div.dr-title {
+div.modal#diary div.dr-title {
   padding-bottom : 5px;
   border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
   width: 100%;
 }
-span.label {
+div.modal#diary span.label {
   margin: 10px;
   /* display: inline-block; */
   border-radius: 5px; 
   font-size : 11px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
-span.title {
+div.modal#diary span.title {
   color : rgb(94, 94, 94);
   font-size : 24px;
 }
-span.date {
+div.modal#diary span.date {
   color : rgb(94, 94, 94, 0.5);
   font-size : 15px;
 }
-span.label-share {
+div.modal#diary span.label-share {
   background-color: rgb(65, 192, 142);
 }
-span.label-friend {
+div.modal#diary span.label-friend {
   background-color: rgb(255, 194, 64);
 }
-span.label-noshare {
+div.modal#diary span.label-noshare {
   background-color: rgb(247, 117, 78);
 }
-div.dr-content {
+div.modal#diary div.dr-content {
   padding : 15px 20px 0px;
   font-size : 20px;
 }
-div.buttons {
+div.modal#diary div.buttons {
   height: 40px;
   /* border-bottom :1px solid  rgb(128, 128, 128, 0.3) */
 }
-div.button-box {
+div.modal#diary div.button-box {
   float: right;
   margin-right: 10px 
 }
@@ -348,23 +348,23 @@ a[data-toggle] span {
   background-color: salmon;
 }
 
-div.updateform {
+div.modal#diary div.updateform {
 	display : inline-block;
 	margin-left : 10px;
 }
-.updateform input[type='radio'] {
+div.modal#diary .updateform input[type='radio'] {
 	margin-left : 10px;
 	margin-right : 8px;
 }
-button.dr-updatecomplete{
+div.modal#diary button.dr-updatecomplete{
 	width : 80px;
 }
-div.updatebutton-box {
+div.modal#diary div.updatebutton-box {
   float: right;
   margin-right: 10px; 
 }
 
-.dr-content.update {
+div.modal#diary .dr-content.update {
   text-align: left;
   font-size: 14px;
 }

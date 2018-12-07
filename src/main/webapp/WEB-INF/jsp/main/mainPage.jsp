@@ -248,7 +248,7 @@ color: gray;
     });
     // 마이펫다이어리로 가는 url
     $(".btn4").on('click', function(){
-    	location.href = "communityPage.mn";
+    	location.href = "<c:url value = '/diary/share/sharediary.mn'/>";
     });
     // 랭킹으로 가는 url
     $(".btn5").on('click', function(){

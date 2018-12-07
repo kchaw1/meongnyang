@@ -67,55 +67,7 @@
         </div>
       </div>
     </div> 
-<%--     <div class="form">
-    <form action="<c:url value="/diary/write.mn"/>" method="post">
-    <!-- <input type="hidden" name="drNo" value="1"/> -->
-    <input type="hidden" name="drWriter" value="${user.id}"/>
-      <div id="input form-group" class="write">
-        <div class="submit">
-          <table class="submit">
-            <tr>
-              <td class="date" data-toggle="tooltip" data-placement="bottom" title="달력에 날짜를 클릭하면 작성날짜가 바뀝니다">작성 날짜</td>
-              <td class="input-form" >
-                <input type="text" name="drDate" class="form-control" 
-                disabled="disabled" />
-              </td>
-              <td class="checkbox">
-              	<input type="radio" id="all" name="drShare" value="1" checked="checked"/>
-              	<label for="all">모두 공개</label><br>
-              	<input type="radio" id="friend" name="drShare" value="2" />
-              	<label for="friend">친구에게만 공개</label><br>
-              	<input type="radio" id="no" name="drShare" value="3" />
-              	<label for="no">나만 보기</label>
-              </td>
-              <td>
-                <button type="button" id="submit">작성</button>
-              </td>
-            </tr>
-          </table>
-        
-        </div>
-        </div> 
-        <table class="writeform">
-          <tr >
-            <th class="up" colspan="2">내 다이어리 쓰기</th>
-          </tr>
-          <tr>
-            <td class="text">제목</td>
-            <td>
-              <div class="title form-group">
-                <input type="text" name="drTitle" class="form-control" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="textarea">
-              <textarea name="drContent" id="summernote"></textarea>
-            </td>
-          </tr>
-        </table>
-      </form>  
-      </div> --%>
+
     </div> 
   </div>
   <!-- 다이어리 모달-->

@@ -1,16 +1,23 @@
 package com.nmcat.diary.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.diary.service.DiaryService;
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryFile;
 
 @RequestMapping("/diary")
 @RestController
@@ -23,29 +30,25 @@ public class DiaryRestController {
 //	public void mainDiary() {}
 	
 	@PostMapping("/write.mn")
-	public Map<String, Object> writeNewDiary (DiaryBoard diary) {
-//		System.out.println(diary);
+	public Map<String, Object> writeNewDiary (DiaryBoard diary, DiaryFile file) {
 		diary.setDrRegDateTime(new Date());
-//		diary.setDrWriter("victory");
-		//System.out.println(diary);
-		service.writeNewDiary(diary);
-		String yearmonth = diary.getDrDate().substring(0,6);
-		return service.list(yearmonth);
-		//return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "writeform.mn";
+		if(file.getDrfPath()=="") {
+			return service.writeNewDiary(diary);			
+		} else {
+			return service.writeAllNewDiary(diary, file);
+		}
 	}
 	
 	@RequestMapping("/listall.mn")
-	public Map<String, Object> listAll(String today) {
-		String yearmonth = today.substring(0, today.length()-2);
-		//System.out.println("yearmonth: " +yearmonth);
-		Map<String, Object> map = service.list(yearmonth);
+	public Map<String, Object> listAll(DiaryBoard diary) {
+		Map<String, Object> map = service.list(diary);
 		//System.out.println("map: " + map);
 		return map;
 	}
 	
 	@PostMapping("/detail.mn")
-	public List<DiaryBoard> detailDiary(String date) {
-		List<DiaryBoard> list = service.detailDiary(date);
+	public List<DiaryBoard> detailDiary(DiaryBoard diary) {
+		List<DiaryBoard> list = service.detailDiary(diary);
 		return list;
 	}
 	
@@ -64,5 +67,53 @@ public class DiaryRestController {
 		return service.updateDiary(diary);
 	}
 	
+	@PostMapping("/uploadfile.mn")
+	public DiaryFile uploadFile(@RequestParam("file") MultipartFile attach) throws IllegalStateException, IOException {
+//		String uploadPath = "/app/tomcat-work/wtpwebapps/cityFarmer/img/exchange";
+		String uploadPath = "/app/upload";
+		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
+		String datePath = sdf.format(new Date());
+		
+		String newName = UUID.randomUUID().toString();
+		newName = newName.replace("-", "");
+		
+		String fileExtension ="";
+		String fileSysName = "";
+
+		//System.out.println("attach : " +attach);
+		
+		DiaryFile drFile = new DiaryFile();
+		
+		
+		if(attach.isEmpty() == false) {
+			fileExtension = getExtension(attach.getOriginalFilename());
+			fileSysName = newName + "." + fileExtension;
+			//System.out.println(uploadPath + datePath + "/"+fileSysName);
+
+			drFile.setDrfSysName(fileSysName);
+			drFile.setDrfPath(uploadPath + datePath);
+			
+			File img = new File(uploadPath + datePath, fileSysName);
+			
+			if(img.exists() == false) {
+				img.mkdirs();
+			}
+			attach.transferTo(img);
+			drFile.setUrl("https://localhost:443"+ uploadPath + datePath +"/"+ fileSysName);
+		} //enhanced for문
+		
+		//source="org.eclipse.jst.jee.server:cityFarmer"
+		return drFile;
+	}
+	
+	private static String getExtension(String fileName) {
+        int dotPosition = fileName.lastIndexOf('.');
+        
+        if (dotPosition != -1 && fileName.length() - 1 > dotPosition) {
+            return fileName.substring(dotPosition + 1);
+        } else {
+            return "";
+        }
+	 }
 	
 } //end class

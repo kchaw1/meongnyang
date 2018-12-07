@@ -20,22 +20,36 @@
 			#{drWriter}, #{drTitle}, #{drContent},
 			#{drRegDateTime}, #{drShare}, #{drDate}
 		)
+		<selectKey keyProperty="drNo" resultType="int" order="AFTER">
+			select LAST_insert_ID()
+		</selectKey>
 	</insert> 
 	
-	<select id="selectAllDiaryByOneMonth" parameterType="string" resultMap="boardMap">
+	<select id="selectShareDiaryByPaging" parameterType="int" resultMap="boardMap">
 		select * from mn_diary
-		where dr_date like concat(#{yearmonth},'__')
+		 where dr_share = '1'
+		 order by dr_reg_date_time desc
+		 limit #{begin}, 20
+	</select>
+	
+	<!-- 내 일기만 가져오는 쿼리 -->
+	<select id="selectAllDiaryByOneMonth" parameterType="DiaryBoard" resultMap="boardMap">
+		select * from mn_diary
+		 where dr_date like concat(#{yearMonth},'__') and
+			   dr_writer = #{drWriter}
 		order by dr_date
 	</select>
 	
-	<select id="selectCntByOnedate" parameterType="string" resultType="int">
+	<!-- 하루에 내가 쓴 일기의 숫자 가져오는 쿼리 -->
+	<select id="selectCntByOnedate" parameterType="DiaryBoard" resultType="int">
 		select count(*) from mn_diary
-		where dr_date = #{date}
+		where dr_date = #{drDate} and dr_writer = #{drWriter}
 	</select>
 	
-	<select id="selectDiarysByOnedate" parameterType="string" resultMap="boardMap">
+	<!-- 내가 쓴 일기 detail -->
+	<select id="selectDiarysByOnedate" parameterType="DiaryBoard" resultMap="boardMap">
 		select * from mn_diary
-		where dr_date = #{date}
+		where dr_date = #{drDate} and dr_writer = #{drWriter}
 	</select>
 	
 	<delete id="deleteDiary" parameterType="int">
@@ -56,5 +70,18 @@
 		 where dr_no = #{drNo}
 	</update>
 	
+	<resultMap type="DiaryFile" id="fileMap">
+		<result column="dr_no" property="drNo"/>
+		<result column="drf_no" property="drfNo"/>
+		<result column="drf_sys_name" property="drfSysName"/>
+		<result column="drf_path" property="drfPath"/>
+	</resultMap>
 	
+	<insert id="insertNewFile" parameterType="DiaryFile">
+		insert into mn_diary_file(
+			dr_no, drf_sys_name, drf_path
+		) values (
+			#{drNo}, #{drfSysName}, #{drfPath}
+		)
+	</insert>
 	</mapper>

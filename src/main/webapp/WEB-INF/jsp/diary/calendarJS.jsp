@@ -19,24 +19,38 @@
 	
 	$(function(){
 	  $('[data-toggle="tooltip"]').tooltip()
+	  
 	  $('#summernote').summernote({
 	    height: 350,                 // set editor height
 	    minHeight: null,             // set minimum height of editor
 	    maxHeight: null,             // set maximum height of editor
 	    focus: true,
 	    tabsize : 2,
-	    placeholder : '내용을 입력하여 주세요',                  // set focus to editable area after initializing summernote
+	    placeholder : '내용을 입력하여 주세요',
+	    callbacks: {
+      		onImageUpload : function(files, editor, welEditable) {
+      			//console.log(files);
+      			//console.log(this);
+      			for(let i=files.length -1; i>=0; i--){
+      				sendFile(files[i], this);
+      			}  
+      		}
+      	} // callbacks
 	  });
 
 	  $("input[name='drDate']").val(now.getFullYear()+"."+updatedMonth+"."+updatedDate)
-	  console.log(today)
+	  //console.log(today)
+	  
+	  //listall 가져오는 ajax..
 	  $.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
-				"today" : today
+				"drDate" : today,
+				"drWriter" : "${user.id}"
 			},
 			type : "POST"
 			}).done(function(map) {
+				console.log(map)
 				makeCalendar(now, map);
 		}) //ajax
 	}) //onready
@@ -195,7 +209,10 @@
 	function detailDiary(setdate) {
 		$.ajax({
 			url : "<c:url value='/diary/detail.mn' />",
-			data : "date=" + setdate,
+			data : {
+				"drDate" : setdate,
+				"drWriter" : "${user.id}"
+			},
 			type : "POST"
 		}).done(function(list){
 			if(list!=null) {
@@ -215,8 +232,10 @@
 		if(check == true) {
 			$.ajax({
 				url : "<c:url value='/diary/delete.mn' />",
-				data : {"drDate" : setdate,
-						"drNo" : drNo
+				data : {
+						"drDate" : setdate,
+						"drNo" : drNo,
+						"drWriter" : "${user.id}"
 					   },
 				type : "POST"
 			}).done(function(map) {
@@ -287,7 +306,8 @@
 				"drContent" : $("textarea#winternote").val(),
 				"drShare" : $("input[name='drShareupdate']:checked").val(),
 				"drNo" : drNo,
-				"drDate" : setdate
+				"drDate" : setdate,
+				"drWriter" : "${user.id}"
 			},
 			type : "POST"
 		}).done(function(list) {
@@ -308,7 +328,8 @@
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
-				"today" : day
+				"drDate" : day,
+				"drWriter" : "${user.id}"
 			},
 			type : "POST"
 			}).done(function(map) {
@@ -329,7 +350,8 @@
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
-				"today" : day
+				"drDate" : day,
+				"drWriter" : "${user.id}"
 			},
 			type : "POST"
 			}).done(function(map) {
@@ -350,12 +372,34 @@
 		$.ajax({
 			url : "<c:url value='/diary/listall.mn' />",
 			data : {
-				"today" : day
+				"drDate" : day,
+				"drWriter" : "${user.id}"
 			},
 			type : "POST"
 			}).done(function(map) {
+				//console.log(map)
 				makeCalendar(now, map)			
 		}) //ajax
 	}
   
+	function sendFile(file, ele) {
+    	var form_data = new FormData();
+    	//console.log("form_data", form_data)
+    	form_data.append('file', file);
+    	$.ajax({
+    		data : form_data,
+    		type : "POST",
+    		url : "<c:url value='/diary/uploadfile.mn'/>",
+    		cache : false,
+    		contentType : false,
+    		enctype : "multipart/form_data",
+    		processData : false,
+    		success : function(drFile) {
+    			$("input#imagesysname").val(drFile.drfSysName)
+    			$("input#imagepath").val(drFile.drfPath)
+    			/* append('<li><img src="'+url+'" width="480" height="auto"/></li>') */
+    			$(ele).summernote("editor.insertImage", drFile.url);
+    		}
+    	})//ajax
+    } //sendFile
 </script>

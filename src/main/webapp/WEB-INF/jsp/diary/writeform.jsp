@@ -52,6 +52,8 @@
     </div> 
     <div class="form">
     <form action="<c:url value="/diary/write.mn"/>" method="post">
+    <input id="imagesysname" name="drSysName" type="hidden"/>
+    <input id="imagepath" name="drPath" type="hidden"/>
     <!-- <input type="hidden" name="drNo" value="1"/> -->
     <input type="hidden" name="drWriter" value="${user.id}"/>
       <div id="input form-group" class="write">
@@ -114,10 +116,20 @@
 		let drMonth = drDate.substr(4,2);
 		let drDay = drDate.substr(6,2);
 		let now = new Date(drYear, (drMonth-1), drDay);
-		console.log(now)
+		//console.log(now)
 		let checked = $("input[type='radio']:checked");
 		let title = $("input[name='drTitle']");
 		let content = $("textarea[name='drContent']");
+		 if(title.val()==""){
+ 		      alert("제목을 입력하세요")
+ 		      $("input[name='exTitle']").focus()
+ 		      return;
+ 		  }
+		 if(content.val()==""){
+ 		      alert("내용을 입력하세요")
+ 		      $("input[name='exTitle']").focus()
+ 		      return;
+ 		  }
 		//alert(content)
 		//alert(radio)
 		//alert($("input[type='radio']:checked").val())
@@ -129,7 +141,9 @@
 				"drShare" : checked.val(),
 				"drTitle" : title.val(),
 				"drContent" : content.val(),
-				"drWriter" : "${user.id}"
+				"drWriter" : "${user.id}",
+				"drfSysName" : $("input#imagesysname").val(),
+				"drfPath" : $("input#imagepath").val()
 			},
 			type : "POST"
 	 	}).done(function(map){

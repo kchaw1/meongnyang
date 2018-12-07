@@ -13,12 +13,19 @@ import lombok.ToString;
 @ToString
 public class DiaryBoard {
 
-	int drNo;
-	String drWriter;
-	String drTitle;
-	String drContent;
+	private int drNo;
+	private String drWriter;
+	private String drTitle;
+	private String drContent;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
-	Date drRegDateTime;
-	String drShare;
-	String drDate;
+	private Date drRegDateTime;
+	private String drShare;
+	private String drDate;
+	private String yearMonth;
+	
+	public String getYearMonth() {
+		return drDate.substring(0, drDate.length()-2);			
+	}
+
+	
 } // end class
