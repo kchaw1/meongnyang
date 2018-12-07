@@ -1,21 +1,31 @@
 package com.nmcat.chat.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Chat;
+import com.nmcat.repository.mapper.ChatMapper;
 
 @Controller
 public class ChatController {
 
+	 	@Autowired
+	 	ChatMapper chatmapper;
+	 	
+	 	
 	   @GetMapping("/chat/chat.mn")
-	   public void chat(Model model) {
-		   Member member = new Member();
-		   member.setId(member.getId());
+	   public void chat() {
 		   
-		   System.out.println("???????"+member);
-		   model.addAttribute("ch", member);
-		   
+	   }
+	   @GetMapping("/chat/chatRoom.mn")
+	   public Map<String, Object> chatRoom(Chat chat,Model model) {
+		   Map<String,Object> map =   chatmapper.chatRoomList(chat);
+		  
+		   model.addAttribute("list",map);
+			return map;
 	   }
 }

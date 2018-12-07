@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.ChatMapper">
+
+<resultMap id="absMap" type="Abs">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="name" property="name" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="image_path" property="imagePath" />		
+		<result column="abs_like_cnt" property="absLikeCnt" />
+		<result column="greetings" property="greetings" />
+		<result column="auth_state" property="authState" />
+		<result column="point" property="point" />
+		<result column="image_name" property="imageName" />
+		<result column="image_size" property="imageSize" />
+		<result column="image_ori_name" property="imageOriName" />
+</resultMap>
+
+<resultMap id="chatMap" type="Chat">
+	<result column="ch_no" property="chNo"/>
+	<result column="id" property="id"/>
+	<result column="ch_title" property="chTitle"/>
+</resultMap>
+
+<select id="chatRoomList" parameterType="Chat" resultMap="chatMap">
+	select *
+	  from mn_chat
+</select>
+
+
+<insert id="chatRoomeAdd" parameterType="Chat">
+	insert into mn_chat(id, ch_title)values(#{id},#{chTitle});
+
+</insert>
+
+</mapper>

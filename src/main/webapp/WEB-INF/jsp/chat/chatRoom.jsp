@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,42 +24,20 @@
                       
                       </div>
                       <div class="list-head">
-                            <div class="animate"><img src="header/teddy_food_dribbble.gif" /></div>
+                            <div class="animate"><img src="/nmcat/resources/img/common/teddy_food_dribbble.gif" /></div>
                         <p>멍하고 노냥 채팅방
-                        <a  data-toggle="modal" href="#myModal"><img id="plus" src="header/noun_Plus_1853024.png"></a>
+                        <a  id="chatRoom" data-toggle="modal" href="#myModal"><img id="plus" src="/nmcat/resources/img/chat/noun_Plus_1853024.png"></a>
                         </p>
                         </div>
                       <div class="list">
+                      
+                      <c:forEach var="c" items="${map}">
                         <div class="list-item">
-                            <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                          <p class="pull-left" >서울 채팅방 </p>
-                              <a href="#" onclick="doChat()"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
+                            <a href="#" onclick="doChatExit()"><img id="exit" src="/nmcat/resources/img/chat/xbox.png"/></a>                              
+                          <p class="pull-left" >${c.chTitle}</p>
+                              <a href="#" onclick="doChat()"><img src="/nmcat/resources/img/chat/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
-                        <div class="list-item">
-                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                          <p class="pull-left">경기도 채팅방 </p>
-                        <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
-                        </div>
-                        <div class="list-item">
-                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                          <p class="pull-left">충청도 채팅방</p>
-                        <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
-                        </div>
-                        <div class="list-item">
-                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                            <p class="pull-left" onclick="doChatExit()">경상도 채팅방</p>
-                                <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
-                        </div>
-                        <div class="list-item">
-                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                          <p class="pull-left">전라도 채팅방</p>
-                              <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
-                        </div>
-                        <div class="list-item">
-                                <a href="#" onclick="doChatExit()"><img id="exit" src="header/xbox.png"/></a>                              
-                          <p class="pull-left">대형견 집사분들!!!</p>
-                              <a href="#"><img src="header/KakaoTalk_20181122_180513355.png"/></a>
-                        </div>
+                      </c:forEach>
 
                       </div>
                     </div>
@@ -87,11 +66,24 @@
       </div>
         <script>
         function doChat() {
-             window.open("chat2.html", "chat", "width=700, height=600, scrollbars=yes");
+             window.open("<c:url value='/chat/chat.mn' />", "chat", "width=562, height=600, scrollbars=yes");
         }
         function doChatExit() {
                 alert("채팅방을 삭제하시겠습니까??");
         }
+       /*  $('#chatRoom').click(function() { 
+        	$.ajax({
+        		url: "<c:url value='/websocket/login.do' />",
+        		type: "POST",
+        		data: {
+        			id: $("#id").val(),
+        			pass: $("#pass").val()
+        		}
+        	})
+        	.done(function (result) {
+        	
+        	}); */
+        
         </script>
 </body>
 </html>

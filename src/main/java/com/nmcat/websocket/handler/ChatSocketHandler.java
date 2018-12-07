@@ -50,33 +50,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	
 	@Override
 	public void handleTextMessage(WebSocketSession wss, TextMessage message) throws Exception {
-		
-		/*System.out.println("dsdsad"+wss.getId());
-		
-		attrs = wss.getAttributes();
-		member = (Member) attrs.get("user");
-		debug("보낸 아이디 - " + member.getId());
-		debug("보낸 메세지 - " + message.getPayload());
-		
-		String rcvMsg = message.getPayload();
-		String sendMsg = "";
-		
-		if(rcvMsg.startsWith("id:")){
-			String id = rcvMsg.substring("id:".length());
-			System.out.println("id는"+id);
-		}
-			
-			Set<String> keys = users.keySet();
-			for (String key : keys) {
-				WebSocketSession wSession = users.get(key);
-				wSession.sendMessage(new TextMessage("id: "+member.getId()));
-				wSession.sendMessage(new TextMessage("msg: "+message.getPayload()));
-				}
-		
-		
-
-		System.out.println("users : " + users);
-		System.out.println("usersId:"+users.get(member.getId()));*/
+	
 		
 		attrs = wss.getAttributes();
 		member = (Member) attrs.get("user");
@@ -88,8 +62,9 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		String Msg = message.getPayload();
 		String sendMsg = "";
 		
-		String[] arr = Msg.split(":");
-		sendMsg = arr[0]+ ":" + arr[1];
+			
+			String[] arr = Msg.split(":");
+			sendMsg = arr[0]+ ":" + arr[1];
 				
 		for (String key : keys) {
 			WebSocketSession wSession = users.get(key);

@@ -100,10 +100,12 @@ $(function () {
 		chat.onerror = function(evt) {
 			    $("div").append('웹소켓 에러 발생 : ' + evt.data)
 		};
-		chat.onclose = setTimeout(function() {
+		chat.onclose = function() {
 			    $(".chat-list").append("<p>채팅 연결이 되지않아 종료됨.</p>");
-		},1000);
-	});
+
+		}
+		
+		});
 
 		$('#sendBtn').click(function() { 
 		var $msg = $("#message");
