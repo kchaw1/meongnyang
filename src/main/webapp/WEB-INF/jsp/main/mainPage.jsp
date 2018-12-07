@@ -225,8 +225,7 @@ color: gray;
     <footer>
 
             <div class="chat-launcher"></div>
-            <div class="chat-wrapper" data-headline="Chat">
-            </div>
+           
 
     </footer>
     <!-- 푸터! -->
@@ -252,12 +251,7 @@ color: gray;
     $(".btn5").on('click', function(){
     	location.href = "communityPage.mn";
     });
-        $(function () {
-    $('.chat-launcher').on('click', function () {
-        $('.chat-launcher').toggleClass('active');
-        $('.chat-wrapper').toggleClass('is-open');
-    });
-});
+
         </script>
 </body>
 </html>

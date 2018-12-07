@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="headerfooter.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<!-- 배민폰트 -->
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="headerfooter.css">
+
+<!-- 부트스트랩 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+
+</head>
+<style>
+body{
+
+}
+.mainContainer{
+    margin-top: 105px;
+ width: 100%;
+ /*나중에 100% 주기*/
+ height: 1000px;
+
+ margin-top: 102px;
+    padding-right: 250px;
+    padding-left: 250px;
+}
+.mainSecondContainer{
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid #e2e6eb;
+    border-right: 2px solid #e2e6eb;
+
+}
+
+.left{
+float: left;
+width: 20%;
+height: 1000px;
+padding-left: 5px;
+
+
+
+}
+.right{  
+    float: left;
+    width: 79%;
+    height: 1000px;
+   padding-left: 40px;
+   padding-right: 40px;
+}
+.profileImg{
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+}
+
+.h3Tage{
+    text-align: center;
+}
+.spanCnt{
+    float: right;
+}
+h1{
+    font-family: 'Jua'
+}
+.careerLeft{
+    border-left: 5px solid rgb(65, 192, 142, 0.7);
+    padding-left: 10px;
+}
+.careerForm{
+    padding-left: 40px;
+}
+
+
+</style>
+<body>
+    <header class="dogcat">
+        <div class="logo"><span class="logo-title"><a href="">멍하고노냥</a></span></div>
+        <div class="animate"><img src="teddy_food_dribbble.gif" /></div>
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a href="">반려인 커뮤니티</a></li>
+            <li><a href="">행동전문가와 상담</a></li>
+            <li><a href="">Locations</a></li>
+            <li class="dropdown">  
+              <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="fas fa-user-circle fa-2x"></i>
+              </a>
+              <ul class="dropdown-menu pull-right" role="menu" id="drop">
+                <li><a href="#">내 정보</a></li>
+                <li><a href="#">마이펫 다이어리</a></li>
+                <li class="divider"></li>
+                <li><a href="#">로그아웃</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="clear-fix"></div>
+    </header>
+
+
+
+        <div class ="mainContainer">
+         <div class = "mainSecondContainer">
+            <div class = "left">
+                    <div class="row">
+                            <div class="col-sm-6 col-md-12">
+                              <div class="thumbnail">
+                                <img src="./img/이력서사진.jpg" alt="...">
+                                <div class="caption">
+                                  <h3 class = "h3Tage">행동 전문가</h3>
+                                  <p class = "pTage">이름 : 박아란</p>
+                                  <p class = "pTage">전문가 랭킹 : 3위</p>
+                                  <p class = "pTage">전문분야 : 고양이</p>
+                                  <p class = "pTage">ID : victory</p>
+                                  <p class = "pTage">E-mail : victory@naver.com</p>
+                                  <p class = "pTage">가입일시 : 2018-11-28</p>
+                                <br>
+                                  <p class = "pTage">내가 쓴 글 보기<span class = "spanCnt">3개</span></p>
+                                  <p class = "pTage">내가 쓴 댓글보기<span class = "spanCnt">4개</span></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+            </div>
+            <div class = "right">
+                   <div class= "career"><h1>경력</h1></div><hr>
+                   <div class = "creerForm">
+                       <div class = "careerLeft">
+                       2007~2012 : 온누리 국악 예술학원 운영<br>
+                       2008~2012 : 찾아가는 문화 활동 사업<br>
+                       2009~2011 : 울산광역시 문화 예술 지원사업 작품평가 위원<br>
+                       2009~2011 : 울산 21세기 평생교육원 국악지도자 강사<br>
+                       2009~2011 : 신세계 이마트 문화센터 민요/장구 전문강사<br>
+                       2009~2011 : 창우예술단 "우리가락우리소리 공연"<br>
+                       2009~2011 : 범어사포교원 "여여선원" 문화대학 민요반 전문강사<br>
+                       </div>
+                   </div>
+                   <div class= "greeting"><h1>인사말</h1></div><hr>
+                   <div class = "greetingForm">
+                     <div class = "careerLeft">
+                                사단법인 전국 지부 아리랑 보존회 회심곡 봉사단 동우회 설립에 무궁한 발전을 빕니다.<br>
+                                어려서 부터 유나니도 소리를 좋아했던 저는 명창이 되는 것이 꿈이기도 했답니다.<br>
+                                그런데 어느날 하루는 김영임 선생님의 회심곡 cd를 제가 다니는 사찰에 스님으로부터<br>
+                                선물을 받게 되었지요<br>
+                                김영임 선생님의 소리를 좋아하던 저는 cd로 회심곡을 배우기 시작했고 그때 부터 서냇임의<br>
+                                소리를 들으며 꿈을 이루기 시작했습니다.<br>
+                                시디 한장이 저에게는 크나큰 행복이 되었습니다. 모든 슬픔과 괴로움을 회심곡으로 달래며<br>
+                                살았스비낟. 회심곡으로 수행하고 마음딲아 제가 다니던 정광사에서 음성 공양도 자주했답니다.<br>
+                                그런데 하루는 남편께 평생에 소원 한가지만을 들어 달라고 했더니 김영임 선생님이 남편보다 더 좋으냐<br>
+                                하시더군요<br>
+                                그후 서울로 선생님께 공부하러 다니기 시작하고 회심곡 부터 배웠지요<br>
+                                먼길을 더운줄도 추운줄도 힘든는 줄도 모르고 배워서 동국대학교를 들어갔습니다.<br>
+                                1학년때 전국 국악 경영대회에 참가해서 문화관광부 장관상을 수상해서 좋은일들이 많았죠<br>
+                                훌륭하신 선생님을 만나 행복했을 때도 많았습니다.<br>
+                                인자하신 선생님의 지도로 예술은 마음에서 울어나와야 아름다운 소리를 낼수있다고 늘 학생들에게<br>
+                                말씀하시던 선생님의 지도에 늘감사하게 생각합니다.<br>
+                                선생니므이 소리에 젖은 세월이 어언 10년이 다되었네요<br>
+                                음식솜씨 그림솜씨 그기에도 나라에 국모처럼 어진 마음씨 오랜 세월을 더듬어 보니 존경스럽습니다.<br>
+                                때로는 바쁘신 선생님꼐 공부 많이 안해주시면 투정을 하면 저의들 마음도 이제는 해아려 주시고 <br>
+                                대 선생님꼐 배우는 것이 흐뭇합니다.<br>
+                        </div>
+                   </div>
+                   <div class= "etc"><h1>그 외</h1></div><hr>
+                   <div class = >
+                   <div class = "etcForm"></div>
+
+            </div>
+
+         </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <footer class="dogcat">
+            <div class="footertitle">
+              <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+              <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+            </div>
+          </footer>
+
+
+
+</body>
+</html>

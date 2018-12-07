@@ -11,7 +11,7 @@ import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 
-@SuppressWarnings("unused")
+
 @Service
 public class CommunityServiceImpl implements CommunityService{
 	@Autowired

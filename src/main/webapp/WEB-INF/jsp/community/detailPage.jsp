@@ -235,7 +235,7 @@ margin-top: 20px;
     <div class = "body1">
         <div class = "body2">
             <div class = "left">
-                    <p style = "font-family: 'Jua'">${communityBoard.comTitle}<span class = "viewCnt">조회수 : ${comViewCnt}</span></p>
+                    <p style = "font-family: 'Jua'">${communityBoard.comTitle}<span class = "viewCnt">조회수 : ${communityBoard.comViewCnt}</span></p>
                     <div class= "justforHr1"></div>
                     <br>
                    <div class = "category"><i class="fas fa-user-circle"> ${communityBoard.comWriter}<span class="regDate"> ·<fmt:formatDate value="${communityBoard.comRegDate}" pattern="yyyy-MM-dd HH:mm"/></span></i></div>

@@ -15,6 +15,7 @@ private String comTitle;
 private String comWriter;
 private String comContent;
 private String comCategory;
+private int comCommentCnt;
 
 
 	

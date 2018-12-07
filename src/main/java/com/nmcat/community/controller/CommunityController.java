@@ -3,6 +3,7 @@ package com.nmcat.community.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,12 @@ public class CommunityController {
 		comBoard.setPageNo(pageNo);
 //		model.addAttribute("list", service.selectBoard(comBoard));
 		Map<String, Object> map = new HashMap<>();
+		List<CommunityBoard> list = service.selectBoard(comBoard);
+//		/*List <CommunityBoard> list2 = new ArrayList<>();*/
+		for(CommunityBoard c: list) {
+		c.setComCommentCnt(service.selectCommentCount(c.getComNo()));
+		System.out.println(c.getComCommentCnt());
+		}
 		
 		map.put("list", service.selectBoard(comBoard));
 		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
@@ -67,6 +74,8 @@ public class CommunityController {
 		comBoard.setPageNo(pageNo);
 //		model.addAttribute("list", service.selectBoard(comBoard));
 		Map<String, Object> map = new HashMap<>();
+		
+		
 		
 		map.put("list", service.selectBoardC(comBoard));
 		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/

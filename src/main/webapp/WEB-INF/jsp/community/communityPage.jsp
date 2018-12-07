@@ -275,7 +275,7 @@ function forAllBtn(){
                 +result.list[i].comCategory
                 +"</div>"
                 +"<div class = 'forCnt'>"
-                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i>"+result.list[i].comCommentCnt+" Comments</div>"
                 +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
               
 		}
