@@ -32,9 +32,14 @@
 </select>
 
 
-<insert id="chatRoomeAdd" parameterType="Chat">
+<insert id="chatRoomAdd" parameterType="Chat">
 	insert into mn_chat(id, ch_title)values(#{id},#{chTitle});
 
 </insert>
+
+<delete id="chatRoomDelete" parameterType="String">
+		delete from mn_chat
+			  where id = #{id}
+	</delete>
 
 </mapper>

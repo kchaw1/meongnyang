@@ -31,9 +31,10 @@
                         </div>
                       <div class="list">
                       
-                      <c:forEach var="c" items="${map}">
+                      <c:forEach var="c" items="${list}">
                         <div class="list-item">
-                            <a href="#" onclick="doChatExit()"><img id="exit" src="/nmcat/resources/img/chat/xbox.png"/></a>                              
+                            <a id="delete" href="#" onclick="doChatExit()" value="${c.id}"><img id="exit" src="/nmcat/resources/img/chat/xbox.png"/></a> 
+                   
                           <p class="pull-left" >${c.chTitle}</p>
                               <a href="#" onclick="doChat()"><img src="/nmcat/resources/img/chat/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
@@ -48,19 +49,22 @@
             <div class="modal-dialog">
         
           <!-- Modal content-->
+          <form  name="chatRoomAdd" action="<c:url value="/chat/chatRoomAdd.mn"/>" method="post">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
               <h4 class="modal-title">방 추가</h4>
             </div>
             <div class="modal-body">
-                방제목을 입력하세요: <input type="text" />
+            		<input type="hidden" name="id" value="${c.id}"/>
+                   	방제목을 입력하세요: <input type="text" name="chTitle" id="title"/>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">저장</button>
+              <button type="submit" class="btn btn-default" data-dismiss="modal" id="chatAdd">저장</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
             </div>
           </div>
+          </form>
           
         </div>
       </div>
@@ -69,20 +73,36 @@
              window.open("<c:url value='/chat/chat.mn' />", "chat", "width=562, height=600, scrollbars=yes");
         }
         function doChatExit() {
-                alert("채팅방을 삭제하시겠습니까??");
+        	chatDelete();
         }
-       /*  $('#chatRoom').click(function() { 
-        	$.ajax({
-        		url: "<c:url value='/websocket/login.do' />",
-        		type: "POST",
-        		data: {
-        			id: $("#id").val(),
-        			pass: $("#pass").val()
-        		}
-        	})
-        	.done(function (result) {
+        
+        $("button#chatAdd").click(function(){
+        	add();
         	
-        	}); */
+        });
+        function add(){
+        	$.ajax({
+    		url : "<c:url value='/chat/chatRoomAdd.mn'/>",
+    		data : {
+  				"id" : "${user.id}",
+    			"chTitle" : $('#title').val()},
+			type : "POST"
+    		}).done(function(){
+    		        	location.reload(); 
+    		});
+    	}
+        function chatDelete(){
+        	$.ajax({
+        		url : "<c:url value='/chat/chatRoomDelete.mn'/>",
+        		data : {
+        			"id" :
+        		},
+        		type: "POST"
+        	}).done(function(){
+        		location.reload();
+        	});
+        	
+        }
         
         </script>
 </body>
