@@ -39,7 +39,7 @@
                   <a href="absDetail.mn?no=${map.b.no}">경력 및 인사말</a>
                 </li>
                 <li>
-                  <a href="#">1:1 화상채팅하기</a>
+                  <a href="#" id="dofacechat">1:1 화상채팅하기</a>
                 </li>
                 <li>
                   <a href="absDetailBoard.mn?no=${map.b.no}">질문게시판</a>
@@ -55,10 +55,10 @@
               <h2>경력 및 <span>인사말</span></h2>
             </figcaption><a href="absDetail.mn?no=${map.b.no}"></a>
           </figure>
-          <figure class="snip1091 green" ><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
+          <figure class="snip1091 green" id="dofacechat"><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
             <figcaption>
               <h2>전문가와 <span>화상채팅</span></h2>
-            </figcaption><a href="#"></a>
+            </figcaption><a href="#" id="dofacechat"></a>
           </figure>
           <figure class="snip1091 navy"><img src="https://post-phinf.pstatic.net/MjAxNzA5MjBfNTcg/MDAxNTA1ODgzNTk1MDcz.HLD5l_7_XzGcU2Q7pwZAmAAJeIEjmhud7ZbqMOcq-Fsg.G4FlzFGc6wjF03jSb9wXnUNft913XACg_gkKahR8dgUg.JPEG/ask-questions.jpg?type=w1200" alt="sq-sample10" />
             <figcaption>
@@ -81,6 +81,15 @@
             $(this).removeClass("hover");
           }
         );
+        
+        $("a#dofacechat").click(function(){
+          var left = (screen.width-1200) /2
+		  var top = (screen.height-800) /2
+	      window.open(
+	    	"<c:url value='/facechat/dochat.mn'/>"+"?no=${map.b.no}&name=${map.b.name}", "화상채팅", "width=1200, height=800, left="+left+", top="+top
+	      )
+        	
+        })
         </script>
 
 </body>

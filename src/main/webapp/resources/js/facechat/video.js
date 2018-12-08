@@ -2,8 +2,27 @@ var videosContainer = document.getElementById('videos-container') || document.bo
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
 
+$(function(){
+	if("${user.no}"!="${param.no}") {
+		Swal({
+			title: '정말 ${param.no}님과 <br>화상채팅 하시겠습니까?',
+			text: "화상채팅 연결 시, 포인트 1,000점이 차감됩니다.",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '네 연결해주세요!',
+			cancelButtonText : "아니요, 취소할게요.."
+		}).then((result) => {
+			console.log(result) //{value: true}
+			if (result.value) {
+				
+			}
+		}) // swal..then..	
+	}
+})
 //new 버튼 눌렀을때..이벤트..
-if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+//if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
 var sender = "";
 
 var config = {
@@ -130,21 +149,22 @@ var config = {
 
 var conferenceUI = conference(config);
 
-setTimeout(function(){
-	let joinBtn = $('.join');
-	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
-		joinBtn.trigger("click"); 
-	}else{
-		$('#setup-new-room').trigger("click");
-	}
-}, 6000);
+//setTimeout(function(){
+//	let joinBtn = $('.join');
+//	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
+//		joinBtn.trigger("click"); 
+//	}else{
+//		$('#setup-new-room').trigger("click");
+//	}
+//}, 6000);
 
 function setupNewRoomButtonClickHandler() {
-    btnSetupNewRoom.disabled = true;
-    document.getElementById('conference-name').disabled = true;
+    //btnSetupNewRoom.disabled = true;
+    //document.getElementById('conference-name').disabled = true;
     captureUserMedia(function() {
         conferenceUI.createRoom({
-            roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+//            roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+            roomName: "${user.id}"
         });
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;

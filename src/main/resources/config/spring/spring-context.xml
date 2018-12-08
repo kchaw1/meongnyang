@@ -68,10 +68,8 @@
       						view-name="diary/writeform"/> 
      <mvc:view-controller path="/member/pointcharge.mn"
       						view-name="pointcharge/pay"/>
-     <mvc:view-controller path="/facechat/test.mn"
-      						view-name="facechat/test"/>
-     <mvc:view-controller path="/facechat/chatroom.mn"
-      						view-name="facechat/chatroom"/>
+     <mvc:view-controller path="/facechat/dochat.mn"
+      						view-name="facechat/dochat"/>
       						
     <!--  <mvc:view-controller path="/start.cf"
       						view-name="common/start"/>  -->

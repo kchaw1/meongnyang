@@ -19,8 +19,8 @@
             <li class="diary">
 				<div class="dr-title">
 	               <div class="title">${dr.drTitle}</div>
-	               <div class="date"><fmt:formatDate value="${dr.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
 	               <div class="writer">${dr.drWriter}</div>
+	               <div class="date"><fmt:formatDate value="${dr.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
               	</div>
               	<div class="dr-content">${dr.drContent}</div>
               	<div class="dr-comments"> 댓글없음</div>
