@@ -12,5 +12,5 @@ public interface ChatMapper {
 	//채팅방 생성
 	void chatRoomAdd(Chat chat);
 	
-	void chatRoomDelete(String id);
+	void chatRoomDelete(Chat chat);
 }

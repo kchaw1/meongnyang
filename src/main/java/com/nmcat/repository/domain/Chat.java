@@ -4,7 +4,15 @@ public class Chat {
 	 int chNo;
 	 String id;
 	 String chTitle;
-	
+	 int no;
+	 
+	 
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public int getChNo() {
 		return chNo;
 	}

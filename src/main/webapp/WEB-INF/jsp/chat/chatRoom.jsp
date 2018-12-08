@@ -85,7 +85,9 @@
     		url : "<c:url value='/chat/chatRoomAdd.mn'/>",
     		data : {
   				"id" : "${user.id}",
-    			"chTitle" : $('#title').val()},
+    			"chTitle" : $('#title').val(),
+    			"no" : "${param.no}"
+    		},
 			type : "POST"
     		}).done(function(){
     		        	location.reload(); 
@@ -95,7 +97,7 @@
         	$.ajax({
         		url : "<c:url value='/chat/chatRoomDelete.mn'/>",
         		data : {
-        			"id" :
+        			"id" : "${user.id}" , "no" : "${chat.no}"
         		},
         		type: "POST"
         	}).done(function(){

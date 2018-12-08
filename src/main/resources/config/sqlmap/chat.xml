@@ -21,9 +21,11 @@
 </resultMap>
 
 <resultMap id="chatMap" type="Chat">
-	<result column="ch_no" property="chNo"/>
 	<result column="id" property="id"/>
+	<result column="no" property="no"/>
+	<result column="ch_no" property="chNo"/>
 	<result column="ch_title" property="chTitle"/>
+	
 </resultMap>
 
 <select id="chatRoomList" parameterType="Chat" resultMap="chatMap">
@@ -33,13 +35,13 @@
 
 
 <insert id="chatRoomAdd" parameterType="Chat">
-	insert into mn_chat(id, ch_title)values(#{id},#{chTitle});
+	insert into mn_chat(no,id, ch_title)values(#{no},#{id},#{chTitle});
 
 </insert>
 
-<delete id="chatRoomDelete" parameterType="String">
+<delete id="chatRoomDelete" parameterType="Chat">
 		delete from mn_chat
-			  where id = #{id}
+			  where no=#{no} and id = #{id}
 	</delete>
 
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.repository.domain.Chat;
@@ -39,13 +40,15 @@ public class ChatController {
 	   @PostMapping("/chat/chatRoomAdd.mn")
 	   @ResponseBody
 	   public void chatRoomAdd(Chat chat) {
+		   System.out.println("번호가안들어가?"+chat.getNo());
 		   chatmapper.chatRoomAdd(chat);
 //		return "/chat/chatRoom.mn";
 	   }
 	   @PostMapping("/chat/chatRoomDelete.mn")
 	   @ResponseBody
-	   public void chatRoomDelete(String id) {
-		   chatmapper.chatRoomDelete(id);
+	   public void chatRoomDelete(Chat chat) {
+		   System.out.println("번호가안들어가?"+chat.getChNo());
+		   chatmapper.chatRoomDelete(chat);
 //		return "/chat/chatRoom.mn";
 	   }
 }
