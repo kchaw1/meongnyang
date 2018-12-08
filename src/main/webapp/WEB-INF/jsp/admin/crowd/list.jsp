@@ -200,13 +200,13 @@
 					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
 					
 					html += "<div class='list-item'>"
-							+ "<div class='image-area'><a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
+							+ "<div class='image-area'>"
 							if(crowdList[i].crFileName != null) {
 								html += "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
 							} else {
 								html += "<img src='<c:url value='/resources/img/admin/crowd/01_preview.__large_preview.png' />' />"
 							}
-					html +=	  "</a></div>"
+					html +=	  "</div>"
 							+ "<div class='cr-title'>"
 							+ 	"<h4>"+ crowdList[i].crTitle +"</h4>"
 							+ "</div>"

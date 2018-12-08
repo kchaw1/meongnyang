@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.StatisticsMapper">
+<resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+</resultMap>
+
+<resultMap id="comMap" type="CommunityBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_title" property="comTitle" />
+		<result column="com_writer" property="comWriter" />
+		<result column="com_content" property="comContent" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_rec_cnt" property="comRecCnt" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+</resultMap>
+
+<resultMap id="commentMap" type="CommunityComment">
+		<result column="comc_no" property="comcNo" />
+		<result column="comc_writer" property="comcWriter" />
+		<result column="com_no" property="comNo" />
+		<result column="comc_content" property="comcContent" />
+		<result column="comc_reg_date" property="comcRegDate" />
+		<result column="comc_ref" property="comcRef" />
+		<result column="comc_parent_no" property="comcParentNo" />
+</resultMap>
+
+<resultMap id="pointMap" type="PointMinus">
+	<result column="minus_no" property="minusNo" />
+	<result column="id" property="id" />
+	<result column="cr_no" property="crNo" />
+	<result column="minus_point" property="minusPoint" />
+	<result column="minus_date" property="minusDate" />
+	<result column="minus_use" property="minusUse" />
+	<result column="fees" property="fees" />
+</resultMap>
+
+<!-- *************************일별*************************  -->
+<!-- 가입자수 -->
+<select id="selectDayNewMemberCount" parameterType="String" resultType="int">
+	 select count(*)
+	   from mn_member
+	  where sign_up_date like CONCAT('%',#{date},'%')
+</select>
+
+<!-- 방문자수 -->
+<select id="selectDayVisitorCount" parameterType="String" resultType="int">
+	select count(*)
+	  from (select login_id, max(login_date_time) login_date_time
+	  		  from mn_login_history
+	 		 group by login_id
+			 having login_date_time like CONCAT('%',#{date},'%')) as l 
+</select>
+
+<!-- 게시글 수 -->
+<select id="selectDayPostCount" parameterType="String" resultType="int">
+	 select count(*)
+	   from mn_com
+	  where com_reg_date like CONCAT('%',#{date},'%')
+</select>
+
+<!-- 댓글 수 -->
+<select id="selectDayCommentCount" parameterType="String" resultType="int">
+	 select count(*)
+	   from mn_com_comment
+	  where comc_reg_date like CONCAT('%',#{date},'%')
+</select>
+
+<!-- 포인트 사용량 -->
+<select id="selectDayPointCount" parameterType="String" resultType="int">
+	 select IFNULL(sum(minus_point), 0)
+	   from mn_point_minus
+	  where minus_date like CONCAT('%',#{date},'%')
+</select>
+
+<select id="selectDayAvgConnectTime" parameterType="String" resultType="int">
+	select IFNULL(ceil(avg(TIMESTAMPDIFF(minute, login_date_time, logout_date_time))), 0)
+	  from mn_login_history
+	 where login_date_time like CONCAT('%',#{date},'%')
+</select>
+
+</mapper>
