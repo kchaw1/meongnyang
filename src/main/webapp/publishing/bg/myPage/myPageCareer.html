@@ -29,83 +29,13 @@
   <link rel="stylesheet" href="mgm-ABS.css" />
 </head>
 <style>
-.profileEdit{
-
-  float: left;
-
-
+.justforSize{
+  margin-top: 40px;
 }
-.infoEdit{
-  margin-left: 10%;
-  float: left;
-
-
-  
-}
-.left{
-  float: left;
-  width:45%;
-  height: 100%;
-
-
-}
-.right{
-  margin-left: 10%;
+button{
   float: right;
-  width:45%;
-  height: 100%;
-
+  margin-top: -30px;
 }
-#container .panel {
-    padding: 10px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-    z-index: 8;
-    overflow: hidden;
-}
-.forPadding{
-  padding: 20px;
-}
-.forImg{
-  width: 189px;
-  margin-left: 35px;
-  padding: 2px;
-  border: 1px solid #eaeaea;
-}
-.forSpan{
-  font-size: 18px;
-  margin-left: 70px;
-}
-.forSpan2{
-  font-size: 13px;
-  margin-left: 100px;
-}
-.modal-footer {
-    padding: 15px;
-    text-align: center;
-}
-.modal-footer {
-    padding: 15px;
-    text-align: center;
-     border-top: 0px solid #e5e5e5;
-}
-
-/****** CODE ******/
-
-.file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
-.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
-.file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload .file-select:hover .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
-.file-upload .file-select.file-select-disabled{opacity:0.65;}
-.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
 
 
 </style>
@@ -160,137 +90,135 @@
 
       <!-- 우측 콘텐츠 영역-->
       <div class="view">
-        <div class="sub-title">MyPage</div>
-        <div class="main-title">내 정보 수정</div>
-        <div class="seperator"></div>
-          <div class ="editForm">
-              <div class ="left">
+      
+        <div class="main-title">경력 </div>
+         <!-- 경력 수정 모달이 들어감 -->
 
-                  <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            프로필 수정
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                          "멍하고노냥"에서 회원님을 표현하는 프로필 사진입니다.
-                          <br>
-                          수정 화면에서 프로필사진을 변경해 보세요!
-                          <hr>
-                                <!--프로필 사진 변경 모달-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">프로필 수정</button>
-
-                                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                      <div class ="forPadding">
-                                        <span class ="forSpan">프로필 사진 수정</span>
-                                        <hr>
-                                        <div class ="forImg"><img src="../img/이력서사진2.PNG" width="183" height="220"></div>
-                                        <span class ="forSpan2">이력서사진.jpg</span>
-                                        <hr>
-                                                   <!--파일첨부 cSS-->
-                                                   <div class="file-upload">
-                                                      <div class="file-select">
-                                                        <div class="file-select-button" id="fileName">Choose File</div>
-                                                        <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                                        <input type="file" name="chooseFile" id="chooseFile">
-                                                      </div>
-                                                    </div>
-                                       <hr>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                                        <button type="button" class="btn btn-primary">수정</button>
-                                                      </div>
-
-                                          
-
-                                      </div>
-                                    </div>
-                                  </div>
+                  <!-- 회원 정보 수정 모달창-->
+                  <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">회원정보 수정</button>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">회원 비밀번호 확인</h4>
+                            <h6>회원의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</h6>
+                          </div>
+                          <div class="modal-body">
+                            <!--이곳이 비밀번호 확인할 form자리-->
+                            <form>
+                                <div class="form-group">
+                                  <label for="recipient-name" class="control-label">회원 이름</label>
+                                  <input type="text" class="form-control form-control2" id="recipient-name" value = "김병관" readonly>
                                 </div>
-                           
-                        </div>
-                        
-                      </div>
-                    </div>
-
-              </div>
-              <div class ="right">
-                  <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            회원정보 수정
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            "멍하고노냥"에서 회원님의 회원정보 창입니다.<BR>
-                            수정 화면에서 회원님의 정보를 변경해 보세요!
-                            <hr>
-         
-                              <!-- 회원 정보 수정 모달창-->
-                          <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">회원정보 수정</button>
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="exampleModalLabel">회원 비밀번호 확인</h4>
-                                    <h6>회원의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</h6>
-                                  </div>
-                                  <div class="modal-body">
-                                    <!--이곳이 비밀번호 확인할 form자리-->
-                                    <form>
-                                        <div class="form-group">
-                                          <label for="recipient-name" class="control-label">회원 이름</label>
-                                          <input type="text" class="form-control form-control2" id="recipient-name" value = "김병관" readonly>
-                                        </div>
-                                    <form>
-                                      <div class="form-group">
-                                        <label for="recipient-name" class="control-label">회원 아이디</label>
-                                        <input type="text" class="form-control form-control2" id="recipient-name" value = "qudrhks258" readonly>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="recipient-name" class="control-label">이메일</label>
-                                          <input type="email" class="form-control form-control2" id="recipient-name" value = "qudrhks258@naver.com" >
-                                        </div>
-                                      <div class="form-group">
-                                          <label for="recipient-name" class="control-label">새 비밀번호<span class ="star">*</span></label>
-                                          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                        </div>
-                                        <!--유효성 검사배우기-->
-                                      <div class="form-group">
-                                          <label for="recipient-name" class="control-label">새 비밀번호 확인<span class ="star">*</span></label>
-                                          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                        </div>
-                                      
-                                        
-
-                                        
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                    <button type="button" class="btn btn-primary">수정</button>
-                                  </div>
-                                </div>
+                            <form>
+                              <div class="form-group">
+                                <label for="recipient-name" class="control-label">회원 아이디</label>
+                                <input type="text" class="form-control form-control2" id="recipient-name" value = "qudrhks258" readonly>
                               </div>
-                            </div>
+                              <div class="form-group">
+                                  <label for="recipient-name" class="control-label">이메일</label>
+                                  <input type="email" class="form-control form-control2" id="recipient-name" value = "qudrhks258@naver.com" >
+                                </div>
+                              <div class="form-group">
+                                  <label for="recipient-name" class="control-label">새 비밀번호<span class ="star">*</span></label>
+                                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                                <!--유효성 검사배우기-->
+                              <div class="form-group">
+                                  <label for="recipient-name" class="control-label">새 비밀번호 확인<span class ="star">*</span></label>
+                                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                              
+                                
 
+                                
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            <button type="button" class="btn btn-primary">수정</button>
+                          </div>
                         </div>
-
                       </div>
                     </div>
+
+
+
+
+        <div class="seperator"></div>
+
+            <div class = "creerForm">
+                <div class = "careerLeft">
+                2007~2012 : 온누리 국악 예술학원 운영<br>
+                2008~2012 : 찾아가는 문화 활동 사업<br>
+                2009~2011 : 울산광역시 문화 예술 지원사업 작품평가 위원<br>
+                2009~2011 : 울산 21세기 평생교육원 국악지도자 강사<br>
+                2009~2011 : 신세계 이마트 문화센터 민요/장구 전문강사<br>
+                2009~2011 : 창우예술단 "우리가락우리소리 공연"<br>
+                2009~2011 : 범어사포교원 "여여선원" 문화대학 민요반 전문강사<br>
+                </div>
+            </div>
+
+      <div class ="justforSize">
+        <div class="main-title">인사말 </div>
+          <!-- 인사말 수정 모달이 들어감 -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="recipient-name" class="control-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                      </div>
+                      <div class="form-group">
+                        <label for="message-text" class="control-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                  </div>
+                </div>
               </div>
-          </div>
-       
+            </div>
+        <div class="seperator"></div>
+
+        <div class = "greetingForm">
+            <div class = "careerLeft">
+                       사단법인 전국 지부 아리랑 보존회 회심곡 봉사단 동우회 설립에 무궁한 발전을 빕니다.<br>
+                       어려서 부터 유나니도 소리를 좋아했던 저는 명창이 되는 것이 꿈이기도 했답니다.<br>
+                       그런데 어느날 하루는 김영임 선생님의 회심곡 cd를 제가 다니는 사찰에 스님으로부터<br>
+                       선물을 받게 되었지요<br>
+                       김영임 선생님의 소리를 좋아하던 저는 cd로 회심곡을 배우기 시작했고 그때 부터 서냇임의<br>
+                       소리를 들으며 꿈을 이루기 시작했습니다.<br>
+                       시디 한장이 저에게는 크나큰 행복이 되었습니다. 모든 슬픔과 괴로움을 회심곡으로 달래며<br>
+                       살았스비낟. 회심곡으로 수행하고 마음딲아 제가 다니던 정광사에서 음성 공양도 자주했답니다.<br>
+                       그런데 하루는 남편께 평생에 소원 한가지만을 들어 달라고 했더니 김영임 선생님이 남편보다 더 좋으냐<br>
+                       하시더군요<br>
+                       그후 서울로 선생님께 공부하러 다니기 시작하고 회심곡 부터 배웠지요<br>
+                       먼길을 더운줄도 추운줄도 힘든는 줄도 모르고 배워서 동국대학교를 들어갔습니다.<br>
+                       1학년때 전국 국악 경영대회에 참가해서 문화관광부 장관상을 수상해서 좋은일들이 많았죠<br>
+                       훌륭하신 선생님을 만나 행복했을 때도 많았습니다.<br>
+                       인자하신 선생님의 지도로 예술은 마음에서 울어나와야 아름다운 소리를 낼수있다고 늘 학생들에게<br>
+                       말씀하시던 선생님의 지도에 늘감사하게 생각합니다.<br>
+                       선생니므이 소리에 젖은 세월이 어언 10년이 다되었네요<br>
+                       음식솜씨 그림솜씨 그기에도 나라에 국모처럼 어진 마음씨 오랜 세월을 더듬어 보니 존경스럽습니다.<br>
+                       때로는 바쁘신 선생님꼐 공부 많이 안해주시면 투정을 하면 저의들 마음도 이제는 해아려 주시고 <br>
+                       대 선생님꼐 배우는 것이 흐뭇합니다.<br>
+               </div>
+            </div>
+         </div>
+         
        
       
 
@@ -313,7 +241,7 @@
       // $("#footer").load("../headfoot/footer.html");
 
       $(document).ready(function () {
-        $("#board").addClass("selected");
+        $("#statistics").addClass("selected");
         $(".abs-member").css("font-weight", "bold");
       })
 
@@ -323,7 +251,10 @@
       
 
       $("#board").hover(function () {
-        $(this).addClass("selected");
+        $(this).toggleClass("selected");
+      })
+      $("#management").hover(function () {
+        $(this).toggleClass("selected");
       })
 
       $("#management").click(function () {
@@ -349,17 +280,7 @@
         });
       });
 
-      //파일첨부 제이쿼리
-      $('#chooseFile').bind('change', function () {
-  var filename = $("#chooseFile").val();
-  if (/^\s*$/.test(filename)) {
-    $(".file-upload").removeClass('active');
-    $("#noFile").text("No file chosen..."); 
-  }
-  else {
-    $(".file-upload").addClass('active');
-    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
-  }
+
 });
 
 
