@@ -1,0 +1,105 @@
+  /* to-do list */
+    .list-input {
+      background: transparent;
+      width:80%;
+      border: none;
+      border-bottom: 1px solid #e53935;
+      font-size: 24px;
+      height: 50px;
+      padding-bottom: 15px;
+    }
+    .list-input:focus {
+      outline: 0;
+    }
+
+    .list-input {
+      font-size: 32px;
+    }
+
+.input-buttons {
+  width:20%;
+  float: right;
+  height: 50px;
+  
+  padding: 0;
+}
+.input-buttons i {
+  padding: 0 12px;
+  color: #e53935; 
+  float: right;
+}
+
+  .input-buttons .fa-trash:hover {
+    color: #ff5252;
+  }
+  .input-buttons .fa-plus:hover {
+    color: #ff5252;
+  }
+
+.list-error {
+  color: #ff5252;
+  display: none;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+.list-error .fa-times {
+  color: #e53935;
+  padding: 5px 15px;
+  float: right;
+}
+.list-error .fa-times:hover {
+  color: #fafafa;
+}
+.list-error p {
+  margin: 20px 0;
+}
+
+  .list-error p {
+    font-size: 20px;
+  }
+
+
+.todo-list {
+  padding: 0;
+  margin: 20px 0 50px;
+}
+.todo-list .todo {
+  background: #eceff1;
+  border-bottom: 1px solid #455a64;
+  color: #455a64;
+  font-size: 20px;
+  list-style: none;
+  padding: 20px 130px 20px 15px;
+  position: relative;
+  white-space: normal;
+}
+
+.list-span {
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
+.list-span a {
+  color: #455a64;
+}
+.list-span i {
+  padding: 10px 15px;
+}
+.list-span .fa-check {
+  border-right: 1px solid #455a64;
+}
+.list-span .fa-check:hover {
+  color: #69f0ae;
+}
+.list-span .fa-trash-o:hover {
+  color: #ff5252;
+}
+
+.complete {
+  color: #90a4ae;
+  text-decoration: line-through;
+}
+.complete .check {
+  color: #69f0ae;
+}

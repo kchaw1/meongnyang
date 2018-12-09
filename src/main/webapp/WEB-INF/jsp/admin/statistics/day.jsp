@@ -23,12 +23,11 @@
             <div class="aside">
                 <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
                 <br>
-                <div class="log-out">LOG OUT</div>
                 <div class="seperator"></div>
                 <div class="list">
 			         <div id="board" class="item">게시판</div>
 			         <div class="board-hidden notice"><a href="<c:url value="/admin/notice/list.mn" />">공지사항</a></div>
-			         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube.mn" />">유튜브</a></div>
+			         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube/youtube.mn" />">유튜브</a></div>
 			         <div class="board-hidden crowd-fund"><a href="<c:url value="/admin/crowd/list.mn" />">크라우드펀딩</a></div>
 			         <div id="management" class="item">관리</div>
 			         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
