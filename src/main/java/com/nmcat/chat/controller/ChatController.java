@@ -40,14 +40,12 @@ public class ChatController {
 	   @PostMapping("/chat/chatRoomAdd.mn")
 	   @ResponseBody
 	   public void chatRoomAdd(Chat chat) {
-		   System.out.println("번호가안들어가?"+chat.getNo());
 		   chatmapper.chatRoomAdd(chat);
 //		return "/chat/chatRoom.mn";
 	   }
 	   @PostMapping("/chat/chatRoomDelete.mn")
 	   @ResponseBody
 	   public void chatRoomDelete(Chat chat) {
-		   System.out.println("번호가안들어가?"+chat.getChNo());
 		   chatmapper.chatRoomDelete(chat);
 //		return "/chat/chatRoom.mn";
 	   }

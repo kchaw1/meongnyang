@@ -65,7 +65,7 @@ var chat = null;
 var loginId = null;
 $(function () {
 	
-	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
+	chat = new WebSocket('ws://localhost:8000/nmcat/chat.mn');  /*
     url /info가 자동 붙는것을 해결해야 한다. 
 		    - 현재는 스프링이 *.do로 설정되어 있어 404가 된다.
 		      /*로 스프링의 경로를 수정하게 되면 문제는 페이지의 결과가 텍스트로 보인다.
@@ -75,25 +75,29 @@ $(function () {
 		  */
 		
 		  chat.onopen = function() {
+			 var In = "${user.id}"
 			    console.log('웹소켓 서버 접속 성공');
 			    $(".chat-list").append("<p>채팅이 시작되었습니다</p>")
-			    
-			  	
+			    chat.send("input : " +In);
+			  	console.log("입장 아이디 : "+In);
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {
     		var $msg = $("#message");
 			$msg.val("");
 			console.dir(evt)
-			var chatId = evt.data.split(':');
-			console.log("과연...."+chatId[0]);
-			
-			console.log("eventdata 0 " +evt.data[0])
-			console.log("eventdata 1" +evt.data[1])
-			if("${user.id}"==chatId[0] ){				
-		 	 $(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
-			}else{
-		 	 $(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+evt.data+"</p></div><br>");
+			if(evt.data.endsWith("입장 하셨습니다.")){
+				$(".chat-list").append("<p>"+evt.data+"</p>");
+			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
+				$(".chat-list").append("<p>"+evt.data+"</p>");				
+			}
+			else{
+			 var chatId = evt.data.split(':');
+				if("${user.id}"==chatId[0] ){				
+		 	 		$(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
+				}else{
+		 	 		$(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+chatId[0]+":"+chatId[1]+"</p></div><br>");
+				}
 			}
 			
 		};
@@ -101,7 +105,10 @@ $(function () {
 			    $("div").append('웹소켓 에러 발생 : ' + evt.data)
 		};
 		chat.onclose = function() {
-			    $(".chat-list").append("<p>채팅 연결이 되지않아 종료됨.</p>");
+			var out = "${user.id}";
+			$(".chat-list").append("<p>채팅 연결이 되지않아 종료됨.</p>");
+			chat.send("output : " + out);
+			    
 
 		}
 		

@@ -62,9 +62,19 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		String Msg = message.getPayload();
 		String sendMsg = "";
 		
+		if(Msg.startsWith("input : ")) {
+			String login = Msg.substring("input : ".length());
+			users.put(id, wss);
+			sendMsg = login + "님이 채팅방에 입장 하셨습니다.";
+		}else if(Msg.startsWith("output : ")) {
+			String logout = Msg.substring("output : ".length());
+			users.put(id, wss);
+			sendMsg = logout + "님이 채팅방에서 퇴장 하셨습니다.";
+		}else {
 			
-			String[] arr = Msg.split(":");
-			sendMsg = arr[0]+ ":" + arr[1];
+		String[] arr = Msg.split(":");
+		sendMsg = arr[0]+ ":" + arr[1];
+		}
 				
 		for (String key : keys) {
 			WebSocketSession wSession = users.get(key);
@@ -74,9 +84,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			System.out.println("wSeesion: " + wSession.getId());
 			System.out.println("wSession:"+wSession.getAttributes());
 			System.out.println("member.no :" + member.getNo());
-			
-//	     	wSession.sendMessage(new TextMessage("id:"+member.getId()));
-//	     	wSession.sendMessage(new TextMessage("content"+message.getPayload()));
+
 	     	wSession.sendMessage(new TextMessage(sendMsg));
 			
 	
