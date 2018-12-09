@@ -117,6 +117,20 @@ th,td {
 	height: 40px;
 }
 
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+	background-color: rgb(65, 192, 142, 0.7);
+    border-color: rgb(65, 192, 142, 0.7);
+}
+
+.pagination>li>a, .pagination>li>span, .pagination>li>a:hover {
+	color: black;
+}
+
 a:link {text-decoration:none; color: black; }
 a:visited {text-decoration:none; color: black; }
 a:active {text-decoration:none; color: black; }

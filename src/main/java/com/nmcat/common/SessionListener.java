@@ -14,11 +14,7 @@ public class SessionListener implements HttpSessionListener{
 	
 	//세션 생성 감지
     public void sessionCreated(HttpSessionEvent se) {
-      HttpSession session = se.getSession();
       
-      Member member = (Member)session.getAttribute("user");
-      
-      System.out.println("Session Created :: " + session.getId());
     }
 
     //세션 생성 감지
