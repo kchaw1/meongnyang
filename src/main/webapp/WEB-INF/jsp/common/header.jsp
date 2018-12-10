@@ -25,7 +25,7 @@
           <li><a href="<c:url value='/member/signup.mn'/>">회원가입</a></li>                
         </c:when>
         <c:otherwise>
-          <li><a href="<c:url value='/member/MyPage.mn'/>" id="mypage">내 정보</a></li>
+          <li><a href="<c:url value='/mypageGen/list.mn'/>" id="mypage">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>" id="petdiary">마이펫 다이어리</a></li>
 		  <li><a href="<c:url value='/facechat/dochat.mn'/>?no=${user.no}" id="facechat">영상통화 연습</a></li> 
 		 <li><a href="<c:url value='/msg/msgsend.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>

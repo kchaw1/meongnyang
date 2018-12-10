@@ -120,7 +120,6 @@
 		update mn_member
 			set pass = #{pass}
 			where id = #{id}
-	
 	</update>
 	
 </mapper>

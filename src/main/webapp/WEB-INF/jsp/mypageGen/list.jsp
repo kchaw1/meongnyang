@@ -167,14 +167,12 @@ div.modal-header {
         <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
-          <div id="board" class="item" ><a href="<c:url value="/mypage/list.mn"/>">기본정보</a></div>
+           <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
           <!-- 일반회원일땐 경력 및 인사말 카테고리는 뜨지 않게하기. -->
           <!-- <div id="statistics" class="item"><a href="" style="color:black;">경력 및 인사말</a></div> -->
-          <div class="item" id="grade"><a href="<c:url value="/mypage/grade.mn"/>">내 등급</a></div>
-          <div class="item" id="mypoint"><a href="<c:url value="/mypage/point.mn"/>">내 포인트</a></div>
-          <div id="management" class="item"><a href="<c:url value="/mypage/activity.mn"/>">내 활동</a></div>
-          <!-- <div class="mgm-hidden"><a href="#">내가 쓴 게시글</a></div>
-          <div class="mgm-hidden"><a href="#">내가 쓴 댓글</a></div> -->
+          <div class="item" id="grade"><a href="<c:url value="/mypageGen/grade.mn"/>">내 등급</a></div>
+          <div class="item" id="mypoint"><a href="<c:url value="/mypageGen/point.mn"/>">내 포인트</a></div>
+          <div id="management" class="item"><a href="<c:url value="/mypageGen/activity.mn"/>">내 활동</a></div>
         </div>
 
       </div>
@@ -245,6 +243,7 @@ div.modal-header {
           <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">회원정보 수정</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
               <div class="modal-dialog">
+               <form name="loginck" action="loginck.mn" method="post">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -253,7 +252,6 @@ div.modal-header {
                   </div>
                   <div class="modal-body">
                     <!--이곳이 비밀번호 확인할 form자리-->
-                    <form>
                       <div class="form-group">
                         <label for="recipient-name" class="control-label">회원 아이디</label>
                         <input type="text" class="form-control form-control2" id="recipient-name" value = "${user.id}" readonly>
@@ -262,13 +260,13 @@ div.modal-header {
                           <label for="recipient-name" class="control-label">회원 비밀번호<span class ="star">*</span></label>
                           <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                         </div>
-                    </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-primary" id ="enter" onclick="edit()">확인하기</button>
                   </div>
                 </div>
+                </form>
               </div>
             </div>
         </div>
@@ -286,6 +284,9 @@ div.modal-header {
 function edit(){
     window.location.href="edit.mn";
 }
+</script>
+<script>
+	
 </script>
 </body>
 </html>

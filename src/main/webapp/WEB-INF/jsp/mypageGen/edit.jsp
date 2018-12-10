@@ -119,12 +119,12 @@
         <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
-           <div id="board" class="item" ><a href="<c:url value="/mypage/list.mn"/>">기본정보</a></div>
+           <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
           <!-- 일반회원일땐 경력 및 인사말 카테고리는 뜨지 않게하기. -->
           <!-- <div id="statistics" class="item"><a href="" style="color:black;">경력 및 인사말</a></div> -->
-          <div class="item" id="grade"><a href="<c:url value="/mypage/grade.mn"/>">내 등급</a></div>
-          <div class="item" id="mypoint"><a href="<c:url value="/mypage/point.mn"/>">내 포인트</a></div>
-          <div id="management" class="item"><a href="<c:url value="/mypage/activity.mn"/>">내 활동</a></div>
+          <div class="item" id="grade"><a href="<c:url value="/mypageGen/grade.mn"/>">내 등급</a></div>
+          <div class="item" id="mypoint"><a href="<c:url value="/mypageGen/point.mn"/>">내 포인트</a></div>
+          <div id="management" class="item"><a href="<c:url value="/mypageGen/activity.mn"/>">내 활동</a></div>
         </div>
 
       </div>
@@ -161,7 +161,7 @@
                                       <div class ="forPadding">
                                         <span class ="forSpan">프로필 사진 수정</span>
                                         <hr>
-                                        <form name="profileupdate" enctype="multipart/form-data" method="post" action="<c:url value="/mypage/edit.mn" />">
+                                        <form name="profileupdate" enctype="multipart/form-data" method="post" action="updateProfile.mn">
                                         <div class ="forImg"><img src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>" width="183" height="220"></div>
                                         <span class ="forSpan2">이력서사진.jpg</span>
                                         <hr>
@@ -170,7 +170,7 @@
                                     <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
                                     <div class="file-select-name" id="noFile">No file chosen...</div> 
-                                    <input type="file" name="chooseFile" id="chooseFile">
+                                    <input type="file" name="profile" id="file" accept=".gif, .jpg, .png" />
                                     </div>
                                 </div>
                                 <hr>

@@ -193,12 +193,12 @@ div.modal-header {
         <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
-          <div id="board" class="item" ><a href="<c:url value="/mypage/list.mn"/>">기본정보</a></div>
+           <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
           <!-- 일반회원일땐 경력 및 인사말 카테고리는 뜨지 않게하기. -->
           <!-- <div id="statistics" class="item"><a href="" style="color:black;">경력 및 인사말</a></div> -->
-          <div class="item" id="grade"><a href="<c:url value="/mypage/grade.mn"/>">내 등급</a></div>
-          <div class="item" id="mypoint"><a href="<c:url value="/mypage/point.mn"/>">내 포인트</a></div>
-          <div id="management" class="item"><a href="<c:url value="/mypage/activity.mn"/>">내 활동</a></div>
+          <div class="item" id="grade"><a href="<c:url value="/mypageGen/grade.mn"/>">내 등급</a></div>
+          <div class="item" id="mypoint"><a href="<c:url value="/mypageGen/point.mn"/>">내 포인트</a></div>
+          <div id="management" class="item"><a href="<c:url value="/mypageGen/activity.mn"/>">내 활동</a></div>
         </div>
 
       </div>
