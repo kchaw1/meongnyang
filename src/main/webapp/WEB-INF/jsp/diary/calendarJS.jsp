@@ -193,7 +193,18 @@
 			str += '<div class="buttons"><div class="button-box">'
 			str += '<button class="dr-delete" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">삭제</button>'
 			str += '<button class="dr-update" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">수정</button>'
-			str += '</div></div></div>'
+			str += '</div></div>'
+			str += '<div class="aboutcomments"><div class="commentform form-group">'
+			str += '<form id="commentform" name="comment" method="POST">'
+			str += '<textarea class="form-control" >댓글을 입력해주세요.</textarea>'
+			str += '<div class="combuttonbox"><button class="drc-write">등록</button>'
+			str += '</div></form></div>'
+			str += '<div class="commentList"><ul class="comments">'
+			str += '<li class="comment">'
+			str += '<a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>'
+			str += '<div class="meta">'+diary.+'박아란 | 2018.07.24 14:58 <a class="reply" id = "editBtn" onclick="editfunction(86)">Edit</a> <a class="reply">Reply</a></div>'
+			
+			
 		} //for
 		$("div.diaryList").html(str);
 		

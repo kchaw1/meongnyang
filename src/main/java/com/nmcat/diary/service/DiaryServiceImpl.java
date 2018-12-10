@@ -97,7 +97,7 @@ public class DiaryServiceImpl implements DiaryService{
 
 	@Override
 	public List<DiaryBoard> listShareDiary(int begin) {
-		System.out.println("list" + mapper.selectShareDiaryByPaging(begin));
+		//System.out.println("list" + mapper.selectShareDiaryByPaging(begin));
 		return mapper.selectShareDiaryByPaging(begin);
 	}
 
@@ -105,6 +105,19 @@ public class DiaryServiceImpl implements DiaryService{
 	public Map<String, Object> showDetailDiary(int drNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("diary", mapper.selectOneDiaryBydrNo(drNo));
+		return map;
+	}
+
+	@Override
+	public List<DiaryBoard> listShareAndFriendDiary(DiaryBoard diary) {
+		return mapper.selectShareAndFriendDiaryByPaging(diary);
+	}
+
+	@Override
+	public Map<String, Object> pagePlusDiary(DiaryBoard diary) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("list1", listShareDiary(diary.getBegin()));
+		map.put("list2", listShareAndFriendDiary(diary));
 		return map;
 	}
 

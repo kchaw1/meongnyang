@@ -57,7 +57,7 @@ ul#stickies  li:nth-child(9n+4){
     width: 400px; height: 450px;
     transform: rotate(4deg);
     background-image: url(../../../img/diary/post4.png);
-    background-size : 100%;
+     background-size : 100%;
     background-repeat : no-repeat;
     padding-top : 70px;
 }
@@ -136,22 +136,27 @@ div.dr-content {
   padding : 10px 15px 0px;
   height : 100%;
   overflow : hidden;
+  	font-size : 18px;
+	text-align : center;
   
 }
 div.dr-content img {
-	width :100% !important;
+	width :80% !important;
 }
 ul#stickies  li.diary.bigger {
-	width : 480px; height: 550px;
-	padding : 60px;
+	/* width : 480px; height: 550px; 
+	 padding : 65px; */
+	background-size : 100% 105%;
+	overflow : hidden;
 }
 /* li.diary.bigger > .dr-content img {
 	width : 90% !important;
 	
 } */
 li.diary.bigger  .dr-content p {
-	width : 80% !important;
+	width : 90% !important;
 	margin : auto;
+
 }
 
 /* 모달 css */
@@ -232,12 +237,12 @@ div.modal#share div.diary {
   margin : 10px 10px;
   width : 90%;
 }
-div.modal#share div.dr-title {
+div.modal#share div.drTitle {
   padding-bottom : 5px;
   border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
   width: 100%;
 }
-div.modal#share span.label {
+span.label {
   margin: 10px;
   /* display: inline-block; */
   border-radius: 5px; 
@@ -255,13 +260,16 @@ div.modal#share span.date {
 div.modal#share span.label-share {
   background-color: rgb(65, 192, 142);
 }
-div.modal#share span.label-friend {
+span.label-me {
+  background-color: salmon;
+}
+span.label-friend {
   background-color: rgb(255, 194, 64);
 }
 div.modal#share span.label-noshare {
   background-color: rgb(247, 117, 78);
 }
-div.modal#share div.dr-content {
+div.modal#share div.drContent {
   padding : 15px 20px 0px;
   font-size : 20px;
 }

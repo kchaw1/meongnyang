@@ -24,4 +24,6 @@ public interface DiaryMapper {
 	public void insertNewFile(DiaryFile file);
 	
 	public List<DiaryBoard> selectShareDiaryByPaging(int begin);
+	
+	public List<DiaryBoard> selectShareAndFriendDiaryByPaging(DiaryBoard diary);
 } //end interface

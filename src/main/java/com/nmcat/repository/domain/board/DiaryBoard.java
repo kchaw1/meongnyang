@@ -22,10 +22,24 @@ public class DiaryBoard {
 	private String drShare;
 	private String drDate;
 	private String yearMonth;
+	private String friendsId;
+	private String userId;
 	
 	public String getYearMonth() {
 		return drDate.substring(0, drDate.length()-2);			
 	}
 
+	//페이징..
+	private int pageNo;
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+	// #{begin} -> board.xml
+	public int getBegin() {
+		return (pageNo - 1) * 15;
+	}
 	
 } // end class

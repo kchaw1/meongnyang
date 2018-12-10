@@ -26,6 +26,10 @@ public interface DiaryService {
 
 	Map<String, Object> showDetailDiary(int drNo);
 
+	List<DiaryBoard> listShareAndFriendDiary(DiaryBoard diary);
+
+	Map<String, Object> pagePlusDiary(DiaryBoard diary);
+
 
 
 }
