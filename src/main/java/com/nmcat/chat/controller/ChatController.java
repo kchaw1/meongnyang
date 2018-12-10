@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,12 @@ public class ChatController {
 	   @GetMapping("/chat/chat.mn")
 	   public void chat() {
 		   
+	   }
+	   @GetMapping("/chat/logout.mn")
+	   @ResponseBody
+	   public String logout(HttpSession session) {
+		   session.invalidate();
+		   return "success";
 	   }
 	   @GetMapping("/chat/chatRoom.mn")
 	   public Map<String, Object> chatRoom(Chat chat,Model model) {

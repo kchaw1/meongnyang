@@ -42,6 +42,9 @@
                 <p class="pull-left">sdadsa</p>
               </div>
             </div>
+            <div id="chatout">
+            	<button id="logout">채팅방 나가기</button>
+            </div>
           </div>
         </div>
        
@@ -65,7 +68,7 @@ var chat = null;
 var loginId = null;
 $(function () {
 	
-	chat = new WebSocket('ws://localhost:8000/nmcat/chat.mn');  /*
+	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
     url /info가 자동 붙는것을 해결해야 한다. 
 		    - 현재는 스프링이 *.do로 설정되어 있어 404가 된다.
 		      /*로 스프링의 경로를 수정하게 되면 문제는 페이지의 결과가 텍스트로 보인다.
@@ -87,9 +90,9 @@ $(function () {
 			$msg.val("");
 			console.dir(evt)
 			if(evt.data.endsWith("입장 하셨습니다.")){
-				$(".chat-list").append("<p>"+evt.data+"</p>");
+				$(".chat-list").append("<br><p>"+evt.data+"</p><br>");
 			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
-				$(".chat-list").append("<p>"+evt.data+"</p>");				
+				$(".chat-list").append("<br><p>"+evt.data+"</p></br>");				
 			}
 			else{
 			 var chatId = evt.data.split(':');
@@ -115,13 +118,16 @@ $(function () {
 		});
 
 		$('#sendBtn').click(function() { 
-		var $msg = $("#message");
-		var $id = $("#id");
-		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
-		// 웹소켓 서버에 데이터 전송하기
-		console.log($msg.val());		
-		chat.send("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>"+$msg.val()+"</p></div><br>");
-		$msg.val(""); 
+			var $msg = $("#message");
+    		loginId = "${user.id}";
+    		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
+    		// 웹소켓 서버에 데이터 전송하기
+    		console.log($msg.val());
+    			
+    		chat.send(loginId + ":" + $msg.val());
+    		$msg.val("");
+    		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
+    		
 	
 	});
 	
@@ -139,7 +145,28 @@ $(function () {
         		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
         		
         }
+        
+        
 }
+	$('#logout').click(function() { 
+		$.ajax({
+			url: "<c:url value='/chat/chat.mn' />"
+		})
+		.done(function (result) {
+			
+			chat.send("output : " + loginId);
+						
+			loginId = "${user.id}";
+			
+			$(".chat-list").html("");
+		
+			window.close();
+		});
+	});
+
+	
+	
+	
  
 	
 </script>

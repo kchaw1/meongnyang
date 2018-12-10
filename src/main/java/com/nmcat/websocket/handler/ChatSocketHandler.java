@@ -46,6 +46,8 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		member = (Member) attrs.get("user");
 		debug(member.getId() + " 연결 종료됨");
 		users.remove(member.getId());
+		
+		System.out.println(users.keySet());
 	}
 	
 	@Override
@@ -68,7 +70,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			sendMsg = login + "님이 채팅방에 입장 하셨습니다.";
 		}else if(Msg.startsWith("output : ")) {
 			String logout = Msg.substring("output : ".length());
-			users.put(id, wss);
+			users.remove(logout);
 			sendMsg = logout + "님이 채팅방에서 퇴장 하셨습니다.";
 		}else {
 			
