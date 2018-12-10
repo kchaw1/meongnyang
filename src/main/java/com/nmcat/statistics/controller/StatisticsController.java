@@ -2,6 +2,8 @@ package com.nmcat.statistics.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,7 @@ public class StatisticsController {
 		int[] newMemberArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			newMemberArr[i] = service.dayNewMember(dateArr[i]);
+			newMemberArr[i] = service.newMember(dateArr[i]);
 		}
 		
 		model.addAttribute("newMemberArr", newMemberArr);
@@ -37,7 +39,7 @@ public class StatisticsController {
 		int[] visitorArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			visitorArr[i] = service.dayVisitor(dateArr[i]);
+			visitorArr[i] = service.visitor(dateArr[i]);
 		}
 		
 		model.addAttribute("visitorArr", visitorArr);
@@ -46,7 +48,7 @@ public class StatisticsController {
 		int[] postArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			postArr[i] = service.dayPost(dateArr[i]);
+			postArr[i] = service.post(dateArr[i]);
 		}
 		
 		model.addAttribute("postArr", postArr);
@@ -55,7 +57,7 @@ public class StatisticsController {
 		int[] commentArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			commentArr[i] = service.dayComment(dateArr[i]);
+			commentArr[i] = service.comment(dateArr[i]);
 		}
 		
 		model.addAttribute("commentArr", commentArr);
@@ -64,7 +66,7 @@ public class StatisticsController {
 		int[] pointArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			pointArr[i] = service.dayPoint(dateArr[i]);
+			pointArr[i] = service.point(dateArr[i]);
 		}
 		
 		model.addAttribute("pointArr", pointArr);
@@ -73,7 +75,7 @@ public class StatisticsController {
 		int[] timeArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			timeArr[i] = service.dayConnectTime(dateArr[i]);
+			timeArr[i] = service.connectTime(dateArr[i]);
 		}
 		
 		model.addAttribute("timeArr", timeArr);
@@ -90,7 +92,7 @@ public class StatisticsController {
 		int[] newMemberArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			newMemberArr[i] = service.dayNewMember(monthArr[i]);
+			newMemberArr[i] = service.newMember(monthArr[i]);
 		}
 		model.addAttribute("newMemberArr", newMemberArr);
 		
@@ -98,7 +100,7 @@ public class StatisticsController {
 		int[] visitorArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			visitorArr[i] = service.dayVisitor(monthArr[i]);
+			visitorArr[i] = service.visitor(monthArr[i]);
 		}
 		model.addAttribute("visitorArr", visitorArr);
 		
@@ -106,7 +108,7 @@ public class StatisticsController {
 		int[] postArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			postArr[i] = service.dayPost(monthArr[i]);
+			postArr[i] = service.post(monthArr[i]);
 		}
 		model.addAttribute("postArr", postArr);
 		
@@ -114,7 +116,7 @@ public class StatisticsController {
 		int[] commentArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			commentArr[i] = service.dayComment(monthArr[i]);
+			commentArr[i] = service.comment(monthArr[i]);
 		}
 		model.addAttribute("commentArr", commentArr);
 		
@@ -122,7 +124,7 @@ public class StatisticsController {
 		int[] pointArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			pointArr[i] = service.dayPoint(monthArr[i]);
+			pointArr[i] = service.point(monthArr[i]);
 		}
 		model.addAttribute("pointArr", pointArr);
 		
@@ -130,10 +132,34 @@ public class StatisticsController {
 		int[] timeArr = new int[5];
 		
 		for(int i=0; i<=4; i++) {
-			timeArr[i] = service.dayConnectTime(monthArr[i]);
+			timeArr[i] = service.connectTime(monthArr[i]);
 		}
 		model.addAttribute("timeArr", timeArr);
 	}
+	
+	// 주별 페이지 이동
+		@RequestMapping("/statistics/week")
+		public void week(Model model) {
+			
+			String month = calNowYearMonth();
+			
+//			model.addAttribute("newMemberWeekArr", service.newMemberWeek(month));
+//			model.addAttribute("visitorWeekArr", service.visitorWeek(month));
+//			model.addAttribute("postWeekArr", service.postWeek(month));
+//			model.addAttribute("commentWeekArr", service.commentWeek(month));
+//			model.addAttribute("pointWeekArr", service.pointWeek(month));
+//			model.addAttribute("timeWeekArr", service.connectTimeWeek(month));	
+			
+//			Map<String, Object> map = new HashMap<>();
+//			
+//			map.put("newMemberWeekArr", service.newMemberWeek(month));
+//			map.put("visitorWeekArr", service.visitorWeek(month));
+//			map.put("postWeekArr", service.postWeek(month));
+//			map.put("commentWeekArr", service.commentWeek(month));
+//			map.put("pointWeekArr", service.pointWeek(month));
+//			map.put("timeWeekArr", service.connectTimeWeek(month));	
+			
+		}
 	
 	/* 일반 메소드 */ 
 	// 오늘날짜기준 최근5일 구하기
@@ -172,6 +198,16 @@ public class StatisticsController {
 		}
 		
 		return monthArr;
+	}
+	
+	// 이번달 년 월 구하기
+	public String calNowYearMonth() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(cal.MONTH, 0);
+		
+		return sdf.format(cal.getTime());
 	}
 	
 }

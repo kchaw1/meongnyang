@@ -57,8 +57,7 @@
 							</div>
 						</div>
 						<div id="img-area">
-							<img
-								src="https://post-phinf.pstatic.net/MjAxNzEyMjhfMjc1/MDAxNTE0NDQwMDQ3MDQz.jAzATJmNbLbERcMt6hm01vOwJZTulYER_z63d6m4fM8g.QjKmA8EPdjkJy_QXpCx4vOjQOTSyG3vbtJZmwJX6wMMg.JPEG/%EC%84%A4%EC%B1%84%ED%98%84.JPG?type=w1200" />
+							<img src="<c:url value='/common/download.mn?sysName=${abs.imageName}&path=${abs.imagePath}&oriName=${abs.imageOriName}'/>" />
 						</div>
 						<div id="attach-area">
 							<h1>첨부파일</h1>

@@ -146,7 +146,7 @@
 			var html = "";
 			if(crowdList.length != 0) {
 				for(var i in crowdList) {
-					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
+					var progress = Math.floor((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
 					
 					html += "<div class='list-item'>"
 							+ "<div class='image-area'><a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
@@ -197,12 +197,18 @@
 			var html = "";
 			if(crowdList.length != 0) {
 				for(var i in crowdList) {
-					var progress = Math.ceil((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
+					var progress = Math.floor((crowdList[i].crNowMoney/crowdList[i].crGoalMoney)*100)
 					
 					html += "<div class='list-item'>"
 							+ "<div class='image-area'>"
 							if(crowdList[i].crFileName != null) {
-								html += "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
+								if('${user.type}' == 3) {
+									html +=   "<a href='detail.mn?crNo="+ crowdList[i].crNo +"'>"
+											+ "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
+											+ "</a>"
+								} else {
+									html += "<img src='<c:url value='/common/download.mn?sysName="+ crowdList[i].crFileName +"&path="+ crowdList[i].crFilePath +"&oriName="+ crowdList[i].crFileOriName +"'/>' style='border-radius:5px; width:100%; height:290px;' />"
+								}
 							} else {
 								html += "<img src='<c:url value='/resources/img/admin/crowd/01_preview.__large_preview.png' />' />"
 							}

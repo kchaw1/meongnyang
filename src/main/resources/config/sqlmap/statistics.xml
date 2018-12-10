@@ -53,16 +53,16 @@
 	<result column="fees" property="fees" />
 </resultMap>
 
-<!-- *************************일별*************************  -->
+<!-- *************************일별, 월별*************************  -->
 <!-- 가입자수 -->
-<select id="selectDayNewMemberCount" parameterType="String" resultType="int">
+<select id="selectNewMemberCount" parameterType="String" resultType="int">
 	 select count(*)
 	   from mn_member
 	  where sign_up_date like CONCAT('%',#{date},'%')
 </select>
 
 <!-- 방문자수 -->
-<select id="selectDayVisitorCount" parameterType="String" resultType="int">
+<select id="selectVisitorCount" parameterType="String" resultType="int">
 	select count(*)
 	  from (select login_id, max(login_date_time) login_date_time
 	  		  from mn_login_history
@@ -71,30 +71,88 @@
 </select>
 
 <!-- 게시글 수 -->
-<select id="selectDayPostCount" parameterType="String" resultType="int">
+<select id="selectPostCount" parameterType="String" resultType="int">
 	 select count(*)
 	   from mn_com
 	  where com_reg_date like CONCAT('%',#{date},'%')
 </select>
 
 <!-- 댓글 수 -->
-<select id="selectDayCommentCount" parameterType="String" resultType="int">
+<select id="selectCommentCount" parameterType="String" resultType="int">
 	 select count(*)
 	   from mn_com_comment
 	  where comc_reg_date like CONCAT('%',#{date},'%')
 </select>
 
 <!-- 포인트 사용량 -->
-<select id="selectDayPointCount" parameterType="String" resultType="int">
+<select id="selectPointCount" parameterType="String" resultType="int">
 	 select IFNULL(sum(minus_point), 0)
 	   from mn_point_minus
 	  where minus_date like CONCAT('%',#{date},'%')
 </select>
 
-<select id="selectDayAvgConnectTime" parameterType="String" resultType="int">
+<!-- 평균 접속 시간 -->
+<select id="selectAvgConnectTime" parameterType="String" resultType="int">
 	select IFNULL(ceil(avg(TIMESTAMPDIFF(minute, login_date_time, logout_date_time))), 0)
 	  from mn_login_history
 	 where login_date_time like CONCAT('%',#{date},'%')
+</select>
+
+<!-- ************************* 주별 *************************  -->
+<!-- 가입자수 -->
+<select id="selectWeekNewMemberCount" parameterType="String" resultType="Statistics">
+	SELECT count(*) as count, week, month
+	  FROM(SELECT WEEK(sign_up_date, 5) - WEEK(DATE_SUB(sign_up_date, INTERVAL DAYOFMONTH(sign_up_date) - 1 DAY), 5) + 1 as week, month(sign_up_date) as month
+	  		 FROM mn_member
+	 		WHERE month(sign_up_date) = #{month}) as b
+	 GROUP BY week
+</select>
+
+<!-- 방문자수 -->
+<select id="selectWeekVisitorCount" parameterType="String" resultType="Statistics">
+	SELECT count(*) as count, week, month
+	  FROM(SELECT WEEK(max(login_date_time), 5) - WEEK(DATE_SUB(max(login_date_time), INTERVAL DAYOFMONTH(max(login_date_time)) - 1 DAY), 5) + 1 as week, month(max(login_date_time)) as month
+   			 FROM mn_login_history
+  			GROUP BY login_id
+ 			  HAVING month = #{month})as b
+  GROUP BY week
+</select>
+
+<!-- 게시글 수 -->
+<select id="selectWeekPostCount" parameterType="String" resultType="Statistics">
+	SELECT count(*) as count, week, month
+	  FROM(SELECT WEEK(com_reg_date, 5) - WEEK(DATE_SUB(com_reg_date, INTERVAL DAYOFMONTH(com_reg_date) - 1 DAY), 5) + 1 as week, month(com_reg_date) as month
+  			 FROM mn_com
+ 			WHERE month(com_reg_date) = #{month}) as b
+     GROUP BY week
+</select>
+
+<!-- 댓글 수 -->
+<select id="selectWeekCommentCount" parameterType="String" resultType="Statistics">
+	SELECT count(*) as count, week, month
+	  FROM(SELECT WEEK(comc_reg_date, 5) - WEEK(DATE_SUB(comc_reg_date, INTERVAL DAYOFMONTH(comc_reg_date) - 1 DAY), 5) + 1 as week, month(comc_reg_date) as month
+	  		 FROM mn_com_comment
+	 		WHERE month(comc_reg_date) = #{month}) as b
+	 GROUP BY week
+</select>
+
+<!-- 포인트 사용량 -->
+<select id="selectWeekPointCount" parameterType="String" resultType="Statistics">
+	 SELECT sum(minus_point) as count, week, month
+	   FROM(SELECT minus_point, WEEK(minus_date, 5) - WEEK(DATE_SUB(minus_date, INTERVAL DAYOFMONTH(minus_date) - 1 DAY), 5) + 1 as week, month(minus_date) as month
+  			  FROM mn_point_minus
+ 			 WHERE month(minus_date) = #{month}) as b
+ 	  GROUP BY week;
+</select>
+
+<!-- 평균 접속 시간 -->
+<select id="selectWeekAvgConnectTime" parameterType="String" resultType="Statistics">
+	SELECT count, week, month
+	  FROM(SELECT avg(TIMESTAMPDIFF(minute, login_date_time, logout_date_time)) as count, month(login_date_time) as month,
+	  			  WEEK(login_date_time, 5) - WEEK(DATE_SUB(login_date_time, INTERVAL DAYOFMONTH(login_date_time) - 1 DAY), 5) + 1 as week
+	  		 FROM mn_login_history
+	 		WHERE month(login_date_time) =  #{month} 
+	 		GROUP BY week) as b;
 </select>
 
 </mapper>

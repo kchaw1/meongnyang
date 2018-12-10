@@ -90,7 +90,66 @@
       $("#board").addClass("selected");
       $(".board-hidden").toggle();
       $(".youtube").css("font-weight", "bold");
+      
+      ajaxList();
     })
+    
+    var ajaxList = function() {
+    	 $.ajax({
+       	  url: "<c:url value='/admin/youtube/keywordList.mn'/>",
+       	  type: "POST",
+         }).done(function(result) {
+        	 console.log(result)
+        	
+          	for(var i in result) {
+       	  		  var randomStr = randomString();
+       	  		
+       	  		  var $newListItem = $('<li class="todo">' + result[i].ytbKeyword + '<span class="list-span">' +
+       	            '<a href="#" data-random="'+ randomStr +'" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
+       	            '<input type="hidden" value="' + result[i].ytbKeyword + '">' +
+       	            '</span>' + '</li>');
+				  
+       	          // Add list item to end of list
+      	          $('.todo-list').append($newListItem);
+       	          
+		          	var	html =  "<div class='"+ randomStr +"' style='margin-bottom: 50px;'>"
+				              + "<div class='content-title'><h1>" + result[i].ytbKeyword + "</h1></div>" 
+				              + "</div>"
+	              /* ------------------------- 유튜브api ---------------------------- */
+	              function getRequest(keyword) {
+	                  var url = 'https://www.googleapis.com/youtube/v3/search';
+	                  var params = {
+	                      part: 'snippet',
+	                      key: 'AIzaSyBhomSVCcyHNr7jCxxVe04ITSZXYqg0wHY',
+	                      q: keyword,
+	                      regionCode:"KR",
+	                      type: "video",
+	                      videoEmbeddable: "true",
+	                      maxResults:2
+	                  };
+	                  $.getJSON(url, params, showResults);
+	              }
+
+	              function showResults(results) {
+		                  console.log(results)
+		                  var result ="";
+		                  var entries = results.items;
+		                  
+		                  $.each(entries, function (index, value) {
+		                      var videoId = value.id.videoId;
+		                      
+		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="48%" height="360" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+	      	  			  });
+	        			  $("div." + randomStr).append(result);
+       			 	};
+			        getRequest(result[i].ytbKeyword) 
+			        
+			        console.log(html)
+			        
+			        $("#youtube-area").append(html);
+       	  		} // for
+    	});
+    }
 
     //좌측 메뉴 스크립트
 
@@ -132,9 +191,6 @@
 
     //==================== todo list =========================
     $(function () {
-
-     
-
       // Input gains focus on document ready
       //$('input').focus();
       var html = "";
@@ -152,16 +208,16 @@
           // Get input value
           var $todo = $('.list-input').val();
 
-          // Create new list item
           if($(".todo").text().includes($todo)) {
-            alert("이미 등록된 검색어입니다.");
+            swal("이미 등록된 검색어입니다.", "", "error");
             $('.list-input').val("");
             return; 
           } 
 
+          // Create new list item
           var $newListItem = $('<li class="todo">' + $todo + '<span class="list-span">' +
             '<a href="#" data-random="'+ randomStr +'" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
-            '<input type="hidden" value="' + randomStr + '">' +
+            '<input type="hidden" value="' + $todo + '">' +
             '</span>' + '</li>');
 
           // Add list item to end of list
@@ -178,14 +234,15 @@
 
            html =  "<div class='"+ randomStr +"' style='margin-bottom: 50px;'>"
                 + "<div class='content-title'><h1>" + $todo + "</h1></div>" 
+                + "</div>"
 
             /* ------------------------- 유튜브api ---------------------------- */
-            function getRequest(searchTerm) {
+            function getRequest(keyword) {
                 var url = 'https://www.googleapis.com/youtube/v3/search';
                 var params = {
                     part: 'snippet',
                     key: 'AIzaSyBhomSVCcyHNr7jCxxVe04ITSZXYqg0wHY',
-                    q: searchTerm,
+                    q: keyword,
                     regionCode:"KR",
                     type: "video",
                     videoEmbeddable: "true",
@@ -200,16 +257,27 @@
                 var entries = results.items;
                 
                 $.each(entries, function (index, value) {
-                    var title = value.snippet.title;
-                    var thumbnail = value.snippet.thumbnails.default.url;
                     var videoId = value.id.videoId;
                     
-                    result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="48%" height="360" src="http://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+                    result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="48%" height="360" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+                    		
+	                  // ajax호출 키워드, url DB저장
+	                  $.ajax({
+	                	  url: "<c:url value='/admin/youtube/add-keyword.mn'/>",
+	                	  type: "POST",
+	                	  data:	{
+	                		  "ytbKeyword" : $todo,
+	                		  "ytbWriter" : "${user.id}",
+	                		  "ytbURL" : 'https://www.youtube.com/embed/' + videoId + '?enablejsapi=1'
+	                	  }
+	                  }).done(function(result) {
+	                	  console.log("인서트 성공");
+	                  });
                   }); 
                   $("." + randomStr).append(result);
             }
 
-            html +=   "</div>"
+//             html +=   "</div>"
 
             console.log(html)
 
@@ -260,6 +328,17 @@
         $(this).closest('li').fadeOut(500, function () {
           $(this).remove();
         });
+        
+        // 삭제 ajax 호출
+         $.ajax({
+        	  url: "<c:url value='/admin/youtube/remove-keyword.mn'/>",
+        	  type: "POST",
+        	  data:	{
+        		  "ytbKeyword" : $(this).siblings('input').val(), 
+        	  }
+          }).done(function(result) {
+        	  console.log("삭제 성공");
+          });
 
         console.log($(this).siblings('input').val());
 

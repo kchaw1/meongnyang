@@ -313,8 +313,8 @@ $(document).ready(function () {
 	var searchSort = function(call) {
 		var $sort = $(call).data("sort");
 		
-			 var $searchType = $("#y-searchType option:selected").val()
-			 var $keyword = $("#y-keyword").val()
+			 var $searchType = $("#searchType option:selected").val()
+			 var $keyword = $("#keyword").val()
 			 
 			 if ($(call).data("flag") == 1) {
 				 $(call).data("flag", 2)

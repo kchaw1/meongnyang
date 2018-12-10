@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<c:import url="../common/headerfooterCSSJS.jsp" />
 <c:import url="adminCommonCSSJS.jsp" />
 <c:import url="adminCSSJS.jsp" />
 <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
@@ -102,20 +103,10 @@
 					</ul>
 					<div id="tabs-1">
 						<p>탭1</p>
-						<iframe width="30%" height="20%"
-							src="https://www.youtube.com/embed/fdsZrJIUVXo" frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
-						<iframe width="30%" height="20%"
-							src="https://www.youtube.com/embed/fdsZrJIUVXo" frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
-						<iframe width="30%" height="20%"
-							src="https://www.youtube.com/embed/fdsZrJIUVXo" frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
+						
 					</div>
-					<div id="tabs-4"></div>
+					<div id="tabs-4">
+					</div>
 				</div>
 
 				<h1 style="clear: both;">사용자 관리</h1>

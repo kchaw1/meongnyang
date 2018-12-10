@@ -3,4 +3,29 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nmcat.repository.mapper.YoutubeMapper">
 
+<resultMap id="ytbMap" type="Youtube">
+	<result column="ytb_no" property="ytbNo" />
+	<result column="ytb_writer" property="ytbWriter" />
+	<result column="ytb_keyword" property="ytbKeyword" />
+	<result column="ytb_url" property="ytbURL" />
+	<result column="ytb_reg_date" property="ytbRegDate" />
+</resultMap>
+
+<insert id="insertKeyword" parameterType="Youtube">
+	insert into mn_ytb(ytb_writer, ytb_keyword, ytb_url)
+		 values(#{ytbWriter}, #{ytbKeyword}, #{ytbURL})
+</insert>
+
+<delete id="deleteKeyword" parameterType="String">
+	delete from mn_ytb
+	      where ytb_keyword = #{ytbKeyword}
+</delete>
+
+<select id="selectKeywordList" resultMap="ytbMap">
+	select *
+	  from mn_ytb
+	 group by ytb_keyword 
+	 order by ytb_no asc  
+</select>
+
 </mapper>

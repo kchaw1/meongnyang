@@ -45,7 +45,7 @@
 		              			</button>
 		              		</div>
 				            <div class="progress">
-		                      <fmt:parseNumber var="progress" value="${(detail.crNowMoney/detail.crGoalMoney*100)+(1-((detail.crNowMoney/detail.crGoalMoney*100)%1))%1}" integerOnly="true"/>
+		                      <fmt:parseNumber var="progress" value="${(detail.crNowMoney/detail.crGoalMoney*100)-((detail.crNowMoney/detail.crGoalMoney*100)%1)}" integerOnly="true"/>
 				                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" 
 				                <c:choose>
 				                	<c:when test="${progress gt 100}">style="width: 100%;"</c:when>
