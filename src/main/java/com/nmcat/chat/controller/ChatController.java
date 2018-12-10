@@ -29,12 +29,6 @@ public class ChatController {
 	   public void chat() {
 		   
 	   }
-	   @GetMapping("/chat/logout.mn")
-	   @ResponseBody
-	   public String logout(HttpSession session) {
-		   session.invalidate();
-		   return "success";
-	   }
 	   @GetMapping("/chat/chatRoom.mn")
 	   public Map<String, Object> chatRoom(Chat chat,Model model) {
 			Map<String,Object> map = new HashMap<>();

@@ -50,7 +50,7 @@
        
         <div class="col-xs-7">
           <div class="chat-wrapper">
-          <div class="chat-list" id="out" style="overflow-y:auto;">
+          <div id="chatlist" class="chat-list" id="out" style="overflow-y:auto;">
           </div>
             <div class="chat-content">
             
@@ -108,9 +108,7 @@ $(function () {
 			    $("div").append('웹소켓 에러 발생 : ' + evt.data)
 		};
 		chat.onclose = function() {
-			var out = "${user.id}";
 			$(".chat-list").append("<p>채팅 연결이 되지않아 종료됨.</p>");
-			chat.send("output : " + out);
 			    
 
 		}
@@ -141,9 +139,7 @@ $(function () {
         		console.log($msg.val());
         			
         		chat.send(loginId + ":" + $msg.val());
-        		$msg.val("");
-        		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
-        		
+        		$msg.val("");        		
         }
         
         
@@ -165,7 +161,10 @@ $(function () {
 	});
 
 	
-	
+	window.setInterval(function() {
+        var elem = document.getElementById('chatlist');
+        elem.scrollTop = elem.scrollHeight;
+    }, 0);
 	
  
 	
