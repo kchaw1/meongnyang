@@ -30,7 +30,6 @@
 		  <li><a href="<c:url value='/facechat/dochat.mn'/>?no=${user.no}" id="facechat">영상통화 연습</a></li> 
 		 <li><a href="<c:url value='/msg/msgsend.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
 		  <li><a href="<c:url value='/friend/friendlist.mn'/>" id="friendlist">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
-		  <!-- <li><a href="#">내 활동<span class="lialarm" id="hidden">1</span></a></li> -->
 		  <li><a href="#1" class="pointcharge" id="point">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
 		  <li class="divider"></li>
 		  <li><a href="<c:url value='/member/logout.mn'/>" id="logout" >로그아웃</a></li>
