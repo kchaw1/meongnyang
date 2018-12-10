@@ -440,7 +440,7 @@ $( function() {
            readURL(this);
         })
 </script>
-<%-- /* "<c:url value='/main/mainPage.mn'/>" */ --%>
+
 <script>
 /*네이버 로그인*/
  
@@ -483,77 +483,7 @@ $( function() {
 			});
 		}
 	
- /*  var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "yf6XqSXCa0vHUbfIL8Ll",
-			callbackUrl: "개발자센터에 등록한 callback Url",
-			isPopup: false, 
-			loginButton: {color: "green", type: 3, height: 60} 
-		}
-	);
-	
-	
-	naverLogin.init(); */
- 
-/*  var naver_id_login = new naver_id_login("yf6XqSXCa0vHUbfIL8Ll", "http://localhost:8000/nmcat/main/mainPage.mn");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 2,40);
-  	naver_id_login.setDomain("YOUR_SERVICE_URL");
-  	naver_id_login.setState(state);
-  	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login(); */
-  	
-/* $(function() {
-	var naverLogin = new naver.loginWithNaverId({
-		clientId: "yf6XqSXCa0vHUbfIL8Ll",
-		callbackUrl: "http://localhost:8000/nmcat/main/mainPage.mn",
-		isPopup: true,
-		loginButton: {color: "green", type: 3, height: 45}
-	});
-	naverLogin.init();
-}) // e.o.naver */
-/* var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "yf6XqSXCa0vHUbfIL8Ll",
-			callbackUrl:"http://localhost:8000/nmcat/main/mainPage.mn",   
-			isPopup: false, 
-			loginButton: {color: "white", type: 2, height: 22, width: 20} //흰색 작은배너형 높이 30px 
-		}
-	);
-	
-	/* 설정정보를 초기화하고 연동을 준비 */
-	/* naverLogin.init();
-	
-	naverLogin.getLoginStatus(function (status) {
-		if (status) {
-			var email = naverLogin.user.getEmail();
-			var name = naverLogin.user.getNickName();
-			var profileImage = naverLogin.user.getProfileImage();
-			var uniqId = naverLogin.user.getId();
-		} else {
-			console.log("AccessToken이 올바르지 않습니다.");
-		}
-	}); */
-	
-	/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
- 	/*window.addEventListener('load', function () {
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				
-				var email = naverLogin.user.getEmail();
-				if( email == undefined || email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					
-					naverLogin.reprompt();
-					return;
-				}
 
-				window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/member/login.mn");
-			} else {
-				console.log("callback 처리에 실패하였습니다.");
-			}
-		});
-	});*/ 
 </script>
 </body>
 </html>

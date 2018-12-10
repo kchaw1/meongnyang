@@ -26,5 +26,8 @@ public interface MemberMapper {
 	
 	/******추가 정보 *********/
 	Member selectCheckNaverLogin(Member member);
+	
+	/**********비밀번호 수정************/
+	void updatePass(Member member);
 
 } // end class
