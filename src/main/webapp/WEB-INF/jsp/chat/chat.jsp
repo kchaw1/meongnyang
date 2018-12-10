@@ -66,6 +66,7 @@
 
 var chat = null;
 var loginId = null;
+var chNo = "${chNo}";
 $(function () {
 	
 	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
@@ -78,15 +79,17 @@ $(function () {
 		  */
 		
 		  chat.onopen = function() {
+			console.log("${chNo}");
 			 var In = "${user.id}"
 			    console.log('웹소켓 서버 접속 성공');
 			    $(".chat-list").append("<p>채팅이 시작되었습니다</p>")
-			    chat.send("input : " +In);
+			    chat.send("input : " + In +  ",chNo : "+chNo);
 			  	console.log("입장 아이디 : "+In);
+			  	
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {
-    		var $msg = $("#message");
+    	/* 	var $msg = $("#message");
 			$msg.val("");
 			console.dir(evt)
 			if(evt.data.endsWith("입장 하셨습니다.")){
@@ -101,7 +104,22 @@ $(function () {
 				}else{
 		 	 		$(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+chatId[0]+":"+chatId[1]+"</p></div><br>");
 				}
-			}
+			} */
+			
+			
+			console.dir(evt);
+		 	var ex = evt.data.split(',');
+		 	var exId = ex[1].split(":");
+		 	
+		 	console.log("1:"+ex);
+		 	console.log("2"+exId);
+		 	console.log("3"+exId[0]);
+		 	console.log("4"+exId[1]);
+		 	if("${user.id}"==exId[0]){		 		
+		 		$(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+exId[1]+"</p></div><br>");
+		 	}else{	
+				$(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+exId+"</p></div><br>");
+		 	}
 			
 		};
 		chat.onerror = function(evt) {
@@ -122,7 +140,7 @@ $(function () {
     		// 웹소켓 서버에 데이터 전송하기
     		console.log($msg.val());
     			
-    		chat.send(loginId + ":" + $msg.val());
+    		chat.send(chNo+","+loginId + ":" + $msg.val());
     		$msg.val("");
     		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
     		
@@ -138,7 +156,7 @@ $(function () {
         		// 웹소켓 서버에 데이터 전송하기
         		console.log($msg.val());
         			
-        		chat.send(loginId + ":" + $msg.val());
+        		chat.send(chNo+","+loginId + ":" + $msg.val());
         		$msg.val("");        		
         }
         
@@ -166,7 +184,6 @@ $(function () {
         elem.scrollTop = elem.scrollHeight;
     }, 0);
 	
- 
 	
 </script>
 </body>

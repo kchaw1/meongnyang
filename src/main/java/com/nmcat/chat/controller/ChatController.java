@@ -26,8 +26,8 @@ public class ChatController {
 	 	
 	 	
 	   @GetMapping("/chat/chat.mn")
-	   public void chat() {
-		   
+	   public void chat(int chNo, Model model) {
+		   model.addAttribute("chNo",chNo);
 	   }
 	   @GetMapping("/chat/chatRoom.mn")
 	   public Map<String, Object> chatRoom(Chat chat,Model model) {

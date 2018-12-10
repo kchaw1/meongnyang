@@ -36,7 +36,7 @@
                             <a id="delete" href="#" onclick="doChatExit()" value="${c.id}"><img id="exit" src="/nmcat/resources/img/chat/xbox.png"/></a> 
                    
                           <p class="pull-left" >${c.chTitle}</p>
-                              <a href="#" onclick="doChat()"><img src="/nmcat/resources/img/chat/KakaoTalk_20181122_180513355.png"/></a>
+                              <a href="#" onclick="doChat('${c.chNo}')"><img src="/nmcat/resources/img/chat/KakaoTalk_20181122_180513355.png"/></a>
                         </div>
                       </c:forEach>
 
@@ -69,8 +69,10 @@
         </div>
       </div>
         <script>
-        function doChat() {
-             window.open("<c:url value='/chat/chat.mn' />", "chat", "width=562, height=600, scrollbars=yes");
+        
+        function doChat(chNo) {
+        	console.log(chNo);
+             window.open("<c:url value='/chat/chat.mn?chNo="+chNo+"' />", chNo, "width=562, height=600, scrollbars=yes");
         }
         function doChatExit() {
         	chatDelete();
