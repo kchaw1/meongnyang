@@ -35,4 +35,7 @@ public interface MemberService {
 	
 	// 로그아웃 시간
 	void updateHistory(String loginId);
+	
+	// 비밀번호 수정
+	void updatePass(Member member);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.mail.HtmlEmail;
+import org.apache.log4j.lf5.PassingLogRecordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -145,6 +146,13 @@ public class MemberServiceImpl implements MemberService{
 	public void updateHistory(String loginId) {
 		lomapper.updateHistory(loginId);
 		
+	}
+	
+	// 비밀번호 수정
+	@Override
+	public void updatePass(Member member) {
+		member.setPass(member.getPass());
+		mapper.updatePass(member);
 	}
 
 }

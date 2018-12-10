@@ -82,8 +82,10 @@
                    </c:forEach>
                 </tbody>
             </table>
-            </form>
+            <div id="paging">
             
+            </div>
+            </form>
             <form id="searchForm">
                 <div id="search">
                     <div class="search-group">
@@ -98,7 +100,7 @@
                 </div>
             </form>
             <div class="deleteBtn">
-                <button type="button" id="delBtn" onclick="deleteAction()">삭제</button>
+                <button type="button" id="delBtn" onclick="msgdel()">삭제</button>
             </div>
         </div>
         <div id="tabs-2">
@@ -124,7 +126,34 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <div>
+            
+         <%-- <div class="text-center">
+           <c:if test="${pageResult.count != 0}">
+				<nav class="text-center">
+					<ul class="pagination">
+						<li
+							<c:if test="${pageResult.prev eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.beginPage - 1}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a>
+						</li>
+						<c:forEach var="i" begin="${pageResult.beginPage}"
+							end="${pageResult.endPage}">
+							<li <c:if test="${i eq pageResult.pageNo}">class="active"</c:if>>
+								<a href="${i}">${i}</a>
+							</li>
+						</c:forEach>
+						<li
+							<c:if test="${pageResult.next eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.endPage + 1}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+	
+						</a>
+						</li>
+					</ul>
+				</nav>
+			</c:if>
+		  </div>	 --%>
             <form id="searchForm">
                 <div id="search">
                     <div class="search-group">
@@ -139,7 +168,7 @@
                 </div>
             </form>
             <div class="deleteBtn">
-                <button type="button" id="delBtn">삭제</button>
+                <button type="button" id="delBtn" onclick="msgdel()">삭제</button>
             </div>
         </div>
     </div>
@@ -153,7 +182,7 @@
 						<div class="memopop">
 							<div id=sendId>${user.id}</div>
         					<input type="hidden" name="sendId" value="${user.id}" />
-							<span>받는사람 : </span> <input type="text" name=recvId id="name" />
+							<span>받는사람 : </span> <input type="text" name=recvId id="name" value="${member.recvId}"/>
 						</div>
 						<hr>
 						<span>제목 : </span> <input type="text" name="msgTitle" id="title" />
@@ -166,7 +195,7 @@
 			</form>
 		</div>
 		
-		
+	
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
 
 <script>
@@ -277,5 +306,90 @@ function deleteAction(){
 		});
 	});
 </script>
+<script>
+var recvlist = function(pageNo) {
+	var paging =""
+		if(result.pageResult.count != 0) {
+			paging += 	"<nav>"
+						+ "<ul class='pagination'>"
+			
+			if(result.pageResult.prev == false) {
+				paging += "<li class='disabled'>"
+			} else {
+				paging += "<li>"
+			} // if-else
+			paging += 	  "<a href='"+ (result.pageResult.beginPage-1) +"' aria-label='Previous'>"
+						+ "<span aria-hidden='true'>&laquo;</span>"
+						+ "</a>"
+						+ "</li>"
+			for(var i=result.pageResult.beginPage; i<=result.pageResult.endPage; i++) {
+				if(i == result.pageResult.pageNo) {
+					paging += "<li class='active'>"
+				} else {
+					paging += "<li>"
+				} // if-else
+				paging += "<a href='"+ i +"'>" + i + "</a>"
+						  "</li>"
+			} // for
+			if(result.pageResult.next == false) {
+				paging += "<li class='disabled'>"
+			} else {
+				paging += "<li>"
+			} // if-else
+			if(result.pageResult.endPage+1 == result.pageResult.lastPage+1) {
+				paging += "<a href='last' aria-label='Next'>"		
+			} else {
+				paging += "<a href='"+ (result.pageResult.endPage+1) +"' aria-label='Next'>"						
+			} // if-else	
+			paging +=     "<span aria-hidden='true'>&raquo;</span>"
+						+ "</a>"
+						+ "</li>"
+						+ "</ul>"
+						+ "</nav>"
+		} // if
+		$("#paging").append(paging)
+}
+</script>
+<script>
+function msgdel(){
+
+	  var msgNo = "";
+	  var memberChk = document.getElementsByName("checkRow");
+	  var chked = false;
+	  var indexid = false;
+	  for(i=0; i < memberChk.length; i++){
+	   if(memberChk[i].checked){
+	    if(indexid){
+	      msgNo = msgNo + '-';
+	    }
+	    msgNo = msgNo + memberChk[i].value;
+	    indexid = true;
+	   }
+	  }
+	  if(!indexid){
+	   alert("삭제할 사용자를 체크해 주세요");
+	   return;
+	  }
+	  document.userForm.delUserid.value = msgNo;
+	  
+	  var agree=confirm("삭제 하시겠습니까?");
+	     if (agree){
+	   document.userForm.execute.value = "msgdel";
+	     document.userForm.submit();
+	     } 
+	  }﻿
+</script>
+<!-- <script>
+$(".pagination > li:eq(0) > a").click(function(e){
+	if(!${pageResult.prev}){
+		e.preventDefault();
+	}
+});
+$(".pagination > li:last > a").click(function(e){
+	if(!${pageResult.next}){
+		e.preventDefault();
+	}
+});
+</script> -->
 </body>
 </html>

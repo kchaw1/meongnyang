@@ -34,6 +34,9 @@ public class Member {
 	private String loginState;
 	private String authState;
 	private String greetings;
+	private String careerStart;
+	private String careerEnd;
+	private String careerContent;
 	private int point;
 	private List<String> FriendIdList;
 	private List<String> BlackIdList;

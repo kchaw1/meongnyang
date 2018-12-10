@@ -13,4 +13,5 @@ public interface MessageMapper {
 	int deleteMsg(int no); // 게시물 삭제
 	Message selectMsgDetail(int no); // 쪽지 상세
 	int selectRecvCount();
+	
 }

@@ -16,7 +16,7 @@
 <body>
  <div class="contents">
     <div class="memopop">
-        <span>받는사람 : </span> <input type="text" name="name" id="name"/>
+        <span>받는사람 : </span> <input type="text" name="name" id="name" value="${user.id}"/>
     </div>
     <hr>
     <span>제목 : </span> <input type="text" name="title" id="title"/>
