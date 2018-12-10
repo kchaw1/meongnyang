@@ -24,6 +24,8 @@ public interface DiaryService {
 
 	List<DiaryBoard> listShareDiary(int begin);
 
+	Map<String, Object> showDetailDiary(int drNo);
+
 
 
 }

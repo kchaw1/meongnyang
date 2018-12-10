@@ -40,6 +40,10 @@
 	}
 	#rooms-list tr {
 	visibility : hidden;} 
+	.loading {
+		width : 500px;
+		margin : auto;
+	}
 </style>
 <body>
 
@@ -48,6 +52,7 @@
 		<div id="videos-container"></div>	
 	</div>
 </div>
+<div class="loading"></div>
 <div id="setup-room">
 	<!-- <input type="text" id="conference-name">
     <button id="setup-new-room" class="setup">new</button> -->

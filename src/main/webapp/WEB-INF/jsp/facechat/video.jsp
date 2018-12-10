@@ -233,12 +233,21 @@ function captureUserMedia(callback, failure_callback) {
 
             callback && callback();
             //pinVideo(stream);
+            var h1 = document.createElement('h1')
+            h1.setAttribute("class", "la-anim-12");
+            h1.setAttribute("data-content", "${param.name}님의 요청 수락을 기다리는 중입니다...")
+            h1.innerHTML = "${param.name}님의 요청 수락을 기다리는 중입니다...";
+            var loading = document.querySelector(".loading")
+            loading.appendChild(h1);
         },
         onerror: function() {
             alert('unable to get access to your webcam');
             callback && callback();
         }
     });
+    
+    
+    
 }
 
 //유니크토큰이 있는지 없는지... 판단..

@@ -70,6 +70,8 @@
 		 where dr_no = #{drNo}
 	</update>
 	
+	
+	
 	<resultMap type="DiaryFile" id="fileMap">
 		<result column="dr_no" property="drNo"/>
 		<result column="drf_no" property="drfNo"/>

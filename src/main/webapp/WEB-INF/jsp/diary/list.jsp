@@ -15,7 +15,7 @@
           <div class="diaryList">
 
           </div>
-        </div>
+      	</div>
       </div>
     </div>
-  </div> 
+</div> 

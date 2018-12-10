@@ -11,7 +11,12 @@
 /* ul#stickies {
 	text-align: center;
 } */
-ul#stickies > li {
+/* div.sharediaryList {
+	width : 98%;
+	min-height : 800px;
+	margin : auto;
+} */
+ul#stickies  li {
 	/* border : 1px solid brown; */
     float: left;
     margin: 20px;
@@ -24,7 +29,7 @@ ul#stickies > li {
 /* ul#stickies span {
     font-size: 68px;
 } */
-ul#stickies > li:nth-child(9n+1){
+ul#stickies  li:nth-child(9n+1){
     width: 350px; height: 350px;
     transform: rotate(-4deg);
     background-image: url(../../../img/diary/post1.png);
@@ -32,7 +37,7 @@ ul#stickies > li:nth-child(9n+1){
     background-repeat : no-repeat;
     padding-left : 50px;
 }
-ul#stickies > li:nth-child(9n+2){
+ul#stickies  li:nth-child(9n+2){
     width: 350px; height: 430px;
     transform: rotate(4deg);
     background-image: url(../../../img/diary/post2.png); 
@@ -40,7 +45,7 @@ ul#stickies > li:nth-child(9n+2){
     background-repeat : no-repeat;
     padding: 50px;
 }
-ul#stickies > li:nth-child(9n+3){
+ul#stickies  li:nth-child(9n+3){
     width: 300px; height: 350px;
     transform: rotate(-2deg);
     background-image: url(../../../img/diary/post3.png);
@@ -48,15 +53,15 @@ ul#stickies > li:nth-child(9n+3){
     background-repeat : no-repeat;
     padding: 30px;
 }
-ul#stickies > li:nth-child(9n+4){
+ul#stickies  li:nth-child(9n+4){
     width: 400px; height: 450px;
     transform: rotate(4deg);
     background-image: url(../../../img/diary/post4.png);
     background-size : 100%;
     background-repeat : no-repeat;
-    padding-top : 60px;
+    padding-top : 70px;
 }
-ul#stickies > li:nth-child(9n+5){
+ul#stickies  li:nth-child(9n+5){
     width: 350px; height: 350px;
     transform: rotate(6deg);
     background-image: url(../../../img/diary/post5.png);
@@ -64,7 +69,7 @@ ul#stickies > li:nth-child(9n+5){
     background-repeat : no-repeat;
     padding : 50px;
 }
-ul#stickies > li:nth-child(9n+6){
+ul#stickies  li:nth-child(9n+6){
     width: 300px; height: 350px;
     transform: rotate(-4deg);
     background-image: url(../../../img/diary/post6.png);
@@ -73,7 +78,7 @@ ul#stickies > li:nth-child(9n+6){
     padding-top :100px;
     padding-left : 30px;
 }
-ul#stickies > li:nth-child(9n+7){
+ul#stickies  li:nth-child(9n+7){
     width: 350px; height: 380px;
     transform: rotate(2deg);
     background-image: url(../../../img/diary/post7.png);
@@ -81,7 +86,7 @@ ul#stickies > li:nth-child(9n+7){
     background-repeat : no-repeat;
     padding-left : 30px;
 }
-ul#stickies > li:nth-child(9n+8){
+ul#stickies  li:nth-child(9n+8){
     width: 400px; height: 450px;
     transform: rotate(-3deg);
     background-image: url(../../../img/diary/post8.png);
@@ -89,7 +94,7 @@ ul#stickies > li:nth-child(9n+8){
     background-repeat : no-repeat;
     padding-left : 60px;
 }
-ul#stickies > li:nth-child(9n){
+ul#stickies  li:nth-child(9n){
     width: 450px; height: 500px;
     background-image: url(../../../img/diary/post9.png);
     background-size : 100%;
@@ -97,11 +102,13 @@ ul#stickies > li:nth-child(9n){
     padding-left : 60px;
     padding-top : 100px;
 }
-ul#stickies > li:hover {
+ul#stickies  li:hover {
     transform: scale(1.2) rotate(0deg);
     transition: 0.5s;
 }
-
+li.diary {
+	overflow : auto;
+}
 div.dr-title {
   padding-bottom : 5px;
   /* border-bottom : 1px solid  rgb(128, 128, 128, 0.3); */
@@ -123,13 +130,195 @@ div.writer {
   font-size : 20px;
 	float : left;
 }
+
 div.dr-content {
 	clear : both;
   padding : 10px 15px 0px;
   height : 100%;
   overflow : hidden;
+  
 }
 div.dr-content img {
 	width :100% !important;
+}
+ul#stickies  li.diary.bigger {
+	width : 480px; height: 550px;
+	padding : 60px;
+}
+/* li.diary.bigger > .dr-content img {
+	width : 90% !important;
+	
+} */
+li.diary.bigger  .dr-content p {
+	width : 80% !important;
+	margin : auto;
+}
+
+/* 모달 css */
+div.modal {
+	z-index : 2000;
+}
+div.modal#share div.modal-dialog {
+  width : 70%;
+  height: 90%;
+  border-radius: 20px;
+}
+div.modal#share div.modal-content {
+  position: relative;
+  overflow: hidden;
+  height: 103%;
+  background-image : url("../../../img/diary/diary2.png");
+  /* background-size: 1350px auto;  */
+  background-size: 115% auto; 
+  background-repeat: no-repeat; 
+  /* background-position: -100px; */
+  background-position: -100px;
+  /* transform: rotate(-10deg) */
+}
+ /*
+div.modal-contet:before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top : -50%;
+  left: -50%;
+   0 0 no-repeat;
+  background-size: 100% auto; 
+  background-repeat: no-repeat; */
+  /* background-position: bottom; 
+  z-index: 10;
+
+} */
+/* div.modal-content::before {
+  position: absolute;
+  width: 70%;
+  height: 90%;
+  z-index: 1;
+} */
+.modal#share {
+  text-align: center;
+}
+.modal .modal-center {
+ margin: 20px auto;
+}
+div.modal#share .modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+div.modal#share .modal-header {
+  height: 50px;
+  padding: 10px;
+}
+div.modal#share h3.header {
+  margin: 0 30px;
+  color: rgb(29, 67, 99)
+}
+div.modal#share div.diaryList {
+  width : 550px;
+  height: 750px;
+  /* border: 1px solid gray; */
+  margin: 10px auto 0;
+  overflow: scroll;
+  padding : 10px;
+  /* transform: skew(0deg, 10deg); */
+}
+div.modal#share .close {
+  float: left;
+}
+div.modal#share div.diary {
+  clear: both;
+  margin : 10px 10px;
+  width : 90%;
+}
+div.modal#share div.dr-title {
+  padding-bottom : 5px;
+  border-bottom : 1px solid  rgb(128, 128, 128, 0.3);
+  width: 100%;
+}
+div.modal#share span.label {
+  margin: 10px;
+  /* display: inline-block; */
+  border-radius: 5px; 
+  font-size : 11px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+div.modal#share span.title {
+  color : rgb(94, 94, 94);
+  font-size : 24px;
+}
+div.modal#share span.date {
+  color : rgb(94, 94, 94, 0.5);
+  font-size : 15px;
+}
+div.modal#share span.label-share {
+  background-color: rgb(65, 192, 142);
+}
+div.modal#share span.label-friend {
+  background-color: rgb(255, 194, 64);
+}
+div.modal#share span.label-noshare {
+  background-color: rgb(247, 117, 78);
+}
+div.modal#share div.dr-content {
+  padding : 15px 20px 0px;
+  font-size : 20px;
+}
+div.modal#share div.buttons {
+  height: 40px;
+  /* border-bottom :1px solid  rgb(128, 128, 128, 0.3) */
+}
+div.modal#share div.button-box {
+  float: right;
+  margin-right: 10px 
+}
+button[class^='dr-']{
+  width : 40px;
+  height: 25px;
+  border-radius: 5px;
+  color : gray;
+  border-color: gray;
+  margin-right : 10px;
+  background-color: transparent;
+}
+button[class^='dr-']:hover {
+  color : black;
+}
+/* button.dr-delete {
+  background-color : rgb(213, 145, 106);
+}
+button.dr-update {
+  background-color : rgb(120, 190, 151);
+} */
+a[data-toggle] span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  margin-right: 4px; 
+  margin-bottom : 4px;
+  background-color: salmon;
+}
+
+div.modal#share div.updateform {
+	display : inline-block;
+	margin-left : 10px;
+}
+div.modal#share .updateform input[type='radio'] {
+	margin-left : 10px;
+	margin-right : 8px;
+}
+div.modal#share button.dr-updatecomplete{
+	width : 80px;
+}
+div.modal#share div.updatebutton-box {
+  float: right;
+  margin-right: 10px; 
+}
+
+div.modal#share .dr-content.update {
+  text-align: left;
+  font-size: 14px;
 }
 

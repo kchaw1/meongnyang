@@ -101,5 +101,12 @@ public class DiaryServiceImpl implements DiaryService{
 		return mapper.selectShareDiaryByPaging(begin);
 	}
 
+	@Override
+	public Map<String, Object> showDetailDiary(int drNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("diary", mapper.selectOneDiaryBydrNo(drNo));
+		return map;
+	}
+
 	
 } // service
