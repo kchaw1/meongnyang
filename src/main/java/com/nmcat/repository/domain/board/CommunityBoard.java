@@ -17,6 +17,8 @@ private String comContent;
 private String comCategory;
 private int comCommentCnt;
 private int comRefCnt;
+private int comCheckCnt;
+
 
 
 	

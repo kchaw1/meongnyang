@@ -55,6 +55,7 @@ public interface CommunityMapper {
 	int selectRefCnt(int comNo);
 	void insertRef(CommunityRef comRef);
 	void deleteRef(CommunityRef comRef);
+	int checkRef(CommunityRef comRef);
 	
 	
 	

@@ -42,7 +42,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-family: 'Jua';
     font-weight: 100;
     margin-top: -38px;
-    margin-right:0px;
+    margin-right:7px;
 	
 }
 .profileAndName{
@@ -281,16 +281,18 @@ height :0px;
 //---------------------------------------------------------------------------------------------------------------
 // 처음 커뮤니티 페이지 뜰때에는 1Page이며 ajax를 이용하여 뿌려준다.
  $(document).ready(function(){
-	
+
 	nextList(1);
 
 }); 
+
 
 
 //전체보기를 위한 페이지 번호
 var pageNo = 1;
 var beforeComCategory;
 var clickPlus = false;
+var user;
 
 function forAllBtn(){
 	//전체보기를 위한 버튼
@@ -304,15 +306,20 @@ function forAllBtn(){
 
 //전체보기를 위한 페이지
  var nextList = function(pageNoS, comCategory){
-	var param = "pageNo="+pageNoS;
+	 user = "${user.id}"
+	 console.log("현재"+user+"님이 접속해 있습니다.");
+	//param은 페이지 번호를 가지고 있다.
+	var param = "pageNo="+pageNoS+"&user="+user;
 	if (comCategory) { 
+	//만약 카테고리가 전체보기가 아닐때 param에 카테고리또한 넣어준뒤 페이지 번호를 1로 변환시킨다.
 		if (comCategory != "all") param += "&comCategory=" + comCategory;
 		pageNo = 1;
-	}
+	}//end first if
 	
 	if (clickPlus) {
+		//clickPlus가 true이고 선택된 카테고리의 값이 전체보기가 아니라면 선택된 카테고리값을 넣어준다. 
 		if ($("#slct").val() != "all") param += "&comCategory=" + $("#slct").val();
-	}
+	}//end second if
 	
 	console.log(pageNoS+"----------------------처음 전체보기를 위한 ajax입니다-------------------------")
 
@@ -347,10 +354,19 @@ function forAllBtn(){
                 +"</div></div>"
                 +"<div class = 'forImg'></div></div>"
                 +"<div class = 'bottom'>"
-                +"<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}') data-toggle='tooltip' data-placement='top' title='"+result.list[i].comRefCnt+"'></div>"
+                if(result.list[i].comCheckCnt == 1){
+                text+= "<div class ='heart is-active "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"
                 +"<div class = 'forCnt'>"
                 +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
                 +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+                }else{
+                text+= "<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"	
+                +"<div class = 'forCnt'>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+                }
+              
+              
               
 		}
 		if (comCategory && clickPlus == false) {
@@ -365,18 +381,7 @@ function forAllBtn(){
 			var no = $(this).attr('id');
 			location.href = "detailPage.mn?comNo="+no;
 									});
-		/* $('.heart').tooltip(options) */
-		$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
 
-		/*    $(".heart").on("click", function() {
-		    $(this).toggleClass("is-active");
-		  }); */
-		  
-		
-		   
-		 
 
 	})
 
@@ -387,11 +392,6 @@ function nextListSecond(comCategory){
 	nextList(pageNoS, comCategory)	
 }
 
-// function nextListSecond(comCategory){
-// 	 console.log(comCategory);
-// 	 location.href = "communityPage2.mn?comCategory="+comCategory;
-	
-// }
 
 
 
@@ -411,16 +411,69 @@ $(".writeBtn").click(function() {
 
 
 function refFunction(comNo, comRefUser){
-console.log(comRefUser);
-	  $(".heart."+comNo).addClass("is-active");
-	  $.ajax({
-		  url : "<c:url value = '/community/insertRefCnt.mn'/>",
-		  type : "POST", 
-		  data : {comNo : comNo, comRefUser : comRefUser }
-	  }).done(function(result){
-		  console.log("추천 성공!!!!!")
-	  })
+	
+	
+	$.ajax({
+		url : "<c:url value = '/community/checkRef.mn'/>",
+		tpye : "POST",
+		data : {comNo : comNo, comRefUser : comRefUser }
+	}).done(function(result){
+		console.log(result);
+		if(result==0){
+			$(".heart."+comNo).addClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/insertRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 완료");
+				  
+					  $.ajax({
+						  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+						  type : "POST", 
+						  data : {comNo : comNo}
+						  }).done(function(result){
+							  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+							 /*  $("div.heart."+comNo).removeAttr("title"); */
+							  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+							  
+						  });
+						  
+					//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			 
+		}else{
+			$(".heart."+comNo).removeClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/deleteRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 취소 완료");
+				  
+				  $.ajax({
+					  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+					  type : "POST", 
+					  data : {comNo : comNo}
+					  }).done(function(result){
+						  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+						 /*  $("div.heart."+comNo).removeAttr("title"); */
+						  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+						  
+					  });
+					  
+				//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			
+		}
+	});
+	
+	  
 }
+
+
+
+
 
 
 

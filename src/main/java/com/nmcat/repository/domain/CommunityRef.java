@@ -6,5 +6,5 @@ import lombok.Data;
 public class CommunityRef {
 	private int comNo;
 	private String comRefUser;
-
+	/*private int comCheckRef;*/
 }

@@ -40,16 +40,21 @@ public class CommunityController {
 	
 	@RequestMapping("/communityPageList.mn")
 	@ResponseBody
-	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
-	
+	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo, String user)throws Exception{
+		
 		comBoard.setPageNo(pageNo);
-//		model.addAttribute("list", service.selectBoard(comBoard));
 		Map<String, Object> map = new HashMap<>();
 		List<CommunityBoard> list = service.selectBoard(comBoard);
-//		/*List <CommunityBoard> list2 = new ArrayList<>();*/
 		for(CommunityBoard c: list) {
 		c.setComCommentCnt(service.selectCommentCount(c.getComNo()));
 		c.setComRefCnt(service.selectRefCnt(c.getComNo()));
+		//새로고침을해도 추천을했을시에도 추천되있을으로 떠있게 하기위해서!
+		CommunityRef comRef = new CommunityRef();
+		comRef.setComNo(c.getComNo());
+		comRef.setComRefUser(user);
+		
+		c.setComCheckCnt(service.checkRef(comRef));
+	
 		}
 
 		
@@ -185,7 +190,13 @@ public class CommunityController {
 			service.deleteRef(comRef);
 			
 		}
-		
+
+		@RequestMapping("/checkRef.mn")
+		@ResponseBody
+		public int checkUserAndNo(CommunityRef comRef)throws Exception{
+			return service.checkRef(comRef);
+			
+		}
 	//-------------------------------파일등록
 	@PostMapping("/uploadfile.mn")
 	@ResponseBody

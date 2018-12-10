@@ -214,6 +214,12 @@
 		from mn_com_ref
 		where com_no = #{comNo}
 	</select>
+	<!-- 추천여부확인 --> 
+	<select id ="checkRef" parameterType = "CommunityRef" resultType = "int" >
+		select count(*)
+		from mn_com_ref
+		where com_no = #{comNo} and com_ref_user = #{comRefUser}
+	</select>
 	<!-- 게시글 추천 -->
 	<insert id = "insertRef" parameterType = "CommunityRef">
 		insert into mn_com_ref

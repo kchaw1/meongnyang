@@ -18,7 +18,7 @@ public class CommunityServiceImpl implements CommunityService{
 	@Autowired
 	private CommunityMapper mapper;
 	
-	//Ŀ�´�Ƽ CRUD
+	//커占승댐옙티 CRUD
 	@Override
 	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
 		
@@ -104,7 +104,7 @@ public class CommunityServiceImpl implements CommunityService{
 		mapper.updateComment(comComment);
 		
 	}
-		//댓글 갯수 카운트!
+		//�뙎湲� 媛��닔 移댁슫�듃!
 	@Override
 	public int selectCommentCount(int comNo) {
 		
@@ -152,10 +152,14 @@ public class CommunityServiceImpl implements CommunityService{
 		mapper.deleteRef(comRef);
 		
 	}
+
+	@Override
+	public int checkRef(CommunityRef comRef) {
+		return mapper.checkRef(comRef);
+		
+	}
 	
-	
-	
-	
+
 	
 	
 
