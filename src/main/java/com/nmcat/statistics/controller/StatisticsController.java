@@ -141,24 +141,19 @@ public class StatisticsController {
 		@RequestMapping("/statistics/week")
 		public void week(Model model) {
 			
-			String month = calNowYearMonth();
+			SimpleDateFormat sdf = new SimpleDateFormat("MM");
 			
-//			model.addAttribute("newMemberWeekArr", service.newMemberWeek(month));
-//			model.addAttribute("visitorWeekArr", service.visitorWeek(month));
-//			model.addAttribute("postWeekArr", service.postWeek(month));
-//			model.addAttribute("commentWeekArr", service.commentWeek(month));
-//			model.addAttribute("pointWeekArr", service.pointWeek(month));
-//			model.addAttribute("timeWeekArr", service.connectTimeWeek(month));	
+			Calendar cal = Calendar.getInstance();
+			cal.add(cal.MONTH, 0);
 			
-//			Map<String, Object> map = new HashMap<>();
-//			
-//			map.put("newMemberWeekArr", service.newMemberWeek(month));
-//			map.put("visitorWeekArr", service.visitorWeek(month));
-//			map.put("postWeekArr", service.postWeek(month));
-//			map.put("commentWeekArr", service.commentWeek(month));
-//			map.put("pointWeekArr", service.pointWeek(month));
-//			map.put("timeWeekArr", service.connectTimeWeek(month));	
+			String month = sdf.format(cal.getTime()); // 이번달
 			
+			model.addAttribute("newMemberArr", service.newMemberWeek(month)); // 가입자
+			model.addAttribute("visitorArr", service.visitorWeek(month)); // 방문자
+			model.addAttribute("postArr", service.postWeek(month)); // 게시물
+			model.addAttribute("commentArr", service.commentWeek(month)); // 댓글
+			model.addAttribute("pointArr", service.pointWeek(month)); // 포인트
+			model.addAttribute("timeArr", service.connectTimeWeek(month)); // 평균접속시간
 		}
 	
 	/* 일반 메소드 */ 
@@ -199,16 +194,5 @@ public class StatisticsController {
 		
 		return monthArr;
 	}
-	
-	// 이번달 년 월 구하기
-	public String calNowYearMonth() {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM");
-		
-		Calendar cal = Calendar.getInstance();
-		cal.add(cal.MONTH, 0);
-		
-		return sdf.format(cal.getTime());
-	}
-	
 }
 

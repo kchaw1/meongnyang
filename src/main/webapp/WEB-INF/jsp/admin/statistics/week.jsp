@@ -53,12 +53,12 @@
                 <div class="seperator"></div>
                 <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                         		 월별
+                         		 주별
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                           <li role="presentation"><a role="menuitem" tabindex="-1" href="day.mn">일별</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="statistics1.html">주별</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="week.mn">주별</a></li>
                           <li role="presentation"><a role="menuitem" tabindex="-1" href="month.mn">월별</a></li>
                         </ul>
                 </div>
@@ -164,6 +164,447 @@
         $(".item").mouseleave(function () {
             $(this).removeClass("selected");
         })
+    </script>
+    
+    <script>
+    
+    var newMemberArr = new Array();
+    var nmWeekAndMonthArr = new Array();
+    
+    <c:forEach var="n" items="${newMemberArr}" varStatus="status">
+   		newMemberArr['${status.index}'] = '${n.count}'
+    	nmWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+    </c:forEach>
+    
+        var ctx = $("#myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: nmWeekAndMonthArr,
+                datasets: [{
+                    label: '가입자수',
+                    data: newMemberArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <script>
+	    var visitorArr = new Array();
+	    var visitorWeekAndMonthArr = new Array();
+	    
+	    <c:forEach var="n" items="${visitorArr}" varStatus="status">
+	    	visitorArr['${status.index}'] = '${n.count}'
+	    	visitorWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+	    </c:forEach>
+    
+        var ctx1 = $("#myChart1");
+        var myChart1 = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: visitorWeekAndMonthArr,
+                datasets: [{
+                    label: '방문자',
+                    data: visitorArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    
+    <script>
+	    var postArr = new Array();
+	    var postWeekAndMonthArr = new Array();
+	    
+	    <c:forEach var="n" items="${postArr}" varStatus="status">
+	   		postArr['${status.index}'] = '${n.count}'
+	   		postWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+	    </c:forEach>
+	    
+        var ctx2 = $("#myChart2");
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: postWeekAndMonthArr,
+                datasets: [{
+                    label: '게시글',
+                    data: postArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+	    var commentArr = new Array();
+	    var cmtWeekAndMonthArr = new Array();
+	    
+	    <c:forEach var="n" items="${commentArr}" varStatus="status">
+	    	commentArr['${status.index}'] = '${n.count}'
+	    	cmtWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+	    </c:forEach>
+    
+        var ctx3 = $("#myChart3");
+        var myChart3 = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: cmtWeekAndMonthArr,
+                datasets: [{
+                    label: '댓글',
+                    data: commentArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+	    var pointArr = new Array();
+	    var pointWeekAndMonthArr = new Array();
+	    
+	    <c:forEach var="n" items="${pointArr}" varStatus="status">
+	    	pointArr['${status.index}'] = '${n.count}'
+	    	pointWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+	    </c:forEach>
+    
+        var ctx4 = $("#myChart4");
+        var myChart4 = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: pointWeekAndMonthArr,
+                datasets: [{
+                    label: '포인트사용량',
+                    data: pointArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+	    var timeArr = new Array();
+	    var timeWeekAndMonthArr = new Array();
+	    
+	    <c:forEach var="n" items="${timeArr}" varStatus="status">
+	    	timeArr['${status.index}'] = '${n.count}'
+	    	timeWeekAndMonthArr['${status.index}'] = '${n.month}' + "월 " + '${n.week}' + "주차"    
+	    </c:forEach>
+    
+        var ctx5 = $("#myChart5");
+        var myChart5 = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: timeWeekAndMonthArr,
+                datasets: [{
+                    label: '평균접속시간(단위 분)',
+                    data: timeArr,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            	tooltips: {
+      			  callbacks: {
+      					label: function(tooltipItem, data) {
+      						var value = data.datasets[0].data[tooltipItem.index];
+      						value = value.toString();
+      						value = value.split(/(?=(?:...)*$)/);
+      						value = value.join(',');
+      						return value;
+      					}
+      			  } // end callbacks:
+      			}, //end tooltips
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            userCallback: function(value, index, values) {
+                                value = value.toString();
+                                value = value.split(/(?=(?:...)*$)/);
+                                value = value.join(',');
+                                return value;
+                            },
+                            fontSize: 15,
+                            fontFamily: 'Jua'
+                        }
+                    }]
+                }
+            }
+        });
     </script>
 
 </body>

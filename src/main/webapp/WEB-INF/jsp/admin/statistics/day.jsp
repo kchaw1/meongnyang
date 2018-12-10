@@ -50,7 +50,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                           <li role="presentation"><a role="menuitem" tabindex="-1" href="day.mn">일별</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="statistics1.html">주별</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="week.mn">주별</a></li>
                           <li role="presentation"><a role="menuitem" tabindex="-1" href="month.mn">월별</a></li>
                         </ul>
                 </div>
