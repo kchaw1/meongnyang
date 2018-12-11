@@ -1,114 +1,24 @@
-@charset "utf-8";
-/*!
- *
- * WebRTC Lab
- * @author dodortus (dodortus@gmail.com / codejs.co.kr)
- *
- */
-
-input[type="text"] {
-  padding: 6px 10px;
-  width: 120px;
-  height: 30px;
-  border: solid 1px #bbb;
-  font-size: 1.3em;
+#remoteVideo.media-container {
+	position : absolute;
+	z-index :-1;
+	border: none;
+   	border-radius: 8px;	
 }
-
-.wrap {
-  margin-top: 30px;
-  position: relative;
-  font-size: 1.2em;
-  text-align: center;
+#localVideo.media-container {
+	position : absolute;
+	top : 20px;
+	left : 20px;
+	border: none;
+   	border-radius: 8px;	
+   	background : #333333;
 }
-
-.wrap p {
-  font-size: 1.25em;
+#rooms-list tr {
+visibility : hidden;
 }
-
-.wrap button {
-  margin-top: 20px;
-  min-width: 80px;
-  vertical-align: top;
+#setup-room {
+	display : none;
 }
-
-.room-info {
-  vertical-align: top;
-}
-
-
-/********************************************
-  Below room style
-*********************************************/
-video {
-  margin: 0 0 20px 0;
-  width: 100%;
-  z-index: 1;
-  background: #222;
-  border: solid 1px #fff;
-  transition: all .6s ease-out;
-}
-
-video.effect {
-  transform: scale(1, 1);
-}
-
-#video-wrap {
-  display: none;
-  position: relative;
-  margin: 0 auto;
-  min-height: 620px;
-}
-
-#video-wrap .buttons {
-  position: absolute;
-  bottom: 0;
-}
-
-#local {
-  position: absolute;
-  top: 4%;
-  right: 2%;
-  width: 340px;
-  height: 220px;
-  border: solid 1px #fff;
-}
-
-#local-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#share-wrap {
-  display: none;
-  margin: 10px 0;
-}
-
-.room #enter-wrap,
-.connected #create-wrap,
-.connected #wait-wrap {
-  display: none;
-}
-.connected #local-video {
-  top: 2px;
-  left: 2px !important;
-  width: 150px !important;
-  border: solid 1px #fff;
-  z-index: 2;
-}
-
-.room #share-wrap {
-  display: block;
-}
-
-.room #wait-wrap {
-  display: none;
-}
-
-.room #video-wrap {
-  display: block;
-}
-
-.room #content {
-  padding-top: 30px;
+.loading {
+	width : 500px;
+	margin : auto;
 }

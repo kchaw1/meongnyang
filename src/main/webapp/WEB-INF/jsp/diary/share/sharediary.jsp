@@ -36,7 +36,7 @@
 				<div class="dr-title">
 	               <div class="title">${dr2.drTitle}</div>
 	               <div class="writer">${dr2.drWriter}
-	               <c:if test="${dr2.friendsId != null }"><span class="label label-friend">친구</span></c:if>
+	               <c:if test="${dr2.friendsId == dr2.drWriter }"><span class="label label-friend">친구</span></c:if>
 	               <c:if test="${dr2.drWriter == user.id }"><span class="label label-me">나</span></c:if>
 	               </div>
 	               <div class="date"><fmt:formatDate value="${dr2.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>

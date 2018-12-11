@@ -482,7 +482,7 @@ margin-top: 60px;
                     
                             <div><img  class = "forLine" src="<c:url value = "/resources/img/community/line.png"/>">
                             <h2 class = "title2">마이펫 다이어리</h2>
-                            <button class="btn5 leftRight1">더보기 </button>
+                            <button type="button" class="btn5 leftRight1">더보기 </button>
                             </div>
                     <img src="<c:url value = "/resources/img/community/diary.jpg"/>" class = "fordiary">
                     <p class="fontp">멍멍냥냥이들과 함께 만들어가는 일기 지금 당장 써보세요!</p>
@@ -594,13 +594,13 @@ margin-top: 60px;
     	location.href = "communityPage.mn";
     });
     // 마이펫다이어리로 가는 url
-    $(".btn4").on('click', function(){
-    	location.href = "<c:url value = '/diary/share/sharediary.mn'/>";
+    $(".btn5").on('click', function(){
+    	location.href = "<c:url value = '/diary/share/sharediary.mn'/>?pageNo=1&userId=${user.id}";
     });
     // 랭킹으로 가는 url
-    $(".btn5").on('click', function(){
+    /* $(".btn5").on('click', function(){
     	location.href = "communityPage.mn";
-    });
+    }); */
     
     function doChatList() {
     	if("{user.id}"!= null){

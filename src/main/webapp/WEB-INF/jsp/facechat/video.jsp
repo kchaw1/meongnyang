@@ -8,7 +8,8 @@ var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
 
 $(function(){
-	if("${user.no}"!="${param.no}") {
+	setupNewRoomButtonClickHandler();
+	/* if("${user.no}"!="${param.no}") {
 		Swal({
 			title: '정말 ${param.name}님과 <br>화상채팅 하시겠습니까?',
 			text: "화상채팅 연결 시, 포인트 1,000점이 차감됩니다.",
@@ -26,7 +27,7 @@ $(function(){
 				window.close();
 			}
 		}) // swal..then..	
-	}
+	} 
 	/* if("${pram.name}"==""){
 		setTimeout(function(){
 			captureUserMedia(function() {
@@ -122,7 +123,7 @@ var config = {
         videosContainer.appendChild(mediaElement);
     },
     onRoomFound: function(room) {
-    	console.log("room:")
+    	console.log("room:" +room.roomName)
     	console.dir(room)
         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
         if (alreadyExist) return;
@@ -185,7 +186,7 @@ function setupNewRoomButtonClickHandler() {
     captureUserMedia(function() {
         conferenceUI.createRoom({
 //            roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-            roomName: "${user.id}"
+            roomName: "${user.id}" || 'Anonymous'
         });
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nmcat.repository.domain.board.DiaryBoard;
 import com.nmcat.repository.domain.board.DiaryComment;
@@ -105,7 +106,7 @@ public class DiaryServiceImpl implements DiaryService{
 
 	@Override
 	public List<DiaryBoard> listShareDiary(int begin) {
-		//System.out.println("list" + mapper.selectShareDiaryByPaging(begin));
+		System.out.println("list" + mapper.selectShareDiaryByPaging(begin));
 		return mapper.selectShareDiaryByPaging(begin);
 	}
 
@@ -119,6 +120,7 @@ public class DiaryServiceImpl implements DiaryService{
 
 	@Override
 	public List<DiaryBoard> listShareAndFriendDiary(DiaryBoard diary) {
+		System.out.println("list2" + mapper.selectShareAndFriendDiaryByPaging(diary));
 		return mapper.selectShareAndFriendDiaryByPaging(diary);
 	}
 

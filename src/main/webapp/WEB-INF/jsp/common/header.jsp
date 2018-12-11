@@ -27,7 +27,7 @@
         <c:otherwise>
           <li><a href="<c:url value='/mypageGen/list.mn'/>" id="mypage">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>" id="petdiary">마이펫 다이어리</a></li>
-		  <li><a href="<c:url value='/facechat/dochat.mn'/>?no=${user.no}" id="facechat">영상통화 연습</a></li> 
+		  <li><a href="<c:url value='/facechat/dochat.mn'/>?no=${user.no}" id="facechat">영상통화 연습<span class="lialarm facechat" id="hidden">1</span></a></li> 
 		 <li><a href="<c:url value='/msg/msgsend.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
 		  <li><a href="<c:url value='/friend/friendlist.mn'/>" id="friendlist">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
 		  <li><a href="#1" class="pointcharge" id="point">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>

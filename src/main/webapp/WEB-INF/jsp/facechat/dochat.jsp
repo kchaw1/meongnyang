@@ -6,45 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <!-- 영상회의 -->
-	<script src="https://cdn.webrtc-experiment.com/getMediaElement.min.js"> </script>
-    <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="https://cdn.webrtc-experiment.com/IceServersHandler.js"></script>
-    <script src="https://cdn.webrtc-experiment.com/CodecsHandler.js"></script>
-    <script src="https://cdn.webrtc-experiment.com/video-conferencing/RTCPeerConnection-v1.5.js"> </script>
-    <script src="https://cdn.webrtc-experiment.com/video-conferencing/conference.js"> </script>
-    <!-- <script src="./js/conference.js"> </script> -->
-    <!-- sweetalert -->
-<script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
+<c:import url="./dochatCSSJS.jsp"/>
 </head>
-<style>
-	#remoteVideo.media-container {
-		position : absolute;
-		z-index :-1;
-		border: none;
-    	border-radius: 8px;	
-	}
-	#localVideo.media-container {
-		position : absolute;
-		top : 20px;
-		left : 20px;
-		border: none;
-    	border-radius: 8px;	
-    	background : #333333;
-	}
-	#rooms-list tr {
-	visibility : hidden;} 
-	.loading {
-		width : 500px;
-		margin : auto;
-	}
-</style>
+
 <body>
 
 <div class="content-wrapper">
@@ -54,21 +18,41 @@
 </div>
 <div class="loading"></div>
 <div id="setup-room">
-	<!-- <input type="text" id="conference-name">
-    <button id="setup-new-room" class="setup">new</button> -->
+	 <input type="text" id="conference-name">
+    <button id="setup-new-room" class="setup">new</button> 
     <!-- list of all available conferencing rooms -->
     <table id="rooms-list"></table>
 </div>
-
-<c:import url="./video.jsp"/>
+<%-- <c:import url="./video.jsp"/> --%>
 <%-- <script src="<c:url value="/resources/js/facechat/video.js"/>"></script> --%>
-<!-- <script>
+<script>
 var videosContainer = document.getElementById('videos-container') || document.body;
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
+var facechatSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
-if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+if("${user.no}"!="${param.no}") {
+		Swal({
+			title: '정말 ${param.name}님과 <br>화상채팅 하시겠습니까?',
+			text: "화상채팅 연결 시, 포인트 1,000점이 차감됩니다.",
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '네 연결해주세요!',
+			cancelButtonText : "아니요, 취소할게요.."
+		}).then((result) => {
+			console.log(result) //{value: true}
+			if (result.value) {
+				btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+			} else {
+				window.close();
+			}
+		}) // swal..then..	
+	} 
+//if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+//setupNewRoomButtonClickHandler();
 var sender = "";
 
 var config = {
@@ -149,7 +133,7 @@ var config = {
         videosContainer.appendChild(mediaElement);
     },
     onRoomFound: function(room) {
-    	console.log("room:")
+    	console.log("room:" +room.roomName)
     	console.dir(room)
         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
         if (alreadyExist) return;
@@ -195,14 +179,14 @@ var config = {
 
 var conferenceUI = conference(config);
 
-//setTimeout(function(){
-//	let joinBtn = $('.join');
-//	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
-//		joinBtn.trigger("click"); 
-//	}else{
-//		$('#setup-new-room').trigger("click");
-//	}
-//}, 6000);
+setTimeout(function(){
+	let joinBtn = $('.join');
+	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
+		joinBtn.trigger("click"); 
+	}else{
+		$('#setup-new-room').trigger("click");
+	}
+}, 3000);
 
 function setupNewRoomButtonClickHandler() {
     btnSetupNewRoom.disabled = true;
@@ -212,6 +196,7 @@ function setupNewRoomButtonClickHandler() {
             /* roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous' */
             roomName: "${user.id}"
         });
+        facechatSocket.send("facechat:" + "${user.id}")
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;
     });
@@ -319,6 +304,6 @@ function pinVideo(stream) {
         }
     });
 }
-</script> -->
+</script>
 </body>
 </html>
