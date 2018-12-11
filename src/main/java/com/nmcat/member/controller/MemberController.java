@@ -193,6 +193,7 @@ public class MemberController {
 		model.addAttribute("member", member);
 	}
 	
+	// 네이버 로그인  추가정보 받기 
 	@RequestMapping("/naverlogin.mn")
 	public String naverlogin(Model model, Member member, RedirectAttributes redirectAttributes) {
 		Member nmb = service.naver(member);
@@ -210,6 +211,7 @@ public class MemberController {
 		login.setPass(pass);
 		
 		redirectAttributes.addFlashAttribute("login", login);
+		
 		
 		return "redirect:/member/naverloginform.mn";
 	}

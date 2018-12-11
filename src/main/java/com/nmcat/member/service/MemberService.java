@@ -38,4 +38,16 @@ public interface MemberService {
 	
 	// 비밀번호 수정
 	void updatePass(Member member);
-}
+	
+	// 회원정보 수정 할때 비밀번호 재확인
+	int selectRelogin(Member member);
+	
+	// 이메일 수정
+	void updateEmail(Member member);
+	
+	// 프로필 사진 수정
+	void updateProfile(Member member);
+	
+	// 정보가져오기
+	Member selectMemberInfo(int no);
+	}

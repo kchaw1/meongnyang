@@ -161,8 +161,8 @@
                                       <div class ="forPadding">
                                         <span class ="forSpan">프로필 사진 수정</span>
                                         <hr>
-                                        <form name="profileupdate" enctype="multipart/form-data" method="post" action="updateProfile.mn">
-                                        <div class ="forImg"><img src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>" width="183" height="220"></div>
+                                        <form name="updateProfile" enctype="multipart/form-data" method="post" action="<c:url value="/mypageGen/updateProfile.mn"/>" id="profileupdate">
+                                        <div class ="forImg"><img src="<c:url value='/common/download.mn?sysName=${member.imageName}&path=${member.imagePath}&oriName=${member.imageOriName}'/>" width="183" height="220"></div>
                                         <span class ="forSpan2">이력서사진.jpg</span>
                                         <hr>
                                 <!--파일첨부 cSS-->
@@ -176,7 +176,7 @@
                                 <hr>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                                <button type="button" class="btn btn-primary">수정</button>
+                                <button type="submit" class="btn btn-primary" id="updatePro">수정</button>
                             </div>
                             </form>
                             </div>
@@ -217,15 +217,15 @@
                                     <!--이곳이 비밀번호 확인할 form자리-->
                                         <div class="form-group">
                                           <label for="recipient-name" class="control-label">회원 이름</label>
-                                          <input type="text" class="form-control form-control2" id="recipient-name" value = "${user.name}" readonly>
+                                          <input type="text" class="form-control form-control2" id="recipient-name" value = "${member.name}" readonly>
                                         </div>
                                       <div class="form-group">
                                         <label for="recipient-name" class="control-label">회원 아이디</label>
-                                        <input type="text" class="form-control form-control2" id="recipient-id" value = "${user.id}" readonly>
+                                        <input type="text" class="form-control form-control2" id="recipient-id" value = "${member.id}" readonly>
                                       </div>
                                       <div class="form-group">
                                           <label for="recipient-name" class="control-label">이메일</label>
-                                          <input type="email" class="form-control form-control2" id="recipient-email" value = "${user.email}" >
+                                          <input type="email" class="form-control form-control2" id="recipient-email" value = "${member.email}" name="email">
                                         </div>
                                      <div class="form-group">
                                             <label for="recipient-name" class="control-label"><span id="red">*</span>새 비밀번호</label>
@@ -290,6 +290,18 @@ $("button#update").click(function(){
     }
     f.submit();
 })
+</script>
+<script>
+/* var p = $("#profileupdate").serialize()
+$("button#updatePro").click(function() {
+	$.ajax({
+		url: "<c:url value='/mypageGen/updateProfile.mn'/>",
+		type: "POST",
+		data: p
+	}).done(function(result){
+		console.log(result);
+	});
+}); */
 </script>
 </body>
 </html>

@@ -127,7 +127,7 @@ img {
     margin-top: 10px;
     margin-left: -1%;
 }
-  
+
 </style>
 </head>
 <body>
@@ -348,17 +348,22 @@ img {
 					                            
 					                        </div>
 					                        <div id="tabs-2">
-					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
-					                            <button type="button" id="combtn"
-					                                class="btn pull-right btn-success">추가</button>
+					                        	<div id="allcareer">
+					                        	<div class="form-group">
+					                        	<button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
+						                        <div class="file_input">
+						                            <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
+						                        </div>
+						                        <hr>
+					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />					                            
 					                            <hr>
 					                            <span>상세경력 : </span>
-					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>
-					                            <hr>
-					                            <div class="file_input">
-					                                <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
-					                            </div>
+					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>					                            
+					                            </div> 
+					                            </div>				                            
+					                            <hr>					                       					                          
 					                        </div>
+					                        
 					                    </div>
 					                </div>
 									<div class="modal-footer">
@@ -450,7 +455,7 @@ $( function() {
 				clientId: "yf6XqSXCa0vHUbfIL8Ll",
 				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/main/mainPage.mn",
 				isPopup: false,
-				loginButton: {color: "white", type: 3, height: 25, float:"left"} 
+				loginButton: {color: "white", type: 3, height: 25} 
 			}
 		);
 		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
@@ -482,7 +487,25 @@ $( function() {
 				location.reload();
 			});
 		}
+</script>
+<script>
+var html ="";
+$("#combtn").click(function() {
 	
+	   html += "<div id='allcareer'>"
+	          	+ "<div class='form-group'>" 
+	          	+ "<span id='car'>경력 :</span>" 
+	          	+ "<input type='date' name='careerStart' id='career1'/>"
+	          	+ "<span id='car2'> ~ </span>"
+	          	+ "<input type='date' name='careerEnd' id='career2' />"
+	          	+ "<hr>"
+	          	+ "<span>상세경력 : </span>"
+	          	+ "<textarea rows='8' cols='70' placeholder='업무내용을 적어주세요.' value='' name='careerContent'></textarea>"
+	          	+ "</div>" 
+	          	+ "</div>"
+	          	+ "<hr>"
+	   $("#tabs-2").append(html)
+	})
 
 </script>
 </body>

@@ -167,9 +167,7 @@ div.modal-header {
         <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
         <div class="list">
-           <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
-          <!-- 일반회원일땐 경력 및 인사말 카테고리는 뜨지 않게하기. -->
-          <!-- <div id="statistics" class="item"><a href="" style="color:black;">경력 및 인사말</a></div> -->
+          <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
           <div class="item" id="grade"><a href="<c:url value="/mypageGen/grade.mn"/>">내 등급</a></div>
           <div class="item" id="mypoint"><a href="<c:url value="/mypageGen/point.mn"/>">내 포인트</a></div>
           <div id="management" class="item"><a href="<c:url value="/mypageGen/activity.mn"/>">내 활동</a></div>
@@ -185,7 +183,7 @@ div.modal-header {
         <div class="seperator"></div>
         <div>
           <div class ="forImg2">
-          <img src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>" class="img-responsive" alt="Responsive image" width="183" height="280">
+          <img src="<c:url value='/common/download.mn?sysName=${member.imageName}&path=${member.imagePath}&oriName=${member.imageOriName}'/>" class="img-responsive" alt="Responsive image" width="183" height="280">
           </div>
           <ul class ="ul2">
             <li class = "li2">
@@ -194,18 +192,18 @@ div.modal-header {
             </li>
             <li class = "li2">
                 <label class ="labelC">회원이름</label><br>
-                <span class ="spanC">${user.name}</span>
+                <span class ="spanC">${member.name}</span>
             </li>
             <li class = "li3">
                 <label class ="labelC">회원아이디</label><br>
-                <span class ="spanC">${user.id}</span>
+                <span class ="spanC">${member.id}</span>
             </li>
           </ul>
        </div>
        <ul class = "ul3">
           <li class = "li6">
               <label class ="labelC">이메일</label><br>
-              <span class ="spanC">${user.email}</span>
+              <span class ="spanC">${member.email}</span>
           </li>
           <li class = "li4">
              <label class ="labelC">일반인 랭킹</label><br>
@@ -213,15 +211,15 @@ div.modal-header {
          </li>
           <li class = "li4">
               <label class ="labelC">반려동물</label><br>
-              <span class ="spanC">${user.category}</span>
+              <span class ="spanC">${member.category}</span>
           </li>
           <li class = "li4">
               <label class ="labelC">포인트</label><br>
-              <span class ="spanC">${user.point}</span>
+              <span class ="spanC">${member.point}</span>
           </li>
           <li class = "li4">
               <label class ="labelC">활동점수</label><br>
-              <span class ="spanC">${user.score}</span>
+              <span class ="spanC">${member.score}</span>
           </li>
           <!-- <li class = "li4">
               <label class ="labelC">받은좋아요</label><br>
@@ -243,7 +241,8 @@ div.modal-header {
           <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">회원정보 수정</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
               <div class="modal-dialog">
-               <form name="loginck" action="loginck.mn" method="post">
+              <form name="loginck"  method="post" id="loginck">
+               
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -254,16 +253,16 @@ div.modal-header {
                     <!--이곳이 비밀번호 확인할 form자리-->
                       <div class="form-group">
                         <label for="recipient-name" class="control-label">회원 아이디</label>
-                        <input type="text" class="form-control form-control2" id="recipient-name" value = "${user.id}" readonly>
+                        <input type="text" class="form-control form-control2" id="recipient-name" name="id" value = "${member.id}" readonly>
                       </div>
                       <div class="form-group">
                           <label for="recipient-name" class="control-label">회원 비밀번호<span class ="star">*</span></label>
-                          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="pass">
                         </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id ="enter" onclick="edit()">확인하기</button>
+                    <button type="button" class="btn btn-primary" id ="enter" >확인하기</button>
                   </div>
                 </div>
                 </form>
@@ -280,13 +279,25 @@ div.modal-header {
       </div>
     </div>
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
+
 <script>
-function edit(){
-    window.location.href="edit.mn";
-}
-</script>
-<script>
-	
+$("button#enter").click(function(){
+ 
+	$.ajax({
+		url: "<c:url value='/mypageGen/loginck.mn'/>",
+		type: "POST",
+		data: $("#loginck").serialize() // form에 있는 데이터정보를 serialize로 받음
+	}).done(function(result){
+		console.log(result);
+		if(result == 0) {
+			alert("비밀번호가 다릅니다!")
+		}else{
+			location.href = "edit.mn"
+		}
+	});	
+});
+
+
 </script>
 </body>
 </html>

@@ -1,17 +1,14 @@
 package com.nmcat.member.service;
 
-import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.mail.HtmlEmail;
-import org.apache.log4j.lf5.PassingLogRecordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
-import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
 import com.nmcat.repository.mapper.MemberMapper;
@@ -153,6 +150,36 @@ public class MemberServiceImpl implements MemberService{
 	public void updatePass(Member member) {
 		member.setPass(member.getPass());
 		mapper.updatePass(member);
+	}
+	
+	// 회원정보 수정 할때 비밀번호 체크
+	@Override
+	public int selectRelogin(Member member) {
+		return mapper.selectRelogin(member);
+	}
+	
+	// 이메일 수정
+	@Override
+	public void updateEmail(Member member) {
+		member.setEmail(member.getEmail());
+		mapper.updateEmail(member);
+		
+	}
+	
+	// 프로필 사진 수정
+	@Override
+	public void updateProfile(Member member) {
+		mapper.updateProfile(member);
+	}
+
+
+	// 회원정보 수정 할때 비밀번호 재확인
+	
+	
+	// 정보 조회
+	@Override
+	public Member selectMemberInfo(int no) {
+		return mapper.selectMemberInfo(no);
 	}
 
 }
