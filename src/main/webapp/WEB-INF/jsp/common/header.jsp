@@ -27,7 +27,7 @@
         <c:otherwise>
           <li><a href="<c:url value='/mypageGen/list.mn'/>" id="mypage">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>" id="petdiary">마이펫 다이어리</a></li>
-		  <li><a href="<c:url value='/facechat/dochat.mn'/>?no=${user.no}" id="facechat">영상통화 연습<span class="lialarm facechat" id="hidden">1</span></a></li> 
+		  <li><a href="#1" id="facechat">영상통화 연습<span class="lialarm facechat" id="hidden">1</span></a></li> 
 		 <li><a href="<c:url value='/msg/msgsend.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
 		  <li><a href="<c:url value='/friend/friendlist.mn'/>" id="friendlist">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
 		  <li><a href="#1" class="pointcharge" id="point">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
@@ -49,6 +49,7 @@
 	var $headerSpan = $("span.headeralarm");
 	var $msgSpan = $("span.msg");
 	var $pointSpan = $("span.point");
+	var $facechatSpan = $("span.facechat");
 	
 	$(function() {
 		selectFriendRequest("${user.id}")
@@ -69,6 +70,13 @@
 				$friendSpan.attr("id", "show")
 				
 			} //친구 추가..
+			else if(evt.data.startsWith("facechat:")) {
+				callerId = evt.data.substring("facechat:".length)
+				
+				$headerSpan.attr("id", "show");
+				$facechatSpan.attr("id", "show");
+				
+			}
 		}
 		ws.onclose = function() {
 	   	    console.log("헤더 웹소켓 연결 종료.");
@@ -159,6 +167,15 @@
 			type : "POST"
 		})
 	}
+	
+	$("#facechat").click(function(){
+        var left = (screen.width-1200) /2
+		  var top = (screen.height-800) /2
+	      window.open(
+	    	"<c:url value='/facechat/dochat.mn'/>"+"?no=${user.no}", "화상채팅2", "width=1200, height=800, left="+left+", top="+top
+	      )
+      	
+      })
 	
 	$("a#logout").click(function() {
 		alert("로그아웃 되었습니다.")

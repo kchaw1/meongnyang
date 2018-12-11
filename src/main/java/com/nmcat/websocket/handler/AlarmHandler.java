@@ -80,6 +80,11 @@ public class AlarmHandler extends TextWebSocketHandler {
 //					return;
 //				}
 //			}
+		} else if(msg.startsWith("facechat:")){
+			String absId = msg.substring("facechat:".length());
+			if(users.get(absId)==null) return;
+			WebSocketSession wss = users.get(absId);
+			wss.sendMessage(new TextMessage("facechat:" + callerId));
 		} else {
 			session.sendMessage(new TextMessage("쪽지 왔어요"));
 		}

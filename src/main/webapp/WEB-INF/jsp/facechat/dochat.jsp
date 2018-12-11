@@ -18,6 +18,9 @@
 </div>
 <div class="loading"></div>
 <div id="setup-room">
+	<!-- <input type="hidden" id="name"/>
+	<input type="hidden" id="id"/>
+	<input type="hidden" id="no"/> -->
 	 <input type="text" id="conference-name">
     <button id="setup-new-room" class="setup">new</button> 
     <!-- list of all available conferencing rooms -->
@@ -196,7 +199,8 @@ function setupNewRoomButtonClickHandler() {
             /* roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous' */
             roomName: "${user.id}"
         });
-        facechatSocket.send("facechat:" + "${user.id}")
+        //웹소켓에 보내기..
+        facechatSocket.send("facechat:" + "${param.id}")
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;
     });

@@ -22,6 +22,7 @@ $(function () {
     
     showFriendList(1);	
 }) //$function
+
 $("a[href='#search']").click(function(){
 	showMemberList(1);	
 }) //search tab 클릭...
