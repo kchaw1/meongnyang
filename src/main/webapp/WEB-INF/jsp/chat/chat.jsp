@@ -25,7 +25,14 @@
           <div class="people" style="position: fixed;">
             <div class="user">
               <div class="user-item"> 
-                <img class="pull-left" src="https://plus.google.com/u/0/_/focus/photos/public/AIbEiAIAAABECND6k6O2gLWavQEiC3ZjYXJkX3Bob3RvKigyMjgzNGM2ZWZkYjJhZDZhZjI1YTI0MzQxYzJkYTRkODEzNDBhY2UyMAHQr8BxOTmI3m0dZJGY3Vj4osnP9g?sz=48" alt="" />
+              	<c:choose>
+              	<c:when test="${user.id != 'null'}">
+                <img class="pull-left" src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}'/>" alt="" />
+              	</c:when>
+              	<c:otherwise>
+              	<img class="pull-left" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="">              	
+              	</c:otherwise>
+              	</c:choose>
                 <div class="pull-left">
                   <p class="name">${user.id}</p>
                   <p class="name">${user.name}</p>
@@ -36,7 +43,7 @@
             <div class="list-head">
               <p>참가 인원</p>
             </div>
-            <div class="list">
+            <div class="list" data-index="${chNo}">
               <div class="list-item">
                 <img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" />
                 <p class="pull-left">sdadsa</p>
@@ -63,10 +70,12 @@
       </div>
     </div>
     <script>
-
 var chat = null;
 var loginId = null;
+var imagePath = "${user.imagePath}"+"/${user.imageName}";
 var chNo = "${chNo}";
+var image = "<img src='<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>' alt=''>"
+
 $(function () {
 	
 	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
@@ -79,6 +88,7 @@ $(function () {
 		  */
 		
 		  chat.onopen = function() {
+			console.log(imagePath)
 			console.log("${chNo}");
 			 var In = "${user.id}"
 			    console.log('웹소켓 서버 접속 성공');
@@ -90,7 +100,7 @@ $(function () {
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {		
-			console.dir(evt);
+			console.log(evt.data);
 			
 			if(evt.data.startsWith("input : ")){
 				var id = evt.data.split(":");
@@ -103,12 +113,23 @@ $(function () {
 				console.log(stringList.substring(1,stringList.length-1));
 				
 				var list = stringList.substring(1,stringList.length-1)
+				console.log(list);
 				var listarr = list.split(", ");
 				console.log(listarr);
+				/* for(var key in listarr){
+					console.log(listarr[key]);
+					console.log(listarr[key].substring(0,listarr[key].indexOf("="))); // 방번호
+					console.log(listarr[key].substring(listarr[key].indexOf("[")+1,listarr[key].indexOf("]"))); // 참여자
+					 for(var keys in listarr[key] ){
+						console.log(listarr[key][keys]);
+					} 
+				} */
 				$(".list").empty();
 				for(var i = 0 ; i<listarr.length ; i++){
-					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
 				}
+				
+				
 			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
 				console.log(evt.data);
 				var stringList = evt.data.substring(1,evt.data.indexOf("]"));
@@ -117,7 +138,7 @@ $(function () {
 				console.log(listarr);
 				$(".list").empty();
 				for(var i = 0 ; i<listarr.length ; i++){
-					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
 				}
 				$(".chat-list").append("<br><p style='text-align:center;'>"+evt.data.substring(evt.data.indexOf(",")+1)+"</p><br>");
 
@@ -132,9 +153,9 @@ $(function () {
 		 	console.log("3"+exId[0]);
 		 	console.log("4"+exId[1]);
 		 	if("${user.id}"==exId[0]){		 		
-		 		$(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+exId[1]+"</p></div><br>");
+		 		$(".chat-list").append("<br><img class='pull-right img-circle chat-img' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+exId[1]+"</p></div><br>");
 		 	}else{	
-				$(".chat-list").append("<br><span>"+exId[0]+"</span><br><div class='chat-bubble left'><p class='m-b-0'>"+exId[1]+"</p></div><br>");
+				$(".chat-list").append("<br><span>"+exId[0]+"</span><br><img class='pull-left img-responsive img-circle chat-img-left' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble left'><p class='m-b-0'>"+exId[1]+"</p></div><br>");
 		 	}
 		 	
 			}

@@ -84,6 +84,10 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 				System.out.println("asdhasdsa:"+Msg.substring(Msg.indexOf(":")+2,Msg.indexOf(",")));
 				
 				memberList.add(Msg.substring(Msg.indexOf(":")+2,Msg.indexOf(",")));
+				
+//				memberList.put(Room,new ArrayList<>());
+//				memberList.get(Room).add(Msg.substring(Msg.indexOf(":")+2,Msg.indexOf(",")));
+				
 				for(WebSocketSession ws : wss) {
 					try {
 						ws.sendMessage(new TextMessage(Msg.substring(0,Msg.indexOf(","))+","+memberList.toString()));
