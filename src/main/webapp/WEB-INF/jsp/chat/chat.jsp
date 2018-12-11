@@ -82,32 +82,26 @@ $(function () {
 			console.log("${chNo}");
 			 var In = "${user.id}"
 			    console.log('웹소켓 서버 접속 성공');
-			    $(".chat-list").append("<p>채팅이 시작되었습니다</p>")
+			    $(".chat-list").append("<p style='text-align:center;'>채팅이 시작되었습니다</p>")
 			    chat.send("input : " + In +  ",chNo : "+chNo);
 			  	console.log("입장 아이디 : "+In);
+			
 			  	
 		};
 		// 메세지 받기
-		chat.onmessage = function(evt) {
-    	/* 	var $msg = $("#message");
-			$msg.val("");
-			console.dir(evt)
-			if(evt.data.endsWith("입장 하셨습니다.")){
-				$(".chat-list").append("<br><p>"+evt.data+"</p><br>");
+		chat.onmessage = function(evt) {		
+			console.dir(evt);
+			
+			if(evt.data.startsWith("input : ")){
+				var id = evt.data.split(":");
+		 		$(".chat-list").append("<br><p style='text-align:center;'>"+id[1]+"님이 입장하셨습니다.</p><br>");
+
 			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
-				$(".chat-list").append("<br><p>"+evt.data+"</p></br>");				
+				$(".chat-list").append("<br><p style='text-align:center;'>"+evt.data+"</p><br>");
+
 			}
 			else{
-			 var chatId = evt.data.split(':');
-				if("${user.id}"==chatId[0] ){				
-		 	 		$(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatId[1]+"</p></div><br>");
-				}else{
-		 	 		$(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+chatId[0]+":"+chatId[1]+"</p></div><br>");
-				}
-			} */
-			
-			
-			console.dir(evt);
+				
 		 	var ex = evt.data.split(',');
 		 	var exId = ex[1].split(":");
 		 	
@@ -118,8 +112,10 @@ $(function () {
 		 	if("${user.id}"==exId[0]){		 		
 		 		$(".chat-list").append("<br><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+exId[1]+"</p></div><br>");
 		 	}else{	
-				$(".chat-list").append("<br><div class='chat-bubble pull-left'><p class='m-b-0'>"+exId+"</p></div><br>");
+				$(".chat-list").append("<br><span>"+exId[0]+"</span><br><div class='chat-bubble left'><p class='m-b-0'>"+exId[1]+"</p></div><br>");
 		 	}
+		 	
+			}
 			
 		};
 		chat.onerror = function(evt) {
