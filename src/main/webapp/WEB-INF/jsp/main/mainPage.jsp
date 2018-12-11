@@ -26,8 +26,7 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <!-- 네이버 -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> -->
 </head>
 <style>
 .container{
@@ -75,9 +74,9 @@ height : 100%;
 }
 
 .btn2 {
-    float: right;
+  
     font-family: 'Jua', sans-serif;
-   margin-left: 28%;
+   
     margin-top: 20px;
     color: #ffffff;
     float: right;
@@ -103,9 +102,9 @@ height : 100%;
 }
 
 .btn3 {
-    float: right;
+
     font-family: 'Jua', sans-serif;
-   margin-left: 39.2%;
+   
     margin-top: 20px;
     color: #ffffff;
     float: right;
@@ -131,7 +130,7 @@ height : 100%;
 }
 .btn4 {
     font-family: 'Jua', sans-serif;
-   margin-left: 50%;
+   
     margin-top: 20px;
     color: #ffffff;
     float: right;
@@ -158,7 +157,7 @@ height : 100%;
 
 .btn5 {
     font-family: 'Jua', sans-serif;
-   margin-left: 18.7%;
+   
     margin-top: 20px;
     color: #ffffff;
     float: right;
@@ -185,7 +184,7 @@ height : 100%;
 
 .btn6 {
     font-family: 'Jua', sans-serif;
-   margin-left: 51%;
+   
     margin-top: 20px;
     color: #ffffff;
     float: right;
@@ -211,7 +210,7 @@ height : 100%;
 }
 .btn7 {
     font-family: 'Jua', sans-serif;
-   margin-left: 65%;
+
     margin-top: 20px;
     color: #ffffff;
     float: right;
