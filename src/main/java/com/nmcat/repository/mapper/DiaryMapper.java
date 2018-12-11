@@ -36,5 +36,5 @@ public interface DiaryMapper {
 	
 	public List<DiaryComment> selectCommentByDrNo(DiaryComment comment);
 	
-	public String selectCommentbydrcNo(int drcNo);
+	//public String selectCommentbydrcNo(int drcNo);
 } //end interface
