@@ -94,10 +94,32 @@ $(function () {
 			
 			if(evt.data.startsWith("input : ")){
 				var id = evt.data.split(":");
-		 		$(".chat-list").append("<br><p style='text-align:center;'>"+id[1]+"¥‘¿Ã ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ.</p><br>");
-
+		 		$(".chat-list").append("<br><p style='text-align:center;'>"+id[1].substring(0,id[1].indexOf(","))+"¥‘¿Ã ¿‘¿Â«œºÃΩ¿¥œ¥Ÿ.</p><br>");
+				console.log(id[1].substring(id[1].indexOf(",")+1))
+				
+				var stringList = id[1].substring(id[1].indexOf(",")+1);
+				
+				stringList.substring(1,stringList.length);
+				console.log(stringList.substring(1,stringList.length-1));
+				
+				var list = stringList.substring(1,stringList.length-1)
+				var listarr = list.split(", ");
+				console.log(listarr);
+				$(".list").empty();
+				for(var i = 0 ; i<listarr.length ; i++){
+					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+				}
 			}else if(evt.data.endsWith("≈¿Â «œºÃΩ¿¥œ¥Ÿ.")){
-				$(".chat-list").append("<br><p style='text-align:center;'>"+evt.data+"</p><br>");
+				console.log(evt.data);
+				var stringList = evt.data.substring(1,evt.data.indexOf("]"));
+				console.log(stringList);
+				var listarr = stringList.split(", ");
+				console.log(listarr);
+				$(".list").empty();
+				for(var i = 0 ; i<listarr.length ; i++){
+					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+				}
+				$(".chat-list").append("<br><p style='text-align:center;'>"+evt.data.substring(evt.data.indexOf(",")+1)+"</p><br>");
 
 			}
 			else{

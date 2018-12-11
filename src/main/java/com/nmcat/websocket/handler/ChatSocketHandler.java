@@ -23,6 +23,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 
 	
 	private Map<String, List<WebSocketSession>> users = new HashMap<>();
+	List<String> memberList = new ArrayList<>(); 
 	
 	public ChatSocketHandler() {
 		System.out.println("chat 객체 생성");
@@ -36,14 +37,17 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		 Member id = (Member)session.getAttributes().get("user");
+		 String id = ((Member)session.getAttributes().get("user")).getId();
+		 System.out.println("1"+id);
 		Set<String> keys = users.keySet();
+		memberList.remove(id);
 		for(String key : keys) {
 			users.get(key).remove(session);
 			List<WebSocketSession> wss = users.get(key);
 			for(WebSocketSession ws : wss) {
-				System.out.println("id="+id.getId()+"아이디가여기까지");
-				ws.sendMessage(new TextMessage(id.getId() + "퇴장 하셨습니다."));
+				System.out.println("id="+id+"아이디가여기까지");
+				System.out.println("member"+memberList.toString());
+				ws.sendMessage(new TextMessage(memberList.toString()+","+id + "퇴장 하셨습니다."));
 			}
 		}
 	}
@@ -77,10 +81,12 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 				
 				List<WebSocketSession> wss = users.get(Room); //			
 				System.out.println("Wss"+wss);
+				System.out.println("asdhasdsa:"+Msg.substring(Msg.indexOf(":")+2,Msg.indexOf(",")));
 				
+				memberList.add(Msg.substring(Msg.indexOf(":")+2,Msg.indexOf(",")));
 				for(WebSocketSession ws : wss) {
 					try {
-						ws.sendMessage(new TextMessage(Msg.substring(0,Msg.indexOf(","))));
+						ws.sendMessage(new TextMessage(Msg.substring(0,Msg.indexOf(","))+","+memberList.toString()));
 					}catch (Exception e) {
 					}
 				}
