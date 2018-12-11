@@ -26,7 +26,7 @@
 
 					<div id="tabs-1">
 						<div id="img-area">
-							<img src="<c:url value='/common/download.mn?sysName=${general.imageName}&path=${general.imagePath}&oriName=${general.imageOriName}'/>" />
+							<img src="<c:url value='/common/download.mn?sysName=${general.imageName}&path=${general.imagePath}'/>" />
 						</div>
 						<div id="info-area">
 							<h1>개인정보</h1>
@@ -62,12 +62,12 @@
 								<tr>
 									<td>등급:</td>
 									<td><img src="/img/challenger.png"
-										style="width: 40px; height: 40px;" />챌린저</td>
+										style="width: 40px; height: 40px;" />${general.codeName}</td>
 								</tr>
 								<tr>
 									<td>포인트:</td>
 									<td>${general.point} 포인트
-										<button id="pay" class="btn btn-default btn-xs" data-no='${general.no}' style="font-size: 14px;">포인트 지급</button>
+										<button id="pay" class="btn btn-default btn-xs" data-id="${general.id}" data-no='${general.no}' style="font-size: 14px;">포인트 지급</button>
 									</td>
 								</tr>
 								<tr>
@@ -148,7 +148,7 @@
 		    var left = Math.ceil((window.screen.width - windowW)/2);
 		    var top = Math.ceil((window.screen.height - windowH)/2);
 			
-			 window.open("pay.mn?no="+$(this).data("no"), "포인트 지급", "top="+top+", left="+left+", height="+windowH+", width="+windowW);
+			 window.open("pay.mn?no="+$(this).data("no")+"&id="+$(this).data("id") , "포인트 지급", "top="+top+", left="+left+", height="+windowH+", width="+windowW);
 		});
 	</script>
 </body>

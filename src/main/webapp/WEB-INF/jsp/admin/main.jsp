@@ -27,6 +27,7 @@
 					<a href="<c:url value='/admin/main.mn' />"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a>
 				</div>
 				<br>
+				<div class="log-out">A D M I N</div>
 				<div class="seperator"></div>
 				<div class="list">
 					 <div id="board" class="item">게시판</div>
@@ -90,6 +91,7 @@
 		            <div class="panel-body">
 		                <div class="info-container">
 			                <div class="no">회원번호</div>
+			                <div class="id">아이디</div>
 			                <div class="name">이름</div>
 			                <div class="sign-up-date">가입일</div>
 			                <div class="button-area"></div>
@@ -98,6 +100,7 @@
 		                <c:forEach var="abs" items="${nonAuthABSList}" >
 		                	<div class="info-container">
 				                <div class="no">${abs.no}</div>
+				                <div class="id">${abs.id}</div>
 				                <div class="name">${abs.name}</div>
 				                <div class="sign-up-date"><fmt:formatDate value="${abs.signUpDate}" pattern="yyyy-MM-dd" /></div>
 				                <div class="button-area"><button class="btn btn-default abs-detail"  data-id="${abs.id}" data-no="${abs.no}">상세</button></div>
@@ -120,6 +123,7 @@
 		            	</c:when>
 		            		<c:otherwise>
 		            			<div class="no">회원번호</div>
+				                <div class="id">아이디</div>
 				                <div class="name">이름</div>
 				                <div class="sign-up-date">가입일</div>
 				                <div class="button-area"></div>
@@ -127,6 +131,7 @@
 				                <c:forEach var="nm" items="${newMemberList}" >
 				                	<div class="info-container">
 						                <div class="no">${nm.no}</div>
+						                <div class="id">${nm.id}</div>
 						                <div class="name">${nm.name}</div>
 						                <div class="sign-up-date"><fmt:formatDate value="${nm.signUpDate}" pattern="yyyy-MM-dd" /></div>
 						                <div class="button-area"><button class="btn btn-default general-detail" data-id="${nm.id}" data-no="${nm.no}">상세</button></div>

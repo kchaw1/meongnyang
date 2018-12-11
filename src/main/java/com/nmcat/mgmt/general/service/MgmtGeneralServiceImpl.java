@@ -1,6 +1,5 @@
 package com.nmcat.mgmt.general.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.PointPlus;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.MgmtGeneralMapper;
 
@@ -52,6 +52,12 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	@Override
 	public void payPoint(Member member) {
 		mapper.updatePoint(member);
+	}
+	
+	// 포인트 내역
+	@Override
+	public void pointHistory(PointPlus pp) {
+		mapper.insertPointHistory(pp);
 	}
 
 	// 오름차순

@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div id="img-area">
-							<img src="<c:url value='/common/download.mn?sysName=${abs.imageName}&path=${abs.imagePath}&oriName=${abs.imageOriName}'/>" />
+							<img src="<c:url value='/common/download.mn?sysName=${abs.imageName}&path=${abs.imagePath}'/>" />
 						</div>
 						<div id="attach-area">
 							<h1>첨부파일</h1>

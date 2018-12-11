@@ -2,9 +2,11 @@ package com.nmcat.mgmt.general.service;
 
 
 import java.util.List;
+
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.PointPlus;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtGeneralService {
@@ -13,8 +15,9 @@ public interface MgmtGeneralService {
 	Member detail(int no); // 상세
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트
-	void deleteMember(int no);
-	void payPoint(Member member);
+	void deleteMember(int no); // 탈퇴
+	void payPoint(Member member); // 포인트지급
+	void pointHistory(PointPlus pp); // 포인트 내역
 	
 	// 오름차순
 	List<Member> generalMemberList();	// 리스트 번호순

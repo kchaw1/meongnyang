@@ -342,4 +342,10 @@
 	 where no = #{no}
 </update>
 
+<!-- 지급내역 -->
+<insert id="insertPointHistory" parameterType="PointPlus">
+	insert into mn_point_plus(id, plus_point, plus_type)
+	     values(#{id}, #{plusPoint}, '2')
+</insert>
+
 </mapper>

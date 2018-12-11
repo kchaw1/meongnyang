@@ -2,9 +2,11 @@ package com.nmcat.repository.mapper;
 
 
 import java.util.List;
+
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.PointPlus;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MgmtGeneralMapper {
@@ -15,6 +17,7 @@ public interface MgmtGeneralMapper {
 	List<CommunityComment> selectCommentById(String id); // 내가 쓴 코멘트
 	void deleteMember(int no); // 탈퇴
 	void updatePoint(Member member); // 포인트 지급
+	void insertPointHistory(PointPlus pp); // 포인트 지급내역
 	
 	// 오름차순
 	List<Member> selectGeneralList();

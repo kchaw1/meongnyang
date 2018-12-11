@@ -57,6 +57,7 @@
  			url: "<c:url value='/admin/general/pay-point.mn' />",
  			data: {
  					"no": '${no}',
+ 					"id": '${id}',
  					"point": removeComma($inputPoint)
  				  },
  			type: "POST"
