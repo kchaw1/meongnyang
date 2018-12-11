@@ -145,4 +145,10 @@ public class CrowdServiceImpl implements CrowdService{
 	public void delete(int crNo) {
 		mapper.deleteCrowd(crNo);
 	}
+	
+	// 포인트 환급 메세지 전송
+	@Override
+	public void sendMsg(String id) {
+		mapper.insertPointReturnMsg(id);
+	}
 }

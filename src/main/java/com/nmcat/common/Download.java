@@ -17,6 +17,7 @@ public class Download {
 	 @RequestMapping("/download")
 	 public void download(String path,String sysName, String oriName,
 		 HttpServletRequest request, HttpServletResponse response) throws Exception{
+		 
 				 
 //		 String fullPath = path + "\\" + fileName;
 		 
@@ -24,7 +25,7 @@ public class Download {
 //		 System.out.println(sysName);
 		 
 		 String uploadPath = "c:/app/upload";
-         
+		 
 	     File file = new File(uploadPath + path, sysName);
 	     
 	     if(file.isFile() == false) {
@@ -32,13 +33,11 @@ public class Download {
 	    	 return;
 	     }
 	     
-	     
 //	     	System.out.println("DownloadView --> file.getPath() : " + file.getPath());
 //	        System.out.println("DownloadView --> file.getName() : " + file.getName());
 	         
 	        response.setContentType("application/download; utf-8");
 	        response.setContentLength((int)file.length());
-	         
 	           
 	        sysName = new String(file.getName().getBytes("utf-8"));
 	                

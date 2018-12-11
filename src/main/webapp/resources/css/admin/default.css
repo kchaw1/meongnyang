@@ -46,16 +46,17 @@
     .aside a:link {text-decoration: none; /*color: #7f8818;*/ color:rgb(65, 192, 142, 0.7)}
     .aside a:visited {text-decoration: none; /*color: #7f8818;*/ color:rgb(65, 192, 142, 0.7)}
 
-    #container .panel {
+    #container > .panel {
       padding: 10px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.1);
+/*       box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.1); */
+      box-shadow: none;;
       z-index: 8;
       overflow: hidden;
     }
 
-    #container .panel .aside {
+    #container > .panel .aside {
       width: 15%;
       min-height: 800px;
       height: 100%;
@@ -66,7 +67,7 @@
       box-sizing: border-box;
     }
 
-    #container .panel .aside .avatar {
+    #container > .panel .aside .avatar {
       width: 55px;
       height: 55px;
       border-radius: 50%;
@@ -77,17 +78,17 @@
       transition: all 0.3s cubic-bezier(0.38, -0.9, 0.5, 2.5);
     }
 
-    #container .panel .aside .avatar:hover {
+    #container > .panel .aside .avatar:hover {
       transform: scale(1.1);
     }
 
-    #container .panel .aside .avatar img {
+    #container > .panel .aside .avatar img {
       position: relative;
       width: 55px;
       height: 55px;
     }
 
-    #container .panel .aside .seperator {
+    #container > .panel .aside .seperator {
       width: 50px;
       height: 1px;
       /* background: #7f8818; */
@@ -95,7 +96,7 @@
       margin: 18px auto 36px auto;
     }
 
-    #container .panel .aside .list {
+    #container > .panel .aside .list {
       width: 100%;
       height: auto;
       text-align: right;
@@ -106,7 +107,7 @@
       color: #7f8818;
     }
 
-    #container .panel .aside .list .item {
+    #container > .panel .aside .list .item {
       height: 23px;
       line-height: 23px;
       width: 100%;
@@ -122,11 +123,11 @@
     /* #container .panel .aside .list .item:hover {
   color: #a7b320;
 } */
-    #container .panel .aside .list .item.selected {
+    #container > .panel .aside .list .item.selected {
       font-weight: bold;
     }
 
-    #container .panel .aside .list .item.selected::after {
+    #container > .panel .aside .list .item.selected::after {
       content: "";
       display: block;
       position: absolute;
@@ -140,7 +141,7 @@
     /* #container .panel .aside .list .item.selected:hover {
   color: #7f8818;
 } */
-    #container .panel .aside .log-out {
+    #container > .panel .aside .log-out {
       position: relative;
       /* margin-top: 500px; */
       font-size: 11px;
@@ -150,12 +151,12 @@
       cursor: pointer;
     }
 
-    #container .panel .aside .log-out:hover {
+    #container > .panel .aside .log-out:hover {
       color: #eb6562;
       text-decoration: underline;
     }
 
-    #container .panel .aside::before {
+    #container > .panel .aside::before {
       content: "";
       display: block;
       width: 5px;
@@ -168,7 +169,7 @@
       left: -5px;
     }
 
-    #container .panel .view {
+    #container > .panel .view {
       width: 80%;
       height: 100%;
       background: white;
@@ -178,7 +179,7 @@
       position: relative;
     }
 
-    #container .panel .view .sub-title {
+    #container > .panel .view .sub-title {
       position: absolute;
       font-size: 9px;
       letter-spacing: 5px;
@@ -189,15 +190,15 @@
       right: 32px;
     }
 
-    #container .panel .view .main-title {
+    #container > .panel .view .main-title {
       font-size: 32px;
       letter-spacing: 5px;
       /* color: #e2d307; */
       font-weight: light;
     }
 
-    #container .panel .view .seperator,
-    #container .panel .view .min-seperator {
+    #container > .panel .view .seperator,
+    #container > .panel .view .min-seperator {
       width: 100%;
       height: 1px;
       /* background: #7f8818; */
@@ -207,7 +208,7 @@
       margin-bottom: 45px;
     }
 
-    #container .panel .view .min-seperator {
+    #container > .panel .view .min-seperator {
       width: 380px;
       margin-left: 78px;
       margin-top: 80px;

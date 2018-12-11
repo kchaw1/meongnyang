@@ -58,7 +58,8 @@ public class CrowdController {
 			member.setId(pm.getId());
 			member.setPoint(pm.getMinusPoint());
 			
-			service.returnPoint(member); // 포인트 추가
+			service.returnPoint(member); // 포인트 환급
+			service.sendMsg(pm.getId()); // 환급 메세지 전송
 		}
 		
 		service.delete(crNo);

@@ -31,5 +31,7 @@ public interface CrowdMapper {
 	List<PointMinus> selectPointMinus(int crNo); // 글번호에 해당하는 포인트내역 가져오기
 	void updateMemberPointPlus(Member member); // 포인트 되돌려주기
 	void deleteCrowd(int crNo); // 크라우드펀딩 삭제
-	int selectCommentCheck(CrowdComment cc);
+	void insertPointReturnMsg(String id); // 포인트 환급 쪽지 전송
+	int selectCommentCheck(CrowdComment cc); // 코멘트가 이미 존재하는지 체크
+	
 }

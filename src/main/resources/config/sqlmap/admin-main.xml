@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.AdminMapper">
+<resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+</resultMap>
+
+<resultMap id="comMap" type="CommunityBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_title" property="comTitle" />
+		<result column="com_writer" property="comWriter" />
+		<result column="com_content" property="comContent" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_rec_cnt" property="comRecCnt" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+</resultMap>
+
+
+
+<select id="selectNonAuthABSList" resultMap="memberMap">
+	select *
+	  from mn_member
+	 where type='2' and auth_state='n' 
+</select>
+
+<select id="selectNewMemberList" resultMap="memberMap" >
+	select *
+	  from mn_member
+	 where sign_up_date >= NOW() - INTERVAL 1 DAY 
+</select>
+
+<select id="selectBoardCount" resultType="int">
+	select count(*)
+	  from mn_com
+	 where com_reg_date > CURRENT_DATE();
+</select>
+
+<select id="selectPointCount" resultType="int">
+	 select sum(minus_point)
+	  from mn_point_minus
+	 where minus_date > CURRENT_DATE();     
+</select>
+
+<select id="selectVisitorCount" resultType="int">
+ 	select count(*)
+	  from (select login_id, max(login_date_time) login_date_time
+	   	  	  from mn_login_history
+	  		 group by login_id
+	 		 having login_date_time > CURRENT_DATE()) as l;
+</select>
+
+</mapper>

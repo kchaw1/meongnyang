@@ -43,16 +43,13 @@
 </resultMap>
 
 <!-- 공지사항 작성 -->
-<insert id="insertNotice" parameterType="Notice">
+<insert id="insertNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="ntcNo">
 	insert into mn_notice (ntc_writer, ntc_title, ntc_content) 
 	     values(#{ntcWriter}, #{ntcTitle}, #{ntcContent})
 </insert>
 
 <!-- 파일첨부 -->
 <insert id="insertNoticeFile" parameterType="NoticeFile">
-	<selectKey keyProperty="ntcNo" resultType="int" order="BEFORE">
-		 SELECT IFNULL(MAX(ntc_no+1),1) FROM mn_notice;
-	</selectKey> 
 	insert into mn_ntc_file (
 		 ntc_no, ntcf_ori_name, ntcf_sys_name, ntcf_path, ntcf_size
 	) values (

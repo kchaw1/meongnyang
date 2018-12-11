@@ -22,8 +22,7 @@
 			<!-- 좌측 메뉴 -->
 			<div class="aside">
 				<div class="avatar">
-					<a href="admin1.html"><img
-						src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a>
+					<a href="<c:url value='/admin/main.mn' />"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a>
 				</div>
 				<br>
 				<div class="seperator"></div>

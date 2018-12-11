@@ -212,6 +212,12 @@
 	 where id = #{id}
 </update>
 
+<!-- 환급 쪽지 전송 -->
+<insert id="insertPointReturnMsg" parameterType="string">
+	insert into mn_msg(send_id, recv_id, msg_title, msg_content)
+	 	 values('admin', #{recvId}, '기부하신 크라우드펀딩이 삭제되었습니다.', '기부하셨던 포인트 돌려드립니다.')
+</insert>
+
 <!-- 크라우드펀딩 삭제 -->
 <delete id="deleteCrowd" parameterType="int">
 	delete from mn_crowd

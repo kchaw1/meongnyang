@@ -50,6 +50,9 @@ public class NoticeController {
 		String fileExtension ="";
 		String fileSysName = "";
 		
+		service.writeNotice(notice, fileList);
+		int ntcNo = notice.getNtcNo();
+		
 		for(MultipartFile file : ntcFile.getAttach()) {
 			
 			String newName = UUID.randomUUID().toString();
@@ -60,6 +63,7 @@ public class NoticeController {
 			fileExtension = getExtension(file.getOriginalFilename());
 			fileSysName = newName + "." + fileExtension;
 			
+			ntcFile.setNtcNo(ntcNo);
 			ntcFile.setNtcfOriName(file.getOriginalFilename());
 			ntcFile.setNtcfSysName(fileSysName);
 			ntcFile.setNtcfPath(datePath);
@@ -74,7 +78,6 @@ public class NoticeController {
 			service.noticeFile(ntcFile);
 		}
 		
-		service.writeNotice(notice, fileList);
 		fileList = new ArrayList<>();
 		
 		return "redirect:list.mn";
