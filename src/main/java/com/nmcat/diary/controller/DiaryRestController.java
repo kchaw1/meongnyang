@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.diary.service.DiaryService;
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
 
 @RequestMapping("/diary")
@@ -47,9 +48,9 @@ public class DiaryRestController {
 	}
 	
 	@PostMapping("/detail.mn")
-	public List<DiaryBoard> detailDiary(DiaryBoard diary) {
-		List<DiaryBoard> list = service.detailDiary(diary);
-		return list;
+	public Map<String, Object> detailDiary(DiaryBoard diary) {
+		Map<String, Object> map = service.detailDiary(diary);
+		return map;
 	}
 	
 	@PostMapping("/delete.mn")
@@ -106,6 +107,11 @@ public class DiaryRestController {
 		return drFile;
 	}
 	
+	@PostMapping("/comment/write.mn")
+	public Map<String, Object> writeNewComment(DiaryBoard diary, DiaryComment comment){
+		return service.writeNewComment(diary, comment);
+	}
+	
 	private static String getExtension(String fileName) {
         int dotPosition = fileName.lastIndexOf('.');
         
@@ -115,5 +121,6 @@ public class DiaryRestController {
             return "";
         }
 	 }
+	
 	
 } //end class

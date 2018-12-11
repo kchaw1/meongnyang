@@ -26,7 +26,8 @@ $(function(){
 	
 }) //on.ready
 
-$("[data-toggle='modal']").click(function() {
+$("ul#stickies").on("click", "[data-toggle='modal']",function() {
+	//alert($(this).data("no"))
 	  let drNo = $(this).data("no")
 	 // alert(drNo);
 	  //$("span#setdate").html(setdate.substr(0,4)+"." +setdate.substr(4,2)+"."+setdate.substr(6,2))  
@@ -34,6 +35,7 @@ $("[data-toggle='modal']").click(function() {
 }) //일기가 있는 날짜 눌렀을 때 일기제목에 날짜 넣기 ..
 
 function showdetailDiary(drNo) {
+	//alert(drNo);
 	$.ajax({
 		url : "<c:url value='/diary/share/showdetail.mn' />",
 		data : {"drNo" : drNo,
@@ -59,14 +61,78 @@ function showdetailDiary(drNo) {
 				map.diary.drContent = "내용 없음..."
 			}
 			str += '</div><div class="drContent">'+map.diary.drContent+'</div>';
-			str += '<div class="buttons"><div class="button-box">'
-			//str += '<button class="dr-delete" data-value="'+map.diary.drNo+'" data-date="'+diary.drDate+'">삭제</button>'
-			//str += '<button class="dr-update" data-value="'+map.diary.drNo+'" data-date="'+diary.drDate+'">수정</button>'
-			str += '</div></div></div>'
-		$("div.diaryList").html(str);
+			
+			if(("${user.id}" != "")) {
+				str += '<div class="aboutcomments" data-no="'+map.diary.drNo+'">'
+				str += '<div class="commentform form-group">'
+				str += '<form id="commentform" name="comment" method="POST" >'
+				str += '<input type="hidden" name="drcWriter" value="${user.id}"/>'
+				str += '<input type="text" class="form-control" id="drcContent" data-no="'+map.diary.drNo+'" placeholder="댓글을 입력해주세요."/>'		
+				str += '<div class="combuttonbox" data-no="'+map.diary.drNo+'">'
+				str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+map.diary.drNo+'">댓글 더보기</a>'
+				str += '<button type="button" class="drc-write">등록</button>'
+				str += '</div></form></div>'
+				str += '<div class="commentList hidden" data-no="'+map.diary.drNo+'"><ul class="comments">'
+				str += '</ul></div>'
+				str += '</div></div>'
+			}
+			$("div.diaryList").html(str);
+			
+			$("button.drc-write").click(function(){
+				writecomment($(this).parent().data("no"))
+			})
+			
+			if(map.comment.length != 0) {
+				for(let comment of map.comment) {
+				$("a#morecomments[data-no='"+comment.drNo+"']").removeClass("hidden");
+				$("a#morecomments[data-no='"+comment.drNo+"']").addClass("show")
+				var html = "";
+					html += '<li class="comment" data-drno="'+comment.drNo+'" data-drc="'+comment.drcNo+'">'
+					html += '<a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>'
+					html += '<div class="meta">'+comment.drcWriter
+					if(comment.friendsId == comment.drcWriter) {						
+						html += '<span class="small-label label-friend">친구</span>'
+					} else if (comment.drcWriter == "${user.id}") {
+						html += '<span class="small-label label-me">나</span>' 
+					}
+					html += '| '+ comment.drcRegDate
+					html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a> <a href="#1" class="delete" data-drc="'+comment.drcNo+'"> 삭제</a></div>'
+					html += '<div class="body">'+comment.drcContent+'</div></li>'
+				$("div.diary[data-no='"+comment.drNo+"'] > .aboutcomments > .commentList > ul").append(html);
+				} //comment for 문..
+			} // comment 있으면 뿌리기..
+			
+			$("a#morecomments").click(function(){
+				$("div.commentList[data-no='"+$(this).data("no")+"']").toggleClass("hidden")
+				$("div.commentList[data-no='"+$(this).data("no")+"']").toggleClass("show")
+				if($(this).html() =="댓글 더보기"){
+					$(this).html("댓글 숨기기")				
+				} else {
+					$(this).html("댓글 더보기")
+				}
+			})//click
+			
+			
+			
 	})//done
 }//showdetaildiary
 
+function writecomment(drNo) {
+	$.ajax({
+		url : "<c:url value='/diary/share/comment/write.mn' />",
+		data : {
+			"drNo" : drNo,
+			"drcWriter" : "${user.id}",
+			"drcContent" : $("input#drcContent[data-no='"+drNo+"']").val()
+		},
+		type : "POST"
+	}).done(function(){
+		showdetailDiary(drNo)
+	})
+	
+} //writecomment
+
+//무한 스크롤...
 var pageNo = "${param.pageNo}";
 $(window).scroll(function(){
 	//alert(pageNo)
@@ -84,8 +150,8 @@ $(window).scroll(function(){
 			},
 			type : "POST"
 		}).done(function(map) {
-			console.log(map.list1)
-			console.log("${user.id}")
+			//console.log(map.list1)
+			//console.log("${user.id}")
 			let str ="";
 			if("${user.id}"==null || "${user.id}"==""){
 				for(let diary of map.list1){
@@ -120,6 +186,7 @@ $(window).scroll(function(){
 				} // 로그인 했을시..
 			
 			$("ul#stickies").append(str);	
+				
 		}) //done
 	}
 });

@@ -3,6 +3,7 @@ package com.nmcat.repository.mapper;
 import java.util.List;
 
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
 
 public interface DiaryMapper {
@@ -26,4 +27,14 @@ public interface DiaryMapper {
 	public List<DiaryBoard> selectShareDiaryByPaging(int begin);
 	
 	public List<DiaryBoard> selectShareAndFriendDiaryByPaging(DiaryBoard diary);
+	
+	public void insertDiaryComment(DiaryComment comment);
+	
+	public List<Integer> selectDrNoByOnedate(DiaryBoard diary);
+	
+	public List<DiaryComment> selectCommentsByOneDate(DiaryComment comment);
+	
+	public List<DiaryComment> selectCommentByDrNo(DiaryComment comment);
+	
+	public String selectCommentbydrcNo(int drcNo);
 } //end interface

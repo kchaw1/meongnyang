@@ -1,5 +1,6 @@
 package com.nmcat.diary.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
 import com.nmcat.repository.mapper.DiaryMapper;
 
@@ -46,15 +48,21 @@ public class DiaryServiceImpl implements DiaryService{
 	}
 
 	@Override
-	public List<DiaryBoard> detailDiary(DiaryBoard diary) {
-		return mapper.selectDiarysByOnedate(diary);
+	public Map<String, Object> detailDiary(DiaryBoard diary) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("diaryList", mapper.selectDiarysByOnedate(diary));
+		DiaryComment comment = new DiaryComment();
+		comment.setDrNoList(mapper.selectDrNoByOnedate(diary));
+		comment.setUserId(diary.getUserId());
+		map.put("commentList", mapper.selectCommentsByOneDate(comment));
+		return map;
 	}
 
 	@Override
 	public Map<String, Object> deleteDiary(DiaryBoard diary) {
 		Map<String, Object> map = new HashMap<>();
 		mapper.deleteDiary(diary.getDrNo());
-		List<DiaryBoard> detailList =  detailDiary(diary);
+		List<DiaryBoard> detailList =  mapper.selectDiarysByOnedate(diary);
 		List<DiaryBoard> drList = mapper.selectAllDiaryByOneMonth(diary);
 		map.put("list", detailList);
 		//		 System.out.println("drList : " + drList);
@@ -83,7 +91,7 @@ public class DiaryServiceImpl implements DiaryService{
 	@Override
 	public List<DiaryBoard> updateDiary(DiaryBoard diary) {
 		mapper.updateDiary(diary);
-		return detailDiary(diary);
+		return mapper.selectDiarysByOnedate(diary);
 	}
 
 	@Override
@@ -102,9 +110,10 @@ public class DiaryServiceImpl implements DiaryService{
 	}
 
 	@Override
-	public Map<String, Object> showDetailDiary(int drNo) {
+	public Map<String, Object> showDetailShareDiary(DiaryComment comment) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("diary", mapper.selectOneDiaryBydrNo(drNo));
+		map.put("diary", mapper.selectOneDiaryBydrNo(comment.getDrNo()));
+		map.put("comment", mapper.selectCommentByDrNo(comment));
 		return map;
 	}
 
@@ -119,6 +128,20 @@ public class DiaryServiceImpl implements DiaryService{
 		map.put("list1", listShareDiary(diary.getBegin()));
 		map.put("list2", listShareAndFriendDiary(diary));
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> writeNewComment(DiaryBoard diary, DiaryComment comment) {
+		//Map<String, Object> map = new HashMap<>();
+		comment.setDrcRegDate(new Date());
+		mapper.insertDiaryComment(comment);
+		return detailDiary(diary);
+	}
+
+	@Override
+	public void writeCommentShareDiary(DiaryComment comment) {
+		comment.setDrcRegDate(new Date());
+		mapper.insertDiaryComment(comment);
 	}
 
 	

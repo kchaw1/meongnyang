@@ -172,9 +172,9 @@
 	//  $("a.")
 	} // makeCalendar
 	
-	function showdetailDiary(list) {
+	function showdetailDiary(map, setdate) {
 		let str = "";
-		for(let diary of list){
+		for(let diary of map.diaryList){
 			str += '<div class="diary" data-no="'+diary.drNo+'" >'
 			str += '<div class="dr-title">'
 			str += '<span class="title">'+diary.drTitle+'</span><br>'
@@ -194,19 +194,56 @@
 			str += '<button class="dr-delete" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">삭제</button>'
 			str += '<button class="dr-update" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">수정</button>'
 			str += '</div></div>'
-			str += '<div class="aboutcomments"><div class="commentform form-group">'
-			str += '<form id="commentform" name="comment" method="POST">'
-			str += '<textarea class="form-control" >댓글을 입력해주세요.</textarea>'
-			str += '<div class="combuttonbox"><button class="drc-write">등록</button>'
+			str += '<div class="aboutcomments" data-no="'+diary.drNo+'">'
+			str += '<div class="commentform form-group">'
+			str += '<form id="commentform" name="comment" method="POST" >'
+			str += '<input type="hidden" name="drcWriter" value="${user.id}"/>'
+			str += '<input type="text" class="form-control" id="drcContent" data-no="'+diary.drNo+'" placeholder="댓글을 입력해주세요."/>'		
+			str += '<div class="combuttonbox" data-no="'+diary.drNo+'">'
+			str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+diary.drNo+'">댓글 더보기</a>'
+			str += '<button type="button" class="drc-write">등록</button>'
 			str += '</div></form></div>'
-			str += '<div class="commentList"><ul class="comments">'
-			str += '<li class="comment">'
-			str += '<a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>'
-			str += '<div class="meta">'+diary.+'박아란 | 2018.07.24 14:58 <a class="reply" id = "editBtn" onclick="editfunction(86)">Edit</a> <a class="reply">Reply</a></div>'
+			str += '<div class="commentList hidden" data-no="'+diary.drNo+'"><ul class="comments">'
+			str += '</ul></div>'
+			str += '</div></div>'
 			
 			
 		} //for
 		$("div.diaryList").html(str);
+		$("button.drc-write").click(function(){
+			writecomment($(this).parent().data("no"), setdate)
+		})
+		
+		if(map.commentList.length != 0) {
+			for(let comment of map.commentList) {
+			$("a#morecomments[data-no='"+comment.drNo+"']").removeClass("hidden");
+			$("a#morecomments[data-no='"+comment.drNo+"']").addClass("show")
+			var html = "";
+				html += '<li class="comment" data-drno="'+comment.drNo+'" data-drc="'+comment.drcNo+'">'
+				html += '<a href="#" title="View this user profile" class="photo"><img src="https://placehold.it/32x32" alt="Kasper"></a>'
+				html += '<div class="meta">'+comment.drcWriter
+				if(comment.friendsId != null) {						
+					html += '<span class="small-label label-friend">친구</span>'
+				} else if (comment.drcWriter == "${user.id}") {
+					html += '<span class="small-label label-me">나</span>' 
+				}
+				html += '| '+ comment.drcRegDate
+				html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a> <a href="#1" class="delete" data-drc="'+comment.drcNo+'"> 삭제</a></div>'
+				html += '<div class="body">'+comment.drcContent+'</div></li>'
+			$("div[data-no='"+comment.drNo+"'] > .aboutcomments > .commentList > ul").append(html);
+			} //comment for 문..
+		} // comment 있으면 뿌리기..
+		
+		$("a#morecomments").click(function(){
+			$("div.commentList[data-no='"+$(this).data("no")+"']").toggleClass("hidden")
+			$("div.commentList[data-no='"+$(this).data("no")+"']").toggleClass("show")
+			if($(this).html() =="댓글 더보기"){
+				$(this).html("댓글 숨기기")				
+			} else {
+				$(this).html("댓글 더보기")
+			}
+		})
+		
 		
 		$("button.dr-delete").click(function() {
 			//alert($(this).data("date"));
@@ -215,19 +252,39 @@
 		$("button.dr-update").click(function() {
 			updateformDiary($(this).data("value"), $(this).data("date"));
 		}) // 다이어리 삭제
-	}
+		
+	} //showDetail
+	
+	
+	function writecomment(drNo, setdate) {
+		$.ajax({
+			url : "<c:url value='/diary/comment/write.mn' />",
+			data : {
+				"drNo" : drNo,
+				"drcWriter" : "${user.id}",
+				"drcContent" : $("input#drcContent[data-no='"+drNo+"']").val(),
+				"drDate" : setdate,
+				"drWriter" : "${user.id}"
+			},
+			type : "POST"
+		}).done(function(map){
+			showdetailDiary(map, setdate)
+		})
+		
+	} //writecomment
 	
 	function detailDiary(setdate) {
 		$.ajax({
 			url : "<c:url value='/diary/detail.mn' />",
 			data : {
 				"drDate" : setdate,
-				"drWriter" : "${user.id}"
+				"drWriter" : "${user.id}",
+				"userId" : "${user.id}"
 			},
 			type : "POST"
-		}).done(function(list){
-			if(list!=null) {
-				showdetailDiary(list)
+		}).done(function(map){
+			if(map!=null) {
+				showdetailDiary(map, setdate)
 			} // if not null
 		})//done
 	} //detailDiary

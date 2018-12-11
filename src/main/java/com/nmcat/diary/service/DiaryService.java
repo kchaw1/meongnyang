@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
 
 public interface DiaryService {
@@ -12,7 +13,7 @@ public interface DiaryService {
 
 	Map<String, Object> list(DiaryBoard diary);
 
-	List<DiaryBoard> detailDiary(DiaryBoard diary);
+	Map<String, Object> detailDiary(DiaryBoard diary);
 
 	Map<String, Object> deleteDiary(DiaryBoard diary);
 
@@ -24,11 +25,15 @@ public interface DiaryService {
 
 	List<DiaryBoard> listShareDiary(int begin);
 
-	Map<String, Object> showDetailDiary(int drNo);
+	Map<String, Object> showDetailShareDiary(DiaryComment comment);
 
 	List<DiaryBoard> listShareAndFriendDiary(DiaryBoard diary);
 
 	Map<String, Object> pagePlusDiary(DiaryBoard diary);
+
+	Map<String, Object> writeNewComment(DiaryBoard diary, DiaryComment comment);
+
+	void writeCommentShareDiary(DiaryComment comment);
 
 
 

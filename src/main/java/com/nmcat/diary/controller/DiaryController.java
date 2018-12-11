@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.diary.service.DiaryService;
 import com.nmcat.repository.domain.board.DiaryBoard;
+import com.nmcat.repository.domain.board.DiaryComment;
 
 @Controller
 @RequestMapping("/diary")
@@ -36,8 +37,14 @@ public class DiaryController {
 	
 	@RequestMapping("/share/showdetail.mn")
 	@ResponseBody
-	public Map<String, Object> showDetailDiary(int drNo){
-		return service.showDetailDiary(drNo);
+	public Map<String, Object> showDetailShareDiary(DiaryComment comment){
+		return service.showDetailShareDiary(comment);
+	}
+	
+	@RequestMapping("/share/comment/write.mn")
+	@ResponseBody
+	public void writeCommentShareDiary(DiaryComment comment) {
+		service.writeCommentShareDiary(comment);
 	}
 	
 } //end class
