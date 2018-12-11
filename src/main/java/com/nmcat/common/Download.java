@@ -39,9 +39,13 @@ public class Download {
 	        response.setContentType("application/download; utf-8");
 	        response.setContentLength((int)file.length());
 	           
-	        sysName = new String(file.getName().getBytes("utf-8"));
-	                
-	        response.setHeader("Content-Disposition", "attachment;filename=" + oriName);
+//	        sysName = new String(file.getName().getBytes("utf-8"));
+	        
+	        if(oriName == null) { 
+	        	response.setHeader("Content-Disposition", "attachment;filename=" + sysName);
+	        } else {
+	        	response.setHeader("Content-Disposition", "attachment;filename=" + oriName);
+	        }
 	        response.setHeader("Content-Transfer-Encoding", "binary");
 	         
 	        OutputStream out = response.getOutputStream();
