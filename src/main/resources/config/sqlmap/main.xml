@@ -32,11 +32,29 @@
 		<result column="cr_end_yn" property="crEndYN" />
 </resultMap> -->
 
+	<resultMap type="DiaryBoard" id="boardMap">
+		<result column="dr_no" property="drNo"/>
+		<result column="dr_writer" property="drWriter"/>
+		<result column="dr_title" property="drTitle"/>
+		<result column="dr_content" property="drContent"/>
+		<result column="dr_reg_date_time" property="drRegDateTime"/>
+		<result column="dr_share" property="drShare"/>
+		<result column="dr_date" property="drDate"/>
+	</resultMap>
+
 
 
 <select id = "selectComBoardRegDate" resultMap = "comMap">
-select *
-from mn_com order by com_no desc limit 0, 5
+select * from mn_com
+		 order by com_no desc
+		 limit 0, 5
+</select>
+
+<select id = "selectDiaryBoardRegDate" resultMap = "boardMap">
+select * from mn_diary
+		 where dr_share = '1'
+		 order by dr_no desc
+		 limit 0, 3
 </select>
 
 </mapper>

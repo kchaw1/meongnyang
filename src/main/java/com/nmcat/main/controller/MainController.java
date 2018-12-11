@@ -16,7 +16,10 @@ public class MainController {
 	//메인페이지 커뮤니티 최신글 5개 뿌려주기
 	@RequestMapping("/mainPage.mn")
 	public void list(Model model) throws Exception{
+		// 최신 커뮤니티 게시글
 		model.addAttribute("list", service.selectComBoardRegDate());
+		// 최신 전체공개 다이어리 게시글
+		model.addAttribute("list2", service.selectDiaryBoardRegDate());
 	}
 
 }

@@ -317,7 +317,7 @@ function forAllBtn(){
 	}//end first if
 	
 	if (clickPlus) {
-		//clickPlus가 true이고 선택된 카테고리의 값이 전체보기가 아니라면 선택된 카테고리값을 넣어준다. 
+		//선택된 카테고리의 값이 전체보기가 아니라면 선택된 카테고리값을 넣어준다. 
 		if ($("#slct").val() != "all") param += "&comCategory=" + $("#slct").val();
 	}//end second if
 	

@@ -354,7 +354,7 @@ border-radius: 4px;
 	
 	<script>
 	
-	 $(document).ready(function() {
+/*   $(document).ready(function() {
 		$('#summernote').summernote({
 			minwidth : 705,
 			height : 300, // set editor height
@@ -364,19 +364,18 @@ border-radius: 4px;
 			
 		// set focus to editable area after initializing summernote
 		});
-	});  
-	
-	$(document).ready(function() {
+	});    */
+
 		$('#summernote').summernote({
 		    minwidth : 705,
 			height : 300, // set editor height
 			minHeight : null, // set minimum height of editor
 			maxHeight : null, // set maximum height of editor
+			tabsize : 2,
 			focus : true,
 			callbacks : {
 				onImageUpload : function(files, editor, welEditable) {
-					console.log(files);
-					console.log(this);
+				
 					for (let i = files.length - 1; i >= 0; i--) {
 						sendFile(files[i], this);
 					}
@@ -384,12 +383,13 @@ border-radius: 4px;
 			}
 		// callbacks
 		});
-	});
+
+
 	
 
    function sendFile(file, ele) {
    	var form_data = new FormData();
-   	console.log("form_data", form_data)
+
    	form_data.append('file', file);
    	$.ajax({
    		data : form_data,
@@ -400,7 +400,7 @@ border-radius: 4px;
    		enctype : "multipart/form_data",
    		processData : false,
    		success : function(cFile) {
-   			console.log(cFile.url);
+   			
    			$("input#imageBoard").val(cFile.url)
    			$("input#imagesysname").val(cFile.comfSysName)
    			$("input#imagepath").val(cFile.comfPath)

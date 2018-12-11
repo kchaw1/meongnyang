@@ -245,6 +245,15 @@ public class CommunityController {
             return "";
         }
 	 }
+	 private static String getParentUrl(String fileUrl) {
+		 int dotPosi = fileUrl.lastIndexOf('/');
+		 
+		 if(dotPosi != -1 && fileUrl.length() -1 > dotPosi) {
+			 return fileUrl.substring(0,dotPosi);
+		 } else {
+			 return "";
+		 }
+	 }
 	
 	
 	
