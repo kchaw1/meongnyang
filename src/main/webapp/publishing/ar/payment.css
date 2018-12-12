@@ -27,7 +27,7 @@ div.animate {
   float: right;
   margin-right : 150px;
 }
-div.content {
+div.content, div.result {
   text-align: center;
   clear: both;
 }
@@ -37,7 +37,8 @@ img {
   width:120px;
   height:auto;
 }
-table.payment {
+table.payment, table.impUid, 
+table.detailpay, table.detailpoint {
   margin: 30px auto;
   width: 60%;
   text-align: center;
@@ -84,6 +85,7 @@ button {
   background-color: rgb(65, 192, 142, 0.7);
   border-color : rgb(65, 192, 142, 0.7);
   font-family: 'Jua', sans-serif;
+  float: right;
 }
 
 button:hover {
@@ -98,3 +100,75 @@ button:active {
   background-color: rgb(65, 192, 142);
   border-color : rgb(65, 192, 142);
 }
+
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+div.resultTitle {
+  margin-top: 20px;
+  font-size: 28px;
+  color: rgb(242, 128, 128);
+}
+
+span.name{
+  font-size: 36px;
+  color : gray;
+}
+table.impUid.result {
+  border-collapse: collapse;
+  width: 40%;
+  /* border: 3px solid gray; */
+  border-radius: 10px;
+}
+table.impUid.result tr:first-child{
+  height: 45%;
+  background: rgb(127, 127, 127, 0.3);
+  border-bottom : none;
+}
+td.uid {
+  font-size: 20px;
+  border-radius: 10px 10px 0 0  ;
+}
+td.uiddetail {
+  font-size: 28px; 
+  border-radius: 0 0 10px 10px;
+}
+table.detailpay.result
+,table.detailpoint.result {
+  width: 50%;
+}
+table.detailpay.result td:first-child,
+table.detailpoint.result td:first-child{
+  text-align: left;
+  color : gray;
+  padding-left: 10px;
+  font-size: 20px; 
+}
+table.detailpay.result td:last-child,
+table.detailpoint.result td:last-child {
+  text-align: right;
+  padding-right: 10px;
+  font-size: 20px; 
+}
+
+table.detailpay.result td:first-child {
+  text-align: left;
+  color : gray;
+  padding-left: 10px;
+  font-size: 20px; 
+}
+tr.first {
+  border-bottom : none;
+}
+table.detailpoint.result tr:nth-child(1), 
+table.detailpoint.result tr:nth-child(2) {
+  height: 36px;
+}
+table.detailpoint.result tr.buttons img {
+  display: inline-block;
+}
+

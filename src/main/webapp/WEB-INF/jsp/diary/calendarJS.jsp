@@ -200,7 +200,7 @@
 			str += '<input type="hidden" name="drcWriter" value="${user.id}"/>'
 			str += '<input type="text" class="form-control" id="drcContent" data-no="'+diary.drNo+'" placeholder="댓글을 입력해주세요."/>'		
 			str += '<div class="combuttonbox" data-no="'+diary.drNo+'">'
-			str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+diary.drNo+'">댓글 더보기</a>'
+			str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+diary.drNo+'">댓글 더보기<span class="comNo"></span></a>'
 			str += '<button type="button" class="drc-write">등록</button>'
 			str += '</div></form></div>'
 			str += '<div class="commentList hidden" data-no="'+diary.drNo+'"><ul class="comments">'
@@ -214,8 +214,10 @@
 			writecomment($(this).parent().data("no"), setdate)
 		})
 		
+		//댓글 뿌려주기..
 		if(map.commentList.length != 0) {
 			for(let comment of map.commentList) {
+			//$("a#morecomments[data-no='"+comment.drNo+"']").find("span").html("("+map.get(comment.drNo)+")")
 			$("a#morecomments[data-no='"+comment.drNo+"']").removeClass("hidden");
 			$("a#morecomments[data-no='"+comment.drNo+"']").addClass("show")
 			var html = "";
@@ -303,12 +305,13 @@
 				data : {
 						"drDate" : setdate,
 						"drNo" : drNo,
-						"drWriter" : "${user.id}"
+						"drWriter" : "${user.id}",
+						"userId" : "${user.id}"
 					   },
 				type : "POST"
 			}).done(function(map) {
 				if(map!=null) {
-					showdetailDiary(map.list)
+					showdetailDiary(map, setdate)
 					makeCalendar(now, map)
 				} // if not null
 			}) //done

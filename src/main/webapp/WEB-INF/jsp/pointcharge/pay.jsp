@@ -69,6 +69,46 @@
      </tr>
    </table>
  </div>
+ <div class="result hidden">
+    <div class="resultTitle">
+      <span class="name">rsp.buyer_name</span> 님의<br>
+      <span>멍냥 포인트 충전이 완료되었습니다.</span>
+    </div>
+    <table class="impUid result">
+      <tr>
+        <td class="uid">결제 번호</td>
+      </tr>
+      <tr>
+        <td class="uiddetail">rsp.imp_uid</td>
+      </tr>
+    </table>
+    <table class="detailpay result">
+      <tr>
+        <td>충전 금액</td>
+        <td class="payamount">rsp.paid_amount</td>
+      </tr>
+    </table>
+    <table class="detailpoint result">
+      <tr class="first">
+        <td>충전된 포인트</td>
+        <td>plusPoint</td>
+      </tr>
+      <tr>
+        <td>이전 포인트</td>
+        <td>prevPoint</td>
+      </tr>
+      <tr>
+        <td>충전 후 포인트</td>
+        <td>nowPoint</td>
+      </tr>
+      <tr class="buttons">
+          <td colspan="2">
+            <img src="../common/teddy_food_dribbble.gif" />
+            <button type="button" class="cancel">확인</button>
+          </td>
+        </tr>
+    </table>
+  </div>
  <script>
  $(function() {
 	IMP.init('imp59975900');
@@ -109,21 +149,32 @@
  			    		id : "${user.id}",
  			    		plusPoint : plusPoint
  		    		}
- 		    	}).done(function(data) {
+ 		    	}).done(function() {
+ 		    		$("div.content").addClass("hidden")
+ 		    		$("header").addClass("hidden")
+ 		    		$("div.result").removeClass("hidden")
+ 		    		$("div.result").addClass("show")
  		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
- 		    		if ( everythings_fine ) {
- 		    			var msg = '결제가 완료되었습니다.';
- 		    			msg += '\n고유ID : ' + rsp.imp_uid;
- 		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
- 		    			msg += '\결제 금액 : ' + rsp.paid_amount;
- 		    			msg += '카드 승인번호 : ' + rsp.apply_num;
+ 		    		//if ( everythings_fine ) {
+ 		    		$("td.uiddetail").html(rsp.imp_uid);
+ 		    		$("span.name").html(rsp.buyer_name)
+	    			var msg = '결제가 완료되었습니다.';
+	    			msg += '\n고유ID : ' + rsp.imp_uid;
+	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	    			msg += '\결제 금액 : ' + rsp.paid_amount;
+	    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
- 		    			console.log
- 		    			(msg);
- 		    		} else {
+	    			console.log
+	    			(msg);
+ 		    		var plusPoint = plusPoint.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$("td.plusPoint").html(plusPoint + " 포인트")
+ 		    		//3자리 마다 ,찍기..
+ 		    		var amount = rsp.paid_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ 		    		$("span.payamount").html(amount +" 원");
+ 		    		/* } else {
  		    			//[3] 아직 제대로 결제가 되지 않았습니다.
  		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
- 		    		}
+ 		    		} */
  		    	});// ajax done 
  		    	
  		    } else {

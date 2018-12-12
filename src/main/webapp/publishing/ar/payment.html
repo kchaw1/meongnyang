@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header class="hidden">
     <div class="title">
       <h1>멍냥 포인트 충전</h1>
     </div>
@@ -19,7 +19,7 @@
         <img src="../common/teddy_food_dribbble.gif" />
     </div>
   </header>
-  <div class="content">
+  <div class="content hidden">
     <table class="payment">
       <tr class="title">
         <th class="no1">선택</th>
@@ -69,6 +69,47 @@
       </tr>
     </table>
   </div>
+  <div class="result">
+    <div class="resultTitle">
+      <span class="name">rsp.buyer_name</span> 님의<br>
+      <span>멍냥 포인트 충전이 완료되었습니다.</span>
+    </div>
+    <table class="impUid result">
+      <tr>
+        <td class="uid">결제 번호</td>
+      </tr>
+      <tr>
+        <td class="uiddetail">rsp.imp_uid</td>
+      </tr>
+    </table>
+    <table class="detailpay result">
+      <tr>
+        <td>충전 금액</td>
+        <td class="payamount">rsp.paid_amount</td>
+      </tr>
+    </table>
+    <table class="detailpoint result">
+      <tr class="first">
+        <td>충전된 포인트</td>
+        <td class="plusPoint">plusPoint</td>
+      </tr>
+      <tr>
+        <td>이전 포인트</td>
+        <td>prevPoint</td>
+      </tr>
+      <tr>
+        <td>충전 후 포인트</td>
+        <td>nowPoint</td>
+      </tr>
+      <tr class="buttons">
+          <td colspan="2">
+            <img src="../common/teddy_food_dribbble.gif" />
+            <button type="button" class="cancel">확인</button>
+          </td>
+        </tr>
+    </table>
 
+
+  </div>
 </body>
 </html>

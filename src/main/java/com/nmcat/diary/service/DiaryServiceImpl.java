@@ -30,7 +30,7 @@ public class DiaryServiceImpl implements DiaryService{
 	public Map<String, Object> list(DiaryBoard diary) {
 		Map<String, Object> map = new HashMap<>();
 		List<DiaryBoard> drList = mapper.selectAllDiaryByOneMonth(diary);
-		map.put("list", drList);
+		map.put("drList", drList);
 		//		 System.out.println("drList : " + drList);
 		//		 System.out.println(drList.size());
 		for(int i=0; i < drList.size(); i++) {
@@ -52,35 +52,37 @@ public class DiaryServiceImpl implements DiaryService{
 	public Map<String, Object> detailDiary(DiaryBoard diary) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("diaryList", mapper.selectDiarysByOnedate(diary));
-		DiaryComment comment = new DiaryComment();
-		comment.setDrNoList(mapper.selectDrNoByOnedate(diary));
-		comment.setUserId(diary.getUserId());
-		map.put("commentList", mapper.selectCommentsByOneDate(comment));
+		List<Integer> drNoList = mapper.selectDrNoByOnedate(diary);
+		if(drNoList.size() != 0) {
+			DiaryComment comment = new DiaryComment();
+			comment.setDrNoList(drNoList);
+			comment.setUserId(diary.getUserId());
+			map.put("commentList", mapper.selectCommentsByOneDate(comment));
+			for(int drNo : drNoList) {
+				map.put(String.valueOf(drNo), mapper.selectCommentCntbydrNo(drNo));
+			}
+		}
 		return map;
 	}
 
 	@Override
 	public Map<String, Object> deleteDiary(DiaryBoard diary) {
-		Map<String, Object> map = new HashMap<>();
 		mapper.deleteDiary(diary.getDrNo());
-		List<DiaryBoard> detailList =  mapper.selectDiarysByOnedate(diary);
+		Map<String, Object> map = detailDiary(diary);
 		List<DiaryBoard> drList = mapper.selectAllDiaryByOneMonth(diary);
-		map.put("list", detailList);
-		//		 System.out.println("drList : " + drList);
-		//		 System.out.println(drList.size());
+		map.put("drList", drList);
 		for(int i=0; i < drList.size(); i++) {
 			if(i>0) {
 				if(drList.get(i).getDrDate()
 						.equals(drList.get(i-1).getDrDate())) continue;			 
 			} 
 			//System.out.println("drDate(i) : " + drList.get(i).getDrDate());
-			
 			diary.setDrDate(drList.get(i).getDrDate());
 			int count = mapper.selectCntByOnedate(diary);
 			//System.out.println("count: " + count);
 			map.put(drList.get(i).getDrDate(), count);
 		} //for
-	
+		
 		return map;
 	} //deleteDiary
 

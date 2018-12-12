@@ -160,10 +160,10 @@
 		  order by drc_reg_date
 	</select>
 	
-	<!-- <select id="selectCommentbydrcNo" parameterType="int" resultMap="string">
-		select drc_content from mn_diary_comment
-			where drc_no = #{drcNo}
-	</select> -->
+	<select id="selectCommentCntbydrNo" parameterType="int" resultType="int">
+		select count(*) from mn_diary_comment
+			where dr_no = #{drNo}
+	</select>
 	
 	
 	</mapper>

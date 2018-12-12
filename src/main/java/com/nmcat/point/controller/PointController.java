@@ -28,9 +28,8 @@ public class PointController {
 	@RequestMapping("/buy.mn")
 	@ResponseBody
 	public void buyPoint(PointPlus plus) {
+		System.out.println(plus);
 		service.buyPoint(plus);
-		
-		
  	} // I'm port API 사용
 
 //	private String getPaymentData(String impUid, String accessToken) {
