@@ -13,6 +13,15 @@
 		<result column="com_view_cnt" property="comViewCnt" />
 		<result column="com_reg_date" property="comRegDate" />
 </resultMap>
+
+<!-- 유튜브 -->
+<resultMap id="ytbMap" type="Youtube">
+	<result column="ytb_no" property="ytbNo" />
+	<result column="ytb_writer" property="ytbWriter" />
+	<result column="ytb_keyword" property="ytbKeyword" />
+	<result column="ytb_url" property="ytbURL" />
+	<result column="ytb_reg_date" property="ytbRegDate" />
+</resultMap>
 <!-- 크라우드 펀딩
 <resultMap id="crowdMap" type="Crowd">
 		<result column="cr_no" property="crNo" />
@@ -55,6 +64,12 @@ select * from mn_diary
 		 where dr_share = '1'
 		 order by dr_no desc
 		 limit 0, 3
+</select>
+
+<select id="selectYoutubeInfo" resultMap="ytbMap">
+	select * 
+	  from mn_ytb
+	 group by ytb_keyword
 </select>
 
 </mapper>

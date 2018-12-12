@@ -24,6 +24,7 @@
  
  <!-- 부트스트랩 -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ <script src="https://www.youtube.com/iframe_api"></script>
 
 <!-- 네이버 -->
 <!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> -->
@@ -265,7 +266,8 @@ div.progress-bar {
 }
 .pclass {
     color: gray;
-    line-height: 20px;
+    font-size: 15px;
+    font-family: Jua;
 }
 .caption2 {
     font-weight: bold;
@@ -377,6 +379,10 @@ margin-bottom: -24px;
 margin-top: 60px;
 }
 
+.clear-fix{
+	clear: both;
+}
+
 
 /* 채팅 */
 .chat-launcher {
@@ -481,16 +487,14 @@ transform: rotate(0deg);
                             <h2 class = "title2">최신동영상</h2>
                             <button class="btn3 leftRight1">더보기 </button>
                             </div>
-                            <div class= "youtube">
-                                <div class = "youtube"><img src="<c:url value = "/resources/img/community/캡처.PNG"/>" width="355"></div>
-                                <p class="pclass" style="font-family: 'Jua'">제목제목 <span>2018-11-17</span></p>
-                            </div>
-                            <div class= "youtube">
-                                    <div class = "youtube"><img src="<c:url value = "/resources/img/community/캡처.PNG"/>" width="355"></div>
-                                    <p class="pclass" style="font-family: 'Jua'">제목제목 <span>2018-11-17</span></p>
-                                </div>
-
-
+                            <div class="clear-fix"></div>
+                            	<c:forEach var="ytb" items="${youtubeList}">
+		                            <div class= "youtube">
+			                                <p class="pclass">${ytb.ytbKeyword}</p>
+			                                <div class = "youtube"><iframe type="text/html" style="margin-right:10px;" width="100%" height="180" src="${ytb.ytbURL}" frameborder="0"></iframe></div>
+			                                <br>
+		                            </div>
+                                </c:forEach>
                     </div>
 
             </div>
@@ -631,7 +635,7 @@ transform: rotate(0deg);
             </div>
           </footer>
 
-<footer>
+	<footer>
 	            <div class="chat-launcher" onclick="doChatList()"></div>
 	            
     		  </footer>
@@ -639,7 +643,7 @@ transform: rotate(0deg);
   <script>
     // 크라우드펀딩으로 가는 url
     $(".btn2").on('click', function(){
-    	location.href = "<c:url value = '/admin/crowd/list.mn'/>";
+    	location.href = "<c:url value = '/crowd/list.mn'/>";
     });
     // 최신동영상으로 가는 url
     $(".btn1").on('click', function(){

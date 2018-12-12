@@ -24,7 +24,7 @@ import com.nmcat.repository.domain.CrowdLike;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.PointMinus;
 
-@RequestMapping("/admin")
+@RequestMapping("/crowd")
 @Controller
 public class CrowdController {
 	
@@ -32,25 +32,25 @@ public class CrowdController {
 	private CrowdService service;
 	
 	// 크라우드펀딩 작성 폼 
-	@RequestMapping("/crowd/writeForm") 
+	@RequestMapping("/writeForm") 
 	public void writeForm() {}
 	
 	// 크라우드펀딩 작성
-	@RequestMapping("/crowd/write") 
+	@RequestMapping("/write") 
 	public String write(Crowd crowd) throws Exception {
 		service.write(fileAttach(crowd));
 		return "redirect:list.mn";
 	}
 	
 	// 크라우드 펀딩 수정
-	@RequestMapping("/crowd/update")
+	@RequestMapping("/update")
 	public String update(Crowd crowd) throws Exception {
 		service.update(fileAttach(crowd));
 		return "redirect:list.mn";
 	}
 	
 	// 크라우드 펀딩 삭제
-	@RequestMapping("/crowd/delete")
+	@RequestMapping("/delete")
 	public String delete(int crNo) {
 		Member member = new Member();
 		
@@ -67,11 +67,11 @@ public class CrowdController {
 	}
 	
 	// 크라우드펀딩 리스트 이동
-	@RequestMapping("/crowd/list") 
+	@RequestMapping("/list") 
 	public void list() {}
 	
 	// 크라우드펀딩 리스트
-	@RequestMapping("/crowd/printList")
+	@RequestMapping("/printList")
 	@ResponseBody
 	public Map<String, Object> printList(Crowd crowd) {
 		
@@ -83,7 +83,7 @@ public class CrowdController {
 		return map;
 	}
 	
-	@RequestMapping("/crowd/printEndList")
+	@RequestMapping("/printEndList")
 	@ResponseBody
 	public Map<String, Object> printEndList(Crowd crowd) {
 		
@@ -95,7 +95,7 @@ public class CrowdController {
 	}
 	
 	// 크라우드펀딩 디테일
-	@RequestMapping("/crowd/detail")
+	@RequestMapping("/detail")
 	public void detail(Model model, int crNo, HttpSession session) {
 		
 		Member member = (Member)session.getAttribute("user");
@@ -116,7 +116,7 @@ public class CrowdController {
 	}
 	
 	// 댓글 리스트
-	@RequestMapping("/crowd/commentList") 
+	@RequestMapping("/commentList") 
 	@ResponseBody
 	public Map<String, Object> commentList(int crNo) {
 		Map<String, Object> map = new HashMap<>();
@@ -127,7 +127,7 @@ public class CrowdController {
 	}
 	
 	// 크라우드펀딩 기부
-	@RequestMapping("/crowd/donate")
+	@RequestMapping("/donate")
 	public String donate(Crowd crowd, Member member, CrowdComment cc, PointMinus pm) {
 		member.setPoint(crowd.getDonateMoney());
 		service.minusPoint(member);
@@ -147,7 +147,7 @@ public class CrowdController {
 	}
 	
 	// 좋아요
-	@RequestMapping("/crowd/likeUp")
+	@RequestMapping("/likeUp")
 	@ResponseBody
 	public int likeUp(CrowdLike cl) {
 		service.likeCntUp(cl.getCrNo()); // crowd 테이블 개수 올리기
@@ -157,7 +157,7 @@ public class CrowdController {
 	}
 	
 	// 좋아요 취소
-	@RequestMapping("/crowd/likeDown")
+	@RequestMapping("/likeDown")
 	@ResponseBody
 	public int likeDown(CrowdLike cl) {
 		service.likeCntDown(cl.getCrNo());
@@ -167,7 +167,7 @@ public class CrowdController {
 	}
 	
 	// 수정 페이지 이동
-	@RequestMapping("/crowd/updateForm")
+	@RequestMapping("/updateForm")
 	public void updateForm(Model model, int crNo) {
 		model.addAttribute("crowdInfo", service.crowdInfo(crNo));
 	} 

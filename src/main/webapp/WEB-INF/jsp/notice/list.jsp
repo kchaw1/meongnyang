@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
 <c:import url="listCSSJS.jsp" />
 </head>
 <body>
 	<!-- 헤더 -->
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 	
 	<!-- start -->
@@ -21,7 +21,7 @@
                     <div class="main-image">
                     </div>
                     <div class="main-title">
-                        <a href="<c:url value='/admin/notice/list.mn' />"><h1>공지사항</h1></a>
+                        <a href="<c:url value='/notice/list.mn' />"><h1>공지사항</h1></a>
                     </div>
                 </div>
                 <div class="bottom-section">
@@ -73,7 +73,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/footer.jsp" />
 	</div>
 	
 	<script>
@@ -85,7 +85,7 @@
 	// 공지사항 리스트
 	var ajaxNoticeList = function(pageNo, searchType, keyword) {
 		$.ajax({
-			url: "<c:url value='/admin/notice/noticeList.mn' />",
+			url: "<c:url value='/notice/noticeList.mn' />",
 			type: "POST",
 			data: {
 					"pageNo": pageNo,	
@@ -210,7 +210,7 @@
 		if('${user.type}' != 3) {
 			swal("관리자만 작성할 수 있습니다.", "" , "error")
 		}
-		location.href = "<c:url value='/admin/notice/writeForm.mn' />"
+		location.href = "<c:url value='/notice/writeForm.mn' />"
 	})
 	</script>
 </body>

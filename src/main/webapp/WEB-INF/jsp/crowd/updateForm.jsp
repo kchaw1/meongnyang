@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
 <c:import url="writeFormCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
   <!-- timepicker-->
   <link href="<c:url value="/resources/css/admin/tui-time-picker.css"/>" rel="stylesheet">
   <script src="<c:url value="/resources/js/admin/tui-time-picker.js"/>"></script>
@@ -23,7 +23,7 @@
 <body>
 	<!-- 헤더 -->
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 	
 	<!-- start -->
@@ -31,7 +31,7 @@
     <div class="panel">
       <!-- 좌측 메뉴 -->
       <div class="aside">
-           <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+           <div class="avatar"><a href="<c:url value='/admin/main.mn' />"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
         <div class="seperator"></div>
         <div class="list">
@@ -111,7 +111,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/footer.jsp" />
 	</div>
 	
 	  <script>

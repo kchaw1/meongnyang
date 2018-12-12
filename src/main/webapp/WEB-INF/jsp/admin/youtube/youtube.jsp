@@ -126,7 +126,7 @@
 	                      regionCode:"KR",
 	                      type: "video",
 	                      videoEmbeddable: "true",
-	                      maxResults:2
+	                      maxResults:4
 	                  };
 	                  $.getJSON(url, params, showResults);
 	              }
@@ -139,7 +139,7 @@
 		                  $.each(entries, function (index, value) {
 		                      var videoId = value.id.videoId;
 		                      
-		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="48%" height="360" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="24%" height="180" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
 	      	  			  });
 	        			  $("div." + randomStr).append(result);
        			 	};
@@ -247,7 +247,7 @@
                     regionCode:"KR",
                     type: "video",
                     videoEmbeddable: "true",
-                    maxResults:2
+                    maxResults:4
                 };
                 $.getJSON(url, params, showResults);
             }
@@ -260,7 +260,7 @@
                 $.each(entries, function (index, value) {
                     var videoId = value.id.videoId;
                     
-                    result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="48%" height="360" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+                    result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="24%" height="180" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
                     		
 	                  // ajax호출 키워드, url DB저장
 	                  $.ajax({

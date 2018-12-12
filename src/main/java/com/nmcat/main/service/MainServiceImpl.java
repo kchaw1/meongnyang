@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.domain.board.DiaryBoard;
 import com.nmcat.repository.mapper.MainMapper;
@@ -24,6 +25,10 @@ public class MainServiceImpl implements MainService{
 		return mapper.selectDiaryBoardRegDate();
 	} 
 	
+	@Override
+	public List<Youtube> youtubeList() {
+		return mapper.selectYoutubeInfo();
+	}
 	
 
 }

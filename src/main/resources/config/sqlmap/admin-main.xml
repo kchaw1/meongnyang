@@ -48,19 +48,19 @@
 </select>
 
 <select id="selectBoardCount" resultType="int">
-	select count(*)
+	select ifnull(count(*),0)
 	  from mn_com
 	 where com_reg_date > CURRENT_DATE();
 </select>
 
 <select id="selectPointCount" resultType="int">
-	 select sum(minus_point)
+	 select ifnull(sum(minus_point), 0)
 	  from mn_point_minus
 	 where minus_date > CURRENT_DATE();     
 </select>
 
 <select id="selectVisitorCount" resultType="int">
- 	select count(*)
+ 	select ifnull(count(*),0)
 	  from (select login_id, max(login_date_time) login_date_time
 	   	  	  from mn_login_history
 	  		 group by login_id

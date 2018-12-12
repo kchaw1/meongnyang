@@ -7,21 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
 <c:import url="detailCSSJS.jsp" />
 </head>
 <body>
 	<!-- 헤더 -->
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 
 	<!-- start -->
 	<div id="notice-area">
 		<div class="top-section">
 			<div class="main-title">
-				<a href="<c:url value='/admin/notice/list.mn' />"><h1>공지사항</h1></a>
+				<a href="<c:url value='/notice/list.mn' />"><h1>공지사항</h1></a>
 			</div>
 		</div>
 
@@ -74,7 +74,7 @@
 
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/footer.jsp" />
 	</div>
 	
 	<script>

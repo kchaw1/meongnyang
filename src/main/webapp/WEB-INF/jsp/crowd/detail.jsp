@@ -7,15 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
 <c:import url="detailCSSJS.jsp" />
 
 </head>
 <body>
 	<!-- 헤더 -->
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 	<fmt:formatNumber var="goalMoney" value="${detail.crGoalMoney}" pattern="#,###,###,###"/>
 	<fmt:formatNumber var="nowMoney" value="${detail.crNowMoney}" pattern="#,###,###,###"/>
@@ -24,7 +24,7 @@
       
       <!-- 우측 콘텐츠 영역-->
           <div id="content-container">
-	          <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
+	          <div class="main-title"><h1><a href="<c:url value='/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
 	          	<div id="content-wrapper">
 	          		<div id="cf-img"><img style="border-radius: 10%;" src="<c:url value='/common/download.mn?sysName=${detail.crFileName}&path=${detail.crFilePath}&oriName=${detail.crFileOriName}'/>" /></div>
 	          			<div id="content-area1">
@@ -93,6 +93,7 @@
            		  </div>
 	          </div>
 	          <div id="button-area">
+	          		<button type="button" id="list-btn" class="btn btn-default btn-default">목록</button>
 	          		<c:if test="${user.type eq 3}">
 	                <button type="button" id="update-btn" class="btn btn-default btn-default">수정</button>
 	                <button type="button" id="delete-btn" class="btn btn-default btn-default">삭제</button>
@@ -115,7 +116,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/footer.jsp" />
 	</div>
 	
 	<script>
@@ -178,7 +179,7 @@
 		 // 댓글 리스트 함수
         var commentList = function() {
         	  $.ajax({
-	            	url: "<c:url value='/admin/crowd/commentList.mn'/>",
+	            	url: "<c:url value='/crowd/commentList.mn'/>",
 	            	type: "POST",
 	            	data: "crNo=${detail.crNo}"
 	            }).done(function (result) {
@@ -221,6 +222,11 @@
 		        swal("좋아요 취소")
 		      }
 	    });
+		
+		// 수정 버튼 클릭
+		$("#list-btn").click(function() {
+			location.href = "list.mn"
+		});
 		
 		// 수정 버튼 클릭
 		$("#update-btn").click(function() {

@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
 <c:import url="listCSSJS.jsp" />
 <style>
 </style>
@@ -15,7 +15,7 @@
 <body>
 	<!-- 헤더 -->
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 		
 	</div>
 	
@@ -25,7 +25,7 @@
       <!-- 우측 콘텐츠 영역-->
       <div class="content-area">
         
-        <div class="main-title"><h1><a href="<c:url value='/admin/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
+        <div class="main-title"><h1><a href="<c:url value='/crowd/list.mn'/>">크라우드 펀딩</a></h1></div>
         <div class="seperator"></div>
         <div class="btn-area">
           <c:if test="${user.type eq 3}">	
@@ -56,7 +56,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 	
 	<script>
@@ -132,7 +132,7 @@
 	
 	var ajaxCrowdList = function(pageNo) {
 		$.ajax({
-			url: "<c:url value='/admin/crowd/printList.mn' />",
+			url: "<c:url value='/crowd/printList.mn' />",
 			type: "POST",
 			data: "pageNo=" + pageNo
 		}).done(function(result) {
@@ -184,7 +184,7 @@
 	
 	var ajaxCrowdEndList = function(pageNo) {
 		$.ajax({
-			url: "<c:url value='/admin/crowd/printEndList.mn' />",
+			url: "<c:url value='/crowd/printEndList.mn' />",
 			type: "POST",
 			data: "pageNo=" + pageNo
 		}).done(function(result) {

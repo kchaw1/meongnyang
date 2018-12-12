@@ -44,7 +44,7 @@ button.btn:active {
 .progress-bar {
 	min-width: 5%;
 	font-weight: bold;
-	color: black;
+	color: white;
 }
 
 .progress-bar-warning {

@@ -25,7 +25,7 @@ import com.nmcat.repository.domain.Notice;
 import com.nmcat.repository.domain.NoticeFile;
 
 
-@RequestMapping("/admin")
+@RequestMapping("/notice")
 @Controller
 public class NoticeController {
 	
@@ -35,11 +35,11 @@ public class NoticeController {
 	private List<NoticeFile> fileList = new ArrayList<>(); // 다중 파일첨부를 위한 필드
 	
 	// 공지사항 작성 폼 이동
-	@RequestMapping("/notice/writeForm")
+	@RequestMapping("/writeForm")
 	public void writeForm() {}
 	
 	// 공지사항 작성
-	@RequestMapping(value="/notice/write", method=RequestMethod.POST)
+	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(Notice notice, NoticeFile ntcFile) throws Exception {
 		
 		// 파일첨부
@@ -84,7 +84,7 @@ public class NoticeController {
 	}
 	
 	// 사진 업로드
-	@PostMapping("/notice/upload-picture")
+	@PostMapping("/upload-picture")
 	@ResponseBody
 	public NoticeFile uploadFile(@RequestParam("file") List<MultipartFile> attach) throws IllegalStateException, IOException {
 		String uploadPath = "/app/upload";
@@ -126,11 +126,11 @@ public class NoticeController {
 	}
 	
 	// 리스트 이동
-	@RequestMapping("notice/list") 
+	@RequestMapping("/list") 
 	public void list(){}
 	
 	// 공지사항 리스트 
-	@RequestMapping("/notice/noticeList")
+	@RequestMapping("/noticeList")
 	@ResponseBody
 	public Map<String,Object> noticeList(Notice notice) {
 		
@@ -143,7 +143,7 @@ public class NoticeController {
 	}
 	
 	// 공지사항 디테일
-	@RequestMapping("/notice/detail")
+	@RequestMapping("/detail")
 	public void detail(Model model, int ntcNo) {
 		System.out.println(ntcNo);
 		service.viewCnt(ntcNo);
@@ -152,20 +152,20 @@ public class NoticeController {
 	}
 	
 	// 삭제
-	@RequestMapping("/notice/delete") 
+	@RequestMapping("/delete") 
 	public String update(int ntcNo) {
 		service.delete(ntcNo);
 		return "redirect:list.mn";
 	}
 	
 	// 수정 폼 이동
-	@RequestMapping("/notice/updateForm") 
+	@RequestMapping("/updateForm") 
 	public void update(Model model, int ntcNo) {
 		model.addAttribute("ntc", service.detail(ntcNo));
 	}
 	
 	// 수정
-	@RequestMapping("/notice/update") 
+	@RequestMapping("/update") 
 	public String update(Notice notice) {
 		service.update(notice);
 		return "redirect:detail.mn?ntcNo=" + notice.getNtcNo();
