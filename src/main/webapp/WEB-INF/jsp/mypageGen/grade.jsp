@@ -196,7 +196,7 @@ div.modal-header {
                     <div id="t-grd">
                     <div class="grd">
                         <div id="grdname">
-                            	다이아
+                            	${user.grade}
                         </div>
                         <div id="grdImg">
                             <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/>

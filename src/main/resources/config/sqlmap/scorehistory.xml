@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.ScoreHistoryMapper">
+	<resultMap id="scoreMap" type="ScoreHistory">
+	<result column="score_no" property="scoreNo"/>
+	<result column="id" property="id"/>
+	<result column="score_type" property="scoreType"/>
+	<result column="score_date" property="scoreDate"/>
+	</resultMap>
+	<!-- 로그인시 활동점수 내역 -->
+	<insert id="insertLoginScoreHistory" parameterType="string" >
+		insert into mn_score_history (
+			id, score_type
+		) values (#{id}, '1')
+	</insert>
+</mapper>

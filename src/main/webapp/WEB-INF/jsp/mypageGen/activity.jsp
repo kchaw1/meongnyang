@@ -219,41 +219,20 @@ div.modal-header {
                                 <tr>
                                     <th>번호</th>
                                     <th>제목</th>
+                                    <th>카테고리</th>
                                     <th>조회</th>
                                     <th>날짜</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            	<c:forEach var="b" items="${mylist}">
                                 <tr>
                                     <td>1</td>
-                                    <td>오늘은 퇴근</td>
+                                    <td>제목입니다</td>
                                     <td>3</td>
                                     <td>2018.11.21</td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>병관이</td>
-                                    <td>3</td>
-                                    <td>2018.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>허락맡고 퇴근</td>
-                                    <td>3</td>
-                                    <td>2018.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>내일은 뭐?</td>
-                                    <td>3</td>
-                                    <td>2018.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>언제끝나?</td>
-                                    <td>3</td>
-                                    <td>2018.11.21</td>
-                                </tr>
+                                </c:forEach>                              
                             </tbody>
                         </table>
                         <form id="searchForm">

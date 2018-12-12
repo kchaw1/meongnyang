@@ -29,6 +29,7 @@ public class MyPageController {
 	public void list(Model model, HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+		model.addAttribute("lastlogin", service.selectRac(member.getId()));
 	}
 	
 	// 회원정보 수정할때 비밀번호 체크

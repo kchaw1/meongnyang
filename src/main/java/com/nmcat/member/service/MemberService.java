@@ -1,5 +1,7 @@
 package com.nmcat.member.service;
 
+import java.util.Date;
+
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
@@ -50,4 +52,7 @@ public interface MemberService {
 	
 	// 정보가져오기
 	Member selectMemberInfo(int no);
-	}
+	
+	// 최근접속일 
+	Date selectRac(String id);
+}

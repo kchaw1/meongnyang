@@ -214,41 +214,15 @@ div.modal-header {
                         </tr>
                     </thead>
                     <tbody>
+                    	<c:forEach var="p" items="${pluspoint}">
                         <tr>
                             <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                            <td>1</td>
-                            <td>+1000</td>
-                            <td>환영합니다.</td>
-                            <td>2018.11.21</td>
+                            <td>${p.plusNo}</td>
+                            <td>${p.plusPoint}</td>
+                            <td>${p.plusType}</td>
+                            <td><fmt:formatDate value="${p.plusDate}" pattern="yyyy-MM-dd" /></td>
                         </tr>
-                        <tr>
-                            <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                            <td>2</td>
-                            <td>+5000</td>
-                            <td>게시글 1위</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                            <td>3</td>
-                            <td>+1000</td>
-                            <td>게시글 3위</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                            <td>4</td>
-                            <td>+1000</td>
-                            <td>게시글 3위</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check1" type="checkbox" name="check" value="1" /></td>
-                            <td>5</td>
-                            <td>+1000</td>
-                            <td>게시글 3위</td>
-                            <td>2018.11.21</td>
-                        </tr>
+                        </c:forEach>                  
                     </tbody>
                 </table>
                 <div class="deleteBtn">
@@ -267,41 +241,15 @@ div.modal-header {
                         </tr>
                     </thead>
                     <tbody>
+                    	<c:forEach var="m" items="${minuspoint}">
                         <tr>
                             <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                            <td>1</td>
-                            <td>-1000</td>
-                            <td>상담료</td>
-                            <td>2018.11.21</td>
+                            <td>${m.minusNo}</td>
+                            <td>${m.minusPoint}</td>
+                            <td>${m.minusUse}</td>
+                            <td><fmt:formatDate value="${m.minusDate}" pattern="yyyy-MM-dd"/></td>
                         </tr>
-                        <tr>
-                            <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                            <td>2</td>
-                            <td>-1000</td>
-                            <td>상담료</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                            <td>3</td>
-                            <td>-1000</td>
-                            <td>상담료</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                            <td>4</td>
-                            <td>-1000</td>
-                            <td>상담료</td>
-                            <td>2018.11.21</td>
-                        </tr>
-                        <tr>
-                            <td><input id="check5" type="checkbox" name="check" value="1" /></td>
-                            <td>5</td>
-                            <td>-1000</td>
-                            <td>상담료</td>
-                            <td>2018.11.21</td>
-                        </tr>
+                        </c:forEach>        
                     </tbody>
                 </table>
                 <div class="deleteBtn">

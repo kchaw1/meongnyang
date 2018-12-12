@@ -1,5 +1,6 @@
 package com.nmcat.member.service;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.apache.commons.mail.HtmlEmail;
@@ -170,16 +171,20 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updateProfile(Member member) {
 		mapper.updateProfile(member);
-	}
-
-
-	// 회원정보 수정 할때 비밀번호 재확인
-	
+	}	
 	
 	// 정보 조회
 	@Override
 	public Member selectMemberInfo(int no) {
 		return mapper.selectMemberInfo(no);
 	}
+
+	@Override
+	public Date selectRac(String id) {
+		return mapper.selectRac(id);
+	}
+	
+	// 최근접속일 
+	
 
 }

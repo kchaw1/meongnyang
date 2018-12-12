@@ -169,7 +169,7 @@
                                 <div class="file-upload">
                                     <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <div class="file-select-name" id="noFile">No file chosen...</div> 
+                                    <div class="file-select-name" id="noFile">${member.imageOriName}</div> 
                                     <input type="file" name="profile" id="file" accept=".gif, .jpg, .png" />
                                     </div>
                                 </div>

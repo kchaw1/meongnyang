@@ -227,7 +227,7 @@ div.modal-header {
           </li> -->
           <li class = "li4">
               <label class ="labelC">최근접속일</label><br>
-              <span class ="spanC">${LoginHistory.loginDateTime}</span>
+              <span class ="spanC"><fmt:formatDate value='${lastlogin}' pattern="yyyy-MM-dd HH:mm:ss"/></span>
           </li>
           <li class = "li5">
               <label class ="labelC">가입일</label><br>

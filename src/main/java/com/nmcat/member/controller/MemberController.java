@@ -1,10 +1,8 @@
 package com.nmcat.member.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -14,23 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.fabric.Server;
 import com.nmcat.member.service.MemberService;
 import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.score.service.ScoreService;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 @Controller
 @RequestMapping("/member")
@@ -38,6 +30,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private ScoreService scoreservice;
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) throws Exception {
@@ -148,6 +142,8 @@ public class MemberController {
 		Member member = service.login(login);
 		service.insertHistory(login.getId());
 		service.updqteScore(login.getId());
+		scoreservice.insertLoginScoreHistory(login.getId());
+		System.out.println("loginscore : " + login.getId());
 		System.out.println("loginpass : " + login.getPass());
 		if(member != null) {
 			session.setAttribute("user", member);
@@ -197,13 +193,14 @@ public class MemberController {
 	@RequestMapping("/naverlogin.mn")
 	public String naverlogin(Model model, Member member, RedirectAttributes redirectAttributes) {
 		Member nmb = service.naver(member);
+		System.out.println(nmb);
 		
 		if(nmb == null) {
 			String name = member.getName();
 			String email = member.getEmail();
 			return "redirect:/member/naverSignup.mn?name="+name+"&email=" + email;
 		} 
-	
+	System.out.println("아이디값" + nmb.getId());
 		String id = nmb.getId();
 		String pass = nmb.getPass();
 		Login login = new Login();

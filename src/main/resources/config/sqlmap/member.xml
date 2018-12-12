@@ -156,4 +156,15 @@
 		 where no = #{no} 
 	</select>
 	
+	<!-- 최근접속일 -->
+	 <select id="selectRac" parameterType="string" resultType="date">
+		  select max(login_date_time)
+			from mn_login_history
+			group by login_id
+		having login_id = #{id};
+	</select>
+	
+	<!-- 등급  -->
+	
+	
 </mapper>
