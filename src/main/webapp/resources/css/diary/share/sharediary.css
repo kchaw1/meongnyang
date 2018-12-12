@@ -16,7 +16,7 @@
 	min-height : 800px;
 	margin : auto;
 } */
-ul#stickies  li {
+ul#stickies  li.diary {
 	/* border : 1px solid brown; */
     float: left;
     margin: 20px;
@@ -29,7 +29,7 @@ ul#stickies  li {
 /* ul#stickies span {
     font-size: 68px;
 } */
-ul#stickies  li:nth-child(9n+1){
+ul#stickies  li.diary:nth-child(9n+1){
     width: 350px; height: 350px;
     transform: rotate(-4deg);
     background-image: url(../../../img/diary/post1.png);
@@ -37,7 +37,7 @@ ul#stickies  li:nth-child(9n+1){
     background-repeat : no-repeat;
     padding-left : 50px;
 }
-ul#stickies  li:nth-child(9n+2){
+ul#stickies  li.diary:nth-child(9n+2){
     width: 350px; height: 430px;
     transform: rotate(4deg);
     background-image: url(../../../img/diary/post2.png); 
@@ -45,7 +45,7 @@ ul#stickies  li:nth-child(9n+2){
     background-repeat : no-repeat;
     padding: 50px;
 }
-ul#stickies  li:nth-child(9n+3){
+ul#stickies  li.diary:nth-child(9n+3){
     width: 300px; height: 350px;
     transform: rotate(-2deg);
     background-image: url(../../../img/diary/post3.png);
@@ -53,7 +53,7 @@ ul#stickies  li:nth-child(9n+3){
     background-repeat : no-repeat;
     padding: 30px;
 }
-ul#stickies  li:nth-child(9n+4){
+ul#stickies  li.diary:nth-child(9n+4){
     width: 400px; height: 450px;
     transform: rotate(4deg);
     background-image: url(../../../img/diary/post4.png);
@@ -61,7 +61,7 @@ ul#stickies  li:nth-child(9n+4){
     background-repeat : no-repeat;
     padding-top : 70px;
 }
-ul#stickies  li:nth-child(9n+5){
+ul#stickies  li.diary:nth-child(9n+5){
     width: 350px; height: 350px;
     transform: rotate(6deg);
     background-image: url(../../../img/diary/post5.png);
@@ -69,7 +69,7 @@ ul#stickies  li:nth-child(9n+5){
     background-repeat : no-repeat;
     padding : 50px;
 }
-ul#stickies  li:nth-child(9n+6){
+ul#stickies  li.diary:nth-child(9n+6){
     width: 300px; height: 350px;
     transform: rotate(-4deg);
     background-image: url(../../../img/diary/post6.png);
@@ -78,7 +78,7 @@ ul#stickies  li:nth-child(9n+6){
     padding-top :100px;
     padding-left : 30px;
 }
-ul#stickies  li:nth-child(9n+7){
+ul#stickies  li.diary:nth-child(9n+7){
     width: 350px; height: 380px;
     transform: rotate(2deg);
     background-image: url(../../../img/diary/post7.png);
@@ -86,7 +86,7 @@ ul#stickies  li:nth-child(9n+7){
     background-repeat : no-repeat;
     padding-left : 30px;
 }
-ul#stickies  li:nth-child(9n+8){
+ul#stickies  li.diary:nth-child(9n+8){
     width: 400px; height: 450px;
     transform: rotate(-3deg);
     background-image: url(../../../img/diary/post8.png);
@@ -94,7 +94,7 @@ ul#stickies  li:nth-child(9n+8){
     background-repeat : no-repeat;
     padding-left : 60px;
 }
-ul#stickies  li:nth-child(9n){
+ul#stickies  li.diary:nth-child(9n){
     width: 450px; height: 500px;
     background-image: url(../../../img/diary/post9.png);
     background-size : 100%;
@@ -102,7 +102,7 @@ ul#stickies  li:nth-child(9n){
     padding-left : 60px;
     padding-top : 100px;
 }
-ul#stickies  li:hover {
+ul#stickies  li.diary:hover {
     transform: scale(1.2) rotate(0deg);
     transition: 0.5s;
 }

@@ -32,7 +32,7 @@
 var videosContainer = document.getElementById('videos-container') || document.body;
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
-var facechatSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 //var facechatSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
@@ -201,7 +201,7 @@ function setupNewRoomButtonClickHandler() {
             roomName: "${user.id}"
         });
         //웹소켓에 보내기..
-        facechatSocket.send("facechat:" + "${param.id}")
+        alarmSocket.send("facechat:" + "${param.id}")
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;
     });

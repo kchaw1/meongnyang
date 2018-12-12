@@ -21,7 +21,10 @@
             <li class="diary" data-toggle="modal" data-target="#share"  data-no="${dr.drNo}">
 				<div class="dr-title">
 	               <div class="title">${dr.drTitle}</div>
-	               <div class="writer">${dr.drWriter}</div>
+	               <div class="writer dropdown">
+	               <a href="#1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	               ${dr.drWriter}</a>
+	               </div>
 	               <div class="date"><fmt:formatDate value="${dr.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
               	</div>
               	<div class="dr-content">${dr.drContent}</div>
@@ -35,10 +38,20 @@
             <li class="diary" data-toggle="modal" data-target="#share"  data-no="${dr2.drNo}">
 				<div class="dr-title">
 	               <div class="title">${dr2.drTitle}</div>
-	               <div class="writer">${dr2.drWriter}
-	               <c:if test="${dr2.friendsId == dr2.drWriter }"><span class="label label-friend">친구</span></c:if>
-	               <c:if test="${dr2.drWriter == user.id }"><span class="label label-me">나</span></c:if>
-	               </div>
+	               <div class="writer dropdown show">
+	               <c:choose>
+	               <c:when test="${dr2.friendsId == dr2.drWriter }">
+		               <a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		               ${dr2.drWriter}</a><span class="label label-friend">친구</span>
+		               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLink">
+					     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+					     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+					     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+					     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+					   </ul>
+	               </c:when>
+	               <c:when test="${dr2.drWriter == user.id }">${dr2.drWriter}<span class="label label-me">나</span></c:when>
+	               <c:otherwise>${dr2.drWriter}</c:otherwise></c:choose></div>
 	               <div class="date"><fmt:formatDate value="${dr2.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
               	</div>
               	<div class="dr-content">${dr2.drContent}</div>
@@ -50,6 +63,7 @@
 		</c:choose>
         </ul>
     </div>
+    
     <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-hidden="true">
 	    <div class="modal-dialog modal-center">
 	      <div class="modal-content">

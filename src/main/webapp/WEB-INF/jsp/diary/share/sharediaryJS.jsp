@@ -169,11 +169,19 @@ $(window).scroll(function(){
 						str += '<li class="diary" data-toggle="modal" data-target="#share"  data-no="'+diary.drNo+'">'
 						str += '<div class="dr-title">'
 						str += '<div class="title">'+diary.drTitle+'</div>'
-						str += '<div class="writer">'+diary.drWriter
+						str += '<div class="writer dropdown show">'
 						if(diary.friendsId != null) {
-							str += '<span class="label label-friend">친구</span>'
+							str += '<a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+							str += diary.drWriter + '</a><span class="label label-friend">친구</span>'
+							str += '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLink">'
+							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>'
+							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>'
+							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>'
+							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li></ul>'
 						} else if(diary.drWriter == "${user.id}") {
-							str += '<span class="label label-me">나</span>'
+							str += diary.drWriter + '<span class="label label-me">나</span>'
+						} else {
+							str += diary.drWriter
 						}
 						str += '</div>'
 						str += '<div class="date">'+diary.drRegDateTime+'</div>'
