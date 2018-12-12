@@ -376,6 +376,60 @@ margin-bottom: -24px;
 .forimg{
 margin-top: 60px;
 }
+
+
+/* 채팅 */
+.chat-launcher {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+z-index: 9999;
+background: orange;
+color: white;
+border-radius: 50%;
+cursor: pointer;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
+}
+.chat-launcher:before, .chat-launcher:after {
+font-family: FontAwesome;
+font-size: 34px;
+position: absolute;
+-webkit-transition: transform 180ms linear, opacity 130ms linear;
+transition: transform 180ms linear, opacity 130ms linear;
+}
+.chat-launcher:before {
+content: "\f086";
+
+margin: 6px 0px 0px 13px;
+opacity: 1;
+-webkit-transform: rotate(0deg) scale(1);
+transform: rotate(0deg) scale(1);
+}
+
+/*챠팅  */
+.chat-launcher:after {
+content: "\f00d";
+padding-top: 20px;
+margin: 13px 17px;
+opacity: 0;
+-webkit-transform: rotate(-30deg);
+transform: rotate(-30deg);
+}
+.chat-launcher:hover {
+background: #ffb329;
+}
+.chat-launcher.active:before {
+opacity: 0;
+-webkit-transform: rotate(70deg) scale(0);
+transform: rotate(70deg) scale(0);
+}
+.chat-launcher.active:after {
+opacity: 1;
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
 </style>
 <body>
 
@@ -577,7 +631,10 @@ margin-top: 60px;
             </div>
           </footer>
 
-    <footer>
+<footer>
+	            <div class="chat-launcher"></div>
+	            
+    		  </footer>
     
   <script>
     // 크라우드펀딩으로 가는 url
