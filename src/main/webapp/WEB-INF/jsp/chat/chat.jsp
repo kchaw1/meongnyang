@@ -105,29 +105,44 @@ $(function () {
 			if(evt.data.startsWith("input : ")){
 				var id = evt.data.split(":");
 		 		$(".chat-list").append("<br><p style='text-align:center;'>"+id[1].substring(0,id[1].indexOf(","))+"님이 입장하셨습니다.</p><br>");
-				console.log(id[1].substring(id[1].indexOf(",")+1))
+				console.log("1번 : "+id[1].substring(id[1].indexOf(",")+1)) 
 				
 				var stringList = id[1].substring(id[1].indexOf(",")+1);
 				
 				stringList.substring(1,stringList.length);
-				console.log(stringList.substring(1,stringList.length-1));
+				console.log("2번 : "+stringList.substring(1,stringList.length-1));
+				var number = stringList.substring(1,stringList.length-1);
 				
-				var list = stringList.substring(1,stringList.length-1)
-				console.log(list);
-				var listarr = list.split(", ");
-				console.log(listarr);
-				/* for(var key in listarr){
-					console.log(listarr[key]);
-					console.log(listarr[key].substring(0,listarr[key].indexOf("="))); // 방번호
-					console.log(listarr[key].substring(listarr[key].indexOf("[")+1,listarr[key].indexOf("]"))); // 참여자
-					 for(var keys in listarr[key] ){
-						console.log(listarr[key][keys]);
-					} 
-				} */
-				$(".list").empty();
-				for(var i = 0 ; i<listarr.length ; i++){
-					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+				
+ 				number = number.replace(/],/gi,"]&");
+				/* var numberlist = number.split(","); */
+				var numberlist = number.split("&");
+				
+				console.log("numberlist"+numberlist);
+				console.log("1:"+numberlist[0]+"2:"+numberlist[1]+"3:"+numberlist[2]);
+					
+				for(var j =0; j<numberlist.length; j++){
+					var list = numberlist[j].split("=");
+ 						
+					 		console.log("list"+list);
+							console.log("번호:"+list[0] +"참석인원 :"+ list[1]);
+					 
+ 					
 				}
+				
+				
+				 if("${chNo}" === list[0]){
+					 console.log("방번호 : " + list[0]);
+					var listex = list[1].substring(list[1].indexOf("[")+1,list[1].lastIndexOf("]"));
+					console.log("listex: "+ listex);
+					var listarr = listex.split(", ");
+					console.log("listarr:" + listarr);
+				   $(".list").empty();
+					for(var i = 0 ; i<listarr.length ; i++){
+							$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
+					}
+				}
+				
 				
 				
 			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
