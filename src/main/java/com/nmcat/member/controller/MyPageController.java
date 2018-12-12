@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.member.service.MemberService;
+import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.Member;
 
 @Controller
@@ -24,6 +25,9 @@ public class MyPageController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private PointService pointService;
 	
 	@RequestMapping("list.mn")
 	public void list(Model model, HttpSession session) {
@@ -41,8 +45,10 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("activity.mn")
-	public void activity() {
-		
+	public void activity(Model model, HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		model.addAttribute("myBoardList", service.selectMyBoard(member.getId()));
+		model.addAttribute("myComment", service.selectMyComment(member.getId()));
 	}
 	
 	@RequestMapping("edit.mn")
@@ -117,9 +123,14 @@ public class MyPageController {
 			
 			return "redirect:/member/login.mn";
 	}
-	 
+	// 획득 포인트 내역 
 	@RequestMapping("point.mn")
-	public void point() {}
+	public void point(Model model, HttpSession session ) {
+		Member member = (Member)session.getAttribute("user");
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+		model.addAttribute("pluspoint", pointService.selectAddPoint(member.getId()));
+		model.addAttribute("minuspoint", pointService.selectMinusPoint(member.getId()));
+	}
 	
 	@RequestMapping("grade.mn")
 	public void grade() {}

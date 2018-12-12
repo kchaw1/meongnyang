@@ -1,6 +1,7 @@
 package com.nmcat.member.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.mail.HtmlEmail;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
 import com.nmcat.repository.mapper.MemberMapper;
 
@@ -183,8 +186,22 @@ public class MemberServiceImpl implements MemberService{
 	public Date selectRac(String id) {
 		return mapper.selectRac(id);
 	}
+
+	// 내가 쓴 게시물
+	@Override
+	public List<CommunityBoard> selectMyBoard(String id) {
+		return mapper.selectMyBoard(id);
+	}
+
+	@Override
+	public List<CommunityComment> selectMyComment(String id) {
+		return mapper.selectMyComment(id);
+	}
 	
-	// 최근접속일 
+	
+	
+	
+	
 	
 
 }

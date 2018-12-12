@@ -180,7 +180,7 @@ div.modal-header {
             <div class="main-title">내 포인트</div>
             <div class="seperator"></div>
         <div class="point">
-            <span id="p-writer2">현재 보유포인트는 <input type="text" id="myPoint" name="myPoint" value="${user.point}"/>입니다.</span>
+            <span id="p-writer2">현재 보유포인트는 <div style="font-size: 30px;">${member.point} Point 입니다.</div></span>
         </div>
         <hr id="hr1">
         <div class="Notice">

@@ -231,7 +231,7 @@ div.modal-header {
           </li>
           <li class = "li5">
               <label class ="labelC">가입일</label><br>
-              <span class ="spanC">2018-12-08</span>
+              <span class ="spanC"><fmt:formatDate value='${member.signUpDate}' pattern="yyyy-MM-dd" /></span>
           </li>
 
        </ul>

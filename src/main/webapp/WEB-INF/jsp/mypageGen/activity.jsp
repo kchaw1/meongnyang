@@ -225,12 +225,13 @@ div.modal-header {
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach var="b" items="${mylist}">
+                            	<c:forEach var="b" items="${myBoardList}">
                                 <tr>
-                                    <td>1</td>
-                                    <td>제목입니다</td>
-                                    <td>3</td>
-                                    <td>2018.11.21</td>
+                                    <td>${b.comNo}</td>
+                                    <td>${b.comTitle}</td>
+                                    <td>${b.comCategory}</td>
+                                    <td>${b.comViewCnt}</td>
+                                    <td><fmt:formatDate value="${b.comRegDate}" pattern="yyyy-MM-dd" /></td>
                                 </tr>
                                 </c:forEach>                              
                             </tbody>
@@ -259,26 +260,13 @@ div.modal-header {
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="m" items="${myComment}">
                                 <tr>
-                                    <td>1</td>
-                                    <td>병관이 퇴근</td>
-                                    <td>2018.11.21</td>
+                                    <td>${m.comcNo}</td>
+                                    <td>${m.comcContent}</td>
+                                    <td><fmt:formatDate value="${m.comcRegDate}" pattern="yyyy-MM-dd" /></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>병관이 퇴근</td>
-                                    <td>2018.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>병관이 퇴근</td>
-                                    <td>2018.11.21</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>병관이 퇴근</td>
-                                    <td>2018.11.21</td>
-                                </tr>
+                              </c:forEach>
                             </tbody>
                         </table>
                         <form id="searchForm">

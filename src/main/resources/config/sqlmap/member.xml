@@ -16,8 +16,9 @@
 		<result column="image_ori_name" property="imageOriName"/>
 		<result column="type" property="type"/>
 		<result column="greetings" property="greetings" />
+		<result column="sign_up_date" property="signUpDate"/>
 	</resultMap>
-	
+
 	<!-- 경력 컬럼 -->
 	<resultMap id="careerMap" type="Career">
 		<result column="career_no" property="careerNo"/>
@@ -35,6 +36,25 @@
 		<result column="lif_path" property="lifPath"/>
 		<result column="lif_ori_name" property="lifOriName"/>
 		<result column="lif_size" property="lifSize"/>
+	</resultMap>
+	
+	<!-- 내가쓴 게시물 -->
+	<resultMap id="comMap" type="CommunityBoard">
+		<result column="com_no" property="comNo" />
+		<result column="com_writer" property="comWriter"/>
+		<result column="com_title" property="comTitle" />
+		<result column="com_category" property="comCategory" />
+		<result column="com_view_cnt" property="comViewCnt" />
+		<result column="com_reg_date" property="comRegDate" />
+	</resultMap>
+	
+	<!-- 내가 쓴 댓글 -->
+	<resultMap id = "comcMap" type = "CommunityComment">
+		<result column = "comc_no" property= "comcNo"/>
+		<!-- <result column = "com_no" property= "comNo"/> -->
+		<result column = "comc_writer" property= "comcWriter"/>
+		<result column = "comc_content" property= "comcContent"/>
+		<result column = "comc_reg_date" property="comcRegDate" />
 	</resultMap>
 	
 	<!-- 반려인 -->
@@ -162,9 +182,22 @@
 			from mn_login_history
 			group by login_id
 		having login_id = #{id};
+	</select>	
+	
+	<!-- 내가쓴 게시물 -->
+	<select id="selectMyBoard" parameterType="string" resultMap="comMap">
+		select *
+		from mn_com
+		where com_writer = #{comWriter}
 	</select>
 	
-	<!-- 등급  -->
+	<!-- 내가 쓴 댓글 -->
+	<select id="selectMyComment" parameterType="string" resultMap="comcMap">
+		select *
+		from mn_com_comment
+		where comc_writer = #{comcWriter}
+	</select>	
 	
+	<!-- 등급  -->
 	
 </mapper>

@@ -11,6 +11,15 @@
 		<result column="imp_uid" property="impUid"/> 
 	</resultMap>
 	
+	<!-- 포인트 사용 내역 -->
+	<resultMap type="PointMinus" id="minusMap">
+	<result column="minus_no" property="minusNo"/>
+	<result column="id" property="id"/>
+	<result column="minus_point" property="minusPoint"/>
+	<result column="minus_date" property="minusDate"/>
+	<result column="minus_use" property="minusUse"/>
+	</resultMap>
+	
 	<insert id="insertPointByPaying" parameterType="PointPlus">
 		insert into mn_point_plus (
 			plus_point, id, plus_date, plus_type, 
@@ -20,4 +29,19 @@
 			#{merchantUid}, #{impUid}
 		)
 	</insert>
+	
+	<!-- 획득 포인트 -->
+	<select id="selectAddPoint" parameterType="string" resultMap="plusMap">
+		select *
+		from mn_point_plus
+		where id = #{id}		
+	</select>
+	
+	<!-- 사용 포인트 -->
+	<select id="selectMinusPoint" parameterType="string" resultMap="minusMap">
+		select * 
+		from mn_point_minus
+		where id = #{id}
+	</select>
+	
 </mapper>

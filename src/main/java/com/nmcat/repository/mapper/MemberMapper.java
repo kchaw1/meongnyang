@@ -1,11 +1,14 @@
 package com.nmcat.repository.mapper;
 
 import java.util.Date;
+import java.util.List;
 
 import com.nmcat.repository.domain.Career;
+import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MemberMapper {
 	
@@ -47,4 +50,9 @@ public interface MemberMapper {
 	/*****************최근접속일*******/
 	Date selectRac(String id);
 	
+	/**********내가 쓴 게시물*********/
+	List<CommunityBoard> selectMyBoard(String id);
+	
+	/********내가 쓴 댓글************/
+	List<CommunityComment> selectMyComment(String id);
 } // end class
