@@ -215,7 +215,7 @@ transform: rotate(0deg);
 height :0px;
 }
 .forImg3{
-width : 100%;
+width : 100% !important;
 heigth : 100%;
 }
 
