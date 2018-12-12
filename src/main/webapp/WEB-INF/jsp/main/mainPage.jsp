@@ -632,7 +632,7 @@ transform: rotate(0deg);
           </footer>
 
 <footer>
-	            <div class="chat-launcher"></div>
+	            <div class="chat-launcher" onclick="doChatList()"></div>
 	            
     		  </footer>
     
