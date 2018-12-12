@@ -11,7 +11,7 @@
 <c:import url="youtubeCSSJS.jsp" />
 </head>
 <body>
-	<!-- 헤더 -->
+	<!-- 헤더 -->x
 	<div id="header">
 		<c:import url="../../common/header.jsp" />
 	</div>
@@ -22,15 +22,15 @@
     <div class="panel">
       <!-- 좌측 메뉴 -->
       <div class="aside">
-        <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
+        <div class="avatar"><a href="<c:url value='/admin/main.mn' />"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
         <div class="log-out">A D M I N</div>
         <div class="seperator"></div>
         <div class="list">
-          	 <div id="board" class="item">게시판</div>
-	         <div class="board-hidden notice"><a href="<c:url value="/admin/notice/list.mn" />">공지사항</a></div>
+	         <div id="board" class="item">게시판</div>
+	         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
 	         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube/youtube.mn" />">유튜브</a></div>
-	         <div class="board-hidden crowd-fund"><a href="<c:url value="/admin/crowd/list.mn" />">크라우드펀딩</a></div>
+	         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 	         <div id="management" class="item">관리</div>
 	         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
 	         <div class="mgm-hidden gen-member"><a href="<c:url value="/admin/general/list.mn" />">일반회원</a></div>
@@ -101,54 +101,88 @@
        	  type: "POST",
          }).done(function(result) {
         	 console.log(result)
-        	
-          	for(var i in result) {
+        	 
+        	 var randomArr = new Array();
+        	 
+        	 for(var i in result) {
+       	  		  var html = ""; 
        	  		  var randomStr = randomString();
-       	  		
-       	  		  var $newListItem = $('<li class="todo">' + result[i].ytbKeyword + '<span class="list-span">' +
-       	            '<a href="#" data-random="'+ randomStr +'" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
-       	            '<input type="hidden" value="' + result[i].ytbKeyword + '">' +
-       	            '</span>' + '</li>');
-				  
-       	          // Add list item to end of list
-      	          $('.todo-list').append($newListItem);
-       	          
-		          	var	html =  "<div class='"+ randomStr +"' style='margin-bottom: 50px;'>"
+       	  		  
+       	  		  if($('li.todo').text().indexOf(result[i].ytbKeyword) == -1) {
+	       	  		  
+	       	  		  randomArr.push(randomStr);
+	       	  		  
+	       	  		  var $newListItem = $('<li class="todo">' + result[i].ytbKeyword + '<span class="list-span">' +
+	       	            '<a href="#" data-random="'+ randomStr +'" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
+	       	            '<input type="hidden" value="' + result[i].ytbKeyword + '">' +
+	       	            '</span>' + '</li>');
+					  
+	       	          // Add list item to end of list
+	      	          $('.todo-list').append($newListItem);
+       	  		  }
+      	          
+       	  		  
+       	  		if($('div.content-title').text().indexOf(result[i].ytbKeyword) == -1) {
+		         	html =  "<div class="+ randomStr +" style='margin-bottom: 50px;'>"
 				              + "<div class='content-title'><h1>" + result[i].ytbKeyword + "</h1></div>" 
 				              + "</div>"
+				              
+       	  		}
+       	  		
+       	  	 	$("#youtube-area").append(html);
+				
+       	  	 	
+       	  		
+       	  	 	
+									              
 	              /* ------------------------- 유튜브api ---------------------------- */
-	              function getRequest(keyword) {
-	                  var url = 'https://www.googleapis.com/youtube/v3/search';
-	                  var params = {
-	                      part: 'snippet',
-	                      key: 'AIzaSyBhomSVCcyHNr7jCxxVe04ITSZXYqg0wHY',
-	                      q: keyword,
-	                      regionCode:"KR",
-	                      type: "video",
-	                      videoEmbeddable: "true",
-	                      maxResults:4
-	                  };
-	                  $.getJSON(url, params, showResults);
-	              }
+// 	              function getRequest(keyword) {
+// 	                  var url = 'https://www.googleapis.com/youtube/v3/search';
+// 	                  var params = {
+// 	                      part: 'snippet',
+// 	                      key: 'AIzaSyBhomSVCcyHNr7jCxxVe04ITSZXYqg0wHY',
+// 	                      q: keyword,
+// 	                      regionCode:"KR",
+// 	                      type: "video",
+// 	                      videoEmbeddable: "true",
+// 	                      maxResults:4
+// 	                  };
+// 	                  $.getJSON(url, params, showResults);
+// 	              }
 
-	              function showResults(results) {
-		                  console.log(results)
-		                  var result ="";
-		                  var entries = results.items;
+// 	              function showResults(results) {
+// 		                  console.log(results)
+// 		                  var result ="";
+// 		                  var entries = results.items;
 		                  
-		                  $.each(entries, function (index, value) {
-		                      var videoId = value.id.videoId;
+// 		                  $.each(entries, function (index, value) {
+// 		                      var videoId = value.id.videoId;
 		                      
-		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="24%" height="180" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
-	      	  			  });
-	        			  $("div." + randomStr).append(result);
-       			 	};
-			        getRequest(result[i].ytbKeyword) 
+// 		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="24%" height="180" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
+// 	      	  			  });
+// 	        			  $("div." + randomStr).append(result);
+//        			 	};
+// 			        getRequest(result[i].ytbKeyword) 
 			        
-			        console.log(html)
+// 			        console.log(html)
 			        
-			        $("#youtube-area").append(html);
+			       
        	  		} // for
+       	  		
+       	  	for(var j=0; j<=randomArr.length; j++) {
+       	  		
+       	  	console.log($('div.' + randomArr[j]).text())
+       	  		
+       	  		for(var i in result) {
+       	  			console.log(result[i].ytbKeyword)
+       	  			
+       	  			if($('div.' + randomArr[j]).text() == result[i].ytbKeyword) {
+		        	 	var html = "<iframe type='text/html' style='margin-right:10px;' width='24%' height='180' src='"+ result[i].ytbURL +"' allowfullscreen='allowfullscreen' frameborder='0'>"
+		    	  		
+		    	  		$("div." + randomArr[j]).append(html);
+       	  			}
+       	  		} // inner for	
+       	  	} // for
     	});
     }
 

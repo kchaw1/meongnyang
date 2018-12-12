@@ -241,13 +241,14 @@ height : 100%;
 }
 div.progress-bar {
     background-color: #f2809f;
-
+	min-width:5%;
+	max-width:100%;
 }
 .fontp {
     font-size: 16px;
     line-height: 1.625em;
     font-weight: 300;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: Jua;
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
     color: gray;
@@ -457,28 +458,18 @@ transform: rotate(0deg);
                         </div>
 
                             <!--첫번째 클라우드 펀딩-->
-                        <div class = "crowdImg">
-                                <img src="<c:url value = "/resources/img/community/치아미백.PNG"/>" width="355" class = "crowdImg">
-        
-                                    <p class = "fontp">치아미백부터 구취및 잇몸 케어까지 우리가족 구강건강을 책임질 맞춤형 치약 클로라</p>
-                                    
-                                    <div class="progress">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                              60%
-                                            </div>
-                                    </div>
-                        </div>
-                        <div class = "crowdImg">
-                                <img src="<c:url value = "/resources/img/community/치아미백.PNG"/>" width="355" class = "crowdImg">
-        
-                                    <p class = "fontp">치아미백부터 구취및 잇몸 케어까지 우리가족 구강건강을 책임질 맞춤형 치약 클로라</p>
-                                    
-                                    <div class="progress">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                              60%
-                                            </div>
-                                    </div>
-                        </div>
+                        <c:forEach var="c" items="${crowdList}">
+                            <fmt:parseNumber var="progress" value="${(c.crNowMoney/c.crGoalMoney*100)-((c.crNowMoney/c.crGoalMoney*100)%1)}" integerOnly="true"/>
+	                        <div class = "crowdImg">
+	                                <img src="<c:url value='/common/download.mn?sysName=${c.crFileName}&path=${c.crFilePath}'/>" width="355" class = "crowdImg">
+	                                <p class = "fontp">${c.crTitle}</p>
+	                                <div class="progress">
+	                                       <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%;">
+	                                       		${progress}%
+	                                       </div>
+	                                </div>
+	                        </div>
+                        </c:forEach>
                     </div> <!-- end item-->
 
                     <div class = "item">
@@ -491,7 +482,7 @@ transform: rotate(0deg);
                             	<c:forEach var="ytb" items="${youtubeList}">
 		                            <div class= "youtube">
 			                                <p class="pclass">${ytb.ytbKeyword}</p>
-			                                <div class = "youtube"><iframe type="text/html" style="margin-right:10px;" width="100%" height="180" src="${ytb.ytbURL}" frameborder="0"></iframe></div>
+			                                <div class = "youtube"><iframe type="text/html" style="margin-right:10px;" width="100%" height="180" src="${ytb.ytbURL}" allowfullscreen="allowfullscreen" frameborder="0"></iframe></div>
 			                                <br>
 		                            </div>
                                 </c:forEach>

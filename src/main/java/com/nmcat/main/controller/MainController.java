@@ -20,8 +20,10 @@ public class MainController {
 		model.addAttribute("list", service.selectComBoardRegDate());
 		// 최신 전체공개 다이어리 게시글
 		model.addAttribute("list2", service.selectDiaryBoardRegDate());
-		
+		// 유튜브 리스트
 		model.addAttribute("youtubeList", service.youtubeList());
+		// 크라우드 펀딩 리스트
+		model.addAttribute("crowdList", service.crowdList());
 	}
 
 }

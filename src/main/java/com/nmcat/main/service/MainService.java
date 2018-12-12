@@ -2,6 +2,7 @@ package com.nmcat.main.service;
 
 import java.util.List;
 
+import com.nmcat.repository.domain.Crowd;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.domain.board.DiaryBoard;
@@ -14,4 +15,6 @@ public interface MainService {
 		// 유튜브 키워드별로 1개씩 가져오기
 		List<Youtube> youtubeList();
 		
+		// 크라우드 펀딩 가장 임박한 2개 가져오기 
+		List<Crowd> crowdList();
 }

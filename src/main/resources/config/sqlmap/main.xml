@@ -22,7 +22,8 @@
 	<result column="ytb_url" property="ytbURL" />
 	<result column="ytb_reg_date" property="ytbRegDate" />
 </resultMap>
-<!-- 크라우드 펀딩
+
+<!-- 크라우드펀딩 -->
 <resultMap id="crowdMap" type="Crowd">
 		<result column="cr_no" property="crNo" />
 		<result column="cr_writer" property="crWriter" />
@@ -38,8 +39,7 @@
 		<result column="cr_file_name" property="crFileName" />
 		<result column="cr_file_path" property="crFilePath" />
 		<result column="cr_file_ori_name" property="crFileOriName" />
-		<result column="cr_end_yn" property="crEndYN" />
-</resultMap> -->
+	</resultMap>
 
 	<resultMap type="DiaryBoard" id="boardMap">
 		<result column="dr_no" property="drNo"/>
@@ -66,10 +66,20 @@ select * from mn_diary
 		 limit 0, 3
 </select>
 
+<!-- 유튜브 -->
 <select id="selectYoutubeInfo" resultMap="ytbMap">
 	select * 
 	  from mn_ytb
 	 group by ytb_keyword
+</select>
+
+<!-- 크라우드펀딩 -->
+<select id="selectCrowdInfo" resultMap="crowdMap">
+	select * 
+	  from mn_crowd 
+	 where cr_end_day > CURRENT_DATE() 
+	 order by cr_end_day asc
+	 limit 2
 </select>
 
 </mapper>

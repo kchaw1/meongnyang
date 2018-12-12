@@ -24,7 +24,6 @@
 <select id="selectKeywordList" resultMap="ytbMap">
 	select *
 	  from mn_ytb
-	 group by ytb_keyword 
 	 order by ytb_no asc  
 </select>
 
