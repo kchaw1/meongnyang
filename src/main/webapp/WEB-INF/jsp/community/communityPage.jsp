@@ -214,6 +214,10 @@ transform: rotate(0deg);
 .top{
 height :0px;
 }
+.forImg3{
+width : 100%;
+heigth : 100%;
+}
 
 
 
@@ -381,6 +385,19 @@ function forAllBtn(){
 			var no = $(this).attr('id');
 			location.href = "detailPage.mn?comNo="+no;
 									});
+		
+		//이미지 없애기
+		
+		$(function(){
+			var contentList = document.querySelectorAll(".content");
+					console.log(contentList);
+			for(let content of contentList){
+				console.log($(content));
+				$content = $(content);
+				if($content.html().indexOf("img")!=-1){
+				  	$content.find("img").addClass("forImg3");
+			}	
+		}}); 
 
 
 	})
@@ -470,6 +487,7 @@ function refFunction(comNo, comRefUser){
 	
 	  
 }
+
 
 
 
