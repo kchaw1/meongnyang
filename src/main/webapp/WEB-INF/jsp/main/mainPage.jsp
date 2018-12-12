@@ -24,6 +24,8 @@
  
  <!-- 부트스트랩 -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+ <!-- 유튜브 iframe api -->
  <script src="https://www.youtube.com/iframe_api"></script>
 
 <!-- 네이버 -->
@@ -456,12 +458,12 @@ transform: rotate(0deg);
                         <h2 class = "title2">크라우드 펀딩</h2>
                         <button class="btn2 leftRight1">더보기 </button>
                         </div>
-
+						<div class="clear-fix"></div>
                             <!--첫번째 클라우드 펀딩-->
                         <c:forEach var="c" items="${crowdList}">
                             <fmt:parseNumber var="progress" value="${(c.crNowMoney/c.crGoalMoney*100)-((c.crNowMoney/c.crGoalMoney*100)%1)}" integerOnly="true"/>
 	                        <div class = "crowdImg">
-	                                <img src="<c:url value='/common/download.mn?sysName=${c.crFileName}&path=${c.crFilePath}'/>" width="355" class = "crowdImg">
+	                                <a href="<c:url value='/crowd/detail.mn?crNo=${c.crNo}' />"><img src="<c:url value='/common/download.mn?sysName=${c.crFileName}&path=${c.crFilePath}'/>" width="355" class = "crowdImg"></a>
 	                                <p class = "fontp">${c.crTitle}</p>
 	                                <div class="progress">
 	                                       <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%;">
@@ -619,17 +621,10 @@ transform: rotate(0deg);
 
 
 
-    <footer class="dogcat">
-            <div class="footertitle">
-              <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
-              <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
-            </div>
-          </footer>
-
-	<footer>
+   
 	            <div class="chat-launcher" onclick="doChatList()"></div>
 	            
-    		  </footer>
+    		 <c:import url = "../common/footer.jsp"/>
     
   <script>
     // 크라우드펀딩으로 가는 url

@@ -35,13 +35,13 @@
 		             			<button type="button" id="heart-btn" class="btn btn-default btn-lg">
 		             				<c:choose>
 		             					<c:when test="${likeCheck eq 0 || likeCheck eq null}">
-		             						<span class="glyphicon glyphicon-heart-empty" aria-hidden="true">
+		             						<i class="far fa-heart"></i>
 		             					</c:when>
 		             					<c:otherwise>
-		             						<span class="glyphicon glyphicon-heart" aria-hidden="true">
+		             						<i class="fas fa-heart"></i>
 		             					</c:otherwise>	
 		             				</c:choose>
-			                  		<span id="like-count">${detail.crLikeCnt}</span></span>
+			                  		<span id="like-count">${detail.crLikeCnt}</span>
 		              			</button>
 		              		</div>
 				            <div class="progress">
@@ -210,14 +210,16 @@
 				return;
 			}
 			
-			  if($(this).children().attr("class")=="glyphicon glyphicon-heart-empty") {
-		        $("span.glyphicon").removeClass();
-		        $(this).children().addClass("glyphicon glyphicon-heart");
+			console.log($(this).children().eq(0))
+			
+			  if($(this).children().eq(0).attr("class")=="far fa-heart") {
+		        $("i.far").removeClass();
+		        $(this).children().eq(0).addClass("fas fa-heart");
 		        ajaxLike(false)
 		        swal("좋아요")
 		      } else {
-		        $("span.glyphicon").removeClass();
-		        $(this).children().addClass("glyphicon glyphicon-heart-empty");
+		        $("i.fas").removeClass();
+		        $(this).children().eq(0).addClass("far fa-heart");
 		        ajaxLike(true)
 		        swal("좋아요 취소")
 		      }
