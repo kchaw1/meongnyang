@@ -217,6 +217,11 @@ height :0px;
 .forImg3{
 width : 100% !important;
 heigth : 100%;
+
+}
+.manyPic{
+background-img : <c:url value = "/resources/img/community/userImg.jpg"/>;
+background-size : 15px;
 }
 
 
@@ -387,15 +392,22 @@ function forAllBtn(){
 									});
 		
 		//이미지 없애기
-		
+		var length;
 		$(function(){
 			var contentList = document.querySelectorAll(".content");
 					console.log(contentList);
 			for(let content of contentList){
+
 				console.log($(content));
 				$content = $(content);
+			
+				if($content.find("img").length >= 2){
+					console.log("사진갯수가 2개이상")
+					$content.find("img").addClass("manyPic")
+				}
 				if($content.html().indexOf("img")!=-1){
 				  	$content.find("img").addClass("forImg3");
+				  	
 			}	
 		}}); 
 
