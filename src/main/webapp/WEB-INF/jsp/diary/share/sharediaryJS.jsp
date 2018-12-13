@@ -49,7 +49,7 @@ function showImage(){
 			if(member.imageName == null) {
 				html ='<img src="<c:url value="/resources/img/community/userImg.jpg"/>" />'	
 			} else {
-				html = '<img src="<c:url value="/common/download.mn?sysName='+member.imageName+'&path='+member.imagePath+'"/>" />'
+				html = "<img src='<c:url value='/common/download.mn?sysName="+member.imageName+"&path="+member.imagePath+"'/>' />"
 			}
 			//console.log(member)
 			
@@ -183,7 +183,7 @@ $(window).scroll(function(){
 					str += '<li class="diary" data-toggle="modal" data-target="#share"  data-no="'+diary.drNo+'">'
 					str += '<div class="dr-title">'
 					str += '<div class="title">'+diary.drTitle+'</div>'
-					str += '<div class="writer">'+diary.drWriter+'</div>'
+					str += '<div class="writer" data-id="'+diary.drWriter+'"><div class="image></div>"'+diary.drWriter+'</div>'
 					str += '<div class="date">'+diary.drRegDateTime+'</div>'
 					str += '</div><div class="dr-content">'+diary.drContent+'</div>'
 					str += '<div class="dr-comments"> 댓글없음</div></li>'
@@ -194,7 +194,7 @@ $(window).scroll(function(){
 						str += '<li class="diary" data-toggle="modal" data-target="#share"  data-no="'+diary.drNo+'">'
 						str += '<div class="dr-title">'
 						str += '<div class="title">'+diary.drTitle+'</div>'
-						str += '<div class="writer dropdown show">'
+						str += '<div class="writer dropdown show" data-id="'+diary.drWriter+'">'
 						str += '<div class="image"></div>'
 						if(diary.friendsId != null) {
 							str += '<a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> '

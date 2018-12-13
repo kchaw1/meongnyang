@@ -1,6 +1,6 @@
 #remoteVideo.media-container {
 	position : absolute;
-	z-index :-1;
+	z-index :10;
 	border: none;
    	border-radius: 8px;	
 }
@@ -8,17 +8,25 @@
 	position : absolute;
 	top : 20px;
 	left : 20px;
+	z-index :20;
 	border: none;
    	border-radius: 8px;	
    	background : #333333;
 }
- #rooms-list tr {
-visibility : hidden;
-} 
- #setup-room {
-	visibility : hidden;
-}
 .loading {
 	width : 500px;
-	margin : auto;
+	height : 500px;
+	z-index : 1;
+	position : absolute;
+	display : inline-block;
+	background-color : white;
 }
+ #setup-room {
+	/* visibility : hidden; */
+	position : absolute;
+	display : inline-block;
+}
+/* .loading {
+	width : 500px;
+	margin : auto;
+} */

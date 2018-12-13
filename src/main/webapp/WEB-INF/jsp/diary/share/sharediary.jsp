@@ -21,7 +21,7 @@
             <li class="diary" data-toggle="modal" data-target="#share"  data-no="${dr.drNo}">
 				<div class="dr-title">
 	               <div class="title">${dr.drTitle}</div>
-	               <div class="writer dropdown">
+	               <div class="writer dropdown" data-id="${dr.drWriter}">
 	               <div class="image">
 	               	
 	               </div>

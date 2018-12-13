@@ -493,17 +493,7 @@ width : 100% !important;
 heigth : 100%;
 
 }
-.manyPic{
-/* background : url("../../img/diary/diary2.png");
-background-repeat : no-repeat;
-background-position : right top;
-background-size : 50px; */
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2.5rem;
-    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1)
-}
+
 
 
 
