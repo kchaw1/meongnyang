@@ -140,17 +140,26 @@ public class MemberController {
 	public boolean login(HttpSession session, Login login) {
 		System.out.println("login id : " + login.getId());
 		Member member = service.login(login);
+		if(member == null) {
+			return false;
+
+		}
 		service.insertHistory(login.getId());
-		service.updqteScore(login.getId());
+		
+		if(service.selectHistory(login.getId()) == 1) {
+			service.updqteScore(login.getId());
+			
+		}
+
 		scoreservice.insertLoginScoreHistory(login.getId());
+
 		System.out.println("loginscore : " + login.getId());
 		System.out.println("loginpass : " + login.getPass());
-		if(member != null) {
-			session.setAttribute("user", member);
-			
-			return true;
-		}
-		return false;
+		System.out.println("loginCount : " + service.selectHistory(login.getId()));
+		
+		session.setAttribute("user", member);
+		
+		return true;
 	} // 로그인
 	
 	@RequestMapping("/naverloginform.mn")

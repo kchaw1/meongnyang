@@ -24,4 +24,14 @@
   				limit 1
 	</update>
 	
+	<!-- 로그인 내역 카운트  -->
+	<select id="selectHistory" parameterType="string" resultType="int">
+		select count(*) 
+		from mn_login_history
+		where login_id = #{loginId} and 
+			  login_date_time >= CURRENT_DATE();		  
+	</select>
+	
+	
+	
 </mapper>

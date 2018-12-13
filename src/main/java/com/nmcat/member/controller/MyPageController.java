@@ -123,6 +123,7 @@ public class MyPageController {
 			
 			return "redirect:/member/login.mn";
 	}
+	 
 	// 획득 포인트 내역 
 	@RequestMapping("point.mn")
 	public void point(Model model, HttpSession session ) {

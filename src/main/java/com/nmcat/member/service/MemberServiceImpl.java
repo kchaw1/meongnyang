@@ -12,6 +12,7 @@ import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
+import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
@@ -181,7 +182,8 @@ public class MemberServiceImpl implements MemberService{
 	public Member selectMemberInfo(int no) {
 		return mapper.selectMemberInfo(no);
 	}
-
+	
+	// 
 	@Override
 	public Date selectRac(String id) {
 		return mapper.selectRac(id);
@@ -192,11 +194,21 @@ public class MemberServiceImpl implements MemberService{
 	public List<CommunityBoard> selectMyBoard(String id) {
 		return mapper.selectMyBoard(id);
 	}
-
+	
+	// 내가 쓴 댓글
 	@Override
 	public List<CommunityComment> selectMyComment(String id) {
 		return mapper.selectMyComment(id);
 	}
+	
+	// 로그인 내역 카운트 
+	@Override
+	public int selectHistory(String loginId) {
+		return lomapper.selectHistory(loginId);
+	}
+
+	
+	
 	
 	
 	
