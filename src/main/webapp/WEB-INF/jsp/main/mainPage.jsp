@@ -71,7 +71,7 @@
                     <div class = "item">
                             <img  class = "forLine" src="<c:url value = "/resources/img/community/line.png"/>">
                             <div>
-                            <h2 class = "title2">최신동영상</h2>
+                            <h2 class = "title2">추천 동영상</h2>
                             <button class="btn3 leftRight1">더보기 </button>
                             </div>
                             <div class="clear-fix"></div>

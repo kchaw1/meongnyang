@@ -40,8 +40,8 @@
   border-right: 1px solid #ccd5dc;
     border-left: 1px solid #ccd5dc;
     border-top: 1px solid #ccd5dc;
-    width: 850px;
-    height: 87px;
+  width: 902px;
+    height: 94px;
     vertical-align: top;
     list-style: none;
     padding: 16px;
@@ -151,6 +151,13 @@ div.modal-header {
 .modal-dialog {
     margin-top: 100px;
 }
+.spanC2{
+    font-size: 20px;
+    font-weight: 600;
+    color: #adb7c3 !important;
+    font-family: 'Roboto', 'Noto Sans', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 10px;
+    }
 
 </style>
 </head>
@@ -166,9 +173,16 @@ div.modal-header {
         <br>
         <div class="log-out">LOG OUT</div>
         <div class="seperator"></div>
-        <div class="list">
-          <div id="board" class="item" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
+        <div class="list"> 
+          <div id="board" class="item statistics" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
+          
+          <c:if test="${member.type == 2}">
+          <div class="item static"><a href="<c:url value="/mypageGen/list.mn"/>">경력 및 인사말</a></div>
+          </c:if>
+           <c:if test="${member.type == 1}">
           <div class="item" id="grade"><a href="<c:url value="/mypageGen/grade.mn"/>">내 등급</a></div>
+          </c:if>
+          
           <div class="item" id="mypoint"><a href="<c:url value="/mypageGen/point.mn"/>">내 포인트</a></div>
           <div id="management" class="item"><a href="<c:url value="/mypageGen/activity.mn"/>">내 활동</a></div>
         </div>
@@ -185,14 +199,31 @@ div.modal-header {
           <div class ="forImg2">
           <img src="<c:url value='/common/download.mn?sysName=${member.imageName}&path=${member.imagePath}&oriName=${member.imageOriName}'/>" class="img-responsive" alt="Responsive image" width="183" height="280">
           </div>
+          <!-- 회원구분 -->
           <ul class ="ul2">
-            <li class = "li2">
-              <label class ="labelC">회원등급</label><br>
-              <span class ="spanC">다이아</span>
-            </li>
+          	<c:if test="${member.type == 1}">
+		            <li class = "li2">
+		              <label class ="labelC">회원등급</label><br>
+		              <div class ="spanC2">다이아</div>
+		            </li>
+            </c:if>
+            <c:if test = "${member.type == 2}">
+              <li class = "li2">
+		              <label class ="labelC">회원구분</label><br>
+		              <div class ="spanC2">행동전문가</div>
+		            </li>
+            </c:if>
+            <c:if test = "${member.type == 3}">
+              <li class = "li2">
+		              <label class ="labelC">회원구분</label><br>
+		              <span class ="spanC2">관리자</span>
+		            </li>
+            </c:if>
+            <!-- -------------------------------------------------------------------- -->
+            
             <li class = "li2">
                 <label class ="labelC">회원이름</label><br>
-                <span class ="spanC">${member.name}</span>
+                <div class ="spanC2">${member.name}</div>
             </li>
             <li class = "li3">
                 <label class ="labelC">회원아이디</label><br>

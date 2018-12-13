@@ -36,7 +36,7 @@ public class MyPageController {
 		model.addAttribute("lastlogin", service.selectRac(member.getId()));
 	}
 	
-	// 회원정보 수정할때 비밀번호 체크
+	// �쉶�썝�젙蹂� �닔�젙�븷�븣 鍮꾨�踰덊샇 泥댄겕
 	@RequestMapping("/loginck.mn")
 	@ResponseBody
 	public int loginck(Member member) {
@@ -47,6 +47,7 @@ public class MyPageController {
 	@RequestMapping("activity.mn")
 	public void activity(Model model, HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 		model.addAttribute("myBoardList", service.selectMyBoard(member.getId()));
 		model.addAttribute("myComment", service.selectMyComment(member.getId()));
 	}
@@ -57,7 +58,7 @@ public class MyPageController {
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 	}
 	
-	// 프로필 사진 수정
+	// �봽濡쒗븘 �궗吏� �닔�젙
 	@RequestMapping("updateProfile.mn")
 	public String updateProfile(Member member, HttpSession session) {
 		Member member2 = (Member)session.getAttribute("user");
@@ -110,7 +111,7 @@ public class MyPageController {
         }
    }
 	
-	 // 비밀번호 수정
+	 // 鍮꾨�踰덊샇 �닔�젙
 	 @RequestMapping("/updatePass.mn")
 		public String updatePass(Member member, HttpSession session) {
 		 System.out.println(member);
@@ -124,7 +125,7 @@ public class MyPageController {
 			return "redirect:/member/login.mn";
 	}
 	 
-	// 획득 포인트 내역 
+	// �쉷�뱷 �룷�씤�듃 �궡�뿭 
 	@RequestMapping("point.mn")
 	public void point(Model model, HttpSession session ) {
 		Member member = (Member)session.getAttribute("user");
