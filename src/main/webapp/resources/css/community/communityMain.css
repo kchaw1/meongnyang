@@ -22,7 +22,7 @@ body{
 
 
 .contentContainer{
-    /*margin-top은 그냥 구분을 위해서 나중에 지워두 된다.*/
+    /*margin-top�� 洹몃깷 援щ텇�쓣 �쐞�빐�꽌 �굹以묒뿉 吏��썙�몢 �맂�떎.*/
     margin-top: 20px;
     width: 100%;
     min-height: 140px;
@@ -46,7 +46,7 @@ body{
     vertical-align: bottom;
 }
 
-/*우측 스크롤할시 움직이는 부분들 fixed*/
+/*�슦痢� �뒪�겕濡ㅽ븷�떆 ��吏곸씠�뒗 遺�遺꾨뱾 fixed*/
 
 .profileAndName{
    
@@ -62,7 +62,7 @@ body{
     
 }
 
-/*우측 상단 프로필 사진 사이즈 조절*/
+/*�슦痢� �긽�떒 �봽濡쒗븘 �궗吏� �궗�씠利� 議곗젅*/
 .imgSize{
     border: 1px solid #e6e6e6;
     margin-top: 5px;
@@ -70,7 +70,7 @@ body{
     width: 50px;
     height: 50px;
 }
-/*우측 상단 유저이름 크기, 두께 조절*/
+/*�슦痢� �긽�떒 �쑀���씠由� �겕湲�, �몢猿� 議곗젅*/
 .userName{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
@@ -174,11 +174,11 @@ body{
     height: 160px;
    
 }
-/*컨텐츠 상단  프로필 이름 날짜 부분 css*/
+/*而⑦뀗痢� �긽�떒  �봽濡쒗븘 �씠由� �궇吏� 遺�遺� css*/
 .locationC{
     margin-top: -15.5px;
 }
-/*날짜 시,분까지 넣는다면*/
+/*�궇吏� �떆,遺꾧퉴吏� �꽔�뒗�떎硫�*/
 .regDate{
     color: rgb(204, 204, 204);
     /* position: absolute;
@@ -186,7 +186,7 @@ body{
     padding-left: 293px; */
 }
 
-/*컨텐츠 하단 댓글, 조회수, 카테고리 들어갈 부분 css*/
+/*而⑦뀗痢� �븯�떒 �뙎湲�, 議고쉶�닔, 移댄뀒怨좊━ �뱾�뼱媛� 遺�遺� css*/
 .category{
 
 	width: auto;
@@ -215,7 +215,7 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-/*카테고리 select*/
+/*移댄뀒怨좊━ select*/
 .select {
   position: relative;
   display: block;
@@ -291,14 +291,14 @@ select {
 font-size: 16px;
 line-height: 30px;
 }
-/*컨텐츠에서 img css*/
+/*而⑦뀗痢좎뿉�꽌 img css*/
 .forImg{
    width: 100%;
 }
 .forImg2{
 	width: 100%;
 }
-/* 채팅 */ 
+/* 梨꾪똿 */ 
 .chat-launcher {
 position: fixed;
 bottom: 20px;
@@ -328,7 +328,7 @@ opacity: 1;
 transform: rotate(0deg) scale(1);
 }
 
-/*챠팅  */
+/*梨좏똿  */
 .chat-launcher:after {
 content: "\f00d";
 padding-top: 20px;
@@ -383,7 +383,7 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     height: 60px;
     
 }
-/*더보기 css*/
+/*�뜑蹂닿린 css*/
 .showMore{
 float: left;
 width: 650px;
@@ -494,15 +494,20 @@ heigth : 100%;
 
 }
 .manyPic{
-background : url("../../img/diary/diary2.png");
+/* background : url("../../img/diary/diary2.png");
 background-repeat : no-repeat;
 background-position : right top;
-background-size : 50px;
+background-size : 50px; */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1)
 }
 
 
 
-/*채팅로고*/
+/*梨꾪똿濡쒓퀬*/
 
 
 
