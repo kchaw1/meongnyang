@@ -129,7 +129,20 @@ div.writer {
 	color : rgb(94, 94, 94);
   font-size : 20px;
 	float : left;
+	
 }
+div.image {
+	width : 30px;
+	height : 30px;
+	display : inline-block;
+	border-radius : 15px;
+	overflow : hidden;
+	vertical-align : middle;
+}
+div.image img {
+	width : 100%;
+}
+
 
 div.dr-content {
 	clear : both;

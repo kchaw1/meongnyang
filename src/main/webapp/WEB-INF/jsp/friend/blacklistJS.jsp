@@ -18,10 +18,10 @@ function showblackList(pageNo){
 		let str = "";
 		for(let i=1; i <= map.lineNo; i++){
 			str += '<div class="line'+i+'">'
-			let friendArray = Object.keys(map);
+			let blackArray = Object.keys(map);
 			let list = null;
 			
-			for(let key of friendArray) {
+			for(let key of blackArray) {
 				if(key == "list"+i){
 					list = map[key];
 					//console.log(list)
@@ -29,24 +29,28 @@ function showblackList(pageNo){
 				}
 			} // list + i 값 꺼내오기....
 			
-			for(let friend of list) {
+			for(let black of list) {
 				str += '<div class="users" name="users">'
 				str += '<div class="profile"><div class="image">'
-				str += '<i class="fas fa-user-circle fa-7x"></i>'
+				if(black.imageName == null){
+					str += '<i class="fas fa-user-circle fa-7x"></i>'					
+				} else {
+					str += "<img src='<c:url value='/common/download.mn?sysName="+black.imageName+"&path="+black.imagePath+"'/>' />"
+				}
 				str += '</div><div class="text">'
-				str += '<span class="id">'+friend.id+'</span></div></div>'
+				str += '<span class="id">'+black.id+'</span></div></div>'
 				str += '<div class="info"><div class="grade">';
 				str += '<i class="fas fa-trophy fa-2x"></i>'
-				str += friend.gradeName + '</div>';
+				str += black.gradeName + '</div>';
 				str += '<div class="icons">'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제"'
-				str += 'data-id="'+friend.id+'">';
+				str += 'data-id="'+black.id+'">';
 				str += '<i class="fas fa-lock fa-2x"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="차단 해제"';
-				str += 'data-id="'+friend.id+'">';
+				str += 'data-id="'+black.id+'">';
 				str += '<i class="fas fa-lock-open fa-2x" id="hidden"></i></a>'
 				str += '<a href="#1" data-toggle="tooltip" data-placement="bottom" title="쪽지 쓰기"';
-				str += 'data-id="'+friend.id+'">';
+				str += 'data-id="'+black.id+'">';
 				str += '<i class="far fa-envelope fa-2x" ></i></a>'
 				str += '</div></div></div>'
 				

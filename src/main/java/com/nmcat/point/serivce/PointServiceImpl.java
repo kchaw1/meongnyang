@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.PointMinus;
 import com.nmcat.repository.domain.PointPlus;
 import com.nmcat.repository.mapper.PointMapper;
@@ -21,18 +22,12 @@ public class PointServiceImpl implements PointService{
 		plus.setPlusDate(new Date());
 		plus.setPlusType("1");
 		mapper.insertPointPlusByPaying(plus);
-		List<PointPlus> plusList = selectAddPoint(plus.getId());
-		int plusSum = 0;
-		//가장 최근 insert 된것은 결제한거 니까 빼고 1 인덱스부터 시작..
-		for(int i=1; i<plusList.size(); i++) {
-			plusSum += plusList.get(i).getPlusPoint();
-		}
-		List<PointMinus> minusList = selectMinusPoint(plus.getId());
-		int minusSum = 0;
-		for(PointMinus minus : minusList) {
-			minusSum += minus.getMinusPoint();
-		}
-		return plusSum - minusSum;
+		int totalSum = checkPoint(plus.getId());
+		Member member = new Member();
+		member.setPoint(totalSum);
+		member.setId(plus.getId());
+		mapper.updatePointOneMember(member);
+		return totalSum - plus.getPlusPoint();
 	
 	}
 	
@@ -65,7 +60,19 @@ public class PointServiceImpl implements PointService{
 		plus.setPlusDate(now);
 		plus.setPlusType("3");
 		mapper.insertPointPlusByChating(plus);
-		return checkPoint(minus.getId());
+		//포인트를 사용한 반려인 포인트 update
+		int idTotal = checkPoint(minus.getId());
+		Member member = new Member();
+		member.setPoint(idTotal);
+		member.setId(minus.getId());
+		mapper.updatePointOneMember(member);
+		//포인트를 받은 전문가 포인트 update
+		int AbsTotal = checkPoint(minus.getAbsId());
+		member.setPoint(AbsTotal);
+		member.setId(minus.getAbsId());
+		mapper.updatePointOneMember(member);
+		
+		return idTotal;
 	}
 	
 	// 획득 포인트 내역 

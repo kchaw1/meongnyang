@@ -5,10 +5,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.diary.service.DiaryService;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.DiaryBoard;
 import com.nmcat.repository.domain.board.DiaryComment;
 
@@ -45,6 +47,12 @@ public class DiaryController {
 	@ResponseBody
 	public void writeCommentShareDiary(DiaryComment comment) {
 		service.writeCommentShareDiary(comment);
+	}
+	
+	@PostMapping("/share/showimage.mn")
+	@ResponseBody
+	public Member showImage(String id) {
+		return service.showImage(id);
 	}
 	
 } //end class

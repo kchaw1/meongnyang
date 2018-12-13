@@ -20,6 +20,7 @@
 	<result column="minus_use" property="minusUse"/>
 	</resultMap>
 	
+	
 	<!-- 결제 충전.. -->
 	<insert id="insertPointPlusByPaying" parameterType="PointPlus">
 
@@ -43,7 +44,7 @@
 		
 	</insert>
 	
-	
+	<!--화상채팅 신청해서 깎이는 포인트.. -->
 	<insert id="insertPointMinusforUsingFaceChat">
 		insert into mn_point_minus (
 			minus_point, id, minus_date, minus_use,
@@ -54,6 +55,12 @@
 		)
 	</insert>
 	
+	<!-- member point 넣어주는 쿼리.. -->
+	<update id="updatePointOneMember" parameterType="Member">
+		update mn_member
+		   set point = #{point}
+		  where id = #{id}
+	</update>
 	
 	
 	<!-- 획득 포인트 -->

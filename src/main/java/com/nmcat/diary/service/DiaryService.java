@@ -3,6 +3,7 @@ package com.nmcat.diary.service;
 import java.util.List;
 import java.util.Map;
 
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.DiaryBoard;
 import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
@@ -34,6 +35,8 @@ public interface DiaryService {
 	Map<String, Object> writeNewComment(DiaryBoard diary, DiaryComment comment);
 
 	void writeCommentShareDiary(DiaryComment comment);
+
+	Member showImage(String id);
 
 
 

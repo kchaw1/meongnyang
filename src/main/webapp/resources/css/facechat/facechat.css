@@ -12,11 +12,11 @@
    	border-radius: 8px;	
    	background : #333333;
 }
-#rooms-list tr {
+ #rooms-list tr {
 visibility : hidden;
-}
-#setup-room {
-	display : none;
+} 
+ #setup-room {
+	visibility : hidden;
 }
 .loading {
 	width : 500px;

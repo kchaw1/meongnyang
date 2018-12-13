@@ -12,7 +12,6 @@ import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
-import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
