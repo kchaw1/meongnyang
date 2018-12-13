@@ -6,5 +6,7 @@
 
   <link href="<c:url value="/resources/css/admin/mgm-ABS.css"/>" rel="stylesheet">
   <script src="<c:url value="/resources/js/admin/mgm-ABS.js"/>"></script>
+  <script src="<c:url value="/resources/js/common/moment.js"/>"></script>
+
   
   

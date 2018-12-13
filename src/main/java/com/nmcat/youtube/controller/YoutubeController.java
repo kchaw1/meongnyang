@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.youtube.service.YoutubeService;
 
-@RequestMapping("/admin")
+@RequestMapping("/youtube")
 @Controller
 public class YoutubeController {
 
@@ -18,27 +18,31 @@ public class YoutubeController {
 	private YoutubeService service;
 	
 	// 유튜브 페이지 호출
-	@RequestMapping("/youtube/youtube")
+	@RequestMapping("/youtube")
 	public void youtube() {}
 	
 	// 키워드 추가
-	@RequestMapping("/youtube/add-keyword") 
+	@RequestMapping("/add-keyword") 
 	@ResponseBody
 	public void addKeywrod(Youtube ytb) {
 		service.addKeyword(ytb);
 	}
 	
 	// 키워드 제거
-	@RequestMapping("/youtube/remove-keyword") 
+	@RequestMapping("/remove-keyword") 
 	@ResponseBody
 	public void removeKeywrod(String ytbKeyword) {
 		service.removeKeyword(ytbKeyword);
 	}
 	
 	// 키워드 목록
-	@RequestMapping("/youtube/keywordList") 
+	@RequestMapping("/keywordList")
 	@ResponseBody
 	public List<Youtube> removeKeywrod() {
 		return service.keywordList();
 	}
+	
+	// 유튜브 리스트
+	@RequestMapping("/list")
+	public void list() {}
 }

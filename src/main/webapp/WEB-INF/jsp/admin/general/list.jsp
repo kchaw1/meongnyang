@@ -30,7 +30,7 @@
 				<div class="list">
 					 <div id="board" class="item">게시판</div>
 			         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
-			         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube/youtube.mn" />">유튜브</a></div>
+			         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">유튜브</a></div>
 			         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 			         <div id="management" class="item">관리</div>
 			         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
@@ -103,6 +103,23 @@
 	</div>
 	
 <script>
+	// 쉼표
+    function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
+    }
+
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
+
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
+</script>	
+	
+<script>
 $(document).ready(function () {
 	ajaxList(1, 1);
     $("#management").addClass("selected");
@@ -153,10 +170,16 @@ $(document).ready(function () {
 			            +  "<div class='no-area'>"+ result.list[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.list[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.list[i].name +"</div>"
-			            +  "<div class='sign-area'>"+ result.list[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.list[i].loginDateTime + "</div>"
-			            +  "<div class='active-area'>"+ result.list[i].score +"</div>"
-			            +  "<div class='point-area'>"+ result.list[i].point +"</div>"
+			            +  "<div class='sign-area'>"+ moment(result.list[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+			            +  "<div class='recent-area'>"
+			            if(result.list[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.list[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+		   html +=     	   "</div>"
+			            +  "<div class='active-area'>"+ comma(result.list[i].score) +"</div>"
+			            +  "<div class='point-area'>"+ comma(result.list[i].point) +"</div>"
 			            +  "<div class='grade-area'>"+ result.list[i].codeName +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.list[i].no + " data-id='" + result.list[i].id + "'>상세</button> "
 			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.list[i].no + " data-id='" + result.list[i].id + "'>탈퇴</button>"
@@ -187,10 +210,16 @@ $(document).ready(function () {
 			            +  "<div class='no-area'>"+ result.searchList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.searchList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.searchList[i].name +"</div>"
-			            +  "<div class='sign-area'>"+ result.searchList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.searchList[i].loginDateTime + "</div>"
-			            +  "<div class='active-area'>"+ result.searchList[i].score +"</div>"
-			            +  "<div class='point-area'>"+ result.searchList[i].point +"</div>"
+			            +  "<div class='sign-area'>"+ moment(result.searchList[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+			            +  "<div class='recent-area'>"
+			            if(result.searchList[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.searchList[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+		   html +=     	   "</div>"
+			            +  "<div class='active-area'>"+ comma(result.searchList[i].score) +"</div>"
+			            +  "<div class='point-area'>"+ comma(result.searchList[i].point) +"</div>"
 			            +  "<div class='grade-area'>"+ result.searchList[i].codeName +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchList[i].no + " data-id='" + result.searchList[i].id + "'>상세</button> "
 			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchList[i].no + " data-id='" + result.searchList[i].id + "'>탈퇴</button>"

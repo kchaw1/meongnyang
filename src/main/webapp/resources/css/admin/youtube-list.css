@@ -1,0 +1,9 @@
+#container > .panel .view {
+      width: 100%;
+      height: 100%;
+      background: white;
+      float: left;
+      padding: 20px 77px;
+      box-sizing: border-box;
+      position: relative;
+}

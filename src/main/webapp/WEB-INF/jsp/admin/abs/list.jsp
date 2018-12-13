@@ -28,7 +28,7 @@
         <div class="list">
 	         <div id="board" class="item">게시판</div>
 	         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
-	         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube/youtube.mn" />">유튜브</a></div>
+	         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">유튜브</a></div>
 	         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 	         <div id="management" class="item">관리</div>
 	         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
@@ -136,6 +136,23 @@
 	</div>
 	
 	<script>
+	// 쉼표
+    function inputNumberFormat(obj) {
+      obj.value = comma(uncomma(obj.value));
+    }
+
+    function comma(str) { 
+        str = String(str); 
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
+    } 
+
+    function uncomma(str) { 
+        str = String(str); 
+        return str.replace(/[^\d]+/g, ''); 
+    }
+	</script>
+	
+	<script>
 	
 	$(document).ready(function () {
 		      ajaxYList(1, 1);
@@ -186,10 +203,16 @@
 			            +  "<div class='no-area'>"+ result.yList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.yList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.yList[i].name +"</div>"
-			            +  "<div class='sign-area'>"+ result.yList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.yList[i].loginDateTime + "</div>"
-			            +  "<div class='active-area'>"+ result.yList[i].score +"</div>"
-			            +  "<div class='point-area'>"+ result.yList[i].point +"</div>"
+			            +  "<div class='sign-area'>"+ moment(result.yList[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+			            +  "<div class='recent-area'>" 
+			            if(result.yList[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.yList[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+			   html +=     "</div>"
+			            +  "<div class='active-area'>"+ comma(result.yList[i].score) +"</div>"
+			            +  "<div class='point-area'>"+ comma(result.yList[i].point) +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.yList[i].no + " data-id='" + result.yList[i].id + "'>상세</button> "
 			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.yList[i].no + " data-id='" + result.yList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
@@ -215,10 +238,16 @@
 			            +  "<div class='no-area'>"+ result.nList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.nList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.nList[i].name +"</div>"
-			            +  "<div class='sign-area'>"+ result.nList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.nList[i].loginDateTime + "</div>"
-			            +  "<div class='active-area'>"+ result.nList[i].score +"</div>"
-			            +  "<div class='point-area'>"+ result.nList[i].point +"</div>"
+			            +  "<div class='sign-area'>"+ moment(result.nList[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+			            +  "<div class='recent-area'>"
+			            if(result.nList[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.nList[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+			   html +=     "</div>"
+			            +  "<div class='active-area'>"+ comma(result.nList[i].score) +"</div>"
+			            +  "<div class='point-area'>"+ comma(result.nList[i].point) +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.nList[i].no + " data-id='" + result.nList[i].id + "'>상세</button> "
 			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.nList[i].no + " data-id='" + result.nList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
@@ -247,10 +276,16 @@
 			            +  "<div class='no-area'>"+ result.searchYList[i].no +"</div>"
 			            +  "<div class='id-area'>"+ result.searchYList[i].id +"</div>"
 			            +  "<div class='name-area'>"+ result.searchYList[i].name +"</div>"
-			            +  "<div class='sign-area'>"+ result.searchYList[i].signUpDate +"</div>"
-			            +  "<div class='recent-area'>"+ result.searchYList[i].loginDateTime + "</div>"
-			            +  "<div class='active-area'>"+ result.searchYList[i].score +"</div>"
-			            +  "<div class='point-area'>"+ result.searchYList[i].point +"</div>"
+			            +  "<div class='sign-area'>"+ moment(result.searchYList[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+			            +  "<div class='recent-area'>"
+			            if(result.searchYList[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.searchYList[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+			   html +=     "</div>"
+			            +  "<div class='active-area'>"+ comma(result.searchYList[i].score) +"</div>"
+			            +  "<div class='point-area'>"+ comma(result.searchYList[i].point) +"</div>"
 			            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchYList[i].no + " data-id='" + result.searchYList[i].id + "'>상세</button> "
 			            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchYList[i].no + " data-id='" + result.searchYList[i].id + "'>탈퇴</button>"
 			            +  "</div>"
@@ -279,10 +314,16 @@
 		    	    +  "<div class='no-area'>"+ result.searchNList[i].no +"</div>"
 		    	    +  "<div class='id-area'>"+ result.searchNList[i].id +"</div>"
 		            +  "<div class='name-area'>"+ result.searchNList[i].name +"</div>"
-		            +  "<div class='sign-area'>"+ result.searchNList[i].signUpDate +"</div>"
-		            +  "<div class='recent-area'>"+ result.searchNList[i].loginDateTime + "</div>"
-		            +  "<div class='active-area'>"+ result.searchNList[i].score +"</div>"
-		            +  "<div class='point-area'>"+ result.searchNList[i].point +"</div>"
+		            +  "<div class='sign-area'>"+ moment(result.searchNList[i].signUpDate).format("YY.MM.DD HH:mm:ss") +"</div>"
+		            +  "<div class='recent-area'>"
+			            if(result.searchNList[i].loginDateTime==null) {
+			            	html +=	"로그인 내역 없음."
+			            } else {
+				            html += moment(result.searchNList[i].loginDateTime).format("YY.MM.DD HH:mm:ss") 
+			            }
+		   html +=     "</div>"
+		            +  "<div class='active-area'>"+ comma(result.searchNList[i].score) +"</div>"
+		            +  "<div class='point-area'>"+ comma(result.searchNList[i].point) +"</div>"
 		            +  "<button class='btn btn-default btn-sm move-detail' data-no=" + result.searchNList[i].no + " data-id='" + result.searchNList[i].id + "'>상세</button> "
 		            +  "<button class='btn btn-default btn-sm delete' data-no="+ result.searchNList[i].no +">탈퇴</button>"
 			            +  "</div>"

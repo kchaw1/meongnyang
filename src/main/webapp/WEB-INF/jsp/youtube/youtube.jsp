@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../common/headerfooterCSSJS.jsp" />
-<c:import url="../adminCommonCSSJS.jsp" />
+<c:import url="../common/headerfooterCSSJS.jsp" />
+<c:import url="../admin/adminCommonCSSJS.jsp" />
 <c:import url="youtubeCSSJS.jsp" />
 </head>
 <body>
 	<!-- 헤더 -->x
 	<div id="header">
-		<c:import url="../../common/header.jsp" />
+		<c:import url="../common/header.jsp" />
 	</div>
 	
 	<!-- start -->
@@ -29,7 +29,7 @@
         <div class="list">
 	         <div id="board" class="item">게시판</div>
 	         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
-	         <div class="board-hidden youtube"><a href="<c:url value="/admin/youtube/youtube.mn" />">유튜브</a></div>
+	         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">유튜브</a></div>
 	         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 	         <div id="management" class="item">관리</div>
 	         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
@@ -84,7 +84,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<c:import url="../../common/footer.jsp" />
+		<c:import url="../common/footer.jsp" />
 	</div>
   <script>
     $(document).ready(function () {
@@ -97,7 +97,7 @@
     
     var ajaxList = function() {
     	 $.ajax({
-       	  url: "<c:url value='/admin/youtube/keywordList.mn'/>",
+       	  url: "<c:url value='/youtube/keywordList.mn'/>",
        	  type: "POST",
          }).done(function(result) {
         	 console.log(result)
@@ -130,44 +130,8 @@
        	  		}
        	  		
        	  	 	$("#youtube-area").append(html);
-				
-       	  	 	
-       	  		
-       	  	 	
-									              
-	              /* ------------------------- 유튜브api ---------------------------- */
-// 	              function getRequest(keyword) {
-// 	                  var url = 'https://www.googleapis.com/youtube/v3/search';
-// 	                  var params = {
-// 	                      part: 'snippet',
-// 	                      key: 'AIzaSyBhomSVCcyHNr7jCxxVe04ITSZXYqg0wHY',
-// 	                      q: keyword,
-// 	                      regionCode:"KR",
-// 	                      type: "video",
-// 	                      videoEmbeddable: "true",
-// 	                      maxResults:4
-// 	                  };
-// 	                  $.getJSON(url, params, showResults);
-// 	              }
-
-// 	              function showResults(results) {
-// 		                  console.log(results)
-// 		                  var result ="";
-// 		                  var entries = results.items;
-		                  
-// 		                  $.each(entries, function (index, value) {
-// 		                      var videoId = value.id.videoId;
-		                      
-// 		                      result += '<iframe id="'+ videoId +'" type="text/html" style="margin-right:10px;" width="24%" height="180" src="https://www.youtube.com/embed/' + videoId + '?enablejsapi=1" frameborder="0"></iframe>'
-// 	      	  			  });
-// 	        			  $("div." + randomStr).append(result);
-//        			 	};
-// 			        getRequest(result[i].ytbKeyword) 
-			        
-// 			        console.log(html)
-			        
 			       
-       	  		} // for
+       	  	} // for
        	  		
        	  	for(var j=0; j<=randomArr.length; j++) {
        	  		
@@ -298,7 +262,7 @@
                     		
 	                  // ajax호출 키워드, url DB저장
 	                  $.ajax({
-	                	  url: "<c:url value='/admin/youtube/add-keyword.mn'/>",
+	                	  url: "<c:url value='/youtube/add-keyword.mn'/>",
 	                	  type: "POST",
 	                	  data:	{
 	                		  "ytbKeyword" : $todo,
@@ -366,7 +330,7 @@
         
         // 삭제 ajax 호출
          $.ajax({
-        	  url: "<c:url value='/admin/youtube/remove-keyword.mn'/>",
+        	  url: "<c:url value='/youtube/remove-keyword.mn'/>",
         	  type: "POST",
         	  data:	{
         		  "ytbKeyword" : $(this).siblings('input').val(), 

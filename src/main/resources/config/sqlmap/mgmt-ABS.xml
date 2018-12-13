@@ -64,7 +64,7 @@
 <select id="selectABSList" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -76,7 +76,7 @@
 <select id="selectABSListSortedbyId" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -86,7 +86,7 @@
 <select id="selectABSListSortedbyName" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -96,7 +96,7 @@
 <select id="selectABSListSortedbySignUpDate" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -106,7 +106,7 @@
 <select id="selectABSListSortedbyRecentLoginDate" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -116,7 +116,7 @@
 <select id="selectABSListSortedbyScore" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -126,7 +126,7 @@
 <select id="selectABSListSortedbyPoint" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -139,7 +139,7 @@
 <select id="selectABSListDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -150,7 +150,7 @@
 <select id="selectABSListSortedbyIdDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -160,7 +160,7 @@
 <select id="selectABSListSortedbyNameDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -170,7 +170,7 @@
 <select id="selectABSListSortedbySignUpDateDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -180,7 +180,7 @@
 <select id="selectABSListSortedbyRecentLoginDateDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -190,7 +190,7 @@
 <select id="selectABSListSortedbyScoreDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -200,7 +200,7 @@
 <select id="selectABSListSortedbyPointDesc" parameterType="Member" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -213,7 +213,7 @@
 <select id="selectABSDetail" parameterType="int" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id
@@ -258,7 +258,7 @@
 <select id="searchABS" parameterType="MgmtSearch" resultMap="memberMap">
 	SELECT *
 	  FROM mn_member AS A 
-	 INNER JOIN (select login_id, max(login_date_time) login_date_time
+	  LEFT JOIN (select login_id, max(login_date_time) login_date_time
 				   from mn_login_history
 				  group by login_id) AS B
 	    ON A.id = B.login_id

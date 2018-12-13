@@ -204,15 +204,15 @@
   <script>
     // 크라우드펀딩으로 가는 url
     $(".btn2").on('click', function(){
-    	location.href = "<c:url value = '/crowd/list.mn'/>";
+    	location.href = "<c:url value ='/crowd/list.mn'/>";
     });
     // 최신동영상으로 가는 url
-    $(".btn1").on('click', function(){
-    	location.href = "communityPage.mn";
+    $(".btn3").on('click', function(){
+    	location.href = "<c:url value ='/youtube/list.mn'/>";
     });
     // 커뮤니티로 가는 url
     
-    $(".btn3").on('click', function(){
+    $(".btn1").on('click', function(){
     	location.href = "communityPage.mn";
     });
     // 마이펫다이어리로 가는 url
