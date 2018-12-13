@@ -8,6 +8,7 @@
   <nav>
     <ul class="nav navbar-nav">
       <li><a href="<c:url value='/notice/list.mn'/>">공지사항</a></li>
+      <li><a href="<c:url value='/crowd/list.mn'/>">크라우드펀딩</a></li>
       <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <c:if test= "${user.type eq 3}">

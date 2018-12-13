@@ -27,6 +27,9 @@
         <div class="sub-title">Board > Youtube</div>
         <div class="main-title">최신동영상</div>
         <div class="seperator"></div>
+        
+        <ul class="todo-list" style="display:none;">
+        </ul>
 
         <div id="youtube-area" style="margin-top:10px; width:100%;">
         
@@ -69,10 +72,9 @@
 	       	  		  
 	       	  		  randomArr.push(randomStr);
 	       	  		  
-	       	  		  var $newListItem = $('<li class="todo">' + result[i].ytbKeyword + '<span class="list-span">' +
-	       	            '<a href="#" data-random="'+ randomStr +'" class="delete-todo">' + '<i class="fa fa-trash fa-lg"></i>' + '</a>' +
-	       	            '<input type="hidden" value="' + result[i].ytbKeyword + '">' +
-	       	            '</span>' + '</li>');
+	       	  		  console.log(randomStr)
+	       	  		  
+	       	  		  var $newListItem = $('<li class="todo">' + result[i].ytbKeyword + '</li>');
 					  
 	       	          // Add list item to end of list
 	      	          $('.todo-list').append($newListItem);

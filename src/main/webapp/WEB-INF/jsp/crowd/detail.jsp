@@ -73,7 +73,7 @@
 		            		  <span>
 		            		  	<c:if test="${myPoint ne null}">
 		            		  		<fmt:formatNumber var="myPoint" value="${myPoint}" pattern="#,###,###,###"/>
-		            		   		보유포인트: ${myPoint} 원
+		            		   		보유포인트: ${myPoint} P
 		            		   	</c:if>	
 		            		  </span>
 		            		</div>

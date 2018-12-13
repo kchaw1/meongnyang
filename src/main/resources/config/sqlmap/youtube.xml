@@ -27,10 +27,4 @@
 	 order by ytb_no asc  
 </select>
 
-<select id="selectListGroupByKeyword" resultMap="ytbMap">
-	 select ytb_keyword
-       from mn_ytb
-      group by ytb_keyword;  
-</select>
-
 </mapper>
