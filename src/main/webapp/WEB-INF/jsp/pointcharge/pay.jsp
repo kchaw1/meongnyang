@@ -91,19 +91,19 @@
     <table class="detailpoint result">
       <tr class="first">
         <td>충전된 포인트</td>
-        <td>plusPoint</td>
+        <td ><span class="plusPoint">plusPoint</span> 포인트</td>
       </tr>
       <tr>
         <td>이전 포인트</td>
-        <td>prevPoint</td>
+        <td><span class="prevPoint">prevPoint</span> 포인트</td>
       </tr>
       <tr>
         <td>충전 후 포인트</td>
-        <td>nowPoint</td>
+        <td><span class="nowPoint">nowPoint</span> 포인트</td>
       </tr>
       <tr class="buttons">
           <td colspan="2">
-            <img src="../common/teddy_food_dribbble.gif" />
+            <img src="<c:url value="/resources/img/common/teddy_food_dribbble.gif"/>" />
             <button type="button" class="cancel">확인</button>
           </td>
         </tr>
@@ -149,7 +149,7 @@
  			    		id : "${user.id}",
  			    		plusPoint : plusPoint
  		    		}
- 		    	}).done(function() {
+ 		    	}).done(function(prevPoint) {
  		    		$("div.content").addClass("hidden")
  		    		$("header").addClass("hidden")
  		    		$("div.result").removeClass("hidden")
@@ -166,11 +166,18 @@
 
 	    			console.log
 	    			(msg);
- 		    		var plusPoint = plusPoint.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					$("td.plusPoint").html(plusPoint + " 포인트")
+ 		    		let plus = String(plusPoint).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					console.log(plus)
+ 		    		$("span.plusPoint").html(plus)
+
  		    		//3자리 마다 ,찍기..
- 		    		var amount = rsp.paid_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
- 		    		$("span.payamount").html(amount +" 원");
+ 		    		 		    		let amount = String(rsp.paid_amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ 		    		let prev = String(prevPoint).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$("td.payamount").html(amount + " 원");
+ 		    		$("span.prevPoint").html(prev);
+ 		    		let total = String(plusPoint + prevPoint).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ 		    		$("span.nowPoint").html(total);
+
  		    		/* } else {
  		    			//[3] 아직 제대로 결제가 되지 않았습니다.
  		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.

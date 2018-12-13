@@ -13,4 +13,6 @@ public class PointMinus {
 	Date minusDate;
 	String minusUse;
 	int fees;
+	String absId;
+
 }

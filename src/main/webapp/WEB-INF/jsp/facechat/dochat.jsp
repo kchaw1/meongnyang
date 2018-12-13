@@ -36,10 +36,11 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 //var facechatSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
-if("${user.no}"!="${param.no}") {
+
+	if("${user.no}"!="${param.no}") {
 		Swal({
 			title: '정말 ${param.name}님과 <br>화상채팅 하시겠습니까?',
-			text: "화상채팅 연결 시, 포인트 1,000점이 차감됩니다.",
+			text: "화상채팅 연결 시, 1,000 포인트가 차감됩니다.",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -48,15 +49,64 @@ if("${user.no}"!="${param.no}") {
 			cancelButtonText : "아니요, 취소할게요.."
 		}).then((result) => {
 			console.log(result) //{value: true}
-			if (result.value) {
+			 if (result.value) {
 				btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+				 /*var $call = $.ajax({
+								url : "<c:url value='/point/checkpoint.mn'/>",
+								data : "id=${user.id}",
+								type : "POST"
+							})
+							//console.log($call)
+				$.when($call).done(function(totalSum){
+					//console.log(totalSum)
+					//console.log(totalSum >1000)
+					if(totalSum >= 1000){
+						
+					   $.ajax({
+						   url : "<c:url value='/point/usefacechat.mn'/>",
+						   data : {
+							   id : "${user.id}",
+							   minusPoint : 1000,
+							   minusUse : "2",
+							   fees : 100,
+							   absId : "${param.id}"
+						   },
+						   type : "POST"
+					   }).done(function(resultSum){
+						   var resultSum = String(resultSum).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						   swal({
+							   type: 'success',
+							   title: resultSum + " 포인트 남았습니다.",
+							   showConfirmButton: false,
+							   timer: 3000
+							 });
+					   }) //minus ajax..
+					   
+					} else if(totalSum < 1000){
+						swal({
+							  type: 'error',
+							  title: '포인트가 모자라요...',
+							  text: totalSum+ " 포인트 밖에 없어요..",
+							  showConfirmButton: false,
+							  timer: 2500
+							});
+						
+						setTimeout(function(){
+							window.close()}, 
+						2500);
+					}
+				}) //when done...*/
 			} else {
 				window.close();
-			}
+			} 
 		}) // swal..then..	
 	} 
+
+ // on.ready
+	
+
 //if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-//setupNewRoomButtonClickHandler();
+
 var sender = "";
 
 var config = {
@@ -190,7 +240,7 @@ setTimeout(function(){
 	}else{
 		$('#setup-new-room').trigger("click");
 	}
-}, 3000);
+}, 2000);
 
 function setupNewRoomButtonClickHandler() {
     btnSetupNewRoom.disabled = true;

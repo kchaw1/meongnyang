@@ -20,7 +20,9 @@
 	<result column="minus_use" property="minusUse"/>
 	</resultMap>
 	
-	<insert id="insertPointByPaying" parameterType="PointPlus">
+	<!-- 결제 충전.. -->
+	<insert id="insertPointPlusByPaying" parameterType="PointPlus">
+
 		insert into mn_point_plus (
 			plus_point, id, plus_date, plus_type, 
 			merchant_uid, imp_uid
@@ -30,11 +32,37 @@
 		)
 	</insert>
 	
+		<!-- 행동전문가가 받는 돈.. -->
+	<insert id="insertPointPlusByChating" parameterType="PointPlus">
+		insert into mn_point_plus (
+			plus_point, id, plus_date, plus_type
+		) values (
+			#{plusPoint}, #{id}, #{plusDate}, #{plusType}
+		)
+		
+		
+	</insert>
+	
+	
+	<insert id="insertPointMinusforUsingFaceChat">
+		insert into mn_point_minus (
+			minus_point, id, minus_date, minus_use,
+			fees
+		) values (
+			#{minusPoint}, #{id}, #{minusDate}, #{minusUse},
+			#{fees}
+		)
+	</insert>
+	
+	
+	
 	<!-- 획득 포인트 -->
 	<select id="selectAddPoint" parameterType="string" resultMap="plusMap">
 		select *
 		from mn_point_plus
-		where id = #{id}		
+		where id = #{id}
+		order by plus_date desc	
+		
 	</select>
 	
 	<!-- 사용 포인트 -->

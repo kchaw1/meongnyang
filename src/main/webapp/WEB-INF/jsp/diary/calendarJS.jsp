@@ -210,6 +210,14 @@
 			
 		} //for
 		$("div.diaryList").html(str);
+		var contentList = document.querySelectorAll(".dr-content");
+		for(let content of contentList){
+			$content = $(content);
+			if($content.html().indexOf("img")!= -1) {
+				$content.find("img").addClass("normal");
+			}
+		}
+
 		$("button.drc-write").click(function(){
 			writecomment($(this).parent().data("no"), setdate)
 		})
@@ -378,11 +386,13 @@
 				"drShare" : $("input[name='drShareupdate']:checked").val(),
 				"drNo" : drNo,
 				"drDate" : setdate,
-				"drWriter" : "${user.id}"
+				"drWriter" : "${user.id}",
+				"userId" : "${user.id}"
+
 			},
 			type : "POST"
-		}).done(function(list) {
-			showdetailDiary(list);
+		}).done(function(map) {
+			showdetailDiary(map, setdate);
 		})
 	}
 	

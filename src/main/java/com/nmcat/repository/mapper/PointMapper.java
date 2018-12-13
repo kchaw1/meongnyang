@@ -7,7 +7,10 @@ import com.nmcat.repository.domain.PointPlus;
 
 public interface PointMapper {
 
-	public void insertPointByPaying(PointPlus plus);
+	public void insertPointPlusByPaying(PointPlus plus);
 	List<PointPlus> selectAddPoint(String id);
 	List<PointMinus> selectMinusPoint(String id);
+	public void insertPointMinusforUsingFaceChat(PointMinus minus);
+	public void insertPointPlusByChating(PointPlus plus);
+
 }

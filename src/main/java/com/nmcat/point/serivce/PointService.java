@@ -7,7 +7,10 @@ import com.nmcat.repository.domain.PointPlus;
 
 public interface PointService {
 
-	void buyPoint(PointPlus plus);
+	int buyPoint(PointPlus plus);
 	List<PointPlus> selectAddPoint(String id);
 	List<PointMinus> selectMinusPoint(String id);
+	int checkPoint(String id);
+	int usePointforFaceChat(PointMinus minus);
+
 }

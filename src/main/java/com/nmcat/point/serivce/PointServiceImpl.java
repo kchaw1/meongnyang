@@ -17,22 +17,66 @@ public class PointServiceImpl implements PointService{
 	PointMapper mapper;
 	
 	@Override
-	public void buyPoint(PointPlus plus) {
+	public int buyPoint(PointPlus plus) {
 		plus.setPlusDate(new Date());
 		plus.setPlusType("1");
-		mapper.insertPointByPaying(plus);
+		mapper.insertPointPlusByPaying(plus);
+		List<PointPlus> plusList = selectAddPoint(plus.getId());
+		int plusSum = 0;
+		//가장 최근 insert 된것은 결제한거 니까 빼고 1 인덱스부터 시작..
+		for(int i=1; i<plusList.size(); i++) {
+			plusSum += plusList.get(i).getPlusPoint();
+		}
+		List<PointMinus> minusList = selectMinusPoint(plus.getId());
+		int minusSum = 0;
+		for(PointMinus minus : minusList) {
+			minusSum += minus.getMinusPoint();
+		}
+		return plusSum - minusSum;
+	
+	}
+	
+	//현재 포인트 재고 체크..
+	@Override
+	public int checkPoint(String id) {
+		List<PointPlus> plusList = selectAddPoint(id);
+		int plusSum = 0;
+		for(PointPlus plus : plusList) {
+			plusSum += plus.getPlusPoint();
+		}
+		List<PointMinus> minusList = selectMinusPoint(id);
+		int minusSum = 0;
+		for(PointMinus minus : minusList) {
+			minusSum += minus.getMinusPoint();
+		}
+		
+		return plusSum - minusSum;
+
+	}
+
+	@Override
+	public int usePointforFaceChat(PointMinus minus) {
+		Date now = new Date();
+		minus.setMinusDate(now);
+		mapper.insertPointMinusforUsingFaceChat(minus);
+		PointPlus plus = new PointPlus();
+		plus.setId(minus.getAbsId());
+		plus.setPlusPoint((int)(minus.getMinusPoint()*0.9));
+		plus.setPlusDate(now);
+		plus.setPlusType("3");
+		mapper.insertPointPlusByChating(plus);
+		return checkPoint(minus.getId());
 	}
 	
 	// 획득 포인트 내역 
-		@Override
-		public List<PointPlus> selectAddPoint(String id) {
-			return mapper.selectAddPoint(id);
-		}
-
-		@Override
-		public List<PointMinus> selectMinusPoint(String id) {
-			return mapper.selectMinusPoint(id);
-		}
-
+	@Override
+	public List<PointPlus> selectAddPoint(String id) {
+		return mapper.selectAddPoint(id);
+	}
+	
+	@Override
+	public List<PointMinus> selectMinusPoint(String id) {
+		return mapper.selectMinusPoint(id);
+	}
 
 }

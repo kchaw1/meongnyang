@@ -1,22 +1,14 @@
 package com.nmcat.point.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.nmcat.point.serivce.PointService;
-import com.nmcat.repository.domain.GetToken;
+import com.nmcat.repository.domain.PointMinus;
 import com.nmcat.repository.domain.PointPlus;
-import com.nmcat.repository.domain.TokenResult;
 
 @Controller
 @RequestMapping("/point")
@@ -25,12 +17,27 @@ public class PointController {
 	@Autowired
 	PointService service;
 	
-	@RequestMapping("/buy.mn")
+ 	@RequestMapping("/buy.mn")
+ 	@ResponseBody
+	public int buyPoint(PointPlus plus) {
+ 		System.out.println(plus);
+		return service.buyPoint(plus);
+  	} // I'm port API 사용
+ 
+	@PostMapping("/checkpoint.mn")
 	@ResponseBody
-	public void buyPoint(PointPlus plus) {
-		System.out.println(plus);
-		service.buyPoint(plus);
- 	} // I'm port API 사용
+	public int checkPoint(String id) {
+		return service.checkPoint(id);
+	}
+	
+	@RequestMapping("/usefacechat.mn")
+	@ResponseBody
+	public int usePointforFaceChat(PointMinus minus) {
+		System.out.println("minus : " +minus);
+		return service.usePointforFaceChat(minus);
+	}
+	
+
 
 //	private String getPaymentData(String impUid, String accessToken) {
 //		Gson gson = new Gson();
