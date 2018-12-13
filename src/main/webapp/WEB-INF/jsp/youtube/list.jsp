@@ -25,7 +25,7 @@
       <!-- 우측 콘텐츠 영역-->
       <div class="view">
         <div class="sub-title">Board > Youtube</div>
-        <div class="main-title">최신동영상</div>
+        <h1>추천동영상</h1>
         <div class="seperator"></div>
         
         <ul class="todo-list" style="display:none;">
@@ -83,7 +83,7 @@
        	  		  
        	  		if($('div.content-title').text().indexOf(result[i].ytbKeyword) == -1) {
 		         	html =  "<div class="+ randomStr +" style='margin-bottom: 50px;'>"
-				              + "<div class='content-title'><h1>" + result[i].ytbKeyword + "</h1></div>" 
+				              + "<div class='content-title'><h3>" + result[i].ytbKeyword + "</h3></div>" 
 				              + "</div>"
 				              
        	  		}
@@ -100,7 +100,7 @@
        	  			console.log(result[i].ytbKeyword)
        	  			
        	  			if($('div.' + randomArr[j]).text() == result[i].ytbKeyword) {
-		        	 	var html = "<iframe type='text/html' style='padding:10px; margin-right:10px; border:5px dotted red;' width='24%' height='240' src='"+ result[i].ytbURL +"' allowfullscreen='allowfullscreen' frameborder='0'>"
+		        	 	var html = "<iframe type='text/html' style='padding:10px; margin-right:10px; border:5px dotted pink;' width='24%' height='240' src='"+ result[i].ytbURL +"' allowfullscreen='allowfullscreen' frameborder='0'>"
 		    	  		
 		    	  		$("div." + randomArr[j]).append(html);
        	  			}

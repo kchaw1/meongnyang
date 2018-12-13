@@ -77,7 +77,7 @@ select * from mn_diary
 <select id="selectCrowdInfo" resultMap="crowdMap">
 	select * 
 	  from mn_crowd 
-	 where cr_end_day > CURRENT_DATE() 
+	 where cr_end_day > NOW() 
 	 order by cr_end_day asc
 	 limit 2
 </select>

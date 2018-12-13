@@ -54,12 +54,12 @@
                         </div>
 						<div class="clear-fix"></div>
                             <!--첫번째 클라우드 펀딩-->
-                        <c:forEach var="c" items="${crowdList}">
+                        <c:forEach var="c" items="${crowdList}" varStatus="status">
                             <fmt:parseNumber var="progress" value="${(c.crNowMoney/c.crGoalMoney*100)-((c.crNowMoney/c.crGoalMoney*100)%1)}" integerOnly="true"/>
 	                        <div class = "crowdImg">
-	                                <a href="<c:url value='/crowd/detail.mn?crNo=${c.crNo}' />"><img src="<c:url value='/common/download.mn?sysName=${c.crFileName}&path=${c.crFilePath}'/>" width="355" class = "crowdImg"></a>
-	                                <p class = "fontp">${c.crTitle}</p>
-	                                <p style="color: red;">마감일시: ${c.crEndDay}</p>
+	                                <a href="<c:url value='/crowd/detail.mn?crNo=${c.crNo}' />"><img src="<c:url value='/common/download.mn?sysName=${c.crFileName}&path=${c.crFilePath}'/>" width="100%" class = "crowdImg"></a>
+	                                <p class ="fontp">${c.crTitle}</p>
+	                                <span class ="remain-days">D - ${remainDays[status.index]}</span>
 	                                <div class="progress">
 	                                       <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%;">
 	                                       		${progress}%

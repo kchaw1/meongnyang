@@ -5,6 +5,6 @@
 <footer class="dogcat">
   <div class="footertitle">
     <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
-    <h4 class="dogcat"><img src="<c:url value='/resources/img/common/footer_logo.png' />" /> with AR, CW, HK, SY, BG </h4>
+    <h4 class="dogcat">with AR, CW, HK, SY, BG <img src="<c:url value='/resources/img/common/footer_logo.png' />" /></h4>
   </div>
 </footer>

@@ -235,6 +235,11 @@ div.progress-bar {
     color: #b2adad;
     
 }
+.remain-days {
+	color:red;
+	font-size:18px;
+}
+
 .pclass {
     color: gray;
     font-size: 15px;
@@ -356,7 +361,7 @@ margin-top: 60px;
 }
 
 
-/* Ã¤ÆÃ */
+/* Ã¤ï¿½ï¿½ */
 .chat-launcher {
 position: fixed;
 bottom: 20px;
@@ -386,7 +391,7 @@ opacity: 1;
 transform: rotate(0deg) scale(1);
 }
 
-/*Ã­ÆÃ  */
+/*Ã­ï¿½ï¿½  */
 .chat-launcher:after {
 content: "\f00d";
 padding-top: 20px;
