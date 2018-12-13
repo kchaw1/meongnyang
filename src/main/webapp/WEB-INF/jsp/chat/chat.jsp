@@ -73,7 +73,7 @@
 var chat = null;
 var loginId = null;
 var imagePath = "${user.imagePath}"+"/${user.imageName}";
-var chNo = "${chNo}";
+var roomNo = "${chNo}";
 var image = "<img src='<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>' alt=''>"
 
 $(function () {
@@ -87,62 +87,50 @@ $(function () {
 		      아래의 SockJS를 사용하기 위해서는 spring-websocket.xml파일에 사용부분의 주석을 해제해야 한다.
 		  */
 		
-		  chat.onopen = function() {
+	   chat.onopen = function() {
 			console.log(imagePath)
 			console.log("${chNo}");
-			 var In = "${user.id}"
-			    console.log('웹소켓 서버 접속 성공');
-			    $(".chat-list").append("<p style='text-align:center;'>채팅이 시작되었습니다</p>")
-			    chat.send("input : " + In +  ",chNo : "+chNo);
-			  	console.log("입장 아이디 : "+In);
-			
-			  	
+			let userId = "${user.id}"
+			console.log('웹소켓 서버 접속 성공');
+			$(".chat-list").append("<p style='text-align:center;'>채팅이 시작되었습니다</p>")
+			chat.send("roomaccess:" + roomNo + ":" + userId);
+			console.log("입장 아이디 : "+userId);
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {		
 			console.log(evt.data);
+			let arr = evt.data.split(":");
 			
-			if(evt.data.startsWith("input : ")){
-				var id = evt.data.split(":");
-		 		$(".chat-list").append("<br><p style='text-align:center;'>"+id[1].substring(0,id[1].indexOf(","))+"님이 입장하셨습니다.</p><br>");
-				console.log("1번 : "+id[1].substring(id[1].indexOf(",")+1)) 
-				
-				var stringList = id[1].substring(id[1].indexOf(",")+1);
-				
-				stringList.substring(1,stringList.length);
-				console.log("2번 : "+stringList.substring(1,stringList.length-1));
-				var number = stringList.substring(1,stringList.length-1);
-				
-				
- 				number = number.replace(/],/gi,"]&");
-				/* var numberlist = number.split(","); */
-				var numberlist = number.split("&");
-				
-				console.log("numberlist"+numberlist);
-				console.log("1:"+numberlist[0]+"2:"+numberlist[1]+"3:"+numberlist[2]);
-					
-				for(var j =0; j<numberlist.length; j++){
-					var list = numberlist[j].split("=");
- 						
-					 		console.log("list"+list);
-							console.log("번호:"+list[0] +"참석인원 :"+ list[1]);
-					 
- 					
+			console.log("1"+arr[0]);
+			console.log("2"+arr[1]);
+			console.log("3"+arr[2]);
+			if(arr[0] == 'in') {
+				$(".chat-list").append("<br><p style='text-align:center;'>" + arr[2] + "</p><br>");
+				$(".list").append('<div data-id="'+arr[1]+'" class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+arr[1]+'</p></div>');		
+			}
+			else if(arr[0] == 'roomlist') {
+				let userList = arr[1].split(",");
+			    $(".list").empty();
+				for(var i = 0 ; i<userList.length ; i++){
+						$(".list").append('<div data-id="'+userList[i]+'" class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+userList[i]+'</p></div>');		
 				}
-				
-				
-				 if("${chNo}" === list[0]){
-					 console.log("방번호 : " + list[0]);
-					var listex = list[1].substring(list[1].indexOf("[")+1,list[1].lastIndexOf("]"));
-					console.log("listex: "+ listex);
-					var listarr = listex.split(", ");
-					console.log("listarr:" + listarr);
-				   $(".list").empty();
-					for(var i = 0 ; i<listarr.length ; i++){
-							$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
-					}
-				}
-				
+			}
+			else if(arr[0] =='chat'){
+				var chatInfo = arr[2].split(",");
+				if("${user.id}"==chatInfo[0]){		 		
+			 		$(".chat-list").append("<br><img class='pull-right img-circle chat-img' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatInfo[1]+"</p></div><br>");
+			 	}else{	
+					$(".chat-list").append("<br><span>"+chatInfo[0]+"</span><br><img class='pull-left img-responsive img-circle chat-img-left' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble left'><p class='m-b-0'>"+chatInfo[1]+"</p></div><br>");
+			 	}
+			}
+			else if(arr[0] == 'out'){
+				$(".chat-list").append("<br><p style='text-align:center;'>" + arr[2] + "</p><br>");
+				$("div[data-id='"+arr[1]+"']").remove();
+
+			}
+			
+			/*
+			
 				
 				
 			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
@@ -174,6 +162,7 @@ $(function () {
 		 	}
 		 	
 			}
+			*/
 			
 		};
 		chat.onerror = function(evt) {
@@ -194,10 +183,9 @@ $(function () {
     		// 웹소켓 서버에 데이터 전송하기
     		console.log($msg.val());
     			
-    		chat.send(chNo+","+loginId + ":" + $msg.val());
+    		chat.send(chNo + ":" + loginId + ":" + $msg.val());
     		$msg.val("");
-    		 $(".chat-list").scrollTop($(".chat-list").clientHeight());
-    		
+    	    $(".chat-list").scrollTop($(".chat-list").clientHeight());
 	
 	});
 	
@@ -210,26 +198,17 @@ $(function () {
         		// 웹소켓 서버에 데이터 전송하기
         		console.log($msg.val());
         			
-        		chat.send(chNo+","+loginId + ":" + $msg.val());
+        		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val());
         		$msg.val("");        		
         }
         
         
 }
 	$('#logout').click(function() { 
-		$.ajax({
-			url: "<c:url value='/chat/chat.mn' />"
-		})
-		.done(function (result) {
-			
-			chat.send("output : " + loginId);
-						
-			loginId = "${user.id}";
-			
-			$(".chat-list").html("");
+
+			chat.send("roomout:"+roomNo+":"+"${user.id}");
 		
 			window.close();
-		});
 	});
 
 	
