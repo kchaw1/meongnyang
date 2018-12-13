@@ -7,18 +7,22 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.DiaryBoard;
 import com.nmcat.repository.domain.board.DiaryComment;
 import com.nmcat.repository.domain.board.DiaryFile;
 import com.nmcat.repository.mapper.DiaryMapper;
+import com.nmcat.repository.mapper.MemberMapper;
 
 @Service
 public class DiaryServiceImpl implements DiaryService{
 
 	@Autowired
 	private DiaryMapper mapper;
+	
+	@Autowired
+	private MemberMapper membermapper;
 	
 	@Override
 	public Map<String, Object> writeNewDiary(DiaryBoard diary) {
@@ -146,6 +150,11 @@ public class DiaryServiceImpl implements DiaryService{
 	public void writeCommentShareDiary(DiaryComment comment) {
 		comment.setDrcRegDate(new Date());
 		mapper.insertDiaryComment(comment);
+	}
+
+	@Override
+	public Member showImage(String id) {
+		return membermapper.selectMemberInfoById(id);
 	}
 
 	

@@ -22,7 +22,8 @@ $(function(){
 		}
 	} // contentList
 	
-	
+	//사진 뿌려주기..
+	showImage();
 	
 }) //on.ready
 
@@ -33,6 +34,30 @@ $("ul#stickies").on("click", "[data-toggle='modal']",function() {
 	  //$("span#setdate").html(setdate.substr(0,4)+"." +setdate.substr(4,2)+"."+setdate.substr(6,2))  
 	  showdetailDiary(drNo);
 }) //일기가 있는 날짜 눌렀을 때 일기제목에 날짜 넣기 ..
+
+function showImage(){
+	var div = document.querySelectorAll("div.writer")
+	for(let ele of div) {
+		$ele = $(ele);
+		let id = $ele.data("id");
+		$.ajax({
+			url : "<c:url value='/diary/share/showimage.mn' />",
+			data : "id=" + id,
+			type : "POST"
+		}).done(function(member){
+			let html ="";
+			if(member.imageName == null) {
+				html ='<img src="<c:url value="/resources/img/community/userImg.jpg"/>" />'	
+			} else {
+				html = '<img src="<c:url value="/common/download.mn?sysName='+member.imageName+'&path='+member.imagePath+'"/>" />'
+			}
+			//console.log(member)
+			
+			$(".writer[data-id='"+id+"'] div.image").html(html);
+		})
+		
+	} //for 문..
+} //showImage 함수..
 
 function showdetailDiary(drNo) {
 	//alert(drNo);
@@ -170,8 +195,9 @@ $(window).scroll(function(){
 						str += '<div class="dr-title">'
 						str += '<div class="title">'+diary.drTitle+'</div>'
 						str += '<div class="writer dropdown show">'
+						str += '<div class="image"></div>'
 						if(diary.friendsId != null) {
-							str += '<a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+							str += '<a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> '
 							str += diary.drWriter + '</a><span class="label label-friend">친구</span>'
 							str += '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLink">'
 							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>'
@@ -179,9 +205,9 @@ $(window).scroll(function(){
 							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>'
 							str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li></ul>'
 						} else if(diary.drWriter == "${user.id}") {
-							str += diary.drWriter + '<span class="label label-me">나</span>'
+							str += ' '+diary.drWriter + '<span class="label label-me">나</span>'
 						} else {
-							str += diary.drWriter
+							str += ' '+diary.drWriter
 						}
 						str += '</div>'
 						str += '<div class="date">'+diary.drRegDateTime+'</div>'
@@ -194,6 +220,7 @@ $(window).scroll(function(){
 				} // 로그인 했을시..
 			
 			$("ul#stickies").append(str);	
+			showImage();
 				
 		}) //done
 	}

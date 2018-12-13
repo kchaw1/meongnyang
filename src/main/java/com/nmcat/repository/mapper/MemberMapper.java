@@ -46,6 +46,7 @@ public interface MemberMapper {
 	
 	/*****멤버정보*********/
 	Member selectMemberInfo(int no);
+	Member selectMemberInfoById(String id);
 	
 	/*****************최근접속일*******/
 	Date selectRac(String id);

@@ -22,6 +22,9 @@
 				<div class="dr-title">
 	               <div class="title">${dr.drTitle}</div>
 	               <div class="writer dropdown">
+	               <div class="image">
+	               	
+	               </div>
 	               <a href="#1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	               ${dr.drWriter}</a>
 	               </div>
@@ -38,7 +41,10 @@
             <li class="diary" data-toggle="modal" data-target="#share"  data-no="${dr2.drNo}">
 				<div class="dr-title">
 	               <div class="title">${dr2.drTitle}</div>
-	               <div class="writer dropdown show">
+	               <div class="writer dropdown show" data-id="${dr2.drWriter}">
+	               <div class="image">
+	               	
+	               </div>
 	               <c:choose>
 	               <c:when test="${dr2.friendsId == dr2.drWriter }">
 		               <a href="#1" class="btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

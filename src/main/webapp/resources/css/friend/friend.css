@@ -125,6 +125,9 @@ div.image {
   overflow: hidden;
   transition-duration: 0.5s;
 }
+div.image img {
+	width : 100%;
+}
 div.profile i.fa-user-circle {
   color: rgb(128, 128, 128, 0.5);
   transition-duration: 0.5s;

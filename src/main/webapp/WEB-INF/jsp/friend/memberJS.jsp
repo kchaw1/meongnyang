@@ -57,7 +57,11 @@ function showMemberList(pageNo){
 			for(let member of list) {
 				str += '<div class="users" name="users">'
 				str += '<div class="profile"><div class="image">'
-				str += '<i class="fas fa-user-circle fa-7x"></i>'
+				if(member.imageName == null){
+					str += '<i class="fas fa-user-circle fa-7x"></i>'					
+				} else {
+					str += "<img src='<c:url value='/common/download.mn?sysName="+member.imageName+"&path="+member.imagePath+"'/>' />"
+				}
 				str += '</div><div class="text">'
 				str += '<span class="id">'+member.id+'</span></div></div>'
 				str += '<div class="info"><div class="grade">';
