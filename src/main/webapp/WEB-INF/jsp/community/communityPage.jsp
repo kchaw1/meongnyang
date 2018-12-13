@@ -224,39 +224,6 @@ background-img : <c:url value = "/resources/img/community/userImg.jpg"/>;
 background-size : 15px;
 }
 
-   .galleryContainer{
-        width: 270px;
-        height: 280px;
-        
-        position: absolute;
-
-    }
-    
-    .galleryBottom {
-    width: 269.9px;
-    height: 25px;
-    border: 1px solid #e1dfdd;
-    bottom: 0;
-    position: absolute;
-    padding-left: 10px;
-    padding-right : 10px;
-    padding-top: 3px;
-
-}.modal-body {
-    position: relative;
-    padding: 0px;
-    overflow: scroll;
-    overflow-x:hidden;
-    overflow-y:hidden;
-
-    
-}
-.galleryDetailBox{
-    padding-left : 10px;
-    padding-right: 10px;
-
-}
-
 
 
 </style>
@@ -325,41 +292,8 @@ background-size : 15px;
  $(document).ready(function(){
 
 	nextList(1);
-	
-	
 
 }); 
-
-/* var forImgControll = function(){
-	var contentList = document.querySelectorAll(".content");
-	console.log(contentList);
-//content에 하나하나 넣어주기
-for(let content of contentList){
-
-
-$content = $(content);
-console.log($content);
-length = $content.find("img").length;
-
-var imgTag = $content.find("img");
-if($content.find("img").length >= 2){
-	console.log("사진 갯수가 2개 이상이여 들어왔습니다.");
-	console.log(imgTag);
-	for(var i = 1; i <= length-1; i++){
-		imgTag[i].remove();
-	}
-	
-	$content.find("img").addClass("manyPic");
-}
-if($content.html().indexOf("img") != -1){
-	$content.find("img").addClass("forImg3");
-}
-}
-} */
-
-
-
-
 
 
 
@@ -381,7 +315,6 @@ function forAllBtn(){
 
 //전체보기를 위한 페이지
  var nextList = function(pageNoS, comCategory){
-	console.log(comCategory+"카테고리")
 	 user = "${user.id}"
 	 console.log("현재"+user+"님이 접속해 있습니다.");
 	//param은 페이지 번호를 가지고 있다.
@@ -404,85 +337,47 @@ function forAllBtn(){
 		type : "POST",
 		data : param
 	}).done(function(result){
-		if(comCategory =="갤러리"){
-			
-			console.log(result);
-			var text = "";
-			for(let i = 0; i < result.list.length; i++){
-			text += " <div class = 'container'>"
-            	 +"<div  class = 'galleryContainer'>"
-            	 +"<div class = 'galleryImgContainer'  class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>"
-                 /* +"<img src='./img/diary.jpg' width='269' height='255'>" */
-                 +"<div>"+result.list[i].comContent+"</div>"
-				 +"</div>"
-        		 +"<div class = 'galleryBottom'>"
-                 +"</div></div></div>"
- 
-			}
-			
-		}else{
-			console.log(result);
-			var text = "";
-			for(let i = 0; i < result.list.length; i++){
-			text+=  "<div class = 'contentsContainer'>"
-	        		+"<div class = 'left'>"
-	        		+"<div class = 'contentContainer'>"
-	           		+"<div class = 'top1'>"
-	              	+"<div class = 'locationC'>"
-	                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-	                +"<span class = 'userName'>"
-	                +result.list[i].comWriter
-	                +"</span>"
-	                +"<span class = 'regDate'> ·"+result.list[i].comRegDate+"</span></div><div class ='category'>"+result.list[i].comCategory+"</div></div>"
-					+"<div class = 'mid' id = '"
-					+result.list[i].comNo
-					+"'>"
-	                +"<div class = 'forContent'>"
-	                +"<h1 class ='title'>"
-	                +result.list[i].comTitle
-	                +"</h1>"
-	                +"<div class = 'content'>"
-	                +result.list[i].comContent
-	                +"</div></div>"
-	                +"<div class = 'forImg'></div></div>"
-	                +"<div class = 'bottom'>"
-	                if(result.list[i].comCheckCnt == 1){
-	                text+= "<div class ='heart is-active "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"
-	                +"<div class = 'forCnt'>"
-	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
-	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
-	                }else{
-	                text+= "<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"	
-	                +"<div class = 'forCnt'>"
-	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
-	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
-	                }
-	              
-	              
-	              
-			}
-			
-		}
-		 
 		
-		if(comCategory == '갤러리'){
-			if (comCategory && clickPlus == false) {
-				$(".container").html("");
-			}
-			$(".container").append(text);
-			
-			clickPlus = false;
-			
-		}else{
-			if (comCategory && clickPlus == false) {
-				$(".mainContainer").html("");
-			}
-			$(".mainContainer").append(text);
-			
-			clickPlus = false;
-			
+		console.log(result);
+		var text = "";
+		for(let i = 0; i < result.list.length; i++){
+		text+=  "<div class = 'contentsContainer'>"
+        		+"<div class = 'left'>"
+        		+"<div class = 'contentContainer'>"
+           		+"<div class = 'top1'>"
+              	+"<div class = 'locationC'>"
+                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+                +"<span class = 'userName'>"
+                +result.list[i].comWriter
+                +"</span>"
+                +"<span class = 'regDate'> ·"+result.list[i].comRegDate+"</span></div><div class ='category'>"+result.list[i].comCategory+"</div></div>"
+				+"<div class = 'mid' id = '"
+				+result.list[i].comNo
+				+"'>"
+                +"<div class = 'forContent'>"
+                +"<h1 class ='title'>"
+                +result.list[i].comTitle
+                +"</h1>"
+                +"<div class = 'content'>"
+                +result.list[i].comContent
+                +"</div></div>"
+                +"<div class = 'forImg'></div></div>"
+                +"<div class = 'bottom'>"
+                if(result.list[i].comCheckCnt == 1){
+                text+= "<div class ='heart is-active "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"
+                +"<div class = 'forCnt'>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+                }else{
+                text+= "<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"	
+                +"<div class = 'forCnt'>"
+                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+                }
+              
+              
+              
 		}
-	
 		if (comCategory && clickPlus == false) {
 			$(".mainContainer").html("");
 		}
@@ -497,6 +392,7 @@ function forAllBtn(){
 									});
 		
 		//이미지 없애기
+		
 		$(function(){
 			//모든 content 클래스를 갖고있는 친구들 갖고오기
 			var contentList = document.querySelectorAll(".content");
@@ -523,11 +419,10 @@ function forAllBtn(){
 					$content.find("img").addClass("forImg3");
 				}
 			}
-
+		
 
 				
-		});
-		
+		}); 
 
 
 	})
@@ -617,8 +512,6 @@ function refFunction(comNo, comRefUser){
 	
 	  
 }
-
-
 
 
 

@@ -10,18 +10,19 @@
 <c:import url="../common/headerfooterCSSJS.jsp"/>
 <link rel="stylesheet" href="<c:url value="/resources/css/community/communityMain.css"/>">
 
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+
 </head>
 
 <style>
@@ -34,19 +35,15 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-family: 'Jua', sans-serif;
   }
 .category{
-    float: left;
+	text-align:right;
+    float: right;
     font-size: 16px;
     color: gray;
-	/* float: left;
-    font-size: 16px;
-    color: gray;
-	margin-right: 15px;
-	width: auto;
-	height: 20px;
-	color: gray;
-	font-size: 16px;
-	font-family: 'Jua', sans-serif;
-	font-weight: 100; */
+    font-family: 'Jua';
+    font-weight: 100;
+    margin-top: -38px;
+    margin-right:7px;
+	
 }
 .profileAndName{
    
@@ -139,8 +136,126 @@ font-size: 16px;
 .displayNone{
 display: none;
 }
+.heart {
+float:left;
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+   	margin-top: -40px;
+    margin-left: -39px;
+}
+.heart.is-active {
+  transition-duration: 1s;
+  background-position: -2800px 0;
+}
+/* 채팅 */
+.chat-launcher {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+z-index: 9999;
+background: orange;
+color: white;
+border-radius: 50%;
+cursor: pointer;
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
+}
+.chat-launcher:before, .chat-launcher:after {
+font-family: FontAwesome;
+font-size: 34px;
+position: absolute;
+-webkit-transition: transform 180ms linear, opacity 130ms linear;
+transition: transform 180ms linear, opacity 130ms linear;
+}
+.chat-launcher:before {
+content: "\f086";
 
+margin: 6px 0px 0px 13px;
+opacity: 1;
+-webkit-transform: rotate(0deg) scale(1);
+transform: rotate(0deg) scale(1);
+}
 
+/*챠팅  */
+.chat-launcher:after {
+content: "\f00d";
+padding-top: 20px;
+margin: 13px 17px;
+opacity: 0;
+-webkit-transform: rotate(-30deg);
+transform: rotate(-30deg);
+}
+.chat-launcher:hover {
+background: #ffb329;
+}
+.chat-launcher.active:before {
+opacity: 0;
+-webkit-transform: rotate(70deg) scale(0);
+transform: rotate(70deg) scale(0);
+}
+.chat-launcher.active:after {
+opacity: 1;
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+
+.top1{
+    border-bottom: 1px solid #efefef;
+    BACKGROUND-COLOR: WHITE;
+    top: 0;
+	
+}
+.top{
+height :0px;
+}
+.forImg3{
+width : 100% !important;
+heigth : 100%;
+
+}
+.manyPic{
+background-img : <c:url value = "/resources/img/community/userImg.jpg"/>;
+background-size : 15px;
+}
+
+   .galleryContainer{
+        width: 270px;
+        height: 280px;
+        
+        position: absolute;
+
+    }
+    
+    .galleryBottom {
+    width: 269.9px;
+    height: 25px;
+    border: 1px solid #e1dfdd;
+    bottom: 0;
+    position: absolute;
+    padding-left: 10px;
+    padding-right : 10px;
+    padding-top: 3px;
+
+}.modal-body {
+    position: relative;
+    padding: 0px;
+    overflow: scroll;
+    overflow-x:hidden;
+    overflow-y:hidden;
+
+    
+}
+.galleryDetailBox{
+    padding-left : 10px;
+    padding-right: 10px;
+
+}
 
 
 
@@ -169,24 +284,20 @@ display: none;
                     <p class = "decoration3">여러분들의 일상을 공유해보세요!</p>
                     <button class = "writeBtn">글 작성하기</button>
                     </div>
-
                 </div>
                  <!-- 아무거나 넣어주세요 -->
                 <div class = "putSomething">
                         <h1 class = "decoration2">카테고리</h1>
                     <div class="select">
 
-                        <select name="searchType" id="slct" onchange = "nextListSecond(0,this.value)">
-                        			<option class = "all"  id = "1" value="전체보기" >전체보기</option>
+                        <select name="searchType" id="slct" onchange = "nextList(1, this.value)">
+                        			<option class = "all"  id = "1" value="all" >전체보기</option>
 									<option class = "free" id = "2" value="자유게시판" >자유게시판</option>
 									<option class = "tip"  id = "3" value="꿀팁" >꿀팁</option>
 									<option class = "pic"  id = "4" value="갤러리" >갤러리</option>
 									<option class = "qna"  id = "5" value="QnA" >QnA</option>
                                		
                          </select>
-
-                    
-
                     </div>
         
                 </div>
@@ -197,395 +308,242 @@ display: none;
                     </div>
                     <div class = "showMore">
 		                    <button class="forAll" id = "bubbly-button" onclick = "forAllBtn()">더보기</button>
-		                    <button class="forCa" id = "bubbly-button" onclick = "forCaBtn()">더보기</button>
+		                 
                    </div>
         			
                 </div>
                 
 
-              <footer></footer>    
+              <footer>
+	            <div class="chat-launcher"></div>
+	            
+    		  </footer>
 	
 <script>
 //---------------------------------------------------------------------------------------------------------------
 // 처음 커뮤니티 페이지 뜰때에는 1Page이며 ajax를 이용하여 뿌려준다.
  $(document).ready(function(){
-	
+
 	nextList(1);
+	
+	
 
 }); 
 
- var comCategory =  $("#slct option:selected").val();
-console.log(comCategory);
+/* var forImgControll = function(){
+	var contentList = document.querySelectorAll(".content");
+	console.log(contentList);
+//content에 하나하나 넣어주기
+for(let content of contentList){
+
+
+$content = $(content);
+console.log($content);
+length = $content.find("img").length;
+
+var imgTag = $content.find("img");
+if($content.find("img").length >= 2){
+	console.log("사진 갯수가 2개 이상이여 들어왔습니다.");
+	console.log(imgTag);
+	for(var i = 1; i <= length-1; i++){
+		imgTag[i].remove();
+	}
+	
+	$content.find("img").addClass("manyPic");
+}
+if($content.html().indexOf("img") != -1){
+	$content.find("img").addClass("forImg3");
+}
+}
+} */
 
 
 
 
-//카테고리를 위한 페이지 번호
-var pageNo = 0;
+
+
+
 //전체보기를 위한 페이지 번호
-var pageNoS = 1;
+var pageNo = 1;
+var beforeComCategory;
+var clickPlus = false;
+var user;
 
 function forAllBtn(){
 	//전체보기를 위한 버튼
 	console.log("전체보기를 위한 버튼");
-	++pageNoS;
-	nextList(pageNoS);
-}
-function forCaBtn(){
-	 
-	comCategory =  $("#slct option:selected").val();
-	console.log("카테고리를 위한 버튼");
-	nextListSecond(pageNo, comCategory);
 	++pageNo;
-	
+	clickPlus = true;
+	nextList(pageNo);
 }
-/* $(".forAll").click(function(){
-	//전체보기를 위한 버튼
-	console.log("전체보기를 위한 버튼");
-	++pageNoS;
-	nextList(pageNoS);
-});
-
-$(".forCa").click(function(comCategory, comCategory2){
-	if(comCategory != comCategory2){
-		pageNo = 0;
-		comCategory =  $("#slct option:selected").val();
-		console.log("===================첫번쨰 : "+comCategory+", 두번쨰 : "+comCategory2);
-		console.log("카테고리를 위한 버튼");
-		nextListSecond(pageNo, comCategory);
-		++pageNo;
-	}
-	
-	
-	
-}); */
-
-// 두번째
-var nextListSecond = function(pageNo, comCategory){
-	
-	console.log(comCategory+"nextListSecond에서 받아진 comCtegory");
-	/* if(comCategory == "전체보기"){
-		
-		$("#bubbly-button").removeClass("displayNone");
-		$("#bubbly-button").addClass("forAll");
-	
-		
- }else{
-		 	$("#bubbly-button").removeClass();
-			$("#bubbly-button").addClass("forCa");
-		
-
-	 } */
-
-	//if문 전체보기일 경우 /community/communityPageList.mn 이 url을 사용하고
-	//전체보기 외의 카테고리가 선택되었을 경우 /community/communityPageListC.mn 이 url을 사용한다.
-	if(comCategory == "전체보기"){
-		
-		console.log(pageNo, comCategory+"가 선택됨----------------------카테고리 전체보기를 선택했을시를 위한 ajax입니다-------------------------");
-	
-		/* */
-		
-		$.ajax({
-			url : "<c:url value = '/community/communityPageList.mn'/>",
-			type : "POST",
-			data : "pageNo="+pageNo
-		}).done(function(result){
-			
-			console.log(result);
-			var text = "";
-			for(let i = 0; i < result.list.length; i++){
-			text+=  "<div class = 'contentsContainer'>"
-	        		+"<div class = 'left'>"
-	        		+"<div class = 'contentContainer'>"
-	           		+"<div class = 'top'>"
-	              	+"<div class = 'locationC'>"
-	                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-	                +"<span class = 'userName'>"
-	                +result.list[i].comWriter
-	                +"</span>"
-	                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
-					+"<div class = 'mid' id = '"
-					+result.list[i].comNo
-					+"'>"
-	                +"<div class = 'forContent'>"
-	                +"<h1 class ='title'>"
-	                +result.list[i].comTitle
-	                +"</h1>"
-	                +"<div class = 'content'>"
-	                +result.list[i].comContent
-	                +"</div></div>"
-	                +"<div class = 'forImg'></div></div>"
-	                +"<div class = 'bottom'>"
-	                +"<div class = 'category'>"
-	                +result.list[i].comCategory
-	                +"</div>"
-	                +"<div class = 'forCnt'>"
-	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
-	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
-	              
-			}
-			$(".mainContainer").append(text);
-			//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
-			$(".mid").click(function() {
-				var no = $(this).attr('id');
-				location.href = "detailPage.mn?comNo="+no;
-										});
-		})
-		
-		
-		
-	}else if(comCategory != "전체보기"){
-		
-		++pageNo;
-		console.log(pageNo,comCategory+"가 선택됨----------------------다른 카테고리들을 위한 ajax입니다-------------------------")
-		
-		$.ajax({
-			url : "<c:url value = '/community/communityPageListC.mn'/>",
-			type : "POST",
-			data : "pageNo="+pageNo+"&comCategory="+comCategory
-		}).done(function(result){
-
-			console.log(result);
-			var text = "";
-			for(let i = 0; i < result.list.length; i++){
-			text+=  "<div class = 'contentsContainer'>"
-	        		+"<div class = 'left'>"
-	        		+"<div class = 'contentContainer'>"
-	           		+"<div class = 'top'>"
-	              	+"<div class = 'locationC'>"
-	                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-	                +"<span class = 'userName'>"
-	                +result.list[i].comWriter
-	                +"</span>"
-	                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
-					+"<div class = 'mid' id = '"
-					+result.list[i].comNo
-					+"'>"
-	                +"<div class = 'forContent'>"
-	                +"<h1 class ='title'>"
-	                +result.list[i].comTitle
-	                +"</h1>"
-	                +"<div class = 'content'>"
-	                +result.list[i].comContent
-	                +"</div></div>"
-	                +"<div class = 'forImg'></div></div>"
-	                +"<div class = 'bottom'>"
-	                +"<div class = 'category'>"
-	                +result.list[i].comCategory
-	                +"</div>"
-	                +"<div class = 'forCnt'>"
-	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
-	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
-	              
-			}
-			$(".mainContainer").html(text);
-			//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
-			$(".mid").click(function() {
-				var no = $(this).attr('id');
-				location.href = "detailPage.mn?comNo="+no;
-										});
-			
-			
-			
-}) //여기까지가 한 에이작스
-
-		
-		
-		
-	}
-	
-}
-
-
 
 
 
 //전체보기를 위한 페이지
- var nextList = function(pageNoS){
+ var nextList = function(pageNoS, comCategory){
+	console.log(comCategory+"카테고리")
+	 user = "${user.id}"
+	 console.log("현재"+user+"님이 접속해 있습니다.");
+	//param은 페이지 번호를 가지고 있다.
+	var param = "pageNo="+pageNoS+"&user="+user;
+	if (comCategory) { 
+	//만약 카테고리가 전체보기가 아닐때 param에 카테고리또한 넣어준뒤 페이지 번호를 1로 변환시킨다.
+		if (comCategory != "all") param += "&comCategory=" + comCategory;
+		pageNo = 1;
+	}//end first if
+	
+	if (clickPlus) {
+		//선택된 카테고리의 값이 전체보기가 아니라면 선택된 카테고리값을 넣어준다. 
+		if ($("#slct").val() != "all") param += "&comCategory=" + $("#slct").val();
+	}//end second if
+	
 	console.log(pageNoS+"----------------------처음 전체보기를 위한 ajax입니다-------------------------")
 
 	$.ajax({
 		url : "<c:url value = '/community/communityPageList.mn'/>",
 		type : "POST",
-		data : "pageNo="+pageNoS
+		data : param
 	}).done(function(result){
+		if(comCategory =="갤러리"){
+			
+			console.log(result);
+			var text = "";
+			for(let i = 0; i < result.list.length; i++){
+			text += " <div class = 'container'>"
+            	 +"<div  class = 'galleryContainer'>"
+            	 +"<div class = 'galleryImgContainer'  class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>"
+                 /* +"<img src='./img/diary.jpg' width='269' height='255'>" */
+                 +"<div>"+result.list[i].comContent+"</div>"
+				 +"</div>"
+        		 +"<div class = 'galleryBottom'>"
+                 +"</div></div></div>"
+ 
+			}
+			
+		}else{
+			console.log(result);
+			var text = "";
+			for(let i = 0; i < result.list.length; i++){
+			text+=  "<div class = 'contentsContainer'>"
+	        		+"<div class = 'left'>"
+	        		+"<div class = 'contentContainer'>"
+	           		+"<div class = 'top1'>"
+	              	+"<div class = 'locationC'>"
+	                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+	                +"<span class = 'userName'>"
+	                +result.list[i].comWriter
+	                +"</span>"
+	                +"<span class = 'regDate'> ·"+result.list[i].comRegDate+"</span></div><div class ='category'>"+result.list[i].comCategory+"</div></div>"
+					+"<div class = 'mid' id = '"
+					+result.list[i].comNo
+					+"'>"
+	                +"<div class = 'forContent'>"
+	                +"<h1 class ='title'>"
+	                +result.list[i].comTitle
+	                +"</h1>"
+	                +"<div class = 'content'>"
+	                +result.list[i].comContent
+	                +"</div></div>"
+	                +"<div class = 'forImg'></div></div>"
+	                +"<div class = 'bottom'>"
+	                if(result.list[i].comCheckCnt == 1){
+	                text+= "<div class ='heart is-active "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"
+	                +"<div class = 'forCnt'>"
+	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+	                }else{
+	                text+= "<div class ='heart "+result.list[i].comNo+"' onclick = refFunction("+result.list[i].comNo+",'${user.id}')></div>"	
+	                +"<div class = 'forCnt'>"
+	                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> "+result.list[i].comCommentCnt+" Comments</div>"
+	                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> "+result.list[i].comViewCnt+" View</div></div></div></div></div></div>"
+	                }
+	              
+	              
+	              
+			}
+			
+		}
+		 
 		
-		console.log(result);
-		var text = "";
-		for(let i = 0; i < result.list.length; i++){
-		text+=  "<div class = 'contentsContainer'>"
-        		+"<div class = 'left'>"
-        		+"<div class = 'contentContainer'>"
-           		+"<div class = 'top'>"
-              	+"<div class = 'locationC'>"
-                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-                +"<span class = 'userName'>"
-                +result.list[i].comWriter
-                +"</span>"
-                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
-				+"<div class = 'mid' id = '"
-				+result.list[i].comNo
-				+"'>"
-                +"<div class = 'forContent'>"
-                +"<h1 class ='title'>"
-                +result.list[i].comTitle
-                +"</h1>"
-                +"<div class = 'content'>"
-                +result.list[i].comContent
-                +"</div></div>"
-                +"<div class = 'forImg'></div></div>"
-                +"<div class = 'bottom'>"
-                +"<div class = 'category'>"
-                +result.list[i].comCategory
-                +"</div>"
-                +"<div class = 'forCnt'>"
-                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
-                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
-              
+		if(comCategory == '갤러리'){
+			if (comCategory && clickPlus == false) {
+				$(".container").html("");
+			}
+			$(".container").append(text);
+			
+			clickPlus = false;
+			
+		}else{
+			if (comCategory && clickPlus == false) {
+				$(".mainContainer").html("");
+			}
+			$(".mainContainer").append(text);
+			
+			clickPlus = false;
+			
+		}
+	
+		if (comCategory && clickPlus == false) {
+			$(".mainContainer").html("");
 		}
 		$(".mainContainer").append(text);
+		
+		clickPlus = false;
+		
 		//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
 		$(".mid").click(function() {
 			var no = $(this).attr('id');
 			location.href = "detailPage.mn?comNo="+no;
 									});
+		
+		//이미지 없애기
+		$(function(){
+			//모든 content 클래스를 갖고있는 친구들 갖고오기
+			var contentList = document.querySelectorAll(".content");
+					console.log(contentList);
+			//content에 하나하나 넣어주기
+			for(let content of contentList){
+				
+				
+				$content = $(content);
+				console.log($content);
+				length = $content.find("img").length;
+				
+				var imgTag = $content.find("img");
+				if($content.find("img").length >= 2){
+					console.log("사진 갯수가 2개 이상이여 들어왔습니다.");
+					console.log(imgTag);
+					for(var i = 1; i <= length-1; i++){
+						imgTag[i].remove();
+					}
+					
+					$content.find("img").addClass("manyPic");
+				}
+				if($content.html().indexOf("img") != -1){
+					$content.find("img").addClass("forImg3");
+				}
+			}
+
+
+				
+		});
+		
+
+
 	})
 
 }; 
-//------------------------------------------------카테고리 ----------------------------------------------------
-/* 
- function categoryFunction(comCategory){
-	//더보기를 누를경우 nextList(pageNo) 이함수가 실행되며 communityPageList.mn로 가게된다.()
-	//그래서 다른 카테고리를 선택해도 전체보기의 게시글들이 뜨게된다! 구별해주기위해 아래의 if문을 사용한 것이다.(버튼의 클래스를 다르게하여 보내주는 URL을 다르게!)
- 	if(comCategory != "전체보기"){
-		$("#bubbly-button").removeClass("forAll");
-		$("#bubbly-button").addClass("forCa");
-		
- 	 
-	}else{
-		$("#bubbly-button").removeClass("forCa");
-		$("#bubbly-button").addClass("forAll");
- 		
-	}
-	
 
-
-
-	//pageNo의 값을 1 리셋시켜야한다!
-	pageNo = 1;
-	if(comCategory == "전체보기" || comCategory == null || pageNo == 1){
-		
-		
-		console.log("전체보기!")
-			$.ajax({
-		url : "<c:url value = '/community/communityPageList.mn'/>",
-		type : "POST",
-		data : "pageNo="+pageNo
-	}).done(function(result){
-		
-		console.log(result);
-		var text = "";
-		for(let i = 0; i < result.list.length; i++){
-		text+=  "<div class = 'contentsContainer'>"
-        		+"<div class = 'left'>"
-        		+"<div class = 'contentContainer'>"
-           		+"<div class = 'top'>"
-              	+"<div class = 'locationC'>"
-                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-                +"<span class = 'userName'>"
-                +result.list[i].comWriter
-                +"</span>"
-                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
-				+"<div class = 'mid' id = '"
-				+result.list[i].comNo
-				+"'>"
-                +"<div class = 'forContent'>"
-                +"<h1 class ='title'>"
-                +result.list[i].comTitle
-                +"</h1>"
-                +"<div class = 'content'>"
-                +result.list[i].comContent
-                +"</div></div>"
-                +"<div class = 'forImg'></div></div>"
-                +"<div class = 'bottom'>"
-                +"<div class = 'category'>"
-                +result.list[i].comCategory
-                +"</div>"
-                +"<div class = 'forCnt'>"
-                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
-                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
-              
-		}
-		$(".mainContainer").html(text);
-		//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
-		$(".mid").click(function() {
-			var no = $(this).attr('id');
-			location.href = "detailPage.mn?comNo="+no;
-									});
-	})
-		
-}else{
-	
-	
-		console.log("전체보기를 제외한 다른애들!")
-
-			 $.ajax({
-					url : "<c:url value = '/community/communityPageListC.mn'/>",
-					type : "POST",
-					data : "pageNo="+pageNo+"&comCategory="+comCategory
-				}).done(function(result){
-
-					console.log(result);
-					var text = "";
-					for(let i = 0; i < result.list.length; i++){
-					text+=  "<div class = 'contentsContainer'>"
-			        		+"<div class = 'left'>"
-			        		+"<div class = 'contentContainer'>"
-			           		+"<div class = 'top'>"
-			              	+"<div class = 'locationC'>"
-			                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
-			                +"<span class = 'userName'>"
-			                +result.list[i].comWriter
-			                +"</span>"
-			                +"<span class = 'regDate'> ·'"+result.list[i].comRegDate+"'</span></div></div>"
-							+"<div class = 'mid' id = '"
-							+result.list[i].comNo
-							+"'>"
-			                +"<div class = 'forContent'>"
-			                +"<h1 class ='title'>"
-			                +result.list[i].comTitle
-			                +"</h1>"
-			                +"<div class = 'content'>"
-			                +result.list[i].comContent
-			                +"</div></div>"
-			                +"<div class = 'forImg'></div></div>"
-			                +"<div class = 'bottom'>"
-			                +"<div class = 'category'>"
-			                +result.list[i].comCategory
-			                +"</div>"
-			                +"<div class = 'forCnt'>"
-			                +"<div class = 'commentCnt'><i class='fas fa-comment-dots'></i> 2 Comments</div>"
-			                +"<div class = 'viewCnt'><i class='fas fa-eye'></i> ${b.comViewCnt} View</div></div></div></div></div></div>"
-			              
-					}
-					$(".mainContainer").html(text);
-					//동적으로 생성된거라 이렇게해줘야 한다는데요? 후후
-					$(".mid").click(function() {
-						var no = $(this).attr('id');
-						location.href = "detailPage.mn?comNo="+no;
-												});
-					
-					
-					
-	}) 
-
-			
+function nextListSecond(comCategory){
+	pageNoS = 1;
+	nextList(pageNoS, comCategory)	
 }
-	
 
-	
-	
-}; */
+
+
+
+
+
 
 
 //---------------------------------------------------------------------------------------------------------------
@@ -597,27 +555,79 @@ var nextListSecond = function(pageNo, comCategory){
 $(".writeBtn").click(function() {
 	location.href = "writeForm.mn";
 });
-//클릭시 상세 글 보기
-/* $(".mid").click(function() {
-	var no = $(this).attr('id');
-	location.href = "detailPage.mn?comNo="+no;
-});
- */
-/*  $(".mid").on("click", function(){
-	 console.log("ehlsek!s");
-	 location.href = "detailPage.mn?comNo="+no;
- });
-  */
-/*   
- $(".forCa").click(function(){
-	//카테고리를 위한 버튼
-	var comCategory =  $("#slct option:selected").val();
-	  console.log(comCategory);
-	  console.log("카테고리들을 위한 버튼");
-	  ++pageNo;
-	  categoryFunction(comCategory);
 
-}); */
+
+function refFunction(comNo, comRefUser){
+	
+	
+	$.ajax({
+		url : "<c:url value = '/community/checkRef.mn'/>",
+		tpye : "POST",
+		data : {comNo : comNo, comRefUser : comRefUser }
+	}).done(function(result){
+		console.log(result);
+		if(result==0){
+			$(".heart."+comNo).addClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/insertRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 완료");
+				  
+					  $.ajax({
+						  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+						  type : "POST", 
+						  data : {comNo : comNo}
+						  }).done(function(result){
+							  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+							 /*  $("div.heart."+comNo).removeAttr("title"); */
+							  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+							  
+						  });
+						  
+					//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			 
+		}else{
+			$(".heart."+comNo).removeClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/deleteRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 취소 완료");
+				  
+				  $.ajax({
+					  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+					  type : "POST", 
+					  data : {comNo : comNo}
+					  }).done(function(result){
+						  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+						 /*  $("div.heart."+comNo).removeAttr("title"); */
+						  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+						  
+					  });
+					  
+				//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			
+		}
+	});
+	
+	  
+}
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
