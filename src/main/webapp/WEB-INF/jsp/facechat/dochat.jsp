@@ -37,7 +37,7 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
 
-	if("${user.no}"!="${param.no}") {
+	if("${user.id}"!="${param.id}") {
 		Swal({
 			title: '정말 ${param.name}님과 <br>화상채팅 하시겠습니까?',
 			text: "화상채팅 연결 시, 1,000 포인트가 차감됩니다.",
@@ -49,9 +49,8 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 			cancelButtonText : "아니요, 취소할게요.."
 		}).then((result) => {
 			console.log(result) //{value: true}
-			 if (result.value) {
-				btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-				 /*var $call = $.ajax({
+			if (result.value) {
+				var $call = $.ajax({
 								url : "<c:url value='/point/checkpoint.mn'/>",
 								data : "id=${user.id}",
 								type : "POST"
@@ -61,27 +60,8 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 					//console.log(totalSum)
 					//console.log(totalSum >1000)
 					if(totalSum >= 1000){
-						
-					   $.ajax({
-						   url : "<c:url value='/point/usefacechat.mn'/>",
-						   data : {
-							   id : "${user.id}",
-							   minusPoint : 1000,
-							   minusUse : "2",
-							   fees : 100,
-							   absId : "${param.id}"
-						   },
-						   type : "POST"
-					   }).done(function(resultSum){
-						   var resultSum = String(resultSum).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-						   swal({
-							   type: 'success',
-							   title: resultSum + " 포인트 남았습니다.",
-							   showConfirmButton: false,
-							   timer: 3000
-							 });
-					   }) //minus ajax..
-					   
+						//보유 포인트가 1000 이상일때 실행..
+					   btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
 					} else if(totalSum < 1000){
 						swal({
 							  type: 'error',
@@ -95,10 +75,11 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 							window.close()}, 
 						2500);
 					}
-				}) //when done...*/
+				}) //when done...
 			} else {
 				window.close();
-			} 
+			}
+			/* btnSetupNewRoom.trigger("click");  */
 		}) // swal..then..	
 	} 
 
@@ -153,6 +134,28 @@ var config = {
             buttons: ['mute-audio', 'mute-video', 'volume-slider']
         });
         mediaElement.id = "remoteVideo";
+        //상대방과 연결이 되었을때..반려인의 경우..포인트 차감 alert가 뜬다!!
+        if("${user.id}"!="${param.id}") {
+        	$.ajax({
+				   url : "<c:url value='/point/usefacechat.mn'/>",
+				   data : {
+					   id : "${user.id}",
+					   minusPoint : 1000,
+					   minusUse : "2",
+					   fees : 100,
+					   absId : "${param.id}"
+				   },
+				   type : "POST"
+			   }).done(function(resultSum){
+				   var resultSum = String(resultSum).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				   swal({
+					   type: 'success',
+					   title: resultSum + " 포인트 남았습니다.",
+					   showConfirmButton: false,
+					   timer: 3000
+					 });
+			   }) //minus ajax.. 
+        }
 //        mediaElement.onclick = function(event) {
 //        	$('div.main-doc > .media-container').remove();
 //        	/* 화면복사 */      	
@@ -218,6 +221,14 @@ var config = {
                 joinRoomButton.disabled = false;
             });
         };
+        /* setTimeout(function(){
+        	let joinBtn = $('.join');
+        	if(joinBtn.attr('data-roomToken')){ //기존 접속자가 있을때
+        		joinBtn.trigger("click"); 
+        	}else{
+        		$('#setup-new-room').trigger("click");
+        	}
+        }, 2000); */
     },
     onRoomClosed: function(room) {
         var joinButton = document.querySelector('button[data-roomToken="' + room.roomToken + '"]');

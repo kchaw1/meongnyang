@@ -171,7 +171,7 @@
  		    		$("span.plusPoint").html(plus)
 
  		    		//3자리 마다 ,찍기..
- 		    		 		    		let amount = String(rsp.paid_amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ 		    		let amount = String(rsp.paid_amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
  		    		let prev = String(prevPoint).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 					$("td.payamount").html(amount + " 원");
  		    		$("span.prevPoint").html(prev);

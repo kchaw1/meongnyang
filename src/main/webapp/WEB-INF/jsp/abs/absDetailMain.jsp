@@ -41,7 +41,7 @@
                 <li>
                   <a href="#" id="dofacechat">1:1 화상채팅하기</a>
                   <form name="dochat" >
-	                  <input type="hidden" name="no" value="${map.b.no}"/>
+	                  <%-- <input type="hidden" name="no" value="${map.b.no}"/> --%>
 	                  <input type="hidden" name="name" value="${map.b.name}"/>
 	                  <input type="hidden" name="id" value="${map.b.id}"/>                  
                   </form>

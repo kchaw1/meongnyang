@@ -172,7 +172,7 @@
         var left = (screen.width-1200) /2
 		  var top = (screen.height-800) /2
 	      window.open(
-	    	"<c:url value='/facechat/dochat.mn'/>"+"?no=${user.no}", "화상채팅2", "width=1200, height=800, left="+left+", top="+top
+	    	"<c:url value='/facechat/dochat.mn'/>"+"?id=${user.id}", "화상채팅2", "width=1200, height=800, left="+left+", top="+top
 	      )
       	
       })
