@@ -135,6 +135,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("grade.mn")
-	public void grade() {}
+	public void grade(Model model, HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+	}
 	
 }

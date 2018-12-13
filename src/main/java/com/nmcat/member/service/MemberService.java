@@ -68,4 +68,5 @@ public interface MemberService {
 	
 	// 로그인 내역 카운트
 	int selectHistory(String loginId);
+	
 }

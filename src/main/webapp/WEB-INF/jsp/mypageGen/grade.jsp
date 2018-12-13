@@ -143,8 +143,10 @@ div.modal-header {
   font-family: 'Roboto', 'Noto Sans', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .image img {
-    width: 200px;
-    height: 100px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
 }
 
 .image {
@@ -196,7 +198,7 @@ div.modal-header {
                     <div id="t-grd">
                     <div class="grd">
                         <div id="grdname">
-                            	다이아
+                            	${member.codeName}
                         </div>
                         <div id="grdImg">
                             <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/>
@@ -209,52 +211,34 @@ div.modal-header {
                         <p id="memgrd">회원등급은 로그인 시와 마이페이지 접속시 갱신됩니다.</p>
                     </div>
                     <div class="image">
-                    <div class="new">
+                    <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/뉴비.jpg"/>" />
                         <div style="text-align: center;">
-                            1 ~ 199
+                           	뉴비 1 ~ 499
                         </div>
                     </div>
-                    <div class="new">
+                    <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/루키.png"/>" />
                         <div style="text-align: center;">
-                                200 ~ 299
+                            	루키    500 ~ 999
                         </div>
                     </div>
-                    <div class="new">
-                        <img src="<c:url value="/resources/img/member/멤버.jpg"/>" />
-                        <div style="text-align: center;">
-                                300 ~ 399
-                        </div>
-                    </div>
-                    <div class="new">
-                        <img src="<c:url value="/resources/img/member/bronze_i.png"/>" />
-                        <div style="text-align: center;">
-                                400 ~ 499
-                        </div>
-                    </div>
-                    <div class="new">
-                        <img src="<c:url value="/resources/img/member/silver_i.png"/>" />
-                        <div style="text-align: center;">
-                                500 ~ 699
-                        </div>
-                    </div>
-                    <div class="new">
+                    <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/gold_i.png"/>" />
                         <div style="text-align: center;">
-                                700 ~ 999
+                              	골드  1000 ~ 1499
                         </div>
                     </div>
-                    <div class="new">
+                    <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/platinum_i.png"/>" />
                         <div style="text-align: center;">
-                                1000 ~ 1499
+                               	플래티넘 1500 ~ 1999
                         </div>
                     </div>
-                    <div class="new">
+                    <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/diamond_i.png"/>" />
                         <div style="text-align: center;">
-                                1500 ~ 
+                               	다이아 2000 ~ 
                         </div>
                     </div>
                 </div>

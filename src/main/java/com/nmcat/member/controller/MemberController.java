@@ -31,7 +31,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	@Autowired
-	private ScoreService scoreservice;
+	private ScoreService scoreService;
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) throws Exception {
@@ -148,15 +148,14 @@ public class MemberController {
 		
 		if(service.selectHistory(login.getId()) == 1) {
 			service.updqteScore(login.getId());
-			
+			scoreService.updateGradeNo(login.getId());
 		}
 
-		scoreservice.insertLoginScoreHistory(login.getId());
+		scoreService.insertLoginScoreHistory(login.getId());
 
 		System.out.println("loginscore : " + login.getId());
 		System.out.println("loginpass : " + login.getPass());
 		System.out.println("loginCount : " + service.selectHistory(login.getId()));
-		
 		session.setAttribute("user", member);
 		
 		return true;
@@ -167,7 +166,11 @@ public class MemberController {
 		System.out.println("login id : " + login.getId());
 		Member member = service.login(login);
 		service.insertHistory(login.getId());
-		service.updqteScore(login.getId());
+		
+		if(service.selectHistory(login.getId()) == 1) {
+			service.updqteScore(login.getId());
+			scoreService.updateGradeNo(login.getId());
+		}
 		
 		System.out.println("loginpass : " + login.getPass());
 			session.setAttribute("user", member);

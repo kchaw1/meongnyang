@@ -55,4 +55,5 @@ public interface MemberMapper {
 	
 	/********내가 쓴 댓글************/
 	List<CommunityComment> selectMyComment(String id);
+	
 } // end class

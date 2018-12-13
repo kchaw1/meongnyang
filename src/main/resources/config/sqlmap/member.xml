@@ -13,10 +13,12 @@
 		<result column="image_path" property="imagePath"/>
 		<result column="image_size" property="imageSize"/>
 		<result column="score" property="score"/>
+		<result column="grade_no" property="gradeNo"/>
 		<result column="image_ori_name" property="imageOriName"/>
 		<result column="type" property="type"/>
 		<result column="greetings" property="greetings" />
 		<result column="sign_up_date" property="signUpDate"/>
+		<result column="code_name" property="codeName"/>
 	</resultMap>
 
 	<!-- 경력 컬럼 -->
@@ -172,7 +174,10 @@
 	<!-- 정보가져오기  --> 
 	<select id="selectMemberInfo" parameterType="int" resultMap="memberMap"> 
 		select *
-		  from mn_member
+  		from mn_member as a
+  		inner join (select code_name, each_code 
+         			from mn_code) as b
+         on a.grade_no = b.each_code   
 		 where no = #{no} 
 	</select>
 	

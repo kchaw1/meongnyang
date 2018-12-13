@@ -44,6 +44,8 @@
       		<mvc:mapping path="/**"/>
       	<!-- 특정한 url은 제외해야 하는 것..loginform 같은 경우..계속 redirect 한다.  -->
       		<mvc:exclude-mapping path="/member/login.mn"/>
+      		<mvc:exclude-mapping path="/member/naverlogin.mn"/>
+      		<mvc:exclude-mapping path="/member/naverloginform.mn"/>
       		<mvc:exclude-mapping path="/main/mainPage.mn"/>
       		<mvc:exclude-mapping path="/member/checkid.mn"/>
       		<mvc:exclude-mapping path="/member/signup.mn"/>

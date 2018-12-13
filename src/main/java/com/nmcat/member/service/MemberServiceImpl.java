@@ -207,6 +207,13 @@ public class MemberServiceImpl implements MemberService{
 		return lomapper.selectHistory(loginId);
 	}
 
+
+	
+	
+	
+	
+	
+
 	
 	
 	

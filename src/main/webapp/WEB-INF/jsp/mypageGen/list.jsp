@@ -204,7 +204,7 @@ div.modal-header {
           	<c:if test="${member.type == 1}">
 		            <li class = "li2">
 		              <label class ="labelC">회원등급</label><br>
-		              <div class ="spanC2">다이아</div>
+		              <div class ="spanC2">${member.codeName}</div>
 		            </li>
             </c:if>
             <c:if test = "${member.type == 2}">
