@@ -6,11 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.config.TxNamespaceHandler;
-import org.springframework.web.server.WebSession;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -68,13 +65,16 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			String msg = message.getPayload(); //input : bbbb,chNo : 13
 			debug("받은 메세지" + msg);
 			try {
-				
-			String[] msgArr = msg.split(":");
 			
-			System.out.println("뭐가들어올까"+msgArr[0]);
+//			String[] msgArr = msg.split(":");
+				String[] listmsgArr = msg.split(",");
+				System.out.println("뭐가들어올까"+listmsgArr[0]+"다음"+listmsgArr[1]);
+			 String[] msgArr = listmsgArr[0].split(":");
+			 System.out.println("뭐가들어올까"+msgArr[0]+"다음"+msgArr[1]);
 			switch (msgArr[0]) {
 			case "roomaccess": // 방 접속
-				roomAccess(msgArr[1], session, msgArr[2]);
+//				roomAccess(msgArr[1], session, msgArr[2]);
+				roomAccess(msgArr[1], session, msgArr[2], listmsgArr[1]);
 				break;
 				
 			case "chat":
@@ -94,7 +94,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 				break;
 			
 			case "roomout":
-				roomExit(msgArr[1], session, msgArr[2]);
+				roomExit(msgArr[1], session, msgArr[2],listmsgArr[1]);
 				break;
 			}
 			}catch (Exception e) {
@@ -105,7 +105,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 방에 사용자가 접속했을 때
 	 * @param msgArr
@@ -113,7 +113,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	 * @param msgArr2
 	 * @throws Exception
 	 */
-	private void roomAccess(String roomNo, WebSocketSession session, String accessId) throws Exception {
+	private void roomAccess(String roomNo, WebSocketSession session, String accessId, String image) throws Exception {
 		
 		// 사용자가 접속한 방이 존재하지 않을 경우 방을 새롭게 생성
 		if (!users.containsKey(roomNo)) {				
@@ -130,14 +130,18 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		for(WebSocketSession ws : wss) {
 			try {
 				String id = ((Member)ws.getAttributes().get("user")).getId();
+				String imageName = ((Member)ws.getAttributes().get("user")).getImageName();
+				String imagePath = ((Member)ws.getAttributes().get("user")).getImagePath();
+				
 				if (roomUserIds.length() != 0) roomUserIds += ","; 
-				roomUserIds += id;
+//				roomUserIds += id;
+				roomUserIds += id+"-sysName="+imageName+"&path="+imagePath;
 				
 				// 자신은 받지 않도록
 				if (ws.getId() == session.getId()) continue;
 				
 				System.out.println("보내주는 메세지:in:" + accessId + ":" + accessId + "님이 입장하셨습니다.");
-				ws.sendMessage(new TextMessage("in:" + accessId+ ":" + accessId + "님이 입장하셨습니다."));
+				ws.sendMessage(new TextMessage("in:" + accessId+ ":" + accessId+ "님이 입장하셨습니다."+"-"+image));
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -145,7 +149,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 		session.sendMessage(new TextMessage("roomlist:" + roomUserIds));
 	}
 	
-	private void roomExit(String roomNo, WebSocketSession session, String accessId) {
+	private void roomExit(String roomNo, WebSocketSession session, String accessId, String image) {
  
 		System.out.println("확인"+users.toString());
 		
@@ -157,10 +161,10 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 			try {
 				String id = ((Member)ws.getAttributes().get("user")).getId();
 				if (roomUserIds.length() != 0) roomUserIds += ","; 
-				roomUserIds += id;
+				roomUserIds += id+"-"+image;
 				
 				System.out.println("보내주는 메세지:in:" + accessId + ":" + accessId + "님이 퇴장하셨습니다.");
-				ws.sendMessage(new TextMessage("out:" + accessId+ ":" + accessId + "님이 퇴장하셨습니다."));
+				ws.sendMessage(new TextMessage("out:" + accessId+ ":" + accessId + "님이 퇴장하셨습니다."+"-"+image));
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -45,8 +45,6 @@
             </div>
             <div class="list" data-index="${chNo}">
               <div class="list-item">
-                <img class="pull-left img-responsive" src="https://lh4.googleusercontent.com/--W7e24o4cgE/AAAAAAAAAAI/AAAAAAAAG6s/IKny9ARll6s/s32-c-k-no/photo.jpg" alt="" />
-                <p class="pull-left">sdadsa</p>
               </div>
             </div>
             <div id="chatout">
@@ -64,7 +62,8 @@
                         
             </div>  
           </div>
-              <span class="chat-input"><input class="form-control pull-right" type="text" id="message" name="message" onkeyup="enterkey();"/></span><button id="sendBtn">전송</button>
+              <span class="chat-input"><input class="form-control pull-right" type="text" id="message" name="message" onkeyup="enterkey();"/></span>&nbsp<img id="send" class="pull-left img-responsive img-circle chat-img-left" src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}'/>" alt="" />
+
         		<input type="hidden" id="id" name="id"/> 
         </div>
       </div>
@@ -72,9 +71,9 @@
     <script>
 var chat = null;
 var loginId = null;
-var imagePath = "${user.imagePath}"+"/${user.imageName}";
+var imagePath = "${user.imagePath}";
+var imageName = "${user.imageName}";
 var roomNo = "${chNo}";
-var image = "<img src='<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}&oriName=${user.imageOriName}'/>' alt=''>"
 
 $(function () {
 	
@@ -88,31 +87,53 @@ $(function () {
 		  */
 		
 	   chat.onopen = function() {
-			console.log(imagePath)
 			console.log("${chNo}");
-			let userId = "${user.id}"
+			let userId = "${user.id}";
+			let userImagePath = "${user.imagePath}";
+			let userImageName = "${user.imageName}";
+			let image = "sysName=${user.imageName}&path=${user.imagePath}";
 			console.log('웹소켓 서버 접속 성공');
 			$(".chat-list").append("<p style='text-align:center;'>채팅이 시작되었습니다</p>")
-			chat.send("roomaccess:" + roomNo + ":" + userId);
+			/*chat.send("roomaccess:" + roomNo + ":" + userId);*/
+			chat.send("roomaccess:" + roomNo + ":" + userId +","+image);
 			console.log("입장 아이디 : "+userId);
 		};
 		// 메세지 받기
 		chat.onmessage = function(evt) {		
-			console.log(evt.data);
+			console.log("들어오니"+evt.data);
 			let arr = evt.data.split(":");
 			
-			console.log("1"+arr[0]);
-			console.log("2"+arr[1]);
-			console.log("3"+arr[2]);
+			console.log("1"+arr[0]); //roomlist   // roomlist
+			console.log("2"+arr[1]); //아이디  			// 아이디-이미지
+			console.log("3"+arr[2]); // undefined // undefined
+			
+		    
+			
+			
 			if(arr[0] == 'in') {
-				$(".chat-list").append("<br><p style='text-align:center;'>" + arr[2] + "</p><br>");
-				$(".list").append('<div data-id="'+arr[1]+'" class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+arr[1]+'</p></div>');		
+				let inAttr = arr[2].split("-");
+				console.log("2-1"+inAttr[0]);
+				console.log("2-2"+inAttr[1]);
+				$(".chat-list").append("<br><p style='text-align:center;'>" + inAttr[0] + "</p><br>");
+				
+				$(".list").append('<div data-id="'+arr[1]+'" class="list-item"><img class="pull-left img-responsive" src="<c:url value="/common/download.mn?'+inAttr[1]+'"/>" alt="" /><p class="pull-left">'+arr[1]+'</p></div>');		
 			}
 			else if(arr[0] == 'roomlist') {
-				let userList = arr[1].split(",");
-			    $(".list").empty();
-				for(var i = 0 ; i<userList.length ; i++){
-						$(".list").append('<div data-id="'+userList[i]+'" class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+userList[i]+'</p></div>');		
+				let attr = arr[1].split(",");
+				$(".list").empty();
+				console.log("4"+attr[0]); // 아이디-프로필 사진1
+				console.log("5"+attr[1]); // 아이디-프로필 사진2
+				for(var j=0; j<attr.length; j++){					
+					let userList = attr[j].split("-");
+					console.log("배열돌린 아이디:"+userList[0]);
+					console.log("이미지" +userList[1]);
+			    	
+					for(var i = 0 ; i<userList.length;){
+						$(".list").append('<div data-id="'+userList[i]+'" class="list-item"><img class="pull-left img-responsive" src="<c:url value="/common/download.mn?'+userList[i+1]+'"/>" alt="" /><p class="pull-left">'+userList[i]+'</p></div>');		
+						i += 2;
+				}			    	
+			    
+			    
 				}
 			}
 			else if(arr[0] =='chat'){
@@ -124,45 +145,11 @@ $(function () {
 			 	}
 			}
 			else if(arr[0] == 'out'){
-				$(".chat-list").append("<br><p style='text-align:center;'>" + arr[2] + "</p><br>");
+				let inAttr = arr[2].split("-");
+				$(".chat-list").append("<br><p style='text-align:center;'>" + inAttr[0] + "</p><br>");
 				$("div[data-id='"+arr[1]+"']").remove();
 
 			}
-			
-			/*
-			
-				
-				
-			}else if(evt.data.endsWith("퇴장 하셨습니다.")){
-				console.log(evt.data);
-				var stringList = evt.data.substring(1,evt.data.indexOf("]"));
-				console.log(stringList);
-				var listarr = stringList.split(", ");
-				console.log(listarr);
-				$(".list").empty();
-				for(var i = 0 ; i<listarr.length ; i++){
-					$(".list").append('<div class="list-item"><img class="pull-left img-responsive" src="https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png" alt="" /><p class="pull-left">'+listarr[i]+'</p></div>');		
-				}
-				$(".chat-list").append("<br><p style='text-align:center;'>"+evt.data.substring(evt.data.indexOf(",")+1)+"</p><br>");
-
-			}
-			else{
-				
-		 	var ex = evt.data.split(',');
-		 	var exId = ex[1].split(":");
-		 	
-		 	console.log("1:"+ex);
-		 	console.log("2"+exId);
-		 	console.log("3"+exId[0]);
-		 	console.log("4"+exId[1]);
-		 	if("${user.id}"==exId[0]){		 		
-		 		$(".chat-list").append("<br><img class='pull-right img-circle chat-img' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+exId[1]+"</p></div><br>");
-		 	}else{	
-				$(".chat-list").append("<br><span>"+exId[0]+"</span><br><img class='pull-left img-responsive img-circle chat-img-left' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble left'><p class='m-b-0'>"+exId[1]+"</p></div><br>");
-		 	}
-		 	
-			}
-			*/
 			
 		};
 		chat.onerror = function(evt) {
@@ -176,16 +163,15 @@ $(function () {
 		
 		});
 
-		$('#sendBtn').click(function() { 
+		$('#send').click(function() { 
 			var $msg = $("#message");
     		loginId = "${user.id}";
     		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
     		// 웹소켓 서버에 데이터 전송하기
     		console.log($msg.val());
     			
-    		chat.send(chNo + ":" + loginId + ":" + $msg.val());
-    		$msg.val("");
-    	    $(".chat-list").scrollTop($(".chat-list").clientHeight());
+    		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val());
+    		$msg.val("");  
 	
 	});
 	
@@ -203,10 +189,11 @@ $(function () {
         }
         
         
-}
+	};
 	$('#logout').click(function() { 
+		let image = "sysName=${user.imageName}&path=${user.imagePath}";
 
-			chat.send("roomout:"+roomNo+":"+"${user.id}");
+			chat.send("roomout:"+roomNo+":"+"${user.id}"+","+image);
 		
 			window.close();
 	});
