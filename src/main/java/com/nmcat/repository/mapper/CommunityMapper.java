@@ -13,6 +13,8 @@ public interface CommunityMapper {
 	List<CommunityBoard> selectBoard(CommunityBoard comBoard);
 	//커뮤니티 무한스크롤 전체카테고리 목록 가져오기 + 카테고리
 	List<CommunityBoard> selectBoardCa(CommunityBoard comBoard);
+	// 갤러리 연습용
+	List<CommunityBoard> selectGa();
 	
 	//카테고리
 	List<CommunityBoard> selectBoardC(CommunityBoard comBoard);

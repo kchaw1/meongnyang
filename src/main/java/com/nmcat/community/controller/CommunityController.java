@@ -88,6 +88,13 @@ public class CommunityController {
 		return map;
 	}
 	
+	//갤러리 연습용
+	/*@RequestMapping("/communityGa.mn")
+	public void void List<CommunityBoard> selectGa()throws Exception{
+		model.addAttribute("gallery", service.selectGa());
+		
+	}*/
+	
 	
 /*	public void list(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
 		CommunityBoard comBoard = new CommunityBoard();

@@ -18,6 +18,10 @@ public interface CommunityService {
 		
 		List<CommunityBoard> selectBoardC(CommunityBoard comBoard);
 		
+		List<CommunityBoard> selectGa();
+		
+		
+		
 		
 	
 		//�쟾泥대낫湲� - �럹�씠吏뺤쓣�쐞�븿!(pageNo瑜� 諛쏆븘�빞�빐�꽌 CommunityBoard瑜� 留ㅺ컻蹂��닔濡�)

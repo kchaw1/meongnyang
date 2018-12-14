@@ -158,6 +158,12 @@ public class CommunityServiceImpl implements CommunityService{
 		return mapper.checkRef(comRef);
 		
 	}
+
+	@Override
+	public List<CommunityBoard> selectGa() {
+		return mapper.selectGa();
+	}
+	
 	
 
 	
