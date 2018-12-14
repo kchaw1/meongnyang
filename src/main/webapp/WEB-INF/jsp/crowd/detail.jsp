@@ -87,7 +87,7 @@
 	          <div class="clear-fix"></div>
 	          <hr>
 	          <div id="content-area2">
-	             <pre style="font-family:Jua; font-size:18px; background:none; border:none;">${detail.crContent}</pre>
+	             <pre>${detail.crContent}</pre>
 	              <div style="width:10%; margin:0 auto;">
            		  	<button id="donate" type="button" class="btn btn-default btn-lg">기부하기</button>
            		  </div>
