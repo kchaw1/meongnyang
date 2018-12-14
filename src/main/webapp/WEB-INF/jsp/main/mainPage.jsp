@@ -38,9 +38,6 @@
 
 <c:import url = "../common/header.jsp"/>
 
-
-
-
  <div class = "container">
         <div class = "secondContainer">
             <!--왼쪽-->
@@ -117,8 +114,14 @@
                     
                     <img  class = "forLine" src="<c:url value = "/resources/img/community/line.png"/>">
                     <div>
-                    <h2 class = "title2">공지사항</h2>
-                    <button class="btn6 leftRight1">더보기 </button>
+	                    <h2 class = "title2">공지사항</h2>
+	                    <button class="btn6 leftRight1">더보기 </button>
+	                    <div class="clear-fix"></div>
+                    	<c:forEach var="n" items="${noticeList}">
+                    			<div class="notice-title"><a href="<c:url value="/notice/detail.mn?ntcNo=${n.ntcNo}" />">${n.ntcTitle}</a></div>
+                    			<div class="notice-reg-date"><fmt:formatDate value="${n.ntcRegDate}" pattern="yyyy-MM-dd" /></div>
+                    			<div class="clear-fix"></div>
+                    	</c:forEach>
                     </div>
                             
 
@@ -212,13 +215,16 @@
     	location.href = "<c:url value ='/youtube/list.mn'/>";
     });
     // 커뮤니티로 가는 url
-    
-    $(".btn1").on('click', function(){
-    	location.href = "communityPage.mn";
+    $(".btn4").on('click', function(){
+    	location.href = "<c:url value ='/community/communityPage.mn' />";
     });
     // 마이펫다이어리로 가는 url
     $(".btn5").on('click', function(){
     	location.href = "<c:url value = '/diary/share/sharediary.mn'/>?pageNo=1&userId=${user.id}";
+    });
+    // 공지사항으로 가는 url
+    $(".btn6").on('click', function(){
+    	location.href = "<c:url value ='/notice/list.mn' />";
     });
     // 랭킹으로 가는 url
     /* $(".btn5").on('click', function(){

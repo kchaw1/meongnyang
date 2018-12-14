@@ -3,6 +3,7 @@ package com.nmcat.repository.mapper;
 import java.util.List;
 
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.Notice;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.domain.board.DiaryBoard;
@@ -17,4 +18,6 @@ public interface MainMapper {
 	List<Youtube> selectYoutubeInfo();
 	// 크라우드펀딩
 	List<Crowd> selectCrowdInfo();
+	// 공지사항
+	List<Notice> selectNoticeList();
 }

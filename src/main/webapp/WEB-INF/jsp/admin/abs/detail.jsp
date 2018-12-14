@@ -34,11 +34,11 @@
                       <div style="font-size: 20px;">성별 : 남</div> -->
 								<table>
 									<tr>
-										<td>이름</td>
+										<td>이름:</td>
 										<td>${abs.name}</td>
 									</tr>
 									<tr>
-										<td>전문분야</td>
+										<td>전문분야:</td>
 										<td>
 										<c:if test="${abs.category=='dog'}">강아지</c:if>
 										<c:if test="${abs.category=='cat'}">고양이</c:if>
@@ -46,12 +46,8 @@
 										</td>
 									</tr>
 									<tr>
-										<td>이메일</td>
+										<td>이메일:</td>
 										<td>${abs.email}</td>
-									</tr>
-									<tr>
-										<td>성별</td>
-										<td>없어짐</td>
 									</tr>
 								</table>
 							</div>

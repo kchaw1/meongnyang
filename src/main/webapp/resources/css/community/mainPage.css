@@ -360,6 +360,19 @@ margin-top: 60px;
 	clear: both;
 }
 
+.notice-title {
+	float:left; font-size:17px;
+}
+.notice-reg-date {
+	float:right; font-size:17px;
+}
+
+a {color: black;}     
+a:link {text-decoration:none; color: black; }
+a:visited {text-decoration:none; color: black; }
+a:active {text-decoration:none; color: black; }
+a:hover {text-decoration:none; color: black; }
+
 
 /* ä�� */
 .chat-launcher {

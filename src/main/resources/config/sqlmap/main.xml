@@ -25,31 +25,42 @@
 
 <!-- 크라우드펀딩 -->
 <resultMap id="crowdMap" type="Crowd">
-		<result column="cr_no" property="crNo" />
-		<result column="cr_writer" property="crWriter" />
-		<result column="cr_title" property="crTitle" />
-		<result column="cr_content" property="crContent" />
-		<result column="cr_now_money" property="crNowMoney" />
-		<result column="cr_goal_money" property="crGoalMoney" />
-		<result column="cr_start_day" property="crStartDay" />		
-		<result column="cr_end_day" property="crEndDay" />
-		<result column="cr_like_cnt" property="crLikeCnt" />
-		<result column="cr_reg_date" property="crRegDate" />
-		<result column="cr_view_cnt" property="crViewCnt" />
-		<result column="cr_file_name" property="crFileName" />
-		<result column="cr_file_path" property="crFilePath" />
-		<result column="cr_file_ori_name" property="crFileOriName" />
-	</resultMap>
+	<result column="cr_no" property="crNo" />
+	<result column="cr_writer" property="crWriter" />
+	<result column="cr_title" property="crTitle" />
+	<result column="cr_content" property="crContent" />
+	<result column="cr_now_money" property="crNowMoney" />
+	<result column="cr_goal_money" property="crGoalMoney" />
+	<result column="cr_start_day" property="crStartDay" />		
+	<result column="cr_end_day" property="crEndDay" />
+	<result column="cr_like_cnt" property="crLikeCnt" />
+	<result column="cr_reg_date" property="crRegDate" />
+	<result column="cr_view_cnt" property="crViewCnt" />
+	<result column="cr_file_name" property="crFileName" />
+	<result column="cr_file_path" property="crFilePath" />
+	<result column="cr_file_ori_name" property="crFileOriName" />
+</resultMap>
 
-	<resultMap type="DiaryBoard" id="boardMap">
-		<result column="dr_no" property="drNo"/>
-		<result column="dr_writer" property="drWriter"/>
-		<result column="dr_title" property="drTitle"/>
-		<result column="dr_content" property="drContent"/>
-		<result column="dr_reg_date_time" property="drRegDateTime"/>
-		<result column="dr_share" property="drShare"/>
-		<result column="dr_date" property="drDate"/>
-	</resultMap>
+<!-- 공지사항 -->
+<resultMap id="noticeMap" type="Notice">
+		<result column="ntc_no" property="ntcNo" />
+		<result column="ntc_writer" property="ntcWriter" />
+		<result column="ntc_title" property="ntcTitle" />
+		<result column="ntc_content" property="ntcContent" />
+		<result column="ntc_view_cnt" property="ntcViewCnt" />
+		<result column="ntc_reg_date" property="ntcRegDate" />
+</resultMap>
+
+<!-- 다이어리 -->
+<resultMap type="DiaryBoard" id="boardMap">
+	<result column="dr_no" property="drNo"/>
+	<result column="dr_writer" property="drWriter"/>
+	<result column="dr_title" property="drTitle"/>
+	<result column="dr_content" property="drContent"/>
+	<result column="dr_reg_date_time" property="drRegDateTime"/>
+	<result column="dr_share" property="drShare"/>
+	<result column="dr_date" property="drDate"/>
+</resultMap>
 
 
 
@@ -59,6 +70,7 @@ select * from mn_com
 		 limit 0, 4
 </select>
 
+<!-- 다이어리 -->
 <select id = "selectDiaryBoardRegDate" resultMap = "boardMap">
 select * from mn_diary
 		 where dr_share = '1'
@@ -80,6 +92,14 @@ select * from mn_diary
 	 where cr_end_day > NOW() 
 	 order by cr_end_day asc
 	 limit 2
+</select>
+
+<!-- 공지사항 -->
+<select id="selectNoticeList" resultMap="noticeMap">
+	select *
+	  from mn_notice
+	 order by ntc_reg_date desc
+     limit 5
 </select>
 
 </mapper>

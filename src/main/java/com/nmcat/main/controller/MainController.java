@@ -31,6 +31,8 @@ public class MainController {
 		// 크라우드 펀딩 리스트
 		model.addAttribute("crowdList", service.crowdList());
 		model.addAttribute("remainDays", calRemainDays(service.crowdList())); // 남은날짜
+		// 공지사항 리스트
+		model.addAttribute("noticeList", service.noticeList());
 	}
 	
 	/* 일반 메소드 */

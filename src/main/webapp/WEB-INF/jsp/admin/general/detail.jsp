@@ -37,20 +37,28 @@
                       <div style="font-size: 20px;">성별 : 남</div> -->
 								<table>
 									<tr>
-										<td>이름</td>
+										<td>이름:</td>
 										<td>${general.name}</td>
 									</tr>
 									<tr>
-										<td>나이</td>
-										<td>없어졌다</td>
-									</tr>
-									<tr>
-										<td>이메일</td>
+										<td>이메일:</td>
 										<td>${general.email}</td>
 									</tr>
 									<tr>
-										<td>성별</td>
-										<td>없어짐</td>
+										<td>반려동물:</td>
+										<td>
+										<c:choose>
+											<c:when test="${general.category=='dog'}">
+												강아지
+											</c:when>
+											<c:when test="${general.category=='cat'}">
+												고양이
+											</c:when>
+											<c:otherwise>
+												기타
+											</c:otherwise>
+										</c:choose>
+										</td>
 									</tr>
 								</table>
 							</div>
@@ -65,14 +73,16 @@
 										style="width: 40px; height: 40px;" />${general.codeName}</td>
 								</tr>
 								<tr>
+									<fmt:formatNumber var="generalPoint" value="${general.point}" pattern="#,###,###,###"/>
 									<td>포인트:</td>
-									<td>${general.point} 포인트
+									<td>${generalPoint} 포인트
 										<button id="pay" class="btn btn-default btn-xs" data-id="${general.id}" data-no='${general.no}' style="font-size: 14px;">포인트 지급</button>
 									</td>
 								</tr>
 								<tr>
+									<fmt:formatNumber var="generalScore" value="${general.score}" pattern="#,###,###,###"/>
 									<td>활동점수:</td>
-									<td>${general.score} 점</td>
+									<td>${generalScore} 점</td>
 								</tr>
 								<tr>
 									<td>가입일:</td>
