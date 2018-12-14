@@ -138,10 +138,11 @@ $(function () {
 			}
 			else if(arr[0] =='chat'){
 				var chatInfo = arr[2].split(",");
+				var chatAttr = chatInfo[1].split("-");
 				if("${user.id}"==chatInfo[0]){		 		
-			 		$(".chat-list").append("<br><img class='pull-right img-circle chat-img' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble pull-right right'><p class='m-b-0'>나:"+chatInfo[1]+"</p></div><br>");
+			 		$(".chat-list").append('<br><img class="pull-right img-circle chat-img" src="<c:url value="/common/download.mn?'+chatAttr[1]+'"/>" alt=""/><div class="chat-bubble pull-right right"><p class="m-b-0">나:'+chatAttr[0]+'</p></div><br>');
 			 	}else{	
-					$(".chat-list").append("<br><span>"+chatInfo[0]+"</span><br><img class='pull-left img-responsive img-circle chat-img-left' src='https://collaborativecbt.com/wp-content/uploads/2016/12/default-avatar.png' alt=''/><div class='chat-bubble left'><p class='m-b-0'>"+chatInfo[1]+"</p></div><br>");
+					$(".chat-list").append('<br><span>'+chatInfo[0]+'</span><br><img class="pull-left img-responsive img-circle chat-img-left" src="<c:url value="/common/download.mn?'+chatAttr[1]+'"/>" alt=""/><div class="chat-bubble left"><p class="m-b-0">'+chatAttr[0]+'</p></div><br>');
 			 	}
 			}
 			else if(arr[0] == 'out'){
@@ -180,11 +181,13 @@ $(function () {
         if (window.event.keyCode == 13) {
         		var $msg = $("#message");
         		loginId = "${user.id}";
+        		let image = "sysName=${user.imageName}&path=${user.imagePath}";
+
         		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
         		// 웹소켓 서버에 데이터 전송하기
         		console.log($msg.val());
         			
-        		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val());
+        		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val()+"-"+image);
         		$msg.val("");        		
         }
         

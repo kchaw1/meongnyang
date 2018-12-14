@@ -180,9 +180,10 @@
   margin-left: 1em;
 }
 .chat-img-left {
-  width: 30px;
-  height: 30px;
-  margin-right: 1em;
+  width: 46px;
+  height: 46px;
+  margin-top: -6px;
+      margin-left: 9px;
 }
 .chat-info {
   padding-top: 20px;
