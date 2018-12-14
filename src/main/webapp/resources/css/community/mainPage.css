@@ -367,11 +367,11 @@ margin-top: 60px;
 	float:right; font-size:17px;
 }
 
-a {color: black;}     
-a:link {text-decoration:none; color: black; }
-a:visited {text-decoration:none; color: black; }
-a:active {text-decoration:none; color: black; }
-a:hover {text-decoration:none; color: black; }
+.notice-title > a {color: black;}     
+.notice-title > a:link {text-decoration:none; color: black; }
+.notice-title > a:visited {text-decoration:none; color: black; }
+.notice-title > a:active {text-decoration:none; color: black; }
+.notice-title > a:hover {text-decoration:none; color: black; }
 
 
 /* ä�� */
