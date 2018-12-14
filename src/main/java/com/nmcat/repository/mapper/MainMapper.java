@@ -3,6 +3,7 @@ package com.nmcat.repository.mapper;
 import java.util.List;
 
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Notice;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -20,4 +21,6 @@ public interface MainMapper {
 	List<Crowd> selectCrowdInfo();
 	// 공지사항
 	List<Notice> selectNoticeList();
+	// 행동전문가 슬라이드
+	List<Member> selectABSList();
 }

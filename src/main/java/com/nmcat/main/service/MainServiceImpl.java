@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Notice;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -43,5 +44,11 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public List<Notice> noticeList() {
 		return mapper.selectNoticeList();
-	}	
+	}
+	
+	// 행동전문가 리스트
+	@Override
+	public List<Member> absList() {
+		return mapper.selectABSList();
+	}
 }

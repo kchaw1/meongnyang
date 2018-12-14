@@ -3,6 +3,7 @@ package com.nmcat.main.service;
 import java.util.List;
 
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Notice;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
@@ -19,4 +20,6 @@ public interface MainService {
 		List<Crowd> crowdList();
 		// 공지사항 5개 가져오기
 		List<Notice> noticeList();
+		// 행동전문가 리스트 가져오기
+		List<Member> absList();
 }

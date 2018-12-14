@@ -33,6 +33,8 @@ public class MainController {
 		model.addAttribute("remainDays", calRemainDays(service.crowdList())); // 남은날짜
 		// 공지사항 리스트
 		model.addAttribute("noticeList", service.noticeList());
+		// 행동전문가 리스트
+		model.addAttribute("absList", service.absList());
 	}
 	
 	/* 일반 메소드 */

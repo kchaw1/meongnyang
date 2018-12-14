@@ -62,6 +62,27 @@
 	<result column="dr_date" property="drDate"/>
 </resultMap>
 
+<!-- 멤버 -->
+	<resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+	</resultMap>
+
 
 
 <select id = "selectComBoardRegDate" resultMap = "comMap">
@@ -101,5 +122,14 @@ select * from mn_diary
 	 order by ntc_reg_date desc
      limit 5
 </select>
+
+<!-- 행동전문가 슬라이드 -->
+<select id="selectABSList" resultMap="memberMap">
+     select * 
+       from mn_member
+      where type = 2 and auth_state = 'y'
+      order by abs_like_cnt desc
+      limit 5
+</select>      
 
 </mapper>

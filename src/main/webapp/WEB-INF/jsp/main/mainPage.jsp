@@ -31,9 +31,6 @@
 <!-- 네이버 -->
 <!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> -->
 </head>
-<style>
-
-</style>
 <body>
 
 <c:import url = "../common/header.jsp"/>
@@ -88,10 +85,33 @@
             <!--가운데-->
             <div class = "center">
             
-          
+          <!-- 슬라이더 -->
 				<div>
-                    <img src="<c:url value = "/resources/img/community/main-outlink-store.png"/>" class ="forimg2">
+                    <!--  <img src="<c:url value = "/resources/img/community/main-outlink-store.png"/>" class ="forimg2"> -->
+					<section id="slider">
+						<ul class="slider-wrapper">
+						  <c:forEach var='abs' items="${absList}">
+								<li class="current-slide">
+								    <a href="${abs.no}"><img src="<c:url value='/common/download.mn?sysName=${abs.imageName}&path=${abs.imagePath}'/>" title="" alt=""></a>
+						
+									<div class="caption">
+										<h2 class="slider-title">${abs.name}</h2>
+										<p>${abs.greetings}</p>
+									</div>
+								</li>
+						  </c:forEach>
+						</ul>
+						<!-- Sombras -->
+						<div class="slider-shadow"></div>
+						
+						<!-- Controles de Navegacion -->
+						<ul id="control-buttons" class="control-buttons"></ul>
+					</section>
+	
                 </div>
+          <!-- /슬라이더 -->
+					
+                
                     <div class = "forlinefor">
                     <img class ="forimg" src="<c:url value = "/resources/img/community/line.png"/>" width="100%";>
                     <h2 class = "title2">커뮤니티</h2>
@@ -278,5 +298,124 @@ function naverSignInCallback() {
 }
 </script>
 
+<!-- 슬라이더 -->
+<script>
+/**
+ * @Titulo: Slider Responsivo
+ * @Autor: Creaticode
+ * @URL: http://creaticode.com 
+ */
+$(function() {
+	/** -----------------------------------------
+	 * Modulo del Slider 
+	 -------------------------------------------*/
+	 var SliderModule = (function() {
+	 	var pb = {};
+	 	pb.el = $('#slider');
+	 	pb.items = {
+	 		panels: pb.el.find('.slider-wrapper > li'),
+	 	}
+
+	 	// Interval del Slider
+	 	var SliderInterval,
+	 		currentSlider = 0,
+	 		nextSlider = 1,
+	 		lengthSlider = pb.items.panels.length;
+
+	 	// Constructor del Slider
+	 	pb.init = function(settings) {
+	 		this.settings = settings || {duration: 8000};
+	 		var items = this.items,
+	 			lengthPanels = items.panels.length,
+	 			output = '';
+
+	 		// Insertamos nuestros botones
+	 		for(var i = 0; i < lengthPanels; i++) {
+	 			if(i == 0) {
+	 				output += '<li class="active"></li>';
+	 			} else {
+	 				output += '<li></li>';
+	 			}
+	 		}
+
+	 		$('#control-buttons').html(output);
+
+	 		// Activamos nuestro Slider
+	 		activateSlider();
+	 		// Eventos para los controles
+	 		$('#control-buttons').on('click', 'li', function(e) {
+	 			var $this = $(this);
+	 			if(!(currentSlider === $this.index())) {
+	 				changePanel($this.index());
+	 			}
+	 		});
+
+	 	}
+
+	 	// Funcion para activar el Slider
+	 	var activateSlider = function() {
+	 		SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+	 	}
+
+	 	// Funcion para la Animacion
+	 	pb.startSlider = function() {
+	 		var items = pb.items,
+	 			controls = $('#control-buttons li');
+	 		// Comprobamos si es el ultimo panel para reiniciar el conteo
+	 		if(nextSlider >= lengthSlider) {
+	 			nextSlider = 0;
+	 			currentSlider = lengthSlider-1;
+	 		}
+
+	 		controls.removeClass('active').eq(nextSlider).addClass('active');
+	 		items.panels.eq(currentSlider).fadeOut('slow');
+	 		items.panels.eq(nextSlider).fadeIn('slow');
+
+	 		// Actualizamos los datos del slider
+	 		currentSlider = nextSlider;
+	 		nextSlider += 1;
+	 	}
+
+	 	// Funcion para Cambiar de Panel con Los Controles
+	 	var changePanel = function(id) {
+	 		clearInterval(SliderInterval);
+	 		var items = pb.items,
+	 			controls = $('#control-buttons li');
+	 		// Comprobamos si el ID esta disponible entre los paneles
+	 		if(id >= lengthSlider) {
+	 			id = 0;
+	 		} else if(id < 0) {
+	 			id = lengthSlider-1;
+	 		}
+
+	 		controls.removeClass('active').eq(id).addClass('active');
+	 		items.panels.eq(currentSlider).fadeOut('slow');
+	 		items.panels.eq(id).fadeIn('slow');
+
+	 		// Volvemos a actualizar los datos del slider
+	 		currentSlider = id;
+	 		nextSlider = id+1;
+	 		// Reactivamos nuestro slider
+	 		activateSlider();
+	 	}
+
+		return pb;
+	 }());
+
+	 SliderModule.init({duration: 4000});
+
+});
+
+$(document).on("click", "li.current-slide > a" , function(e) {
+		e.preventDefault();
+	
+		var no = $(this).attr("href");
+	
+		var left = (screen.width-1000) /2
+	    var top = (screen.height-700) /2
+	    
+	 	window.open("<c:url value='/abs/absDetailMain.mn?no="+ no + "'/>", "Detail", "width=1000, height=700, left="+left+", top="+top);
+	})
+</script>
 </body>
 </html>
