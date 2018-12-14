@@ -246,7 +246,8 @@ div.modal-header {
           </li>
           <li class = "li4">
               <label class ="labelC">포인트</label><br>
-              <span class ="spanC">${member.point}</span>
+              <span class ="spanC"><fmt:formatNumber value="${member.point}" pattern="#,###"/></span>
+              
           </li>
           <li class = "li4">
               <label class ="labelC">활동점수</label><br>
