@@ -33,31 +33,38 @@
      </tr>
      <tr>
        <td class="no1">
-         <input type="radio" id="no2" name="point" value="2000"/>
+         <input type="radio" id="no2" name="point" value="5000"/>
        </td>
-       <td><label for="no2" data-value="2200">2,200 포인트</label></td>
-       <td>2,000 원</td>
-     </tr>
-     <tr>
-       <td class="no1">
-         <input type="radio" id="no3" name="point" value="3000"/>
-       </td>
-       <td><label for="no3" data-value="3300">3,300 포인트</label></td>
-       <td>3,000 원</td>
-     </tr>
-     <tr>
-       <td class="no1">
-         <input type="radio" id="no4" name="point" value="4000"/>
-       </td>
-       <td><label for="no4" data-value="4400">4,400 포인트</label></td>
-       <td>4,000 원</td>
-     </tr>
-     <tr>
-       <td class="no1">
-         <input type="radio" id="no5" name="point" value="5000"/>
-       </td>
-       <td><label for="no5" data-value="5500">5,500 포인트</label></td>
+       <td><label for="no2" data-value="5500">5,500 포인트</label></td>
        <td>5,000 원</td>
+     </tr>
+     <tr>
+       <td class="no1">
+         <input type="radio" id="no3" name="point" value="10000"/>
+       </td>
+       <td><label for="no3" data-value="11000">11,000 포인트</label></td>
+       <td>10,000 원</td>
+     </tr>
+     <tr>
+       <td class="no1">
+         <input type="radio" id="no4" name="point" value="30000"/>
+       </td>
+       <td><label for="no4" data-value="33000">33,000 포인트</label></td>
+       <td>30,000 원</td>
+     </tr>
+     <tr>
+       <td class="no1">
+         <input type="radio" id="no5" name="point" value="50000"/>
+       </td>
+       <td><label for="no5" data-value="55000">55,000 포인트</label></td>
+       <td>50,000 원</td>
+     </tr>
+     <tr>
+       <td class="no1">
+         <input type="radio" id="no6" name="point" value="100000"/>
+       </td>
+       <td><label for="no5" data-value="100000">110,000 포인트</label></td>
+       <td>100,000 원</td>
      </tr>
      <tr class="buttons">
        <td colspan="3">

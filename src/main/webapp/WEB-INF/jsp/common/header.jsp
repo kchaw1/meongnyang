@@ -142,12 +142,16 @@
 	  answerRequest($(this).siblings("input").text(), 'n');
 	  //alert($(this).prevAll("input").text() + " clicked!");
 	  $(this).trigger('notify-hide');
+	  $headerSpan.attr("id", "hidden");
+	  $friendSpan.attr("id", "hidden")
 	});
 	$(document).on('click', '.notifyjs-foo-base .wait', function() {
 	  //programmatically trigger propogating hide event
 	  answerRequest($(this).siblings("input").text(), 'w');
 	  //alert($(this).siblings("input").text() + " clicked!");
 	  $(this).trigger('notify-hide');
+	  $headerSpan.attr("id", "hidden");
+	  $friendSpan.attr("id", "hidden")
 	});
 	$(document).on('click', '.notifyjs-foo-base .yes', function() {
 	  //show button text
@@ -155,6 +159,8 @@
 	  //hide notification
 	  answerRequest($(this).siblings("input").text(), 'y');
 	  $(this).trigger('notify-hide');
+	  $headerSpan.attr("id", "hidden");
+	  $friendSpan.attr("id", "hidden")
 	});
 	
 	function answerRequest(callerId, answer) {

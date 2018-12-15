@@ -86,6 +86,7 @@
             $(this).removeClass("hover");
           }
         );
+        
         var form = document.dochat
         $("a#dofacechat").click(function(){
           var left = (screen.width-1200) /2
