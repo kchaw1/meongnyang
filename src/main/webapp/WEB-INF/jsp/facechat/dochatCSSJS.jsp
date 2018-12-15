@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/facechat/facechat.css"/>">
 
 <!-- 대기중 ... -->
-<script src="<c:url value="/resources/js/common/modernizr.custom.js"/>"></script>
-<script src="<c:url value="/resources/js/common/classie.js"/>"></script>
-<script src="<c:url value="/resources/js/common/notificationFx.js"/>"></script>
+<script src="<c:url value="/resources/js/facechat/waitMe.js"/>"></script>
+<%-- <script src="<c:url value="/resources/js/facechat/modernizr.custom.js"/>"></script>
+<script src="<c:url value="/resources/js/facechat/classie.js"/>"></script> --%>
+<%-- <link rel="stylesheet" href="<c:url value="/resources/css/facechat/component.css"/>">--%>
+<link rel="stylesheet" href="<c:url value="/resources/css/facechat/waitMe.css"/>"> 
+<%-- <link rel="stylesheet" href="<c:url value="/resources/css/facechat/normailze.css"/>"> --%>

@@ -26,14 +26,18 @@
     <!-- list of all available conferencing rooms -->
     <table id="rooms-list"></table>
 </div>
+<div class="ment hidden" data-anim="la-anim-12">
+	<h1 class="la-anim-12" data-content="${param.name} 님의 수락을 기다리고 있습니다..">${param.name} 님의 수락을 기다리고 있습니다...</h1>
+</div>
 <%-- <c:import url="./video.jsp"/> --%>
 <%-- <script src="<c:url value="/resources/js/facechat/video.js"/>"></script> --%>
 <script>
 var videosContainer = document.getElementById('videos-container') || document.body;
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
-//var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-var alarmSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+var ment = $("div.ment");
+var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+//var alarmSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
 
@@ -134,6 +138,9 @@ var config = {
             buttons: ['mute-audio', 'mute-video', 'volume-slider']
         });
         mediaElement.id = "remoteVideo";
+        $("body").waitMe("hide")
+        /* ment.removeClass("show")
+        ment.addClass("hidden") */
         //상대방과 연결이 되었을때..반려인의 경우..포인트 차감 alert가 뜬다!!
         if("${user.id}"!="${param.id}") {
         	$.ajax({
@@ -264,6 +271,35 @@ function setupNewRoomButtonClickHandler() {
         });
         //웹소켓에 보내기..
         alarmSocket.send("facechat:" + "${param.id}")
+        $("body").waitMe({
+				effect : 'roundBounce',
+				text : "${param.name} 님의 요청 수락을 기다리는 중입니다.",
+				bg : 'rgba(255,255,255,0.7)',
+				color : '#000'
+				
+			});
+       /*  ment.removeClass("hidden")
+        ment.addClass("show")
+        var inProgress = false;
+        var anim = ment.data( 'anim' ),
+			animEl = document.querySelector( '.' + anim );
+    	if( inProgress ) return false;
+		inProgress = true;
+		classie.add( animEl, 'la-animate' );
+
+		if( anim === 'la-anim-6' ) {
+			PieDraw();
+		}
+
+		setTimeout( function() {
+			classie.remove( animEl, 'la-animate' );
+			
+			if( anim === 'la-anim-6' ) {
+				PieReset();
+			}
+			
+			inProgress = false;
+		}, 6000 ); */
     }, function() {
         btnSetupNewRoom.disabled = document.getElementById('conference-name').disabled = false;
     });

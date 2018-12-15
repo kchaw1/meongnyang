@@ -29,6 +29,19 @@
 .setup, #conference-name {
 	visibility : hidden;
 }
+div.ment {
+	width : 1000px;
+	margin : auto;
+	margin-top : 300px;
+	border : 1px solid black;
+	}
+	
+.hidden {
+	display : none;
+}
+.show {
+	display : block;
+}
 /* .loading {
 	width : 500px;
 	margin : auto;
