@@ -6,8 +6,8 @@
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <script>
-var friendws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-//var friendws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var friendws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+var friendws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 //var friendws = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 $(function () {
 	friendws.onopen = function() {

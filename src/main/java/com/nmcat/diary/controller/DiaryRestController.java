@@ -100,7 +100,7 @@ public class DiaryRestController {
 				img.mkdirs();
 			}
 			attach.transferTo(img);
-			drFile.setUrl("https://localhost:443"+ uploadPath + datePath +"/"+ fileSysName);
+			drFile.setUrl("https://192.168.0.63:443"+ uploadPath + datePath +"/"+ fileSysName);
 		} //enhanced for문
 		
 		//source="org.eclipse.jst.jee.server:cityFarmer"

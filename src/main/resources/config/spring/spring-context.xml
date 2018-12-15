@@ -52,13 +52,17 @@
       		<mvc:exclude-mapping path="/member/loginform.mn"/>
       		<mvc:exclude-mapping path="/friend/selectrequest.mn"/>
       		<mvc:exclude-mapping path="/diary/share/sharediary.mn"/>
+      		<mvc:exclude-mapping path="/diary/share/showdetail.mn"/>
+      		<mvc:exclude-mapping path="/diary/share/plusdiary.mn"/>
+      		<mvc:exclude-mapping path="/diary/share/showimage.mn"/>
       		<mvc:exclude-mapping path="/common/download.mn"/>
       		<mvc:exclude-mapping path="/crowd/list.mn"/>
       		<mvc:exclude-mapping path="/crowd/detail.mn"/>
       		<mvc:exclude-mapping path="/crowd/printList.mn"/>
       		<mvc:exclude-mapping path="/crowd/printEndList.mn"/>
       		<mvc:exclude-mapping path="/youtube/list.mn"/>
-      		<mvc:exclude-mapping path="/youtube/keywordList.mn"/>      		
+      		<mvc:exclude-mapping path="/youtube/keywordList.mn"/>
+      		    		
       		<!-- 어느 interceptor 클래스를 사용할지 빈 객체 설정 -->
       		<bean class="com.nmcat.common.Interceptor"/>
       	</mvc:interceptor>

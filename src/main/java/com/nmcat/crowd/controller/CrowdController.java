@@ -253,7 +253,7 @@ public class CrowdController {
     public Crowd fileAttach(Crowd crowd) throws Exception {
     	// 파일첨부
     			MultipartFile attach = crowd.getAttach();
-    	        String uploadPath = "c:/app/upload";
+    	        String uploadPath = "/app/upload";
     	        SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
     	        String datePath = sdf.format(new Date());
     	        

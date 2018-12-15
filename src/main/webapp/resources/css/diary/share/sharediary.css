@@ -156,6 +156,9 @@ div.dr-content {
 div.dr-content img {
 	width :80% !important;
 }
+.normal {
+	width : 100% !important;
+}
 ul#stickies  li.diary.bigger {
 	/* width : 480px; height: 550px; 
 	 padding : 65px; */
@@ -358,6 +361,7 @@ div.combuttonbox {
   margin-top: 10px; 
   /* vertical-align: bottom; */
   /* display: inline-block; */
+  color : #919191; 
   padding-left : 5px;
 }
 .combuttonbox > a {

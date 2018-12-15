@@ -16,7 +16,7 @@
 		<div id="videos-container"></div>	
 	</div>
 </div>
-<div class="loading"></div>
+<!-- <div class="loading"></div> -->
 <div id="setup-room">
 	<!-- <input type="hidden" id="name"/>
 	<input type="hidden" id="id"/>
@@ -32,8 +32,8 @@
 var videosContainer = document.getElementById('videos-container') || document.body;
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
-var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-//var facechatSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+var alarmSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
 
@@ -156,6 +156,7 @@ var config = {
 					 });
 			   }) //minus ajax.. 
         }
+        //clearInterval(joinStart);
 //        mediaElement.onclick = function(event) {
 //        	$('div.main-doc > .media-container').remove();
 //        	/* 화면복사 */      	
@@ -251,7 +252,7 @@ setTimeout(function(){
 	}else{
 		$('#setup-new-room').trigger("click");
 	}
-}, 2500);
+}, 3000);
 
 function setupNewRoomButtonClickHandler() {
     btnSetupNewRoom.disabled = true;

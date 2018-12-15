@@ -74,6 +74,7 @@
 		where dr_no = #{drNo}
 	</delete> 
 	
+	<!-- 공개 다이어리에서 일기 하나 가져오기.. -->
 	<select id="selectOneDiaryBydrNo" parameterType="int" resultMap="boardMap">
 		select * from mn_diary
 		where dr_no = #{drNo}

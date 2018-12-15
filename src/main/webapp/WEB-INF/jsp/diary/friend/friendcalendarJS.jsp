@@ -31,7 +31,7 @@
       		onImageUpload : function(files, editor, welEditable) {
       			//console.log(files);
       			//console.log(this);
-      			for(let i=files.length-1; i>=0; i--){
+      			for(let i=files.length -1; i>=0; i--){
       				sendFile(files[i], this);
       			}  
       		}
@@ -42,7 +42,7 @@
 	  //console.log(today)
 	  
 	  //listall 가져오는 ajax..
-	  listall("${user.id}");
+	  listall("${param.id}");
 	  
 	}) //onready
 	
@@ -62,9 +62,6 @@
 	
 	function makeCalendar(now, map){
 	  //alert(today)
-	  console.log("삭제후 : ")
-	  console.log(map)
-	  
 	  year = now.getFullYear();
 	  month = now.getMonth(); // 0~11 이기 때문에 +1 해야한다.
 	  date = now.getDate();
@@ -110,7 +107,6 @@
 	        let specificDate = yearMonth+""+pointdate;
 	        str+= "<td>";
 	        str+= "<a href='#1' data-val='"+specificDate+"'";
-	        
 	        if(map!=null) {
 		        let keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
 		        for(let key of keyArray) {
@@ -199,8 +195,8 @@
 			}
 			str += '</div><div class="dr-content">'+diary.drContent+'</div>';
 			str += '<div class="buttons"><div class="button-box">'
-			str += '<button class="dr-delete" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">삭제</button>'
-			str += '<button class="dr-update" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">수정</button>'
+			/* str += '<button class="dr-delete" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">삭제</button>'
+			str += '<button class="dr-update" data-value="'+diary.drNo+'" data-date="'+diary.drDate+'">수정</button>' */
 			str += '</div></div>'
 			str += '<div class="aboutcomments" data-no="'+diary.drNo+'">'
 			str += '<div class="commentform form-group">'
@@ -208,7 +204,7 @@
 			str += '<input type="hidden" name="drcWriter" value="${user.id}"/>'
 			str += '<input type="text" class="form-control" id="drcContent" data-no="'+diary.drNo+'" placeholder="댓글을 입력해주세요."/>'		
 			str += '<div class="combuttonbox" data-no="'+diary.drNo+'">'
-			str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+diary.drNo+'">댓글 더보기</a><span class="comNo"></span>'
+			str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+diary.drNo+'">댓글 더보기<span class="comNo"></span></a>'
 			str += '<button type="button" class="drc-write">등록</button>'
 			str += '</div></form></div>'
 			str += '<div class="commentList hidden" data-no="'+diary.drNo+'"><ul class="comments">'
@@ -229,18 +225,17 @@
 		$("button.drc-write").click(function(){
 			writecomment($(this).parent().data("no"), setdate)
 		})
-		var keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
 		
+		var keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
 		//댓글 뿌려주기..
-		if(map.commentList != null) {
+		if(map.commentList.length != 0 || map.commentList !=null) {
 			for(let comment of map.commentList) {
-			console.log(map)
+			
 				for(let drNoKey of keyArray) {
 					if(drNoKey == comment.drNo) {
 						$("div.combuttonbox[data-no='"+drNoKey+"']").find("span").html("("+map[drNoKey]+")");
 					}
 				}
-			//$("a#morecomments[data-no='"+comment.drNo+"']").find("span").html("("+map.get(comment.drNo)+")")
 			$("a#morecomments[data-no='"+comment.drNo+"']").removeClass("hidden");
 			$("a#morecomments[data-no='"+comment.drNo+"']").addClass("show")
 			var html = "";
@@ -270,14 +265,6 @@
 		})
 		
 		
-		$("button.dr-delete").click(function() {
-			//alert($(this).data("date"));
-			deleteDiary($(this).data("value"), $(this).data("date"));
-		}) // 다이어리 삭제
-		$("button.dr-update").click(function() {
-			updateformDiary($(this).data("value"), $(this).data("date"));
-		}) // 다이어리 삭제
-		
 	} //showDetail
 	
 	
@@ -289,7 +276,7 @@
 				"drcWriter" : "${user.id}",
 				"drcContent" : $("input#drcContent[data-no='"+drNo+"']").val(),
 				"drDate" : setdate,
-				"drWriter" : "${user.id}"
+				"drWriter" : "${param.id}"
 			},
 			type : "POST"
 		}).done(function(map){
@@ -303,12 +290,13 @@
 			url : "<c:url value='/diary/detail.mn' />",
 			data : {
 				"drDate" : setdate,
-				"drWriter" : "${user.id}",
-				"userId" : "${user.id}"
+				"drWriter" : "${param.id}",
+				"userId" : "${param.id}"
 			},
 			type : "POST"
 		}).done(function(map){
 			if(map!=null) {
+				console.log(map)
 				showdetailDiary(map, setdate)
 			} // if not null
 		})//done

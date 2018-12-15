@@ -67,7 +67,7 @@ function showFriendList(pageNo){
 		$('[data-toggle="tooltip"]').tooltip()
 		
 		$("a#goDiary").click(function() {
-			location.href = "<c:url value='/diary/friend/calendar.mn'/>"+"?no=${user.no}";
+			location.href = "<c:url value='/diary/friend/calendar.mn'/>"+"?id="+$(this).data("id");
 		})
 
 	}) //done

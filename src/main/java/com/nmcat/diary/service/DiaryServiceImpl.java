@@ -120,7 +120,10 @@ public class DiaryServiceImpl implements DiaryService{
 	public Map<String, Object> showDetailShareDiary(DiaryComment comment) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("diary", mapper.selectOneDiaryBydrNo(comment.getDrNo()));
-		map.put("comment", mapper.selectCommentByDrNo(comment));
+		if(comment.getUserId() != "") {
+			map.put("comment", mapper.selectCommentByDrNo(comment));			
+		}
+		map.put(String.valueOf(comment.getDrNo()), mapper.selectCommentCntbydrNo(comment.getDrNo()));
 		return map;
 	}
 

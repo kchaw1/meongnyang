@@ -55,8 +55,8 @@
 	$(function() {
 		selectFriendRequest("${user.id}")
 		
-		ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-		//ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+		//ws = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+		ws = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 		//ws = new WebSocket('wss://10.0.1.5:443/nmcat/alarm.mn');
 		ws.onopen = function() {
 			console.log("헤더 웹소켓 서버 접속 성공");

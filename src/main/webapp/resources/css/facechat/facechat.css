@@ -26,6 +26,9 @@
 	position : absolute;
 	display : inline-block;
 }
+.setup, #conference-name {
+	visibility : hidden;
+}
 /* .loading {
 	width : 500px;
 	margin : auto;

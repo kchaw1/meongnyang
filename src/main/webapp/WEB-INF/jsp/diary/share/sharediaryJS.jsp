@@ -3,7 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script>
-$(function(){
+
+	makeBigger();
+	//사진 뿌려주기..
+	showImage();
+
+
+function makeBigger(){
 	var contentList = document.querySelectorAll(".dr-content");
 	var css = null;
 	for(let content of contentList){
@@ -21,11 +27,7 @@ $(function(){
 			//console.dir(document.defaultView.getComputedStyle(liDiary));
 		}
 	} // contentList
-	
-	//사진 뿌려주기..
-	showImage();
-	
-}) //on.ready
+}
 
 $("ul#stickies").on("click", "[data-toggle='modal']",function() {
 	//alert($(this).data("no"))
@@ -68,6 +70,7 @@ function showdetailDiary(drNo) {
 			},
 		type : "POST"
 	}).done(function(map){
+		//console.log("map : " +map)
 		$("span#writer").html(map.diary.drWriter+" 님의");
 		
 		let str = "";
@@ -94,7 +97,7 @@ function showdetailDiary(drNo) {
 				str += '<input type="hidden" name="drcWriter" value="${user.id}"/>'
 				str += '<input type="text" class="form-control" id="drcContent" data-no="'+map.diary.drNo+'" placeholder="댓글을 입력해주세요."/>'		
 				str += '<div class="combuttonbox" data-no="'+map.diary.drNo+'">'
-				str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+map.diary.drNo+'">댓글 더보기</a>'
+				str += '<a href="#1" id="morecomments" class="more hidden" data-no="'+map.diary.drNo+'">댓글 더보기</a><span class="comNo"></span>'
 				str += '<button type="button" class="drc-write">등록</button>'
 				str += '</div></form></div>'
 				str += '<div class="commentList hidden" data-no="'+map.diary.drNo+'"><ul class="comments">'
@@ -102,13 +105,29 @@ function showdetailDiary(drNo) {
 				str += '</div></div>'
 			}
 			$("div.diaryList").html(str);
+			var contentList = document.querySelectorAll(".drContent");
+			for(let content of contentList){
+				$content = $(content);
+				if($content.html().indexOf("img")!= -1) {
+					$content.find("img").addClass("normal");
+				}
+			}
 			
 			$("button.drc-write").click(function(){
 				writecomment($(this).parent().data("no"))
 			})
 			
-			if(map.comment.length != 0) {
+			var keyArray = Object.keys(map); //json map 객체의 키 값을 배열로 꺼내는 함수
+			
+			if(map.comment.length != 0 || map.comment !=null) {
 				for(let comment of map.comment) {
+					
+					for(let drNoKey of keyArray){
+						if(drNoKey == comment.drNo){
+							$("span.comNo").html("("+map[drNoKey]+")");
+						}
+					}
+					
 				$("a#morecomments[data-no='"+comment.drNo+"']").removeClass("hidden");
 				$("a#morecomments[data-no='"+comment.drNo+"']").addClass("show")
 				var html = "";
@@ -183,7 +202,7 @@ $(window).scroll(function(){
 					str += '<li class="diary" data-toggle="modal" data-target="#share"  data-no="'+diary.drNo+'">'
 					str += '<div class="dr-title">'
 					str += '<div class="title">'+diary.drTitle+'</div>'
-					str += '<div class="writer" data-id="'+diary.drWriter+'"><div class="image></div>"'+diary.drWriter+'</div>'
+					str += '<div class="writer" data-id="'+diary.drWriter+'"><div class="image"></div>'+diary.drWriter+'</div>'
 					str += '<div class="date">'+diary.drRegDateTime+'</div>'
 					str += '</div><div class="dr-content">'+diary.drContent+'</div>'
 					str += '<div class="dr-comments"> 댓글없음</div></li>'
@@ -220,6 +239,9 @@ $(window).scroll(function(){
 				} // 로그인 했을시..
 			
 			$("ul#stickies").append(str);	
+			if(map.list1.length != 0 || map.list2.length !=0) {
+				makeBigger();
+			}
 			showImage();
 				
 		}) //done

@@ -25,8 +25,8 @@
 	               <div class="image">
 	               	
 	               </div>
-	               <a href="#1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	               ${dr.drWriter}</a>
+	               
+	               ${dr.drWriter}
 	               </div>
 	               <div class="date"><fmt:formatDate value="${dr.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
               	</div>

@@ -24,7 +24,7 @@ public class Download {
 //		 System.out.println(path);
 //		 System.out.println(sysName);
 		 
-		 String uploadPath = "c:/app/upload";
+		 String uploadPath = "/app/upload";
 		 
 	     File file = new File(uploadPath + path, sysName);
 	     
