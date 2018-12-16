@@ -90,6 +90,18 @@ $("button#newmember").click(function(){
         f.passcheck.focus()
         return;
     }
+    
+    if(f.email.value==""){
+		alert("이메일을 입력하세요.")
+		f.email.focus()
+		return;
+	}
+    
+    if(f.category.value==""){
+    	alert("반려동물은 선택하세요.")
+    	f.category.focus()
+    	return;
+    }
   
     alert("회원가입이 완료되었습니다.")
 	
@@ -196,6 +208,24 @@ $("button#newmember2").click(function(){
         return;
 	}
 	
+	if(f.email.value==""){
+		alert("이메일을 입력하세요.")
+		f.email.focus()
+		return;
+	}
+	
+	if(f.greetings.value==""){
+		alert("인사말을 적어주세요.")
+		f.greetings.focus()
+		return;
+	}
+	
+	if(f.category.value==""){
+		alert("담당 반려동물을 선택하세요.")
+		f.category.focus()
+		return;
+	}
+	
     if(f.pass.value==""){
         alert("비밀번호를 입력하세요")
         f.pass.focus()
@@ -206,6 +236,24 @@ $("button#newmember2").click(function(){
         alert("비밀번호 확인을 입력하세요")
         f.passcheck.focus()
         return;
+    }
+    
+    if(f.lifile.value==""){
+    	alert("자격증을 첨부하세요.")
+    	f.lifile.focus()
+    	return;
+    }
+    
+    if(f.careerStart.value==""){
+    	alert("경력을 입력하세요.")
+    	f.careerStart.focus()
+    	return;
+    }
+    
+    if(f.careerContent.value==""){
+    	alert("상세경력을 입력하세요.")
+    	f.careerContent.focus()
+    	return;
     }
   
     alert("회원가입이 완료되었습니다.")

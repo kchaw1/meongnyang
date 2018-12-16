@@ -154,7 +154,7 @@ img {
         <input type="password" name="loginpass" placeholder="Password"/>
       </div>
       <div class="u-form-group">
-      	<button type="button" class="btn btn-primary" id="loginform">로그인</button>
+      	<button type="button" class="btn btn-primary" id="loginform" onkeyup="enter();">로그인</button>
       </div>
       <div class="u-form-group">
         <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
@@ -337,7 +337,7 @@ img {
 					                                    <span id='warngree'></span>
 					                                    <textarea rows="8" cols="70" placeholder="인사말을 적어주세요." value="" name="greetings"></textarea>
 					                                    <hr>
-					                                    <span id="animal">담당 반려동물 : <select id="catdog2" name="category">
+					                                    <span id="animal">담당 반려동물 : <select id="catdog2" name="category" value="">
 					                                            <option value="0">선택</option>
 					                                            <option value="1">개</option>
 					                                            <option value="2">고양이</option>
@@ -349,13 +349,13 @@ img {
 					                        </div>
 					                        <div id="tabs-2">
 					                        	<div id="allcareer">
-					                        	<div class="form-group">
-					                        	<button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
+					                        	<div class="form-group">					                   	
 						                        <div class="file_input">
 						                            <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
 						                        </div>
 						                        <hr>
-					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />					                            
+					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
+					                            <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>					                            
 					                            <hr>
 					                            <span>상세경력 : </span>
 					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>					                            

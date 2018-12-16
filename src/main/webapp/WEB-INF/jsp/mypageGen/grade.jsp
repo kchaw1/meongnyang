@@ -153,9 +153,9 @@ div.modal-header {
     text-align: center;
     margin-bottom: 20px;
 }
-.new {
+.img-responsive {
     float: left;
-    width: 25%;
+    width: 20%;
 }
 #grdname {
     font-size: 30px;

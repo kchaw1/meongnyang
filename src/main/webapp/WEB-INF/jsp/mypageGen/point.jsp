@@ -148,6 +148,14 @@ div.modal-header {
     font-family: 'Jua', sans-serif;
 }
 
+#tabs {
+	font-family: 'Jua', sans-serif;
+}
+
+#Notice {
+	font-size: 20px;
+}
+
 </style>
 
 
@@ -185,7 +193,7 @@ div.modal-header {
             <div class="main-title">내 포인트</div>
             <div class="seperator"></div>
         <div class="point">
-            <span id="p-writer2">현재 보유포인트는 <div style="font-size: 30px;">${member.point} Point 입니다.</div></span>
+            <span id="p-writer2">현재 보유포인트는 <div style="font-size: 30px;"><fmt:formatNumber value="${member.point}" pattern="#,###"/> Point 입니다.</div></span>
         </div>
         <hr id="hr1">
         <div class="Notice">
@@ -209,6 +217,7 @@ div.modal-header {
             </ul>
             <div id="tabs-1">
                 <table class="table table-hover">
+                <caption>전체 ${pageResult.count}개</caption>
                     <thead>
                         <tr>
                             <th><input id="checkall" type="checkbox" name="checkall" value="1" /></th>
@@ -223,13 +232,51 @@ div.modal-header {
                         <tr>
                             <td><input id="check1" type="checkbox" name="check" value="1" /></td>
                             <td>${p.plusNo}</td>
-                            <td>${p.plusPoint}</td>
-                            <td>${p.plusType}</td>
+                            <td><fmt:formatNumber value="${p.plusPoint}" pattern="#,###"/></td>                                                 
+                            <td>
+                            <c:choose>
+                              <c:when test="${p.plusType == '1'}">
+                              	충전
+                              </c:when>
+                              
+                              <c:when test="${p.plusType == '2'}">
+                              	관리자 선물
+                              </c:when> 
+                                                                                                        	
+                            </c:choose>
+                            </td>
                             <td><fmt:formatDate value="${p.plusDate}" pattern="yyyy-MM-dd" /></td>
                         </tr>
                         </c:forEach>                  
                     </tbody>
                 </table>
+                
+          <c:if test="${pageResult.count != 0}">
+				<nav class="text-center">
+					<ul class="pagination">
+						<li
+							<c:if test="${pageResult.prev eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.beginPage - 1}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a>
+						</li>
+						<c:forEach var="i" begin="${pageResult.beginPage}"
+							end="${pageResult.endPage}">
+							<li <c:if test="${i eq pageResult.pageNo}">class="active"</c:if>>
+								<a href="${i}">${i}</a>
+							</li>
+						</c:forEach>
+						<li
+							<c:if test="${pageResult.next eq false}">class="disabled"</c:if>>
+							<a href="${pageResult.endPage + 1}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+	
+						</a>
+						</li>
+					</ul>
+				</nav>
+			</c:if>
+			
                 <div class="deleteBtn">
                     <button type="button" id="delBtn">내역 삭제</button>
                 </div>
@@ -250,8 +297,22 @@ div.modal-header {
                         <tr>
                             <td><input id="check5" type="checkbox" name="check" value="1" /></td>
                             <td>${m.minusNo}</td>
-                            <td>${m.minusPoint}</td>
-                            <td>${m.minusUse}</td>
+                            <td><fmt:formatNumber value="${m.minusPoint}" pattern="#,###"/></td>                            
+                            <td>
+                            <c:choose>
+                            	<c:when test="${m.minusUse == 1}">
+                            		행동전문가 질문
+                            	</c:when>
+                            	
+                            	<c:when test="${m.minusUse == 2}">
+                            		행동전문가 화상채팅
+                            	</c:when>
+                            	
+                            	<c:when test="${m.minusUse == 3}">
+                            		크라우드 펀딩
+                            	</c:when>
+                            </c:choose>
+                            </td>
                             <td><fmt:formatDate value="${m.minusDate}" pattern="yyyy-MM-dd"/></td>
                         </tr>
                         </c:forEach>        

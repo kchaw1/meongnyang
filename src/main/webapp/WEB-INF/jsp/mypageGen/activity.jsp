@@ -178,6 +178,10 @@ div.modal-header {
     font-family: 'Jua', sans-serif;
 }
 
+#tabs {
+	font-family: 'Jua', sans-serif;
+}
+
 </style>
 
 

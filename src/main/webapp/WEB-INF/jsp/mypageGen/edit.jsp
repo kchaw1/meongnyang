@@ -90,6 +90,21 @@
     margin-top: 110px;
 }
 
+#p1, #p2 {
+	font-size: 18px;
+}
+
+#profilech {
+	font-size: 18px;
+}
+
+#infotext1, #infotext2 {
+	font-size: 18px;
+}
+
+#infoch {
+	font-size: 18px;
+}
 /****** CODE ******/
 
 .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
@@ -154,12 +169,12 @@
                       </div>
                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                          "멍하고노냥"에서 회원님을 표현하는 프로필 사진입니다.
+                          <p id="p1">"멍하고노냥"에서 회원님을 표현하는 프로필 사진입니다.</p>
                           <br>
-                          수정 화면에서 프로필사진을 변경해 보세요!
+                          <p id="p2">수정 화면에서 프로필사진을 변경해 보세요!</p>
                           <hr>
                                 <!--프로필 사진 변경 모달-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">프로필 수정</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" id="profilech">프로필 수정</button>
 
                                 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-sm">
@@ -198,18 +213,19 @@
                       <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
                           <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            회원정보 수정
+                            	회원정보 수정
                           </a>
                         </h4>
                       </div>
                       <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            "멍하고노냥"에서 회원님의 회원정보 창입니다.<BR>
-                            수정 화면에서 회원님의 정보를 변경해 보세요!
+                           <p id="infotext1"> "멍하고노냥"에서 회원님의 회원정보 창입니다.</p>
+                            <BR>
+                           	<p id="infotext2"> 수정 화면에서 회원님의 정보를 변경해 보세요!</p>
                             <hr>
          
                               <!-- 회원 정보 수정 모달창-->
-                          <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">회원정보 수정</button>
+                          <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="infoch">회원정보 수정</button>
                           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                               <form id="updateform" name="updateform" action="updatePass.mn" method="post">

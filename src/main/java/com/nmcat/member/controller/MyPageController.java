@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.member.service.MemberService;
 import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Page2;
+
 
 @Controller
 @RequestMapping("/mypageGen")
@@ -125,10 +128,27 @@ public class MyPageController {
 			return "redirect:/member/login.mn";
 	}
 	 
-	// �쉷�뱷 �룷�씤�듃 �궡�뿭 
+	// 포인트
 	@RequestMapping("point.mn")
-	public void point(Model model, HttpSession session ) {
+	public void point(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session ) {
 		Member member = (Member)session.getAttribute("user");
+		Page2 page = new Page2();
+		page.setPageNo(pageNo);
+
+		int count = pointService.selectPageCount();
+		int lastPage = (int) Math.ceil(count / 10d);
+
+		// 페이지 블럭 시작
+		int pageSize = 10;
+		int currTab = (pageNo - 1) / pageSize + 1;
+		// 11번 부터 2페이지가 되는것
+		int beginPage = (currTab - 1) * pageSize + 1;
+		int endPage = currTab * pageSize < lastPage ? currTab * pageSize : lastPage;
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 		model.addAttribute("pluspoint", pointService.selectAddPoint(member.getId()));
 		model.addAttribute("minuspoint", pointService.selectMinusPoint(member.getId()));

@@ -35,6 +35,7 @@ public class MemberController {
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) throws Exception {
+		System.out.println(member);
 		MultipartFile profile = member.getProfile();
 	      String uploadPath = "c:/app/upload";
 	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
@@ -68,6 +69,7 @@ public class MemberController {
 	
 	@RequestMapping("/absignup.mn")
 	public String absup(Member member, Career career, License license) throws Exception {
+		
 		MultipartFile profile = member.getProfile();
 	      String uploadPath = "c:/app/upload";
 	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
