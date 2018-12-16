@@ -28,8 +28,7 @@ $("button#loginform").click(function(){
 				f.loginid.select();
 			}, 1500)
 		} else {
-			location.href = "<c:url value='/main/mainPage.mn'/>"
-			
+			location.href = "<c:url value='/main/mainPage.mn'/>"		
 		}
 	}) //done
 })

@@ -193,7 +193,6 @@ img {
                                       <img id="img" src="<c:url value="/resources/img/member/profile.png"/>"/>
                                   </label>
                               </div>  
-                                  	<button type="button" id="potocancel">취소</button>
                               </div>                           
                           <hr>
                           <div class="form-group">
@@ -296,7 +295,6 @@ img {
 					                                            	<img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/>
 					                                            </label>
 					                                        </div>
-					                                        <button type="button" id="potocancel2">취소</button>
 					                                    </div>
 					                                    <hr>
 					                                    <input type="hidden" name="type" value="2" />

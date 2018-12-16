@@ -201,7 +201,29 @@ div.modal-header {
                             	${member.codeName}
                         </div>
                         <div id="grdImg">
-                            <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/>
+                            <%-- <img src="<c:url value="/resources/img/member/diamond_i.png"/>"/> --%>
+                            <c:choose>
+                              <c:when test="${member.codeName == '뉴비'}">
+                              	<img src="<c:url value="/resources/img/member/뉴비.jpg"/>"/>
+                              </c:when>
+                              
+                              <c:when test="${member.codeName == '루키'}">
+                              	<img src="<c:url value="/resources/img/member/루키.png"/>" />
+                              </c:when> 
+                              
+                               <c:when test="${member.codeName == '골드'}">
+                              	<img src="<c:url value="/resources/img/member/gold_i.png"/>" />
+                              </c:when>
+                              
+                              <c:when test="${member.codeName == '플래티넘'}">
+                              	<img src="<c:url value="/resources/img/member/platinum_i.png"/>" />
+                              </c:when>
+                              
+                              <c:when test="${member.codeName == '다이아몬드'}">
+                              	<img src="<c:url value="/resources/img/member/diamond_i.png"/>" />
+                              </c:when>
+                                                                                                        	
+                            </c:choose>
                         </div>
                     </div>
                     </div>

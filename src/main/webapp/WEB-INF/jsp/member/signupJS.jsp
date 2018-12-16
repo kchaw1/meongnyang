@@ -97,8 +97,8 @@ $("button#newmember").click(function(){
 		return;
 	}
     
-    if(f.category.value==""){
-    	alert("반려동물은 선택하세요.")
+    if(f.category.value=="0"){
+    	alert("반려동물을 선택하세요.")
     	f.category.focus()
     	return;
     }
@@ -220,7 +220,7 @@ $("button#newmember2").click(function(){
 		return;
 	}
 	
-	if(f.category.value==""){
+	if(f.category.value=="0"){
 		alert("담당 반려동물을 선택하세요.")
 		f.category.focus()
 		return;

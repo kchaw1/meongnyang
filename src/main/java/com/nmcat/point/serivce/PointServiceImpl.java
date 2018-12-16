@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Page2;
 import com.nmcat.repository.domain.PointMinus;
 import com.nmcat.repository.domain.PointPlus;
 import com.nmcat.repository.mapper.PointMapper;
@@ -85,5 +86,16 @@ public class PointServiceImpl implements PointService{
 	public List<PointMinus> selectMinusPoint(String id) {
 		return mapper.selectMinusPoint(id);
 	}
+
+	@Override
+	public List<PointPlus> selectPagePoint(Page2 page2) {
+		return mapper.selectPagePoint(page2);
+	}
+
+	@Override
+	public int selectPageCount() {
+		return mapper.selectPageCount();
+	}
+
 
 }

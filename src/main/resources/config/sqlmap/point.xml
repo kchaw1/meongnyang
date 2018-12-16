@@ -69,7 +69,20 @@
 		from mn_point_plus
 		where id = #{id}
 		order by plus_date desc	
-		
+	</select>
+	
+	<!-- 획득 포인트 페이징 -->
+	<select id="selectPagePoint" parameterType="Page2" resultMap="plusMap">
+		select *
+		from mn_point_plus
+		where id = #{id}
+		order by plus_no desc	
+		limit #{begin}, 10
+	</select>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*)
+		 from mn_point_plus
 	</select>
 	
 	<!-- 사용 포인트 -->
@@ -77,6 +90,7 @@
 		select * 
 		from mn_point_minus
 		where id = #{id}
+		order by minus_date desc
 	</select>
 	
 </mapper>
