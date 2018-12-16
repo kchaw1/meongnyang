@@ -68,12 +68,11 @@
 	where com_category = #{comCategory}
 	order by com_no desc
  	limit 0, 10
- 
 	</select>
 	
 	
 	<!-- 갤러리 연습용  -->
-	<select id = "selectGa" resultMap = "comMap">
+	<select id = "selectGa"  resultMap = "comMap">
 	select *
 	from mn_com
 	where com_category = '갤러리'

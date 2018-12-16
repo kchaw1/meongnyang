@@ -48,7 +48,7 @@ public class CommunityController {
 		for(CommunityBoard c: list) {
 		c.setComCommentCnt(service.selectCommentCount(c.getComNo()));
 		c.setComRefCnt(service.selectRefCnt(c.getComNo()));
-		//새로고침을해도 추천을했을시에도 추천되있을으로 떠있게 하기위해서!
+		//�깉濡쒓퀬移⑥쓣�빐�룄 異붿쿇�쓣�뻽�쓣�떆�뿉�룄 異붿쿇�릺�엳�쓣�쑝濡� �뼚�엳寃� �븯湲곗쐞�빐�꽌!
 		CommunityRef comRef = new CommunityRef();
 		comRef.setComNo(c.getComNo());
 		comRef.setComRefUser(user);
@@ -88,12 +88,8 @@ public class CommunityController {
 		return map;
 	}
 	
-	//갤러리 연습용
-	/*@RequestMapping("/communityGa.mn")
-	public void void List<CommunityBoard> selectGa()throws Exception{
-		model.addAttribute("gallery", service.selectGa());
-		
-	}*/
+
+	
 	
 	
 /*	public void list(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo)throws Exception{
@@ -102,6 +98,14 @@ public class CommunityController {
 		
 		model.addAttribute("list", service.selectBoard(comBoard));
 	}*/
+	
+	@RequestMapping("/communityGa.mn")
+	public void selectGa(Model model) throws Exception{
+	model.addAttribute("gallery", service.selectGa());
+
+		
+	}
+	
 	@RequestMapping("/detailPage.mn")
 	public void detail(Model model, int comNo)throws Exception{
 		model.addAttribute("communityBoard", service.detailBoard(comNo));
@@ -139,7 +143,7 @@ public class CommunityController {
 	}
 	
 	//-----------------------------------------
-	//댓글 CRUD
+	//�뙎湲� CRUD
 	
 	@RequestMapping("/selectComment.mn")
 	@ResponseBody
@@ -165,7 +169,7 @@ public class CommunityController {
 	public void updateComment(CommunityComment comComment)throws Exception{
 		service.updateComment(comComment);
 	}
-	//댓글 총 갯수
+	//�뙎湲� 珥� 媛��닔
 	@RequestMapping("/selectCommentCount.mn")
 	@ResponseBody
 	public int selectCommentCount(int comNo)throws Exception{
@@ -173,7 +177,7 @@ public class CommunityController {
 		
 	}
 	
-	 //추천
+	 //異붿쿇
 	 
 		@RequestMapping("/selectRefCnt.mn")
 		@ResponseBody
@@ -204,7 +208,7 @@ public class CommunityController {
 			return service.checkRef(comRef);
 			
 		}
-	//-------------------------------파일등록
+	//-------------------------------�뙆�씪�벑濡�
 	@PostMapping("/uploadfile.mn")
 	@ResponseBody
 	public CommunityFile uploadFile(@RequestParam("file") List<MultipartFile> attach, CommunityFile cFile) throws IllegalStateException, IOException {

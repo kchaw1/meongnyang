@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+ integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+ <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+ <!--user 아이콘-->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+ <!-- 배민폰트 -->
+ <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="headerfooter.css">
+ 
+ <!-- 부트스트랩 -->
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</head>
+
+    
+<style>
+
+    .container{
+        border: 1px solid black;
+        height: 1000px;
+        padding: 100px;
+    }
+    .galleryContainer{
+        width: 270px;
+        height: 280px;
+        
+        position: absolute;
+
+    }
+    
+    .galleryBottom {
+    width: 269.9px;
+    height: 25px;
+    border: 1px solid #e1dfdd;
+    bottom: 0;
+    position: absolute;
+    padding-left: 10px;
+    padding-right : 10px;
+    padding-top: 3px;
+
+}.modal-body {
+    position: relative;
+    padding: 0px;
+    overflow: scroll;
+    overflow-x:hidden;
+    overflow-y:hidden;
+
+    
+}
+.galleryDetailBox{
+    padding-left : 10px;
+    padding-right: 10px;
+
+}
+
+
+
+
+    </style>
+<body>
+ 
+          
+          </header>
+            <div class = "container">
+                 <div  class = "galleryContainer" >
+                        <div class = "galleryImgContainer"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                            <img src="./img/diary.jpg" width="269" height="255">
+
+                        </div>
+                    <div class = "galleryBottom">
+                          
+                    </div>
+                 </div>   
+
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    
+                    <!--사진 들어가는부분-->
+                    <div class="modal-body">
+                <div class = "galleryDetailContainer">
+                    <img src="./img/이유비.PNG" width="598">
+                    <div class = "galleryDetailBox">gkgkgkgkgk</div>
+                    </div>
+                </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+    <footer class="dogcat">
+        <div class="footertitle">
+          <h4 class="dogcat">Copyright ⓒ<span>낭만코양이</span> All rights reserved.</h4>
+          <h4 class="dogcat">with AR, CW, HK, SY, BG</h4>
+        </div>
+      </footer>
+
+<footer>
+
+        <div class="chat-launcher"></div>
+        <div class="chat-wrapper" data-headline="Chat">
+        </div>
+
+</footer>
+<!-- 푸터! -->
+<footer></footer>
+<script>
+  
+
+    $(function () {
+$('.chat-launcher').on('click', function () {
+    $('.chat-launcher').toggleClass('active');
+    $('.chat-wrapper').toggleClass('is-open');
+});
+});
+    </script>
+</body>
+</html>

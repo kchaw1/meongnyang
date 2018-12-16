@@ -32,15 +32,18 @@
 
 </head>
 <style>
+
+
+body{
+background-color: #fdfdfd;
+}
        .searchPart{
         width: 100%;
         height: 50px;
     }
     .allContainer{
-        margin-top: 110px;
         width: 100%;
-        height: 1000px;
-        border: 1px solid black;
+        height: 100%;
         padding-left: 280px;
         padding-right: 200px;
     }
@@ -54,14 +57,205 @@
     width: 280px;
     height: 270px;
     border: 1px solid rgb(226, 219, 219);
-    margin-right: 87px;
+    margin-right: 58px;
     margin-top: 30px;
 }
 .viewContainer{
     width: 100%;
     height: 25px;
     border: 1px solid rgb(226, 219, 219);
+        padding: 8px;
 }
+.searchForm{
+width : 100%;
+	margin-top : 115px;
+	padding-left : 658px;
+	padding-right :  658px;
+	
+}
+
+
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+ 
+.cf:after{
+    clear:both;
+}
+ 
+.cf{
+    zoom:1;
+}    
+
+ /* Form wrapper styling */
+.search-wrapper {
+width: 240px;
+margin: 45px auto 50px auto;
+
+}
+ 
+/* Form text input */
+ 
+.search-wrapper input {
+width: 160px;
+height: 20px;
+padding: 10px 15px;
+float: left;
+font: normal 16px 'Arial', 'Tahoma';
+border: 0;
+background: #fff;
+border-radius: 5px 0 0 5px;
+}
+
+.search-wrapper input:hover + .search-wrapper button {
+    background: #ccc
+}
+ 
+.search-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+
+}
+ 
+.search-wrapper input::-webkit-input-placeholder {
+   color: #c6c7c6;
+   font-weight: normal;
+
+}
+ 
+.search-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+ 
+.search-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}    
+ 
+/* Form submit button */
+.search-wrapper button {
+overflow: visible;
+position: relative;
+float: right;
+border: 0;
+padding: 0;
+cursor: pointer;
+height: 40px;
+width: 50px;
+font: bold 18px 'Arial', 'Tahoma';
+color: white;
+background: #f1eaea;
+border-radius: 0 5px 5px 0;
+transition: all 2.0s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+}
+   
+.search-wrapper button:hover{     
+    background: rgb(65, 192, 142, 0.7);
+    transition: all 2.0s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+}   
+   
+.search-wrapper button:active,
+.search-wrapper button:focus{   
+    background: #329400;
+    outline: 0;   
+    transition: all 0s linear;
+    -webkit-transition: all 0s linear;
+    -moz-transition: all 0s linear;
+    -ms-transition: all 0s linear;
+    -o-transition: all 0s linear;
+  
+}
+ 
+
+ 
+.search-wrapper button:hover:before{
+    border-right-color: #e54040;
+  
+}
+ 
+.search-wrapper button:focus:before,
+.search-wrapper button:active:before{
+        border-right-color: #c42f2f;
+}      
+ 
+.search-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}    
+
+.search-wrapper input {
+    width: 160px;
+    height: 20px;
+    padding: 10px 15px;
+    float: left;
+    font: normal 16px 'Arial', 'Tahoma';
+    border: 0;
+    background: #fff;
+    border-radius: 5px 0 0 5px;
+    margin-top: 10px;
+}
+
+.search-wrapper {
+    width: 240px;
+    margin: 45px auto 50px auto;
+    background: white;
+}
+
+
+/* 하트 */
+
+.coracao{
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: relative;
+  transform: rotate(-135deg);
+
+  animation: pulsar 1s alternate ease infinite;
+}
+
+.coracao::before{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  top: 7px;
+  content: "";
+}
+
+.coracao::after{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  left: 7px;
+  content: "";
+}
+
+@keyframes pulsar{
+  0%   {transform: scale(.5) rotate(-135deg);}
+  100% {transform: scale(.6) rotate(-135deg);}
+}
+.heartCnt {
+    font-size: 13px;
+    margin-top: -3.6px;
+    margin-left: 5px;
+}
+
 
 </style>
 <body>
@@ -69,14 +263,24 @@
 
 <!-- 여기서부터 컨텐츠 시작  -->
 
+					<div class = "searchForm">
+							<form action="/search.html" class="search-wrapper cf">
+							        <input type="text" placeholder="작성자로 검색" required="">
+							        <button type="submit"><i class="fas fa-search"></i></button>
+							</form>
+					</div>
+
 <div class = "allContainer">
               <!--컨텐츠 여기서부터 forEach-->
-                <c:forEach var = "b" items = "${map.gallery}">
+                <c:forEach var = "b" items = "${gallery}">
             <div class = "galleryContentContainer">
                 <div class = "galleryImg"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                   <div class = "img">${b.comContent}</div>
+                   <div class = "imgContainer">${b.comContent}</div>
                 </div>
-                <div class = "viewContainer"></div>
+                <div class = "viewContainer">
+               		 <div class="coracao"></div><div class = "heartCnt">6</div>
+
+                </div>
             </div>
             </c:forEach>
 
@@ -93,12 +297,44 @@
 
 
 
-
-
 		
 
  <!-- 낭만 코양이 푸터 -->
+ 
+ <script>
+ 
+ $(function(){
+		//모든 content 클래스를 갖고있는 친구들 갖고오기
+		var contentList = document.querySelectorAll(".imgContainer");
+				console.log(contentList);
+		//content에 하나하나 넣어주기
+		for(let content of contentList){
+			
+			
+			$content = $(content);
+			console.log($content);
+			length = $content.find("img").length;
+			
+			var imgTag = $content.find("img");
+			if($content.find("img").length >= 2){
+				console.log("사진 갯수가 2개 이상이여 들어왔습니다.");
+				console.log(imgTag);
+				for(var i = 1; i <= length-1; i++){
+					imgTag[i].remove();
+				}
+				
+				$content.find("img").addClass("manyPic");
+			}
+			if($content.html().indexOf("img") != -1){
+				$content.find("img").addClass("forImg3");
+			}
+		}
+	
 
+			
+	}); 
+ 
+ </script>
                
 </body>
 </html>
