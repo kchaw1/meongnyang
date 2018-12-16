@@ -236,7 +236,7 @@
   			  					$("ul.posts").append(
 									"<li class='comment' data-no="+result[i].no+" data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
 									+""
-									+"행동전문가의 한마디:"  
+									+"<span class='glyphicon glyphicon-star' aria-hidden='true' style='color:yellow'></span>행동전문가의 한마디:"  
 									+ result[i].abscContent
 									+"<br>"
 									+"<p id='commentDate'>"+result[i].abscRegDate+"</p>"
