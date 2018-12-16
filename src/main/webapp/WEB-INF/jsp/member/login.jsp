@@ -151,10 +151,10 @@ img {
         <input type="email" name="loginid" placeholder="Email 또는 id"/>    
       </div>
       <div class="u-form-group">
-        <input type="password" name="loginpass" placeholder="Password"/>
+        <input type="password" name="loginpass" placeholder="Password"  onkeyup="enterkey();"/>
       </div>
       <div class="u-form-group">
-      	<button type="button" class="btn btn-primary" id="loginform" onkeyup="enter();">로그인</button>
+      	<button type="button" class="btn btn-primary" id="loginform">로그인</button>
       </div>
       <div class="u-form-group">
         <a href="#" class="forgot-password">비밀번호를 잊으셨습니까?</a>
@@ -507,6 +507,39 @@ $("#combtn").click(function() {
 	   $("#tabs-2").append(html)
 	})
 
+</script>
+<script>
+function enterkey() {
+	if(window.event.keyCode == 13) {
+	var f = document.login;
+	//alert(f.loginid.value)
+	//alert(f.loginpass.value)
+	$.ajax({
+		url : "<c:url value='/member/loginform.mn'/>",
+		data : {
+				"id" : f.loginid.value,
+				"pass" : f.loginpass.value
+				},
+		type : "POST"
+	}).done(function(result){
+		if(result == false) {
+			swal({
+			  type: 'error',
+			  title: '아이디와 비밀번호를 다시 입력해주세요.',
+			  timer : 3000
+			}) //sweetalert
+			setTimeout(function() {
+				f.loginpass.value = "";
+				f.loginid.focus();
+				f.loginid.select();
+			}, 1500)
+		} else {
+			location.href = "<c:url value='/main/mainPage.mn'/>"
+			
+		}
+		})
+	}
+}
 </script>
 </body>
 </html>
