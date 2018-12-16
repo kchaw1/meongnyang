@@ -1,3 +1,13 @@
+.pagination>.active>a{
+	
+	    background-color: rgb(255, 194, 64) !important;
+	    border-color: rgb(255, 194, 64); 
+	
+}
+.pagination>li>a, .pagination>li>span{
+	border : none;
+	color : black;
+}
 #detailboard:hover{
 	color: rgb(255, 194, 64);
 }
@@ -33,6 +43,7 @@ td{
   text-shadow: 3px 3px 10px gray;
 font-weight: lighter;
   font-family: 'Jua', sans-serif;
+  margin-top : -33px;
 
 }
 #return{
@@ -62,7 +73,6 @@ h1 {
   letter-spacing: -2px;
   color: #222;
   margin-bottom: 0.3em;
-  margin-top: 45px;
 }
 
 p {

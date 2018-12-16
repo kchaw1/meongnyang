@@ -107,6 +107,10 @@
                   <button type="submit"  id="search-button" class="btn btn-default">검색</button>
                   
               </div>
+              <div id="wirte"> 
+                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                  <button class="btn btn-primary" id="write">글쓰기</button>
+                </div>
           </form> 
              <c:if test="${map.pageResult.count != 0 }">
                        	<input type="hidden" name="pageNo" value="1"> 
@@ -132,11 +136,6 @@
 				</div>
 		</c:if>  
                 
-              <hr>
-              <div id="wirte"> 
-                  <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                  <button class="btn btn-primary" id="write">글쓰기</button>
-                </div>
             
             </div>		
           </section>

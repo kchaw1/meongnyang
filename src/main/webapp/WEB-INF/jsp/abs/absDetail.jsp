@@ -54,14 +54,17 @@
         </header>
   <section class="content">
           <h1>경력 및 인사말</h1>
-          <h4 >
+	<div id="like">
+                   
           <button type="button" id="like-button">
             <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
-            <span id="rc" style="float:right;">like</span>
-          </button>
-              좋아요: 
-              <span class="counter" data-count="${map.b.absLikeCnt}">0</span>
-            </h4>
+<!--             <span id="rc" style="float:right;">like</span>
+ -->          </button>
+          
+	</div>
+          <h3>          
+       		       좋아요:    <span class="counter" data-count="${map.b.absLikeCnt}">0</span>
+           </h3>
           <hr> 
           <div class="DetailContainer">
                <p id="name">"${map.b.name}"</p>
@@ -87,13 +90,16 @@
 
 
         /*--------좋아요--------------*/
-        /* document.addEventListener('DOMContentLoaded', function() {
+        
+      document.addEventListener('DOMContentLoaded', function() {
          var likeButton = document.getElementById('like-button');
         likeButton.addEventListener('click', function() {
          window.lb = likeButton;
           likeButton.classList.toggle('selected');
        });
-        }, false); */ 
+        }, false);  
+        
+        
         /*좋아요 개수*/
         $('.counter').each(function() {
   var $this = $(this),
@@ -118,7 +124,7 @@
     	//--------------------------------------------------------------------------------------------------
     			var absLikeCnt = ${map.b.absLikeCnt};
     		
-    			$("#like-button").click(function(){
+    			$("#like").click(function(){
     				var LUrl = "insertLike";
     			if (likeExist == 1) {
     				LUrl = "deleteLike";
@@ -132,11 +138,11 @@
     				if (likeExist == 0){
     					likeExist=1;
     					alert("추천되었습니다.");
-    					$("#like-button").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    					$("#like").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
     				} else {
     					likeExist = 0;
     					alert("추천취소되었습니다.");
-    					$("#like-button").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+    					$("#like").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
     				}
     				like();
     				location.href="absDetail.mn?no=${map.b.no}";
@@ -162,9 +168,9 @@
     				}).done(function(result){
     					likeExist = result;
     					if (likeExist == 1){
-        					$("#like-button").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+        					$("#like").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
     					} else {
-        					$("#like-button").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg></button>Like");
+        					$("#like").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
     					}
     				})
     			}      

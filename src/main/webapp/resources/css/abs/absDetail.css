@@ -184,7 +184,7 @@ p {
 #like-button {
 
     color: #888;
-    font-size: 1em;
+    font-size: 20px;
     font-family: 'Heebo', sans-serif;
     background-color: transparent;
     border: 0.1em solid;
@@ -207,6 +207,7 @@ p {
   color: #FFF;
   background-color: indianred;
   border-color: indianred;
+      font-size: 20px;
 }
 #like-button .heart-icon {
   display: inline-block;
@@ -222,8 +223,8 @@ p{
 
 
 .DetailContainer{
-  padding: 20px; 
-
+/*   padding: 20px; 
+ */
 }
 #name{
   color: rgb(255, 194, 64) !important;

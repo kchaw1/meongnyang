@@ -69,6 +69,7 @@
 		 select *
 		   from mn_absboard
 		   where no=#{no}
+	    order by abs_no desc
 		   limit #{begin}, 10
 		   
 	</select>
