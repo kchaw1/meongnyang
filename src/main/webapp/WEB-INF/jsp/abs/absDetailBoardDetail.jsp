@@ -186,7 +186,7 @@
     						"abscContent" :  $('.status-box').val(),
     						"absWriter" : "${user.id}",
     						"absNo" : "${map.b.absNo}",
-    						"no" : "${param.no}"
+    						"no" : "${user.no}"
     						   },
     						type : "POST"
     				}).done(function(result){
@@ -225,18 +225,36 @@
     				console.log(result);
     				$("ul.posts").html("");
     					for(let i=0; i<result.length; i++){
-    						console.log("${map.b.absWriter}");
-    						console.log("${user.id}");
+    						console.log("A + ${map.b.absWriter}");
+    						console.log("b " + result[i].absWriter);
+    						console.log("C+ ${user.id}");
+    						console.log("D: +${user.no}")
+    						console.log("param.no +${param.no}");
+    						
+    						if("${param.no}" == result[i].no ){
+    							
   			  					$("ul.posts").append(
-									"<li class='comment' data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
+									"<li class='comment' data-no="+result[i].no+" data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
 									+""
-									+result[i].absWriter+"반려인 의 한마디:"  
+									+"행동전문가의 한마디:"  
 									+ result[i].abscContent
 									+"<br>"
 									+"<p id='commentDate'>"+result[i].abscRegDate+"</p>"
 	                           		+"<a href=" + result[i].abscNo + " data-writer=" + result[i].absWriter + "><span id='deleteicon' class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>"
 									+"</li>"
   			  					);
+    						}else{
+    							$("ul.posts").append(
+    									"<li class='comment'  data-no="+result[i].no+" data-writer=" + result[i].absWriter + " data-no=" + result[i].abscNo +">"
+    									+""
+    									+result[i].absWriter+" 한마디:"  
+    									+ result[i].abscContent
+    									+"<br>"
+    									+"<p id='commentDate'>"+result[i].abscRegDate+"</p>"
+    	                           		+"<a href=" + result[i].abscNo + " data-writer=" + result[i].absWriter + "><span id='deleteicon' class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>"
+    									+"</li>"
+      			  					);
+    						}
     			         	
     					}
     			})            	 
