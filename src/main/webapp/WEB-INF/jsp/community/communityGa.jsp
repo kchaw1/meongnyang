@@ -426,7 +426,7 @@ display:inline-block;
   border-left: 1.5px solid #fbf3f3;
   border-right: 1.5px solid #fbf3f3;
   border-bottom: 1.5px solid #fbf3f3;
-   width: 570px;
+       width: 544px;
    height: 30px;
    outline: none;
    font-size: 17px;
@@ -448,6 +448,9 @@ heigth : 209px;
 
 p {
    margin: 0 0 0; 
+}
+.enterBtn{
+float: left;
 }
 
    
@@ -496,7 +499,7 @@ p {
                 <div class="modal-body">
                     <div class = "galleryDetailContainer">
                         <div class = "forImgList">
-             
+             					<!-- 이곳에 컨텐츠 -->
                         </div>
                         <div class = "forHr">
                             <div class = "galleryDetailBox">
@@ -507,17 +510,17 @@ p {
                         <div class = "forComment">
                             <div class = "forComment2">
                                 <div class = "forComment3">
-                                    <div>
-                                            <div class = "userName2">qudrhks258 <span class = "forPoint">·</span> </div>
-                                            <div class = "commentList">하하하하하하하하</div>  
-                                    </div>        
+                                         
+                                         <!-- 이곳에 댓글 -->
                                 </div> 
                             </div>
                             <div class = "commentWriteForm">
-                                    <form>
-                                        <input type = "textarea" class= "inputTypeTextArea"/>
+                                    <form id = "formTag" method = "POST">
+                                        <textarea name = "comcContent" class= "inputTypeTextArea"></textarea><button class ="enterBtn" onclick = "insertComment()">등록</button>
+                                        <input type="hidden" name="comcWriter" value="${user.id}" />
+                            			
                                     </form>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -529,22 +532,6 @@ p {
  <!-- 낭만 코양이 푸터 -->
  
  <script>
- function detailFunction(comNo){
-	 $.ajax({
-		 url : "<c:url value = '/community/detailPage2.mn'/>",
-		 type : "POST",
-		 data : {comNo : comNo}
-		 
-	 }).done(function(comBoard){
-		 console.log(comBoard.comContent);
-		 $(".forImgList").html(comBoard.comContent);
-		 
-	 });
-		
- }
-
-
- 
  $(function(){
 		//모든 content 클래스를 갖고있는 친구들 갖고오기
 		var contentList = document.querySelectorAll(".imgContainer");
@@ -555,6 +542,7 @@ p {
 			
 			$content = $(content);
 			console.log($content);
+			var length;
 			length = $content.find("img").length;
 			
 			var imgTag = $content.find("img");
@@ -574,7 +562,79 @@ p {
 	
 
 			
-	}); 
+	});
+ 
+ 
+ //게시판 조회
+ function detailFunction(comNo){
+	 
+	 
+	 $.ajax({
+		 url : "<c:url value = '/community/detailPage2.mn'/>",
+		 type : "POST",
+		 data : {comNo:comNo}
+		 
+	 }).done(function(comBoard){
+		 console.log(comBoard.comContent);
+		 $(".forImgList").html(comBoard.comContent);
+		 var text = "";
+		 text = "<input type='hidden' id = 'forcomNo' class = ''"+comBoard.comNo+"' name='comNo' value='"+comBoard.comNo+"'/>"
+		 $("#formTag").append(text);
+		 
+		 
+	 });
+	
+	 commentList(comNo);
+	 
+
+ }
+ 
+ 
+ 
+ //갤러리 댓글 조회
+  function commentList(comNo){
+	 $.ajax({
+			url : "<c:url value = '/community/selectComment.mn'/>",
+			type : "POST",
+			data : {comNo:comNo}
+			
+		}).done(function(result){
+		
+			var text = "";
+			for(let i = 0; i < result.length; i++){
+				
+				text +="<div>"
+	            	 +"<div class = 'userName2'>"+result[i].comcWriter+"<span class = 'forPoint'>·</span></div>"
+	            	 +"<div class = 'commentList'>"+result[i].comcContent+"</div>"
+	            	/*  +"<div class = 'commentRegDate'>"+result[i].comcRegDate+"</div>" */
+	            	 +"</div>"
+			}
+ 			$(".forComment3").html(text);
+		});
+ }
+ 
+ //댓글 등록
+ 
+ function insertComment(){
+	
+	 $.ajax({
+			url : "<c:url value = '/community/insertComment.mn'/>",
+			type : "POST",
+			data : $("#formTag").serialize()
+		}).done(function(result){
+			 var comNo = $("#forcomNo").attr("class");
+			commentList(comNo);
+		});
+	 
+ }
+
+
+ 
+
+
+
+ 
+
  
  
  

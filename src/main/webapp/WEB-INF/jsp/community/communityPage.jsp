@@ -208,6 +208,7 @@ function forAllBtn(){
 				
 				$content = $(content);
 				console.log($content);
+				var length;
 				length = $content.find("img").length;
 				
 				var imgTag = $content.find("img");
