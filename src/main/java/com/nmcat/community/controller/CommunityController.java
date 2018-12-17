@@ -116,9 +116,13 @@ public class CommunityController {
 	}
 	@RequestMapping("/detailPage2.mn")
 	@ResponseBody
-	public void detail2(Model model, int comNo)throws Exception{
-		System.out.println(comNo);
-		model.addAttribute("communityBoard", service.detailBoard(comNo));
+	public CommunityBoard detail2(int comNo)throws Exception{
+		
+		CommunityBoard comBoard = new CommunityBoard();
+		comBoard = service.detailBoard(comNo);
+		return comBoard;
+		
+	
 		
 	
 	}
@@ -250,7 +254,7 @@ public class CommunityController {
 			}
 			file.transferTo(img);
 			//service.uploadFile(ef);
-			cFile.setUrl("http://localhost:8000"+ uploadPath + datePath +"/"+ fileSysName);
+			cFile.setUrl("https://localhost:8000"+ uploadPath + datePath +"/"+ fileSysName);
 
 		}
 		//source="org.eclipse.jst.jee.server:cityFarmer"
