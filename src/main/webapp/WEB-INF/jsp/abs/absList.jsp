@@ -68,9 +68,10 @@ slideEl.flickity({
 	pauseAutoPlayOnHover: false
 });
 
-function doDetail(no) {
+function doDetail(no, name) {
     var left = (screen.width-1000) /2
        var top = (screen.height-700) /2
+
    window.open("absDetailMain.mn?no="+no, "Detail", "width=1000, height=700, left="+left+", top="+top);
 }
 

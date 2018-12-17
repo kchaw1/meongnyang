@@ -14,6 +14,9 @@
      <!-- 리스트 css -->
     <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetailBoardWrite.css"/>">
   
+  <!-- sweetalert -->
+	<script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
+	<link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 
       <!--섬머노트-->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
@@ -51,7 +54,7 @@
           </div>
         </header>
         
-       	  <form action="write.mn" method="post">
+       	  <form action="write.mn" method="post" id="qnawrite">
         <section class="content">
           <h1>질문 하기</h1>
           <hr>
@@ -67,7 +70,7 @@
           <div class="smt" style="z-index: 110">
 	            <textarea name="absContent" id="summernote" value=""></textarea>
           </div>
-    	      <button  class="btn btn-primary" id="write">작성완료</button>
+    	      <button type="button" class="btn btn-primary" id="write">작성완료</button>
 
           </section>
 
@@ -130,6 +133,33 @@
           		}
           	})//ajax
           }
+          
+          $("button#write").click(function(){
+        	  var form = $("#qnawrite")
+        	  $.ajax({
+				   url : "<c:url value='/point/usewriteqna.mn'/>",
+				   data : {
+					   id : "${user.id}",
+					   minusPoint : 1000,
+					   minusUse : "1",
+					   fees : 100,
+					   absId : "${param.id}"
+				   },
+				   type : "POST"
+			   }).done(function(resultSum){
+				   var resultSum = String(resultSum).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				   swal({
+					   type: 'success',
+					   title: resultSum + " 포인트 남았습니다.",
+					   showConfirmButton: false,
+					   timer: 2500
+					 });
+				   setTimeout(function(){
+					   form.submit();
+					}, 2500);
+			   }) //minus ajax.. 
+			   
+          })
         </script>
 </body>
 </html>

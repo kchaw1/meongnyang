@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- sweetalert -->
+	<script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>
+	<link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
     
   
     <!-- 게시판 css -->
@@ -146,9 +149,43 @@
           $('nav').fadeToggle(200);
         
         }) 
+        
         $("#write").click(function(){
-            	 location.href="absDetailBoardWrite.mn?no="+${map.a.no};
-             }) 
+        	Swal({
+    			title: '정말 ${param.name}님께 <br>질문글을 작성 하시겠습니까?',
+    			text: "글 작성 시, 1,000 포인트가 차감됩니다.",
+    			type: 'warning',
+    			showCancelButton: true,
+    			confirmButtonColor: '#3085d6',
+    			cancelButtonColor: '#d33',
+    			confirmButtonText: '네 연결해주세요!',
+    			cancelButtonText : "아니요, 취소할게요.."
+    		}).then((result) => {
+    			if(result.value){
+    				$.ajax({
+						url : "<c:url value='/point/checkpoint.mn'/>",
+						data : "id=${user.id}",
+						type : "POST"
+					}).done(function(totalSum){
+					console.log(totalSum)
+					console.log(totalSum >1000)
+					if(totalSum >= 1000){
+						//보유 포인트가 1000 이상일때 실행..
+						location.href="absDetailBoardWrite.mn?no=${map.a.no}&id=${map.a.id}"; 
+					} else if(totalSum < 1000){
+						swal({
+							  type: 'error',
+							  title: '포인트가 모자라요...',
+							  text: totalSum+ " 포인트 밖에 없어요..",
+							  showConfirmButton: false,
+							  timer: 2500
+							}); // swal	
+		    			} //if-else
+		        }) //ajax-done
+		    }
+    		})
+        });
+        
        $("div > ul.pagination > li > a").click(function(e){
 				e.preventDefault();
 		

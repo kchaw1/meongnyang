@@ -30,7 +30,7 @@ public class PointController {
 		return service.checkPoint(id);
 	}
 	
-	@RequestMapping("/usefacechat.mn")
+	@RequestMapping(value={"/usefacechat.mn", "/usewriteqna.mn"})
 	@ResponseBody
 	public int usePointforFaceChat(PointMinus minus) {
 		System.out.println("minus : " +minus);

@@ -47,7 +47,7 @@
                   </form>
                 </li>
                 <li>
-                  <a href="absDetailBoard.mn?no=${map.b.no}">질문게시판</a>
+                  <a href="absDetailBoard.mn?no=${map.b.no}&name=${map.b.name}&id=${map.b.id}">질문게시판</a>
                 </li>
               </ul>
             </nav>
@@ -60,15 +60,16 @@
               <h2>경력 및 <span>인사말</span></h2>
             </figcaption><a href="absDetail.mn?no=${map.b.no}"></a>
           </figure>
-          <figure class="snip1091 green" id="dofacechat"><img src="http://img.hankyung.com/photo/201707/01.14272892.1.png" alt="sq-sample14" />
+          <figure class="snip1091 green" id="dofacechat"><img src="<c:url value="/resources/img/abs/dog-chat.png"/>" alt="sq-sample14" />
+          
             <figcaption>
               <h2>전문가와 <span>화상채팅</span></h2>
             </figcaption><a href="#" id="dofacechat"></a>
           </figure>
-          <figure class="snip1091 navy"><img src="https://post-phinf.pstatic.net/MjAxNzA5MjBfNTcg/MDAxNTA1ODgzNTk1MDcz.HLD5l_7_XzGcU2Q7pwZAmAAJeIEjmhud7ZbqMOcq-Fsg.G4FlzFGc6wjF03jSb9wXnUNft913XACg_gkKahR8dgUg.JPEG/ask-questions.jpg?type=w1200" alt="sq-sample10" />
+          <figure class="snip1091 navy"><img src="<c:url value="/resources/img/abs/dog-qna2.png"/>" alt="sq-sample10" />
             <figcaption>
               <h2>질문 <span>게시판</span></h2>
-            </figcaption><a href="absDetailBoard.mn?no=${map.b.no}"></a>
+            </figcaption><a href="absDetailBoard.mn?no=${map.b.no}&name=${map.b.name}&id=${map.b.id}"></a>
           </figure>
             </section>
         <script>
