@@ -501,7 +501,7 @@ p {
                 <div class="modal-body">
                     <div class = "galleryDetailContainer">
                         <div class = "forImgList">
-                        ${communityBoard.comContent}
+                      
                         </div>
                         <div class = "forHr">
                             <div class = "galleryDetailBox">
@@ -543,11 +543,15 @@ p {
  <script>
  function detailFunction(comNo){
 	 $.ajax({
-		 url : "<c:url value = '/community/detailPage.mn'/>",
+		 url : "<c:url value = '/community/detailPage2.mn'/>",
 		 type : "POST",
 		 data : {comNo : comNo}
 		 
-	 })
+	 }).done(function(comBoard){
+		 console.log(comBoard.comContent);
+		 $(".forImgList").html(comBoard.comContent);
+		 
+	 });
 		
  }
 
