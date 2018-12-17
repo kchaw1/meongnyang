@@ -13,6 +13,7 @@ import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsPageResult;
 import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
 
@@ -75,7 +76,7 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public void write(QnABoard qnaboard,AbsBoardFile file,Abs abs) {
+	public void write(QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory) {
 		System.out.println(qnaboard);
 		absMapper.insertAbsBoard(qnaboard);
 		file.setAbsNo(qnaboard.getAbsNo());		
@@ -83,7 +84,10 @@ public class AbsServiceImpl implements AbsService{
 		
 		//포인트
 		absMapper.pointUse(abs);
-
+		
+		//활동점수 추가
+		absMapper.updateScore(abs);
+		absMapper.insertScoreHis(scoreHistory);
 	}
 
 	@Override
@@ -140,8 +144,12 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public List<AbsComment> writeComment(AbsComment comment) {
+	public List<AbsComment> writeComment(AbsComment comment,Abs abs, ScoreHistory scoreHistory) {
+		abs.setId(comment.getAbsWriter());
+		scoreHistory.setId(comment.getAbsWriter());
 		absMapper.insertComment(comment);
+		absMapper.updateScoreComment(abs);
+		absMapper.insertCommentScoreHis(scoreHistory);
 		return absMapper.selectCommentListByabsNo(comment.getAbsNo());
 	}
 

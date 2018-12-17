@@ -8,6 +8,7 @@ import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsService {
@@ -21,7 +22,7 @@ public interface AbsService {
 	Map<String, Object> absboardlist(int no, int pageNo);
 	
 
-	void write(QnABoard qnaboard,AbsBoardFile file,Abs abs);
+	void write(QnABoard qnaboard,AbsBoardFile file,Abs abs,  ScoreHistory scoreHistory);
 	
 	Map<String, Object> absBoardDetail(int absNo, int no); //질문게시판 상세
 	void absBoardDelete(int absNo);
@@ -35,7 +36,7 @@ public interface AbsService {
 	
 	List<AbsComment> listComment(int absNo);
 
-	List<AbsComment> writeComment(AbsComment comment);
+	List<AbsComment> writeComment(AbsComment comment, Abs abs, ScoreHistory scoreHistory);
 
 	List<AbsComment> deleteComment(AbsComment comment);
 
@@ -52,6 +53,7 @@ public interface AbsService {
 */
 
 	Map<String, Object> AbsBoardSearch(AbsSearchVO absSearch, int no, int pageNo);
+
 
 
 

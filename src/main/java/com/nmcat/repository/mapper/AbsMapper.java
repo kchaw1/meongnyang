@@ -7,6 +7,7 @@ import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 
 public interface AbsMapper {
@@ -66,5 +67,12 @@ public interface AbsMapper {
 	List<QnABoard> selectAbsBoard(QnABoard board);
 
 	void pointUse(Abs abs); // 질문게시판 질문등록시 포인트사용
+	
+	void updateScore(Abs abs);
+	void updateScoreComment(Abs abs);
+	
+	void insertScoreHis(ScoreHistory scoreHistory);
+	void insertCommentScoreHis(ScoreHistory scoreHistory);
+
 
 }

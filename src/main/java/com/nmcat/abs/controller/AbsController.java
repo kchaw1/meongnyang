@@ -30,6 +30,7 @@ import com.nmcat.repository.domain.AbsSearchVO;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 
 @RequestMapping("/abs")
@@ -92,14 +93,15 @@ public class AbsController {
 	}
 	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")
-	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file,Abs abs)throws Exception {
+	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory)throws Exception {
 		qnaboard.setAbsWriter(form.getAbsWriter());
 		qnaboard.setAbsTitle(form.getAbsTitle());
 		qnaboard.setAbsContent(form.getAbsContent());
 		file.setAbsfSysName(form.getSysName());
 		file.setAbsfPath(form.getPath());
 		abs.setId(form.getAbsWriter());
-		absService.write(qnaboard,file,abs);
+		scoreHistory.setId(form.getAbsWriter());
+		absService.write(qnaboard,file,abs, scoreHistory);
 		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
 
 	}
@@ -180,8 +182,8 @@ public class AbsController {
 	//댓글 쓰기
 	@PostMapping("/comment/write.mn")
 	@ResponseBody
-	public List<AbsComment> writeComment(AbsComment comment) throws ParseException {
-		return convertDate(absService.writeComment(comment));
+	public List<AbsComment> writeComment(AbsComment comment ,Abs abs, ScoreHistory scoreHistory) throws ParseException {
+		return convertDate(absService.writeComment(comment, abs, scoreHistory));
 	}
 	//댓글 삭제
 	@PostMapping("/comment/delete.mn")

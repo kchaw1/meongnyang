@@ -48,6 +48,14 @@
 		<result column="absc_reg_date" property="abscRegDate"/>
 	</resultMap>
 	
+	<resultMap id="scoreHisMap" type="ScoreHistory">
+		<result column="score_no" property="scoreNo"/>
+		<result column="id" property="id"/>
+		<result column="score_type" property="scoreType"/>
+		<result column="score_date" property="scoreDate"/>
+		<result column="score_plus" property="scorePlus"/>
+	
+	</resultMap> 
 	
 	<!-- 행동전문가 리스트 보여주기 -->
 	<select id="selectAbsList"  parameterType="Abs" resultMap="absMap">
@@ -224,4 +232,33 @@
 		   set point=point-500
 		 where id=#{id}  
 	</update>
+	
+	<!-- 활동점수 게시글-->
+	<update id="updateScore" parameterType="Abs">
+		update mn_member
+			set score = score + 50
+			where id = #{id}
+	</update>
+	
+	<!-- 활동점수 댓글 -->
+	<update id="updateScoreComment" parameterType="Abs">
+		update mn_member
+			set score = score + 30
+			where id = #{id}
+	</update>
+
+	<!-- 활동점수 히스토리 -->
+	<insert id="insertScoreHis" parameterType="ScoreHistory">
+	insert into mn_score_history
+			  (id, score_type, score_date, score_plus)
+	    values(#{id}, 3, now(), 50);
+	</insert>
+	
+	<!-- 활동점수 히스토리(댓글) -->
+	<insert id="insertCommentScoreHis" parameterType="ScoreHistory">
+	insert into mn_score_history
+			  (id, score_type, score_date, score_plus)
+	    values(#{id}, 2, now(), 30);
+	</insert>
+	
 </mapper>

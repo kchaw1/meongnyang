@@ -10,4 +10,5 @@ public class ScoreHistory {
 	private String id;
 	private String scoreType;
 	private Date scoreDate;
+	private String scorePlus;
 }
