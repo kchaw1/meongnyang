@@ -494,9 +494,45 @@ p {
 
 
           <!--모달 부분-->
-          <div class = "modalPlace">
-          
-          </div>
+          <div class="modal  fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!--사진 들어가는부분-->
+                <div class="modal-body">
+                    <div class = "galleryDetailContainer">
+                        <div class = "forImgList">
+                        ${communityBoard.comContent}
+                        </div>
+                        <div class = "forHr">
+                            <div class = "galleryDetailBox">
+                                <div class = "userName">qudrhks258님의 <span>1</span>번째 게시물</div>
+                                <div class="heart"></div>
+                            </div> 
+                        </div>
+                        <div class = "forComment">
+                            <div class = "forComment2">
+                                <div class = "forComment3">
+                                    <div>
+                                            <div class = "userName2">qudrhks258 <span class = "forPoint">·</span> </div>
+                                            <div class = "commentList">하하하하하하하하</div>  
+                                    </div>        
+                                </div> 
+                            </div>
+                            <div class = "commentWriteForm">
+                                    <form>
+                                        <input type = "textarea" class= "inputTypeTextArea"/>
+                                    </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
 
 
 
@@ -505,47 +541,16 @@ p {
  <!-- 낭만 코양이 푸터 -->
  
  <script>
- 
  function detailFunction(comNo){
-	 
-	 console.log(comNo+"번째 갤러리 게시글 입니다.");
 	 $.ajax({
 		 url : "<c:url value = '/community/detailPage.mn'/>",
 		 type : "POST",
-		 data : {comNo : comNo} 
+		 data : {comNo : comNo}
 		 
-	 }).done(function(result){
-	//여기에 모달 해놓기!
-		 var text = "";
-         text += "<div class='modal  fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
-               +"<div class='modal-dialog'>"
-               +"<div class='modal-content'>"
-               +"<div class='modal-body'>"
-               +"<div class = 'galleryDetailContainer'>"
-               +""
-               /* +"<img src='./img/이유비.PNG' width='601'>" */
-               +"<div class = 'forHr'>"
-               +"<div class = 'galleryDetailBox'>"
-               +"<div class = 'userName'>qudrhks258님의 <span>1</span>번째 게시물</div>"
-               +"<div class='heart'></div>"
-               +"</div></div>"
-               +"<div class = 'forComment'>"
-               +"<div class = 'forComment2'>"
-               +"<div class = 'forComment3'><div>"
-               +"<div class = 'userName2'>qudrhks258 <span class = 'forPoint'>·</span></div>"
-               +"<div class = 'commentList'>하하하하하하하하</div>"  
-               +"</div></div></div><div class = 'commentWriteForm'>"
-               +"<form>"
-               +"<input type = 'textarea' class= 'inputTypeTextArea'/>"
-               +"</form>"
-               +"</div></div></div></div></div></div>"
-		 
-               
-               $(".modalPlace").html(text);
 	 })
-	 
-	 
+		
  }
+
 
  
  $(function(){

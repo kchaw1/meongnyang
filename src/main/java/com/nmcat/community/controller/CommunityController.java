@@ -107,7 +107,17 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/detailPage.mn")
+	
 	public void detail(Model model, int comNo)throws Exception{
+		System.out.println(comNo);
+		model.addAttribute("communityBoard", service.detailBoard(comNo));
+		
+	
+	}
+	@RequestMapping("/detailPage2.mn")
+	@ResponseBody
+	public void detail2(Model model, int comNo)throws Exception{
+		System.out.println(comNo);
 		model.addAttribute("communityBoard", service.detailBoard(comNo));
 		
 	
