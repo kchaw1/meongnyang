@@ -220,10 +220,13 @@ div.modal-header {
             <div class="main-title">내 활동</div>
             <div class="seperator"></div>
             <div id="tabs">
+            <form name="active" action="<c:url value='/mypageGen/comment.mn'/>" method="post">
+                    <input type="hidden" name="tab">
                     <ul style="background:none;">
-                        <li><a href="#tabs-1">내가 쓴 게시글</a></li>
-                        <li><a href="#tabs-2">내가 쓴 댓글</a></li>
+                        <li><a href="#tabs-1" onclick="tab1();">내가 쓴 게시글</a></li>
+                        <li><a href="#tabs-2" onclick="tab2();">내가 쓴 댓글</a></li>
                     </ul>
+                    <c:if test="${empty param.tab or param.tab == 1}">
                     <div id="tabs-1">
                         <table class="table table-hover">
                             <thead>
@@ -247,7 +250,46 @@ div.modal-header {
                                 </c:forEach>                              
                             </tbody>
                         </table>
-                        <form id="searchForm">
+                        
+                        <nav>
+			<div class="text-center">
+
+				<ul class="pagination">
+					<li><a
+						<c:choose>
+      <c:when test="${beginPage!=1}">href="activity.mn?pageNo=${beginPage-1}"</c:when>
+      <c:otherwise>href="#"</c:otherwise>
+	    </c:choose>
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+					<c:forEach var="i" begin="${beginPage}" end="${endPage}">
+						<li><a
+							<c:choose>
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/activity.mn"}'>
+    href="<c:url value='activity.mn?pageNo=${i-1}' />"
+    </c:when> 
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/activity.mn"}'>
+    href="activity.mn?pageNo=${i}"
+    </c:when>
+    <c:otherwise>
+     href="activity.mn?pageNo=${i}"
+     </c:otherwise>
+      </c:choose>>
+
+								${i}</a></li>
+					</c:forEach>
+
+					<li><a
+						<c:choose>
+      <c:when test="${endPage != lastPage}"> href="activity.mn?pageNo=${endPage+1}" </c:when>
+    	<c:otherwise>href="#"</c:otherwise>
+    	</c:choose>
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+	
                             <div id="search">
                                 <div class="search-group">
                                     <select id="serchType" name="serchType" class="form-search">
@@ -259,8 +301,10 @@ div.modal-header {
                                     <button type="submit" id="searchBtn" class="searchBtn btn-default">검색</button>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
+                    </c:if>
+                    <c:if test="${param.tab == 2}" >
                     <div id="tabs-2">
                         <table class="table table-hover">
                             <thead>
@@ -280,7 +324,46 @@ div.modal-header {
                               </c:forEach>
                             </tbody>
                         </table>
-                        <form id="searchForm">
+                        
+                        <nav>
+			<div class="text-center">
+
+				<ul class="pagination">
+					<li><a
+						<c:choose>
+      <c:when test="${beginPage!=1}">href="comment.mn?pageNo=${beginPage-1}&tab=2"</c:when>
+      <c:otherwise>href="#"</c:otherwise>
+	    </c:choose>
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+					<c:forEach var="i" begin="${beginPage}" end="${endPage}">
+						<li><a
+							<c:choose>
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/comment.mn"}'>
+    href="<c:url value='comment.mn?pageNo=${i-1}&tab=2' />"
+    </c:when> 
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/comment.mn"}'>
+    href="comment.mn?pageNo=${i}&tab=2"
+    </c:when>
+    <c:otherwise>
+     href="comment.mn?pageNo=${i}&tab=2"
+     </c:otherwise>
+      </c:choose>>
+
+								${i}</a></li>
+					</c:forEach>
+
+					<li><a
+						<c:choose>
+      <c:when test="${endPage != lastPage}"> href="minusPoint.mn?pageNo=${endPage+1}&tab=2" </c:when>
+    	<c:otherwise>href="#"</c:otherwise>
+    	</c:choose>
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+
                             <div id="search">
                                 <div class="search-group">
                                     <select id="serchType" name="serchType" class="form-search">
@@ -290,13 +373,34 @@ div.modal-header {
                                     <button type="submit" id="searchBtn" class="searchBtn btn-default">검색</button>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
+                    </c:if>
+                    </form>
                 </div>
 
       </div>
     </div>
 <c:import url="activityJS.jsp" />
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
+<script>
+function tab1() {
+	
+	document.active.tab.value=1
+	document.active.action = "<c:url value='/mypageGen/activity.mn'/>";
+	document.active.submit();
+}
+
+function tab2() {
+	
+	document.active.tab.value=2
+	document.active.action = "<c:url value='/mypageGen/comment.mn'/>";
+	document.active.submit();
+}
+$("#tabs").tabs({active: 0});
+if("${param.tab}" == "2") {
+	$("#tabs").tabs({active: 1});
+}
+</script>
 </body>
 </html>

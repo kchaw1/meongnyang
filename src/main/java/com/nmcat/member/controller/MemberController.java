@@ -151,9 +151,9 @@ public class MemberController {
 		if(service.selectHistory(login.getId()) == 1) {
 			service.updqteScore(login.getId());
 			scoreService.updateGradeNo(login.getId());
+			scoreService.insertLoginScoreHistory(login.getId());
 		}
 
-		scoreService.insertLoginScoreHistory(login.getId());
 
 		System.out.println("loginscore : " + login.getId());
 		System.out.println("loginpass : " + login.getPass());

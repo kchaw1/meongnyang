@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.nmcat.member.service.MemberService;
 import com.nmcat.point.serivce.PointService;
@@ -48,11 +49,57 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("activity.mn")
-	public void activity(Model model, HttpSession session) {
+	public void activity(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
+		Page2 page = new Page2();
+		page.setPageNo(pageNo);
+		page.setId(member.getId());
+
+		int count = service.selectComCount(member.getId());
+		int lastPage = (int) Math.ceil(count / 10d);
+
+		// 페이지 블럭 시작
+		int pageSize = 10;
+		int currTab = (pageNo - 1) / pageSize + 1;
+		// 11번 부터 2페이지가 되는것
+		int beginPage = (currTab - 1) * pageSize + 1;
+		int endPage = currTab * pageSize < lastPage ? currTab * pageSize : lastPage;
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
-		model.addAttribute("myBoardList", service.selectMyBoard(member.getId()));
-		model.addAttribute("myComment", service.selectMyComment(member.getId()));
+		model.addAttribute("myBoardList", service.selectComPage(page));
+		/*model.addAttribute("myComment", service.selectMyComment(member.getId()));*/
+	}
+	
+	@RequestMapping("comment.mn")
+	public String comment(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		Page2 page = new Page2();
+		page.setPageNo(pageNo);
+		page.setId(member.getId());
+
+		int count = service.selectCommentCount(member.getId());
+		int lastPage = (int) Math.ceil(count / 10d);
+
+		// 페이지 블럭 시작
+		int pageSize = 10;
+		int currTab = (pageNo - 1) / pageSize + 1;
+		// 11번 부터 2페이지가 되는것
+		int beginPage = (currTab - 1) * pageSize + 1;
+		int endPage = currTab * pageSize < lastPage ? currTab * pageSize : lastPage;
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+		/*model.addAttribute("myBoardList", service.selectMyBoard(member.getId()));*/
+		model.addAttribute("myComment", service.selectCommentPage(page));
+		
+		return "mypageGen/activity";
 	}
 	
 	@RequestMapping("edit.mn")
@@ -130,12 +177,13 @@ public class MyPageController {
 	 
 	// 포인트
 	@RequestMapping("point.mn")
-	public void point(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session ) {
+	public void pointPlus(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session ) {
 		Member member = (Member)session.getAttribute("user");
 		Page2 page = new Page2();
 		page.setPageNo(pageNo);
+		page.setId(member.getId());
 
-		int count = pointService.selectPageCount();
+		int count = pointService.selectPageCount(member.getId());
 		int lastPage = (int) Math.ceil(count / 10d);
 
 		// 페이지 블럭 시작
@@ -150,8 +198,39 @@ public class MyPageController {
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
-		model.addAttribute("pluspoint", pointService.selectAddPoint(member.getId()));
-		model.addAttribute("minuspoint", pointService.selectMinusPoint(member.getId()));
+		model.addAttribute("pluspoint", pointService.selectPagePoint(page));
+		/*model.addAttribute("minuspoint", pointService.selectMinusPage(page));*/
+		/*model.addAttribute("minuspoint", pointService.selectMinusPoint(member.getId()));*/
+	}
+	
+	@RequestMapping("minusPoint.mn")
+	public String pointMinus(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, Model model, HttpSession session ) {
+		Member member = (Member)session.getAttribute("user");
+		Page2 page = new Page2();
+		page.setPageNo(pageNo);
+		page.setId(member.getId());
+
+		int count = pointService.selectMinusCount(member.getId());
+		int lastPage = (int) Math.ceil(count / 10d);
+
+		// 페이지 블럭 시작
+		int pageSize = 10;
+		int currTab = (pageNo - 1) / pageSize + 1;
+		// 11번 부터 2페이지가 되는것
+		int beginPage = (currTab - 1) * pageSize + 1;
+		int endPage = currTab * pageSize < lastPage ? currTab * pageSize : lastPage;
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+		/*model.addAttribute("pluspoint", pointService.selectPagePoint(page));*/
+		model.addAttribute("minuspoint", pointService.selectMinusPage(page));
+		/*model.addAttribute("minuspoint", pointService.selectMinusPoint(member.getId()));*/
+		
+		return "mypageGen/point";
+		
 	}
 	
 	@RequestMapping("grade.mn")
@@ -160,4 +239,9 @@ public class MyPageController {
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 	}
 	
+	/*@RequestMapping("deleteChek")
+	public String delete(int no) throws Exception {
+		pointService.deletePlus(no);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "point.mn";
+	}*/
 }

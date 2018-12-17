@@ -8,6 +8,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Page2;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MemberMapper {
@@ -56,5 +57,17 @@ public interface MemberMapper {
 	
 	/********내가 쓴 댓글************/
 	List<CommunityComment> selectMyComment(String id);
+	
+	/*******내 활동(게시물 페이징)********/
+	List<CommunityBoard> selectComPage(Page2 page2);
+	
+	/************내 활동(게시물 전체 수 )**************/
+	int selectComCount(String comWriter);
+	
+	/**********내 활동(코멘트 페이징)*************/
+	List<CommunityComment> selectCommentPage(Page2 page2);
+	
+	/************내 활동(코멘트 전체 수)************/
+	int selectCommentCount(String id);
 	
 } // end class

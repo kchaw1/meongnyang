@@ -12,8 +12,11 @@ public interface PointService {
 	List<PointPlus> selectAddPoint(String id);
 	List<PointPlus> selectPagePoint(Page2 page2);
 	List<PointMinus> selectMinusPoint(String id);
-	int selectPageCount();
+	int selectPageCount(String id);
+	List<PointMinus> selectMinusPage(Page2 page2);
+	int selectMinusCount(String id);
 	int checkPoint(String id);
 	int usePointforFaceChat(PointMinus minus);
+	/*void deletePlus(int no);*/
 
 }

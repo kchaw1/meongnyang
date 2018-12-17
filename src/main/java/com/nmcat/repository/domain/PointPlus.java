@@ -25,6 +25,6 @@ public class PointPlus {
 			}
 			// #{begin} -> board.xml
 			public int getBegin() {
-				return (pageNo - 1) * 12;
+				return (pageNo - 1) * 10;
 			}
 } //end class

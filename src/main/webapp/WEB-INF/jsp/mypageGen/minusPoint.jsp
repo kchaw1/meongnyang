@@ -211,14 +211,12 @@ div.modal-header {
         </div>
         <br>
         <div id="tabs">
-            <form name="pointform" action="<c:url value="/mypageGen/minusPoint.mn"/>" method="post">
-            <input type="hidden" name="tab">
             <ul style="background:none;" class="tab" id="alltab">
                 <li><a href="#tabs-1" onclick="tab1();">획득 포인트</a></li>
                 <li><a href="#tabs-2" onclick="tab2();">사용 포인트</a></li>
             </ul>
-            <c:if test="${empty param.tab or param.tab == 1}">
             <div id="tabs-1">
+            <form action="<c:url value="/mypageGen/point.mn"/>" method="post">
                 <table class="table table-hover">
                 <caption>전체 ${pageResult.count}개</caption>
                     <thead>
@@ -296,10 +294,10 @@ div.modal-header {
                 <!-- <div class="deleteBtn">
                     <button type="button" id="delBtn">내역 삭제</button>
                 </div> -->
+                </form>
             </div>
-            </c:if>
-            <c:if test="${param.tab == 2}">
             <div id="tabs-2">
+            <form action="<c:url value="/mypageGen/minusPoint.mn"/>" method="post">
                 <table class="table table-hover">
                 <caption>전체 ${pageResult.count}개</caption>
                     <thead>
@@ -344,7 +342,7 @@ div.modal-header {
 				<ul class="pagination">
 					<li><a
 						<c:choose>
-      <c:when test="${beginPage!=1}">href="minusPoint.mn?pageNo=${beginPage-1}&tab=2"</c:when>
+      <c:when test="${beginPage!=1}">href="point.mn?pageNo=${beginPage-1}"</c:when>
       <c:otherwise>href="#"</c:otherwise>
 	    </c:choose>
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
@@ -352,14 +350,14 @@ div.modal-header {
 					<c:forEach var="i" begin="${beginPage}" end="${endPage}">
 						<li><a
 							<c:choose>
-   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/minusPoint.mn"}'>
-    href="<c:url value='minusPoint.mn?pageNo=${i-1}&tab=2' />"
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/point.mn"}'>
+    href="<c:url value='point.mn?pageNo=${i-1}' />"
     </c:when> 
-   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/minusPoint.mn"}'>
-    href="minusPoint.mn?pageNo=${i}&tab=2"
+   	<c:when test='${requestScope["javax.servlet.forward.request_uri"].substring(20) eq "/point.mn"}'>
+    href="point.mn?pageNo=${i}"
     </c:when>
     <c:otherwise>
-     href="minusPoint.mn?pageNo=${i}&tab=2"
+     href="point.mn?pageNo=${i}"
      </c:otherwise>
       </c:choose>>
 
@@ -368,7 +366,7 @@ div.modal-header {
 
 					<li><a
 						<c:choose>
-      <c:when test="${endPage != lastPage}"> href="minusPoint.mn?pageNo=${endPage+1}&tab=2" </c:when>
+      <c:when test="${endPage != lastPage}"> href="point.mn?pageNo=${endPage+1}" </c:when>
     	<c:otherwise>href="#"</c:otherwise>
     	</c:choose>
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
@@ -376,13 +374,12 @@ div.modal-header {
 				</ul>
 			</div>
 		</nav> 
+		</form>
      </div>
-     </c:if>
 				
                 <div class="deleteBtn">
                     <button type="button" id="delBtn">내역 삭제</button>
                 </div>
-            </form>
         </div> <!-- tab -->
     </div>
     </div>
@@ -390,24 +387,54 @@ div.modal-header {
 <c:import url="/WEB-INF/jsp/common/footer.jsp"/>
 <script>
 function tab1() {
-
-	document.pointform.tab.value=1
-	document.pointform.action = "<c:url value='/mypageGen/point.mn'/>";
-	document.pointform.submit();
-	
+	alert("tab1을 클릭");
+	location.href="<c:url value='/mypageGen/point.mn'/>";
 }
 </script>
 <script>
 function tab2() {
+	alert("tab2를 클릭");
+	location.href="<c:url value='/mypageGen/minusPoint.mn'/>";
+}
+</script>
+<script>
+/* $(document).ready(function() {
+	pointList(1);
+})
+var pointList = function(pageNo) {
+	$.ajax({
+		url: "<c:url value='/mypageGen/point.mn' />",
+		type: "POST",
+		data: {
+			"pageNo": pageNo
+		}
+	}).done(function(result) {
+		console.log(result)
+		
+		var html =""
+		if(result.pointList.length != 0) {
+			for(var i in result.pointList) {
+				html += "<tr>"
+							+ "<td>" + result.pointList[i].minusNo + "</td>"
+							+ "<td>" + result.pointList[i].minusPoint + "</td>"
+							+ "<td>"  
+								switch(result) {
+									case '1' : result.pointList[i].minusUse("행동전문가 질문");
+										break;
+									case '2' : result.pointList[i].minusUse("행동전문가 화상채팅");
+										break;
+									case '3' : result.pointList[i].minusUse("크라우드 펀딩");
+										break;
+								}
+							+ "</td>"
+							+ "<td>" + result.pointList[i].minusDate + "</td>"
+					  + "</tr>"
+			} // for
+		} // if
+		$("tbody").append(html);
+	}); // done
+} */
 
-	document.pointform.tab.value=2
-	document.pointform.action = "<c:url value='/mypageGen/minusPoint.mn'/>";
-	document.pointform.submit();
-}
-$("#tabs").tabs({active: 0});
-if("${param.tab}"== "2") {
-	$("#tabs").tabs({active: 1});
-}
 </script>
 </body>
 </html>

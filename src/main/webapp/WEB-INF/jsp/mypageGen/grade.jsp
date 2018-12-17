@@ -236,31 +236,31 @@ div.modal-header {
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/뉴비.jpg"/>" />
                         <div style="text-align: center;">
-                           	뉴비 1 ~ 499
+                           	뉴비 1 ~ 299
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/루키.png"/>" />
                         <div style="text-align: center;">
-                            	루키    500 ~ 999
+                            	루키    300 ~ 499
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/gold_i.png"/>" />
                         <div style="text-align: center;">
-                              	골드  1000 ~ 1499
+                              	골드  500 ~ 999
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/platinum_i.png"/>" />
                         <div style="text-align: center;">
-                               	플래티넘 1500 ~ 1999
+                               	플래티넘 1000 ~ 1499
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/diamond_i.png"/>" />
                         <div style="text-align: center;">
-                               	다이아 2000 ~ 
+                               	다이아 1500 ~ 
                         </div>
                     </div>
                 </div>

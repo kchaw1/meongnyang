@@ -208,6 +208,36 @@
 		where comc_writer = #{comcWriter}
 	</select>	
 	
-	<!-- 등급  -->
+	<!-- 내 활동(게시물 페이징)-->
+	<select id="selectComPage" parameterType="Page2" resultMap="comMap">
+		select * 
+		from mn_com
+		where com_writer = #{comWriter}
+		order by com_no desc
+		limit #{begin}, 10
+	</select>
+	
+	<!-- 내활동(게시물 전체 수 ) -->
+	<select id="selectComCount" parameterType="string" resultType="int">
+		select count(*)
+		from mn_com
+		where com_writer = #{comWriter}
+	</select>
+	
+	<!-- 내 활동(코멘트 페이징) -->
+	<select id="selectCommentPage" parameterType="Page2" resultMap="comcMap">
+		select *
+		from mn_com_comment
+		where comc_writer = #{comcWriter}
+		order by comc_no desc
+		limit #{begin}, 10
+	</select>
+	
+	<!-- 내 활동(코멘트 전체 수) -->
+	<select id="selectCommentCount" parameterType="string" resultType="int">
+		select count(*)
+		from mn_com_comment
+		where comc_writer = #{comcWriter}		
+	</select>
 	
 </mapper>

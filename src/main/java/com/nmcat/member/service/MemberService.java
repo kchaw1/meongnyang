@@ -9,6 +9,7 @@ import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Page2;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MemberService {
@@ -68,5 +69,17 @@ public interface MemberService {
 	
 	// 로그인 내역 카운트
 	int selectHistory(String loginId);
+	
+	// 내 활동 게시물 페이징
+	List<CommunityBoard> selectComPage(Page2 page2);
+	
+	// 내 활동 게시물 전체 수
+	int selectComCount(String comWriter);
+	
+	// 내 활동 코멘트 페이징
+	List<CommunityComment> selectCommentPage(Page2 page2);
+	
+	// 내 활동 코멘트 전체 수
+	int selectCommentCount(String id);
 	
 }

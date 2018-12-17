@@ -11,8 +11,8 @@
 	<!-- 로그인시 활동점수 내역 -->
 	<insert id="insertLoginScoreHistory" parameterType="string" >
 		insert into mn_score_history (
-			id, score_type
-		) values (#{id}, '1')
+			id, score_type, score_plus
+		) values (#{id}, '1', 10)
 	</insert>
 	
 	<!-- 활동점수 조회 -->

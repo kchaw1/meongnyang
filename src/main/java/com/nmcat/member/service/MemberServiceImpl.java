@@ -13,6 +13,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
+import com.nmcat.repository.domain.Page2;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
 import com.nmcat.repository.mapper.MemberMapper;
@@ -205,6 +206,36 @@ public class MemberServiceImpl implements MemberService{
 	public int selectHistory(String loginId) {
 		return lomapper.selectHistory(loginId);
 	}
+
+	// 내 활동(게시물 페이징)
+	@Override
+	public List<CommunityBoard> selectComPage(Page2 page2) {
+		return mapper.selectComPage(page2);
+	}
+
+	// 내 활동(게시물 전체 수 )
+	@Override
+	public int selectComCount(String comWriter) {
+		return mapper.selectComCount(comWriter);
+	}
+
+	// 내 활동(코멘트 페이징)
+	@Override
+	public List<CommunityComment> selectCommentPage(Page2 page2) {
+		return mapper.selectCommentPage(page2);
+	}
+
+	// 내 활동(코멘트 전체 수)
+	@Override
+	public int selectCommentCount(String id) {
+		return mapper.selectCommentCount(id);
+	}
+	
+	
+	
+	
+	
+	
 
 
 	

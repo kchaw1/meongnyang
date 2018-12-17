@@ -183,7 +183,7 @@
                                         <span class ="forSpan">프로필 사진 수정</span>
                                         <hr>
                                         <form name="updateProfile" enctype="multipart/form-data" method="post" action="<c:url value="/mypageGen/updateProfile.mn"/>" id="profileupdate">
-                                        <div class ="forImg"><img src="<c:url value='/common/download.mn?sysName=${member.imageName}&path=${member.imagePath}&oriName=${member.imageOriName}'/>" width="183" height="220"></div>
+                                        <div class ="forImg"><img id="img" src="<c:url value='/common/download.mn?sysName=${member.imageName}&path=${member.imagePath}&oriName=${member.imageOriName}'/>" width="183" height="220"></div>
                                         <span class ="forSpan2">이력서사진.jpg</span>
                                         <hr>
                                 <!--파일첨부 cSS-->
@@ -314,16 +314,20 @@ $("button#update").click(function(){
 })
 </script>
 <script>
-/* var p = $("#profileupdate").serialize()
-$("button#updatePro").click(function() {
-	$.ajax({
-		url: "<c:url value='/mypageGen/updateProfile.mn'/>",
-		type: "POST",
-		data: p
-	}).done(function(result){
-		console.log(result);
-	});
-}); */
+	    /* 이력서 사진 미리보기 */
+        function readURL(input) {
+           if(input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                 $("#img").attr("src", e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+           }
+        };
+        $("#file").change(function () {
+           
+           readURL(this);
+        })
 </script>
 </body>
 </html>

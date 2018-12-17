@@ -82,20 +82,44 @@ public class PointServiceImpl implements PointService{
 		return mapper.selectAddPoint(id);
 	}
 	
+	// 사용 포인트 내역
 	@Override
 	public List<PointMinus> selectMinusPoint(String id) {
 		return mapper.selectMinusPoint(id);
 	}
 
+	// 획득 포인트 페이징
 	@Override
 	public List<PointPlus> selectPagePoint(Page2 page2) {
 		return mapper.selectPagePoint(page2);
 	}
 
+	// 전체 게시물 수 
 	@Override
-	public int selectPageCount() {
-		return mapper.selectPageCount();
+	public int selectPageCount(String id) {
+		return mapper.selectPageCount(id);
 	}
+
+	// 사용 포인트 페이징 
+	@Override
+	public List<PointMinus> selectMinusPage(Page2 page2) {
+		return mapper.selectMinusPage(page2);
+	}
+
+	// 사용포인트 게시물 수 
+	@Override
+	public int selectMinusCount(String id) {
+		return mapper.selectMinusCount(id);
+	}
+
+	
+	/*@Override
+	public void deletePlus(int no) {
+		mapper.deletePlus(no);
+		
+	}*/
+	
+	
 
 
 }

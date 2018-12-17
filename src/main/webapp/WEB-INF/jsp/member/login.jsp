@@ -190,7 +190,7 @@ img {
                                <input id="file" type="file" name="profile" accept=".gif, .jpg, .png" />
                               <div class="img_wrap">
                                   <label for="image1">
-                                      <img id="img" src="<c:url value="/resources/img/member/profile.png"/>"/>
+                                       <img id="img" src="<c:url value="/resources/img/member/profile.png"/>"/> 
                                   </label>
                               </div>  
                               </div>                           
@@ -292,7 +292,7 @@ img {
 					                                        <span>프로필 사진</span><br> <input id="file2" type="file" name="profile" accept=".gif, .jpg, .png" />
 					                                        <div class="img_wraps" id="signimg">
 					                                            <label for="image1"> 
-					                                            	<img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/>
+					                                            	 <img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/> 
 					                                            </label>
 					                                        </div>
 					                                    </div>

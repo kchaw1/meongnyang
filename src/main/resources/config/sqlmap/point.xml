@@ -80,9 +80,11 @@
 		limit #{begin}, 10
 	</select>
 	
-	<select id="selectPageCount" resultType="int">
+	<!-- 획득 포인트 카운트 -->
+	<select id="selectPageCount" resultType="int" parameterType="string">
 		select count(*)
 		 from mn_point_plus
+		   where id = #{id}
 	</select>
 	
 	<!-- 사용 포인트 -->
@@ -92,5 +94,28 @@
 		where id = #{id}
 		order by minus_date desc
 	</select>
+	
+	<!-- 사용포인트 페이징  -->
+	<select id="selectMinusPage" parameterType="Page2" resultMap="minusMap">
+		select *
+		from mn_point_minus
+		where id = #{id}
+		order by minus_no desc
+		limit #{begin}, 10
+	</select>
+	
+	<!-- 사용포인트 카운트 -->
+	<select id="selectMinusCount" parameterType="string" resultType="int">
+		select count(*)
+		from mn_point_minus
+		where id = #{id}
+	</select>
+	
+	<!-- 획득 포인트 내역 삭제 -->
+	<!-- <delete id="deletePlus" parameterType="int">
+		delete
+		from mn_point_plus
+		where plus_no = #{plusNo}
+	</delete> --> 
 	
 </mapper>
