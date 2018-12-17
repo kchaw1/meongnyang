@@ -365,7 +365,8 @@ div.modal-body {
   .modal-dialog {
     display:inline-flex;
     width: 600px;
-    margin: 30px auto;
+    margin-left: 30.5%;
+    margin-top: 113px;
 }
 .commentCnt{
     width : 100%;
@@ -404,8 +405,8 @@ display:inline-block;
 
 }
 .commentList{
-    float: left;
-    width: 467px;
+  float: left;
+    width: 464px;
     height: 27px;
     margin-left: 4px;
     margin-top: 10px;
@@ -539,8 +540,10 @@ p {
                +"</form>"
                +"</div></div></div></div></div></div>"
 		 
-		 
+               
+               $(".modalPlace").html(text);
 	 })
+	 
 	 
  }
 
@@ -575,6 +578,29 @@ p {
 
 			
 	}); 
+ 
+ 
+ 
+$(function() {
+     $(".heart").on("click", function() {
+     $(this).toggleClass("is-active");
+  });
+});
+
+$('.form-control').on('keyup', function() {
+
+if($(this).val().length > 34) {
+ add
+
+alert("글자수는 34자로 이내로 제한됩니다.");
+
+ $(this).val($(this).val().substring(0, 34));
+
+}
+
+});
+
+
  
  </script>
                
