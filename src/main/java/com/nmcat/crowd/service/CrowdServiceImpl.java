@@ -79,19 +79,7 @@ public class CrowdServiceImpl implements CrowdService{
 	public void donate(Crowd crowd) {
 		mapper.updateNowMoney(crowd);
 	}
-	
-	// 포인트차감
-	@Override
-	public void minusPoint(Member member) {
-		mapper.updateMemberPoint(member);
-	}
-	
-	// 보유포인트
-	@Override
-	public int myPoint(int no) {
-		return mapper.selectNowPoint(no);
-	}
-	
+		
 	// 코멘트 존재여부 체크
 	@Override
 	public int commentCheck(CrowdComment cc) {
@@ -120,24 +108,6 @@ public class CrowdServiceImpl implements CrowdService{
 	@Override
 	public void update(Crowd crowd) {
 		mapper.updateCrowd(crowd);
-	}
-	
-	// 포인트 사용내역테이블에 추가
-	@Override
-	public void addPointHistory(PointMinus pm) {
-		mapper.insertPointMinus(pm);
-	}
-	
-	// 포인트내역
-	@Override
-	public List<PointMinus> pointHistory(int crNo) {
-		return mapper.selectPointMinus(crNo);
-	}
-	
-	// 포인트 되돌려주기
-	@Override
-	public void returnPoint(Member member) {
-		mapper.updateMemberPointPlus(member);
 	}
 	
 	// 포인트 삭제

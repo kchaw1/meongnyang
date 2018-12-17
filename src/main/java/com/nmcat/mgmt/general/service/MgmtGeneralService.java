@@ -16,8 +16,6 @@ public interface MgmtGeneralService {
 	List<CommunityBoard> myPosts(String id); // 내가 쓴 게시글
 	List<CommunityComment> myComments(String id); // 내가 쓴 코멘트
 	void deleteMember(int no); // 탈퇴
-	void payPoint(Member member); // 포인트지급
-	void pointHistory(PointPlus pp); // 포인트 내역
 	
 	// 오름차순
 	List<Member> generalMemberList();	// 리스트 번호순

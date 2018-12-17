@@ -119,7 +119,44 @@ public class PointServiceImpl implements PointService{
 		
 	}*/
 	
+	/* 관리자 */
+	// 관리자 포인트 지급
+	@Override
+	public void payPointByAdmin(Member member) {
+		mapper.updatePointByAdmin(member);
+	}
+	// 관리자 포인트 지급 내역
+	@Override
+	public void pointHistoryByAdmin(PointPlus pp) {
+		mapper.insertPointHistoryByAdmin(pp);
+	}
 	
-
+	/* 크라우드 펀딩 */
+	// 포인트 차감
+	@Override
+	public void minusPointByCrowd(Member member) {
+		mapper.updateMemberPointByCrowd(member);
+	}
+	// 보유포인트 조회
+	@Override
+	public int myPointByCrowd(int no) {
+		return mapper.selectNowPointByCrowd(no);
+	}
+	// 포인트 차감 내역 추가
+	@Override
+	public void addPointHistoryByCrowd(PointMinus pm) {
+		mapper.insertPointMinusByCrowd(pm);
+	}
+	// 글번호에 해당하는 포인트 차감 내역
+	@Override
+	public List<PointMinus> pointHistoryByCrowd(int crNo) {
+		return mapper.selectPointMinusByCrowd(crNo);
+	}
+	// 포인트 되돌려주기
+	@Override
+	public void returnPointByCrowd(Member member) {
+		mapper.updateMemberPointPlusByCrowd(member);
+	}
+	
 
 }

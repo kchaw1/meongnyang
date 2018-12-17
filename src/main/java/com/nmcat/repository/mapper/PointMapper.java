@@ -20,5 +20,16 @@ public interface PointMapper {
 	public void insertPointPlusByChating(PointPlus plus);
 	public void updatePointOneMember(Member member);
 	/*void deletePlus(int no);*/
+	
+	// 관리자
+	void updatePointByAdmin(Member member); // 포인트 지급
+	void insertPointHistoryByAdmin(PointPlus pp); // 포인트 내역 추가
+	
+	// 크라우드 펀딩
+	void updateMemberPointByCrowd(Member member); // 포인트차감
+	int selectNowPointByCrowd(int no); // 보유포인트
+	void insertPointMinusByCrowd(PointMinus pm); // 포인트 차감내역 추가
+	List<PointMinus> selectPointMinusByCrowd(int crNo); // 글번호에 해당하는 포인트내역 가져오기
+	void updateMemberPointPlusByCrowd(Member member); // 포인트 되돌려주기
 
 }

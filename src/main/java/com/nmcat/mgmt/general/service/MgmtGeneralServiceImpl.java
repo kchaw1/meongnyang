@@ -47,18 +47,6 @@ public class MgmtGeneralServiceImpl implements MgmtGeneralService{
 	public List<Member> search(MgmtSearch search) {
 		return mapper.selectSearchGeneralList(search);
 	}
-	
-	// 포인트 지급
-	@Override
-	public void payPoint(Member member) {
-		mapper.updatePoint(member);
-	}
-	
-	// 포인트 내역
-	@Override
-	public void pointHistory(PointPlus pp) {
-		mapper.insertPointHistory(pp);
-	}
 
 	// 오름차순
 	@Override

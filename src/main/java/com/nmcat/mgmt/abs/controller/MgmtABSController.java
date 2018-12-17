@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.mgmt.abs.service.MgmtABSService;
-import com.nmcat.mgmt.general.service.MgmtGeneralService;
+import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.PointPlus;
@@ -25,7 +25,7 @@ public class MgmtABSController {
 	private MgmtABSService service;
 	
 	@Autowired
-	private MgmtGeneralService gservice;
+	private PointService pService;
 	
 	// 리스트 페이지 이동
 	@RequestMapping("/abs/list")
@@ -97,12 +97,12 @@ public class MgmtABSController {
 			Member member = new Member();
 			member.setNo(no);
 			member.setPoint(point);
-			gservice.payPoint(member);
+			pService.payPointByAdmin(member);
 			
 			PointPlus pp = new PointPlus();
 			pp.setPlusPoint(point);
 			pp.setId(id);
-			gservice.pointHistory(pp);
+			pService.pointHistoryByAdmin(pp);
 		}
 	
 	/*

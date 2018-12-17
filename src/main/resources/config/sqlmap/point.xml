@@ -18,8 +18,9 @@
 	<result column="minus_point" property="minusPoint"/>
 	<result column="minus_date" property="minusDate"/>
 	<result column="minus_use" property="minusUse"/>
+	<result column="cr_no" property="crNo" />
+	<result column="fees" property="fees" />
 	</resultMap>
-	
 	
 	<!-- 결제 충전.. -->
 	<insert id="insertPointPlusByPaying" parameterType="PointPlus">
@@ -117,5 +118,55 @@
 		from mn_point_plus
 		where plus_no = #{plusNo}
 	</delete> --> 
+	
+	
+	<!-- 관리자 -->
+	<!-- 관리자 포인트지급 -->
+	<update id="updatePointByAdmin" parameterType="Member">
+		update mn_member
+		   set point = point + #{point}
+		 where no = #{no}
+	</update>
+
+	<!-- 관리자 포인트 지급내역 -->
+	<insert id="insertPointHistoryByAdmin" parameterType="PointPlus">
+		insert into mn_point_plus(id, plus_point, plus_type)
+		     values(#{id}, #{plusPoint}, '2')
+	</insert>
+	
+	<!-- 크라우드펀딩 -->
+	<!-- 보유포인트 조회 -->
+	<select id="selectNowPointByCrowd" parameterType="int" resultType="int">
+		select point
+		  from mn_member
+		 where no = #{no} 
+	</select>
+	
+	<!-- 포인트차감 -->
+	<update id="updateMemberPointByCrowd" parameterType="Member">
+		update mn_member
+		   set point = point - #{point}
+		 where no = #{no}  
+	</update>
+	
+	<!-- 포인트 사용 내역 테이블에 추가 -->  
+	<insert id="insertPointMinusByCrowd" parameterType="PointMinus">
+		insert into mn_point_minus (id, cr_no, minus_point, minus_use, fees)
+		     values(#{id}, #{crNo}, #{minusPoint}, 3, 0)
+	</insert>
+	
+	<!-- 게시글에 해당하는 후원 내역 -->
+	<select id="selectPointMinusByCrowd" parameterType="int" resultMap="minusMap">
+		select *
+		  from mn_point_minus
+		 where cr_no = #{crNo} 
+	</select>
+	
+	<!-- 후원금 돌려주기 -->
+	<update id="updateMemberPointPlusByCrowd" parameterType="Member">
+		update mn_member
+		   set point = point + #{point}
+		 where id = #{id}
+	</update>	
 	
 </mapper>

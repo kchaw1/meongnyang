@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.mgmt.general.service.MgmtGeneralService;
+import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
@@ -24,6 +25,9 @@ public class MgmtGeneralController {
 	
 	@Autowired
 	private MgmtGeneralService service;
+	
+	@Autowired
+	private PointService pService;
 
 	// 리스트 페이지 이동
 	@RequestMapping("/general/list")
@@ -178,15 +182,21 @@ public class MgmtGeneralController {
 	@RequestMapping("/general/pay-point")
 	@ResponseBody
 	public void pay(int no, int point, String id) {
+		System.out.println("----------------------------------");
+		System.out.println(no);
+		System.out.println(point);
+		System.out.println(id);
+		System.out.println("----------------------------------");
+		
 		Member member = new Member();
 		member.setNo(no);
 		member.setPoint(point);
-		service.payPoint(member);
+		pService.payPointByAdmin(member);
 		
 		PointPlus pp = new PointPlus();
 		pp.setPlusPoint(point);
 		pp.setId(id);
-		service.pointHistory(pp);
+		pService.pointHistoryByAdmin(pp);
 	}
 	
 	

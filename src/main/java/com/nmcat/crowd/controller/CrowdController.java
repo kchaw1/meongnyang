@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nmcat.crowd.service.CrowdService;
+import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.Crowd;
 import com.nmcat.repository.domain.CrowdComment;
 import com.nmcat.repository.domain.CrowdLike;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.PointMinus;
+import com.nmcat.repository.domain.PointPlus;
 
 @RequestMapping("/crowd")
 @Controller
@@ -30,6 +33,9 @@ public class CrowdController {
 	
 	@Autowired
 	private CrowdService service;
+	
+	@Autowired
+	private PointService pService;
 	
 	// 크라우드펀딩 작성 폼 
 	@RequestMapping("/writeForm") 
@@ -54,11 +60,11 @@ public class CrowdController {
 	public String delete(int crNo) {
 		Member member = new Member();
 		
-		for(PointMinus pm : service.pointHistory(crNo)) {
+		for(PointMinus pm : pService.pointHistoryByCrowd(crNo)) {
 			member.setId(pm.getId());
 			member.setPoint(pm.getMinusPoint());
-			
-			service.returnPoint(member); // 포인트 환급
+			pService.returnPointByCrowd(member); // 포인트 환급
+
 			service.sendMsg(pm.getId()); // 환급 메세지 전송
 		}
 		
@@ -105,7 +111,7 @@ public class CrowdController {
 		System.out.println(service.detail(crNo).getCrContent());
 		
 		if(member != null) {
-			model.addAttribute("myPoint", service.myPoint(member.getNo()));
+			model.addAttribute("myPoint", pService.myPointByCrowd(member.getNo()));
 			
 			cl.setCrNo(crNo);
 			cl.setCrId(member.getId());
@@ -130,7 +136,7 @@ public class CrowdController {
 	@RequestMapping("/donate")
 	public String donate(Crowd crowd, Member member, CrowdComment cc, PointMinus pm) {
 		member.setPoint(crowd.getDonateMoney());
-		service.minusPoint(member);
+		pService.minusPointByCrowd(member);
 		service.donate(crowd);
 		
 		if(service.commentCheck(cc)==0) {
@@ -141,7 +147,7 @@ public class CrowdController {
 		pm.setMinusPoint(crowd.getDonateMoney());
 		pm.setId(cc.getCrcWriter());
 		
-		service.addPointHistory(pm);
+		pService.addPointHistoryByCrowd(pm);
 		
 		return "redirect:detail.mn?crNo=" + crowd.getCrNo();
 	}
