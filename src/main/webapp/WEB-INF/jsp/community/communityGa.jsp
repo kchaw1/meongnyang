@@ -256,6 +256,202 @@ transition: all 2.0s linear;
     margin-left: 5px;
 }
 
+/* 모달부분*/
+
+
+
+.imgSize {
+    float: left;
+    border: 1px solid #e6e6e6;
+    margin-top: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.imgSize2{
+
+    float: left;
+    border: 1px solid #e6e6e6;
+    margin-top: 5px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+.userName {
+    margin-top: 19px;
+    float: left;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    padding-left: 10px;
+    color: #262626;
+    font-weight: 600;
+}
+.userName2 {
+    margin-top: 13px;
+    float: left;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    padding-left: 10px;
+    color: #262626;
+    font-weight: 600;
+}
+
+.galleryDetailBox{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 7px;
+    width: 100%;
+}
+
+.modal-content {
+    
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+div.modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+
+
+.forHr{
+    border-bottom: 1.2px solid #fafafa;
+    width: 100%;
+}
+/*.forComment{
+    border-top : 1.2px solid #fafafa;
+    border-left : 1.2px solid #fafafa;
+    border-right : 1.2px solid #fafafa;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding : 15px;
+}
+.forComment2{
+  float: left;
+    
+}*/
+
+.heart {
+    float: right;
+    margin-top: -20px;
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+  margin-right: -26px;
+    margin-bottom: -26px;
+  
+  
+}
+.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+  }
+  .modal-dialog {
+    display:inline-flex;
+    width: 600px;
+    margin: 30px auto;
+}
+.commentCnt{
+    width : 100%;
+    height: 20px;
+    padding: 15px;
+    border-top: 1.2px solid #fafafa;
+
+}
+.forComment{
+    padding-left: 15px;
+   
+    width: 100%;
+    
+   
+}
+.forComment2{
+
+    width: 100%;
+    border: 1.2px solid #fafafa;
+    
+}
+.forComment3{
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.commentWriteForm{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+.form-control {
+display:inline-block;
+    width : 500px;
+    margin-left: 13px;
+
+}
+.commentList{
+    float: left;
+    width: 467px;
+    height: 27px;
+    margin-left: 4px;
+    margin-top: 10px;
+    line-height: 225%;
+}
+.commentDelete{
+    float: right;
+    height: 27px;
+    width: 30px;
+    border-radius: 2px;
+    border: 1px solid #d4baba;
+    cursor: pointer;
+}
+.fa-trash{
+    margin-left: 8px;
+    margin-top: 6px;
+    
+}
+.inputTypeTextArea{
+   background-color: transparent;
+   border-top: transparent;
+  border-left: 1.5px solid #fbf3f3;
+  border-right: 1.5px solid #fbf3f3;
+  border-bottom: 1.5px solid #fbf3f3;
+   width: 570px;
+   height: 30px;
+   outline: none;
+   font-size: 17px;
+   
+}
+.forPoint{
+    margin-left: 3px;
+}
+
+#btnClass{
+float: left;
+margin-top: 10px;
+}
+.forImg3{
+width : 100% !important;
+heigth : 100%;
+
+}
+
+
+   
 
 </style>
 <body>
@@ -273,7 +469,7 @@ transition: all 2.0s linear;
 <div class = "allContainer">
               <!--컨텐츠 여기서부터 forEach-->
                 <c:forEach var = "b" items = "${gallery}">
-            <div class = "galleryContentContainer">
+            <div class = "galleryContentContainer" onclick = "detailFunction(${b.comNo})">
                 <div class = "galleryImg"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                    <div class = "imgContainer">${b.comContent}</div>
                 </div>
@@ -294,6 +490,9 @@ transition: all 2.0s linear;
 
 
           <!--모달 부분-->
+          <div class = "modalPlace">
+          
+          </div>
 
 
 
@@ -302,6 +501,46 @@ transition: all 2.0s linear;
  <!-- 낭만 코양이 푸터 -->
  
  <script>
+ 
+ function detailFunction(comNo){
+	 
+	 console.log(comNo+"번째 갤러리 게시글 입니다.");
+	 $.ajax({
+		 url : "<c:url value = '/community/detailPage.mn'/>",
+		 type : "POST",
+		 data : {comNo : comNo} 
+		 
+	 }).done(function(result){
+	//여기에 모달 해놓기!
+		 var text = "";
+         text += "<div class='modal  fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"
+               +"<div class='modal-dialog'>"
+               +"<div class='modal-content'>"
+               +"<div class='modal-body'>"
+               +"<div class = 'galleryDetailContainer'>"
+               +""
+               /* +"<img src='./img/이유비.PNG' width='601'>" */
+               +"<div class = 'forHr'>"
+               +"<div class = 'galleryDetailBox'>"
+               +"<div class = 'userName'>qudrhks258님의 <span>1</span>번째 게시물</div>"
+               +"<div class='heart'></div>"
+               +"</div></div>"
+               +"<div class = 'forComment'>"
+               +"<div class = 'forComment2'>"
+               +"<div class = 'forComment3'><div>"
+               +"<div class = 'userName2'>qudrhks258 <span class = 'forPoint'>·</span></div>"
+               +"<div class = 'commentList'>하하하하하하하하</div>"  
+               +"</div></div></div><div class = 'commentWriteForm'>"
+               +"<form>"
+               +"<input type = 'textarea' class= 'inputTypeTextArea'/>"
+               +"</form>"
+               +"</div></div></div></div></div></div>"
+		 
+		 
+	 })
+	 
+ }
+
  
  $(function(){
 		//모든 content 클래스를 갖고있는 친구들 갖고오기
