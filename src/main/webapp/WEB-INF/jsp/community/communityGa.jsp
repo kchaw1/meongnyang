@@ -55,7 +55,7 @@ background-color: #fdfdfd;
 
 .galleryContentContainer{
     width: 280px;
-    height: 270px;
+    height: 235px;
     border: 1px solid rgb(226, 219, 219);
     margin-right: 58px;
     margin-top: 30px;
@@ -446,10 +446,13 @@ margin-top: 10px;
 }
 .forImg3{
 width : 100% !important;
-heigth : 100%;
+heigth : 100% !important;
 
 }
 
+p {
+   margin: 0 0 0; 
+}
 
    
 
