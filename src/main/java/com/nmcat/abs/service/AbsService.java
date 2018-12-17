@@ -22,7 +22,7 @@ public interface AbsService {
 	Map<String, Object> absboardlist(int no, int pageNo);
 	
 
-	void write(QnABoard qnaboard,AbsBoardFile file,Abs abs,  ScoreHistory scoreHistory);
+//	void write(QnABoard qnaboard,AbsBoardFile file,Abs abs,  ScoreHistory scoreHistory);
 	
 	Map<String, Object> absBoardDetail(int absNo, int no); //질문게시판 상세
 	void absBoardDelete(int absNo);
@@ -53,6 +53,10 @@ public interface AbsService {
 */
 
 	Map<String, Object> AbsBoardSearch(AbsSearchVO absSearch, int no, int pageNo);
+
+	Map<String, Object> write(QnABoard qnaboard, AbsBoardFile file, Abs abs, ScoreHistory scoreHistory, int no);
+
+
 
 
 

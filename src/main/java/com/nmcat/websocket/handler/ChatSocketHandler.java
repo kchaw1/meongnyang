@@ -33,20 +33,7 @@ public class ChatSocketHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		/*
-		String id = ((Member)session.getAttributes().get("user")).getId();
-		 System.out.println("1"+id);
-		Set<String> keys = users.keySet();
-		users.remove(id);
-		for(String key : keys) {
-			users.get(key).remove(session);
-			List<WebSocketSession> wss = users.get(key);
-			for(WebSocketSession ws : wss) {
-				ws.sendMessage(new TextMessage("out:"+id +":"+id+ "님이 퇴장 하셨습니다."));
-			}
 
-		}
-*/
 	}
 	
 	/**

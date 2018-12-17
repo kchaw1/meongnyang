@@ -129,8 +129,9 @@ $(function () {
 					console.log("이미지" +userList[1]);
 			    	
 					for(var i = 0 ; i<userList.length;){
-						$(".list").append('<div data-id="'+userList[i]+'" class="list-item"><img class="pull-left img-responsive" src="<c:url value="/common/download.mn?'+userList[i+1]+'"/>" alt="" /><p class="pull-left">'+userList[i]+'</p></div>');		
-						i += 2;
+							$(".list").append('<div data-id="'+userList[i]+'" class="list-item"><img class="pull-left img-responsive" src="<c:url value="/common/download.mn?'+userList[i+1]+'"/>" alt="" /><p class="pull-left">'+userList[i]+'</p></div>');		
+							i += 2;
+						
 				}			    	
 			    
 			    
@@ -140,7 +141,7 @@ $(function () {
 				var chatInfo = arr[2].split(",");
 				var chatAttr = chatInfo[1].split("-");
 				if("${user.id}"==chatInfo[0]){		 		
-			 		$(".chat-list").append('<br><img class="pull-right img-circle chat-img" src="<c:url value="/common/download.mn?'+chatAttr[1]+'"/>" alt=""/><div class="chat-bubble pull-right right"><p class="m-b-0">나:'+chatAttr[0]+'</p></div><br>');
+			 		$(".chat-list").append('<br><img class="pull-right img-circle chat-img" src="<c:url value="/common/download.mn?'+chatAttr[1]+'"/>" alt=""/><div class="chat-bubble pull-right right"><p class="m-b-0">'+chatAttr[0]+'</p></div><br>');
 			 	}else{	
 					$(".chat-list").append('<br><span>'+chatInfo[0]+'</span><br><img class="pull-left img-responsive img-circle chat-img-left" src="<c:url value="/common/download.mn?'+chatAttr[1]+'"/>" alt=""/><div class="chat-bubble left"><p class="m-b-0">'+chatAttr[0]+'</p></div><br>');
 			 	}
@@ -167,13 +168,14 @@ $(function () {
 		$('#send').click(function() { 
 			var $msg = $("#message");
     		loginId = "${user.id}";
+    		let image = "sysName=${user.imageName}&path=${user.imagePath}";
+
     		// 보낼 수 있는 데이터는 String, Blob, ArrayBuffer 입니다. 
     		// 웹소켓 서버에 데이터 전송하기
     		console.log($msg.val());
     			
-    		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val());
-    		$msg.val("");  
-	
+    		chat.send("chat:"+roomNo+":"+loginId +","+ $msg.val()+"-"+image);
+    		$msg.val(""); 
 	});
 	
 	

@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -27,11 +25,9 @@ import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsSearchVO;
-import com.nmcat.repository.domain.LoginHistory;
-import com.nmcat.repository.domain.Member;
-import com.nmcat.repository.domain.MgmtSearch;
 import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
+import com.nmcat.score.service.ScoreService;
 
 @RequestMapping("/abs")
 @Controller
@@ -40,6 +36,10 @@ public class AbsController {
 	@Autowired
 	public AbsService absService;
 	
+	@Autowired 
+	public ScoreService  scoreService;
+	
+
 	private String keyword="";
 	private String searchType="";
 
@@ -93,7 +93,7 @@ public class AbsController {
 	}
 	//행동전문가 질문게시판 질문 등록
 	@RequestMapping("/write.mn")
-	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory)throws Exception {
+	public String write(AFormVO form,QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory, int no)throws Exception {
 		qnaboard.setAbsWriter(form.getAbsWriter());
 		qnaboard.setAbsTitle(form.getAbsTitle());
 		qnaboard.setAbsContent(form.getAbsContent());
@@ -101,13 +101,22 @@ public class AbsController {
 		file.setAbsfPath(form.getPath());
 		abs.setId(form.getAbsWriter());
 		scoreHistory.setId(form.getAbsWriter());
-		absService.write(qnaboard,file,abs, scoreHistory);
+		absService.write(qnaboard,file,abs, scoreHistory, no);
+		scoreService.updateGradeNo(form.getAbsWriter());
+		
 		return "redirect:absDetailBoard.mn?no="+qnaboard.getNo();
 
 	}
 	//행동전문가 질문게시판 질문 등록 폼
 	@RequestMapping("/absDetailBoardWrite.mn")
-	public void absBoardwriteForm(){
+	public void absBoardwriteForm(Abs abs, Model model, int no){
+
+		System.out.println("!"+abs.getImageName());
+		System.out.println("@"+abs.getImagePath());
+		abs.setImageName(abs.getImageName());
+		abs.setImagePath(abs.getImagePath());
+		
+		model.addAttribute("map", absService.detail(no));
 		
 	}
 	
@@ -153,6 +162,7 @@ public class AbsController {
 	public int insertLike(AbsLikeVO likeVO, @RequestParam("no")int no) {
 		absService.insertLike(likeVO);
 		absService.updateLike(no);
+		
 		return absService.likeCount(likeVO);
 	}
 	@RequestMapping("/deleteLike.mn")
@@ -191,7 +201,11 @@ public class AbsController {
 	public List<AbsComment> deleteComment(AbsComment comment) throws ParseException {
 		return convertDate(absService.deleteComment(comment));
 	}
-	
+	@PostMapping("/comment/writeCheck.mn")
+	@ResponseBody
+	public void writeCommentCheck(AbsComment comment ,Abs abs) throws ParseException {
+		scoreService.updateGradeNo(comment.getAbsWriter());
+	}
 	
 	
 	

@@ -16,6 +16,7 @@ import com.nmcat.repository.domain.AbsSearchVO;
 import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
+import com.nmcat.score.service.ScoreService;
 
 @Service
 public class AbsServiceImpl implements AbsService{
@@ -76,7 +77,7 @@ public class AbsServiceImpl implements AbsService{
 	}
 
 	@Override
-	public void write(QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory) {
+	public Map<String, Object> write(QnABoard qnaboard,AbsBoardFile file,Abs abs, ScoreHistory scoreHistory, int no) {
 		System.out.println(qnaboard);
 		absMapper.insertAbsBoard(qnaboard);
 		file.setAbsNo(qnaboard.getAbsNo());		
@@ -88,6 +89,16 @@ public class AbsServiceImpl implements AbsService{
 		//활동점수 추가
 		absMapper.updateScore(abs);
 		absMapper.insertScoreHis(scoreHistory);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		Abs detail = absMapper.selectAbsDetail(no);
+		System.out.println(detail);
+
+		map.put("b",detail);
+		return map;
+	
+	
 	}
 
 	@Override

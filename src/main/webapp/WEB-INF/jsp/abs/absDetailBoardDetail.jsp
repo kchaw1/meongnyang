@@ -190,7 +190,14 @@
     						   },
     						type : "POST"
     				}).done(function(result){
-           				 	commentList();
+    					$.ajax({
+        					url : "<c:url value='/abs/comment/writeCheck.mn'/>",
+        					data : {"absWriter" : "${user.id}"},
+        						type : "POST"
+        			}).done(function(result){
+        							
+           				 		commentList();
+        			})
 
     		});
   		 });

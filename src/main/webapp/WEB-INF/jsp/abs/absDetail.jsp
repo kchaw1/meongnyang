@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
+    
     <!-- 행동전문가 상세 팝업창 CSS -->
         <link rel="stylesheet" href="<c:url value="/resources/css/abs/absDetail.css"/>">
         
@@ -137,14 +138,14 @@
     			}).done(function(){
     				if (likeExist == 0){
     					likeExist=1;
-    					alert("추천되었습니다.");
     					$("#like").html("<button type='button' id='like-button' class='selected'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
+    			
     				} else {
     					likeExist = 0;
-    					alert("추천취소되었습니다.");
     					$("#like").html("<button type='button' id='like-button'><svg class='heart-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z'/></svg>Like</button>");
     				}
     				like();
+    			
     				location.href="absDetail.mn?no=${map.b.no}";
     			});
     			
