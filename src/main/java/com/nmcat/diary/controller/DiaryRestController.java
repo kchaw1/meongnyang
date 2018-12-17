@@ -64,8 +64,8 @@ public class DiaryRestController {
 	}
 	
 	@PostMapping("/update.mn")
-	public List<DiaryBoard> updateDiary(DiaryBoard diary) {
-		return service.updateDiary(diary);
+	public void updateDiary(DiaryBoard diary) {
+		service.updateDiary(diary);
 	}
 	
 	@PostMapping("/uploadfile.mn")

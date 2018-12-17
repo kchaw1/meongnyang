@@ -139,30 +139,20 @@ div.modal-header {
   color: red;
   font-family: 'Roboto', 'Noto Sans', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.grade4 img {
-    width: 50%;
+.image img {
+    width: auto;
     height: auto;
-}
-p#memgrd {
-	font-size : 20px;
+    max-width: 100%;
+    display: block;
 }
 
-.grade4 {
-	margin-top : 10px;
-	width : 100%;
-    text-align : center;
+.image {
+    text-align: center;
     margin-bottom: 20px;
-    display: inline-block;
-    font-size : 20px;
 }
-.grade5 {
-	display : block;
-	text-align : center;
-	font-size : 28px;
-}
-.grade4 .img-responsive {
+.img-responsive {
     float: left;
-    width: 25%;
+    width: 20%;
 }
 #grdname {
     font-size: 30px;
@@ -237,44 +227,37 @@ p#memgrd {
                     <div style="clear: both;"></div>
                     <hr>
                     <div class="w-grd">
-                        <p id="memgrd">- 활동점수<br>
-						                <br>
-						                게시글 작성시 활동점수 +50<br>
-						                댓글 작성시 활동점수 +30<br>
-						                로그인시 활동점수 +10<br>
-						                <br></p>
+                        <p id="memgrd">회원등급은 로그인 시와 마이페이지 접속시 갱신됩니다.</p>
                     </div>
-                    <div class="grade4">
+                    <div class="image">
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/newbee.png"/>" />
                         <div style="text-align: center;">
-                           	뉴비<br>1 ~ 299
+                           	뉴비 1 ~ 499
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/rookie.png"/>" />
                         <div style="text-align: center;">
-                            	루키<br>300 ~ 499
+                            	루키    500 ~ 999
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/gold.png"/>" />
                         <div style="text-align: center;">
-                              	골드<br>500 ~ 999
+                              	골드  1000 ~ 1499
                         </div>
                     </div>
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/platinum.png"/>" />
                         <div style="text-align: center;">
-                               	플래티넘<br>1000 ~ 1499
+                               	플래티넘 1500 ~ 1999
                         </div>
                     </div>
-                </div>
-                <div class="grade5">
                     <div class="img-responsive">
                         <img src="<c:url value="/resources/img/member/diamond.png"/>" />
                         <div style="text-align: center;">
-                               	다이아<br>1500 ~ 
+                               	다이아 2000 ~ 
                         </div>
                     </div>
                 </div>

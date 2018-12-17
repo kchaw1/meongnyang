@@ -231,6 +231,7 @@ div.modal#share .modal-dialog.modal-center {
 div.modal#share .modal-header {
   height: 50px;
   padding: 10px;
+  position : relative;
 }
 div.modal#share h3.header {
   margin: 0 30px;
@@ -374,6 +375,9 @@ div.combuttonbox {
 }
 .show {
 	display : block;
+}
+input#drcContent {
+	width : 80%;
 }
 button.drc-write {
 	float:right;

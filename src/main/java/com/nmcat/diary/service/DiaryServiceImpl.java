@@ -96,9 +96,8 @@ public class DiaryServiceImpl implements DiaryService{
 	}
 
 	@Override
-	public List<DiaryBoard> updateDiary(DiaryBoard diary) {
+	public void updateDiary(DiaryBoard diary) {
 		mapper.updateDiary(diary);
-		return mapper.selectDiarysByOnedate(diary);
 	}
 
 	@Override

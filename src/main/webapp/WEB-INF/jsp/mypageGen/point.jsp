@@ -197,12 +197,7 @@ div.modal-header {
         </div>
         <hr id="hr1">
         <div class="Notice">
-            <p id="Notice"> - 활동점수 개념<br>
-                <br>
-                게시글 작성시 활동점수 +50<br>
-                댓글 작성시 활동점수 +30<br>
-                로그인시 활동점수 +10<br>
-                <br>
+            <p id="Notice"> 
                 - 포인트<br>
                 이 주의 게시판별 추천게시글 1위부터 3위까지 포인트 지급<br>
                 1위 -> 5000포인트 지급<br>

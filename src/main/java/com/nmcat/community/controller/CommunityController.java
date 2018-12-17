@@ -122,10 +122,8 @@ public class CommunityController {
 		comBoard = service.detailBoard(comNo);
 		return comBoard;
 		
-	
-		
-	
 	}
+	
 	@RequestMapping("/writeForm.mn")
 	public void writeForm() {
 		
@@ -254,7 +252,7 @@ public class CommunityController {
 			}
 			file.transferTo(img);
 			//service.uploadFile(ef);
-			cFile.setUrl("https://localhost:8000"+ uploadPath + datePath +"/"+ fileSysName);
+			cFile.setUrl("https://localhost:443"+ uploadPath + datePath +"/"+ fileSysName);
 
 		}
 		//source="org.eclipse.jst.jee.server:cityFarmer"

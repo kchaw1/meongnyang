@@ -20,7 +20,7 @@ public interface DiaryService {
 
 	DiaryBoard updateformDiary(int drNo);
 
-	List<DiaryBoard> updateDiary(DiaryBoard diary);
+	void updateDiary(DiaryBoard diary);
 
 	Map<String, Object> writeAllNewDiary(DiaryBoard diary, DiaryFile file);
 

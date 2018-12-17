@@ -26,9 +26,9 @@
     <!-- list of all available conferencing rooms -->
     <table id="rooms-list"></table>
 </div>
-<div class="ment hidden" data-anim="la-anim-12">
+<%-- <div class="ment hidden" data-anim="la-anim-12">
 	<h1 class="la-anim-12" data-content="${param.name} 님의 수락을 기다리고 있습니다..">${param.name} 님의 수락을 기다리고 있습니다...</h1>
-</div>
+</div> --%>
 <%-- <c:import url="./video.jsp"/> --%>
 <%-- <script src="<c:url value="/resources/js/facechat/video.js"/>"></script> --%>
 <script>
@@ -44,7 +44,7 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 	if("${user.id}"!="${param.id}") {
 		Swal({
 			title: '정말 ${param.name}님과 <br>화상채팅 하시겠습니까?',
-			text: "화상채팅 연결 시, 1,000 포인트가 차감됩니다.",
+			text: "화상채팅 연결 시, 10,000 포인트가 차감됩니다.",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -54,19 +54,17 @@ var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
 		}).then((result) => {
 			console.log(result) //{value: true}
 			if (result.value) {
-				var $call = $.ajax({
-								url : "<c:url value='/point/checkpoint.mn'/>",
-								data : "id=${user.id}",
-								type : "POST"
-							})
-							//console.log($call)
-				$.when($call).done(function(totalSum){
+				$.ajax({
+						url : "<c:url value='/point/checkpoint.mn'/>",
+						data : "id=${user.id}",
+						type : "POST"
+					}).done(function(totalSum){
 					//console.log(totalSum)
-					//console.log(totalSum >1000)
-					if(totalSum >= 1000){
-						//보유 포인트가 1000 이상일때 실행..
+					//console.log(totalSum >10000)
+					if(totalSum >= 10000){
+						//보유 포인트가 10000 이상일때 실행..
 					   btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-					} else if(totalSum < 1000){
+					} else if(totalSum < 10000){
 						swal({
 							  type: 'error',
 							  title: '포인트가 모자라요...',
@@ -147,9 +145,9 @@ var config = {
 				   url : "<c:url value='/point/usefacechat.mn'/>",
 				   data : {
 					   id : "${user.id}",
-					   minusPoint : 1000,
+					   minusPoint : 10000,
 					   minusUse : "2",
-					   fees : 100,
+					   fees : 1000,
 					   absId : "${param.id}"
 				   },
 				   type : "POST"

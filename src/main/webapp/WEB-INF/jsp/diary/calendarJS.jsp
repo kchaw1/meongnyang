@@ -399,15 +399,11 @@
 				"drTitle" : $("input[name='drupdateTitle']").val(),
 				"drContent" : $("textarea#winternote").val(),
 				"drShare" : $("input[name='drShareupdate']:checked").val(),
-				"drNo" : drNo,
-				"drDate" : setdate,
-				"drWriter" : "${user.id}",
-				"userId" : "${user.id}"
-
+				"drNo" : drNo
 			},
 			type : "POST"
-		}).done(function(map) {
-			showdetailDiary(map, setdate);
+		}).done(function() {
+			detailDiary(setdate);
 		})
 	}
 	
