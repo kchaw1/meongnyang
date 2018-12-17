@@ -8,19 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-    <script
-   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- 배민폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-<!-- 배민폰트 -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 
 <%-- <link rel="stylesheet" href="<c:url value="/resources/css/community/communityGa.css"/>"> --%>
@@ -494,14 +489,14 @@ p {
 
 
           <!--모달 부분-->
-          <div class="modal  fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <!--사진 들어가는부분-->
                 <div class="modal-body">
                     <div class = "galleryDetailContainer">
                         <div class = "forImgList">
-                      
+             
                         </div>
                         <div class = "forHr">
                             <div class = "galleryDetailBox">
@@ -528,15 +523,8 @@ p {
                 </div>
               </div>
             </div>
+		</div>
 
-
-
-
-
-
-
-
-		
 
  <!-- 낭만 코양이 푸터 -->
  
