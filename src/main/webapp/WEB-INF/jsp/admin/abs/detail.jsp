@@ -49,6 +49,18 @@
 										<td>이메일:</td>
 										<td>${abs.email}</td>
 									</tr>
+									<tr>
+										<td>포인트:</td>
+										<fmt:formatNumber var="absPoint" value="${abs.point}" pattern="#,###,###,###"/>
+										<td>${absPoint} P
+										<button id="pay" class="btn btn-default btn-xs" data-id="${abs.id}" data-no='${abs.no}' style="font-size: 14px;">포인트 지급</button>
+										</td>
+									</tr>
+									<tr>
+										<td>활동점수:</td>
+										<fmt:formatNumber var="absScore" value="${abs.score}" pattern="#,###,###,###"/>
+										<td>${absScore} 점</td>
+									</tr>
 								</table>
 							</div>
 						</div>
@@ -196,6 +208,17 @@
 		
 		location.href = "<c:url value='/common/download.mn?sysName="+ $(this).data("sysname") +"&path=" + $(this).data("path") + "&oriName=" + $(this).data("oriname") + "'/>"
 	})
+	</script>
+	
+	<script>
+	 $(document).on("click", "#pay", function() {
+		    var windowW = 600;  // 창의 가로 길이
+		    var windowH = 300;  // 창의 세로 길이
+		    var left = Math.ceil((window.screen.width - windowW)/2);
+		    var top = Math.ceil((window.screen.height - windowH)/2);
+			
+			 window.open("pay.mn?no="+$(this).data("no")+"&id="+$(this).data("id") , "포인트 지급", "top="+top+", left="+left+", height="+windowH+", width="+windowW);
+		});
 	</script>
 </body>
 </html>

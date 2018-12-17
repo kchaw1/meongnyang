@@ -31,7 +31,7 @@
 				<div class="seperator"></div>
 				<div class="list">
 					 <div id="board" class="item">게시판</div>
-			         <div class="board-hidden notice"><a href="<c:url value="/admin/notice/list.mn" />">공지사항</a></div>
+			         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
 			         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">유튜브</a></div>
 			         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 			         <div id="management" class="item">관리</div>
@@ -151,10 +151,35 @@
 		            </div>
 		            <div class="panel-body">
 		                <div class="info-container">
-			                <div class="no">회원번호</div>
+			                <div class="no">순위</div>
 			                <div class="name">이름</div>
-			                <div class="sign-up-date">가입일</div>
-			                <div class="button-area">버튼</div>
+			                <div class="sign-up-date">활동점수</div>
+			                <div class="button-area"></div>
+			                <div class="clear-fix"></div>
+			                <c:forEach var="arl" items="${absRankList}" varStatus="status" >
+				                <div class="info-container">
+				                	<div class="no">
+				                		<c:choose>
+					                		<c:when test="${status.index+1 eq 1}">
+					                			<i class="fas fa-medal gold"></i>
+					                		</c:when>
+					                		<c:when test="${status.index+1 eq 2}">
+					                			<i class="fas fa-medal silver"></i>
+					                		</c:when>
+					                		<c:when test="${status.index+1 eq 3}">
+					                			<i class="fas fa-medal bronze"></i>
+					                		</c:when>
+					                		<c:otherwise>
+					                			${status.index+1}
+					                		</c:otherwise>
+				                		</c:choose>
+				                	</div>
+					                <div class="name">${arl.name}</div>
+					                <div class="sign-up-date">${arl.sum}</div>
+					                <div class="button-area"><button class="btn btn-default abs-detail" data-id="${arl.id}" data-no="${arl.no}">상세</button></div>
+					            </div>    
+				                <div class="clear-fix"></div>
+			                </c:forEach>
 		                </div>
 		            </div>
 		          </div>
@@ -167,10 +192,35 @@
 		            </div>
 		            <div class="panel-body">
 		                <div class="info-container">
-			                <div class="no">회원번호</div>
+			                <div class="no">순위</div>
 			                <div class="name">이름</div>
-			                <div class="sign-up-date">가입일</div>
+			                <div class="sign-up-date">활동점수</div>
 			                <div class="button-area">버튼</div>
+			                <div class="clear-fix"></div>
+			                <c:forEach var="grl" items="${generalRankList}" varStatus="status" >
+			                	<div class="info-container">
+				                	<div class="no">
+				                		<c:choose>
+					                		<c:when test="${status.index+1 eq 1}">
+					                			<i class="fas fa-medal gold"></i>
+					                		</c:when>
+					                		<c:when test="${status.index+1 eq 2}">
+					                			<i class="fas fa-medal silver"></i>
+					                		</c:when>
+					                		<c:when test="${status.index+1 eq 3}">
+					                			<i class="fas fa-medal bronze"></i>
+					                		</c:when>
+					                		<c:otherwise>
+					                			${status.index+1}
+					                		</c:otherwise>
+				                		</c:choose>
+				                	</div>
+					                <div class="name">${grl.name}</div>
+					                <div class="sign-up-date">${grl.sum}</div>
+					                <div class="button-area"><button class="btn btn-default general-detail" data-id="${grl.id}" data-no="${grl.no}">상세</button></div>
+				                </div>
+				                <div class="clear-fix"></div>
+			                </c:forEach>
 		                </div>
 		            </div>
 		          </div>

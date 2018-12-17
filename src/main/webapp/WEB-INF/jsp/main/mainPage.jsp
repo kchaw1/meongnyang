@@ -174,24 +174,24 @@
                                     <h2 class = "title2">랭킹</h2>
                                     <button class="btn7 leftRight1">더보기 </button>
                                     </div>
-                                    <table style = "margin-top:10px" class = "tabletext">
+                                   		<table style = "margin-top:10px" class = "tabletext">
                                             <caption class = "caption" style="font-family: 'Jua'">행동전문가</caption>
                                             <tbody>
-                                                <tr>
-                                                    <th><i class="fas fa-medal gold"></i></th>
-                                                    <td>박아란</td>
-                                                </tr>
-                                                <tr>
-                                                    <th><i class="fas fa-medal silver"></i></th>
-                                                    <td>김병관</td>
-                                                </tr>
-                                                <tr>
-                                                    <th><i class="fas fa-medal bronze"></i></th>
-                                                    <td>김세영</td>
-                                                </tr>
+                                           		   <tr>
+                                                       <th><i class="fas fa-medal gold"></i></th>
+                                                       <td>${rankABSList[0].name}</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <th><i class="fas fa-medal silver"></i></th>
+                                                       <td>${rankABSList[1].name}</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <th><i class="fas fa-medal bronze"></i></th>
+                                                       <td>${rankABSList[2].name}</td>
+                                                   </tr>
                                             </tbody>
                                         </table>
-                                       
+                                       	
                                         <br>
 
                                         <table style = "margin-top:10px" class = "tabletext">
@@ -199,24 +199,24 @@
                                                 <tbody>
                                                     <tr>
                                                         <th><i class="fas fa-medal gold"></i></th>
-                                                        <td>현규브로</td>
+                                                        <td>${rankGeneralList[0].name}</td>
                                                     </tr>
                                                     <tr>
                                                         <th><i class="fas fa-medal silver"></i></th>
-                                                        <td>갓차원</td>
+                                                        <td>${rankGeneralList[1].name}</td>
                                                     </tr>
                                                     <tr>
                                                         <th><i class="fas fa-medal bronze"></i></th>
-                                                        <td>김병봉</td>
+                                                        <td>${rankGeneralList[2].name}</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                        </table>
                                 
                             </div>
-            </div>
-        </div>
-
-      </div>
+			            </div>
+			        </div>
+			
+			      </div>
 
 
 

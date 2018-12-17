@@ -5,6 +5,7 @@ import java.util.List;
 import com.nmcat.repository.domain.Crowd;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Notice;
+import com.nmcat.repository.domain.Rank;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.domain.board.DiaryBoard;
@@ -22,4 +23,8 @@ public interface MainService {
 		List<Notice> noticeList();
 		// 행동전문가 리스트 가져오기
 		List<Member> absList();
+		// 일반회원 랭킹
+		List<Rank> generalRank(Rank rank);
+		// 행동전문가 랭킹
+		List<Rank> ABSRank(Rank rank);
 }

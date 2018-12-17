@@ -54,7 +54,7 @@
  		$inputPoint = $("input.pay-input").val();
  		
  		$.ajax({
- 			url: "<c:url value='/admin/general/pay-point.mn' />",
+ 			url: "<c:url value='/admin/abs/pay-point.mn' />",
  			data: {
  					"no": '${no}',
  					"id": '${id}',

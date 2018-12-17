@@ -2,6 +2,7 @@ package com.nmcat.main.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nmcat.main.service.MainService;
 import com.nmcat.repository.domain.Crowd;
+import com.nmcat.repository.domain.Rank;
 
 @Controller
 @RequestMapping("/main")
@@ -35,6 +37,14 @@ public class MainController {
 		model.addAttribute("noticeList", service.noticeList());
 		// 행동전문가 리스트
 		model.addAttribute("absList", service.absList());
+		
+		// 랭킹
+		Rank rank = new Rank();
+		rank.setWeek(getWeek()); // 주 세팅
+		rank.setMonth(getMonth()); // 월 세팅
+		
+		model.addAttribute("rankGeneralList", service.generalRank(rank));
+		model.addAttribute("rankABSList", service.ABSRank(rank));
 	}
 	
 	/* 일반 메소드 */
@@ -60,5 +70,19 @@ public class MainController {
 				return null;
 			}
 		}
+		
+		
+		// 현재 날짜의 주
+		public static String getWeek(){
+	 		return String.valueOf(Calendar.getInstance().get(Calendar.WEEK_OF_MONTH));
+	 	}
+		
+		// 월구하기 해야됨
+		public static String getMonth() {
+			return String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1);
+		}
+
+
+	
 
 }

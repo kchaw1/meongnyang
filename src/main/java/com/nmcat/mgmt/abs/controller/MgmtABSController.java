@@ -1,7 +1,5 @@
 package com.nmcat.mgmt.abs.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nmcat.mgmt.abs.service.MgmtABSService;
-import com.nmcat.repository.domain.LoginHistory;
+import com.nmcat.mgmt.general.service.MgmtGeneralService;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.MgmtSearch;
+import com.nmcat.repository.domain.PointPlus;
 
 @RequestMapping("/admin")
 @Controller
@@ -24,6 +23,9 @@ public class MgmtABSController {
 	
 	@Autowired
 	private MgmtABSService service;
+	
+	@Autowired
+	private MgmtGeneralService gservice;
 	
 	// 리스트 페이지 이동
 	@RequestMapping("/abs/list")
@@ -80,6 +82,28 @@ public class MgmtABSController {
 		service.deleteMember(no);
 		return "redirect:list.mn";
 	}
+	
+	// 포인트지급 페이지 이동
+	@RequestMapping("/abs/pay")
+	public void pay(Model model, int no, String id) {
+		model.addAttribute("no", no);
+		model.addAttribute("id", id);
+	}
+	
+	// 포인트 지급
+		@RequestMapping("/abs/pay-point")
+		@ResponseBody
+		public void pay(int no, int point, String id) {
+			Member member = new Member();
+			member.setNo(no);
+			member.setPoint(point);
+			gservice.payPoint(member);
+			
+			PointPlus pp = new PointPlus();
+			pp.setPlusPoint(point);
+			pp.setId(id);
+			gservice.pointHistory(pp);
+		}
 	
 	/*
 	@RequestMapping("/abs/delete")

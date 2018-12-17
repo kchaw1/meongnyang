@@ -5,6 +5,7 @@ import java.util.List;
 import com.nmcat.repository.domain.Crowd;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Notice;
+import com.nmcat.repository.domain.Rank;
 import com.nmcat.repository.domain.Youtube;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.domain.board.DiaryBoard;
@@ -23,4 +24,8 @@ public interface MainMapper {
 	List<Notice> selectNoticeList();
 	// 행동전문가 슬라이드
 	List<Member> selectABSList();
+	// 일반회원 랭킹
+	List<Rank> selectGeneralMemberRank(Rank rank);
+	// 행동전문가 랭킹
+	List<Rank> selectABSMemberRank(Rank rank);
 }
