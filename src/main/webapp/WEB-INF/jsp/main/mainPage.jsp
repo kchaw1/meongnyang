@@ -32,6 +32,9 @@
 <!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> -->
 </head>
 <body>
+<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/chat.css"/>">
+<c:import url = "../common/chat.jsp"/>
 
 <c:import url = "../common/header.jsp"/>
 
@@ -221,7 +224,7 @@
 
 
    
-	            <div class="chat-launcher" onclick="doChatList()"></div>
+	           
 	            
     		 <c:import url = "../common/footer.jsp"/>
     
@@ -251,14 +254,9 @@
     	location.href = "<c:url value ='/ranking/ranking.mn' />";
     }); 
     
-    function doChatList() {
-    	if("${user.no}" != null ){
-    		
-       	window.open("<c:url value='/chat/chatRoom.mn?no=${user.no}' />", "chatList", "width=400, height=600, scrollbars=yes");
-    	}else{
-    		alert("채팅을 하려면 로그인을 해주십시오.");
-    	}
-    }
+    
+    
+ 
     
     
     $(function(){
