@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/common/headerfooter.css"/>">
 
 <script src="<c:url value="/resources/js/common/notify.min.js"/>"></script>
+
+<!-- 파비곤 -->
+<link rel="shortcut icon" href="<c:url value="/resources/img/common/meongvicon.png" />" type="image/x-icon">
+<link rel="icon" href="<c:url value="/resources/img/common/meongvicon.png" />" type="image/x-icon">
+
 <script>
 $(function() {
   $('.dropdown-toggle').dropdown()	
