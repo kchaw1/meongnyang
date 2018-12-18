@@ -15,6 +15,37 @@
 		) values (#{id}, '1', 10)
 	</insert>
 	
+	<!-- 댓글 작성시 활동 점수  -->
+	<insert id = "insertCommentScoreHistory" parameterType = "string">
+	insert into mn_score_history
+	(id, score_type, score_plus) values
+	(#{id}, '2', 30)
+	</insert>
+	
+	
+	<!-- 게시글 작성시 활동 점수  -->
+	<insert id = "insertBoardScoreHistory" parameterType = "string">
+	insert into mn_score_history
+	(id, score_type, score_plus) values
+	(#{id}, '3', 50)
+	</insert>
+	
+	
+	<update id = "updateBoardScore" parameterType = "string">
+	update mn_member set
+	score = score+50
+	where id = #{id}
+	</update>
+	
+	<update id = "updateCommentScore" parameterType = "string">
+	update mn_member set
+	score = score+30
+	where id = #{id}
+	</update>
+	
+	
+	
+	
 	<!-- 활동점수 조회 -->
 	<select id="selectScore" parameterType="string" resultType="int">
 		select score

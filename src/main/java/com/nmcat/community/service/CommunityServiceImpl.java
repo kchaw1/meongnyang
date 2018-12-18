@@ -11,14 +11,16 @@ import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
+import com.nmcat.repository.mapper.ScoreMapper;
 
 
 @Service
 public class CommunityServiceImpl implements CommunityService{
 	@Autowired
 	private CommunityMapper mapper;
+	private ScoreMapper scoreMapper;
 	
-	//커占승댐옙티 CRUD
+	//而ㅵ뜝�듅�뙋�삕�떚 CRUD
 	@Override
 	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {
 		
@@ -50,13 +52,24 @@ public class CommunityServiceImpl implements CommunityService{
 		comBoard = mapper.detailBoard(comNo);
 		return comBoard;
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	// 여기에 활동점수 추가~
 	@Override
 	public void insertBoard(CommunityBoard comBoard, CommunityFile file) {
 		mapper.insertBoard(comBoard);
 		file.setComNo(comBoard.getComNo());
 		mapper.insertBoardFile(file);
+		
+	
 	}
+	
 	
 
 	@Override
@@ -86,12 +99,29 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<CommunityComment> selectComment(int comNo) {
 		return mapper.selectComment(comNo);
 	}
-
+	
+	
+	
+	
+	
+	
+	
+// 여기에 활동점수 추가~
 	@Override
 	public void insertComment(CommunityComment comComment) {
+	
 		mapper.insertComment(comComment);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void deleteComment(int comcNo) {
@@ -104,7 +134,7 @@ public class CommunityServiceImpl implements CommunityService{
 		mapper.updateComment(comComment);
 		
 	}
-		//�뙎湲� 媛��닔 移댁슫�듃!
+		//占쎈솊疫뀐옙 揶쏉옙占쎈땾 燁삳똻�뒲占쎈뱜!
 	@Override
 	public int selectCommentCount(int comNo) {
 		

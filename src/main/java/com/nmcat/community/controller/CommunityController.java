@@ -25,10 +25,13 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
+import com.nmcat.score.service.ScoreService;
 
 @Controller
 @RequestMapping("/community")
 public class CommunityController {
+	@Autowired 
+	private ScoreService  scoreService;
 
 	@Autowired
 	private CommunityService service;
@@ -136,6 +139,11 @@ public class CommunityController {
 		file.setComfSysName(form.getSysName());
 		file.setComfPath(form.getPath());
 		
+		String id = comBoard.getComWriter();
+		scoreService.updateBoardScore(id);
+		scoreService.updateGradeNo(id);
+		scoreService.insertBoardScoreHistory(id);
+		
 		service.insertBoard(comBoard,file);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "communityPage.mn";
 	}
@@ -173,6 +181,12 @@ public class CommunityController {
 	@RequestMapping("/insertComment.mn")
 	@ResponseBody
 	public void insertComment(CommunityComment comComment)throws Exception{
+		
+		String id = comComment.getComcWriter();
+		scoreService.updateCommentScore(id);
+		scoreService.updateGradeNo(id);
+		scoreService.insertCommentScoreHistory(id);
+		service.insertComment(comComment);
 		service.insertComment(comComment);
 	}
 	

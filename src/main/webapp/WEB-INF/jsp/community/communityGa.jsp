@@ -504,7 +504,8 @@ float: left;
                         <div class = "forHr">
                             <div class = "galleryDetailBox">
                                 <div class = "userName">qudrhks258님의 <span>1</span>번째 게시물</div>
-                                <div class="heart"></div>
+                                <div class="heart" onclick = 'refFunction(0,"${user.id}")'></div>
+                                
                             </div> 
                         </div>
                         <div class = "forComment">
@@ -563,7 +564,75 @@ float: left;
 
 			
 	});
+
  
+ 
+ 
+ //추천
+ 
+ 
+ function refFunction(comNo, comRefUser){
+
+	comNo = $("#forcomNo").attr("class");
+	
+
+	$.ajax({
+		url : "<c:url value = '/community/checkRef.mn'/>",
+		tpye : "POST",
+		data : {comNo : comNo, comRefUser : comRefUser }
+	}).done(function(result){
+		console.log(result);
+		if(result==0){
+			$(".heart."+comNo).addClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/insertRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 완료");
+				  
+					  $.ajax({
+						  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+						  type : "POST", 
+						  data : {comNo : comNo}
+						  }).done(function(result){
+							  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+							 /*  $("div.heart."+comNo).removeAttr("title"); */
+							  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+							  
+						  });
+						  
+					//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			 
+		}else{
+			$(".heart."+comNo).removeClass("is-active");
+			  $.ajax({
+				  url : "<c:url value = '/community/deleteRefCnt.mn'/>",
+				  type : "POST", 
+				  data : {comNo : comNo, comRefUser : comRefUser }
+			  }).done(function(result){
+				  console.log("추천 취소 완료");
+				  
+				  $.ajax({
+					  url : "<c:url value = '/community/selectRefCnt.mn'/>",
+					  type : "POST", 
+					  data : {comNo : comNo}
+					  }).done(function(result){
+						  console.log(result+"개의 추천의 갯수가 달렸습니다.");
+						 /*  $("div.heart."+comNo).removeAttr("title"); */
+						  $("div.heart."+comNo).attr("title", result+"개의 좋아요");
+						  
+					  });
+					  
+				//여기까지가 실시간으로 추천갯수 보여지는 ajax
+			  }) 
+			
+		}
+	});
+	
+	  
+}
  
  //게시판 조회
  function detailFunction(comNo){
@@ -578,8 +647,11 @@ float: left;
 		 console.log(comBoard.comContent);
 		 $(".forImgList").html(comBoard.comContent);
 		 var text = "";
-		 text = "<input type='hidden' id = 'forcomNo' class = ''"+comBoard.comNo+"' name='comNo' value='"+comBoard.comNo+"'/>"
+		 text = "<input type='hidden' id = 'forcomNo' class = '"+comBoard.comNo+"' name='comNo' value='"+comBoard.comNo+"'/>"
 		 $("#formTag").append(text);
+/* 		 var forRefText = "";
+		 forRefText = "<div class='heart' onclick = 'refFunction("+comBoard.comNo+",${user.id})'></div>"
+		 $(".galleryDetailBox2").html(forRefText); */
 		 
 		 
 	 });
