@@ -237,7 +237,26 @@
 		
 		// 삭제 버튼 클릭
 		$("#delete-btn").click(function() {
-			location.href = "delete.mn?crNo=" + '${detail.crNo}'
+			
+			swal({
+				  title: "삭제하시겠습니까??",
+				  text: "삭제한 크라우드펀딩은 복구할 수 없습니다.",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				}).then((willDelete) => {
+				  if (willDelete) {
+				    swal("삭제되었습니다.", {
+				      icon: "success",
+				    });
+					setTimeout(function() {
+						location.href = "delete.mn?crNo=" + '${detail.crNo}'
+					}, 1000)
+				  } else {
+				    swal("취소되었습니다.");
+				  }
+				});
+			
 		});
 		
 		// 좋아요 ajax

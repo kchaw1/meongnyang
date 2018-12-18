@@ -530,12 +530,25 @@
 	
 	// 삭제 버튼 클릭
 	$(document).on("click", ".delete", function() {
-		if (confirm($(this).data("id") + " 회원을 탈퇴처리 하시겠습니까?") == true){    //확인
-			location.href = "delete.mn?no=" + $(this).data("no");
-		}else{   //취소
-		    return;
-		}
-		//ajaxDeleteMember($(this).data("no"));
+		
+		var no = $(this).data("no")
+		
+		swal({
+			  title: "탈퇴 처리 하시겠습니까??",
+			  text: "탈퇴된 회원정보는 복구할 수 없습니다.",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			}).then((willDelete) => {
+			  if (willDelete) {
+			    swal("탈퇴처리되었습니다.", {
+			      icon: "success",
+			    });
+				setTimeout(function() { location.href = "delete.mn?no=" + no; }, 1000)
+			  } else {
+			    swal("취소되었습니다.");
+			  }
+			});
 	});
 	</script>
 </body>
