@@ -74,7 +74,7 @@ public interface MemberService {
 	List<CommunityBoard> selectComPage(Page2 page2);
 	
 	// 내 활동 게시물 전체 수
-	int selectComCount(String comWriter);
+	int selectComCount(String id);
 	
 	// 내 활동 코멘트 페이징
 	List<CommunityComment> selectCommentPage(Page2 page2);

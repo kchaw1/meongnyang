@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import com.nmcat.community.service.CommunityService;
 import com.nmcat.member.service.MemberService;
 import com.nmcat.point.serivce.PointService;
 import com.nmcat.repository.domain.Member;

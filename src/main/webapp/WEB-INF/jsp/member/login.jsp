@@ -225,8 +225,8 @@ img {
                                             <label for="recipient-name" class="control-label"><span id="red">*</span>E-mail</label>
                                             <span id='warnemail'></span><br>
                                                 <input id="email" type="text" class="form-control" name="email" placeholder="이메일">                     
-                                                <button id="sendMail" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
-                                            <span class="input-group-btn"></span>
+                                                <!-- <button id="sendMail" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+                                            <span class="input-group-btn"></span> -->
                                         </div>
                           				<hr>
 			                         	 <span id="animal">반려동물 : <select id="catdog" name="category">
@@ -244,7 +244,7 @@ img {
 			        </div>
 			       </div>
 			      </div>
-			<div class="modal fade" id="certify">
+			<!-- <div class="modal fade" id="certify">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -265,7 +265,7 @@ img {
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div> --> 
     
 			       
 	<!-- 행동전문가 회원가입 Modal -->
@@ -278,7 +278,7 @@ img {
 					                    </button>
 					                    <h4 class="modal-title" id="myModalLabel">행동전문가</h4>
 					                </div>
-					      <form name="absignup" enctype="multipart/form-data" method="post" action="<c:url value="/member/absignup.mn"/>">
+					      <form name="absignup" id="abscar" enctype="multipart/form-data" method="post" action="<c:url value="/member/absignup.mn"/>">
 					                <div class="modal-body">
 					                    <div id="tabs">
 					                        <ul style="border: 1px solid #dddddd; background: none;">
@@ -327,8 +327,8 @@ img {
 					                                            <label for="recipient-name" class="control-label"><span id="red2">*</span>E-mail</label>
 					                                            <span id='warnemail2'></span><br>
 					                                                <input id="email2" type="text" class="form-control" name="email" placeholder="이메일">                     
-					                                                <button id="sendMail2" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
-					                                            <span class="input-group-btn"></span>
+					                                                <!-- <button id="sendMail2" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+					                                            <span class="input-group-btn"></span> -->
 					                                    </div>
 					                                    <hr>
 					                                    <label for="recipient-name" class="control-label"><span id="red2">*</span>인사말</label>
@@ -353,7 +353,8 @@ img {
 						                        </div>
 						                        <hr>
 					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
-					                            <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>					                            
+					                            <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
+					                            				                            
 					                            <hr>
 					                            <span>상세경력 : </span>
 					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>					                            
@@ -489,22 +490,29 @@ $( function() {
 <script>
 var html ="";
 $("#combtn").click(function() {
-	
+
 	   html += "<div id='allcareer'>"
 	          	+ "<div class='form-group'>" 
-	          	+ "<span id='car'>경력 :</span>" 
+	          	+ "<span id='car'>경력 :</span>&nbsp" 
 	          	+ "<input type='date' name='careerStart' id='career1'/>"
 	          	+ "<span id='car2'> ~ </span>"
 	          	+ "<input type='date' name='careerEnd' id='career2' />"
+	          	+ "<button type='button' name='cardel' class='btn pull-right btn-success' id='cardel' style='width:80px; height: 30px;'>삭제</button>	"
 	          	+ "<hr>"
 	          	+ "<span>상세경력 : </span>"
 	          	+ "<textarea rows='8' cols='70' placeholder='업무내용을 적어주세요.' value='' name='careerContent'></textarea>"
 	          	+ "</div>" 
 	          	+ "</div>"
-	          	+ "<hr>"
 	   $("#tabs-2").append(html)
 	})
 
+ $(document).on("click", "#newmember2", function() {
+  $("form#abscar").submit();
+ }); 
+ 
+ $(document).on("click", "#cardel", function() {
+	$(this).parent().remove(); 
+ });
 </script>
 <script>
 function enterkey() {

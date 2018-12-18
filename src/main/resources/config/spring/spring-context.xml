@@ -49,6 +49,7 @@
       		<mvc:exclude-mapping path="/main/mainPage.mn"/>
       		<mvc:exclude-mapping path="/member/checkid.mn"/>
       		<mvc:exclude-mapping path="/member/signup.mn"/>
+      		<mvc:exclude-mapping path="/member/absignup.mn"/>
       		<mvc:exclude-mapping path="/member/loginform.mn"/>
       		<mvc:exclude-mapping path="/friend/selectrequest.mn"/>
       		<mvc:exclude-mapping path="/diary/share/sharediary.mn"/>

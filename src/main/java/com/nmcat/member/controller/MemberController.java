@@ -69,7 +69,7 @@ public class MemberController {
 	
 	@RequestMapping("/absignup.mn")
 	public String absup(Member member, Career career, License license) throws Exception {
-		
+		System.out.println(career);
 		MultipartFile profile = member.getProfile();
 	      String uploadPath = "c:/app/upload";
 	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
@@ -116,13 +116,14 @@ public class MemberController {
 		         license.setLifSize((int)lifile.getSize());
 		       
 		         File liuploadFile = new File(liuploadPath + lidatePath, lifileSysName);
-		         if(uploadFile.exists() == false) {
-		            uploadFile.mkdirs();
+		         if(liuploadFile.exists() == false) {
+		        	 liuploadFile.mkdirs();
 		         } 
-		         lifile.transferTo(uploadFile);
+		         lifile.transferTo(liuploadFile);
 		service.license(license);
 	    service.insertCaree(career);
 		service.absup(member);
+		System.out.println(member);
 		return "redirect:/member/login.mn";
 		
 	} // 행동전문가 회원가입	

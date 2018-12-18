@@ -159,6 +159,9 @@ div.modal-header {
     margin-top: 10px;
     }
 
+#a1, #a2 {
+  text-decoration:none;
+}
 </style>
 </head>
 <body>
@@ -171,7 +174,15 @@ div.modal-header {
       <div class="aside">
         <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
-        <div class="log-out">LOG OUT</div>
+        <c:if test="${member.type == 1}">
+        <div class="log-out">반려인</div>
+        </c:if>
+        <c:if test="${member.type == 2}">
+        <div class="log-out">행동전문가</div>
+        </c:if>
+        <c:if test="${member.type == 3}">
+        <div class="log-out">admin</div>
+        </c:if>
         <div class="seperator"></div>
         <div class="list"> 
           <div id="board" class="item statistics" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>
@@ -204,7 +215,7 @@ div.modal-header {
           	<c:if test="${member.type == 1}">
 		            <li class = "li2">
 		              <label class ="labelC">회원등급</label><br>
-		              <div class ="spanC2">${member.codeName}</div>
+		              <div class ="spanC2"><a id="a1" href="#" onclick="grade();">${member.codeName}</a></div>
 		            </li>
             </c:if>
             <c:if test = "${member.type == 2}">
@@ -240,13 +251,29 @@ div.modal-header {
              <label class ="labelC">일반인 랭킹</label><br>
              <span class ="spanC">6위</span>
          </li>
+         
+         <c:if test="${member.category == 'dog'}">
           <li class = "li4">
               <label class ="labelC">반려동물</label><br>
-              <span class ="spanC">${member.category}</span>
+              <span class ="spanC">개</span>
           </li>
+          </c:if>
+          <c:if test="${member.category == 'cat'}">
+          <li class = "li4">
+              <label class ="labelC">반려동물</label><br>
+              <span class ="spanC">고양이</span>
+          </li>
+          </c:if>
+          <c:if test="${member.category == 'all'}">
+          <li class = "li4">
+              <label class ="labelC">반려동물</label><br>
+              <span class ="spanC">ALL</span>
+          </li>
+          </c:if> 
+          
           <li class = "li4">
               <label class ="labelC">포인트</label><br>
-              <span class ="spanC"><fmt:formatNumber value="${member.point}" pattern="#,###"/></span>
+              <span class ="spanC"><a id="a2" href='#' onclick="point();"><fmt:formatNumber value="${member.point}" pattern="#,###"/></a></span>
               
           </li>
           <li class = "li4">
@@ -329,7 +356,13 @@ $("button#enter").click(function(){
 	});	
 });
 
+function point() {
+	location.href = "point.mn";
+}
 
+function grade() {
+	location.href = "grade.mn";
+}
 </script>
 </body>
 </html>

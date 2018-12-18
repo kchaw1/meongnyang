@@ -215,8 +215,8 @@ public class MemberServiceImpl implements MemberService{
 
 	// 내 활동(게시물 전체 수 )
 	@Override
-	public int selectComCount(String comWriter) {
-		return mapper.selectComCount(comWriter);
+	public int selectComCount(String id) {
+		return mapper.selectComCount(id);
 	}
 
 	// 내 활동(코멘트 페이징)
