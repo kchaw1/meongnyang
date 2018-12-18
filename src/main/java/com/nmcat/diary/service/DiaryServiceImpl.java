@@ -159,5 +159,10 @@ public class DiaryServiceImpl implements DiaryService{
 		return membermapper.selectMemberInfoById(id);
 	}
 
+	@Override
+	public void deleteComment(int drcNo) {
+		mapper.deleteCommentByDrcNo(drcNo);
+	}
+
 	
 } // service

@@ -140,7 +140,10 @@ function showdetailDiary(drNo) {
 						html += '<span class="small-label label-me">나</span>' 
 					}
 					html += '| '+ comment.drcRegDate
-					html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a> <a href="#1" class="delete" data-drc="'+comment.drcNo+'"> 삭제</a></div>'
+					if("${user.id}" == comment.drcWriter){
+						html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a>'
+						html += '<a href="#1" class="delete" data-drc="'+comment.drcNo+'" data-dr="'+comment.drNo+'"> 삭제</a></div>'						
+					}
 					html += '<div class="body">'+comment.drcContent+'</div></li>'
 				$("div.diary[data-no='"+comment.drNo+"'] > .aboutcomments > .commentList > ul").append(html);
 				} //comment for 문..
@@ -156,10 +159,22 @@ function showdetailDiary(drNo) {
 				}
 			})//click
 			
-			
+			$("a.delete").click(function(){
+				deleteComment($(this).data("drc"), $(this).data("dr"))
+			})
 			
 	})//done
 }//showdetaildiary
+
+function deleteComment(drcNo, drNo){
+	$.ajax({
+		url : "<c:url value='/diary/comment/delete.mn' />",
+		data : "drcNo="+drcNo,
+		type : "POST"
+	}).done(function(){
+		showdetailDiary(drNo)
+	})
+}
 
 function writecomment(drNo) {
 	$.ajax({

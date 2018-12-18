@@ -253,7 +253,8 @@
 					html += '<span class="small-label label-me">나</span>' 
 				}
 				html += '| '+ comment.drcRegDate
-				html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a> <a href="#1" class="delete" data-drc="'+comment.drcNo+'"> 삭제</a></div>'
+				html += '<a href="#1" class="update" id ="editBtn" data-drc="'+comment.drcNo+'">수정 </a>'
+				html += '<a href="#1" class="delete" data-drc="'+comment.drcNo+'"> 삭제</a></div>'
 				html += '<div class="body">'+comment.drcContent+'</div></li>'
 			$("div[data-no='"+comment.drNo+"'] > .aboutcomments > .commentList > ul").append(html);
 			} //comment for 문..
@@ -278,9 +279,20 @@
 			updateformDiary($(this).data("value"), $(this).data("date"));
 		}) // 다이어리 삭제
 		
+		$("a.delete").click(function(){
+			deleteComment($(this).data("drc"), setdate)
+		})
 	} //showDetail
 	
-	
+	function deleteComment(drcNo, setdate){
+		$.ajax({
+			url : "<c:url value='/diary/comment/delete.mn' />",
+			data : "drcNo="+drcNo,
+			type : "POST"
+		}).done(function(){
+			detailDiary(setdate)
+		})
+	}
 	function writecomment(drNo, setdate) {
 		$.ajax({
 			url : "<c:url value='/diary/comment/write.mn' />",

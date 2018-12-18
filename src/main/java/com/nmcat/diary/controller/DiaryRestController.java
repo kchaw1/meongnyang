@@ -111,6 +111,10 @@ public class DiaryRestController {
 	public Map<String, Object> writeNewComment(DiaryBoard diary, DiaryComment comment){
 		return service.writeNewComment(diary, comment);
 	}
+	@PostMapping("/comment/delete.mn")
+	public void deleteComment(int drcNo) {
+		service.deleteComment(drcNo);
+	}
 	
 	private static String getExtension(String fileName) {
         int dotPosition = fileName.lastIndexOf('.');

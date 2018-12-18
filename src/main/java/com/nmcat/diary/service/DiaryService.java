@@ -38,6 +38,8 @@ public interface DiaryService {
 
 	Member showImage(String id);
 
+	void deleteComment(int drcNo);
+
 
 
 }
