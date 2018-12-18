@@ -65,6 +65,15 @@ public class CommunityController {
 		/*map.put("commentCnt", service.selectCommentCount(comBoard.getComNo()));*/
 		return map;
 	}
+	@RequestMapping("/communityGaToWriter.mn")
+	@ResponseBody
+	public Map<String, Object> selectGaToWrtier(String comWriter, CommunityBoard comBoard)throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		comBoard.setComWriter(comWriter);
+		map.put("list", service.selectGaToWriter(comBoard));
+		
+		return map;
+	}
 	
 	@RequestMapping("/communityPage2.mn")
 	public Map<String, Object> selectBoardCategory(CommunityBoard comBoard, String comCategory)throws Exception{

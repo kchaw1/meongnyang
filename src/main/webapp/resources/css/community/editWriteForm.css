@@ -11,7 +11,7 @@ div{
     width: 1076px;
 
 }
-/* 硫붿씤 而щ읆 泥ル쾲夷� */
+/* 筌롫뗄�뵥 �뚎됱쓥 筌ｃ꺂苡꿨ㅇ占� */
 .main-column1{
     margin-top: 140px;
     margin-left: 23.5%;
@@ -39,7 +39,7 @@ min-height: 370px;
 background-color: white;
 }
 
-/* 硫붿씤 而щ읆 �몢踰덉�� */
+/* 筌롫뗄�뵥 �뚎됱쓥 占쎈あ甕곕뜆占쏙옙 */
 .main-column2{
 margin-top: 170px;
 margin-right: -17%;
@@ -113,7 +113,7 @@ transition: box-shadow 0.2s;
 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .form-select:after {
-content: '�뼻';
+content: '占쎈섶';
 position: absolute;
 top: 0;
 right: 12px;
@@ -180,7 +180,7 @@ left: 50%;
 
 width: 300px;
 }
-/*�뫖�꽣遺�遺꾩쨪爰쇱��뜕嫄�*/
+/*占쎈쳳占쎄숲�겫占썽겫袁⑹Ø�댆�눘占쏙옙�쐲椰꾬옙*/
 .imgsize2{
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
@@ -237,56 +237,7 @@ fill: rgb(255, 255, 255);
 border-color: #6BF3D9;
 border-radius: 10px;
 }
-/*梨꾪똿濡쒓퀬*/
-.chat-launcher {
-position: fixed;
-bottom: 20px;
-right: 20px;
-width: 60px;
-height: 60px;
-z-index: 9999;
-background: orange;
-color: white;
-border-radius: 50%;
-cursor: pointer;
-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
-}
-.chat-launcher:before, .chat-launcher:after {
-font-family: FontAwesome;
-font-size: 34px;
-position: absolute;
--webkit-transition: transform 180ms linear, opacity 130ms linear;
-transition: transform 180ms linear, opacity 130ms linear;
-}
-.chat-launcher:before {
-content: "\f086";
 
-margin: 6px 0px 0px 13px;
-opacity: 1;
--webkit-transform: rotate(0deg) scale(1);
-transform: rotate(0deg) scale(1);
-}
-.chat-launcher:after {
-content: "\f00d";
-padding-top: 20px;
-margin: 13px 17px;
-opacity: 0;
--webkit-transform: rotate(-30deg);
-transform: rotate(-30deg);
-}
-.chat-launcher:hover {
-background: #ffb329;
-}
-.chat-launcher.active:before {
-opacity: 0;
--webkit-transform: rotate(70deg) scale(0);
-transform: rotate(70deg) scale(0);
-}
-.chat-launcher.active:after {
-opacity: 1;
--webkit-transform: rotate(0deg);
-transform: rotate(0deg);
-}
 
 body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -331,7 +282,7 @@ padding-left: 270px; */
 	height: 100%;
 }
 
-/*채팅*/
+/*梨꾪똿*/
 .comments:after {
 	border-color: #fff;
 }

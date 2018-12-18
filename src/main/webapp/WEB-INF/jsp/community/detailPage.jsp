@@ -36,6 +36,9 @@
 
 </style>
 <body>
+<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/chat.css"/>">
+<c:import url = "../common/chat.jsp"/>
   <c:import url = "../common/header.jsp"/>
 
 
@@ -116,11 +119,7 @@
             </div>
           </footer>
                 
-    <footer>
-            <div class="chat-launcher"></div>
-            <div class="chat-wrapper" data-headline="Chat">
-            </div>
-    </footer>
+ 
 <script>
 //댓글 등록
 $(document).on("click",".commentBtn", function(e){

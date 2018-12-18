@@ -93,7 +93,13 @@ background-color: #ededed;
     cursor: pointer;
     color: #d6d1d1;
 }
+.ch
+
 </style>
+
+<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/chat2.css"/>">
+<c:import url = "../common/chat.jsp"/>
 
     <body class="page-leaderboard">
     <div class = "forAjax">
@@ -462,14 +468,7 @@ background-color: #ededed;
  
     </div>
             
-            <footer>
-                    <div class="chat-launcher"></div>
-                    <div class="chat-wrapper" data-headline="Chat">
-                    
-                    </div>
-
-
-            </footer>
+          
 
 
 <script>

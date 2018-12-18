@@ -80,6 +80,15 @@
 	limit 0, 20
 	</select>
 	
+	<!-- 갤러리 작성자 검색 -->
+	<select id = "selectGaToWriter" parameterType = "CommunityBoard" resultMap = "comMap">
+	select * 
+	from mn_com
+	where com_category = '갤러리' and com_writer = #{comWriter}
+	order by com_no desc
+	limit 0, 20
+	</select>
+	
 	
 	
 	

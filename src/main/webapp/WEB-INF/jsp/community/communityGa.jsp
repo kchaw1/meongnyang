@@ -34,13 +34,22 @@
 </style>
 <body>
 <c:import url = "../common/header.jsp"/>
-
+<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/common/chat.css"/>">
+<c:import url = "../common/chat.jsp"/>
 <!-- 여기서부터 컨텐츠 시작  -->
 
+					<!-- <div class = "searchForm">
+							<form method = "POST" id = "forWriter" class="search-wrapper cf">
+							        <input type="text" placeholder="작성자로 검색" name = "comWriter" >
+							        <button type="submit" class = "submitBtn"><i class="fas fa-search"></i></button>
+							</form>
+					</div> -->
+					
 					<div class = "searchForm">
-							<form action="/search.html" class="search-wrapper cf">
-							        <input type="text" placeholder="작성자로 검색" required="">
-							        <button type="submit"><i class="fas fa-search"></i></button>
+							<form id = "forWriter" class="search-wrapper cf" method = "POST">
+							        <input type="text" placeholder="작성자로 검색" name = "comWriter" class = "comWriter"/>
+							        <button class = "submitBtn"><i class="fas fa-search"></i></button>
 							</form>
 					</div>
 
@@ -140,6 +149,36 @@
 
 			
 	});
+
+ 
+ $(".submitBtn").click(function(){
+	var comWriter=$(".comWriter").val();
+	 
+	$.ajax({
+		 url : "<c:url value = '/community/communityGaToWriter.mn'/>",
+		 type : "POST" ,
+		 data :{comWriter : comWriter}
+		 
+	 }).done(function(result){
+		 console.log(result);
+		 var text = "";
+		 for(let i = 0; i < result.list.length; i++){
+		 text += "<div class = 'galleryContentContainer' onclick = 'detailFunction("+result.list[i].comNo+")'>"
+        	  +"<div class = 'galleryImg'  class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>"
+       	 	 +"<div class = 'imgContainer'>"+result.list[i].comContent+"</div>"
+    		  +"</div>"
+    		  +" <div class = 'viewContainer'>"
+    		  +" <div class='coracao'></div><div class = 'heartCnt'>6</div>"
+    		  +"</div></div>"
+    		  
+		 }
+		 $(".allContainer").html(text);
+
+		 
+	 });
+	
+	 
+ })
 
  
  

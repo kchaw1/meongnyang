@@ -52,14 +52,14 @@ public class CommunityServiceImpl implements CommunityService{
 		comBoard = mapper.detailBoard(comNo);
 		return comBoard;
 	}
+
 	
 	
-	
-	
-	
-	
-	
-	
+	@Override
+	public List<CommunityBoard> selectGaToWriter(CommunityBoard comBoard) {
+		return mapper.selectGaToWriter(comBoard);
+	}
+
 	// 여기에 활동점수 추가~
 	@Override
 	public void insertBoard(CommunityBoard comBoard, CommunityFile file) {

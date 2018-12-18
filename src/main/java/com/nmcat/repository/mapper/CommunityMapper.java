@@ -9,51 +9,52 @@ import com.nmcat.repository.domain.CommunityRef;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityMapper {
-	//커뮤니티 무한스크롤 전체카테고리목록 가져오기 +페이징
+	//而ㅻ�ㅻ땲�떚 臾댄븳�뒪�겕濡� �쟾泥댁뭅�뀒怨좊━紐⑸줉 媛��졇�삤湲� +�럹�씠吏�
 	List<CommunityBoard> selectBoard(CommunityBoard comBoard);
-	//커뮤니티 무한스크롤 전체카테고리 목록 가져오기 + 카테고리
+	//而ㅻ�ㅻ땲�떚 臾댄븳�뒪�겕濡� �쟾泥댁뭅�뀒怨좊━ 紐⑸줉 媛��졇�삤湲� + 移댄뀒怨좊━
 	List<CommunityBoard> selectBoardCa(CommunityBoard comBoard);
-	// 갤러리 연습용
+	// 媛ㅻ윭由� �뿰�뒿�슜
 	List<CommunityBoard> selectGa();
+	List<CommunityBoard> selectGaToWriter(CommunityBoard comBoard);
 	
-	//카테고리
+	//移댄뀒怨좊━
 	List<CommunityBoard> selectBoardC(CommunityBoard comBoard);
-	//커뮤니티 무한스크롤 전체카테고리목록 가져오기 +페이징
+	//而ㅻ�ㅻ땲�떚 臾댄븳�뒪�겕濡� �쟾泥댁뭅�뀒怨좊━紐⑸줉 媛��졇�삤湲� +�럹�씠吏�
 	//List<CommunityBoard> selectBoard(CommunityBoard comBoard)
 	//List<CommunityBoard> selectBoard();
-	//상세보기
+	//�긽�꽭蹂닿린
 	CommunityBoard detailBoard(int comNo);
 	
-	//커뮤니티 글 등록
+	//而ㅻ�ㅻ땲�떚 湲� �벑濡�
 	void insertBoard(CommunityBoard comBoard);
 	
-	//커뮤니티 글 삭제
+	//而ㅻ�ㅻ땲�떚 湲� �궘�젣
 	void deleteBoard(int comNo);
 	
-	//커뮤니티 글 수정
+	//而ㅻ�ㅻ땲�떚 湲� �닔�젙
 	void updateBoard(CommunityBoard comBoard);
 	
-	// 커뮤니티 전체 글 갯수
+	// 而ㅻ�ㅻ땲�떚 �쟾泥� 湲� 媛��닔
 	int selectBoardCount();
 	int updateBoardViewCnt(int comNo);
 	
-	//파일 등록
+	//�뙆�씪 �벑濡�
 	void insertBoardFile(CommunityFile file);
-	//댓글 전체갯수
+	//�뙎湲� �쟾泥닿갗�닔
 	int selectCommentCount(int comNo);
 	
 	//--------------------------------------------------------------------------------
-	// 댓글 CRUD
+	// �뙎湲� CRUD
 	List<CommunityComment> selectComment(int comNo);
 	void insertComment(CommunityComment comComment);
 	void deleteComment(int comcNo);
 	void updateComment(CommunityComment comComment);
-	// 대댓글 CRUD
+	// ���뙎湲� CRUD
 	List<CommunityReComment> selectReComment(int comcNo);
 	void insertReComment(CommunityReComment comReComment);
 	void deleteReComment(int comcReNo);
 	void updateReComment(CommunityReComment comReComment);
-	//추천
+	//異붿쿇
 	int selectRefCnt(int comNo);
 	void insertRef(CommunityRef comRef);
 	void deleteRef(CommunityRef comRef);
