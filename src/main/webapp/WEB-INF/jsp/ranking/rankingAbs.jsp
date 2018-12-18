@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value="/resources/css/ranking/ranking.css"/>">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
@@ -85,6 +86,13 @@ background-color: #ededed;
 .is-active2{
 background-color: #ededed;
 }
+.fa-arrow-right {
+    float: right;
+    font-size: 23px;
+    margin-top: 14px;
+    cursor: pointer;
+    color: #d6d1d1;
+}
 </style>
 
     <body class="page-leaderboard">
@@ -102,6 +110,7 @@ background-color: #ededed;
 
                     <div  class= "tabClass">
                     <div class ="forTabClass">전체랭킹</div><div class ="forTabClass2 ">금주의 일반인 랭킹</div><div class ="forTabClass3 is-active2">금주의 전문가 랭킹</div>
+                    <i class="fas fa-arrow-right"></i>
                     </div>
 
                    <div class = "forTabha">
@@ -119,7 +128,7 @@ background-color: #ededed;
                                 ${list[0].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete1">${list[0].score}</div>
+                                <div class="complete1">${list[0].sum}</div>
                             </div>
                         </div>
                         <div class="ranking-table-row-leader-2">
@@ -130,7 +139,7 @@ background-color: #ededed;
                               ${list[1].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete1">${list[1].score}</div>
+                                <div class="complete1">${list[1].sum}</div>
                             </div>
                         </div>
                         <div class="ranking-table-row-leader-3">
@@ -141,7 +150,7 @@ background-color: #ededed;
                                 ${list[2].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete1">${list[2].score}</div>
+                                <div class="complete1">${list[2].sum}</div>
                             </div>
                         </div>
                         <div class="ranking-table-body">
@@ -153,7 +162,7 @@ background-color: #ededed;
                                     ${list[3].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[3].score}</div>
+                                    <div class="complete1">${list[3].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -164,7 +173,7 @@ background-color: #ededed;
                                     ${list[4].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[4].score}</div>
+                                    <div class="complete1">${list[4].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -175,7 +184,7 @@ background-color: #ededed;
                                     ${list[5].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[5].score}</div>
+                                    <div class="complete1">${list[5].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -186,7 +195,7 @@ background-color: #ededed;
                                    ${list[6].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[6].score}</div>
+                                    <div class="complete1">${list[6].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -197,7 +206,7 @@ background-color: #ededed;
                                     ${list[7].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[7].score}</div>
+                                    <div class="complete1">${list[7].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -208,7 +217,7 @@ background-color: #ededed;
                                     ${list[8].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[8].score}</div>
+                                    <div class="complete1">${list[8].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -252,7 +261,7 @@ background-color: #ededed;
                                     ${list[12].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[12].score}</div>
+                                    <div class="complete1">${list[12].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -263,7 +272,7 @@ background-color: #ededed;
                                     ${list[13].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[13].score}</div>
+                                    <div class="complete1">${list[13].sum}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -274,7 +283,7 @@ background-color: #ededed;
                                    ${list[14].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete1">${list[14].score}</div>
+                                    <div class="complete1">${list[14].sum}</div>
                                 </div>
                             </div>
                          
@@ -300,6 +309,10 @@ background-color: #ededed;
 
 
 <script>
+$(".fa-arrow-right").click(function(){
+	location.href = "<c:url value ='/main//mainPage.mn' />";
+})
+
 $(".forTabClass").click(function(){
     location.href = "<c:url value ='/ranking/ranking.mn' />";
 

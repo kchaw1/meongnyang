@@ -30,8 +30,7 @@
 		<result column="sum" property="sum" />
 	</resultMap>
 	
-	
-	<!-- 일반회원 랭킹 -->
+
 <select id="selectGeneralMemberRank" parameterType="Rank" resultMap="rankMap">
  SELECT *, SUM(score_plus) as sum
          FROM(SELECT *, WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1 as week, month(score_date) as month
@@ -44,7 +43,7 @@
         ORDER BY sum desc, score_no asc
 </select>        
 
-<!-- 행동전문가 랭킹 -->
+
 <select id="selectABSMemberRank" parameterType="Rank" resultMap="rankMap">
  SELECT *, SUM(score_plus) as sum
          FROM(SELECT *, WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1 as week, month(score_date) as month
