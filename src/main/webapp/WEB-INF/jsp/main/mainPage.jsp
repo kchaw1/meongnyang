@@ -247,9 +247,9 @@
     	location.href = "<c:url value ='/notice/list.mn' />";
     });
     // 랭킹으로 가는 url
-    /* $(".btn5").on('click', function(){
-    	location.href = "communityPage.mn";
-    }); */
+     $(".btn7").on('click', function(){
+    	location.href = "<c:url value ='/ranking/ranking.mn' />";
+    }); 
     
     function doChatList() {
     	if("${user.no}" != null ){

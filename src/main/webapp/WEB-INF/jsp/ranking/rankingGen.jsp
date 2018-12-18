@@ -1,12 +1,18 @@
-<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
- <link href = "mainpageRanking.css" rel = "stylesheet">
-
-   
-   
+<link rel="stylesheet" href="<c:url value="/resources/css/ranking/ranking.css"/>">
+<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
 <style>
- 
      
 .forTabha{
     padding-bottom: 40px;
@@ -75,60 +81,19 @@
 .is-active{
 background-color: #ededed;
 }
+
+.is-active2{
+background-color: #ededed;
+}
 </style>
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <div style="display: none;"></div></head>
     <body class="page-leaderboard">
-        <header class="header__sidenav slideout-menu" id="nav--mobile">
-        
-          
-                <ul>
-                    <li>
-                        <a id="ga-3556fb" title="Explore" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Pathfinder - Explore" data-cta-message="Explore" data-cta-type="link" data-cta-destination="self" data-cta-location="HomePage" href="pathfinder.html">Explore</a>
-                    </li>
-                    <li>
-                        <a id="ga-4653fd" title="Nanodegree" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Nanodegree - Nanodegree" data-cta-message="Nanodegree" data-cta-type="link" data-cta-destination="self" data-cta-location="HomePage" href="nanodegree.html">Nanodegree</a>
-                    </li>
-                    <li>
-                        <a id="ga-bb9190" title="Catalog" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Catalog - Catalog" data-cta-message="Catalog" data-cta-type="link" data-cta-destination="self" data-cta-location="HomePage" href="courses/all.html">Catalog</a>
-                    </li>
-                    <li>
-                        <a id="ga-8841f9" title="For Business" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Business - For Business" data-cta-message="For Business" data-cta-type="link" data-cta-destination="self" data-cta-location="HomePage" href="business.html">For Business</a>
-                    </li>
-                    <li class="student" data-show-student="">
-                        <a id="ga-2745e4" title="Blog" target="_blank" class="white" data-show-student="" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Blog - Blog" data-cta-message="Blog" data-cta-type="link" data-cta-destination="new_window" data-cta-location="HomePage" href="https://blog.udacity.com">Blog</a>
-                    </li>
-                    <li class="student" data-show-student="">
-                        <a id="ga-f5bf57" title="My Classroom" data-show-student="" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Classroom - My Classroom" data-cta-message="My Classroom" data-cta-type="button" data-cta-destination="self" data-cta-location="HomePage" href="https://classroom.udacity.com/">My Classroom</a>
-                    </li>
-                    <li class="guest" data-show-guest="">
-                        <a id="ga-24ca63" title="Sign In" data-show-guest="" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Classroom - Sign In" data-cta-message="Sign In" data-cta-type="button" data-cta-destination="self" data-cta-location="HomePage" href="https://auth.udacity.com/sign-in?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated">Sign In</a>
-                    </li>
-                    <li class="guest" data-show-guest="">
-                        <a id="ga-025584" title="Get Started" class="turquoise" data-show-guest="" data-analytics-name="Navbar Link Clicked" data-analytics-category="Navbar Link" data-analytics-label="Navbar Link - Sign Up - Get Started" data-cta-message="Get Started" data-cta-type="link" data-cta-destination="self" data-cta-location="HomePage" href="https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated">Get Started</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <div id="contain-all" class=" slideout-panel">
-            <div class="banner featured" data-eyebrow="">
-                <p><a href="" data-remodal-target="join-udacity"><span class="underline">Join our list for the latest Udacity news and offers</span><span class="icon__arrow--blue"></span></a></p>
-                <a id="ga-6cb519" class="banner--close dark" href="leaderboard.html#"></a>
-            </div>
-            <header class="header">
-                <div class="header__navbar">
-</div>
-            </header>
-            <section class="hero hero--inverse">
-</section>
-            <section class="leaderboard-progress">
+    <div class = "forAjax">
+           <section class="leaderboard-progress">
                 <div class="contain text-center">
                     <img alt="Android Basics Leaderboard" class="mb-2" src="https://d125fmws0bore1.cloudfront.net/assets/svgs/icon_trophy_leaderboard-3442a4b2312e6cdd02aa9870e636dc082890277a6267c4ed986a750fef7cbb35.svg">
-                    <h2 style="font-family: 'Jua'">금주의 행동전문가</h2>
-                    <p class="lead" style="font-family: 'Jua'">금주의 행동전문가 뽑는 방식은 차차 결정해 나갈것이고 블라블라블라를 할것이라 뭐뭐뭐 하겠스비낟.</p>
+                    <h2 style="font-family: 'Jua'">금주의 전문가 랭킹</h2>
+                    <p class="lead" style="font-family: 'Jua'">금주의 전문가랭킹 산출방식은 블라블라블라이고 누구에게 멀주겠씁니다.</p>
                 </div>
             </section>
             <section class="ranking">
@@ -136,7 +101,7 @@ background-color: #ededed;
 
 
                     <div  class= "tabClass">
-                    <div class ="forTabClass">전체랭킹</div><div class ="forTabClass2">금주의 일반인 랭킹</div><div class ="forTabClass3">금주의 전문가 랭킹</div>
+                    <div class ="forTabClass">전체랭킹</div><div class ="forTabClass2 is-active2">금주의 일반인 랭킹</div><div class ="forTabClass3">금주의 전문가 랭킹</div>
                     </div>
 
                    <div class = "forTabha">
@@ -144,17 +109,17 @@ background-color: #ededed;
                         <div class="ranking-table-header-row">
                             <div class="ranking-table-header-data h6">Rank</div>
                             <div class="ranking-table-header-data h6">Name</div>
-                            <div class="ranking-table-header-data h6">Progress</div>
+                            <div class="ranking-table-header-data h6">Score</div>
                         </div>
                         <div class="ranking-table-row-leader-1">
                             <div class="ranking-table-data-leader-1">
                                 <div class="medal-gold"></div>
                             </div>
                             <div class="ranking-table-data" >
-                                박아란
+                                ${list2[0].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete"></div>
+                                <div class="complete1">${list2[0].score}</div>
                             </div>
                         </div>
                         <div class="ranking-table-row-leader-2">
@@ -162,10 +127,10 @@ background-color: #ededed;
                                 <div class="medal-silver"></div>
                             </div>
                             <div class="ranking-table-data">
-                                김차원
+                              ${list2[1].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete"></div>
+                                <div class="complete1">${list2[1].score}</div>
                             </div>
                         </div>
                         <div class="ranking-table-row-leader-3">
@@ -173,10 +138,10 @@ background-color: #ededed;
                                 <div class="medal-bronze"></div>
                             </div>
                             <div class="ranking-table-data">
-                                이현규
+                                ${list2[2].id}
 </div>
                             <div class="ranking-table-data">
-                                <div class="complete"></div>
+                                <div class="complete1">${list2[2].score}</div>
                             </div>
                         </div>
                         <div class="ranking-table-body">
@@ -185,10 +150,10 @@ background-color: #ededed;
                                     4
 </div>
                                 <div class="ranking-table-data">
-                                    byongh
+                                    ${list2[3].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[3].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -196,10 +161,10 @@ background-color: #ededed;
                                     5
 </div>
                                 <div class="ranking-table-data">
-                                    Muwaffaq I
+                                    ${list2[4].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[4].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -207,10 +172,10 @@ background-color: #ededed;
                                     6
 </div>
                                 <div class="ranking-table-data">
-                                    Joshua L
+                                    ${list2[5].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[5].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -218,10 +183,10 @@ background-color: #ededed;
                                     7
 </div>
                                 <div class="ranking-table-data">
-                                    Nick M
+                                   ${list2[6].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[6].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -229,10 +194,10 @@ background-color: #ededed;
                                     8
 </div>
                                 <div class="ranking-table-data">
-                                    Ravindra R
+                                    ${list2[7].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[7].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -240,10 +205,10 @@ background-color: #ededed;
                                     9
 </div>
                                 <div class="ranking-table-data">
-                                    Ricardo M
+                                    ${list2[8].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[8].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -251,10 +216,10 @@ background-color: #ededed;
                                     10
 </div>
                                 <div class="ranking-table-data">
-                                    Shubham R
+                                    ${list2[9].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[9].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -262,10 +227,10 @@ background-color: #ededed;
                                     11
 </div>
                                 <div class="ranking-table-data">
-                                    Flavio S
+                                    ${list2[10].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[10].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -273,10 +238,10 @@ background-color: #ededed;
                                     12
 </div>
                                 <div class="ranking-table-data">
-                                    Igor S
+                                    ${list2[11].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[11].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -284,10 +249,10 @@ background-color: #ededed;
                                     13
 </div>
                                 <div class="ranking-table-data">
-                                    Mycah H
+                                    ${list2[12].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[12].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -295,10 +260,10 @@ background-color: #ededed;
                                     14
 </div>
                                 <div class="ranking-table-data">
-                                    hemant d
+                                    ${list2[13].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[13].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -306,10 +271,10 @@ background-color: #ededed;
                                     15
 </div>
                                 <div class="ranking-table-data">
-                                    Santhosh S
+                                   ${list2[14].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[14].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -317,10 +282,10 @@ background-color: #ededed;
                                     16
 </div>
                                 <div class="ranking-table-data">
-                                    Joseph D
+                                    ${list2[15].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[15].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -328,10 +293,10 @@ background-color: #ededed;
                                     17
 </div>
                                 <div class="ranking-table-data">
-                                    Kevin C
+                                    ${list2[16].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[16].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -339,10 +304,10 @@ background-color: #ededed;
                                     18
 </div>
                                 <div class="ranking-table-data">
-                                    yasser m
+                                    ${list2[17].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[17].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -350,10 +315,10 @@ background-color: #ededed;
                                     19
 </div>
                                 <div class="ranking-table-data">
-                                    Miguel �ngel M
+                                    ${list2[18].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[18].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -361,10 +326,10 @@ background-color: #ededed;
                                     20
 </div>
                                 <div class="ranking-table-data">
-                                    Peter K
+                                    ${list2[19].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[19].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -372,10 +337,10 @@ background-color: #ededed;
                                     21
 </div>
                                 <div class="ranking-table-data">
-                                    Atikur R
+                                    ${list2[20].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[20].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -383,10 +348,10 @@ background-color: #ededed;
                                     22
 </div>
                                 <div class="ranking-table-data">
-                                    Matthew Y
+                                    ${list2[21].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[21].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -394,10 +359,10 @@ background-color: #ededed;
                                     23
 </div>
                                 <div class="ranking-table-data">
-                                    Anwar S
+                                    ${list2[22].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[22].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -405,10 +370,10 @@ background-color: #ededed;
                                     24
 </div>
                                 <div class="ranking-table-data">
-                                    Jake Y
+                                    ${list2[23].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[23].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -416,10 +381,10 @@ background-color: #ededed;
                                     25
 </div>
                                 <div class="ranking-table-data">
-                                    Lokesh R
+                                    ${list2[24].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[24].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -427,10 +392,10 @@ background-color: #ededed;
                                     26
 </div>
                                 <div class="ranking-table-data">
-                                    Christopher P
+                                    ${list2[25].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[25].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -438,10 +403,10 @@ background-color: #ededed;
                                     27
 </div>
                                 <div class="ranking-table-data">
-                                    Mingxin O
+                                    ${list2[26].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[26].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -449,10 +414,10 @@ background-color: #ededed;
                                     28
 </div>
                                 <div class="ranking-table-data">
-                                    August E
+                                    ${list2[27].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[27].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -460,10 +425,10 @@ background-color: #ededed;
                                     29
 </div>
                                 <div class="ranking-table-data">
-                                    Samsruti D
+                                    ${list2[28].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[28].score}</div>
                                 </div>
                             </div>
                             <div class="ranking-table-row">
@@ -471,10 +436,10 @@ background-color: #ededed;
                                     30
 </div>
                                 <div class="ranking-table-data">
-                                    Harsh V
+                                    ${list2[29].id}
 </div>
                                 <div class="ranking-table-data">
-                                    <div class="complete"></div>
+                                    <div class="complete1">${list2[29].score}</div>
                                 </div>
                             </div>
                            
@@ -485,6 +450,8 @@ background-color: #ededed;
                     <!--Use Date Formatter-->
                 </div>
             </section>
+ 
+    </div>
             
             <footer>
                     <div class="chat-launcher"></div>
@@ -494,13 +461,24 @@ background-color: #ededed;
 
 
             </footer>
-            <script>
-            $(function () {
-    $('.chat-launcher').on('click', function () {
-        $('.chat-launcher').toggleClass('active');
-        $('.chat-wrapper').toggleClass('is-open');
-    });
-});
+
+
+<script>
+
+$(".forTabClass").click(function(){
+    location.href = "<c:url value ='/ranking/ranking.mn' />";
+
+})
+$(".forTabClass2").click(function(){
+    location.href = "<c:url value ='/ranking/rankingGen.mn' />";
+
+})
+
+$(".forTabClass3").click(function(){
+    location.href = "<c:url value ='/ranking/rankingAbs.mn' />";
+
+})
+
 
 
 $(".forTabClass").mouseover(function(){
@@ -530,11 +508,13 @@ $(".forTabClass3").mouseleave(function(){
 
 })
 
-            </script>
+</script>
          
 
     
     
     
     
-     </body></html>
+
+</body>
+</html>

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class Rank extends Member {
-	
+
 	private int scoreNo;
 	private String scoreType;
 	private Date scoreDate;

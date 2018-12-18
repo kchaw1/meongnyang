@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmcat.repository.mapper.RankingMapper">
+
+<!-- 랭킹 -->
+	<resultMap id="rankMap" type="Rank">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="score_no" property="scoreNo" />
+		<result column="score_type" property="scoreType" />
+		<result column="score_date" property="scoreDate" />
+		<result column="score_plus" property="scorePlus" />
+		<result column="week" property="week" />
+		<result column="month" property="month" />
+		<result column="sum" property="sum" />
+	</resultMap>
+	
+	
+	<!-- 일반회원 랭킹 -->
+<select id="selectGeneralMemberRank" parameterType="Rank" resultMap="rankMap">
+ SELECT *, SUM(score_plus) as sum
+         FROM(SELECT *, WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1 as week, month(score_date) as month
+				FROM mn_score_history
+			   WHERE month(score_date) = #{month} and WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1=#{week}) as b
+		INNER JOIN mn_member as a
+		   ON a.id = b.id
+		GROUP BY a.id
+		HAVING type = 1
+        ORDER BY sum desc, score_no asc
+</select>        
+
+<!-- 행동전문가 랭킹 -->
+<select id="selectABSMemberRank" parameterType="Rank" resultMap="rankMap">
+ SELECT *, SUM(score_plus) as sum
+         FROM(SELECT *, WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1 as week, month(score_date) as month
+				FROM mn_score_history
+			   WHERE month(score_date) = #{month} and WEEK(score_date, 5) - WEEK(DATE_SUB(score_date, INTERVAL DAYOFMONTH(score_date) - 1 DAY), 5) + 1=#{week}) as b
+		INNER JOIN mn_member as a
+		   ON a.id = b.id
+		GROUP BY a.id
+		HAVING type = 2
+        ORDER BY sum desc, score_no asc
+</select>        
+
+<!-- 전체 랭킹 -->
+
+<select id = "selectAllMemberRank" resultMap = "rankMap">
+		select score, id, type
+		from mn_member
+		order by score desc
+		limit 0,30;
+</select>
+ 
+	
+	
+</mapper>
