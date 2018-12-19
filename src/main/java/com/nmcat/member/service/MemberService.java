@@ -10,6 +10,7 @@ import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.LoginHistory;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Page2;
+import com.nmcat.repository.domain.Rank;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MemberService {
@@ -81,5 +82,10 @@ public interface MemberService {
 	
 	// 내 활동 코멘트 전체 수
 	int selectCommentCount(String id);
+	
+	// 내 랭킹
+	int selectMyRanking(String id);
+	
+	
 	
 }

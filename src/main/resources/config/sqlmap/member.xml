@@ -59,6 +59,33 @@
 		<result column = "comc_reg_date" property="comcRegDate" />
 	</resultMap>
 	
+	<!-- 랭킹 -->
+	<resultMap id="rankMap" type="Rank">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="score_no" property="scoreNo" />
+		<result column="score_type" property="scoreType" />
+		<result column="score_date" property="scoreDate" />
+		<result column="score_plus" property="scorePlus" />
+		<result column="week" property="week" />
+		<result column="month" property="month" />
+		<result column="sum" property="sum" />
+	</resultMap>
+	
 	<!-- 반려인 -->
 	<insert id="insertNewMemberNofile" parameterType="Member">
 		insert into mn_member (
@@ -239,5 +266,26 @@
 		from mn_com_comment
 		where comc_writer = #{id}		
 	</select>
+	
+	<!-- 랭킹 -->
+	<select id="selectMyrank" parameterType="string" resultType="int">
+			select rank 
+				from (select @rownum:=@rownum+1 as rank, a.* 
+        			from mn_member as a, (select @rownum:=0) as tmp
+					order by score desc) as b
+     			where id= #{id};
+		</select>
+	<!-- select @RNUM := @RNUM + 1 as ROWNUM, *
+		(select score, id, type
+		from mn_member
+		order by score desc) order by는 서브쿼리문 안에서는 안됨
+		from mn_member
+		where id = #{id} -->
+		<!-- select *
+		from mn_member
+		where id = (select score, id, type
+	     			from mn_member
+	     			where id = #{id}) -->
+
 	
 </mapper>

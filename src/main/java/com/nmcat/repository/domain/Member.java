@@ -40,6 +40,7 @@ public class Member {
 	private int point;
 	private List<String> FriendIdList;
 	private List<String> BlackIdList;
+	private String ranking;
 	
 	// 조인때문에 만듦
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

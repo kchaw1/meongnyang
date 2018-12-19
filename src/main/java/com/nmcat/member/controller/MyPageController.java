@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.nmcat.community.service.CommunityService;
 import com.nmcat.member.service.MemberService;
 import com.nmcat.point.serivce.PointService;
+import com.nmcat.ranking.service.RankingService;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Page2;
 
@@ -33,11 +33,17 @@ public class MyPageController {
 	@Autowired
 	private PointService pointService;
 	
+	@Autowired
+	RankingService rankService;
+	
 	@RequestMapping("list.mn")
 	public void list(Model model, HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 		model.addAttribute("lastlogin", service.selectRac(member.getId()));
+		System.out.println(member.getRanking());
+		model.addAttribute("rank", service.selectMyRanking(member.getId()));
+
 	}
 	
 	// �쉶�썝�젙蹂� �닔�젙�븷�븣 鍮꾨�踰덊샇 泥댄겕

@@ -194,7 +194,15 @@ div.modal-header {
       <div class="aside">
         <div class="avatar"><a href="admin1.html"><img src="https://66.media.tumblr.com/avatar_faa95867d2b3_128.png" /></a></div>
         <br>
-        <div class="log-out">LOG OUT</div>
+        <c:if test="${member.type == 1}">
+        <div class="log-out">반려인</div>
+        </c:if>
+        <c:if test="${member.type == 2}">
+        <div class="log-out">행동전문가</div>
+        </c:if>
+        <c:if test="${member.type == 3}">
+        <div class="log-out">admin</div>
+        </c:if>
         <div class="seperator"></div>
             <div class="list"> 
           <div id="board" class="item statistics" ><a href="<c:url value="/mypageGen/list.mn"/>">기본정보</a></div>

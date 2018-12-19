@@ -352,12 +352,16 @@ img {
 						                            <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
 						                        </div>
 						                        <hr>
+						                       <!-- <div id="addcar" class="addcare"></div> 클론했다가 취소한거 -->
 					                            <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
 					                            <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
 					                            				                            
 					                            <hr>
 					                            <span>상세경력 : </span>
-					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>					                            
+					                            <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>	
+					                            	
+					                            <!-- <div class="adcar"></div> 클론했다 취소한거-->
+					                            			                            
 					                            </div> 
 					                            </div>				                            
 					                            <hr>					                       					                          
@@ -488,7 +492,7 @@ $( function() {
 		}
 </script>
 <script>
-var html ="";
+ var html ="";
 $("#combtn").click(function() {
 
 	   html += "<div id='allcareer'>"
@@ -497,15 +501,19 @@ $("#combtn").click(function() {
 	          	+ "<input type='date' name='careerStart' id='career1'/>"
 	          	+ "<span id='car2'> ~ </span>"
 	          	+ "<input type='date' name='careerEnd' id='career2' />"
-	          	+ "<button type='button' name='cardel' class='btn pull-right btn-success' id='cardel' style='width:80px; height: 30px;'>삭제</button>	"
+	          	+ "<button type='button' name='cardel' class='btn pull-right btn-success' id='cardel' style='width:70px; height: 30px;'>삭제</button>	"
 	          	+ "<hr>"
 	          	+ "<span>상세경력 : </span>"
 	          	+ "<textarea rows='8' cols='70' placeholder='업무내용을 적어주세요.' value='' name='careerContent'></textarea>"
 	          	+ "</div>" 
 	          	+ "</div>"
 	   $("#tabs-2").append(html)
-	})
+	}) 
 
+/* $("#addcar").on("click", function(e){
+	$(".addcare").clone().appendTo(".adcar")
+}); */
+	
  $(document).on("click", "#newmember2", function() {
   $("form#abscar").submit();
  }); 

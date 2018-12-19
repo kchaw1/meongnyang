@@ -248,8 +248,8 @@ div.modal-header {
               <span class ="spanC">${member.email}</span>
           </li>
           <li class = "li4">
-             <label class ="labelC">일반인 랭킹</label><br>
-             <span class ="spanC">6위</span>
+             <label class ="labelC">랭킹</label><br>
+             <span class ="spanC">${rank}위</span>
          </li>
          
          <c:if test="${member.category == 'dog'}">

@@ -9,6 +9,7 @@ import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Page2;
+import com.nmcat.repository.domain.Rank;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface MemberMapper {
@@ -69,5 +70,9 @@ public interface MemberMapper {
 	
 	/************내 활동(코멘트 전체 수)************/
 	int selectCommentCount(String id);
+	
+	/******************나의 랭킹***********************/
+	int selectMyrank(String id);
+	/*Member selectMyRanking(String id);*/
 	
 } // end class

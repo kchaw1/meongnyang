@@ -14,6 +14,7 @@ import com.nmcat.repository.domain.License;
 import com.nmcat.repository.domain.Login;
 import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.Page2;
+import com.nmcat.repository.domain.Rank;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.LoginHistoryMapper;
 import com.nmcat.repository.mapper.MemberMapper;
@@ -230,6 +231,17 @@ public class MemberServiceImpl implements MemberService{
 	public int selectCommentCount(String id) {
 		return mapper.selectCommentCount(id);
 	}
+
+	// 내 랭킹
+	@Override
+	public int selectMyRanking(String id) {
+		return mapper.selectMyrank(id);
+	}
+
+	
+	
+	
+	
 	
 	
 	
