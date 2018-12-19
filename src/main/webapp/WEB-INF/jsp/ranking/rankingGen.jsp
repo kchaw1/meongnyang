@@ -98,7 +98,9 @@ background-color: #ededed;
     cursor: pointer;
     color: #d6d1d1;
 }
-.ch
+html{
+font-size : 16px; }
+
 
 </style>
 

@@ -99,6 +99,8 @@ background-color: #ededed;
 	margin-top: 50px;
 }
 
+html{
+font-size : 16px; }
 
 
 </style>
