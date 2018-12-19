@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value="/resources/css/ranking/ranking.css"/>">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<c:import url="../common/headerfooterCSSJS.jsp" />
 </head>
 <style>
 .fa-arrow-right {
@@ -84,6 +85,10 @@
     padding-top: 9px;
 }
 
+.contain.text-center {
+	margin-top: 50px;
+}
+
 
 .is-active{
 background-color: #ededed;
@@ -99,6 +104,9 @@ background-color: #ededed;
 <c:import url = "../common/chat.jsp"/>
 
     <body class="page-leaderboard">
+    
+    <c:import url="../common/header.jsp" />
+    
     <div class = "forAjax">
            <section class="leaderboard-progress">
                 <div class="contain text-center">
@@ -464,6 +472,8 @@ background-color: #ededed;
             </section>
  
     </div>
+    
+    <c:import url="../common/footer.jsp" />
             
          
 

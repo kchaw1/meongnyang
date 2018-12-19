@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value="/resources/css/ranking/ranking.css"/>">
 <script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<c:import url="../common/headerfooterCSSJS.jsp" />
 </head>
 <style>
      
@@ -78,6 +79,10 @@
     padding-top: 9px;
 }
 
+.contain.text-center {
+	margin-top: 50px;
+}
+
 
 .is-active{
 background-color: #ededed;
@@ -100,6 +105,8 @@ background-color: #ededed;
 <script src="<c:url value="/resources/js/common/chat.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/chat2.css"/>">
 <c:import url = "../common/chat.jsp"/>
+
+	<c:import url="../common/header.jsp" />
 
     <body class="page-leaderboard">
     <div class = "forAjax">
@@ -469,7 +476,7 @@ background-color: #ededed;
     </div>
             
           
-
+	<c:import url="../common/footer.jsp" />
 
 <script>
 
