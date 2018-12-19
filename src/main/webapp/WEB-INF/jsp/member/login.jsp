@@ -337,9 +337,9 @@ img {
 					                                    <hr>
 					                                    <span id="animal">담당 반려동물 : <select id="catdog2" name="category" value="">
 					                                            <option value="0">선택</option>
-					                                            <option value="1">개</option>
-					                                            <option value="2">고양이</option>
-					                                            <option value="3">ALL</option>
+					                                            <option value="dog">개</option>
+					                                            <option value="cat">고양이</option>
+					                                            <option value="all">ALL</option>
 					                                    </select></span>
 					                                </div>
 					                            </div>
