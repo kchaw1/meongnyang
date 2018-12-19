@@ -39,7 +39,7 @@
     line-height: 1.5rem;
     letter-spacing: 0.125rem;
     text-transform: uppercase;
-    font-weight: 600;
+      font-weight: 100;
     color: #7d97ad;
     width: 100px;
     height: 43px;
@@ -56,7 +56,7 @@
     line-height: 1.5rem;
     letter-spacing: 0.125rem;
     text-transform: uppercase;
-    font-weight: 600;
+        font-weight: 100;
     color: #7d97ad;
     width: 180px;
     height: 43px;
@@ -72,7 +72,7 @@
     line-height: 1.5rem;
     letter-spacing: 0.125rem;
     text-transform: uppercase;
-    font-weight: 600;
+        font-weight: 100;
     color: #7d97ad;
     width: 180px;
     height: 43px;

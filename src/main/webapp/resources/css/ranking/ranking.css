@@ -2,6 +2,14 @@
 html {
     box-sizing: border-box;
 }
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+}
 *,
 *::after,
 *::before {
@@ -37,14 +45,7 @@ html {
 *::after {
     box-sizing: border-box;
 }
-html {
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-}
-body {
-    margin: 0;
-}
+
 footer,
 header,
 nav,

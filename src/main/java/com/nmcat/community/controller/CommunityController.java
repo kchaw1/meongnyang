@@ -68,6 +68,7 @@ public class CommunityController {
 	@RequestMapping("/communityGaToWriter.mn")
 	@ResponseBody
 	public Map<String, Object> selectGaToWrtier(String comWriter, CommunityBoard comBoard)throws Exception{
+		System.out.println(comWriter);
 		Map<String, Object> map = new HashMap<>();
 		comBoard.setComWriter(comWriter);
 		map.put("list", service.selectGaToWriter(comBoard));
