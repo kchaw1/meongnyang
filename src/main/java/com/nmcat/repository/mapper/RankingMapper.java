@@ -5,9 +5,9 @@ import java.util.List;
 import com.nmcat.repository.domain.Rank;
 
 public interface RankingMapper {
-	//ÀÒ¹ÝÈ¸¿ø·©Å·
+	//ï¿½Ò¹ï¿½È¸ï¿½ï¿½ï¿½ï¿½Å·
 	List<Rank> selectGeneralMemberRank(Rank rank);
-	//Àü¹®°¡ ·©Å·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·
 	List<Rank> selectABSMemberRank(Rank rank);
 	List<Rank> selectAllMemberRank();
 

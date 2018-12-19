@@ -33,16 +33,13 @@ public class MyPageController {
 	@Autowired
 	private PointService pointService;
 	
-	@Autowired
-	RankingService rankService;
-	
 	@RequestMapping("list.mn")
 	public void list(Model model, HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
-		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
+		System.out.println("왜 정보가 안넘어가냐???????????????????????????????" + service.selectMemberInfo(member.getNo()));
 		model.addAttribute("lastlogin", service.selectRac(member.getId()));
-		System.out.println(member.getRanking());
 		model.addAttribute("rank", service.selectMyRanking(member.getId()));
+		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 
 	}
 	
@@ -114,7 +111,7 @@ public class MyPageController {
 		model.addAttribute("member", service.selectMemberInfo(member.getNo()));
 	}
 	
-	// �봽濡쒗븘 �궗吏� �닔�젙
+	// 프로필 사진 수정
 	@RequestMapping("updateProfile.mn")
 	public String updateProfile(Member member, HttpSession session) {
 		Member member2 = (Member)session.getAttribute("user");

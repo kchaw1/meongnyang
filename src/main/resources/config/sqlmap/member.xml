@@ -275,17 +275,5 @@
 					order by score desc) as b
      			where id= #{id};
 		</select>
-	<!-- select @RNUM := @RNUM + 1 as ROWNUM, *
-		(select score, id, type
-		from mn_member
-		order by score desc) order by는 서브쿼리문 안에서는 안됨
-		from mn_member
-		where id = #{id} -->
-		<!-- select *
-		from mn_member
-		where id = (select score, id, type
-	     			from mn_member
-	     			where id = #{id}) -->
-
 	
 </mapper>

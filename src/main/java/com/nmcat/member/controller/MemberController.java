@@ -35,7 +35,6 @@ public class MemberController {
 	
 	@RequestMapping("/signup.mn")
 	public String signup(Member member) throws Exception {
-		System.out.println(member);
 		MultipartFile profile = member.getProfile();
 	      String uploadPath = "c:/app/upload";
 	      SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/HH");
@@ -61,8 +60,8 @@ public class MemberController {
 	            uploadFile.mkdirs();
 	         }
 	         profile.transferTo(uploadFile);
-	         
 		service.signup(member);
+		System.out.println(member);
 		return "redirect:/member/login.mn";
 		
 	} // 반려인 회원가입

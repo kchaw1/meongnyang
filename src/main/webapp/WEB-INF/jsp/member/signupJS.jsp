@@ -94,13 +94,13 @@ $("button#newmember").click(function(){
     if(f.email.value==""){
 		alert("이메일을 입력하세요.")
 		f.email.focus()
-		return;
+		return false;
 	}
     
     if(f.category.value=="0"){
     	alert("반려동물을 선택하세요.")
     	f.category.focus()
-    	return;
+    	return false;
     }
   
     alert("회원가입이 완료되었습니다.")
@@ -170,7 +170,7 @@ $("#absid").blur(function(){
 }) //id 유효성에 따른 경고창
 
 $("#abspasscheck").blur(function(){
-	let form = document.signup;
+	let form = document.absignup;
 	if(form.pass.value != form.passcheck.value) {
 		$("span#warnpasscheck2").text("입력된 패스워드가 서로 다릅니다.")
 		form.passcheck.value ="";
@@ -189,7 +189,7 @@ $("button#newmember2").click(function(){
 	if(f.name.value==""){
         alert("이름을 입력하세요")
         f.name.focus()
-        return;
+        return false;
     }
 	if(isValidName(f.name.value)==false) {
 		alert("형식에 맞는 이름을 입력해주세요.")
@@ -200,7 +200,7 @@ $("button#newmember2").click(function(){
 	if(f.id.value==""){
         alert("아이디를 입력하세요")
         f.id.focus()
-        return;
+        return false;
     }
 	if(isValidId(f.id.value) == false) {
 		alert("형식에 맞는 아이디를 입력해주세요.")
@@ -211,49 +211,49 @@ $("button#newmember2").click(function(){
 	if(f.email.value==""){
 		alert("이메일을 입력하세요.")
 		f.email.focus()
-		return;
+		return false;
 	}
 	
 	if(f.greetings.value==""){
 		alert("인사말을 적어주세요.")
 		f.greetings.focus()
-		return;
+		return false;
 	}
 	
 	if(f.category.value=="0"){
 		alert("담당 반려동물을 선택하세요.")
 		f.category.focus()
-		return;
+		return false;
 	}
 	
     if(f.pass.value==""){
         alert("비밀번호를 입력하세요")
         f.pass.focus()
-        return;
+        return false;
     }
 
     if(f.passcheck.value==""){
         alert("비밀번호 확인을 입력하세요")
         f.passcheck.focus()
-        return;
+        return false;
     }
     
     if(f.lifile.value==""){
     	alert("자격증을 첨부하세요.")
     	f.lifile.focus()
-    	return;
+    	return false;
     }
     
     if(f.careerStart.value==""){
     	alert("경력을 입력하세요.")
     	f.careerStart.focus()
-    	return;
+    	return false;
     }
     
     if(f.careerContent.value==""){
     	alert("상세경력을 입력하세요.")
     	f.careerContent.focus()
-    	return;
+    	return false;
     }
   
     alert("회원가입이 완료되었습니다.")
