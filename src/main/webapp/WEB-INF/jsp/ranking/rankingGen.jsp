@@ -99,7 +99,11 @@ background-color: #ededed;
     color: #d6d1d1;
 }
 html{
-font-size : 16px; }
+font-size : 18px; }
+
+div.ranking-table {
+	font-size : 16px;
+}
 
 
 </style>

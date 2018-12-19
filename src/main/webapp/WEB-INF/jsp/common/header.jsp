@@ -10,6 +10,7 @@
       <li><a href="<c:url value='/notice/list.mn'/>">공지사항</a></li>
       <li><a href="<c:url value='/crowd/list.mn'/>">크라우드펀딩</a></li>
       <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
+      <li><a href="<c:url value='/diary/share/sharediary.mn'/>">공개 다이어리</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <c:if test= "${user.type eq 3}">
       	<li><a href="<c:url value='/admin/main.mn'/>">관리자</a></li>
@@ -28,7 +29,9 @@
         <c:otherwise>
           <li><a href="<c:url value='/mypageGen/list.mn'/>" id="mypage">내 정보</a></li>
 		  <li><a href="<c:url value='/diary/writeform.mn'/>" id="petdiary">마이펫 다이어리</a></li>
-		  <li><a href="#1" id="facechat">영상통화 연습<span class="lialarm facechat" id="hidden">1</span></a></li> 
+		  <c:if test= "${user.type eq 2}">
+	      	<li><a href="#1" id="facechat">영상통화 연습<span class="lialarm facechat" id="hidden">1</span></a></li> 
+	      </c:if>
 		 <li><a href="<c:url value='/msg/msgsend.mn'/>" id="msg">쪽지함<span class="lialarm msg" id="hidden">1</span></a></li>
 		  <li><a href="<c:url value='/friend/friendlist.mn'/>" id="friendlist">내 친구<span class="lialarm friend" id="hidden">1</span></a></li>
 		  <li><a href="#1" class="pointcharge" id="point">포인트 충전<span class="lialarm point" id="hidden">1</span></a></li>
@@ -43,6 +46,7 @@
    </nav>
   <div class="clear-fix"></div>
 </header>
+ <div class="chat-launcher" onclick="doChatList()"></div>
 <script>
 	var ws = null;
 	var callerId = null;
@@ -196,6 +200,15 @@
 	    	"<c:url value='/member/pointcharge.mn'/>", "payment", "width=1000, height=600, left="+left+", top="+top
 	    )
 	})
+	
+	function doChatList() {
+    	if("${user.no}" != null ){
+    		
+       	window.open("<c:url value='/chat/chatRoom.mn?no=${user.no}' />", "chatList", "width=400, height=600, scrollbars=yes");
+    	}else{
+    		alert("채팅을 하려면 로그인을 해주십시오.");
+    	}
+    }
 </script>
 
 

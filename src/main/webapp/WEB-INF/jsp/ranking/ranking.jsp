@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value="/resources/css/ranking/ranking.css"/>">
@@ -98,12 +98,14 @@ background-color: #ededed;
 background-color: #ededed;
 }
 html{
-font-size : 16px; }
+font-size : 18px; }
+
+div.ranking-table {
+	font-size : 16px;
+}
 
 </style>
-<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/resources/css/common/chat2.css"/>">
-<c:import url = "../common/chat.jsp"/>
+
 
     <body class="page-leaderboard">
     

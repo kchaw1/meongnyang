@@ -77,7 +77,7 @@ var roomNo = "${chNo}";
 
 $(function () {
 	
-	chat = new WebSocket('wss://192.168.0.68/nmcat/chat.mn');  /*
+	chat = new WebSocket('wss://192.168.0.63/nmcat/chat.mn');  /*
     url /info가 자동 붙는것을 해결해야 한다. 
 		    - 현재는 스프링이 *.do로 설정되어 있어 404가 된다.
 		      /*로 스프링의 경로를 수정하게 되면 문제는 페이지의 결과가 텍스트로 보인다.

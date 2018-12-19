@@ -8,3 +8,4 @@
     <h4 class="dogcat">with AR, CW, HK, SY, BG <img src="<c:url value='/resources/img/common/footer_logo.png' />" /></h4>
   </div>
 </footer>
+

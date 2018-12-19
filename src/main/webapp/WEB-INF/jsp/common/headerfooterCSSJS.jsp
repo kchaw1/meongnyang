@@ -6,6 +6,9 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  
+ <!-- fontawesome -->
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <!--user 아이콘-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
 <!-- 배민폰트 -->
@@ -25,7 +28,8 @@
 <!-- 파비곤 -->
 <link rel="shortcut icon" href="<c:url value="/resources/img/common/meongvicon.png" />" type="image/x-icon">
 <link rel="icon" href="<c:url value="/resources/img/common/meongvicon.png" />" type="image/x-icon">
-
+<!-- 텍스트 채팅 css -->
+  <link rel="stylesheet" href="<c:url value="/resources/css/common/chat.css"/>">
 <script>
 $(function() {
   $('.dropdown-toggle').dropdown()	

@@ -36,8 +36,8 @@ var videosContainer = document.getElementById('videos-container') || document.bo
 var btnSetupNewRoom = document.getElementById('setup-new-room');
 var roomsList = document.getElementById('rooms-list');
 var ment = $("div.ment");
-var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
-//var alarmSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
+//var alarmSocket = new WebSocket('wss://localhost:443/nmcat/alarm.mn');
+var alarmSocket = new WebSocket('wss://192.168.0.63:443/nmcat/alarm.mn');
 
 //new 버튼 눌렀을때..이벤트..
 
