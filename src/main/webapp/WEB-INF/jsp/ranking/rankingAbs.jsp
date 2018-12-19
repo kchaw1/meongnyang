@@ -106,9 +106,6 @@ div.ranking-table {
 	font-size : 16px;
 }
 </style>
-<script src="<c:url value="/resources/js/common/chat.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/resources/css/common/chat2.css"/>">
-<c:import url = "../common/chat.jsp"/>
 
 	<c:import url="../common/header.jsp" />
 

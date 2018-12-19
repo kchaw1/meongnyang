@@ -10,7 +10,7 @@
       <li><a href="<c:url value='/notice/list.mn'/>">공지사항</a></li>
       <li><a href="<c:url value='/crowd/list.mn'/>">크라우드펀딩</a></li>
       <li><a href="<c:url value='/community/communityPage.mn'/>">반려인 커뮤니티</a></li>
-      <li><a href="<c:url value='/diary/share/sharediary.mn'/>">공개 다이어리</a></li>
+      <li><a href="<c:url value='/diary/share/sharediary.mn?pageNo=1&userId=${user.id}'/>">공개 다이어리</a></li>
       <li><a href="<c:url value='/abs/absList.mn'/>">행동전문가</a></li>
       <c:if test= "${user.type eq 3}">
       	<li><a href="<c:url value='/admin/main.mn'/>">관리자</a></li>
