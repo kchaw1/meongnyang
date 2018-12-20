@@ -30,7 +30,7 @@
 				<div class="list">
 					 <div id="board" class="item">게시판</div>
 			         <div class="board-hidden notice"><a href="<c:url value="/notice/list.mn" />">공지사항</a></div>
-			         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">유튜브</a></div>
+			         <div class="board-hidden youtube"><a href="<c:url value="/youtube/youtube.mn" />">추천동영상</a></div>
 			         <div class="board-hidden crowd-fund"><a href="<c:url value="/crowd/list.mn" />">크라우드펀딩</a></div>
 			         <div id="management" class="item">관리</div>
 			         <div class="mgm-hidden abs-member"><a href="<c:url value="/admin/abs/list.mn" />">행동전문가</a></div>
