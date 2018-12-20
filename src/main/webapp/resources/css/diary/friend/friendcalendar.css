@@ -587,6 +587,10 @@ span.small-label {
 span.label-me {
   background-color: salmon;
 }
+
+.normal {
+	width : 100% !important;
+}
 /* 고양이*/
 /* .ledge {
   position: relative;
