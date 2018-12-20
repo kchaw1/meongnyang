@@ -19,6 +19,7 @@ public interface PointMapper {
 	public void insertPointMinusforUsingFaceChat(PointMinus minus);
 	public void insertPointPlusByChating(PointPlus plus);
 	public void updatePointOneMember(Member member);
+	public int selectNowPointById(String id);
 	/*void deletePlus(int no);*/
 	
 	// 관리자

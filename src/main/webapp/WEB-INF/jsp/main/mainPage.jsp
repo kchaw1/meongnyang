@@ -297,7 +297,7 @@ naver_id_login.get_naver_userprofile("naverSignInCallback()");
 function naverSignInCallback() {
   var email = naver_id_login.getProfileData('email');
   var name = naver_id_login.getProfileData('name');
-  window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/member/naverlogin.mn?email=" + email+ "&name="+name); // 파라미터값 연결
+  window.location.replace("https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/member/naverlogin.mn?email=" + email+ "&name="+name); // 파라미터값 연결
 }
 </script>
 

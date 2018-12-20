@@ -456,7 +456,7 @@ $( function() {
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "yf6XqSXCa0vHUbfIL8Ll",
-				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/main/mainPage.mn",
+				callbackUrl: "https://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/nmcat/main/mainPage.mn",
 				isPopup: false,
 				loginButton: {color: "white", type: 3, height: 25} 
 			}

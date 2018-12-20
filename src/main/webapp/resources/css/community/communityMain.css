@@ -334,14 +334,13 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 /*�뜑蹂닿린 css*/
 .showMore{
-float: left;
+
 width: 650px;
 height: 100%;
 padding-left: 34.2%;
 
 }
 .showMore2{
-float: left;
 width: 650px;
 height: 100%;
 padding-left: 34.2%;
@@ -354,7 +353,8 @@ font-size: 16px;
   text-align: center;
     background-color: rgb(65, 192, 142, 0.7);
   display: inline-block;
-  padding: 0.1em 2em;
+    height: 37px;
+    width: 105px;
   margin-top: 30px;
   margin-bottom: 30px;
   -webkit-appearance: none;

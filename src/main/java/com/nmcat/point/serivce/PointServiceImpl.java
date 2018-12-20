@@ -23,31 +23,20 @@ public class PointServiceImpl implements PointService{
 		plus.setPlusDate(new Date());
 		plus.setPlusType("1");
 		mapper.insertPointPlusByPaying(plus);
-		int totalSum = checkPoint(plus.getId());
+		int totalSum = checkPoint(plus.getId()) + plus.getPlusPoint();
 		Member member = new Member();
 		member.setPoint(totalSum);
 		member.setId(plus.getId());
+		System.out.println("member : " + member);
 		mapper.updatePointOneMember(member);
-		return totalSum - plus.getPlusPoint();
+		return totalSum;
 	
 	}
 	
 	//현재 포인트 재고 체크..
 	@Override
 	public int checkPoint(String id) {
-		List<PointPlus> plusList = selectAddPoint(id);
-		int plusSum = 0;
-		for(PointPlus plus : plusList) {
-			plusSum += plus.getPlusPoint();
-		}
-		List<PointMinus> minusList = selectMinusPoint(id);
-		int minusSum = 0;
-		for(PointMinus minus : minusList) {
-			minusSum += minus.getMinusPoint();
-		}
-		
-		return plusSum - minusSum;
-
+		return mapper.selectNowPointById(id);
 	}
 
 	@Override

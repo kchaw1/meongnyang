@@ -31,7 +31,7 @@
 		select * from mn_diary
 		 where dr_share = '1'
 		 order by dr_no desc
-		 limit #{begin}, 15
+		 limit #{begin}, 10
 	</select>
 	
 	<select id="selectShareAndFriendDiaryByPaging" parameterType="DiaryBoard" resultMap="boardMap">
@@ -46,7 +46,7 @@
 										
 			on d.dr_writer = h.friends_id
 		  order by dr_no desc
-		  limit #{begin}, 15
+		  limit #{begin}, 10
 	</select>
 	
 	<!-- 내 일기만 가져오는 쿼리 -->

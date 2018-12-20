@@ -1,4 +1,4 @@
- 
+
  header{
       font-family: 'Jua', sans-serif;
 
@@ -27,15 +27,22 @@ font-weight: lighter;
   margin: auto;
   overflow: hidden;
 }
+.flickity-slider {
+    position: absolute;
+    width: 130%;
+    height: 100%;
+}
 
 p {
   line-height: 1.8;
+	font-size : 30px;
 }
 
 .name {
   letter-spacing: 10px;
   color: #343434;
   margin: 0;
+  
 }
 
 small {
@@ -66,7 +73,7 @@ small:after {
 .parent--el .two--col {
   display: flex;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 figure {

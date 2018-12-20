@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/community/detailPage.css"/>">
 
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-<script src = "https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script src = "https://code.jquery.com/jquery-latest.min.js"></script> -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
@@ -19,12 +19,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  -->
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<!-- 부트스트랩 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- sweetAlert -->
 
 <script src="<c:url value="/resources/js/common/sweetalert2.all.min.js"/>"></script>

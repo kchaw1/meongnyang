@@ -142,6 +142,12 @@
 		 where no = #{no} 
 	</select>
 	
+	<select id="selectNowPointById" parameterType="string" resultType="int">
+		select point
+		  from mn_member
+		 where id = #{id}
+	</select>
+	
 	<!-- 포인트차감 -->
 	<update id="updateMemberPointByCrowd" parameterType="Member">
 		update mn_member

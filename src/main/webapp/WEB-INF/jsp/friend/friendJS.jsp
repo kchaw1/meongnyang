@@ -32,7 +32,7 @@ function showFriendList(pageNo){
 			for(let friend of list) {
 				str += '<div class="users" name="users">'
 				str += '<div class="profile"><div class="image">'
-					if(friend.imageName == null){
+					if(friend.imagePath == null){
 						str += '<i class="fas fa-user-circle fa-7x"></i>'					
 					} else {
 						str += "<img src='<c:url value='/common/download.mn?sysName="+friend.imageName+"&path="+friend.imagePath+"'/>' />"

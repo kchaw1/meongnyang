@@ -66,6 +66,7 @@ div.list {
   height: 750px;
   margin: 20px auto;
   overflow: scroll;
+  overflow-x : hidden;
 }
 div[class^='line'] {
   width: 100%;

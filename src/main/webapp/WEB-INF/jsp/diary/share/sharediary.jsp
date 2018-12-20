@@ -61,7 +61,6 @@
 	               <div class="date"><fmt:formatDate value="${dr2.drRegDateTime}" pattern="yyyy-MM-dd HH:mm"/></div>
               	</div>
               	<div class="dr-content">${dr2.drContent}</div>
-              	<div class="dr-comments"> 댓글없음</div>
 			</li>
 			</c:if>
 			</c:forEach>

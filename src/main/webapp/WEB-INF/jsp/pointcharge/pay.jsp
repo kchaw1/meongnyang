@@ -63,7 +63,7 @@
        <td class="no1">
          <input type="radio" id="no6" name="point" value="100000"/>
        </td>
-       <td><label for="no5" data-value="100000">110,000 포인트</label></td>
+       <td><label for="no6" data-value="110000">110,000 포인트</label></td>
        <td>100,000 원</td>
      </tr>
      <tr class="buttons">

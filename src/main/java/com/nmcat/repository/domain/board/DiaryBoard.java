@@ -39,7 +39,7 @@ public class DiaryBoard {
 	}
 	// #{begin} -> board.xml
 	public int getBegin() {
-		return (pageNo - 1) * 15;
+		return (pageNo - 1) * 10;
 	}
 	
 } // end class

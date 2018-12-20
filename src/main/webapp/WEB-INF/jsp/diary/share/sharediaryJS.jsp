@@ -48,7 +48,7 @@ function showImage(){
 			type : "POST"
 		}).done(function(member){
 			let html ="";
-			if(member.imageName == null) {
+			if(member.imagePath == null) {
 				html ='<img src="<c:url value="/resources/img/community/userImg.jpg"/>" />'	
 			} else {
 				html = "<img src='<c:url value='/common/download.mn?sysName="+member.imageName+"&path="+member.imagePath+"'/>' />"
