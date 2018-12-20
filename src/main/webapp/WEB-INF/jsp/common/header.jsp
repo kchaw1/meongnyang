@@ -18,7 +18,14 @@
       <li class="dropdown">
 		<span class="headeralarm" id="hidden">1</span>
         <a href="#" id="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-        <i class="fas fa-user-circle fa-2x"></i>
+        <c:choose>
+        	<c:when test="${empty user}">
+        		<i class="fas fa-user-circle fa-2x"></i>
+        	</c:when>
+        	<c:otherwise>
+        		<img src="<c:url value='/common/download.mn?sysName=${user.imageName}&path=${user.imagePath}'/>" />
+        	</c:otherwise>
+        </c:choose>
         </a>
         <ul class="dropdown-menu pull-right" role="menu" id="drop zindex">
         <c:choose>
