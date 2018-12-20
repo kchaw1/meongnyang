@@ -57,11 +57,8 @@ public class CommunityController {
 		for(CommunityBoard c: list) {
 		member = service.selectProfile(c.getComWriter());
 		c.setComfImageName(member.getImageName());
-		System.out.println("-------------------------"+member.getImageName());
 		c.setComfImagePath(member.getImagePath());
-		System.out.println("-------------------------"+member.getImagePath());
 		c.setComRefCnt(service.selectRefCnt(c.getComNo()));
-
 		CommunityRef comRef = new CommunityRef();
 		comRef.setComNo(c.getComNo());
 		comRef.setComRefUser(user);
@@ -187,8 +184,18 @@ public class CommunityController {
 	
 	@RequestMapping("/selectComment.mn")
 	@ResponseBody
-	public List<CommunityComment> selectComment(int comNo)throws Exception{
-		return service.selectComment(comNo);
+	public Map<String, Object> selectComment(int comNo)throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		List<CommunityComment> list = service.selectComment(comNo);
+		
+		Member member = new Member();
+		for(CommunityComment c : list) {
+			member = service.selectProfile(c.getComcWriter());
+			c.setComfImageName(member.getImageName());
+			c.setComfImagePath(member.getImagePath());
+		}
+		map.put("list", list);
+		return map;
 	}
 	
 	@RequestMapping("/deleteComment.mn")
@@ -201,13 +208,12 @@ public class CommunityController {
 	@RequestMapping("/insertComment.mn")
 	@ResponseBody
 	public void insertComment(CommunityComment comComment)throws Exception{
-		
 		String id = comComment.getComcWriter();
 		scoreService.updateCommentScore(id);
 		scoreService.updateGradeNo(id);
 		scoreService.insertCommentScoreHistory(id);
 		service.insertComment(comComment);
-		service.insertComment(comComment);
+		
 	}
 	
 	@RequestMapping("/updateComment.mn")

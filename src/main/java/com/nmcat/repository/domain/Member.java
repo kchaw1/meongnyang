@@ -42,13 +42,13 @@ public class Member {
 	private List<String> BlackIdList;
 	private String ranking;
 	
-	// 조인때문에 만듦
+	// 議곗씤�븣臾몄뿉 留뚮벀
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-	private Date loginDateTime; // 로긴 시간
+	private Date loginDateTime; // 濡쒓릿 �떆媛�
 	
-	private String codeName; // 등급 이름
+	private String codeName; // �벑湲� �씠由�
 	
-	// 페이지 번호
+	// �럹�씠吏� 踰덊샇
 		private int pageNo;
 		public int getPageNo() {
 			return pageNo;

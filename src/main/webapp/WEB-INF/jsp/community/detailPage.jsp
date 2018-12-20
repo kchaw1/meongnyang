@@ -63,7 +63,7 @@
                             <input type="hidden" name="comNo" value="${communityBoard.comNo}"/>
                             <textarea class = "commentForm" name = "comcContent" ></textarea>
          </form>
-                            <button class = "commentBtn">등록</button>
+                            <button class = "commentBtn" onclick = "enterFunction()">등록</button>
                             <div class = "brbr"></div>
                         </div>
                      </div>
@@ -119,8 +119,16 @@
                 
  
 <script>
-//댓글 등록
-$(document).on("click",".commentBtn", function(e){
+$(document).ready(function(){
+	commentConunt();
+	commentList();
+	
+})
+
+
+
+	//댓글 등록
+function enterFunction(){
 	$.ajax({
 		url : "<c:url value = '/community/insertComment.mn'/>",
 		type : "POST",
@@ -128,13 +136,27 @@ $(document).on("click",".commentBtn", function(e){
 	}).done(function(result){
 
 	});
-});
+	 $(function(){
+		commentConunt();
+		commentList();
+			
+	}) 
+}
+/* $(document).on("click",".commentBtn", function(e){
+	$.ajax({
+		url : "<c:url value = '/community/insertComment.mn'/>",
+		type : "POST",
+		data : $("#insertComment").serialize()
+	}).done(function(result){
+
+	});
+}); */
 
 
-$(document).on("click",".commentBtn", function(e){
+/* $(document).on("click",".commentBtn", function(e){
 	commentConunt();
 	commentList();
-});
+}); */
 //댓글 갯수 함수
 function commentConunt(){
 	
@@ -158,67 +180,67 @@ function commentList(){
 		data : "comNo=${communityBoard.comNo}"
 		
 	}).done(function(result){
-		console.log(result);
+	
 		
 		var text = "";
 		
-		for(let i = 0; i < result.length; i++){
+		for(let i = 0; i < result.list.length; i++){
 			text += "<li class='comment "
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'>"
-					+"<a href='#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Kasper'></a>"
+					+"<a href='#' title='View this user profile' class='photo'><img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' width='32'></a>"
 					+"<div class='meta'>"
-					+result[i].comcWriter+"&nbsp|&nbsp"+result[i].comcRegDate
+					+result.list[i].comcWriter+"&nbsp|&nbsp"+result.list[i].comcRegDate
 					+"<a class='reply' onclick='replyComment("
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+")'>Reply</a>"
 					
-			if("${user.id}" == result[i].comcWriter){
+			if("${user.id}" == result.list[i].comcWriter){
 				
 			text +=	"<a class='reply' id = 'deleteComment' name = '"
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'>Delete</a>"
 					+"<a class='reply "
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"' id = 'editComment' onclick = 'editFunction("
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+")'>Edit</a>"
 													}
 			text+="</div><div class='body'>"
-					+result[i].comcContent
+					+result.list[i].comcContent
 					+"</div></li>"
 					+"<li class='comment editForm displayNone "
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"' id = 'forC"
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'><form class = 'updateComment "
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"' method = 'POST'>"
 					+"<a href=''#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Photo'></a>"
 					+" <div><textarea name = 'comcContent' class = 'editTextArea "
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'></textarea><input type='hidden' name='comcNo' value = '"
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'/><button onclick = 'editBtn("
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+")'class = 'reBtn'>등록</button></div>"
 					+"<a class='cancelEdit' onclick = 'editCancel("
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+")'>수정취소</a></form>"
 					+"</li><li class='comment level-2 displayNone' id = 'replyForm"
-					+result[i].comcNo
+					+result.list[i].comcNo
 					+"'>"
                     +"<form class = 'replyCommentForm"
-                    +result[i].comcNo
+                    +result.list[i].comcNo
                     +"' method = 'POST'><a href='#' title='View this user profile' class='photo'><img src='<c:url value = '/resources/img/community/userImg.jpg'/>' width='32' alt='Photo'></a>"
                     +"<div><textarea class = 'reTextArea' name = 'comcContent'></textarea><button class = 'reBtn'  onclick= replyFunction("
-                    +result[i].comcNo
+                    +result.list[i].comcNo
                     +")>등록</button>"
                     +"<input type='hidden' name='comcWriter' value='${user.id}' />"
-                    +"<input type='hidden' name='comNo' value='"+result[i].comNo+"'/>"
+                    +"<input type='hidden' name='comNo' value='"+result.list[i].comNo+"'/>"
                     +"</div>"
                     +"<a class='cancelReply' onclick= 'cancelReply("
-                    +result[i].comcNo
+                    +result.list[i].comcNo
                     +")'>답글취소</a>"
                   	+"</li></form>"
 
@@ -229,8 +251,8 @@ function commentList(){
 		});
 
 };
-commentList();
-commentConunt();
+/* commentList();
+commentConunt(); */
 //---------------------------------------------------------------------댓글 삭제파트!--------------------------------------------------------------
 //댓글 삭제
  $(document).on("click","#deleteComment", function(e){
@@ -242,8 +264,8 @@ commentConunt();
 		data : "comcNo="+ comcNo
 		}).done(function(result){
 			
-			commentList();
-			commentConunt()
+		/* 	commentList();
+			commentConunt() */
 		})
 });
 //---------------------------------------------------------------------댓글 수정파트!--------------------------------------------------------------

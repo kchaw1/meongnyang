@@ -16,5 +16,7 @@ public class CommunityComment {
 	Date comcRegDate;
 	int comcRef;
 	int comcParentNo;
+	 String comfImageName;
+	 String comfImagePath;
 	
 }
