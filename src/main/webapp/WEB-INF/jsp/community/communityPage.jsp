@@ -70,7 +70,7 @@
                          </select>
                     </div>
                     
-                     <button class="gallery"  onclick = "forGalleryBtn()">갤러리</button>
+                    <!--  <button class="gallery"  onclick = "forGalleryBtn()">갤러리</button> -->
         
                 </div>
                 <!-- 낭만 코양이 푸터 -->
