@@ -133,7 +133,7 @@ div.ranking-table {
                     <div class="ranking-table">
                         <div class="ranking-table-header-row">
                             <div class="ranking-table-header-data h6">Rank</div>
-                            <div class="ranking-table-header-data h6">Name</div>
+                            <div class="ranking-table-header-data h6">Name[id]</div>
                             <div class="ranking-table-header-data h6">Score</div>
                         </div>
                         <div class="ranking-table-row-leader-1">
@@ -141,7 +141,7 @@ div.ranking-table {
                                 <div class="medal-gold"></div>
                             </div>
                             <div class="ranking-table-data" >
-                                ${list2[0].id}
+                               ${list2[0].name} [${list2[0].id}]
 </div>
                             <div class="ranking-table-data">
                                 <div class="complete1">${list2[0].sum}</div>
@@ -152,7 +152,7 @@ div.ranking-table {
                                 <div class="medal-silver"></div>
                             </div>
                             <div class="ranking-table-data">
-                              ${list2[1].id}
+                              ${list2[1].name} [${list2[1].id}]
 </div>
                             <div class="ranking-table-data">
                                 <div class="complete1">${list2[1].sum}</div>
@@ -163,7 +163,7 @@ div.ranking-table {
                                 <div class="medal-bronze"></div>
                             </div>
                             <div class="ranking-table-data">
-                                ${list2[2].id}
+                                ${list2[2].name} [${list2[2].id}]
 </div>
                             <div class="ranking-table-data">
                                 <div class="complete1">${list2[2].sum}</div>
@@ -175,7 +175,7 @@ div.ranking-table {
                                     4
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[3].id}
+                                    ${list2[3].name} [${list2[3].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[3].sum}</div>
@@ -186,7 +186,7 @@ div.ranking-table {
                                     5
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[4].id}
+                                    ${list2[4].name} [${list2[4].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[4].sum}</div>
@@ -197,7 +197,7 @@ div.ranking-table {
                                     6
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[5].id}
+                                    ${list2[5].name} [${list2[5].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[5].sum}</div>
@@ -208,7 +208,7 @@ div.ranking-table {
                                     7
 </div>
                                 <div class="ranking-table-data">
-                                   ${list2[6].id}
+                                   ${list2[6].name} [${list2[6].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[6].sum}</div>
@@ -219,7 +219,7 @@ div.ranking-table {
                                     8
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[7].id}
+                                   ${list2[7].name} [${list2[7].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[7].sum}</div>
@@ -230,7 +230,7 @@ div.ranking-table {
                                     9
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[8].id}
+                                   ${list2[8].name} [${list2[8].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[8].sum}</div>
@@ -241,7 +241,7 @@ div.ranking-table {
                                     10
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[9].id}
+                                    ${list2[9].name} [${list2[9].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[9].sum}</div>
@@ -252,7 +252,7 @@ div.ranking-table {
                                     11
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[10].id}
+                                    ${list2[10].name} [${list2[10].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[10].sum}</div>
@@ -263,7 +263,7 @@ div.ranking-table {
                                     12
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[11].id}
+                                   ${list2[11].name} [${list2[1].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[11].sum}</div>
@@ -274,7 +274,7 @@ div.ranking-table {
                                     13
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[12].id}
+                                    ${list2[12].name} [${list2[12].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[12].sum}</div>
@@ -285,7 +285,7 @@ div.ranking-table {
                                     14
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[13].id}
+                                   ${list2[13].name} [${list2[13].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[13].sum}</div>
@@ -296,7 +296,7 @@ div.ranking-table {
                                     15
 </div>
                                 <div class="ranking-table-data">
-                                   ${list2[14].id}
+                                   ${list2[14].name} [${list2[14].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[14].sum}</div>
@@ -307,7 +307,7 @@ div.ranking-table {
                                     16
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[15].id}
+                                    ${list2[15].name} [${list2[15].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[15].sum}</div>
@@ -318,7 +318,7 @@ div.ranking-table {
                                     17
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[16].id}
+                                    ${list2[16].name} [${list2[16].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[16].sum}</div>
@@ -329,7 +329,7 @@ div.ranking-table {
                                     18
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[17].id}
+                                    ${list2[17].name} [${list2[17].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[17].sum}</div>
@@ -340,7 +340,7 @@ div.ranking-table {
                                     19
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[18].id}
+                                   ${list2[18].name} [${list2[18].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[18].sum}</div>
@@ -351,7 +351,7 @@ div.ranking-table {
                                     20
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[19].id}
+                                   ${list2[19].name} [${list2[19].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[19].sum}</div>
@@ -362,7 +362,7 @@ div.ranking-table {
                                     21
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[20].id}
+                                    ${list2[20].name} [${list2[20].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[20].sum}</div>
@@ -373,7 +373,7 @@ div.ranking-table {
                                     22
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[21].id}
+                                    ${list2[21].name} [${list2[21].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[21].sum}</div>
@@ -384,7 +384,7 @@ div.ranking-table {
                                     23
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[22].id}
+                                    ${list2[22].name} [${list2[22].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[22].sum}</div>
@@ -395,7 +395,7 @@ div.ranking-table {
                                     24
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[23].id}
+                                    ${list2[23].name} [${list2[23].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[23].sum}</div>
@@ -406,7 +406,7 @@ div.ranking-table {
                                     25
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[24].id}
+                                    ${list2[24].name} [${list2[24].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[24].sum}</div>
@@ -417,7 +417,7 @@ div.ranking-table {
                                     26
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[25].id}
+                                    ${list2[25].name} [${list2[25].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[25].sum}</div>
@@ -428,7 +428,7 @@ div.ranking-table {
                                     27
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[26].id}
+                                    ${list2[26].name} [${list2[26].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[26].sum}</div>
@@ -439,7 +439,7 @@ div.ranking-table {
                                     28
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[27].id}
+                                   ${list2[27].name} [${list2[27].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[27].sum}</div>
@@ -450,7 +450,7 @@ div.ranking-table {
                                     29
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[28].id}
+                                    ${list2[28].name} [${list2[28].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[28].sum}</div>
@@ -461,7 +461,7 @@ div.ranking-table {
                                     30
 </div>
                                 <div class="ranking-table-data">
-                                    ${list2[29].id}
+                                    ${list2[29].name} [${list2[29].id}]
 </div>
                                 <div class="ranking-table-data">
                                     <div class="complete1">${list2[29].sum}</div>
