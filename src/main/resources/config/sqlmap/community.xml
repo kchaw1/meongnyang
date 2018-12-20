@@ -45,6 +45,32 @@
 	</resultMap>
 	
 
+  <resultMap id="memberMap" type="Member">
+		<result column="no" property="no" />
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="pass" property="pass" />
+		<result column="category" property="category" />
+		<result column="email" property="email" />
+		<result column="abs_like_count" property="absLikeCount" />
+		<result column="grade_no" property="gradeNo" />
+		<result column="image_name" property="imageName" />
+		<result column="image_path" property="imagePath" />
+		<result column="image_size" property="imageSize" />
+		<result column="sign_up_date" property="signUpDate" />
+		<result column="login_state" property="loginState" />
+		<result column="auth_state" property="authState" />
+		<result column="greetings" property="greetings" />
+		<result column="point" property="point" />
+		<result column="login_date_time" property="loginDateTime" />
+</resultMap> 
+
+<select id = "selectProfile" parameterType = "string" resultMap = "memberMap">
+	select image_name,image_path
+	from mn_member
+	where id = #{id}
+</select> 
+
 
 
 	<!-- 커뮤니티 CRUD -->
@@ -79,15 +105,7 @@
 	order by com_no desc
 	limit 0, 20
 	</select>
-	
-	<!-- 갤러리 작성자 검색 -->
-	<select id = "selectGaToWriter" parameterType = "CommunityBoard" resultMap = "comMap">
-	select * 
-	from mn_com
-	where com_category = '갤러리' and com_writer = #{comWriter}
-	order by com_no desc
-	limit 0, 20
-	</select>
+
 	
 	
 	
@@ -255,6 +273,8 @@
 	from mn_com_ref
 	where com_no = #{comNo} and com_ref_user = #{comRefUser}
 	</delete>
+	
+	<!-- 프로필 사진 -->
 	
 
 	

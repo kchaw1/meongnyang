@@ -26,6 +26,11 @@
 </head>
 
 <style>
+.showmore{
+width: 650px;
+height: 100%;
+padding-left: 34.2%;
+}
 
 
 
@@ -33,10 +38,22 @@
 <body>
 	<c:import url = "../common/header.jsp"/>
 
+              <div class = "mainContainer1">
               <div class = "mainContainer">
+              
+               
+              
  
 					<!-- 이곳에 게시글들이 들어갑니다. -->
                   <!----------------------------------------------------------------------->
+                
+              </div>
+              
+          
+                     <div class = "showMore">
+		                    <button class="forAll" id = "bubbly-button" onclick = "forAllBtn()">더보기</button>
+		                 
+                   </div>
               </div><!--EndmainContainer-->
 						
 
@@ -78,10 +95,7 @@
                     <div>Copyright ⓒ 낭만코양이 All rights reserved.<br>
                            with AR, CW, HK, SY, BG
                     </div>
-                    <div class = "showMore">
-		                    <button class="forAll" id = "bubbly-button" onclick = "forAllBtn()">더보기</button>
-		                 
-                   </div>
+                 
         			
                 </div>
                 
@@ -120,6 +134,7 @@ function forAllBtn(){
 
 //전체보기를 위한 페이지
  var nextList = function(pageNoS, comCategory){
+	 $('html').scrollTop(0);
 	 user = "${user.id}"
 	 console.log("현재"+user+"님이 접속해 있습니다.");
 	//param은 페이지 번호를 가지고 있다.
@@ -151,7 +166,7 @@ function forAllBtn(){
         		+"<div class = 'contentContainer'>"
            		+"<div class = 'top1'>"
               	+"<div class = 'locationC'>"
-                +"<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+                +"<img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' class = 'imgSize'>"
                 +"<span class = 'userName'>"
                 +result.list[i].comWriter
                 +"</span>"

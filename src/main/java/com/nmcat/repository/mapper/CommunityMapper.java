@@ -6,6 +6,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.CommunityRef;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityMapper {
@@ -16,6 +17,7 @@ public interface CommunityMapper {
 	// 媛ㅻ윭由� �뿰�뒿�슜
 	List<CommunityBoard> selectGa();
 	List<CommunityBoard> selectGaToWriter(CommunityBoard comBoard);
+	Member selectProfile(String id);
 	
 	//移댄뀒怨좊━
 	List<CommunityBoard> selectBoardC(CommunityBoard comBoard);

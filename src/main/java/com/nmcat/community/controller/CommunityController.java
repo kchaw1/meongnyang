@@ -24,6 +24,7 @@ import com.nmcat.repository.domain.CFormVO;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityRef;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.score.service.ScoreService;
 
@@ -41,17 +42,26 @@ public class CommunityController {
 		
 	};
 	
+	
 	@RequestMapping("/communityPageList.mn")
 	@ResponseBody
 	public Map<String, Object> ajaxList(CommunityBoard comBoard,@RequestParam(value="pageNo", defaultValue="1")int pageNo, String user)throws Exception{
 		
+		
 		comBoard.setPageNo(pageNo);
 		Map<String, Object> map = new HashMap<>();
+		Member member = new Member();
 		List<CommunityBoard> list = service.selectBoard(comBoard);
+
+		
 		for(CommunityBoard c: list) {
-		c.setComCommentCnt(service.selectCommentCount(c.getComNo()));
+		member = service.selectProfile(c.getComWriter());
+		c.setComfImageName(member.getImageName());
+		System.out.println("-------------------------"+member.getImageName());
+		c.setComfImagePath(member.getImagePath());
+		System.out.println("-------------------------"+member.getImagePath());
 		c.setComRefCnt(service.selectRefCnt(c.getComNo()));
-		//�깉濡쒓퀬移⑥쓣�빐�룄 異붿쿇�쓣�뻽�쓣�떆�뿉�룄 異붿쿇�릺�엳�쓣�쑝濡� �뼚�엳寃� �븯湲곗쐞�빐�꽌!
+
 		CommunityRef comRef = new CommunityRef();
 		comRef.setComNo(c.getComNo());
 		comRef.setComRefUser(user);

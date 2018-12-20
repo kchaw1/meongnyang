@@ -2,11 +2,11 @@ package com.nmcat.community.service;
 
 import java.util.List;
 
-import com.nmcat.repository.domain.ComSearchVO;
 import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.CommunityRef;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 
 public interface CommunityService {
@@ -20,6 +20,7 @@ public interface CommunityService {
 		
 		List<CommunityBoard> selectGa();
 		List<CommunityBoard> selectGaToWriter(CommunityBoard comBoard);
+		Member selectProfile(String id);
 		
 		
 		

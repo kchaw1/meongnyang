@@ -9,6 +9,7 @@ import com.nmcat.repository.domain.CommunityComment;
 import com.nmcat.repository.domain.CommunityFile;
 import com.nmcat.repository.domain.CommunityReComment;
 import com.nmcat.repository.domain.CommunityRef;
+import com.nmcat.repository.domain.Member;
 import com.nmcat.repository.domain.board.CommunityBoard;
 import com.nmcat.repository.mapper.CommunityMapper;
 import com.nmcat.repository.mapper.ScoreMapper;
@@ -20,6 +21,20 @@ public class CommunityServiceImpl implements CommunityService{
 	private CommunityMapper mapper;
 	private ScoreMapper scoreMapper;
 	
+	
+
+
+
+	
+
+
+
+	@Override
+	public Member selectProfile(String id) {
+	
+		return mapper.selectProfile(id);
+	}
+
 	//而ㅵ뜝�듅�뙋�삕�떚 CRUD
 	@Override
 	public List<CommunityBoard> selectBoard(CommunityBoard comBoard) {

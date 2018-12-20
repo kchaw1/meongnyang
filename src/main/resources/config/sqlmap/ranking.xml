@@ -7,6 +7,7 @@
 	<resultMap id="rankMap" type="Rank">
 		<result column="no" property="no" />
 		<result column="id" property="id" />
+			<result column="name" property="name" />
 		<result column="type" property="type" />
 		<result column="pass" property="pass" />
 		<result column="category" property="category" />

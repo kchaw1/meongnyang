@@ -18,6 +18,8 @@ private String comCategory;
 private int comCommentCnt;
 private int comRefCnt;
 private int comCheckCnt;
+private String comfImageName;
+private String comfImagePath;
 
 
 
@@ -25,7 +27,7 @@ private int comCheckCnt;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 private Date comRegDate;
 	
-	// �럹�씠吏� 踰덊샇
+	// 占쎈읂占쎌뵠筌욑옙 甕곕뜇�깈
 	private int pageNo;
 	public int getPageNo() {
 		return pageNo;
