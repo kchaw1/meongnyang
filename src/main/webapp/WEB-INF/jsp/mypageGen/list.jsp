@@ -159,7 +159,7 @@ div.modal-header {
     margin-top: 10px;
     }
 
-#a1, #a2 {
+#a1, #a2, #a3 {
   text-decoration:none;
 }
 </style>
@@ -249,7 +249,7 @@ div.modal-header {
           </li>
           <li class = "li4">
              <label class ="labelC">랭킹</label><br>
-             <span class ="spanC">${rank}위</span>
+             <span class ="spanC"><a id="a3" href="#" onclick="rank();">${rank}위</a></span>
          </li>
          
          <c:if test="${member.category == 'dog'}">
@@ -362,6 +362,10 @@ function point() {
 
 function grade() {
 	location.href = "grade.mn";
+}
+
+function rank() {
+	location.href = "<c:url value='/ranking/ranking.mn'/>";
 }
 </script>
 </body>
