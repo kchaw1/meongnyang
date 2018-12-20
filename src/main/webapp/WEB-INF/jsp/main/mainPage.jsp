@@ -173,7 +173,7 @@
 
 
                         <div class = "main-items main-items2">
-                                <div><img  class = "forLine" src="<c:url value = "/resources/img/community/line.png"/>">
+                                <div><img  class = "forLine8" src="<c:url value = "/resources/img/community/line.png"/>">
                                     <h2 class = "title2">랭킹</h2>
                                     <button class="btn7 leftRight1">더보기 </button>
                                     </div>

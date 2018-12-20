@@ -3,7 +3,6 @@ margin-top: 120px;
 margin-bottom: 30px;
 width: 100%;
 height: 100%;
-
 padding-left : 10%;
 padding-right : 10%;
 }
@@ -26,12 +25,17 @@ height : 100%;
 
 }
 .forLine{
-    width: 98%;
+    width: 100%;
+}
+
+.forLine8{
+    width: 100%;
+    margin-top: 27px;
 }
 
 .forLine2{
     margin-top: 130px;
-    width: 98%;
+    width: 100%;
 }
 .title2{
     float: left;
@@ -331,14 +335,14 @@ tbody{
     }
 
 .forLine4{
-    width: 98%;
+    width: 100%;
 }
 .pclass{
 color: gray;
  line-height: 20px;
 }
 .fordiary{
-width: 350px;
+width: 321px;
 }
 .forlinefor:after{
 
