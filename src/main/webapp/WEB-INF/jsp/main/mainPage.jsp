@@ -288,7 +288,7 @@
 
         </script>
 <script>
-var naver_id_login = new naver_id_login("yf6XqSXCa0vHUbfIL8Ll", "http://localhost:8000/nmcat/member/login.mn");
+var naver_id_login = new naver_id_login("yf6XqSXCa0vHUbfIL8Ll", "https://192.168.0.63/nmcat/member/login.mn");
 // 접근 토큰 값 출력
 /* alert(naver_id_login.oauthParams.access_token); */
 // 네이버 사용자 프로필 조회
