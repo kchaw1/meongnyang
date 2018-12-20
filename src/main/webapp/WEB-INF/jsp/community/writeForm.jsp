@@ -131,21 +131,10 @@ div.modal-content {
 	
 	<script>
 	
-/*   $(document).ready(function() {
-		$('#summernote').summernote({
-			minwidth : 705,
-			height : 300, // set editor height
-			minHeight : null, // set minimum height of editor
-			maxHeight : null, // set maximum height of editor
-			focus : true,
-			
-		// set focus to editable area after initializing summernote
-		});
-	});    */
 
 		$('#summernote').summernote({
 	
-		    minwidth : 705,
+		    width : 705,
 			height : 300, // set editor height
 			minHeight : null, // set minimum height of editor
 			maxHeight : null, // set maximum height of editor
