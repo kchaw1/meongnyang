@@ -35,6 +35,14 @@
 </head>
 <style>
 
+element.style {
+    margin-bottom: 25px;
+    list-style: none;
+    border: 0px;
+    outline: none;
+    line-height: 0px;
+    color: rgb(44, 47, 52);
+}
 </style>
 <body>
 <script src="<c:url value="/resources/js/common/chat.js"/>"></script>
