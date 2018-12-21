@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
 </head>
 
 <style>
@@ -54,7 +55,10 @@ padding-left: 34.2%;
 						
 
               <div class = "profileAndName">
-             
+                  <!-- 우측 상단 프로필 사진 -->
+                  <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
+                  <!-- 우측 상단 유저이름 -->
+                  <span class = "userName">${user.id}</span>
                 </div>
                 <!-- 글작성 버튼이 들어갑니다. -->
                 <div class = "writeForm">
@@ -93,10 +97,6 @@ padding-left: 34.2%;
                 </div>
                 
 
-              <footer>
-	            <div class="chat-launcher"></div>
-	            
-    		  </footer>
 	
 <script>
 //---------------------------------------------------------------------------------------------------------------
@@ -235,6 +235,33 @@ function forAllBtn(){
 				}
 				if($content.html().indexOf("img") != -1){
 					$content.find("img").addClass("forImg3");
+				}
+			}
+		
+
+				
+		}); 
+		
+		$(function(){
+			//모든 content 클래스를 갖고있는 친구들 갖고오기
+			var contentList = document.querySelectorAll(".forContent");
+					console.log(contentList);
+			//content에 하나하나 넣어주기
+			for(let content of contentList){
+
+				$content = $(content);
+				var length;
+				length = $content.find("p").length;
+				
+				var imgTag = $content.find("p");
+				if($content.find("p").length >= 4){
+			
+					console.log(imgTag);
+					for(var i = 5; i <= length-1; i++){
+						imgTag[i].remove();
+					}
+/* 					
+					$content.find("img").addClass("manyPic"); */
 				}
 			}
 		
