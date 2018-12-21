@@ -13,10 +13,10 @@ import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsPageResult;
 import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 import com.nmcat.repository.mapper.AbsMapper;
-import com.nmcat.score.service.ScoreService;
 
 @Service
 public class AbsServiceImpl implements AbsService{
@@ -39,8 +39,10 @@ public class AbsServiceImpl implements AbsService{
 		Map<String, Object> map = new HashMap<>();
 		
 		Abs detail = absMapper.selectAbsDetail(no);
+		List<Career> career = absMapper.selectCareer(no);
+		
 		System.out.println(detail);
-
+		map.put("c", career);
 		map.put("b",detail);
 		return map;
 	}

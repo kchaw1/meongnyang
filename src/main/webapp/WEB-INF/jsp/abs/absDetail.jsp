@@ -69,14 +69,10 @@
           <hr> 
           <div class="DetailContainer">
                <p id="name">"${map.b.name}"</p>
-              <p>출생: 1985년 5월 27일 (33세)</p> 
-              <p>가족: 배우자 수잔 엘더, 아들 강주운</p>
-              <p>소속: 보듬컴퍼니 (대표)</p>
-              <p>무조건 칭찬만 하는 교육을 하진 않습니다.
-                때로는 거절을 통해 옳고 그른 행동을 알려주어, 우리가 사는 이 복잡한 도시환경에 적응하여
-                함께 잘 살아갈 수 있게 보듬어 주는 교육을 보듬교육이라고 말합니다.   
-                보듬교육은 보호자님과 반려견이 항상 행복하기를 바랍니다.</p>
-                
+               <c:forEach var="c" items="${map.c}">
+              		<p>${c.careerStart} ~ ${c.careerEnd}</p>
+              		<p>${c.careerContent}</p>               
+               </c:forEach>    
               </div>
           </div>
         

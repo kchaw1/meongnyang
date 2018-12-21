@@ -7,6 +7,7 @@ import com.nmcat.repository.domain.AbsBoardFile;
 import com.nmcat.repository.domain.AbsComment;
 import com.nmcat.repository.domain.AbsLikeVO;
 import com.nmcat.repository.domain.AbsSearchVO;
+import com.nmcat.repository.domain.Career;
 import com.nmcat.repository.domain.ScoreHistory;
 import com.nmcat.repository.domain.board.QnABoard;
 
@@ -20,6 +21,8 @@ public interface AbsMapper {
 	
 	//행동전문가 개별 질문게시판 리스트
 	List<QnABoard> selectAbsBoard(int no, int begin);
+	
+	List<Career> selectCareer(int no);
 	
 	//행동전문가 개별 질문게시판 검색
 	List<QnABoard> selectAbsBoardSearch(AbsSearchVO absSearch);
