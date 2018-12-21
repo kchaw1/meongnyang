@@ -54,10 +54,7 @@ padding-left: 34.2%;
 						
 
               <div class = "profileAndName">
-                  <!-- 우측 상단 프로필 사진 -->
-                  <img src="<c:url value = "/resources/img/community/userImg.jpg"/>" class = "imgSize">
-                  <!-- 우측 상단 유저이름 -->
-                  <span class = "userName">${user.id}</span>
+             
                 </div>
                 <!-- 글작성 버튼이 들어갑니다. -->
                 <div class = "writeForm">
