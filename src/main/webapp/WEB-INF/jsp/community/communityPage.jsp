@@ -162,8 +162,12 @@ function forAllBtn(){
         		+"<div class = 'contentContainer'>"
            		+"<div class = 'top1'>"
               	+"<div class = 'locationC'>"
-                +"<img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' class = 'imgSize'>"
-                +"<span class = 'userName'>"
+              	if(result.list[i].comfImagePath==null){
+              	text+="<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+              	}else{
+                text+="<img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' class = 'imgSize'>"
+              	}
+                text+="<span class = 'userName'>"
                 +result.list[i].comWriter
                 +"</span>"
                 +"<span class = 'regDate'> ·"+result.list[i].comRegDate+"</span></div><div class ='category'>"+result.list[i].comCategory+"</div></div>"

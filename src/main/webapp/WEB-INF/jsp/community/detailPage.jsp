@@ -31,7 +31,13 @@
 
 </head>
 <style>
-
+.imgSize{
+    border: 1px solid #e6e6e6;
+    margin-top: 5px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
 </style>
 <body>
 <script src="<c:url value="/resources/js/common/chat.js"/>"></script>
@@ -188,12 +194,18 @@ function commentList(){
 			text += "<li class='comment "
 					+result.list[i].comcNo
 					+"'>"
-					+"<a href='#' title='View this user profile' class='photo'><img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' width='32'></a>"
-					+"<div class='meta'>"
-					+result.list[i].comcWriter+"&nbsp|&nbsp"+result.list[i].comcRegDate
-					+"<a class='reply' onclick='replyComment("
-					+result.list[i].comcNo
-					+")'>Reply</a>"
+					+"<a href='#' title='View this user profile' class='photo'>"
+					if(result.list[i].comfImagePath==null){
+					text+="<img src='<c:url value = '/resources/img/community/userImg.jpg'/>' class = 'imgSize'>"
+					}else{
+					text+="<img src='<c:url value='/common/download.mn?sysName="+result.list[i].comfImageName+"&path="+result.list[i].comfImagePath+"'/>' width='32'>"
+					}
+					text+="</a>"
+						+"<div class='meta'>"
+						+result.list[i].comcWriter+"&nbsp|&nbsp"+result.list[i].comcRegDate
+						+"<a class='reply' onclick='replyComment("
+						+result.list[i].comcNo
+						+")'>Reply</a>"
 					
 			if("${user.id}" == result.list[i].comcWriter){
 				
