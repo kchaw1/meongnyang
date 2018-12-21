@@ -20,7 +20,6 @@
 
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  -->
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 
 <!-- sweetAlert -->

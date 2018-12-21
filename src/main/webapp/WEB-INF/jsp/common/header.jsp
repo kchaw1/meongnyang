@@ -31,7 +31,7 @@
         <c:choose>
         <c:when test="${empty user.id}">
           <li><a href="<c:url value='/member/login.mn'/>">로그인</a></li>                
-          <li><a href="<c:url value='/member/signup.mn'/>">회원가입</a></li>                
+          <li><a href="<c:url value='/member/login.mn'/>">회원가입</a></li>                
         </c:when>
         <c:otherwise>
           <li><a href="<c:url value='/mypageGen/list.mn'/>" id="mypage">내 정보</a></li>
@@ -93,7 +93,7 @@
 		ws.onclose = function() {
 	   	    console.log("헤더 웹소켓 연결 종료.");
 	    };
-		 
+		  
 	}) //function
 	var callerList = null;
 	function selectFriendRequest(userId) {
