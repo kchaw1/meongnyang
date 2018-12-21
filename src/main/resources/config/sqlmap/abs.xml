@@ -56,6 +56,13 @@
 		<result column="score_plus" property="scorePlus"/>
 	
 	</resultMap> 
+	<resultMap id="careerMap" type="Career">
+		<result column="career_start" property="careerStart"/>
+		<result column="career_end" property="careerEnd"/>
+		<result column="career_content" property="careerContent"/>
+		<result column="id" property="id"/>
+		<result column="no" property="no"/>
+	</resultMap> 
 	
 	<!-- 행동전문가 리스트 보여주기 -->
 	<select id="selectAbsList"  parameterType="Abs" resultMap="absMap">
@@ -80,6 +87,12 @@
 	    order by abs_no desc
 		   limit #{begin}, 10
 		   
+	</select>
+	
+	<select id="selectCareer" parameterType="int" resultMap="careerMap">
+	select * 
+	 from mn_member_career
+	  where no=#{no}
 	</select>
 	<!-- 행동전문가 질문게시판  검색 -->
 	<select id="selectAbsBoardSearch" parameterType="AbsSearchVO" resultMap="qnaMap">		
@@ -260,5 +273,7 @@
 			  (id, score_type, score_date, score_plus)
 	    values(#{id}, 2, now(), 30);
 	</insert>
+	
+	
 	
 </mapper>
