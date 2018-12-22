@@ -134,7 +134,7 @@
                     <c:forEach var = "b" items = "${list}">
                     <p style="font-family: 'Jua'">${b.comTitle}</p>
                     <!-- 이클립스주기 -->
-                    <div class = "comComtent">${b.comContent}</div>
+
                     <p  class = "pclass"style="font-family: 'Jua'">${b.comWriter} <span><fmt:formatDate value = "${b.comRegDate}" pattern="yyyy-MM-dd"/></span></p>        
                     <hr class = "forhr">
                     </c:forEach>
