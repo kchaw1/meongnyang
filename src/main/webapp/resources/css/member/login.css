@@ -1,4 +1,4 @@
-img {
+/* img {
     width: 100%;
 }
 
@@ -41,18 +41,18 @@ img {
   .social-login{
     position:relative;
     float: left;
-   /*  width: 100%;
-    height:auto; */
+    width: 100%;
+    height:auto;
     padding: 10px 0 15px 0;
     border-bottom: 1px solid #eee;
   }
   .social-login a{
     position:relative;
     float: left;
-    /* width:calc(40% - 8px);
+    width:calc(40% - 8px);
     text-decoration: none;
     color: #fff;
-    border: 1px solid rgba(0,0,0,0.05); */
+    border: 1px solid rgba(0,0,0,0.05);
     padding: 12px;
     border-radius: 2px;
     font-size: 12px;
@@ -69,9 +69,9 @@ img {
   .social-login a:first-child{
      background-color: rgb(36, 216, 45); 
   }
-  /* .social-login a:last-child{
+  .social-login a:last-child{
     background-color: rgb(241, 238, 25);
-  } */
+  }
   .email-login,.email-signup{
     position:relative;
     float: left;
@@ -93,7 +93,7 @@ img {
     padding: 0 10px;
     border-radius: 2px;
     color: #333;
-    /* font-size:1.0rem; */
+    font-size:1.0rem;
     -webkit-transition:all 0.1s linear;
     -moz-transition:all 0.1s linear;
     transition:all 0.1s linear;
@@ -155,7 +155,7 @@ span[id^='warn'] {
   
 .form-control {
 	
-}
+} */
   
 /* img {
     width: 100%;
@@ -293,3 +293,243 @@ span[id^='warn'] {
     border-radius: 2px;
     text-transform: uppercase;
   } */
+  
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: url(../../img/member/dog.jpg) center center fixed no-repeat;
+  font-family: 'Roboto', sans-serif;
+}
+video {
+	position : fixed;
+	top : 0; 
+	left : 0;
+	min-width : 100%;
+	min-height : 100%;
+	width : auto;
+	height : auto;
+	z-index : -1;
+}
+
+.container{
+  /*border:1px solid white;*/
+  width: 600px !important;
+  height: 350px;
+  position: absolute;
+  top:40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex; 
+}
+.backbox{  
+  background-color: rgb(64, 64, 64, 0.6);
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  transform: translate(0,-50%);
+  top:50%;
+  display: inline-flex;
+}
+
+.frontbox{
+  background-color: white;
+  border-radius: 20px;
+  height: 100%;
+  width: 50%;
+  z-index: 10;
+  position: absolute;
+  right:0;
+  margin-right: 3%;
+  margin-left: 3%;
+  transition: right .8s ease-in-out;
+}
+
+.moving{
+  right:45%;
+}
+
+.loginMsg, .signupMsg{
+  width: 50%;
+  height: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.loginMsg .title,
+.signupMsg .title{
+  font-weight: 300;
+  font-size: 23px;
+}
+
+.loginMsg p,
+.signupMsg p {
+  font-weight: 100;
+}
+
+.textcontent{
+  color:white;
+  margin-top:65px;
+  margin-left: 12%;
+}
+
+.loginMsg button,
+.signupMsg button {
+  background-color: #404040;
+  border: 2px solid white;
+  border-radius: 10px;
+  color:white;
+  font-size: 12px;
+  box-sizing: content-box;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+/* front box content*/
+.login, .signup{
+  padding: 20px;
+  text-align: center;
+}
+
+.login h2,
+.signup h2 {
+  color: #41c08e;
+  font-size:22px;
+}
+
+.inputbox{
+  margin-top:60px; 
+}
+.login input, 
+.signup input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: #f2f2f2;
+  border: none;
+  margin-bottom:20px;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.login button,
+.signup button{
+  background-color: #41c08e;
+  border: none;
+  color:white;
+  font-size: 12px;
+  font-weight: 300;
+  box-sizing: content-box;
+  padding:10px;
+  border-radius: 10px;
+  width: 60px;
+  position: absolute;
+  right:30px;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+/* Fade In & Out*/
+.login p {
+  cursor: pointer;
+  color:#404040;
+  font-size:15px;
+}
+
+.loginMsg, .signupMsg{
+  /*opacity: 1;*/
+  transition: opacity .8s ease-in-out;
+}
+
+.visibility{
+  opacity: 0;
+}
+
+.hide{
+  display: none;
+}
+
+
+/*소셜 로그인 버튼*/
+.social-login {
+  position: relative;
+  /* margin: auto; */
+  float: left;
+  width: 60%;
+  height: auto;
+  padding: 5px 15px 0 0;
+}
+.social-login > a#custom-login-btn {
+  float: left;
+  width: 40%;
+  padding: 0px 7px 7px 7px;
+}
+a#custom-login-btn img {
+  width: 100%;
+  float : right;
+}
+#naverIdLogin img {
+  width: 100%;
+  height: auto;
+}
+#naverIdLogin > a {
+  position: relative;
+  float: left;
+  padding: 0px 7px 7px 7px;
+  border-radius: 2px;
+  font-size: 12px;
+  width: 40%;
+  text-transform: uppercase;
+  /* margin: 0 3%; */
+  /* text-align: center; */
+}
+
+/*회원가입 폼...*/
+.u-form-group{
+  width:100%;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+.u-form-group > a.btn.btn-primary.btn-lg{
+  width: 180px;
+  background-color: rgb(65, 192, 142, 0.7);
+  border: none;
+  color:white;
+}
+
+.u-form-group > a.btn.btn-primary.btn-lg:hover {
+  background-color: rgb(65, 192, 142)
+}
+
+button.btn.btn-primary{
+  background-color: rgb(65, 192, 142, 0.7);
+  border: none;
+  color:white;
+}
+a[role='presentation']{
+  background-color: rgb(65, 192, 142, 0.7);
+  border: none;
+  color:white;
+}
+
+ul[role='tablist'] .ui-state-active, 
+ul[role='tablist'] .ui-widget-content .ui-state-active, 
+ul[role='tablist'] .ui-widget-header .ui-state-active, 
+ul[role='tablist'] a.ui-button:active, 
+ul[role='tablist'] .ui-button:active, 
+ul[role='tablist'] .ui-button.ui-state-active:hover {
+  border: none;
+  background: none;
+}
+
+button#combtn{
+  background-color: rgb(65, 192, 142);
+  border-color: none;
+}
+button#cardel {
+  background-color: rgb(247, 117, 78);
+  border: none;
+  width: 50px !important;
+}

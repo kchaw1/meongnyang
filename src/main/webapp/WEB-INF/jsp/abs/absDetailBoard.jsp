@@ -43,7 +43,13 @@
                   <a href="absDetail.mn?no=${map.a.no}">경력 및 인사말</a>
                 </li>
                 <li>
-                  <a href="#">1:1 화상채팅하기</a>
+                  <a href="#" id="dofacechat">1:1 화상채팅하기</a>
+                  <form name="dochat" >
+	                  <%-- <input type="hidden" name="no" value="${map.b.no}"/> --%>
+	                  <input type="hidden" name="name" value="${map.a.name}"/>
+	                  <input type="hidden" name="id" value="${map.a.id}"/>                  
+                  </form>
+              
                 </li>
                 <li>
                   <a href="absDetailBoard.mn?no=${map.a.no}">질문게시판</a>
@@ -208,6 +214,29 @@
 		location.href = "absSearch.mn.mn?no="+ ${map.a.no}+"&pageNo="+pageNo; //넘어온 페이지를 스크립에서 처리
 
 	});
+     
+	var form = document.dochat
+    $("a#dofacechat").click(function(){
+      var left = (screen.width-1200) /2
+	  var top = (screen.height-800) /2
+	 /*  var no = $("input#no").val();
+	  var id = $("input#id").val();
+	  var name = $("input#name").val(); */
+	  /* console.log(no)
+	  console.log(id)
+	  console.log(name) */
+      window.open(
+    	'', "화상채팅", "width=1200, height=800, left="+left+", top="+top
+      )
+    	
+      form.action = "<c:url value='/facechat/dochat.mn'/>";
+      form.target ="화상채팅";
+      /* form.method = "POST" */
+      form.submit();
+      /* openwin.document.querySelector("#name").value = name;
+	  openwin.document.querySelector("#no").value = no; */
+      
+    })
         </script>
 
 </body>

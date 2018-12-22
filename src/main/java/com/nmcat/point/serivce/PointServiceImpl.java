@@ -29,7 +29,7 @@ public class PointServiceImpl implements PointService{
 		member.setId(plus.getId());
 		System.out.println("member : " + member);
 		mapper.updatePointOneMember(member);
-		return totalSum;
+		return totalSum-plus.getPlusPoint();
 	
 	}
 	
@@ -49,20 +49,22 @@ public class PointServiceImpl implements PointService{
 		plus.setPlusPoint((int)(minus.getMinusPoint()*0.9));
 		plus.setPlusDate(now);
 		plus.setPlusType("3");
+		//행동전문가 플러스..
 		mapper.insertPointPlusByChating(plus);
 		//포인트를 사용한 반려인 포인트 update
 		int idTotal = checkPoint(minus.getId());
+		System.out.println("idTotal :" + idTotal);
 		Member member = new Member();
-		member.setPoint(idTotal);
+		member.setPoint(idTotal-minus.getMinusPoint());
 		member.setId(minus.getId());
 		mapper.updatePointOneMember(member);
 		//포인트를 받은 전문가 포인트 update
 		int AbsTotal = checkPoint(minus.getAbsId());
-		member.setPoint(AbsTotal);
+		member.setPoint(AbsTotal+(int)(minus.getMinusPoint()*0.9));
 		member.setId(minus.getAbsId());
 		mapper.updatePointOneMember(member);
 		
-		return idTotal;
+		return idTotal-minus.getMinusPoint();
 	}
 	
 	// 획득 포인트 내역 

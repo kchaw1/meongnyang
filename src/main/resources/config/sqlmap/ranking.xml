@@ -60,7 +60,7 @@
 <!-- 전체 랭킹 -->
 
 <select id = "selectAllMemberRank" resultMap = "rankMap">
-		select score, id, type
+		select score, id, name
 		from mn_member
 		order by score desc
 		limit 0,30;

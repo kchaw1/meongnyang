@@ -63,6 +63,9 @@
       		<mvc:exclude-mapping path="/crowd/printEndList.mn"/>
       		<mvc:exclude-mapping path="/youtube/list.mn"/>
       		<mvc:exclude-mapping path="/youtube/keywordList.mn"/>
+      		<mvc:exclude-mapping path="/ranking/ranking.mn"/>
+      		<mvc:exclude-mapping path="/ranking/rankingGen.mn"/>
+      		<mvc:exclude-mapping path="/ranking/rankingAbs.mn"/>
       		    		
       		<!-- 어느 interceptor 클래스를 사용할지 빈 객체 설정 -->
       		<bean class="com.nmcat.common.Interceptor"/>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Start</title>
   
 <!-- codepen-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -22,9 +22,15 @@
 <!-- 모달-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- tab-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-  <video>
+  <video autoplay>
     <source src="./common/dogcat.mp4" type="video/mp4">
   </video>
   <div class="container">
@@ -68,11 +74,20 @@
         <div class="signup hide">
           <h2>SIGN UP</h2>
           <div class="inputbox">
-            <input type="text" name="fullname" placeholder="  FULLNAME">
+            <div class="u-form-group">
+              <a type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                반려인 회원가입
+              </a>
+            </div>
+            <div class="u-form-group">
+              <a type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+                행동전문가 회원가입
+              </a>
+            </div>
+            <!-- <input type="text" name="fullname" placeholder="  FULLNAME">
             <input type="text" name="email" placeholder="  EMAIL">
-            <input type="password" name="password" placeholder="  PASSWORD">
+            <input type="password" name="password" placeholder="  PASSWORD"> -->
           </div>
-          <button>SIGN UP</button>
           
         </div>
   
@@ -148,8 +163,120 @@
       </div>
       </div>
     </div>
-  <script>
 
+    <!-- 행동전문가 회원가입 Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">행동전문가</h4>
+          </div>
+    <form name="absignup" id="abscar" enctype="multipart/form-data" method="post" >
+        <div class="modal-body">
+            <div id="tabs">
+                <ul style="border: 1px solid #dddddd; background: none;">
+                    <li><a href="#tabs-1">행동전문가 회원가입</a></li>
+                    <li><a href="#tabs-2">경력 및 기타 사항</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <div class="abs_signup">
+                        <div id="pro2">
+                            <div id="poto2">
+                                <span>프로필 사진</span><br> <input id="file2" type="file" name="profile" accept=".gif, .jpg, .png" />
+                                <div class="img_wraps" id="signimg">
+                                    <label for="image1"> 
+                                      <!-- <img id="img2" src="<c:url value="/resources/img/member/profile.png"/>"/>  -->
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <input type="hidden" name="type" value="2" />
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label" id="name2"><span id="red2">*</span>이름</label>
+                                <span id='warnname2'></span>
+                                <input type="text" class="form-control" name="name" id="absname">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label"><span id="red2">*</span>아이디</label>
+                                <span id='warnid2'></span>
+                                <input type="text" class="form-control" name="id" id="absid">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label"><span id="red2">*</span>비밀번호</label>
+                                <span id='warnpass2'></span>
+                                <input type="password" class="form-control" name="pass" id="abspass">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label"><span id="red2">*</span>비밀번호 확인</label>
+                                <span id='warnpasscheck2'></span>
+                                <input type="password" class="form-control" name="passcheck" id="abspasscheck">
+                            </div>
+                            <hr>
+                            <div class="row" id="ckNameMsg2"></div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label"><span id="red2">*</span>E-mail</label>
+                                <span id='warnemail2'></span><br>
+                                    <input id="email2" type="text" class="form-control" name="email" placeholder="이메일">                     
+                                    <!-- <button id="sendMail2" class="btn btn-default" type="button" data-toggle="modal" data-target="#certify">인증</button>             
+                                <span class="input-group-btn"></span> -->
+                            </div>
+                            <hr>
+                            <label for="recipient-name" class="control-label"><span id="red2">*</span>인사말</label>
+                            <span id='warngree'></span>
+                            <textarea rows="8" cols="70" placeholder="인사말을 적어주세요." value="" name="greetings"></textarea>
+                            <hr>
+                            <span id="animal">담당 반려동물 : <select id="catdog2" name="category" value="">
+                                <option value="0">선택</option>
+                                <option value="dog">개</option>
+                                <option value="cat">고양이</option>
+                                <option value="all">ALL</option>
+                            </select></span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="tabs-2">
+                  <div id="allcareer">
+                  <div class="form-group">					                   	
+                  <div class="file_input">
+                      <label> 자격증 첨부 :<div><input id="lifile" type="file" name="lifile" multiple /></div></label>
+                  </div>
+                  <hr>
+                  <!-- <div id="addcar" class="addcare"></div> 클론했다가 취소한거 -->
+                    <span id="car">경력 :</span> <input type="date" name="careerStart" id="career1" /> <span id="car2">~ </span><input type="date" name="careerEnd" id="career2" />
+                    <button type="button" id="combtn" class="btn pull-right btn-success">추가</button>
+                                                        
+                    <hr>
+                    <span>상세경력 : </span>
+                    <textarea rows="8" cols="70" placeholder="업무내용을 적어주세요." value="" name="careerContent"></textarea>	
+                      
+                    <!-- <div class="adcar"></div> 클론했다 취소한거-->
+                                                      
+                    </div> 
+                    </div>				                            
+                    <hr>					                       					                          
+                </div>
+                
+            </div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="newmember2">가입하기</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+  <script>
+    $( function() {
+      $( "#tabs" ).tabs();
+    } );
         $(document).ready(
           function() {
               // 태그에 onchange를 부여한다.

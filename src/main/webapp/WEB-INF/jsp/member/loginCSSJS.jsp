@@ -2,51 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/member/login.css"/>">
+<script src="<c:url value="/resources/js/member/login.js"/>"></script>
 <%-- <script src="<c:url value="/resources/js/member/sweetalert2.all.min.js"/>"></script> --%>
 <link rel="stylesheet" href="<c:url value="/resources/css/common/sweetalert2.min.css"/>">
 <%-- <script src="<c:url value="/resources/js/member/login.js" />"></script> --%>
-<script src="<c:url value="https://unpkg.com/sweetalert/dist/sweetalert.min.js"/>"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<style>
-	#sendMail {
-  	position: relative;
-    width: calc(16% - 8px);
-    float: left;
-  }
-  
-  .file {
-  	visibility: hidden;
-  	position: absolute;
-  }
-  
-  .u-form-group button{
-    width:50%;
-    height: 70px;
-    background-color: rgb(75, 222, 174);
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 21px;
-    font-weight: normal;
-    padding: 14px 0;
-    border-radius: 21px;
-    margin-top: 15px;
-    text-transform: uppercase;
-  }
-  
-   .social-login a{
-    position:relative;
-    float: left;
-    /* width:calc(40% - 8px);
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid rgba(0,0,0,0.05); */
-    padding: 12px;
-    border-radius: 2px;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0 3%;
-    text-align:center;
-  }
-</style>
+<!-- 네이버 아이디 로그인 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<!-- codepen-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+
+
+<!-- 모달-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- tab-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

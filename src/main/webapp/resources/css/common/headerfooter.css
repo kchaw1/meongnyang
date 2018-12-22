@@ -58,13 +58,16 @@ header.dogcat {
 
 .nav {
   float: right;
- /*  vertical-align : middle; */
+  vertical-align : middle;
   /* margin-top : 30px; */
   margin-top : 20px;
   margin-right: 20px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
+.nav > li {
+	margin-top : 10px;
+}
 .clear-fix {
   clear:both;
 }
@@ -72,6 +75,11 @@ header.dogcat {
 .nav > li > a {
   line-height: 2;
   color: black;
+  padding-top : 0px;
+  padding-bottom : 0px;
+}
+a#user {
+	
 }
 
 /* header .navbar-nav>li>ul.dropdown-menu#drop#zindex.pull-right {

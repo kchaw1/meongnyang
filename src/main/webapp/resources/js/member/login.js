@@ -1,14 +1,33 @@
-$(".email-signup").hide();
-$("#signup-box-link").click(function(){
-  $(".email-login").fadeOut(100);
-  $(".email-signup").delay(100).fadeIn(100);
-  $("#login-box-link").removeClass("active");
-  $("#signup-box-link").addClass("active");
-});
-$("#login-box-link").click(function(){
-  $(".email-login").delay(100).fadeIn(100);;
-  $(".email-signup").fadeOut(100);
-  $("#login-box-link").addClass("active");
-  $("#signup-box-link").removeClass("active");
-});
+$(function(){
+  var $loginMsg = $('.loginMsg'),
+  $login = $('.login'),
+  $signupMsg = $('.signupMsg'),
+  $signup = $('.signup'),
+  $frontbox = $('.frontbox');
 
+$('#switch1').on('click', function() {
+  $loginMsg.toggleClass("visibility");
+  $frontbox.addClass("moving");
+  $signupMsg.toggleClass("visibility");
+
+  $signup.toggleClass('hide');
+  $login.toggleClass('hide');
+})
+
+$('#switch2').on('click', function() {
+  $loginMsg.toggleClass("visibility");
+  $frontbox.removeClass("moving");
+  $signupMsg.toggleClass("visibility");
+
+  $signup.toggleClass('hide');
+  $login.toggleClass('hide');
+})
+
+setTimeout(function(){
+  $('#switch1').click()
+},1000)
+
+setTimeout(function(){
+  $('#switch2').click()
+},3000)
+});
