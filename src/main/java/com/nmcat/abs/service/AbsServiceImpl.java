@@ -86,7 +86,7 @@ public class AbsServiceImpl implements AbsService{
 		absMapper.insertAbsBoardFile(file);
 		
 		//포인트
-		absMapper.pointUse(abs);
+//		absMapper.pointUse(abs);
 		
 		//활동점수 추가
 		absMapper.updateScore(abs);

@@ -239,12 +239,12 @@
 		 where no=#{no}  
 	</update>
 	
-	<!-- 포인트부과 -->
+	<!-- 포인트부과 
 	<update id="pointUse" parameterType="Abs">
 		update mn_member
 		   set point=point-500
 		 where id=#{id}  
-	</update>
+	</update>-->
 	
 	<!-- 활동점수 게시글-->
 	<update id="updateScore" parameterType="Abs">
