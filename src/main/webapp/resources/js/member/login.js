@@ -6,28 +6,28 @@ $(function(){
   $frontbox = $('.frontbox');
 
 $('#switch1').on('click', function() {
-  $loginMsg.toggleClass("visibility");
+  $loginMsg.addClass("visibility");
   $frontbox.addClass("moving");
-  $signupMsg.toggleClass("visibility");
+  $signupMsg.removeClass("visibility");
 
-  $signup.toggleClass('hide');
-  $login.toggleClass('hide');
+  $signup.removeClass('hide');
+  $login.addClass('hide');
 })
 
 $('#switch2').on('click', function() {
-  $loginMsg.toggleClass("visibility");
+  $loginMsg.removeClass("visibility");
   $frontbox.removeClass("moving");
-  $signupMsg.toggleClass("visibility");
+  $signupMsg.addClass("visibility");
 
-  $signup.toggleClass('hide');
-  $login.toggleClass('hide');
+  $signup.addClass('hide');
+  $login.removeClass('hide');
 })
 
-setTimeout(function(){
-  $('#switch1').click()
-},1000)
-
-setTimeout(function(){
-  $('#switch2').click()
-},3000)
+//setTimeout(function(){
+//  $('#switch1').click()
+//},1000)
+//
+//setTimeout(function(){
+//  $('#switch2').click()
+//},3000)
 });

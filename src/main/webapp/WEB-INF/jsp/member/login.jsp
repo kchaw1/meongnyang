@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Start</title>
 <c:import url="loginCSSJS.jsp" />
-<c:import url="signupCSSJS.jsp" />
 
 </head>
 <body>
@@ -257,6 +256,7 @@
   </div>
 </div>
 <c:import url="loginJS.jsp" />
+<%-- <c:import url="signupJS.jsp" /> --%>
   <script>
     $( function() {
       $( "#tabs" ).tabs();
