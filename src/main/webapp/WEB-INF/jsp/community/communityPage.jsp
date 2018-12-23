@@ -28,6 +28,25 @@ width: 650px;
 height: 100%;
 padding-left: 34.2%;
 }
+.forHidden{
+    overflow-y: hidden;
+    max-height: 500px;
+    position: relative;
+}
+
+ .forHidden:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 13.1em;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 0,#fff);
+    border-radius: 2px;
+    z-index: 1;
+
+} 
+
 
 
 
@@ -243,6 +262,18 @@ function forAllBtn(){
 		}); 
 		
 		$(function(){
+			var contentList = document.querySelectorAll(".forContent");
+			for(let content of contentList){
+				$content = $(content);
+			
+				if($content.height() > 391){
+					$content.addClass("forHidden");
+
+				} 
+		}}); 
+
+		
+	/* 	$(function(){
 			//모든 content 클래스를 갖고있는 친구들 갖고오기
 			var contentList = document.querySelectorAll(".forContent");
 					console.log(contentList);
@@ -260,14 +291,14 @@ function forAllBtn(){
 					for(var i = 5; i <= length-1; i++){
 						imgTag[i].remove();
 					}
-/* 					
-					$content.find("img").addClass("manyPic"); */
+ 					
+					$content.find("img").addClass("manyPic");
 				}
 			}
 		
 
 				
-		}); 
+		});  */
 
 
 	})
@@ -278,6 +309,7 @@ function nextListSecond(comCategory){
 	pageNoS = 1;
 	nextList(pageNoS, comCategory)	
 }
+
 
 
 
