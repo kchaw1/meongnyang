@@ -282,7 +282,7 @@ select {
 }
 .title{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 30px;
+
     font-size: 30px;
     font-weight: 600;
 
@@ -421,6 +421,8 @@ float:left;
   transition-duration: 0s;
    	margin-top: -40px;
     margin-left: -39px;
+    position: absolute;
+    z-index : 6;
 }
 .heart.is-active {
   transition-duration: 1s;
@@ -442,6 +444,29 @@ width : 100% !important;
 heigth : 100%;
 
 }
+.showmore{
+width: 650px;
+height: 100%;
+padding-left: 34.2%;
+}
+.forHidden{
+    overflow-y: hidden;
+    max-height: 500px;
+    position: relative;
+}
+
+ .forHidden:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20em;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 0,#fff);
+    border-radius: 2px;
+    z-index: 1;
+
+} 
 
 
 
