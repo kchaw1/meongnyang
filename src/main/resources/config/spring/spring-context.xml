@@ -44,6 +44,7 @@
       		<mvc:mapping path="/**"/>
       	<!-- 특정한 url은 제외해야 하는 것..loginform 같은 경우..계속 redirect 한다.  -->
       		<mvc:exclude-mapping path="/member/login.mn"/>
+      		<mvc:exclude-mapping path="/member/login2.mn"/>
       		<mvc:exclude-mapping path="/member/naverlogin.mn"/>
       		<mvc:exclude-mapping path="/member/naverloginform.mn"/>
       		<mvc:exclude-mapping path="/main/mainPage.mn"/>
@@ -87,6 +88,8 @@
       						view-name="pointcharge/pay"/>
      <mvc:view-controller path="/facechat/dochat.mn"
       						view-name="facechat/dochat"/>
+     <mvc:view-controller path="/member/login2.mn"
+      						view-name="member/login2"/>
       						
     <!--  <mvc:view-controller path="/start.cf"
       						view-name="common/start"/>  -->
