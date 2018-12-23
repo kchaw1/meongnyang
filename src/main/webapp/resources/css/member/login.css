@@ -383,6 +383,7 @@ video {
   font-size: 12px;
   box-sizing: content-box;
   font-weight: 300;
+  padding : 10px;
   margin-top: 20px;
 }
 
