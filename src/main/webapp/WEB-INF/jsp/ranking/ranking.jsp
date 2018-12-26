@@ -115,7 +115,7 @@ div.ranking-table {
                 <div class="contain text-center">
                     <img alt="Android Basics Leaderboard" class="mb-2" src="https://d125fmws0bore1.cloudfront.net/assets/svgs/icon_trophy_leaderboard-3442a4b2312e6cdd02aa9870e636dc082890277a6267c4ed986a750fef7cbb35.svg">
                     <h2 style="font-family: 'Jua'">전체랭킹</h2>
-                    <p class="lead" style="font-family: 'Jua'">전체랭킹 산출방식은 블라블라블라이고 누구에게 멀주겠씁니다.</p>
+                    <!-- <p class="lead" style="font-family: 'Jua'">전체랭킹 산출방식은 블라블라블라이고 누구에게 멀주겠씁니다.</p> -->
                 </div>
             </section>
             <section class="ranking">
