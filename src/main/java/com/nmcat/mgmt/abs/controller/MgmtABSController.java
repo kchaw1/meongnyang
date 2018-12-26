@@ -72,7 +72,6 @@ public class MgmtABSController {
 	@RequestMapping("/abs/approve")
 	@ResponseBody
 	public void approve(int no) {
-		System.out.println(no);
 		service.authApprove(no);
 	}
 	

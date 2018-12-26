@@ -7,7 +7,7 @@
 	<resultMap id="rankMap" type="Rank">
 		<result column="no" property="no" />
 		<result column="id" property="id" />
-			<result column="name" property="name" />
+		<result column="name" property="name" />
 		<result column="type" property="type" />
 		<result column="pass" property="pass" />
 		<result column="category" property="category" />
@@ -42,7 +42,7 @@
 		GROUP BY a.id
 		HAVING type = 1
         ORDER BY sum desc, score_no asc
-</select>        
+</select>
 
 
 <select id="selectABSMemberRank" parameterType="Rank" resultMap="rankMap">
@@ -65,9 +65,5 @@
 		order by score desc
 		limit 0,30;
 </select>
-
-		
- 
-	
 	
 </mapper>

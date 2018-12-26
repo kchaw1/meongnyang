@@ -170,7 +170,6 @@ public class StatisticsController {
 			String date = sdf.format(cal.getTime());
 			dateArr[i+4] = date;
 			
-			System.out.println(dateArr[i+4]);
 		}
 		
 		return dateArr;
@@ -189,7 +188,6 @@ public class StatisticsController {
 			String date = sdf.format(cal.getTime());
 			monthArr[i+4] = date;
 			
-			System.out.println(monthArr[i+4]);
 		}
 		
 		return monthArr;

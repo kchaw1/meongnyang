@@ -24,12 +24,7 @@ public class AdminController {
 	// 메인
 	@RequestMapping("/main.mn")
 	public void adminMain(Model model) {
-		for(Member m : service.newMemberList()) {
-			System.out.println(m.getNo());
-			System.out.println(m.getName());
-			System.out.println(m.getSignUpDate());
-		}
- 		
+		
 		model.addAttribute("nonAuthABSList", service.nonAuthABSList()); // 미승인 전문가 리스트
 		model.addAttribute("newMemberList", service.newMemberList()); // 신규회원 리스트
 		

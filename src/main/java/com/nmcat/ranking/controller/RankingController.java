@@ -19,20 +19,16 @@ public class RankingController {
 	 @RequestMapping("/rankingGen.mn")
 	 public void selectGen(Model model)throws Exception{
 		Rank rank = new Rank();
-		rank.setWeek(getWeek()); // 林 技泼
-		System.out.println(rank.getWeek()+"       gdgdgdgdgdgdgdg");
-		rank.setMonth(getMonth()); // 岿 技泼
-		System.out.println(rank.getMonth()+"       gdgdgdgdgdgdgdg");
+		rank.setWeek(getWeek()); 
+		rank.setMonth(getMonth()); 
 		model.addAttribute("list2", service.selectGeneralMemberRank(rank));
 	 }
 	 
 	 @RequestMapping("/rankingAbs.mn")
 	 public void selectAbs(Model model)throws Exception{
 			Rank rank = new Rank();
-			rank.setWeek(getWeek()); // 林 技泼
-			System.out.println(rank.getWeek()+"       gdgdgdgdgdgdgdg");
-			rank.setMonth(getMonth()); // 岿 技泼
-			System.out.println(rank.getMonth()+"       gdgdgdgdgdgdgdg");
+			rank.setWeek(getWeek()); 
+			rank.setMonth(getMonth()); 
 			model.addAttribute("list", service.selectABSMemberRank(rank));
 		 }
 	 

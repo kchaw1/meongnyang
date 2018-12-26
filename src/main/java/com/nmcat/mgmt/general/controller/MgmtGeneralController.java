@@ -182,11 +182,6 @@ public class MgmtGeneralController {
 	@RequestMapping("/general/pay-point")
 	@ResponseBody
 	public void pay(int no, int point, String id) {
-		System.out.println("----------------------------------");
-		System.out.println(no);
-		System.out.println(point);
-		System.out.println(id);
-		System.out.println("----------------------------------");
 		
 		Member member = new Member();
 		member.setNo(no);

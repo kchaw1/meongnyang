@@ -119,7 +119,6 @@ public class NoticeController {
 			file.transferTo(img);
 			ntcFile.setUrl("http://localhost:8000"+ uploadPath + datePath +"/"+ fileSysName);
 			
-			System.out.println("ntcFilentcFilentcFilentcFile" + ntcFile);
 		}
 		fileList.add(ntcFile);
 		return ntcFile;
@@ -145,7 +144,6 @@ public class NoticeController {
 	// 공지사항 디테일
 	@RequestMapping("/detail")
 	public void detail(Model model, int ntcNo) {
-		System.out.println(ntcNo);
 		service.viewCnt(ntcNo);
 		model.addAttribute("fileList", service.showFile(ntcNo));
 		model.addAttribute("ntc", service.detail(ntcNo));

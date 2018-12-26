@@ -107,9 +107,6 @@ public class CrowdController {
 		Member member = (Member)session.getAttribute("user");
 		CrowdLike cl = new CrowdLike();
 		
-		System.out.println(service.detail(crNo).getCrTitle());
-		System.out.println(service.detail(crNo).getCrContent());
-		
 		if(member != null) {
 			model.addAttribute("myPoint", pService.myPointByCrowd(member.getNo()));
 			

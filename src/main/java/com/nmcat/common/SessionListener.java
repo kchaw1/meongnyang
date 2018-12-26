@@ -25,8 +25,6 @@ public class SessionListener implements HttpSessionListener{
     	
       LoginHistoryMapper st = (LoginHistoryMapper)wac.getBean("loginHistoryMapper");
       
-      System.out.println(st);
-      
       Member member = (Member)session.getAttribute("user");
       
       st.updateHistory(member.getId());
