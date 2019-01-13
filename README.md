@@ -10,9 +10,9 @@
 > 6. 사용기술 및 툴
 > 7. 기타 문서 및 협업도구
 ## 팀원소개 및 담당기능
-![teammate](https://user-images.githubusercontent.com/42140949/51082161-2e640580-1745-11e9-8e80-bc612aebc51f.png)
+> ![teammate](https://user-images.githubusercontent.com/42140949/51082161-2e640580-1745-11e9-8e80-bc612aebc51f.png)
 ## 프로젝트 소개
-> 반려동물의 이상행동을 화상채팅을 통해 실시간으로 행동전문가에게 저렴한 비용으로 상담을 받게 하기 위한 반려인 커뮤니티
+> 반려동물의 이상행동을 실시간 화상채팅을 통해 행동전문가에게 저렴한 비용으로 상담 및 반려인들끼리 정보 공유를 할 수 있는 커뮤니티. 
 ## 시연 링크
 > 인트로 애니메이션: https://www.youtube.com/watch?v=2S7EMtafA8A <br>
 > 발표 동영상: https://www.youtube.com/watch?v=p-1hgRloExE <br>
